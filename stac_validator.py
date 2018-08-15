@@ -29,23 +29,28 @@ def stac_validate(root_catalog):
     CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
     try:
         stac_validator = validate(instance, CATALOG_SCHEMA)
-        return "Valid"
-    except e:
-        return "Not Valid"
+        return("Valid")
+    except Exception as e:
+        return(e)
 
 
-@app.route("/api/validate", methods=["GET", "POST"])
+@app.route("/api/validate", methods=["GET"])
 def api_validate():
-    if flask_request.method == "POST":
+    if flask_request.method == "GET":
         args = {}
+        print(flask_request.args)
         for k in flask_request.args:
+            print(k)
             if k == "url":
                 args[k] = flask_request.args[k]
                 print(args)
-        #return stac_validate(args.get("url"))
-        return json.dumps(args.get("url"))
-    else:
-        return json.dumps("HELLO")
+                try:
+                    url = args.get("url")
+                    stac_validate(url)
+                    details = "Valid"
+                    return json.dumps({'status': 'success', 'url' : url, 'details': details}), 200, { "Content-Type": "application/json" }
+                except Exception as errors:
+                    return json.dumps({'status': 'failure', 'url' : url, 'details': 'Invalid', 'validation_errors': str(errors)}), 400, { "Content-Type": "application/json" }
 
 @app.route('/html', methods=['GET'])
 def html():
@@ -54,19 +59,20 @@ def html():
         root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
     return render_template('main.html', root_url = root_url)
 
-@app.route('/html/validate', methods=['POST'])
+@app.route('/html/validate', methods=['GET'])
 def html_validate():
     root_url = flask_request.url_root[0:-1]
     if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
         root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
     ret, _, _ = api_validate()
+    print(ret)
     ret = json.loads(ret)
     errors = None
 
     if 'url' in flask_request.form and flask_request.form['url'] != '':
         name = flask_request.form['url']
     else:
-        name = 'This'
+        name = ret['url']
 
     if 'status' in ret and ret['status'] == 'success':
         global_result = 'Validation succeeded ! %s is a valid STAC catalog or STAC item.' % name
