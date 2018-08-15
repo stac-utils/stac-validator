@@ -39,11 +39,13 @@ def api_validate():
     if flask_request.method == "POST":
         args = {}
         for k in flask_request.args:
-            if k == "stac_catalog":
+            if k == "url":
                 args[k] = flask_request.args[k]
-        return stac_validate(args.get("stac_catalog"))
+                print(args)
+        #return stac_validate(args.get("url"))
+        return json.dumps(args.get("url"))
     else:
-        return "HELLO"
+        return json.dumps("HELLO")
 
 @app.route('/html', methods=['GET'])
 def html():
@@ -51,3 +53,27 @@ def html():
     if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
         root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
     return render_template('main.html', root_url = root_url)
+
+@app.route('/html/validate', methods=['POST'])
+def html_validate():
+    root_url = flask_request.url_root[0:-1]
+    if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
+        root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
+    ret, _, _ = api_validate()
+    ret = json.loads(ret)
+    errors = None
+
+    if 'url' in flask_request.form and flask_request.form['url'] != '':
+        name = flask_request.form['url']
+    else:
+        name = 'This'
+
+    if 'status' in ret and ret['status'] == 'success':
+        global_result = 'Validation succeeded ! %s is a valid STAC catalog or STAC item.' % name
+    else:
+        global_result = 'Validation failed ! %s is NOT a valid STAC catalog or STAC item.' % name
+        if 'error' in ret:
+            errors = [ ret['error'] ]
+        elif 'validation_errors' in ret:
+            errors = ret['validation_errors']
+    return render_template('result.html', root_url = root_url, global_result = global_result, errors = errors)
