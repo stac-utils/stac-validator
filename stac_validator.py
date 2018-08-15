@@ -27,7 +27,11 @@ def stac_validate(root_catalog):
     instance = requests.get(root_catalog).json()
     ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
     CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
-    stac_validator = validate(instance, ITEM_SCHEMA)
+    try:
+        stac_validator = validate(instance, CATALOG_SCHEMA)
+        return "Valid"
+    except e:
+        return "Not Valid"
 
 
 @app.route("/api/validate", methods=["GET", "POST"])
@@ -35,10 +39,8 @@ def api_validate():
     if flask_request.method == "POST":
         args = {}
         for k in flask_request.args:
-            print(k)
             if k == "stac_catalog":
                 args[k] = flask_request.args[k]
-                print(args.get('stac_catalog'))
-        return stac_validate(args.get('stac_catalog'))
+        return stac_validate(args.get("stac_catalog"))
     else:
-        return 'HELLO'
+        return "HELLO"
