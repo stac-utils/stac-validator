@@ -94,14 +94,18 @@
               <!-- this is the start of script -->
               <h1>Spatial Temporal Asset Catalog (STAC) validator: result</h1>
 
-              <p><b>{{ global_result}}</b></p>
+              <p><b>
+				  {% autoescape false %}
+				  	{{ global_result }}
+				  {% endautoescape %}
+			  </b></p>
 
               {% if errors %}
               <div class="alert alert-danger">
                 <p>Errors:</p>
                 <ul>
-                {% for error in errors %}
-                    <li>{{ error }}</li>
+                {% for key, value in errors.items() %}
+                    <li>{{ key }}; {{ value }}</li>
                 {% endfor %}
                 </ul>
               </div>
@@ -174,17 +178,6 @@
   	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
   	<script src="/static/js/plugins.min.js"></script>
   	<script src="/static/js/custom.min.js"></script>
-
-  	<script>
-  	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  	  ga('create', 'UA-92174380-1', 'auto');
-  	  ga('send', 'pageview');
-
-  	</script>
 
     </body>
 

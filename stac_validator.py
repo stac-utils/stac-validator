@@ -25,45 +25,45 @@ def stac_validate(url):
     :param url: path to JSON to test
     :return: 
     """
-    print(url)
-    instance = requests.get(url).json()
+
     ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
     CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
 
-    stac_validator = validate(instance, CATALOG_SCHEMA)
-    return(None)
+    catalog = requests.get(url).json()
+    errors = {}
+
+    try:
+        validate(catalog, CATALOG_SCHEMA)
+    except Exception as error:
+        errors[url] = error.message
+
+    items = parse_links(url)
+
+    for item in items:
+        try:
+            validate(requests.get(item).json(), ITEM_SCHEMA)
+        except Exception as error:
+            errors[item] = error.message
+
+    return errors
 
 
-def parse_catalog_links(catalog_url):
+def parse_links(catalog_url):
     """
     Crawl a JSON catalog for child links to test
     :param catalog_url: starting catalog
     :return: list of links to catalogs
     """
-    child_catalogs = []
+    child_items = []
 
     cat = requests.get(catalog_url).json()
 
-    # Get only child links
-    for catalog in [cat_link for cat_link in cat["links"] if cat_link["rel"] == "child"]:
-        child_catalogs.append(urljoin(catalog_url, catalog["href"]))
+    # Get only child item links
+    for item in [item_link for item_link in cat["links"] if item_link["rel"] == "item"]:
+        child_items.append(urljoin(catalog_url, item["href"]))
 
-    return child_catalogs 
+    return child_items
 
-
-def follow_catalog(root_catalog_url):
-    """
-    Get all catalog links
-    :param root_catalog_url: 
-    :return: 
-    """
-    catalogs = []
-
-    root_catalog = parse_catalog_links(root_catalog_url)
-    for child in root_catalog:
-        catalogs += parse_catalog_links(child)
-
-    return catalogs
 
 @app.route("/api/validate", methods=["GET"])
 def api_validate():
@@ -73,43 +73,64 @@ def api_validate():
 
             if k == "url":
                 args[k] = flask_request.args[k]
-                try:
-                    url = args.get("url")
-                    stac_validate(url)
+                url = args.get("url")
+                errors = stac_validate(url)
+                if len(errors) == 0:
                     details = "Valid"
-                    return json.dumps({'status': 'success', 'url' : url, 'details': details}), 200, { "Content-Type": "application/json" }
-                except Exception as errors:
-                    print(errors)
-                    return json.dumps({'status': 'failure', 'url' : url, 'details': 'Invalid', 'validation_errors': [errors.message]}), 400, { "Content-Type": "application/json" }
+                    return (
+                        json.dumps(
+                            {"status": "success",
+                             "url": url,
+                             "details": details}
+                        ),
+                        200,
+                        {"Content-Type": "application/json"},
+                    )
+                else:
+                    return (
+                        json.dumps(
+                            {
+                                "status": "failure",
+                                "url": url,
+                                "details": "Invalid",
+                                "validation_errors": errors,
+                            }
+                        ),
+                        400,
+                        {"Content-Type": "application/json"},
+                    )
 
-@app.route('/html', methods=['GET'])
+@app.route("/html", methods=["GET"])
 def html():
     root_url = flask_request.url_root[0:-1]
-    if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
-        root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
-    return render_template('main.html', root_url = root_url)
+    return render_template("main.html", root_url=root_url)
 
-@app.route('/html/validate', methods=['GET'])
+
+@app.route("/html/validate", methods=["GET"])
 def html_validate():
     root_url = flask_request.url_root[0:-1]
-    if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
-        root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
     ret, _, _ = api_validate()
     print(ret)
     ret = json.loads(ret)
     errors = None
 
-    if 'url' in flask_request.form and flask_request.form['url'] != '':
-        name = flask_request.form['url']
+    if "url" in flask_request.form and flask_request.form["url"] != "":
+        name = flask_request.form["url"]
     else:
-        name = ret['url']
+        name = ret["url"]
 
-    if 'status' in ret and ret['status'] == 'success':
-        global_result = f'Validation succeeded! {name} is a valid STAC catalog or STAC item.'
+    if "status" in ret and ret["status"] == "success":
+        global_result = (
+            f"Validation succeeded! <br/> {name} is a valid STAC catalog or STAC item."
+        )
     else:
-        global_result = f'Validation failed ! {name} is NOT a valid STAC catalog or STAC item.'
-        if 'error' in ret:
-            errors = [ ret['error'] ]
-        elif 'validation_errors' in ret:
-            errors = ret['validation_errors']
-    return render_template('result.html', root_url = root_url, global_result = global_result, errors = errors)
+        global_result = (
+            f"Validation failed ! {name} is NOT a valid STAC catalog or STAC item."
+        )
+        if "error" in ret:
+            errors = [ret["error"]]
+        elif "validation_errors" in ret:
+            errors = ret["validation_errors"]
+    return render_template(
+        "result.html", root_url=root_url, global_result=global_result, errors=errors
+    )
