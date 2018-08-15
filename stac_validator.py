@@ -69,19 +69,18 @@ def follow_catalog(root_catalog_url):
 def api_validate():
     if flask_request.method == "GET":
         args = {}
-        print(flask_request.args)
         for k in flask_request.args:
-            print(k)
+
             if k == "url":
                 args[k] = flask_request.args[k]
-                print(args)
                 try:
                     url = args.get("url")
                     stac_validate(url)
                     details = "Valid"
                     return json.dumps({'status': 'success', 'url' : url, 'details': details}), 200, { "Content-Type": "application/json" }
                 except Exception as errors:
-                    return json.dumps({'status': 'failure', 'url' : url, 'details': 'Invalid', 'validation_errors': str(errors)}), 400, { "Content-Type": "application/json" }
+                    print(errors)
+                    return json.dumps({'status': 'failure', 'url' : url, 'details': 'Invalid', 'validation_errors': [errors.message]}), 400, { "Content-Type": "application/json" }
 
 @app.route('/html', methods=['GET'])
 def html():
@@ -106,9 +105,9 @@ def html_validate():
         name = ret['url']
 
     if 'status' in ret and ret['status'] == 'success':
-        global_result = 'Validation succeeded ! %s is a valid STAC catalog or STAC item.' % name
+        global_result = f'Validation succeeded! {name} is a valid STAC catalog or STAC item.'
     else:
-        global_result = 'Validation failed ! %s is NOT a valid STAC catalog or STAC item.' % name
+        global_result = f'Validation failed ! {name} is NOT a valid STAC catalog or STAC item.'
         if 'error' in ret:
             errors = [ ret['error'] ]
         elif 'validation_errors' in ret:
