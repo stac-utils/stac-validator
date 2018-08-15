@@ -27,12 +27,9 @@ def stac_validate(root_catalog):
     instance = requests.get(root_catalog).json()
     ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
     CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
-    try:
-        stac_validator = validate(instance, CATALOG_SCHEMA)
-        return("Valid")
-    except Exception as e:
-        return(e)
 
+    stac_validator = validate(instance, CATALOG_SCHEMA)
+    return(None)
 
 @app.route("/api/validate", methods=["GET"])
 def api_validate():
