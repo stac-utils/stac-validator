@@ -19,9 +19,9 @@ ITEM_SCHEMA_URL = "https://raw.githubusercontent.com/radiantearth/stac-spec/mast
 
 def stac_validate(root_catalog):
     """
-    
-    :param args: 
-    :return: 
+
+    :param args:
+    :return:
     """
     print(root_catalog)
     instance = requests.get(root_catalog).json()
@@ -44,3 +44,10 @@ def api_validate():
         return stac_validate(args.get("stac_catalog"))
     else:
         return "HELLO"
+
+@app.route('/html', methods=['GET'])
+def html():
+    root_url = flask_request.url_root[0:-1]
+    if 'AWS_API_GATEWAY_STAGE' in flask_request.environ:
+        root_url += '/' + flask_request.environ['AWS_API_GATEWAY_STAGE']
+    return render_template('main.html', root_url = root_url)

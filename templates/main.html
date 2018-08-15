@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="description" content="">
+	  <meta name="author" content="">
+
+    <title>Radiant.Earth - Spatial Temporal Asset Catalog (STAC) validator</title>
+
+    <!-- Favicons -->
+  	<link rel="shortcut icon" href="/static/images/favicon.png">
+  	<link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+  	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png">
+  	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png">
+
+  	<!-- Web Fonts -->
+  	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,600,700' rel='stylesheet'>
+  	<link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+
+  	<!-- Bootstrap core CSS -->
+  	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  	<!-- Icon Fonts -->
+  	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+  	<link href="/static/css/simple-line-icons.css" rel="stylesheet">
+
+  	<!-- Plugins -->
+  	<link href="/static/css/magnific-popup.css" rel="stylesheet">
+  	<link href="/static/css/owl.carousel.css" rel="stylesheet">
+  	<link href="/static/css/flexslider.css" rel="stylesheet">
+  	<link href="/static/css/animate.min.css" rel="stylesheet">
+
+  	<!-- Template core CSS -->
+  	<link href="/static/css/vertical.min.css" rel="stylesheet">
+  	<link href="/static/css/template-blue.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <!-- PRELOADER -->
+  	<div class="page-loader">
+  		<div class="loader">Loading...</div>
+  	</div>
+  	<!-- END PRELOADER -->
+
+    <!-- HEADER -->
+    	<header class="header header-fixed header-transparent">
+    		<div class="container">
+    			<!-- YOUR LOGO HERE -->
+    			<div class="inner-header">
+    				<a class="inner-brand" href="/html">
+    					<img class="brand-light" src="/static/images/radiant_logo_2.png" width="170" alt="">
+    					<img class="brand-dark" src="/static/images/radiant_logo_2.png" width="170" alt="">
+    				</a>
+    			</div>
+
+    			<!-- OPEN MOBILE MENU -->
+    			<div class="main-nav-toggle">
+    				<div class="nav-icon-toggle" data-toggle="collapse" data-target="#custom-collapse">
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    				</div>
+    			</div>
+
+    			<!-- MAIN MENU -->
+    			<nav id="custom-collapse" class="main-nav collapse clearfix">
+    				<a href="https://app.radiant.earth" target="_blank" class="btn btn-circle btn-base navbar-btn pull-right">Login</a>
+    				<ul class="inner-nav pull-right">
+    					<li><a href="/html">Home</a></li>
+    					<li><a href="https://demos.radiant.earth" target="_blank">Demos</a></li>
+    					<li><a href="https://doc.radiant.earth/" target="_blank">Docs</a></li>
+    					<li><a href="https://help.radiant.earth/" target="_blank">Help</a></li>
+    					<!-- Navbar Button -->
+    					<li></li>
+    				</ul>
+
+    			</nav>
+
+    		</div>
+    	</header>
+    	<!-- END HEADER -->
+
+      <!-- WRAPPER -->
+    	<div class="wrapper">
+
+    		<!-- PAGE TITLE -->
+    		<!--
+        <section class="module-sm bg-white-dark">
+    			<div class="container">
+
+    				<div class="row">
+    					<div class="col-sm-12 text-center">
+
+    						<h3 class="montserrat text-uppercase m-b-10">Cloud Optimized GeoTIFF Validator</h3>
+    						<ol class="breadcrumb text-xs">
+    							<li>&nbsp;</li>
+    						</ol>
+
+    					</div>
+    				</div>
+
+    			</div>
+    		</section>
+        -->
+    		<!-- END PAGE TITLE -->
+
+        <!-- FORM POST -->
+  		<section class="module">
+  			<div class="container">
+          <div class="row">
+
+  					<!-- FORM CONTENT -->
+  					<div class="col-sm-12 blog-content">
+
+            <!-- this is the start of script -->
+              <h1>Spatial Temporal Asset Catalog (STAC) validator</h1>
+
+              <p>This service enables you to check the catalog and item json files follow the
+              specification of
+              <a href="https://github.com/radiantearth/stac-spec">
+              STAC</a>
+              </p>
+
+              <p>Files should generally be specified by URLs since it will enable the service
+              to check that the hosting server catalog is traversable.</p>
+
+              <form id="fileuploadform" action="{{ root_url }}/html/validate" method="post">
+               Catalog URL: <input onInput="urlModified()" id="url" type="string" name="url" style="width:800px;"/> <br />
+               <input id="file_b64" type="hidden" name="file_b64" />
+              </form>
+
+              <button type="submit" class="btn btn-circle btn-info" onClick="submitForm()">Submit</button>
+
+              <script type="text/javascript">
+
+                function urlModified() {
+                    document.getElementById("file_select").value = null
+                }
+
+                function fileModified() {
+                    document.getElementById("url").value = null
+                }
+
+                function submitForm(){
+                    if( document.getElementById("url").value != '' )
+                    {
+                        document.getElementById("fileuploadform").submit();
+                        return;
+                    }
+
+                    var f = document.getElementById("file_select").files;
+                    if(f.length != 1) {
+                        alert('No URL specified or no local file selected')
+                        return
+                    }
+
+
+                }
+               </script>
+
+               <br /><br />
+               <p>You can also use the API at {{ root_url }}/api/validate that will return the validation result as a JSon document</p>
+               <p>To submit a file by URL: curl -s "{{ root_url }}/api/validate?url=http://path/to/catalog.json"</p>
+               <p>The code to run this service was built by STAC Sprinters,
++               and original code available in this <a href="https://github.com/rouault/cog_validator">github repo</a> and the service is running this <a href="https://github.com/radiantearth/cog_validator">github repo</a>.
+                The web service and hosting is provided by Radiant.Earth</p>
+            <!-- this is the end of script -->
+
+            </div>
+        </div>
+      </div>
+    </section>
+    <!-- END FORM POST -->
+
+    <!-- SUBSCRIBE -->
+    <section id="buy" class="module bg-white-dark">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 text-center">
+
+            <h1 class="text-300">Learn About Us.</h1>
+            <p class="m-b-40">At the center of Radiant.Earth is an open technology platform that will help people discover and analyze the vast
+              resources of Earth imagery, accelerating improved decision-making and fueling new solutions,
+              discoveries and innovations. We are working with funders and partners to accelerate open earth
+              imagery technologies.</p>
+
+            <a class="btn btn-lg btn-circle btn-base" href="#">Get Involved</a>
+
+          </div>
+        </div><!-- .row -->
+
+      </div>
+    </section>
+    <!-- END SUBSCRIBE -->
+
+<!-- FOOTER -->
+		<footer id="footer" class="footer-minimal">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<ul class="social-icons social-icons-md social-icons-circle text-center m-b-35">
+							<li><a href="https://www.facebook.com/OurRadiantEarth"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://www.twitter.com/ourradiantearth"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://plus.google.com/106163684118126553008"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="https://www.linkedin.com/company/11020837/"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="https://medium.com/@ourradiantearth"><i class="fa fa-medium"></i></a></li>
+							<li><a href="https://www.instagram.com/OurRadiantEarth"><i class="fa fa-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<p class="m-0">Copyright <a href="https://www.radiant.earth">Radiant.Earth</a> &copy; 2017, All Rights Reserved.</p>
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- END FOOTER -->
+
+	</div>
+	<!-- END WRAPPER -->
+
+	<!-- JAVASCRIPT FILES -->
+
+	<script src="/static/js/jquery-2.2.3.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/js/plugins.min.js"></script>
+	<script src="/static/js/custom.min.js"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-92174380-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
+  </body>
+
+</html>
