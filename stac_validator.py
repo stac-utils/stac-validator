@@ -1,136 +1,138 @@
+#!/usr/bin/env python
 """
-Description: Built during STAC/ARD Workshop Menlo Park 2018
-A lot of ideas taken from cog_validator
+Usage:
+    stac_validator.py <stac_file> [-version]
 
+Arguments:
+    stac_file  Fully qualified path or url to a STAC file.
+
+Options:
+    -v, --version STAC_VERSION   Version to validate against. [default: master]
+    -h, --help                   Show this screen.
 """
 
-from flask import Flask, request as flask_request, render_template
-from jsonschema import validate
+__author__ = "James Banting, Alex Mandel, Guillaume Morin"
+
+from pathlib import Path
+from urllib.parse import urljoin
+from jsonschema import validate, ValidationError
+import traceback
 import json
-import os
 import requests
-from urllib.parse import urlparse, urljoin
-
-app = Flask(__name__)
-# http://docs.aws.amazon.com/lambda/latest/dg/limits.html
-app.config["MAX_CONTENT_LENGTH"] = 6 * 1024 * 1024
-
-CATALOG_SCHEMA_URL = "https://raw.githubusercontent.com/radiantearth/stac-spec/master/static-catalog/json-schema/catalog.json"
-ITEM_SCHEMA_URL = "https://raw.githubusercontent.com/radiantearth/stac-spec/master/json-spec/json-schema/stac-item.json"
+from docopt import docopt
 
 
-def stac_validate(url):
-    """
-    Validate JSON Schema
-    :param url: path to JSON to test
-    :return: 
-    """
+class StacValidate:
+    def __init__(self, stac_file, version="master"):
+        """
+        Validate a STAC file
+        :param stac_file: file to validate
+        :param version: github tag - defaults to master
+        """
+        self.stac_version = version
+        CATALOG_SCHEMA_URL = (
+            "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+            + self.stac_version
+            + "/static-catalog/json-schema/catalog.json"
+        )
+        ITEM_SCHEMA_URL = (
+            "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+            + self.stac_version
+            + "/json-spec/json-schema/stac-item.json"
+        )
 
-    ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
-    CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
+        self.stac_file = stac_file
+        self.ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
+        self.CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
+        self.fpath = Path(stac_file)
+        self.message = {}
 
-    catalog = requests.get(url).json()
-    errors = {}
+        self.run()
 
-    try:
-        validate(catalog, CATALOG_SCHEMA)
-    except Exception as error:
-        errors[url] = error.message
+    def validate_stac(self, stac_file, stac_type):
+        """
+        Validate stac
+        :param stac_file: input stac_file
+        :param stac_type of STAC (item, catalog)
+        :return: validation message
+        """
 
-    items = parse_links(url)
-
-    for item in items:
         try:
-            validate(requests.get(item).json(), ITEM_SCHEMA)
+            if stac_type == "catalog":
+                validate(stac_file, self.CATALOG_SCHEMA)
+            else:
+                stac_type = "item"
+                validate(stac_file, self.ITEM_SCHEMA)
+
+            self.message[
+                "message"
+            ] = f"{self.fpath.stem}{self.fpath.suffix} is a valid STAC {stac_type} in {self.stac_version}."
+            self.message["valid_stac"] = True
+        except ValidationError as error:
+            self.message[
+                "message"
+            ] = f"{self.fpath.stem}{self.fpath.suffix} is not a valid STAC {stac_type} in {self.stac_version}."
+            self.message["valid_stac"] = False
+            self.message["error"] = f"{error.message} of {list(error.path)}"
         except Exception as error:
-            errors[item] = error.message
+            self.message[
+                "message"
+            ] = f"{self.fpath.stem}{self.fpath.suffix} is not a valid STAC {stac_type} in {self.stac_version}."
+            self.message["valid_stac"] = False
+            self.message["error"] = error
 
-    return errors
+    def parse_links(self, catalog_url):
+        """
+        Given a catalog, gather child items
+        :param catalog_url: starting catalog
+        :return: child items
+        """
+        child_items = []
 
+        # Get only child item links
+        for item in [
+            item_link
+            for item_link in catalog_url["links"]
+            if item_link["rel"] == "item"
+        ]:
+            child_items.append(urljoin(catalog_url, item["href"]))
 
-def parse_links(catalog_url):
-    """
-    Crawl a JSON catalog for child links to test
-    :param catalog_url: starting catalog
-    :return: list of links to catalogs
-    """
-    child_items = []
+        return child_items
 
-    cat = requests.get(catalog_url).json()
+    def run(self):
+        """
+        Entry point
+        :return: message dict
+        """
+        try:
+            self.stac_file = requests.get(self.stac_file).json()
+        except requests.exceptions.MissingSchema as e:
+            with open(self.stac_file) as f:
+                data = json.load(f)
+            self.stac_file = data
 
-    # Get only child item links
-    for item in [item_link for item_link in cat["links"] if item_link["rel"] == "item"]:
-        child_items.append(urljoin(catalog_url, item["href"]))
+        if "catalog" in self.fpath.stem:
+            self.validate_stac(self.stac_file, "catalog")
+        else:
+            self.validate_stac(self.stac_file, "item")
 
-    return child_items
-
-
-@app.route("/api/validate", methods=["GET"])
-def api_validate():
-    if flask_request.method == "GET":
-        args = {}
-        for k in flask_request.args:
-
-            if k == "url":
-                args[k] = flask_request.args[k]
-                url = args.get("url")
-                errors = stac_validate(url)
-                if len(errors) == 0:
-                    details = "Valid"
-                    return (
-                        json.dumps(
-                            {"status": "success",
-                             "url": url,
-                             "details": details}
-                        ),
-                        200,
-                        {"Content-Type": "application/json"},
-                    )
-                else:
-                    return (
-                        json.dumps(
-                            {
-                                "status": "failure",
-                                "url": url,
-                                "details": "Invalid",
-                                "validation_errors": errors,
-                            }
-                        ),
-                        400,
-                        {"Content-Type": "application/json"},
-                    )
-
-@app.route("/html", methods=["GET"])
-def html():
-    root_url = flask_request.url_root[0:-1]
-    return render_template("main.html", root_url=root_url)
+        return self.message
 
 
-@app.route("/html/validate", methods=["GET"])
-def html_validate():
-    root_url = flask_request.url_root[0:-1]
-    ret, _, _ = api_validate()
-    print(ret)
-    ret = json.loads(ret)
-    errors = None
+def main(args):
+    stac_file = args.get('<stac_file>')
+    version = args.get('--version')
+    stac = StacValidate(stac_file, version)
+    print(stac.message)
 
-    if "url" in flask_request.form and flask_request.form["url"] != "":
-        name = flask_request.form["url"]
-    else:
-        name = ret["url"]
 
-    if "status" in ret and ret["status"] == "success":
-        global_result = (
-            f"Validation succeeded! <br/> {name} is a valid STAC catalog or STAC item."
-        )
-    else:
-        global_result = (
-            f"Validation failed ! {name} is NOT a valid STAC catalog or STAC item."
-        )
-        if "error" in ret:
-            errors = [ret["error"]]
-        elif "validation_errors" in ret:
-            errors = ret["validation_errors"]
-    return render_template(
-        "result.html", root_url=root_url, global_result=global_result, errors=errors
-    )
+if __name__ == "__main__":
+    args = docopt(__doc__)
+    try:
+        main(args)
+        retval = 0
+    except Exception as e:
+        traceback.print_exc()
+        retval = -1
+
+    exit(retval)
