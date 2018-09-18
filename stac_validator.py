@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """
+Description: Validate a STAC item or catalog against the STAC specification.
+
 Usage:
     stac_validator.py <stac_file> [-version]
 
@@ -81,28 +83,10 @@ class StacValidate:
             self.message["valid_stac"] = False
             self.message["error"] = error
 
-    def parse_links(self, catalog_url):
-        """
-        Given a catalog, gather child items
-        :param catalog_url: starting catalog
-        :return: child items
-        """
-        child_items = []
-
-        # Get only child item links
-        for item in [
-            item_link
-            for item_link in catalog_url["links"]
-            if item_link["rel"] == "item"
-        ]:
-            child_items.append(urljoin(catalog_url, item["href"]))
-
-        return child_items
-
     def run(self):
         """
         Entry point
-        :return: message dict
+        :return: message json
         """
         try:
             self.stac_file = requests.get(self.stac_file).json()
@@ -116,14 +100,14 @@ class StacValidate:
         else:
             self.validate_stac(self.stac_file, "item")
 
-        return self.message
+        return json.dumps(self.message)
 
 
 def main(args):
     stac_file = args.get('<stac_file>')
     version = args.get('--version')
     stac = StacValidate(stac_file, version)
-    print(stac.message)
+    print(json.dumps(stac.message, indent=4))
 
 
 if __name__ == "__main__":

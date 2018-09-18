@@ -1,27 +1,42 @@
-# stac-validator
-Python/Flask Validator for the stac-spec
+# Spatial Temporal Asset Catalog (STAC) Validator
+
+This utility allows users to validate catalog and/or item json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
+
+It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against.
 
 ## Requirements
 
 * Python 3.x
     * Flask
     * Requests
+    * Docopt
+    * pytest
 
-## Design
+## Example
 
-1. Provided the root of a catalog, recursively validate each catalog entry until you get down to the item json and validate those.
-2. Stop on error (if a catalog) and return the error to the user as json, if on the web page, render the contents in a pretty format. (Idea left side shows json, right side shows error).
+```bash
+pip install .
+stac_validator.py --help
+
+Description: Validate a STAC item or catalog against the STAC specification.
+
+Usage:
+    stac_validator.py <stac_file> [-version]
+
+Arguments:
+    stac_file  Fully qualified path or url to a STAC file.
+
+Options:
+    -v, --version STAC_VERSION   Version to validate against. [default: master]
+    -h, --help                   Show this screen.
+
+
+stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
+```
+
 
 ## TODO
-Here only because we don't have an issue tracker yet.
-
-* Get interface FORM that takes catalog root url or single item to test.
+* Clean up Flask app
 * Recursively crawl catalog
-* Pretty Print or better error logging for end user
-    * When a json fails to validate the code needs to catch and display those errors to the user.
 * Get a deployment running
 
-## Discussion
-
-1. How do you tell apart catalog from items by it's json. Can an item exist without a catalog?
-    * For now we assume a catalog is provided as the starting point, items are identitifed by the link rel type
