@@ -83,6 +83,24 @@ class StacValidate:
             self.message["valid_stac"] = False
             self.message["error"] = error
 
+    def parse_links(self, catalog_url):
+        """
+        Given a catalog, gather child items
+        :param catalog_url: starting catalog
+        :return: child items
+        """
+        child_items = []
+
+        # Get only child item links
+        for item in [
+            item_link
+            for item_link in catalog_url["links"]
+            if item_link["rel"] == "item"
+        ]:
+            child_items.append(urljoin(catalog_url, item["href"]))
+
+        return child_items
+
     def run(self):
         """
         Entry point
