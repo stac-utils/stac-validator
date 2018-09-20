@@ -40,3 +40,5 @@ stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog
 * Recursively crawl catalog
 * Get a deployment running
 
+## Credits
+Radiant Earth and Evan Rouault for ideas!

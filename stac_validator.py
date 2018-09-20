@@ -43,7 +43,7 @@ class StacValidate:
             + "/json-spec/json-schema/stac-item.json"
         )
 
-        self.stac_file = stac_file
+        self.stac_file = stac_file.strip()
         self.ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
         self.CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
         self.fpath = Path(stac_file)

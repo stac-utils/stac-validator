@@ -5,28 +5,37 @@ A lot of ideas taken from cog_validator
 """
 
 from flask import Flask, request as flask_request, render_template
-from import stac_validator
+from stac_validator import StacValidate
 import json
 
 app = Flask(__name__)
 # http://docs.aws.amazon.com/lambda/latest/dg/limits.html
 app.config["MAX_CONTENT_LENGTH"] = 6 * 1024 * 1024
 
+
 @app.route("/api/validate", methods=["GET"])
 def api_validate():
+    flask_request.args
     if flask_request.method == "GET":
         args = {}
         for k in flask_request.args:
+            version = flask_request.args["version"]
+
+            if version == "latest":
+                version = "master"
 
             if k == "url":
                 args[k] = flask_request.args[k]
                 url = args.get("url")
-                errors = stac_validitor.stac_validate(url)
-                if len(errors) == 0:
-                    details = "Valid"
+                message = StacValidate(url, version).message
+                if message["valid_stac"] == True:
                     return (
                         json.dumps(
-                            {"status": "success", "url": url, "details": details}
+                            {
+                                "status": message["valid_stac"],
+                                "url": url,
+                                "details": message["message"],
+                            }
                         ),
                         200,
                         {"Content-Type": "application/json"},
@@ -35,10 +44,10 @@ def api_validate():
                     return (
                         json.dumps(
                             {
-                                "status": "failure",
+                                "status": message["valid_stac"],
                                 "url": url,
                                 "details": "Invalid",
-                                "validation_errors": errors,
+                                "validation_errors": message["error"],
                             }
                         ),
                         400,
@@ -56,27 +65,26 @@ def html():
 def html_validate():
     root_url = flask_request.url_root[0:-1]
     ret, _, _ = api_validate()
-    print(ret)
     ret = json.loads(ret)
-    errors = None
+    errors = {}
 
     if "url" in flask_request.form and flask_request.form["url"] != "":
         name = flask_request.form["url"]
     else:
         name = ret["url"]
 
-    if "status" in ret and ret["status"] == "success":
+    if "status" in ret and ret["status"]:
         global_result = (
-            f"Validation succeeded! <br/> {name} is a valid STAC catalog or STAC item."
+            f"Validation succeeded! <br/> {ret['details']}"
         )
     else:
         global_result = (
-            f"Validation failed ! {name} is NOT a valid STAC catalog or STAC item."
+            f"Validation failed! {ret['details']}"
         )
         if "error" in ret:
-            errors = [ret["error"]]
+            errors[ret["url"]] = ret["error"]
         elif "validation_errors" in ret:
-            errors = ret["validation_errors"]
+            errors[ret["url"]] = ret["validation_errors"]
     return render_template(
         "result.html", root_url=root_url, global_result=global_result, errors=errors
     )
