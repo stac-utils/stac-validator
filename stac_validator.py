@@ -83,23 +83,15 @@ class StacValidate:
             self.message["valid_stac"] = False
             self.message["error"] = error
 
-    def parse_links(self, catalog_url):
+    def validate_catalog_contents(self):
         """
-        Given a catalog, gather child items
-        :param catalog_url: starting catalog
-        :return: child items
+        Validates contents of current catalog
+        :return: 
         """
-        child_items = []
-
-        # Get only child item links
-        for item in [
-            item_link
-            for item_link in catalog_url["links"]
-            if item_link["rel"] == "item"
-        ]:
-            child_items.append(urljoin(catalog_url, item["href"]))
-
-        return child_items
+        for link in self.stac_file["links"]:
+            if link["rel"] in ["child", "item"]:
+                child_url = urljoin(str(self.fpath), link["href"])
+                StacValidate(child_url.replace("///", "//"), self.stac_version)
 
     def run(self):
         """
@@ -115,9 +107,11 @@ class StacValidate:
 
         if "catalog" in self.fpath.stem:
             self.validate_stac(self.stac_file, "catalog")
+            self.validate_catalog_contents()
         else:
             self.validate_stac(self.stac_file, "item")
 
+        print(json.dumps(self.message))
         return json.dumps(self.message)
 
 
