@@ -51,7 +51,7 @@ class StacValidate:
 
         self.run()
 
-    def validate_stac(self, stac_file, stac_type):
+    def validate_stac(self, stac_file, schema):
         """
         Validate stac
         :param stac_file: input stac_file
@@ -60,38 +60,27 @@ class StacValidate:
         """
 
         try:
-            if stac_type == "catalog":
-                validate(stac_file, self.CATALOG_SCHEMA)
-            else:
-                stac_type = "item"
-                validate(stac_file, self.ITEM_SCHEMA)
-
-            self.message[
-                "message"
-            ] = f"{self.fpath.stem}{self.fpath.suffix} is a valid STAC {stac_type} in {self.stac_version}."
+            validate(stac_file, schema)
             self.message["valid_stac"] = True
         except ValidationError as error:
-            self.message[
-                "message"
-            ] = f"{self.fpath.stem}{self.fpath.suffix} is not a valid STAC {stac_type} in {self.stac_version}."
             self.message["valid_stac"] = False
             self.message["error"] = f"{error.message} of {list(error.path)}"
         except Exception as error:
-            self.message[
-                "message"
-            ] = f"{self.fpath.stem}{self.fpath.suffix} is not a valid STAC {stac_type} in {self.stac_version}."
             self.message["valid_stac"] = False
             self.message["error"] = error
 
     def validate_catalog_contents(self):
         """
         Validates contents of current catalog
-        :return: 
+        :return: list of child messages
         """
+        messages = []
         for link in self.stac_file["links"]:
             if link["rel"] in ["child", "item"]:
                 child_url = urljoin(str(self.fpath), link["href"])
-                StacValidate(child_url.replace("///", "//"), self.stac_version)
+                stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
+                messages.append(stac.message)
+        return messages
 
     def run(self):
         """
@@ -106,12 +95,14 @@ class StacValidate:
             self.stac_file = data
 
         if "catalog" in self.fpath.stem:
-            self.validate_stac(self.stac_file, "catalog")
-            self.validate_catalog_contents()
+            self.message["asset_type"] = "catalog"
+            self.validate_stac(self.stac_file, self.CATALOG_SCHEMA)
+            self.message['children'] = self.validate_catalog_contents()
         else:
-            self.validate_stac(self.stac_file, "item")
+            self.message["asset_type"] = "item"
+            self.validate_stac(self.stac_file, self.ITEM_SCHEMA)
+        self.message['path'] = str(self.fpath)
 
-        print(json.dumps(self.message))
         return json.dumps(self.message)
 
 
