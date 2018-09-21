@@ -9,6 +9,14 @@
     {
       "rel": "parent",
       "href": "../catalog.json"
+    },
+    {
+      "rel": "item",
+      "href": "CBERS_4_MUX_20180713_057_122_L2.json"
+    },
+    {
+      "rel": "item",
+      "href": "CBERS_4_MUX_20180808_057_122_L2.json"
     }
   ]
 }
