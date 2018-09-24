@@ -17,6 +17,10 @@
     {
       "rel": "child",
       "href": "105/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "999/invalid_catalog.json"
     }
   ]
 }

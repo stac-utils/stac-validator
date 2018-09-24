@@ -3,7 +3,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version]
+    stac_validator.py <stac_file> [-version] [--verbose]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,6 +11,7 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
+    --verbose                    Verbose output. [default: False]
 """
 
 __author__ = "James Banting, Alex Mandel, Guillaume Morin"
@@ -25,7 +26,7 @@ from docopt import docopt
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master"):
+    def __init__(self, stac_file, version="master", verbose=False):
         """
         Validate a STAC file
         :param stac_file: file to validate
@@ -48,6 +49,16 @@ class StacValidate:
         self.CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
         self.fpath = Path(stac_file)
         self.message = {}
+        self.status = {
+            "catalogs": {
+                "valid": 0,
+                "invalid": 0
+            },
+            "items": {
+                "valid": 0,
+                "invalid": 0
+            }
+        }
 
         self.run()
 
@@ -80,6 +91,13 @@ class StacValidate:
                 child_url = urljoin(str(self.fpath), link["href"])
                 stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
                 messages.append(stac.message)
+
+                self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
+                self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
+                self.status["items"]["valid"] += stac.status["items"]["valid"]
+                self.status["items"]["invalid"] += stac.status["items"]["invalid"]
+
+        # print('stat', self.status)
         return messages
 
     def run(self):
@@ -97,10 +115,22 @@ class StacValidate:
         if "catalog" in self.fpath.stem:
             self.message["asset_type"] = "catalog"
             self.validate_stac(self.stac_file, self.CATALOG_SCHEMA)
+
+            if self.message["valid_stac"]:
+                self.status["catalogs"]["valid"] += 1
+            else:
+                self.status["catalogs"]["invalid"] += 1
+
             self.message['children'] = self.validate_catalog_contents()
         else:
             self.message["asset_type"] = "item"
             self.validate_stac(self.stac_file, self.ITEM_SCHEMA)
+
+            if self.message["valid_stac"]:
+                self.status["items"]["valid"] += 1
+            else:
+                self.status["items"]["invalid"] += 1
+
         self.message['path'] = str(self.fpath)
 
         return json.dumps(self.message)
@@ -109,8 +139,14 @@ class StacValidate:
 def main(args):
     stac_file = args.get('<stac_file>')
     version = args.get('--version')
-    stac = StacValidate(stac_file, version)
-    print(json.dumps(stac.message, indent=4))
+    verbose = args.get('--verbose')
+    stac = StacValidate(stac_file, version, verbose)
+
+    if verbose:
+        print(json.dumps(stac.message, indent=4))
+    else:
+        print(json.dumps(stac.status, indent=4))
+
 
 
 if __name__ == "__main__":
