@@ -8,8 +8,10 @@ import stac_validator
 
 def test_good_item_validation_v052():
     stac = stac_validator.StacValidate("tests/test_data/good_item_v052.json", 'v0.5.2')
+    print(stac.message)
     assert stac.message == {
-        "message": "good_item_v052.json is a valid STAC item in v0.5.2.",
+        "asset_type": "item",
+        "path": "tests/test_data/good_item_v052.json",
         "valid_stac": True,
     }
 
@@ -17,6 +19,48 @@ def test_good_item_validation_v052():
 def test_good_catalog_validation_v052():
     stac = stac_validator.StacValidate("tests/test_data/good_catalog_v052.json", 'v0.5.2')
     assert stac.message == {
-        "message": "good_catalog_v052.json is a valid STAC catalog in v0.5.2.",
+        "asset_type": "catalog",
+        "path": "tests/test_data/good_catalog_v052.json",
         "valid_stac": True,
+        "children": []
     }
+
+def test_nested_catalog():
+    stac = stac_validator.StacValidate("tests/test_data/nested_catalogs/parent_catalog.json", 'v0.5.2')
+    assert stac.message == {
+        'asset_type': 'catalog',
+        'valid_stac': True,
+        'children': [
+            {
+                'asset_type': 'catalog',
+                'valid_stac': True,
+                'children': [
+                    {
+                        'asset_type': 'item',
+                        'valid_stac': True,
+                        'path': 'tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180713_057_122_L2.json'
+                    }, {
+                        'asset_type': 'item',
+                        'valid_stac': True,
+                        'path': 'tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180808_057_122_L2.json'
+                    }
+                ],
+                'path': 'tests/test_data/nested_catalogs/122/catalog.json'
+            }, {
+                'asset_type': 'catalog',
+                'valid_stac': True,
+                'children': [
+                    {
+                        'asset_type': 'item',
+                        'valid_stac': True,
+                        'path': 'tests/test_data/nested_catalogs/105/CBERS_4_MUX_20180713_057_105_L2.json'
+                    }, {
+                        'asset_type': 'item',
+                        'valid_stac': True,
+                        'path': 'tests/test_data/nested_catalogs/105/CBERS_4_MUX_20180808_057_105_L2.json'
+                    }
+                ],
+                'path': 'tests/test_data/nested_catalogs/105/catalog.json'
+            }
+        ],
+        'path': 'tests/test_data/nested_catalogs/parent_catalog.json'}
