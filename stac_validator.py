@@ -18,7 +18,7 @@ __author__ = "James Banting, Alex Mandel, Guillaume Morin"
 
 from pathlib import Path
 from urllib.parse import urljoin
-from jsonschema import validate, ValidationError
+from jsonschema import validate, ValidationError, RefResolutionError
 import traceback
 import json
 import requests
@@ -76,9 +76,12 @@ class StacValidate:
         except ValidationError as error:
             self.message["valid_stac"] = False
             self.message["error"] = f"{error.message} of {list(error.path)}"
+        except RefResolutionError as error:
+            self.message["valid_stac"] = False
+            self.message["error"] = f"{error.args}"
         except Exception as error:
             self.message["valid_stac"] = False
-            self.message["error"] = error
+            self.message["error"] = f"{error}"
 
     def validate_catalog_contents(self):
         """
