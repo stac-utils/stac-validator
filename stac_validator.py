@@ -77,6 +77,7 @@ class StacValidate:
             self.message["valid_stac"] = False
             self.message["error"] = f"{error.message} of {list(error.path)}"
         except RefResolutionError as error:
+            # See https://github.com/Julian/jsonschema/issues/362
             self.message["valid_stac"] = False
             self.message["error"] = f"{error.args}"
         except Exception as error:
