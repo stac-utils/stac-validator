@@ -23,7 +23,6 @@ import traceback
 import json
 import requests
 from docopt import docopt
-import asyncio
 
 
 class StacValidate:
@@ -61,6 +60,8 @@ class StacValidate:
             }
         }
 
+        self.run()
+
     def validate_stac(self, stac_file, schema):
         """
         Validate stac
@@ -83,7 +84,7 @@ class StacValidate:
             self.message["valid_stac"] = False
             self.message["error"] = f"{error}"
 
-    async def validate_catalog_contents(self):
+    def validate_catalog_contents(self):
         """
         Validates contents of current catalog
         :return: list of child messages
@@ -93,7 +94,6 @@ class StacValidate:
             if link["rel"] in ["child", "item"]:
                 child_url = urljoin(str(self.fpath), link["href"])
                 stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
-                await stac.run()
                 messages.append(stac.message)
 
                 self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
@@ -101,18 +101,16 @@ class StacValidate:
                 self.status["items"]["valid"] += stac.status["items"]["valid"]
                 self.status["items"]["invalid"] += stac.status["items"]["invalid"]
 
+        # print('stat', self.status)
         return messages
 
-    async def run(self):
+    def run(self):
         """
         Entry point
         :return: message json
         """
         try:
-            loop = asyncio.get_event_loop()
-            future = loop.run_in_executor(None, requests.get, self.stac_file)
-            response = await future
-            self.stac_file = response.json()
+            self.stac_file = requests.get(self.stac_file).json()
         except requests.exceptions.MissingSchema as e:
             with open(self.stac_file) as f:
                 data = json.load(f)
@@ -127,7 +125,7 @@ class StacValidate:
             else:
                 self.status["catalogs"]["invalid"] += 1
 
-            self.message['children'] = await self.validate_catalog_contents()
+            self.message['children'] = self.validate_catalog_contents()
         else:
             self.message["asset_type"] = "item"
             self.validate_stac(self.stac_file, self.ITEM_SCHEMA)
@@ -139,30 +137,27 @@ class StacValidate:
 
         self.message['path'] = str(self.fpath)
 
+        return json.dumps(self.message)
 
-async def main(args):
+
+def main(args):
     stac_file = args.get('<stac_file>')
     version = args.get('--version')
     verbose = args.get('--verbose')
     stac = StacValidate(stac_file, version, verbose)
-    await stac.run()
+
     if verbose:
         print(json.dumps(stac.message, indent=4))
     else:
         print(json.dumps(stac.status, indent=4))
 
 
+
 if __name__ == "__main__":
     args = docopt(__doc__)
-    import time
     try:
-        start = time.time()
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(main(args))
-        loop.close()
+        main(args)
         retval = 0
-        end = time.time()
-        print('time', end - start)
     except Exception as e:
         traceback.print_exc()
         retval = -1
