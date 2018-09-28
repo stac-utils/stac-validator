@@ -24,13 +24,18 @@ import json
 import requests
 from docopt import docopt
 import multiprocessing
+import time
 
 class StacValidate:
-    def __init__(self, stac_file, verbose_dict, summary_dict, lock, version="master", verbose=False):
+    def __init__(self, stac_file, lock, summary_dict, verbose_dict=None, version="master", verbose=False):
         """
         Validate a STAC file
-        :param stac_file: file to validate
+        :param stac_file: file to validate (path)
+        :param lock: multiprocessing manager lock
+        :param summary_dict: summary multiprocess proxy dictionary
+        :param verbose_dict: verbose multiprocess proxy dictionary
         :param version: github tag - defaults to master
+        :param verbose: verbose flag
         """
         self.stac_version = version
         CATALOG_SCHEMA_URL = (
@@ -50,25 +55,15 @@ class StacValidate:
         self.CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
         self.fpath = Path(stac_file)
         self.message = {}
-        self.status = {
-            "catalogs": {
-                "valid": 0,
-                "invalid": 0
-            },
-            "items": {
-                "valid": 0,
-                "invalid": 0
-            }
-        }
 
-        self.run(verbose_dict, summary_dict, lock)
+        self.run(lock, summary_dict, verbose_dict, verbose)
 
-    def validate_stac(self, stac_file, schema, verbose_dict, summary_dict, lock):
+
+    def validate_stac(self, stac_file, schema):
         """
-        Validate stac
-        :param stac_file: input stac_file
-        :param stac_type of STAC (item, catalog)
-        :return: validation message
+        Validate a STAC file
+        :param stac_file: file to validate (json) 
+        :param schema: catalog or item schema
         """
         try:
             validate(stac_file, schema)
@@ -83,19 +78,32 @@ class StacValidate:
         except Exception as error:
             self.message["valid_stac"] = False
             self.message["error"] = f"{error}"
-        verbose_dict[self.path] = self.message
 
 
-    def validate_catalog_contents(self, verbose_dict, summary_dict, lock):
+    def validate_catalog_contents(self, lock, summary_dict, verbose_dict, verbose):
         """
         Validates contents of current catalog
-        :return: list of child messages
+        :param lock: multiprocessing manager lock
+        :param summary_dict: summary multiprocess proxy dictionary
+        :param verbose_dict: verbose multiprocess proxy dictionary
+        :param verbose: verbose flag
+        :return: 
         """
         jobs = []
         for link in self.stac_file["links"]:
             if link["rel"] in ["child", "item"]:
                 child_url = urljoin(str(self.fpath), link["href"])
-                p = multiprocessing.Process(target=StacValidate, args=(child_url.replace("///", "//"), verbose_dict, summary_dict, lock, self.stac_version))
+                p = multiprocessing.Process(
+                    target=StacValidate,
+                    args=(
+                        child_url.replace("///", "//"),
+                        lock,
+                        summary_dict,
+                        verbose_dict,
+                        self.stac_version,
+                        verbose
+                    )
+                )
                 jobs.append(p)
                 time.sleep(0.2)
                 p.start()
@@ -104,10 +112,13 @@ class StacValidate:
             j.join()
 
 
-    def run(self, verbose_dict, summary_dict, lock):
+    def run(self, lock, summary_dict, verbose_dict, verbose):
         """
         Entry point
-        :return: message json
+        :param lock: multiprocessing manager lock
+        :param summary_dict: summary multiprocess proxy dictionary
+        :param verbose_dict: verbose multiprocess proxy dictionary
+        :param verbose: verbose flag
         """
         try:
             r = requests.get(self.path)
@@ -120,7 +131,7 @@ class StacValidate:
 
         if "catalog" in self.fpath.stem:
             self.message["asset_type"] = "catalog"
-            self.validate_stac(self.stac_file, self.CATALOG_SCHEMA, verbose_dict, summary_dict, lock)
+            self.validate_stac(self.stac_file, self.CATALOG_SCHEMA)
 
             with lock:
                 if self.message["valid_stac"]:
@@ -128,11 +139,11 @@ class StacValidate:
                 else:
                     summary_dict["catalogs_invalid"] = summary_dict.get("catalogs_invalid", 0) + 1
 
-            self.validate_catalog_contents(verbose_dict, summary_dict, lock)
+            self.validate_catalog_contents(lock, summary_dict, verbose_dict, verbose)
 
         else:
             self.message["asset_type"] = "item"
-            self.validate_stac(self.stac_file, self.ITEM_SCHEMA, verbose_dict, summary_dict, lock)
+            self.validate_stac(self.stac_file, self.ITEM_SCHEMA)
 
             with lock:
                 if self.message["valid_stac"]:
@@ -140,17 +151,25 @@ class StacValidate:
                 else:
                     summary_dict["items_invalid"] = summary_dict.get("items_invalid", 0) + 1
 
+        if verbose:
+            verbose_dict[self.path] = self.message
+
+
 def main(args):
     stac_file = args.get('<stac_file>')
     version = args.get('--version')
     verbose = args.get('--verbose')
 
     manager = multiprocessing.Manager()
-    verbose_dict = manager.dict()
-    summary_dict = manager.dict()
     lock = multiprocessing.Lock()
+    summary_dict = manager.dict()
 
-    stac = StacValidate(stac_file, verbose_dict, summary_dict, lock,  version, verbose)
+    if verbose:
+        verbose_dict = manager.dict()
+    else:
+        verbose_dict = None
+
+    StacValidate(stac_file, lock, summary_dict, verbose_dict, version, verbose)
 
     if verbose:
         print(json.dumps(verbose_dict.copy(), indent=4))
@@ -159,10 +178,8 @@ def main(args):
         print(json.dumps(summary_dict.copy(), indent=4))
 
 
-
 if __name__ == "__main__":
     args = docopt(__doc__)
-    import time
     try:
         start = time.time()
         main(args)
