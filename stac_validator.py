@@ -26,7 +26,7 @@ from docopt import docopt
 import multiprocessing
 
 class StacValidate:
-    def __init__(self, stac_file, verbose_dict, summary_dict, summary_lock, version="master", verbose=False):
+    def __init__(self, stac_file, verbose_dict, summary_dict, lock, version="master", verbose=False):
         """
         Validate a STAC file
         :param stac_file: file to validate
@@ -61,9 +61,9 @@ class StacValidate:
             }
         }
 
-        self.run(verbose_dict, summary_dict, summary_lock)
+        self.run(verbose_dict, summary_dict, lock)
 
-    def validate_stac(self, stac_file, schema, verbose_dict, summary_dict, summary_lock):
+    def validate_stac(self, stac_file, schema, verbose_dict, summary_dict, lock):
         """
         Validate stac
         :param stac_file: input stac_file
@@ -86,7 +86,7 @@ class StacValidate:
         verbose_dict[self.path] = self.message
 
 
-    def validate_catalog_contents(self, verbose_dict, summary_dict, summary_lock):
+    def validate_catalog_contents(self, verbose_dict, summary_dict, lock):
         """
         Validates contents of current catalog
         :return: list of child messages
@@ -95,7 +95,7 @@ class StacValidate:
         for link in self.stac_file["links"]:
             if link["rel"] in ["child", "item"]:
                 child_url = urljoin(str(self.fpath), link["href"])
-                p = multiprocessing.Process(target=StacValidate, args=(child_url.replace("///", "//"), verbose_dict, summary_dict, summary_lock, self.stac_version))
+                p = multiprocessing.Process(target=StacValidate, args=(child_url.replace("///", "//"), verbose_dict, summary_dict, lock, self.stac_version))
                 jobs.append(p)
                 time.sleep(0.2)
                 p.start()
@@ -104,7 +104,7 @@ class StacValidate:
             j.join()
 
 
-    def run(self, verbose_dict, summary_dict, summary_lock):
+    def run(self, verbose_dict, summary_dict, lock):
         """
         Entry point
         :return: message json
@@ -120,23 +120,25 @@ class StacValidate:
 
         if "catalog" in self.fpath.stem:
             self.message["asset_type"] = "catalog"
-            self.validate_stac(self.stac_file, self.CATALOG_SCHEMA, verbose_dict, summary_dict, summary_lock)
+            self.validate_stac(self.stac_file, self.CATALOG_SCHEMA, verbose_dict, summary_dict, lock)
 
-            if self.message["valid_stac"]:
-                self.status["catalogs"]["valid"] += 1
-            else:
-                self.status["catalogs"]["invalid"] += 1
+            with lock:
+                if self.message["valid_stac"]:
+                    summary_dict["catalogs_valid"] = summary_dict.get("catalogs_valid", 0) + 1
+                else:
+                    summary_dict["catalogs_invalid"] = summary_dict.get("catalogs_invalid", 0) + 1
 
-            self.validate_catalog_contents(verbose_dict, summary_dict, summary_lock)
+            self.validate_catalog_contents(verbose_dict, summary_dict, lock)
 
         else:
             self.message["asset_type"] = "item"
-            self.validate_stac(self.stac_file, self.ITEM_SCHEMA, verbose_dict, summary_dict, summary_lock)
+            self.validate_stac(self.stac_file, self.ITEM_SCHEMA, verbose_dict, summary_dict, lock)
 
-            if self.message["valid_stac"]:
-                self.status["items"]["valid"] += 1
-            else:
-                self.status["items"]["invalid"] += 1
+            with lock:
+                if self.message["valid_stac"]:
+                    summary_dict["items_valid"] = summary_dict.get("items_valid", 0) + 1
+                else:
+                    summary_dict["items_invalid"] = summary_dict.get("items_invalid", 0) + 1
 
 def main(args):
     stac_file = args.get('<stac_file>')
@@ -145,16 +147,16 @@ def main(args):
 
     manager = multiprocessing.Manager()
     verbose_dict = manager.dict()
-    summary_dict = manager.dict(lock=True)
-    summary_lock = multiprocessing.Lock()
+    summary_dict = manager.dict()
+    lock = multiprocessing.Lock()
 
-    stac = StacValidate(stac_file, verbose_dict, summary_dict, summary_lock,  version, verbose)
+    stac = StacValidate(stac_file, verbose_dict, summary_dict, lock,  version, verbose)
 
     if verbose:
         print(json.dumps(verbose_dict.copy(), indent=4))
         print(len(verbose_dict.keys()))
     else:
-        print(json.dumps(stac.status, indent=4))
+        print(json.dumps(summary_dict.copy(), indent=4))
 
 
 
