@@ -20,7 +20,7 @@ stac_validator.py --help
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version]
+    stac_validator.py <stac_file> [-version] [--verbose]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -28,6 +28,7 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
+    --verbose                    Verbose output. [default: False]
 
 
 stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
