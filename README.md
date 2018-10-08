@@ -7,7 +7,6 @@ It can be installed as command line utility and passed either a local file path 
 ## Requirements
 
 * Python 3.x
-    * Flask
     * Requests
     * Docopt
     * pytest
@@ -36,7 +35,6 @@ stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog
 
 
 ## TODO
-* Clean up Flask app
 * Recursively crawl catalog
 * Get a deployment running
 

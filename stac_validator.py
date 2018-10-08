@@ -14,7 +14,7 @@ Options:
     --verbose                    Verbose output. [default: False]
 """
 
-__author__ = "James Banting, Alex Mandel, Guillaume Morin"
+__author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens"
 
 from pathlib import Path
 from urllib.parse import urljoin
@@ -50,14 +50,8 @@ class StacValidate:
         self.fpath = Path(stac_file)
         self.message = {}
         self.status = {
-            "catalogs": {
-                "valid": 0,
-                "invalid": 0
-            },
-            "items": {
-                "valid": 0,
-                "invalid": 0
-            }
+            "catalogs": {"valid": 0, "invalid": 0},
+            "items": {"valid": 0, "invalid": 0},
         }
 
         self.run()
@@ -125,7 +119,7 @@ class StacValidate:
             else:
                 self.status["catalogs"]["invalid"] += 1
 
-            self.message['children'] = self.validate_catalog_contents()
+            self.message["children"] = self.validate_catalog_contents()
         else:
             self.message["asset_type"] = "item"
             self.validate_stac(self.stac_file, self.ITEM_SCHEMA)
@@ -135,22 +129,21 @@ class StacValidate:
             else:
                 self.status["items"]["invalid"] += 1
 
-        self.message['path'] = str(self.fpath)
+        self.message["path"] = str(self.fpath)
 
         return json.dumps(self.message)
 
 
 def main(args):
-    stac_file = args.get('<stac_file>')
-    version = args.get('--version')
-    verbose = args.get('--verbose')
+    stac_file = args.get("<stac_file>")
+    version = args.get("--version")
+    verbose = args.get("--verbose")
     stac = StacValidate(stac_file, version, verbose)
 
     if verbose:
         print(json.dumps(stac.message, indent=4))
     else:
         print(json.dumps(stac.status, indent=4))
-
 
 
 if __name__ == "__main__":
