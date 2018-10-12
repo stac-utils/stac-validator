@@ -103,3 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 .envrc
+.idea/
+
+# lambda file
+.zip
