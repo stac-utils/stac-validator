@@ -20,21 +20,21 @@ def handler(event, context):
     """
 
     # Find input params
-    STAC = event.get('stac')
-    version = event.get('version', None)
+    json_STAC = event.get('json')
+    url_STAC = event.get('url')
+    version = event.get('schemaVersion', None)
 
     # Check for JSON string
-    if type(STAC) is dict:
+    if type(json_STAC) is dict:
         local_stac = f"/tmp/{str(uuid.uuid4())}.json"
 
         with open(local_stac, "w") as f:
-            json.dump(STAC, f)
+            json.dump(json_STAC, f)
 
         stac_file = local_stac
     else:
-        stac_file = STAC
+        stac_file = url_STAC
 
-    print(stac_file, version)
     stac_message = stac_validator.StacValidate(stac_file.strip(), version, verbose=True).message
 
     return stac_message
