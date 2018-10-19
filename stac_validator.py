@@ -23,6 +23,9 @@ import json
 import requests
 from docopt import docopt
 
+from cachetools import cached, TTLCache
+cache = TTLCache(maxsize=10, ttl=900)
+
 
 class StacValidate:
     def __init__(self, stac_file, version="master", verbose=False):
@@ -34,40 +37,9 @@ class StacValidate:
         if version is None:
             version = 'master'
 
-        # old versions have a different path to schema
-        old_versions = ['v0.4.0', 'v0.4.1', 'v0.5.0', 'v0.5.1', 'v0.5.2']
-
         self.stac_version = version
-
-        if self.stac_version in old_versions:
-            CATALOG_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + self.stac_version
-                + "/static-catalog/json-schema/catalog.json"
-            )
-            ITEM_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + self.stac_version
-                + "/json-spec/json-schema/stac-item.json"
-            )
-        else:
-            CATALOG_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + self.stac_version
-                + "/catalog-spec/json-schema/catalog.json"
-            )
-            ITEM_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + self.stac_version
-                + "/item-spec/json-schema/stac-item.json"
-            )
-
-        print(f"item url: {ITEM_SCHEMA_URL}")
-        print(f"catalog url: {CATALOG_SCHEMA_URL}")
-
         self.stac_file = stac_file.strip()
-        self.ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
-        self.CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
+        self.ITEM_SCHEMA, self.CATALOG_SCHEMA = self.get_specs(self.stac_version)
         self.fpath = Path(stac_file)
         self.message = {}
         self.status = {
@@ -76,6 +48,44 @@ class StacValidate:
         }
 
         self.run()
+
+    @staticmethod
+    @cached(cache)
+    def get_specs(version):
+        """
+        Get the versions from github. Cache them if possible.
+        :return: specs
+        """
+        # old versions have a different path to schema
+        old_versions = ['v0.4.0', 'v0.4.1', 'v0.5.0', 'v0.5.1', 'v0.5.2']
+
+        if version in old_versions:
+            CATALOG_SCHEMA_URL = (
+                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                    + version
+                    + "/static-catalog/json-schema/catalog.json"
+            )
+            ITEM_SCHEMA_URL = (
+                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                    + version
+                    + "/json-spec/json-schema/stac-item.json"
+            )
+        else:
+            CATALOG_SCHEMA_URL = (
+                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                    + version
+                    + "/catalog-spec/json-schema/catalog.json"
+            )
+            ITEM_SCHEMA_URL = (
+                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                    + version
+                    + "/item-spec/json-schema/stac-item.json"
+            )
+
+        ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
+        CATALOG_SCHEMA = requests.get(CATALOG_SCHEMA_URL).json()
+
+        return ITEM_SCHEMA, CATALOG_SCHEMA
 
     def validate_stac(self, stac_file, schema):
         """

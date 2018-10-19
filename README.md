@@ -10,6 +10,7 @@ It can be installed as command line utility and passed either a local file path 
     * Requests
     * Docopt
     * pytest
+    * cachetools
 
 ## Example
 

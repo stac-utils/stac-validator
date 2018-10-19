@@ -7,8 +7,8 @@ import stac_validator
 
 
 def test_good_item_validation_v052():
-    stac = stac_validator.StacValidate("tests/test_data/good_item_v052.json", "v0.5.2")
-    print(stac.message)
+    stac = stac_validator.StacValidate(
+        "tests/test_data/good_item_v052.json", "v0.5.2")
     assert stac.message == {
         "asset_type": "item",
         "path": "tests/test_data/good_item_v052.json",
@@ -28,7 +28,7 @@ def test_good_catalog_validation_v052():
     }
 
 
-def test_nested_catalog():
+def test_nested_catalog_v052():
     stac = stac_validator.StacValidate(
         "tests/test_data/nested_catalogs/parent_catalog.json", "v0.5.2"
     )
@@ -88,7 +88,7 @@ def test_nested_catalog():
     }
 
 
-def test_verbose():
+def test_verbose_v052():
     stac = stac_validator.StacValidate(
         "tests/test_data/nested_catalogs/parent_catalog.json", "v0.5.2", verbose=True
     )
