@@ -23,6 +23,9 @@ def handler(event, context):
     json_STAC = event.get('json')
     url_STAC = event.get('url')
     version = event.get('schemaVersion', None)
+    print(f"STAC verison: {version}")
+    if version == 'latest':
+        version = 'master'
 
     # Check for JSON string
     if type(json_STAC) is dict:

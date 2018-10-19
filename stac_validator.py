@@ -34,17 +34,36 @@ class StacValidate:
         if version is None:
             version = 'master'
 
+        # old versions have a different path to schema
+        old_versions = ['v0.4.0', 'v0.4.1', 'v0.5.0', 'v0.5.1', 'v0.5.2']
+
         self.stac_version = version
-        CATALOG_SCHEMA_URL = (
-            "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-            + self.stac_version
-            + "/static-catalog/json-schema/catalog.json"
-        )
-        ITEM_SCHEMA_URL = (
-            "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-            + self.stac_version
-            + "/json-spec/json-schema/stac-item.json"
-        )
+
+        if self.stac_version in old_versions:
+            CATALOG_SCHEMA_URL = (
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + self.stac_version
+                + "/static-catalog/json-schema/catalog.json"
+            )
+            ITEM_SCHEMA_URL = (
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + self.stac_version
+                + "/json-spec/json-schema/stac-item.json"
+            )
+        else:
+            CATALOG_SCHEMA_URL = (
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + self.stac_version
+                + "/catalog-spec/json-schema/catalog.json"
+            )
+            ITEM_SCHEMA_URL = (
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + self.stac_version
+                + "/item-spec/json-schema/stac-item.json"
+            )
+
+        print(f"item url: {ITEM_SCHEMA_URL}")
+        print(f"catalog url: {CATALOG_SCHEMA_URL}")
 
         self.stac_file = stac_file.strip()
         self.ITEM_SCHEMA = requests.get(ITEM_SCHEMA_URL).json()
