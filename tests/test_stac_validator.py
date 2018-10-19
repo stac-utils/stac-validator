@@ -4,7 +4,7 @@ Description: Test the validator
 """
 __author__ = "James Banting"
 import stac_validator
-
+import json
 
 def test_good_item_validation_v052():
     stac = stac_validator.StacValidate(
@@ -12,6 +12,15 @@ def test_good_item_validation_v052():
     assert stac.message == {
         "asset_type": "item",
         "path": "tests/test_data/good_item_v052.json",
+        "valid_stac": True,
+    }
+
+def test_good_item_validation_v060():
+    stac = stac_validator.StacValidate(
+        "tests/test_data/good_item_v060.json")
+    assert stac.message == {
+        "asset_type": "item",
+        "path": "tests/test_data/good_item_v060.json",
         "valid_stac": True,
     }
 
@@ -167,4 +176,17 @@ def test_geojson_error():
             },
         ],
         "path": "tests/test_data/nested_catalogs/parent_catalog.json",
+    }
+
+def test_bad_url():
+    stac = stac_validator.StacValidate(
+        "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud", "v0.5.2", verbose=True
+    )
+    assert stac.status == {
+        "valid_stac": False,
+        "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON"
+    }
+    assert stac.message == {
+        "valid_stac": False,
+        "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON"
     }
