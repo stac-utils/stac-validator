@@ -16,6 +16,7 @@ Options:
 __author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens"
 
 import os
+import shutil
 from pathlib import Path
 import tempfile
 from urllib.parse import urljoin
@@ -31,7 +32,7 @@ cache = TTLCache(maxsize=10, ttl=900)
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master", verbose=False):
+    def __init__(self, stac_file, version="master", depth=0):
         """
         Validate a STAC file
         :param stac_file: file to validate
@@ -41,7 +42,9 @@ class StacValidate:
             version = 'master'
 
         self.stac_version = version
+        self.depth = depth
         self.stac_file = stac_file.strip()
+        self.dirpath = ''
         self.ITEM_SCHEMA, self.ITEM_GEOSJON_SCHEMA, self.CATALOG_SCHEMA = self.get_specs(self.stac_version)
         self.fpath = Path(stac_file)
         self.message = {}
@@ -52,9 +55,8 @@ class StacValidate:
 
         self.run()
 
-    @staticmethod
     @cached(cache)
-    def get_specs(version):
+    def get_specs(self, version):
         """
         Get the versions from github. Cache them if possible.
         :return: specs
@@ -96,22 +98,22 @@ class StacValidate:
             )
 
         # need to make a temp local file for geojson.
-        dirpath = tempfile.mkdtemp()
+        self.dirpath = tempfile.mkdtemp()
 
         stac_item_geojson = requests.get(ITEM_GEOJSON_SCHEMA_URL).json()
         stac_item = requests.get(ITEM_SCHEMA_URL).json()
         stac_catalog = requests.get(CATALOG_SCHEMA_URL).json()
 
-        with open(os.path.join(dirpath, 'geojson.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, 'geojson.json'), 'w') as fp:
             fp.write(json.dumps(stac_item_geojson))
-        with open(os.path.join(dirpath, 'stac-item.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, 'stac-item.json'), 'w') as fp:
             fp.write(json.dumps(stac_item))
-        with open(os.path.join(dirpath, 'stac-catalog.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, 'stac-catalog.json'), 'w') as fp:
             fp.write(json.dumps(stac_catalog))
 
-        ITEM_SCHEMA = os.path.join(dirpath, 'stac-item.json')
-        ITEM_GEOJSON_SCHEMA = os.path.join(dirpath, 'geojson.json')
-        CATALOG_SCHEMA = os.path.join(dirpath, 'stac-catalog.json')
+        ITEM_SCHEMA = os.path.join(self.dirpath, 'stac-item.json')
+        ITEM_GEOJSON_SCHEMA = os.path.join(self.dirpath, 'geojson.json')
+        CATALOG_SCHEMA = os.path.join(self.dirpath, 'stac-catalog.json')
 
         return ITEM_SCHEMA, ITEM_GEOJSON_SCHEMA, CATALOG_SCHEMA
 
@@ -156,10 +158,8 @@ class StacValidate:
         :return: list of child messages
         """
         messages = []
-        depth_counter = 0
         for link in self.stac_file["links"]:
             if link["rel"] in ["child", "item"]:
-                depth_counter += 1
                 child_url = urljoin(str(self.fpath), link["href"])
                 stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
                 messages.append(stac.message)
@@ -168,7 +168,6 @@ class StacValidate:
                 self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
                 self.status["items"]["valid"] += stac.status["items"]["valid"]
                 self.status["items"]["invalid"] += stac.status["items"]["invalid"]
-        print(depth_counter)
         return messages
 
     def run(self):
@@ -215,8 +214,8 @@ def main(args):
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
     verbose = args.get("--verbose")
-    stac = StacValidate(stac_file, version, verbose)
-
+    stac = StacValidate(stac_file, version)
+    shutil.rmtree(stac.dirpath)
     if verbose:
         print(json.dumps(stac.message, indent=4))
     else:

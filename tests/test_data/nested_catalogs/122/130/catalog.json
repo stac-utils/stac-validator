@@ -17,10 +17,6 @@
     {
       "rel": "item",
       "href": "CBERS_4_MUX_20180808_057_122_L2.json"
-    },
-    {
-      "rel": "child",
-      "href": "130/catalog.json"
-    }    
+    }
   ]
 }
