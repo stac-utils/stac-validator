@@ -4,7 +4,17 @@ Description: Test the validator
 """
 __author__ = "James Banting"
 import stac_validator
+import requests
 import json
+
+git_tags = requests.get('https://api.github.com/repos/radiantearth/stac-spec/tags').json()
+stac_versions = [tag['name'] for tag in git_tags]
+
+
+def test_validate_items():
+    for version in stac_versions:
+        f'https://github.com/radiantearth/stac-spec/blob/{version}/item-spec/examples/sample-full.json'
+        stac_validator.StacValidate()
 
 def test_good_item_validation_v052():
     stac = stac_validator.StacValidate(
@@ -52,12 +62,12 @@ def test_nested_catalog_v052():
                     {
                         "asset_type": "item",
                         "valid_stac": True,
-                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180713_057_122_L2.json",
+                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180713_098_122_L2.json",
                     },
                     {
                         "asset_type": "item",
                         "valid_stac": True,
-                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180808_057_122_L2.json",
+                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180808_099_122_L2.json",
                     },
                 ],
                 "path": "tests/test_data/nested_catalogs/122/catalog.json",
@@ -130,13 +140,13 @@ def test_geojson_error():
                         "asset_type": "item",
                         "valid_stac": False,
                         "error": "(ValueError(\"unknown url type: 'geojson.json'\",),)",
-                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180713_057_122_L2.json",
+                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180713_098_122_L2.json",
                     },
                     {
                         "asset_type": "item",
                         "valid_stac": False,
                         "error": "(ValueError(\"unknown url type: 'geojson.json'\",),)",
-                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180808_057_122_L2.json",
+                        "path": "tests/test_data/nested_catalogs/122/CBERS_4_MUX_20180808_099_122_L2.json",
                     },
                 ],
                 "path": "tests/test_data/nested_catalogs/122/catalog.json",
