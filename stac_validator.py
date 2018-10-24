@@ -17,21 +17,22 @@ Options:
 
 __author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens"
 
+import json
 import os
 import shutil
-from pathlib import Path
 import tempfile
-from urllib.parse import urljoin
-from jsonschema import validate, ValidationError, RefResolutionError, RefResolver
-from timeit import default_timer
 import traceback
-import json
 from json.decoder import JSONDecodeError
-import requests
-from docopt import docopt
-import trio
+from timeit import default_timer
+from urllib.parse import urljoin, urlparse
+
 import asks
-from cachetools import cached, TTLCache
+import requests
+import trio
+from cachetools import TTLCache, cached
+from docopt import docopt
+from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
+from pathlib import Path
 
 asks.init("trio")
 cache = TTLCache(maxsize=10, ttl=900)
@@ -45,11 +46,11 @@ class StacValidate:
         :param version: github tag - defaults to master
         """
         if version is None:
-            version = 'master'
+            version = "master"
 
         self.stac_version = version
         self.stac_file = stac_file.strip()
-        self.dirpath = ''
+        self.dirpath = ""
         self.fetch_specs(self.stac_version)
         self.fpath = Path(stac_file)
         self.message = {}
@@ -58,14 +59,13 @@ class StacValidate:
             "items": {"valid": 0, "invalid": 0},
         }
 
-
     def fetch_specs(self, version):
         """
         Get the versions from github. Cache them if possible.
         :return: specs
         """
         # old versions have a different path to schema
-        old_versions = ['v0.4.0', 'v0.4.1', 'v0.5.0', 'v0.5.1', 'v0.5.2']
+        old_versions = ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2"]
         geojson_key = "geojson_resolver"
         item_key = "item-{}".format(self.stac_version)
         catalog_key = "catalog-{}".format(self.stac_version)
@@ -75,35 +75,35 @@ class StacValidate:
 
         if version in old_versions:
             CATALOG_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/static-catalog/json-schema/catalog.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/static-catalog/json-schema/catalog.json"
             )
             ITEM_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/json-spec/json-schema/stac-item.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/json-spec/json-schema/stac-item.json"
             )
             ITEM_GEOJSON_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/json-spec/json-schema/geojson.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/json-spec/json-schema/geojson.json"
             )
         else:
             CATALOG_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/catalog-spec/json-schema/catalog.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/catalog-spec/json-schema/catalog.json"
             )
             ITEM_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/item-spec/json-schema/stac-item.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/item-spec/json-schema/stac-item.json"
             )
             ITEM_GEOJSON_SCHEMA_URL = (
-                    "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                    + version
-                    + "/item-spec/json-schema/geojson.json"
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
+                + version
+                + "/item-spec/json-schema/geojson.json"
             )
 
         # need to make a temp local file for geojson.
@@ -113,25 +113,25 @@ class StacValidate:
         stac_item = requests.get(ITEM_SCHEMA_URL).json()
         stac_catalog = requests.get(CATALOG_SCHEMA_URL).json()
 
-        with open(os.path.join(self.dirpath, 'geojson.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
             geojson_schema = json.dumps(stac_item_geojson)
             fp.write(json.dumps(stac_item_geojson))
             cache[geojson_key] = self.dirpath
             geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
-        with open(os.path.join(self.dirpath, 'stac-item.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, "stac-item.json"), "w") as fp:
             stac_item_schema = json.dumps(stac_item)
             fp.write(stac_item_schema)
             cache[item_key] = stac_item_schema
-        with open(os.path.join(self.dirpath, 'stac-catalog.json'), 'w') as fp:
+        with open(os.path.join(self.dirpath, "stac-catalog.json"), "w") as fp:
             stac_catalog_schema = json.dumps(stac_catalog)
             fp.write(stac_catalog_schema)
             cache[catalog_key] = stac_catalog_schema
 
-        ITEM_SCHEMA = os.path.join(self.dirpath, 'stac-item.json')
-        ITEM_GEOJSON_SCHEMA = os.path.join(self.dirpath, 'geojson.json')
-        CATALOG_SCHEMA = os.path.join(self.dirpath, 'stac-catalog.json')
+        ITEM_SCHEMA = os.path.join(self.dirpath, "stac-item.json")
+        ITEM_GEOJSON_SCHEMA = os.path.join(self.dirpath, "geojson.json")
+        CATALOG_SCHEMA = os.path.join(self.dirpath, "stac-catalog.json")
 
         return ITEM_SCHEMA, ITEM_GEOJSON_SCHEMA, CATALOG_SCHEMA
 
@@ -190,18 +190,26 @@ class StacValidate:
                     nursery.start_soon(self._validate_child, child_url, messages)
         return messages
 
+    def is_valid_url(self, url):
+        try:
+            resut = urlparse(url)
+            return result.schema and result.netloc and result.path
+        except:
+            return False
+
     async def run(self):
         """
         Entry point
         :return: message json
         """
         try:
-            resp = await asks.get(self.stac_file)
-            self.stac_file = resp.json()
-        except requests.exceptions.MissingSchema as e:
-            with open(self.stac_file) as f:
-                data = json.load(f)
-            self.stac_file = data
+            if self.is_valid_url(self.stac_file):
+                resp = await asks.get(self.stac_file)
+                self.stac_file = resp.json()
+            else:
+                with open(self.stac_file) as f:
+                    data = json.load(f)
+                self.stac_file = data
         except JSONDecodeError as e:
             self.message["valid_stac"] = False
             self.message["error"] = f"{self.stac_file} is not Valid JSON"
@@ -210,7 +218,9 @@ class StacValidate:
 
         if "catalog" in self.fpath.stem:
             self.message["asset_type"] = "catalog"
-            self.validate_stac(self.stac_file, cache["catalog-{}".format(self.stac_version)])
+            self.validate_stac(
+                self.stac_file, cache["catalog-{}".format(self.stac_version)]
+            )
 
             if self.message["valid_stac"]:
                 self.status["catalogs"]["valid"] += 1
@@ -220,7 +230,9 @@ class StacValidate:
             self.message["children"] = await self.validate_catalog_contents()
         else:
             self.message["asset_type"] = "item"
-            self.validate_stac(self.stac_file, cache["item-{}".format(self.stac_version)])
+            self.validate_stac(
+                self.stac_file, cache["item-{}".format(self.stac_version)]
+            )
 
             if self.message["valid_stac"]:
                 self.status["items"]["valid"] += 1
@@ -251,7 +263,7 @@ async def main(args):
         print(json.dumps(stac.status, indent=4))
 
     if timer:
-        print('{0:.3f}s'.format(default_timer() - start))
+        print("{0:.3f}s".format(default_timer() - start))
 
 
 if __name__ == "__main__":
