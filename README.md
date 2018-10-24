@@ -11,6 +11,8 @@ It can be installed as command line utility and passed either a local file path 
     * Docopt
     * pytest
     * cachetools
+    * trio
+    * asks
 
 ## Example
 
@@ -21,7 +23,7 @@ stac_validator.py --help
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version] [--verbose]
+    stac_validator.py <stac_file> [-version] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
