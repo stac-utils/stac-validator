@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Description: Validate a STAC item or catalog against the STAC specification.
 
@@ -15,7 +13,7 @@ Options:
     --verbose                    Verbose output. [default: False]
 """
 
-__author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens"
+__author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens, Dustin Sampson"
 
 import json
 import os
@@ -34,6 +32,9 @@ from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pathlib import Path
 
+import stac_exceptions
+from stac_version import StacVersion
+
 asks.init("trio")
 cache = TTLCache(maxsize=10, ttl=900)
 
@@ -45,8 +46,21 @@ class StacValidate:
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
+        git_tags = requests.get(
+            "https://api.github.com/repos/radiantearth/stac-spec/tags"
+        ).json()
+        stac_versions = [tag["name"] for tag in git_tags]
+
+        # cover master as well
         if version is None:
             version = "master"
+            version = "master"
+        stac_versions += ["master"]
+
+        if version not in stac_versions:
+            raise stac_exceptions.VersionException(
+                f"{version} is not a valid STAC version. Valid Versions are: {stac_versions}"
+            )
 
         self.stac_version = version
         self.stac_file = stac_file.strip()
@@ -56,6 +70,7 @@ class StacValidate:
         self.message = {}
         self.status = {
             "catalogs": {"valid": 0, "invalid": 0},
+            "collections": {"valid": 0, "invalid": 0},
             "items": {"valid": 0, "invalid": 0},
         }
 
@@ -64,8 +79,7 @@ class StacValidate:
         Get the versions from github. Cache them if possible.
         :return: specs
         """
-        # old versions have a different path to schema
-        old_versions = ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2"]
+
         geojson_key = "geojson_resolver"
         item_key = "item-{}".format(self.stac_version)
         catalog_key = "catalog-{}".format(self.stac_version)
@@ -73,45 +87,14 @@ class StacValidate:
         if item_key in cache and catalog_key in cache:
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
-        if version in old_versions:
-            CATALOG_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/static-catalog/json-schema/catalog.json"
-            )
-            ITEM_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/json-spec/json-schema/stac-item.json"
-            )
-            ITEM_GEOJSON_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/json-spec/json-schema/geojson.json"
-            )
-        else:
-            CATALOG_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/catalog-spec/json-schema/catalog.json"
-            )
-            ITEM_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/item-spec/json-schema/stac-item.json"
-            )
-            ITEM_GEOJSON_SCHEMA_URL = (
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/"
-                + version
-                + "/item-spec/json-schema/geojson.json"
-            )
-
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
-        stac_item_geojson = requests.get(ITEM_GEOJSON_SCHEMA_URL).json()
-        stac_item = requests.get(ITEM_SCHEMA_URL).json()
-        stac_catalog = requests.get(CATALOG_SCHEMA_URL).json()
+        stac_item_geojson = requests.get(
+            StacVersion.item_geojson_schema_url(version)
+        ).json()
+        stac_item = requests.get(StacVersion.item_schema_url(version)).json()
+        stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
 
         with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
             geojson_schema = json.dumps(stac_item_geojson)
@@ -155,7 +138,7 @@ class StacValidate:
                 geojson_resolver = cache["geojson_resolver"]
                 validate(stac_file, stac_schema, resolver=geosjson_resolver)
                 self.message["valid_stac"] = True
-            except:
+            except Exception as error:
                 self.message["valid_stac"] = False
                 self.message["error"] = f"{error.args}"
         except ValidationError as error:
@@ -192,7 +175,7 @@ class StacValidate:
 
     def is_valid_url(self, url):
         try:
-            resut = urlparse(url)
+            result = urlparse(url)
             return result.schema and result.netloc and result.path
         except:
             return False
@@ -202,6 +185,18 @@ class StacValidate:
         Entry point
         :return: message json
         """
+
+        Collections_Fields = [
+            "keywords",
+            "license",
+            "title",
+            "provider",
+            "version",
+            "description",
+            "stac_version",
+        ]
+
+        # URL or file
         try:
             if self.is_valid_url(self.stac_file):
                 resp = await asks.get(self.stac_file)
@@ -216,7 +211,9 @@ class StacValidate:
             self.status = self.message
             return json.dumps(self.message)
 
+        # Check STAC Type
         if "catalog" in self.fpath.stem:
+            # Congratulations, It's a Catalog!
             self.message["asset_type"] = "catalog"
             self.validate_stac(
                 self.stac_file, cache["catalog-{}".format(self.stac_version)]
@@ -226,9 +223,24 @@ class StacValidate:
                 self.status["catalogs"]["valid"] += 1
             else:
                 self.status["catalogs"]["invalid"] += 1
+            print(self.fpath)
+            self.message["children"] = await self.validate_catalog_contents()
+        elif any(field in Collections_Fields for field in self.stac_file.keys()):
+            # Congratulations, It's a Collection!
+            # Collections will validate as catalog.
+            self.message["asset_type"] = "collection"
+            self.validate_stac(
+                self.stac_file, cache["catalog-{}".format(self.stac_version)]
+            )
 
+            if self.message["valid_stac"]:
+                self.status["collections"]["valid"] += 1
+            else:
+                self.status["collections"]["invalid"] += 1
+            print(self.fpath)
             self.message["children"] = await self.validate_catalog_contents()
         else:
+            # Congratulations, It's an Item!
             self.message["asset_type"] = "item"
             self.validate_stac(
                 self.stac_file, cache["item-{}".format(self.stac_version)]
