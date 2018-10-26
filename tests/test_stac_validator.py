@@ -15,7 +15,6 @@ def _run_validate(url, version="master"):
 
 def test_good_item_validation_v052():
     stac = _run_validate("tests/test_data/good_item_v052.json", "v0.5.2")
-    # stac = stac_validator.StacValidate("tests/test_data/good_item_v052.json", "v0.5.2")
     assert stac.message == {
         "asset_type": "item",
         "path": "tests/test_data/good_item_v052.json",
