@@ -104,6 +104,6 @@ venv.bak/
 .mypy_cache/
 .envrc
 .idea/
-
+.DS_Store
 # lambda file
 .zip
