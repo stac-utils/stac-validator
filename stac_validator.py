@@ -46,14 +46,21 @@ class StacValidate:
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
+        # Need to cache this or grab from CDN
         git_tags = requests.get(
             "https://api.github.com/repos/radiantearth/stac-spec/tags"
         ).json()
-        stac_versions = [tag["name"] for tag in git_tags]
-
+        #stac_versions = [tag["name"] for tag in git_tags]
+        stac_versions = [
+            "v0.4.0",
+            "v0.4.1",
+            "v0.5.0",
+            "v0.5.1",
+            "v0.5.2",
+            "v0.6.0-rc1"
+        ]
         # cover master as well
         if version is None:
-            version = "master"
             version = "master"
         stac_versions += ["master"]
 
@@ -90,17 +97,15 @@ class StacValidate:
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
-        stac_item_geojson = requests.get(
-            StacVersion.item_geojson_schema_url(version)
-        ).json()
+        stac_item_geojson = requests.get(StacVersion.item_geojson_schema_url(version)).json()
         stac_item = requests.get(StacVersion.item_schema_url(version)).json()
         stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
 
         with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
             geojson_schema = json.dumps(stac_item_geojson)
-            fp.write(json.dumps(stac_item_geojson))
+            fp.write(geojson_schema)
             cache[geojson_key] = self.dirpath
-            geojson_resolver = RefResolver(
+            self.geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
         with open(os.path.join(self.dirpath, "stac-item.json"), "w") as fp:
@@ -136,7 +141,7 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/98
             try:
                 geojson_resolver = cache["geojson_resolver"]
-                validate(stac_file, stac_schema, resolver=geosjson_resolver)
+                validate(stac_file, stac_schema, resolver=self.geojson_resolver)
                 self.message["valid_stac"] = True
             except Exception as error:
                 self.message["valid_stac"] = False
@@ -155,10 +160,19 @@ class StacValidate:
 
         messages.append(stac.message)
 
-        self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
-        self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
-        self.status["items"]["valid"] += stac.status["items"]["valid"]
-        self.status["items"]["invalid"] += stac.status["items"]["invalid"]
+        if 'valid_json' in stac.message and not stac.message['valid_json']:
+            stac.message.pop('valid_json', None)
+            stac.status.pop('valid_json', None)
+            pass
+        else:
+            self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
+            self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
+            self.status["collections"]["valid"] += stac.status["collections"]["valid"]
+            self.status["collections"]["invalid"] += stac.status["collections"]["invalid"]
+            self.status["items"]["valid"] += stac.status["items"]["valid"]
+            self.status["items"]["invalid"] += stac.status["items"]["invalid"]
+
+
 
     async def validate_catalog_contents(self):
         """
@@ -176,7 +190,7 @@ class StacValidate:
     def is_valid_url(self, url):
         try:
             result = urlparse(url)
-            return result.schema and result.netloc and result.path
+            return result.scheme and result.netloc and result.path
         except:
             return False
 
@@ -207,6 +221,7 @@ class StacValidate:
                 self.stac_file = data
         except JSONDecodeError as e:
             self.message["valid_stac"] = False
+            self.message['valid_json'] = False
             self.message["error"] = f"{self.stac_file} is not Valid JSON"
             self.status = self.message
             return json.dumps(self.message)
@@ -223,7 +238,6 @@ class StacValidate:
                 self.status["catalogs"]["valid"] += 1
             else:
                 self.status["catalogs"]["invalid"] += 1
-            print(self.fpath)
             self.message["children"] = await self.validate_catalog_contents()
         elif any(field in Collections_Fields for field in self.stac_file.keys()):
             # Congratulations, It's a Collection!
@@ -237,7 +251,6 @@ class StacValidate:
                 self.status["collections"]["valid"] += 1
             else:
                 self.status["collections"]["invalid"] += 1
-            print(self.fpath)
             self.message["children"] = await self.validate_catalog_contents()
         else:
             # Congratulations, It's an Item!
