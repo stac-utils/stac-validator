@@ -50,15 +50,8 @@ class StacValidate:
         git_tags = requests.get(
             "https://api.github.com/repos/radiantearth/stac-spec/tags"
         ).json()
-        #stac_versions = [tag["name"] for tag in git_tags]
-        stac_versions = [
-            "v0.4.0",
-            "v0.4.1",
-            "v0.5.0",
-            "v0.5.1",
-            "v0.5.2",
-            "v0.6.0-rc1"
-        ]
+        # stac_versions = [tag["name"] for tag in git_tags]
+        stac_versions = ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2", "v0.6.0-rc1"]
         # cover master as well
         if version is None:
             version = "master"
@@ -97,7 +90,9 @@ class StacValidate:
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
-        stac_item_geojson = requests.get(StacVersion.item_geojson_schema_url(version)).json()
+        stac_item_geojson = requests.get(
+            StacVersion.item_geojson_schema_url(version)
+        ).json()
         stac_item = requests.get(StacVersion.item_schema_url(version)).json()
         stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
 
@@ -160,19 +155,19 @@ class StacValidate:
 
         messages.append(stac.message)
 
-        if 'valid_json' in stac.message and not stac.message['valid_json']:
-            stac.message.pop('valid_json', None)
-            stac.status.pop('valid_json', None)
+        if "valid_json" in stac.message and not stac.message["valid_json"]:
+            stac.message.pop("valid_json", None)
+            stac.status.pop("valid_json", None)
             pass
         else:
             self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
             self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
             self.status["collections"]["valid"] += stac.status["collections"]["valid"]
-            self.status["collections"]["invalid"] += stac.status["collections"]["invalid"]
+            self.status["collections"]["invalid"] += stac.status["collections"][
+                "invalid"
+            ]
             self.status["items"]["valid"] += stac.status["items"]["valid"]
             self.status["items"]["invalid"] += stac.status["items"]["invalid"]
-
-
 
     async def validate_catalog_contents(self):
         """
@@ -221,7 +216,7 @@ class StacValidate:
                 self.stac_file = data
         except JSONDecodeError as e:
             self.message["valid_stac"] = False
-            self.message['valid_json'] = False
+            self.message["valid_json"] = False
             self.message["error"] = f"{self.stac_file} is not Valid JSON"
             self.status = self.message
             return json.dumps(self.message)

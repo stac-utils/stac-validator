@@ -37,8 +37,5 @@ Options:
 stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
 ```
 
-## AWS lambda
-Run make to create a zip file for deploying to AWS Lambda.
-
 ## Credits
 Radiant Earth and Evan Rouault for ideas!

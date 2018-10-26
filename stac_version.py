@@ -30,8 +30,10 @@ class StacVersion:
         :return: nada
         """
 
-        cdn_base_url = f'https://cdn.staclint.com/{self.version}'
-        git_base_url = f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
+        cdn_base_url = f"https://cdn.staclint.com/{self.version}"
+        git_base_url = (
+            f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
+        )
 
         # Collection spec can be validated by catalog spec.
         if requests.get(cdn_base_url).status_code == 200:
