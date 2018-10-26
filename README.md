@@ -32,6 +32,7 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --verbose                    Verbose output. [default: False]
+    --timer                      Reports time to validate the STAC (seconds)
 
 
 stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2

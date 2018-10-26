@@ -35,6 +35,10 @@ class StacVersion:
             f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
         )
 
+        # https://github.com/radiantearth/stac-spec/issues/323
+        if self.version not in old_versions and self.filename == 'stac-item.json':
+            self.filename = 'item.json'
+
         # Collection spec can be validated by catalog spec.
         if requests.get(cdn_base_url).status_code == 200:
             self.ITEM_URL = os.path.join(cdn_base_url, self.filename)
@@ -89,10 +93,9 @@ class StacVersion:
         :param filename: json file to find
         :return: url
         """
-        # TODO: update with https://github.com/radiantearth/stac-spec/issues/323
-        # if version in old_versions:
-        #     # https://github.com/radiantearth/stac-spec/issues/323
-        #     filename = 'stac-item.json'
+        # https://github.com/radiantearth/stac-spec/issues/323
+        if version not in old_versions and filename == 'stac-item.json':
+            filename = 'item.json'
 
         return cls(version, "json-schema", filename).ITEM_URL
 

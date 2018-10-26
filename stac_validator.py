@@ -11,6 +11,7 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --verbose                    Verbose output. [default: False]
+    --timer                      Reports time to validate the STAC (seconds)
 """
 
 __author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens, Dustin Sampson"
@@ -46,12 +47,15 @@ class StacValidate:
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
-        # Need to cache this or grab from CDN
-        git_tags = requests.get(
-            "https://api.github.com/repos/radiantearth/stac-spec/tags"
-        ).json()
-        # stac_versions = [tag["name"] for tag in git_tags]
-        stac_versions = ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2", "v0.6.0-rc1"]
+        git_tags = requests.get("https://cdn.staclint.com/versions.json")
+        if git_tags.status_code == 200:
+            stac_versions = git_tags.json()["versions"]
+        else:
+            git_tags = requests.get(
+                "https://api.github.com/repos/radiantearth/stac-spec/tags"
+            ).json()
+            stac_versions = [tag["name"] for tag in git_tags]
+
         # cover master as well
         if version is None:
             version = "master"
