@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/demo
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run:
+          command: |
+            pip install -r requirements.txt
+      - run:
+          command: |
+            pytest
+      - store_test_results:
+          path: test-reports/
