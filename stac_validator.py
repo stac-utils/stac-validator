@@ -34,7 +34,7 @@ from jsonschema import RefResolutionError, RefResolver, ValidationError, validat
 from pathlib import Path
 
 import stac_exceptions
-from stac_version import StacVersion
+from stac_utilities import StacVersion
 
 asks.init("trio")
 cache = TTLCache(maxsize=10, ttl=900)
@@ -107,7 +107,8 @@ class StacValidate:
             self.geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
-        with open(os.path.join(self.dirpath, "stac-item.json"), "w") as fp:
+        stac_item_file = StacVersion.fix_stac_item(version, "stac-item.json")
+        with open(os.path.join(self.dirpath, stac_item_file), "w") as fp:
             stac_item_schema = json.dumps(stac_item)
             fp.write(stac_item_schema)
             cache[item_key] = stac_item_schema

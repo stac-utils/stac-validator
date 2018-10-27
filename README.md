@@ -6,7 +6,7 @@ It can be installed as command line utility and passed either a local file path 
 
 ## Requirements
 
-* Python 3.x
+* Python 3.6
     * Requests
     * Docopt
     * pytest

@@ -1,5 +1,5 @@
-"""c
-Description: Specify path to specific STAC spec and example files.
+"""
+Description: Utilities for STAC validate
 
 """
 __author__ = "James Banting"
@@ -35,9 +35,7 @@ class StacVersion:
             f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
         )
 
-        # https://github.com/radiantearth/stac-spec/issues/323
-        if self.version not in old_versions and self.filename == 'stac-item.json':
-            self.filename = 'item.json'
+        self.filename = StacVersion.fix_stac_item(self.version, self.filename)
 
         # Collection spec can be validated by catalog spec.
         if requests.get(cdn_base_url).status_code == 200:
@@ -64,6 +62,17 @@ class StacVersion:
                 self.ITEM_URL = os.path.join(
                     git_base_url, f"item-spec/{self.input_type}/{self.filename}"
                 )
+
+    @staticmethod
+    def fix_stac_item(version, filename):
+        """
+        Determine if it is stac.json or stac-item.json
+        https://github.com/radiantearth/stac-spec/issues/323
+        :return: appropriate filename
+        """
+        if version not in old_versions and filename == "stac-item.json":
+            filename = "item.json"
+        return filename
 
     @classmethod
     def catalog_schema_url(cls, version, filename="catalog.json"):
@@ -93,10 +102,8 @@ class StacVersion:
         :param filename: json file to find
         :return: url
         """
-        # https://github.com/radiantearth/stac-spec/issues/323
-        if version not in old_versions and filename == 'stac-item.json':
-            filename = 'item.json'
 
+        filename = StacVersion.fix_stac_item(version, filename)
         return cls(version, "json-schema", filename).ITEM_URL
 
     @classmethod
