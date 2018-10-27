@@ -6,10 +6,13 @@ It can be installed as command line utility and passed either a local file path 
 
 ## Requirements
 
-* Python 3.x
+* Python 3.6
     * Requests
     * Docopt
     * pytest
+    * cachetools
+    * trio
+    * asks
 
 ## Example
 
@@ -20,7 +23,7 @@ stac_validator.py --help
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version] [--verbose]
+    stac_validator.py <stac_file> [-version] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -29,13 +32,11 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --verbose                    Verbose output. [default: False]
+    --timer                      Reports time to validate the STAC (seconds)
 
 
 stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
 ```
-
-## AWS lambda
-Run make to create a zip file for deploying to AWS Lambda.
 
 ## Credits
 Radiant Earth and Evan Rouault for ideas!
