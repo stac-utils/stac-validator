@@ -160,10 +160,9 @@ class StacValidate:
 
         messages.append(stac.message)
 
-        if "valid_json" in stac.message and not stac.message["valid_json"]:
-            stac.message.pop("valid_json", None)
-            stac.status.pop("valid_json", None)
-            pass
+        if "error_type" in stac.message:
+            stac.message.pop("error_type", None)
+            stac.status.pop("error_type", None)
         else:
             self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
             self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
@@ -221,10 +220,15 @@ class StacValidate:
                 self.stac_file = data
         except JSONDecodeError as e:
             self.message["valid_stac"] = False
-            self.message["valid_json"] = False
+            self.message["error_type"] = "InvalidJSON"
             self.message["error"] = f"{self.stac_file} is not Valid JSON"
             self.status = self.message
-            return json.dumps(self.message)
+            # return json.dumps(self.message)
+        except FileNotFoundError as e:
+            self.message["valid_stac"] = False
+            self.message["error_type"] = "FileNotFoundError"
+            self.message["error"] = f"{self.stac_file} cannot be found"
+            self.status = self.message
 
         # Check STAC Type
         if "catalog" in self.fpath.stem:
@@ -239,7 +243,9 @@ class StacValidate:
             else:
                 self.status["catalogs"]["invalid"] += 1
             self.message["children"] = await self.validate_catalog_contents()
-        elif any(field in Collections_Fields for field in self.stac_file.keys()):
+        elif (self.stac_file) is dict and (
+            field in Collections_Fields for field in self.stac_file.keys()
+        ):
             # Congratulations, It's a Collection!
             # Collections will validate as catalog.
             self.message["asset_type"] = "collection"
@@ -252,6 +258,10 @@ class StacValidate:
             else:
                 self.status["collections"]["invalid"] += 1
             self.message["children"] = await self.validate_catalog_contents()
+        elif "error_type" in self.message:
+            self.message.pop("error_type", None)
+            self.status.pop("error_type", None)
+
         else:
             # Congratulations, It's an Item!
             self.message["asset_type"] = "item"
