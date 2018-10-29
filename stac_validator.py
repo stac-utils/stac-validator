@@ -68,7 +68,7 @@ class StacValidate:
 
         self.stac_version = version
         self.stac_file = stac_file.strip()
-        self.dirpath = ""
+        self.dirpath = ''
         self.fetch_specs(self.stac_version)
         self.fpath = Path(stac_file)
         self.message = {}
@@ -89,6 +89,9 @@ class StacValidate:
         catalog_key = "catalog-{}".format(self.stac_version)
 
         if item_key in cache and catalog_key in cache:
+            self.geojson_resolver = RefResolver(
+                base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
+            )
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
         # need to make a temp local file for geojson.
@@ -140,19 +143,21 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/313
             # See https://github.com/Julian/jsonschema/issues/98
             try:
-                geojson_resolver = cache["geojson_resolver"]
+                self.geojson_resolver = RefResolver(
+                    base_uri="file://{}/".format(cache["geojson_resolver"]), referrer="geojson.json"
+                )
                 validate(stac_file, stac_schema, resolver=self.geojson_resolver)
                 self.message["valid_stac"] = True
             except Exception as error:
                 self.message["valid_stac"] = False
-                self.message["error"] = f"{error.args}"
+                self.message["error_message"] = f"{error.args}"
         except ValidationError as error:
             self.message["valid_stac"] = False
-            self.message["error"] = f"{error.message} of {list(error.path)}"
+            self.message["error_message"] = f"{error.message} of {list(error.path)}"
 
         except Exception as error:
             self.message["valid_stac"] = False
-            self.message["error"] = f"{error}"
+            self.message["error_message"] = f"{error}"
 
     async def _validate_child(self, child_url, messages):
         stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
@@ -161,8 +166,7 @@ class StacValidate:
         messages.append(stac.message)
 
         if "error_type" in stac.message:
-            stac.message.pop("error_type", None)
-            stac.status.pop("error_type", None)
+            pass
         else:
             self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
             self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
@@ -221,13 +225,13 @@ class StacValidate:
         except JSONDecodeError as e:
             self.message["valid_stac"] = False
             self.message["error_type"] = "InvalidJSON"
-            self.message["error"] = f"{self.stac_file} is not Valid JSON"
+            self.message["error_message"] = f"{self.stac_file} is not Valid JSON"
             self.status = self.message
             # return json.dumps(self.message)
         except FileNotFoundError as e:
             self.message["valid_stac"] = False
             self.message["error_type"] = "FileNotFoundError"
-            self.message["error"] = f"{self.stac_file} cannot be found"
+            self.message["error_message"] = f"{self.stac_file} cannot be found"
             self.status = self.message
 
         # Check STAC Type
@@ -243,7 +247,7 @@ class StacValidate:
             else:
                 self.status["catalogs"]["invalid"] += 1
             self.message["children"] = await self.validate_catalog_contents()
-        elif (self.stac_file) is dict and (
+        elif type(self.stac_file) is dict and any(
             field in Collections_Fields for field in self.stac_file.keys()
         ):
             # Congratulations, It's a Collection!
@@ -259,8 +263,7 @@ class StacValidate:
                 self.status["collections"]["invalid"] += 1
             self.message["children"] = await self.validate_catalog_contents()
         elif "error_type" in self.message:
-            self.message.pop("error_type", None)
-            self.status.pop("error_type", None)
+            pass
 
         else:
             # Congratulations, It's an Item!

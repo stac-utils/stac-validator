@@ -5,7 +5,7 @@ Description: Test the validator
 __author__ = "James Banting"
 import stac_validator
 import trio
-import json
+import pytest
 
 
 def _run_validate(url, version="master"):
@@ -40,6 +40,7 @@ def test_good_catalog_validation_v052():
         "valid_stac": True,
         "children": [],
     }
+
 
 # Need to fix test around async return  - output is valid, but dict is out of order
 # def test_nested_catalog_v052():
@@ -138,11 +139,49 @@ def test_bad_url():
     )
     assert stac.status == {
         "valid_stac": False,
-        "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
-        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud"
+        "error_type": "InvalidJSON",
+        "error_message": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
+        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud",
     }
     assert stac.message == {
         "valid_stac": False,
-        "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
-        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud"
+        "error_type": "InvalidJSON",
+        "error_message": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
+        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud",
     }
+
+
+@pytest.mark.stac_spec
+def test_catalog_master():
+    stac = _run_validate(
+        "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json"
+    )
+    assert stac.status == {
+        "catalogs": {"valid": 1, "invalid": 0},
+        "collections": {"valid": 0, "invalid": 0},
+        "items": {"valid": 0, "invalid": 0},
+    }
+
+@pytest.mark.stac_spec
+def test_collection_master():
+    stac = _run_validate(
+        "https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json"
+    )
+    assert stac.status == {
+        "catalogs": {"valid": 0, "invalid": 0},
+        "collections": {"valid": 1, "invalid": 0},
+        "items": {"valid": 0, "invalid": 0},
+    }
+
+@pytest.mark.item_spec
+@pytest.mark.stac_spec
+def test_item_master():
+    stac = _run_validate(
+        "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
+    )
+    assert stac.status == {
+        "catalogs": {"valid": 0, "invalid": 0},
+        "collections": {"valid": 0, "invalid": 0},
+        "items": {"valid": 1, "invalid": 0},
+    }
+
