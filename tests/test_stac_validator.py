@@ -138,11 +138,11 @@ def test_bad_url():
     )
     assert stac.status == {
         "valid_stac": False,
-        "valid_json": False,
         "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
+        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud"
     }
     assert stac.message == {
         "valid_stac": False,
-        "valid_json": False,
         "error": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
+        "path": "https:/s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud"
     }
