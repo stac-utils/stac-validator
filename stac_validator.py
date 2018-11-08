@@ -150,7 +150,7 @@ class StacValidate:
                 self.message["valid_stac"] = True
             except Exception as error:
                 self.message["valid_stac"] = False
-                self.message["error_message"] = f"{error.args}"
+                self.message["error_message"] = f"{error.message}"
         except ValidationError as error:
             self.message["valid_stac"] = False
             self.message["error_message"] = f"{error.message} of {list(error.path)}"
