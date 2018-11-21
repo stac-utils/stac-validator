@@ -8,7 +8,7 @@ __author__ = "James Banting"
 
 import json
 import uuid
-import stac_validator
+from stac_validator.validator import StacValidate
 
 
 def handler(event, context):
@@ -38,6 +38,6 @@ def handler(event, context):
     else:
         stac_file = url_STAC
 
-    stac_message = stac_validator.StacValidate(stac_file.strip(), version, verbose=True).message
+    stac_message = StacValidate(stac_file.strip(), version, verbose=True).message
 
     return stac_message

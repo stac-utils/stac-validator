@@ -18,23 +18,21 @@ __author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens, Dustin 
 
 import json
 import os
-import shutil
 import tempfile
-import traceback
 from json.decoder import JSONDecodeError
-from timeit import default_timer
 from urllib.parse import urljoin, urlparse
 
 import asks
 import requests
 import trio
-from cachetools import TTLCache, cached
-from docopt import docopt
-from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
+from cachetools import TTLCache
+from jsonschema import (
+    RefResolutionError, RefResolver, ValidationError, validate
+)
 from pathlib import Path
 
-import stac_exceptions
-from stac_utilities import StacVersion
+from stac_validator.exceptions import VersionException
+from stac_validator.utilities import StacVersion
 
 asks.init("trio")
 cache = TTLCache(maxsize=10, ttl=900)
@@ -62,7 +60,7 @@ class StacValidate:
         stac_versions += ["master"]
 
         if version not in stac_versions:
-            raise stac_exceptions.VersionException(
+            raise VersionException(
                 f"{version} is not a valid STAC version. Valid Versions are: {stac_versions}"
             )
 
@@ -110,11 +108,13 @@ class StacValidate:
             self.geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
+
         stac_item_file = StacVersion.fix_stac_item(version, "stac-item.json")
         with open(os.path.join(self.dirpath, stac_item_file), "w") as fp:
             stac_item_schema = json.dumps(stac_item)
             fp.write(stac_item_schema)
             cache[item_key] = stac_item_schema
+
         with open(os.path.join(self.dirpath, "stac-catalog.json"), "w") as fp:
             stac_catalog_schema = json.dumps(stac_catalog)
             fp.write(stac_catalog_schema)
@@ -280,37 +280,3 @@ class StacValidate:
         self.message["path"] = str(self.fpath)
 
         return json.dumps(self.message)
-
-
-async def main(args):
-    stac_file = args.get("<stac_file>")
-    version = args.get("--version")
-    verbose = args.get("--verbose")
-    timer = args.get("--timer")
-
-    if timer:
-        start = default_timer()
-
-    stac = StacValidate(stac_file, version)
-    _ = await stac.run()
-    shutil.rmtree(stac.dirpath)
-
-    if verbose:
-        print(json.dumps(stac.message, indent=4))
-    else:
-        print(json.dumps(stac.status, indent=4))
-
-    if timer:
-        print("{0:.3f}s".format(default_timer() - start))
-
-
-if __name__ == "__main__":
-    args = docopt(__doc__)
-    try:
-        trio.run(main, args)
-        retval = 0
-    except Exception as e:
-        traceback.print_exc()
-        retval = -1
-
-    exit(retval)
