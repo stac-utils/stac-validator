@@ -28,12 +28,12 @@ from urllib.parse import urljoin, urlparse
 import asks
 import requests
 import trio
-from cachetools import TTLCache, cached
+from cachetools import TTLCache
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pathlib import Path
 
-import stac_exceptions
+from stac_exceptions import VersionException
 from stac_utilities import StacVersion
 
 asks.init("trio")
@@ -47,25 +47,6 @@ class StacValidate:
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
-        git_tags = requests.get("https://cdn.staclint.com/versions.json")
-        if git_tags.status_code == 200:
-            stac_versions = git_tags.json()["versions"]
-        else:
-            git_tags = requests.get(
-                "https://api.github.com/repos/radiantearth/stac-spec/tags"
-            ).json()
-            stac_versions = [tag["name"] for tag in git_tags]
-
-        # cover master as well
-        if version is None:
-            version = "master"
-        stac_versions += ["master"]
-
-        if version not in stac_versions:
-            raise stac_exceptions.VersionException(
-                f"{version} is not a valid STAC version. Valid Versions are: {stac_versions}"
-            )
-
         self.stac_version = version
         self.stac_file = stac_file.strip()
         self.dirpath = ''
@@ -94,14 +75,19 @@ class StacValidate:
             )
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
+        # TODO: Uses a unique temporary directory (~/.stac-specifications) ?
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
-        stac_item_geojson = requests.get(
-            StacVersion.item_geojson_schema_url(version)
-        ).json()
-        stac_item = requests.get(StacVersion.item_schema_url(version)).json()
-        stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
+        try:
+            stac_item_geojson = requests.get(
+                StacVersion.item_geojson_schema_url(version)
+            ).json()
+            stac_item = requests.get(StacVersion.item_schema_url(version)).json()
+            stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
+        except Exception as error:
+            # TODO: log error
+            raise VersionException(f"Could not download STAC specification files for version: {version}")
 
         with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
             geojson_schema = json.dumps(stac_item_geojson)
@@ -137,7 +123,7 @@ class StacValidate:
         stac_schema = json.loads(schema)
         try:
             validate(stac_file, stac_schema)
-            self.message["valid_stac"] = True
+            return True, None
         except RefResolutionError as error:
             # See https://github.com/Julian/jsonschema/issues/362
             # See https://github.com/Julian/jsonschema/issues/313
@@ -147,17 +133,13 @@ class StacValidate:
                     base_uri="file://{}/".format(cache["geojson_resolver"]), referrer="geojson.json"
                 )
                 validate(stac_file, stac_schema, resolver=self.geojson_resolver)
-                self.message["valid_stac"] = True
+                return True, None
             except Exception as error:
-                self.message["valid_stac"] = False
-                self.message["error_message"] = f"{error.args}"
+                return False, f"{error.args}"
         except ValidationError as error:
-            self.message["valid_stac"] = False
-            self.message["error_message"] = f"{error.message} of {list(error.path)}"
-
+            return False, f"{error.message} of {list(error.path)}"
         except Exception as error:
-            self.message["valid_stac"] = False
-            self.message["error_message"] = f"{error}"
+            return False, f"{error}"
 
     async def _validate_child(self, child_url, messages):
         stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
@@ -238,9 +220,11 @@ class StacValidate:
         if "catalog" in self.fpath.stem:
             # Congratulations, It's a Catalog!
             self.message["asset_type"] = "catalog"
-            self.validate_stac(
+            is_valid_stac, err_message = self.validate_stac(
                 self.stac_file, cache["catalog-{}".format(self.stac_version)]
             )
+            self.message["valid_stac"] = is_valid_stac
+            self.message["error_message"] = err_message
 
             if self.message["valid_stac"]:
                 self.status["catalogs"]["valid"] += 1
@@ -253,9 +237,12 @@ class StacValidate:
             # Congratulations, It's a Collection!
             # Collections will validate as catalog.
             self.message["asset_type"] = "collection"
-            self.validate_stac(
+            is_valid_stac, err_message = self.validate_stac(
                 self.stac_file, cache["catalog-{}".format(self.stac_version)]
             )
+
+            self.message["valid_stac"] = is_valid_stac
+            self.message["error_message"] = err_message
 
             if self.message["valid_stac"]:
                 self.status["collections"]["valid"] += 1
@@ -268,9 +255,11 @@ class StacValidate:
         else:
             # Congratulations, It's an Item!
             self.message["asset_type"] = "item"
-            self.validate_stac(
+            is_valid_stac, err_message = self.validate_stac(
                 self.stac_file, cache["item-{}".format(self.stac_version)]
             )
+            self.message["valid_stac"] = is_valid_stac
+            self.message["error_message"] = err_message
 
             if self.message["valid_stac"]:
                 self.status["items"]["valid"] += 1
