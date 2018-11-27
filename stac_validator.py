@@ -41,7 +41,7 @@ cache = TTLCache(maxsize=10, ttl=900)
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master", stac_dir="~/.stac"):
+    def __init__(self, stac_file, version="master"):
         """
         Validate a STAC file
         :param stac_file: file to validate
