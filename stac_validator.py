@@ -20,28 +20,28 @@ import json
 import os
 import shutil
 import tempfile
-import traceback
 from json.decoder import JSONDecodeError
 from timeit import default_timer
 from urllib.parse import urljoin, urlparse
+from concurrent import futures
 
-import asks
 import requests
-import trio
 from cachetools import TTLCache
 from docopt import docopt
-from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
+from jsonschema import (
+    RefResolutionError, RefResolver, ValidationError, validate
+)
 from pathlib import Path
 
 from stac_exceptions import VersionException
 from stac_utilities import StacVersion
 
-asks.init("trio")
+
 cache = TTLCache(maxsize=10, ttl=900)
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master"):
+    def __init__(self, stac_file, version="master", stac_dir="~/.stac"):
         """
         Validate a STAC file
         :param stac_file: file to validate
@@ -50,13 +50,14 @@ class StacValidate:
         self.stac_version = version
         self.stac_file = stac_file.strip()
         self.dirpath = ''
+
         self.fetch_specs(self.stac_version)
-        self.fpath = Path(stac_file)
-        self.message = {}
+        self.message = []
         self.status = {
             "catalogs": {"valid": 0, "invalid": 0},
             "collections": {"valid": 0, "invalid": 0},
             "items": {"valid": 0, "invalid": 0},
+            "unknown": 0,
         }
 
     def fetch_specs(self, version):
@@ -64,7 +65,6 @@ class StacValidate:
         Get the versions from github. Cache them if possible.
         :return: specs
         """
-
         geojson_key = "geojson_resolver"
         item_key = "item-{}".format(self.stac_version)
         catalog_key = "catalog-{}".format(self.stac_version)
@@ -75,7 +75,7 @@ class StacValidate:
             )
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
-        # TODO: Uses a unique temporary directory (~/.stac-specifications) ?
+        # TODO: Uses a unique temporary directory (~/.stac-specifications)
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
@@ -112,17 +112,17 @@ class StacValidate:
 
         return ITEM_SCHEMA, ITEM_GEOJSON_SCHEMA, CATALOG_SCHEMA
 
-    def validate_stac(self, stac_file, schema):
+    def validate_json(self, stac_content, schema):
         """
         Validate stac
-        :param stac_file: input stac_file
+        :param stac_content: input stac file content
         :param schema of STAC (item, catalog)
         :return: validation message
         """
 
         stac_schema = json.loads(schema)
         try:
-            validate(stac_file, stac_schema)
+            validate(stac_content, stac_schema)
             return True, None
         except RefResolutionError as error:
             # See https://github.com/Julian/jsonschema/issues/362
@@ -130,47 +130,40 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/98
             try:
                 self.geojson_resolver = RefResolver(
-                    base_uri="file://{}/".format(cache["geojson_resolver"]), referrer="geojson.json"
+                    base_uri="file://{}/".format(cache["geojson_resolver"]),
+                    referrer="geojson.json"
                 )
-                validate(stac_file, stac_schema, resolver=self.geojson_resolver)
+                validate(stac_content, stac_schema, resolver=self.geojson_resolver)
                 return True, None
             except Exception as error:
                 return False, f"{error.args}"
         except ValidationError as error:
+            # TODO: log error
             return False, f"{error.message} of {list(error.path)}"
         except Exception as error:
+            # TODO: log error
             return False, f"{error}"
 
-    async def _validate_child(self, child_url, messages):
-        stac = StacValidate(child_url.replace("///", "//"), self.stac_version)
-        _ = await stac.run()
+    def _update_status(self, old_status, new_status):
+        old_status["catalogs"]["valid"] += new_status["catalogs"]["valid"]
+        old_status["catalogs"]["invalid"] += new_status["catalogs"]["invalid"]
+        old_status["collections"]["valid"] += new_status["collections"]["valid"]
+        old_status["collections"]["invalid"] += new_status["collections"][
+            "invalid"
+        ]
+        old_status["items"]["valid"] += new_status["items"]["valid"]
+        old_status["items"]["invalid"] += new_status["items"]["invalid"]
+        old_status["unknown"] += new_status["unknown"]
+        return old_status
 
-        messages.append(stac.message)
+    def _get_childs_urls(self, stac_content, stac_path):
+        """Return childs items or catalog urls."""
+        urls = []
 
-        if "error_type" in stac.message:
-            pass
-        else:
-            self.status["catalogs"]["valid"] += stac.status["catalogs"]["valid"]
-            self.status["catalogs"]["invalid"] += stac.status["catalogs"]["invalid"]
-            self.status["collections"]["valid"] += stac.status["collections"]["valid"]
-            self.status["collections"]["invalid"] += stac.status["collections"][
-                "invalid"
-            ]
-            self.status["items"]["valid"] += stac.status["items"]["valid"]
-            self.status["items"]["invalid"] += stac.status["items"]["invalid"]
-
-    async def validate_catalog_contents(self):
-        """
-        Validates contents of current catalog
-        :return: list of child messages
-        """
-        messages = []
-        async with trio.open_nursery() as nursery:
-            for link in self.stac_file["links"]:
-                if link["rel"] in ["child", "item"]:
-                    child_url = urljoin(str(self.fpath), link["href"])
-                    nursery.start_soon(self._validate_child, child_url, messages)
-        return messages
+        for link in stac_content.get("links", []):
+            if link["rel"] in ["child", "item"]:
+                urls.append(urljoin(stac_path, link["href"]).strip())
+        return urls
 
     def is_valid_url(self, url):
         try:
@@ -179,11 +172,37 @@ class StacValidate:
         except:
             return False
 
-    async def run(self):
+    def fetch_and_parse_file(self, input_path):
         """
-        Entry point
-        :return: message json
+        Fetch and parse STAC file
+        :return: content or error message
         """
+        err_message = {}
+        data = None
+
+        try:
+            if self.is_valid_url(input_path):
+                resp = requests.get(input_path)
+                data = resp.json()
+            else:
+                with open(input_path) as f:
+                    data = json.load(f)
+
+        except JSONDecodeError as e:
+            err_message["valid_stac"] = False
+            err_message["error_type"] = "InvalidJSON"
+            err_message["error_message"] = f"{input_path} is not Valid JSON"
+
+        except FileNotFoundError as e:
+            err_message["valid_stac"] = False
+            err_message["error_type"] = "FileNotFoundError"
+            err_message["error_message"] = f"{input_path} cannot be found"
+
+        return data, err_message
+
+    def _validate(self, stac_path):
+
+        fpath = Path(stac_path)
 
         Collections_Fields = [
             "keywords",
@@ -195,83 +214,106 @@ class StacValidate:
             "stac_version",
         ]
 
-        # URL or file
-        try:
-            if self.is_valid_url(self.stac_file):
-                resp = await asks.get(self.stac_file)
-                self.stac_file = resp.json()
-            else:
-                with open(self.stac_file) as f:
-                    data = json.load(f)
-                self.stac_file = data
-        except JSONDecodeError as e:
-            self.message["valid_stac"] = False
-            self.message["error_type"] = "InvalidJSON"
-            self.message["error_message"] = f"{self.stac_file} is not Valid JSON"
-            self.status = self.message
-            # return json.dumps(self.message)
-        except FileNotFoundError as e:
-            self.message["valid_stac"] = False
-            self.message["error_type"] = "FileNotFoundError"
-            self.message["error_message"] = f"{self.stac_file} cannot be found"
-            self.status = self.message
+        message = {}
+        status = {
+            "catalogs": {"valid": 0, "invalid": 0},
+            "collections": {"valid": 0, "invalid": 0},
+            "items": {"valid": 0, "invalid": 0},
+            "unknown": 0,
+        }
+
+        stac_content, err_message = self.fetch_and_parse_file(stac_path)
+        if err_message:
+            status["unknown"] = 1
+            return err_message, status, []
 
         # Check STAC Type
-        if "catalog" in self.fpath.stem:
+        if "catalog" in fpath.stem:
             # Congratulations, It's a Catalog!
-            self.message["asset_type"] = "catalog"
-            is_valid_stac, err_message = self.validate_stac(
-                self.stac_file, cache["catalog-{}".format(self.stac_version)]
+            message["asset_type"] = "catalog"
+            is_valid_stac, err_message = self.validate_json(
+                stac_content, cache["catalog-{}".format(self.stac_version)]
             )
-            self.message["valid_stac"] = is_valid_stac
-            self.message["error_message"] = err_message
+            message["valid_stac"] = is_valid_stac
+            message["error_message"] = err_message
 
-            if self.message["valid_stac"]:
-                self.status["catalogs"]["valid"] += 1
+            if message["valid_stac"]:
+                status["catalogs"]["valid"] = 1
             else:
-                self.status["catalogs"]["invalid"] += 1
-            self.message["children"] = await self.validate_catalog_contents()
-        elif type(self.stac_file) is dict and any(
-            field in Collections_Fields for field in self.stac_file.keys()
+                status["catalogs"]["invalid"] = 1
+
+            childs = self._get_childs_urls(stac_content, stac_path)
+
+        elif type(stac_content) is dict and any(
+            field in Collections_Fields for field in stac_content.keys()
         ):
             # Congratulations, It's a Collection!
             # Collections will validate as catalog.
-            self.message["asset_type"] = "collection"
-            is_valid_stac, err_message = self.validate_stac(
-                self.stac_file, cache["catalog-{}".format(self.stac_version)]
+            message["asset_type"] = "collection"
+            is_valid_stac, err_message = self.validate_json(
+                stac_content, cache["catalog-{}".format(self.stac_version)]
             )
 
-            self.message["valid_stac"] = is_valid_stac
-            self.message["error_message"] = err_message
+            message["valid_stac"] = is_valid_stac
+            message["error_message"] = err_message
 
-            if self.message["valid_stac"]:
-                self.status["collections"]["valid"] += 1
+            if message["valid_stac"]:
+                status["collections"]["valid"] = 1
             else:
-                self.status["collections"]["invalid"] += 1
-            self.message["children"] = await self.validate_catalog_contents()
-        elif "error_type" in self.message:
+                status["collections"]["invalid"] = 1
+
+            childs = self._get_childs_urls(stac_content, stac_path)
+
+        elif "error_type" in message:
             pass
 
         else:
             # Congratulations, It's an Item!
-            self.message["asset_type"] = "item"
-            is_valid_stac, err_message = self.validate_stac(
-                self.stac_file, cache["item-{}".format(self.stac_version)]
+            message["asset_type"] = "item"
+            is_valid_stac, err_message = self.validate_json(
+                stac_content, cache["item-{}".format(self.stac_version)]
             )
-            self.message["valid_stac"] = is_valid_stac
-            self.message["error_message"] = err_message
+            message["valid_stac"] = is_valid_stac
+            message["error_message"] = err_message
 
-            if self.message["valid_stac"]:
-                self.status["items"]["valid"] += 1
+            if message["valid_stac"]:
+                status["items"]["valid"] = 1
             else:
-                self.status["items"]["invalid"] += 1
+                status["items"]["invalid"] = 1
 
-        self.message["path"] = str(self.fpath)
+            childs = []
+
+        message["path"] = stac_path
+
+        return message, status, childs
+
+    def run(self):
+        """
+        Entry point
+        :return: message json
+
+        """
+        childs = [self.stac_file]
+        while True:
+            concurrent = 10
+            with futures.ThreadPoolExecutor(max_workers=concurrent) as executor:
+                future_tasks = [
+                    executor.submit(self._validate, url) for url in childs
+                ]
+                childs = []
+                for task in futures.as_completed(future_tasks):
+                    message, status, new_childs = task.result()
+                    self.status = self._update_status(self.status, status)
+                    self.message.append(message)
+                    childs.extend(new_childs)
+
+            if not childs:
+                break
 
         return json.dumps(self.message)
 
 
-async def main(args):
+def main(args):
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
     verbose = args.get("--verbose")
@@ -281,7 +323,7 @@ async def main(args):
         start = default_timer()
 
     stac = StacValidate(stac_file, version)
-    _ = await stac.run()
+    _ = stac.run()
     shutil.rmtree(stac.dirpath)
 
     if verbose:
@@ -295,11 +337,4 @@ async def main(args):
 
 if __name__ == "__main__":
     args = docopt(__doc__)
-    try:
-        trio.run(main, args)
-        retval = 0
-    except Exception as e:
-        traceback.print_exc()
-        retval = -1
-
-    exit(retval)
+    main(args)
