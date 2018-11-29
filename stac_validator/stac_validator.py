@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version] [--verbose] [--timer]
+    stac_validator <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -304,7 +304,8 @@ async def async_main(args):
         print("{0:.3f}s".format(default_timer() - start))
 
 
-def main(args):
+def main():
+    args = docopt(__doc__)
     try:
         trio.run(async_main, args)
         retval = 0
@@ -316,5 +317,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    args = docopt(__doc__)
-    main(args)
+    main()
