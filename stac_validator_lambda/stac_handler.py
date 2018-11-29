@@ -8,7 +8,7 @@ __author__ = "James Banting"
 
 import json
 import uuid
-import stac_validator
+from stac_validator import stac_validator
 
 
 def handler(event, context):

@@ -24,7 +24,11 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=requires,
-    packages=find_packages("."),
-    scripts=["./stac_validator.py"],
+    packages=["stac_validator"],
+    entry_points={
+        'console_scripts': [
+            'stac_validator = stac_validator.stac_validator:main'
+        ]
+    },
     tests_require=["pytest"],
 )
