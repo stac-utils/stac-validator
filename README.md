@@ -18,12 +18,12 @@ It can be installed as command line utility and passed either a local file path 
 
 ```bash
 pip install .
-stac_validator.py --help
+stac_validator --help
 
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version] [--verbose] [--timer]
+    stac_validator.py <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -35,7 +35,7 @@ Options:
     --timer                      Reports time to validate the STAC (seconds)
 
 
-stac_validator.py https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
+stac_validator https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
 ```
 
 ## Credits

@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version] [--verbose] [--timer]
+    stac_validator <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -33,8 +33,8 @@ from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pathlib import Path
 
-import stac_exceptions
-from stac_utilities import StacVersion
+from . import stac_exceptions
+from .stac_utilities import StacVersion
 
 asks.init("trio")
 cache = TTLCache(maxsize=10, ttl=900)
@@ -282,7 +282,7 @@ class StacValidate:
         return json.dumps(self.message)
 
 
-async def main(args):
+async def async_main(args):
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
     verbose = args.get("--verbose")
@@ -304,13 +304,17 @@ async def main(args):
         print("{0:.3f}s".format(default_timer() - start))
 
 
-if __name__ == "__main__":
+def main():
     args = docopt(__doc__)
     try:
-        trio.run(main, args)
+        trio.run(async_main, args)
         retval = 0
     except Exception as e:
         traceback.print_exc()
         retval = -1
 
     exit(retval)
+
+
+if __name__ == "__main__":
+    main()
