@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [-version] [--verbose] [--timer]
+    stac_validator <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -33,9 +33,8 @@ from jsonschema import (
 )
 from pathlib import Path
 
-from stac_exceptions import VersionException
-from stac_utilities import StacVersion
-
+from . stac_exceptions import VersionException
+from . stac_utilities import StacVersion
 
 cache = TTLCache(maxsize=10, ttl=900)
 
@@ -47,6 +46,7 @@ class StacValidate:
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
+        logging.warning('STAC Validator Started.')
         self.stac_version = version
         self.stac_file = stac_file.strip()
         self.dirpath = ''
@@ -313,7 +313,8 @@ class StacValidate:
         return json.dumps(self.message)
 
 
-def main(args):
+def main():
+    args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
     verbose = args.get("--verbose")
@@ -336,5 +337,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    args = docopt(__doc__)
-    main(args)
+    main()
