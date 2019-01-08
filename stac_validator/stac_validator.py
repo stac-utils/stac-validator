@@ -25,6 +25,8 @@ from timeit import default_timer
 from urllib.parse import urljoin, urlparse
 from concurrent import futures
 
+import logging
+
 import requests
 from cachetools import TTLCache
 from docopt import docopt
@@ -35,6 +37,11 @@ from pathlib import Path
 
 from . stac_exceptions import VersionException
 from . stac_utilities import StacVersion
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
+                    datefmt='%m/%d/%Y %H:%M:%S',
+                    level=logging.WARNING)
 
 cache = TTLCache(maxsize=10, ttl=900)
 
@@ -70,38 +77,47 @@ class StacValidate:
         catalog_key = "catalog-{}".format(self.stac_version)
 
         if item_key in cache and catalog_key in cache:
+            logging.warning('Using STAC specs from local cache.')
             self.geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
+        else:
+            try:
+                logging.warning('Gathering STAC specs from remote.')
+                stac_item_geojson = requests.get(
+                    StacVersion.item_geojson_schema_url(version)
+                ).json()
+                stac_item = requests.get(StacVersion.item_schema_url(version)).json()
+                stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
+            except Exception as error:
+                logger.exception("STAC Download Error")
+                raise VersionException(f"Could not download STAC specification files for version: {version}")
+
         # TODO: Uses a unique temporary directory (~/.stac-specifications)
         # need to make a temp local file for geojson.
         self.dirpath = tempfile.mkdtemp()
 
-        try:
-            stac_item_geojson = requests.get(
-                StacVersion.item_geojson_schema_url(version)
-            ).json()
-            stac_item = requests.get(StacVersion.item_schema_url(version)).json()
-            stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
-        except Exception as error:
-            # TODO: log error
-            raise VersionException(f"Could not download STAC specification files for version: {version}")
-
         with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
+            logging.warning("Copying GeoJSON spec from cache to local file")
             geojson_schema = json.dumps(stac_item_geojson)
             fp.write(geojson_schema)
             cache[geojson_key] = self.dirpath
             self.geojson_resolver = RefResolver(
                 base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
             )
+
         stac_item_file = StacVersion.fix_stac_item(version, "stac-item.json")
+
         with open(os.path.join(self.dirpath, stac_item_file), "w") as fp:
+            logging.warning("Copying STAC item spec from cache to local file")
             stac_item_schema = json.dumps(stac_item)
             fp.write(stac_item_schema)
             cache[item_key] = stac_item_schema
+
         with open(os.path.join(self.dirpath, "stac-catalog.json"), "w") as fp:
+            logging.warning("Copying STAC catalog spec from cache to local file")
             stac_catalog_schema = json.dumps(stac_catalog)
             fp.write(stac_catalog_schema)
             cache[catalog_key] = stac_catalog_schema
