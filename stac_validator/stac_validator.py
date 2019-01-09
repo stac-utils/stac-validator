@@ -136,6 +136,12 @@ class StacValidate:
 
         stac_schema = json.loads(schema)
         try:
+            if 'title' in stac_schema and 'item' in stac_schema['title'].lower():
+                logger.debug("Changing GeoJson definition to reference local file")
+                # rewrite relative reference to use local geojson file
+                stac_schema['definitions']['core']['allOf'][0]['oneOf'][0]['$ref'] = "file://" + \
+                                                                                     cache["geojson_resolver"] + \
+                                                                                     "/geojson.json#definitions/feature"
             logging.info('Validating STAC')
             validate(stac_content, stac_schema)
             return True, None
