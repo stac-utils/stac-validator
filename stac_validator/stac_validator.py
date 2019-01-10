@@ -28,7 +28,7 @@ from concurrent import futures
 import logging
 
 import requests
-from cachetools import TTLCache
+from cachetools import LRUCache
 from docopt import docopt
 from jsonschema import (
     RefResolutionError, RefResolver, ValidationError, validate
@@ -41,9 +41,9 @@ from . stac_utilities import StacVersion
 logger = logging.getLogger(__name__)
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S',
-                    level=logging.DEBUG)
+                    level=logging.WARNING)
 
-cache = TTLCache(maxsize=10, ttl=900)
+cache = LRUCache(maxsize=10)
 
 
 class StacValidate:
@@ -297,7 +297,6 @@ class StacValidate:
 
         else:
             # Congratulations, It's an Item!
-            # TODO: STAC ITEMS ARE NOT USING CACHED GEOJSON, INSTEAD THEY ARE PULLING FROM REMOTE
             logger.info("STAC is an Item")
             message["asset_type"] = "item"
             is_valid_stac, err_message = self.validate_json(
@@ -325,7 +324,7 @@ class StacValidate:
         """
         childs = [self.stac_file]
         while True:
-            concurrent = 1
+            concurrent = 10
             with futures.ThreadPoolExecutor(max_workers=concurrent) as executor:
                 future_tasks = [
                     executor.submit(self._validate, url) for url in childs
