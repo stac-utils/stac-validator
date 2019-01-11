@@ -2,19 +2,19 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
+    stac_validator <stac_file> [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--loglevel LOGLEVEL]
 
-Arguments:
+Arguments: 
     stac_file  Fully qualified path or url to a STAC file.
 
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
+    --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
+    --loglevel LOGLEVEL          Numeric level of logging to report. [default: 40]
 """
-
-__author__ = "James Banting, Alex Mandel, Guillaume Morin, Darren Wiens, Dustin Sampson"
 
 import json
 import os
@@ -39,20 +39,21 @@ from . stac_exceptions import VersionException
 from . stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
-                    datefmt='%m/%d/%Y %H:%M:%S',
-                    level=logging.WARNING)
+
 
 cache = LRUCache(maxsize=10)
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master"):
+    def __init__(self, stac_file, version="master", loglevel=40):
         """
         Validate a STAC file
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
+        logging.basicConfig(format='%(asctime)s : %(levelname)s : %(thread)d : %(message)s',
+                            datefmt='%m/%d/%Y %H:%M:%S',
+                            level=int(loglevel))
         logging.info('STAC Validator Started.')
         self.stac_version = version
         self.stac_file = stac_file.strip()
@@ -316,16 +317,16 @@ class StacValidate:
 
         return message, status, childs
 
-    def run(self):
+    def run(self, concurrent=10):
         """
         Entry point
         :return: message json
 
         """
         childs = [self.stac_file]
+        logger.info(f"Using {concurrent} threads")
         while True:
-            concurrent = 10
-            with futures.ThreadPoolExecutor(max_workers=concurrent) as executor:
+            with futures.ThreadPoolExecutor(max_workers=int(concurrent)) as executor:
                 future_tasks = [
                     executor.submit(self._validate, url) for url in childs
                 ]
@@ -347,13 +348,15 @@ def main():
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
     verbose = args.get("--verbose")
+    nthreads = args.get("--threads", 10)
     timer = args.get("--timer")
+    loglevel = args.get("--loglevel", 40)
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version)
-    _ = stac.run()
+    stac = StacValidate(stac_file, version, loglevel)
+    _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
     if verbose:
