@@ -1,1 +1,1 @@
-import logging
+__version__ = open("./VERSION", "r").read().strip()

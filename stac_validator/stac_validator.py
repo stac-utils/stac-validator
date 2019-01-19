@@ -13,7 +13,7 @@ Options:
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
-    --loglevel LOGLEVEL          Numeric level of logging to report. [default: 40]
+    --loglevel LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
 """
 
 import json
@@ -30,13 +30,10 @@ import logging
 import requests
 from cachetools import LRUCache
 from docopt import docopt
-from jsonschema import (
-    RefResolutionError, RefResolver, ValidationError, validate
-)
+from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pathlib import Path
 
-from . stac_exceptions import VersionException
-from . stac_utilities import StacVersion
+from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
 
@@ -44,20 +41,29 @@ logger = logging.getLogger(__name__)
 cache = LRUCache(maxsize=10)
 
 
+class VersionException(Exception):
+    pass
+
 class StacValidate:
-    def __init__(self, stac_file, version="master", loglevel=40):
+    def __init__(self, stac_file, version="master", loglevel="CRITICAL"):
         """
         Validate a STAC file
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
-        logging.basicConfig(format='%(asctime)s : %(levelname)s : %(thread)d : %(message)s',
-                            datefmt='%m/%d/%Y %H:%M:%S',
-                            level=int(loglevel))
-        logging.info('STAC Validator Started.')
+        numeric_log_level = getattr(logging, loglevel.upper(), None)
+        if not isinstance(numeric_log_level, int):
+            raise ValueError("Invalid log level: %s" % loglevel)
+
+        logging.basicConfig(
+            format="%(asctime)s : %(levelname)s : %(thread)d : %(message)s",
+            datefmt="%m/%d/%Y %H:%M:%S",
+            level=numeric_log_level,
+        )
+        logging.info("STAC Validator Started.")
         self.stac_version = version
         self.stac_file = stac_file.strip()
-        self.dirpath = ''
+        self.dirpath = ""
 
         self.fetch_specs(self.stac_version)
         self.message = []
@@ -74,27 +80,31 @@ class StacValidate:
         :return: specs
         """
         geojson_key = "geojson_resolver"
-        item_key = "item-{}".format(self.stac_version)
-        catalog_key = "catalog-{}".format(self.stac_version)
+        item_key = f"item-{self.stac_version}"
+        catalog_key = f"catalog-{self.stac_version}"
 
         if item_key in cache and catalog_key in cache:
-            logging.debug('Using STAC specs from local cache.')
+            logging.debug("Using STAC specs from local cache.")
             self.geojson_resolver = RefResolver(
-                base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
+                base_uri=f"file://{self.dirpath}/", referrer="geojson.json"
             )
             return cache[item_key], cache[geojson_key], cache[catalog_key]
 
         else:
             try:
-                logging.debug('Gathering STAC specs from remote.')
+                logging.debug("Gathering STAC specs from remote.")
                 stac_item_geojson = requests.get(
                     StacVersion.item_geojson_schema_url(version)
                 ).json()
                 stac_item = requests.get(StacVersion.item_schema_url(version)).json()
-                stac_catalog = requests.get(StacVersion.catalog_schema_url(version)).json()
+                stac_catalog = requests.get(
+                    StacVersion.catalog_schema_url(version)
+                ).json()
             except Exception as error:
                 logger.exception("STAC Download Error")
-                raise VersionException(f"Could not download STAC specification files for version: {version}")
+                raise VersionException(
+                    f"Could not download STAC specification files for version: {version}"
+                )
 
         self.dirpath = tempfile.mkdtemp()
 
@@ -104,7 +114,7 @@ class StacValidate:
             fp.write(geojson_schema)
             cache[geojson_key] = self.dirpath
             self.geojson_resolver = RefResolver(
-                base_uri="file://{}/".format(self.dirpath), referrer="geojson.json"
+                base_uri="file://{self.dirpath}/", referrer="geojson.json"
             )
 
         stac_item_file = StacVersion.fix_stac_item(version, "stac-item.json")
@@ -137,13 +147,15 @@ class StacValidate:
 
         stac_schema = json.loads(schema)
         try:
-            if 'title' in stac_schema and 'item' in stac_schema['title'].lower():
+            if "title" in stac_schema and "item" in stac_schema["title"].lower():
                 logger.debug("Changing GeoJson definition to reference local file")
                 # rewrite relative reference to use local geojson file
-                stac_schema['definitions']['core']['allOf'][0]['oneOf'][0]['$ref'] = "file://" + \
-                                                                                     cache["geojson_resolver"] + \
-                                                                                     "/geojson.json#definitions/feature"
-            logging.info('Validating STAC')
+                stac_schema["definitions"]["core"]["allOf"][0]["oneOf"][0]["$ref"] = (
+                    "file://"
+                    + cache["geojson_resolver"]
+                    + "/geojson.json#definitions/feature"
+                )
+            logging.info("Validating STAC")
             validate(stac_content, stac_schema)
             return True, None
         except RefResolutionError as error:
@@ -152,8 +164,8 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/98
             try:
                 self.geojson_resolver = RefResolver(
-                    base_uri="file://{}/".format(cache["geojson_resolver"]),
-                    referrer="geojson.json"
+                    base_uri=f"file://{cache['geojson_resolver']}/",
+                    referrer="geojson.json",
                 )
                 validate(stac_content, stac_schema, resolver=self.geojson_resolver)
                 return True, None
@@ -171,9 +183,7 @@ class StacValidate:
         old_status["catalogs"]["valid"] += new_status["catalogs"]["valid"]
         old_status["catalogs"]["invalid"] += new_status["catalogs"]["invalid"]
         old_status["collections"]["valid"] += new_status["collections"]["valid"]
-        old_status["collections"]["invalid"] += new_status["collections"][
-            "invalid"
-        ]
+        old_status["collections"]["invalid"] += new_status["collections"]["invalid"]
         old_status["items"]["valid"] += new_status["items"]["valid"]
         old_status["items"]["invalid"] += new_status["items"]["invalid"]
         old_status["unknown"] += new_status["unknown"]
@@ -260,7 +270,7 @@ class StacValidate:
             logger.info("STAC is a Catalog")
             message["asset_type"] = "catalog"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache["catalog-{}".format(self.stac_version)]
+                stac_content, cache[f"catalog-{self.stac_version}"]
             )
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
@@ -280,7 +290,7 @@ class StacValidate:
             logger.info("STAC is a Colltection")
             message["asset_type"] = "collection"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache["catalog-{}".format(self.stac_version)]
+                stac_content, cache[f"catalog-{self.stac_version}"]
             )
 
             message["valid_stac"] = is_valid_stac
@@ -301,7 +311,7 @@ class StacValidate:
             logger.info("STAC is an Item")
             message["asset_type"] = "item"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache["item-{}".format(self.stac_version)]
+                stac_content, cache[f"item-{self.stac_version}"]
             )
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
@@ -327,9 +337,7 @@ class StacValidate:
         logger.info(f"Using {concurrent} threads")
         while True:
             with futures.ThreadPoolExecutor(max_workers=int(concurrent)) as executor:
-                future_tasks = [
-                    executor.submit(self._validate, url) for url in childs
-                ]
+                future_tasks = [executor.submit(self._validate, url) for url in childs]
                 childs = []
                 for task in futures.as_completed(future_tasks):
                     message, status, new_childs = task.result()
@@ -365,7 +373,7 @@ def main():
         print(json.dumps(stac.status, indent=4))
 
     if timer:
-        print("{0:.3f}s".format(default_timer() - start))
+        print(f"Validator took {default_timer() - start:.2f} seconds")
 
 
 if __name__ == "__main__":

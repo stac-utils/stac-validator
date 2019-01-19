@@ -23,7 +23,7 @@ stac_validator --help
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator.py <stac_file> [--version STAC_VERSION] [--verbose] [--timer]
+    stac_validator <stac_file> [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--loglevel LOGLEVEL]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -31,10 +31,11 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
+    --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
-
-
+    --loglevel LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
+    
 stac_validator https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
 ```
 
