@@ -359,7 +359,7 @@ def main():
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
     timer = args.get("--timer")
-    loglevel = args.get("--loglevel", 40)
+    loglevel = args.get("--loglevel", "CRITICAL")
 
     if timer:
         start = default_timer()
