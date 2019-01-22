@@ -16,29 +16,28 @@ Options:
     --loglevel LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
 """
 
-import json
 import os
 import shutil
 import tempfile
-from json.decoder import JSONDecodeError
-from timeit import default_timer
-from urllib.parse import urljoin, urlparse
-from concurrent import futures
-
 import logging
 
-import requests
-from cachetools import LRUCache
-from docopt import docopt
-from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pathlib import Path
+from concurrent import futures
+from functools import lru_cache
+from timeit import default_timer
+from urllib.parse import urljoin, urlparse
+
+import json
+from json.decoder import JSONDecodeError
+from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
+
+import requests
+from docopt import docopt
+
 
 from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
-
-
-cache = LRUCache(maxsize=10)
 
 
 class VersionException(Exception):
@@ -64,9 +63,9 @@ class StacValidate:
         logging.info("STAC Validator Started.")
         self.stac_version = version
         self.stac_file = stac_file.strip()
-        self.dirpath = ""
+        self.dirpath = tempfile.mkdtemp()
 
-        self.fetch_specs(self.stac_version)
+        # self.fetch_spec(self.stac_version)
         self.message = []
         self.status = {
             "catalogs": {"valid": 0, "invalid": 0},
@@ -75,68 +74,43 @@ class StacValidate:
             "unknown": 0,
         }
 
-    def fetch_specs(self, version):
+    @lru_cache(maxsize=48)
+    def fetch_spec(self, spec):
         """
-        Get the versions from github. Cache them if possible.
-        :return: specs
+        Get the spec file and cache it.
+        :param spec: name of spec to get
+        :return: STAC spec in json format
         """
-        geojson_key = "geojson_resolver"
-        item_key = f"item-{self.stac_version}"
-        catalog_key = f"catalog-{self.stac_version}"
-
-        if item_key in cache and catalog_key in cache:
-            logging.debug("Using STAC specs from local cache.")
-            self.geojson_resolver = RefResolver(
-                base_uri=f"file://{self.dirpath}/", referrer="geojson.json"
-            )
-            return cache[item_key], cache[geojson_key], cache[catalog_key]
-
+        if spec == "geojson":
+            spec_name = "geojson"
+        elif spec == "catalog" or spec == "collection":
+            spec_name = "catalog"
         else:
-            try:
-                logging.debug("Gathering STAC specs from remote.")
-                stac_item_geojson = requests.get(
-                    StacVersion.item_geojson_schema_url(version)
-                ).json()
-                stac_item = requests.get(StacVersion.item_schema_url(version)).json()
-                stac_catalog = requests.get(
-                    StacVersion.catalog_schema_url(version)
-                ).json()
-            except Exception as error:
-                logger.exception("STAC Download Error")
-                raise VersionException(
-                    f"Could not download STAC specification files for version: {version}"
-                )
+            spec_name = "item"
 
-        self.dirpath = tempfile.mkdtemp()
-
-        with open(os.path.join(self.dirpath, "geojson.json"), "w") as fp:
-            logging.debug("Copying GeoJSON spec from local file to cache")
-            geojson_schema = json.dumps(stac_item_geojson)
-            fp.write(geojson_schema)
-            cache[geojson_key] = self.dirpath
-            self.geojson_resolver = RefResolver(
-                base_uri="file://{self.dirpath}/", referrer="geojson.json"
+        try:
+            logging.debug("Gathering STAC specs from remote.")
+            url = getattr(StacVersion, f"{spec_name}_schema_url")
+            spec = requests.get(url(self.stac_version)).json()
+        except Exception as error:
+            logger.exception("STAC Download Error")
+            raise VersionException(
+                f"Could not download STAC specification files for version: {self.stac_version}"
             )
 
-        stac_item_file = StacVersion.fix_stac_item(version, "stac-item.json")
+        # Write the stac file to a filepath. used as absolute links for geojson schmea
+        if spec_name == "geojson":
+            file_name = os.path.join(self.dirpath, "geojson.json")
+        else:
+            file_name = os.path.join(
+                self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
+            )
 
-        with open(os.path.join(self.dirpath, stac_item_file), "w") as fp:
-            logging.debug("Copying STAC item spec from local file to cache")
-            stac_item_schema = json.dumps(stac_item)
-            fp.write(stac_item_schema)
-            cache[item_key] = stac_item_schema
+        with open(file_name, "w") as fp:
+            logging.debug(f"Copying {spec_name} spec from local file to cache")
+            fp.write(json.dumps(spec))
 
-        with open(os.path.join(self.dirpath, "stac-catalog.json"), "w") as fp:
-            logging.debug("Copying STAC catalog spec from local file to cache")
-            stac_catalog_schema = json.dumps(stac_catalog)
-            fp.write(stac_catalog_schema)
-            cache[catalog_key] = stac_catalog_schema
-
-        ITEM_SCHEMA = os.path.join(self.dirpath, "stac-item.json")
-        ITEM_GEOJSON_SCHEMA = os.path.join(self.dirpath, "geojson.json")
-        CATALOG_SCHEMA = os.path.join(self.dirpath, "stac-catalog.json")
-
-        return ITEM_SCHEMA, ITEM_GEOJSON_SCHEMA, CATALOG_SCHEMA
+        return spec
 
     def validate_json(self, stac_content, schema):
         """
@@ -146,15 +120,13 @@ class StacValidate:
         :return: validation message
         """
 
-        stac_schema = json.loads(schema)
+        stac_schema = schema
         try:
             if "title" in stac_schema and "item" in stac_schema["title"].lower():
                 logger.debug("Changing GeoJson definition to reference local file")
                 # rewrite relative reference to use local geojson file
                 stac_schema["definitions"]["core"]["allOf"][0]["oneOf"][0]["$ref"] = (
-                    "file://"
-                    + cache["geojson_resolver"]
-                    + "/geojson.json#definitions/feature"
+                    "file://" + self.dirpath + "/geojson.json#definitions/feature"
                 )
             logging.info("Validating STAC")
             validate(stac_content, stac_schema)
@@ -164,8 +136,9 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/313
             # See https://github.com/Julian/jsonschema/issues/98
             try:
+                self.fetch_spec("geojson")
                 self.geojson_resolver = RefResolver(
-                    base_uri=f"file://{cache['geojson_resolver']}/",
+                    base_uri=f"file://{self.dirpath}/geojson.json",
                     referrer="geojson.json",
                 )
                 validate(stac_content, stac_schema, resolver=self.geojson_resolver)
@@ -271,7 +244,7 @@ class StacValidate:
             logger.info("STAC is a Catalog")
             message["asset_type"] = "catalog"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache[f"catalog-{self.stac_version}"]
+                stac_content, self.fetch_spec("catalog")
             )
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
@@ -288,10 +261,10 @@ class StacValidate:
         ):
             # Congratulations, It's a Collection!
             # Collections will validate as catalog.
-            logger.info("STAC is a Colltection")
+            logger.info("STAC is a Collection")
             message["asset_type"] = "collection"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache[f"catalog-{self.stac_version}"]
+                stac_content, self.fetch_spec("catalog")
             )
 
             message["valid_stac"] = is_valid_stac
@@ -311,8 +284,9 @@ class StacValidate:
             # Congratulations, It's an Item!
             logger.info("STAC is an Item")
             message["asset_type"] = "item"
+            self.fetch_spec("geojson")
             is_valid_stac, err_message = self.validate_json(
-                stac_content, cache[f"item-{self.stac_version}"]
+                stac_content, self.fetch_spec("item")
             )
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
