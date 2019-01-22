@@ -44,6 +44,7 @@ cache = LRUCache(maxsize=10)
 class VersionException(Exception):
     pass
 
+
 class StacValidate:
     def __init__(self, stac_file, version="master", loglevel="CRITICAL"):
         """
