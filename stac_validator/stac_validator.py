@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--loglevel LOGLEVEL]
+    stac_validator <stac_file> [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -13,7 +13,7 @@ Options:
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
-    --loglevel LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
+    --log_level LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
 """
 
 import os
@@ -45,15 +45,16 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master", loglevel="CRITICAL"):
+    def __init__(self, stac_file, version="master", log_level="CRITICAL"):
         """
-        Validate a STAC file
+        Validate a STAC file.
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
-        numeric_log_level = getattr(logging, loglevel.upper(), None)
+
+        numeric_log_level = getattr(logging, log_level.upper(), None)
         if not isinstance(numeric_log_level, int):
-            raise ValueError("Invalid log level: %s" % loglevel)
+            raise ValueError("Invalid log level: %s" % log_level)
 
         logging.basicConfig(
             format="%(asctime)s : %(levelname)s : %(thread)d : %(message)s",
@@ -65,7 +66,6 @@ class StacValidate:
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
 
-        # self.fetch_spec(self.stac_version)
         self.message = []
         self.status = {
             "catalogs": {"valid": 0, "invalid": 0},
@@ -81,6 +81,7 @@ class StacValidate:
         :param spec: name of spec to get
         :return: STAC spec in json format
         """
+
         if spec == "geojson":
             spec_name = "geojson"
         elif spec == "catalog" or spec == "collection":
@@ -112,15 +113,14 @@ class StacValidate:
 
         return spec
 
-    def validate_json(self, stac_content, schema):
+    def validate_json(self, stac_content, stac_schema):
         """
-        Validate stac
-        :param stac_content: input stac file content
-        :param schema of STAC (item, catalog)
+        Validate STAC.
+        :param stac_content: input STAC file content
+        :param stac_schema of STAC (item, catalog, collection)
         :return: validation message
         """
 
-        stac_schema = schema
         try:
             if "title" in stac_schema and "item" in stac_schema["title"].lower():
                 logger.debug("Changing GeoJson definition to reference local file")
@@ -153,7 +153,15 @@ class StacValidate:
             logger.exception("STAC error")
             return False, f"{error}"
 
-    def _update_status(self, old_status, new_status):
+    @staticmethod
+    def _update_status(old_status, new_status):
+        """
+        Set status messages.
+        :param old_status: original status
+        :param new_status: changed status
+        :return: status dictionary
+        """
+
         old_status["catalogs"]["valid"] += new_status["catalogs"]["valid"]
         old_status["catalogs"]["invalid"] += new_status["catalogs"]["invalid"]
         old_status["collections"]["valid"] += new_status["collections"]["valid"]
@@ -163,8 +171,15 @@ class StacValidate:
         old_status["unknown"] += new_status["unknown"]
         return old_status
 
-    def _get_childs_urls(self, stac_content, stac_path):
-        """Return childs items or catalog urls."""
+    @staticmethod
+    def _get_children_urls(stac_content, stac_path):
+        """
+        Return children items or catalog urls.
+        :param stac_content: contents of STAC file
+        :param stac_path: path to STAC file
+        :return: list of urls
+        """
+
         urls = []
 
         for link in stac_content.get("links", []):
@@ -172,18 +187,26 @@ class StacValidate:
                 urls.append(urljoin(stac_path, link["href"]).strip())
         return urls
 
-    def is_valid_url(self, url):
+    @staticmethod
+    def is_valid_url(url):
+        """
+        Check if path is URL or not.
+        :param url: path to check
+        :return: boolean
+        """
         try:
             result = urlparse(url)
             return result.scheme and result.netloc and result.path
-        except:
+        except Exception as e:
             return False
 
     def fetch_and_parse_file(self, input_path):
         """
-        Fetch and parse STAC file
+        Fetch and parse STAC file.
+        :param input_path: STAC file to get and read
         :return: content or error message
         """
+
         err_message = {}
         data = None
 
@@ -212,6 +235,11 @@ class StacValidate:
         return data, err_message
 
     def _validate(self, stac_path):
+        """
+        Check STAC type and appropriate schema to validate against.
+        :param stac_path: path to STAC file
+        :return: JSON message and list of children to (potentially) validate
+        """
 
         fpath = Path(stac_path)
 
@@ -254,7 +282,7 @@ class StacValidate:
             else:
                 status["catalogs"]["invalid"] = 1
 
-            childs = self._get_childs_urls(stac_content, stac_path)
+            children = self._get_children_urls(stac_content, stac_path)
 
         elif type(stac_content) is dict and any(
             field in Collections_Fields for field in stac_content.keys()
@@ -275,7 +303,7 @@ class StacValidate:
             else:
                 status["collections"]["invalid"] = 1
 
-            childs = self._get_childs_urls(stac_content, stac_path)
+            children = self._get_children_urls(stac_content, stac_path)
 
         elif "error_type" in message:
             pass
@@ -296,31 +324,34 @@ class StacValidate:
             else:
                 status["items"]["invalid"] = 1
 
-            childs = []
+            children = []
 
         message["path"] = stac_path
 
-        return message, status, childs
+        return message, status, children
 
     def run(self, concurrent=10):
         """
-        Entry point
+        Entry point.
+        :param concurrent: number of threads to use
         :return: message json
-
         """
-        childs = [self.stac_file]
+
+        children = [self.stac_file]
         logger.info(f"Using {concurrent} threads")
         while True:
             with futures.ThreadPoolExecutor(max_workers=int(concurrent)) as executor:
-                future_tasks = [executor.submit(self._validate, url) for url in childs]
-                childs = []
+                future_tasks = [
+                    executor.submit(self._validate, url) for url in children
+                ]
+                children = []
                 for task in futures.as_completed(future_tasks):
-                    message, status, new_childs = task.result()
+                    message, status, new_children = task.result()
                     self.status = self._update_status(self.status, status)
                     self.message.append(message)
-                    childs.extend(new_childs)
+                    children.extend(new_children)
 
-            if not childs:
+            if not children:
                 break
 
         return json.dumps(self.message)
@@ -333,12 +364,12 @@ def main():
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
     timer = args.get("--timer")
-    loglevel = args.get("--loglevel", "CRITICAL")
+    log_level = args.get("--log_level", "CRITICAL")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, loglevel)
+    stac = StacValidate(stac_file, version, log_level)
     _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
