@@ -13,7 +13,7 @@ Options:
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
-    --log_level LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
+    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
 """
 
 import os

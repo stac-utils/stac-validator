@@ -1,6 +1,8 @@
 # Spatial Temporal Asset Catalog (STAC) Validator
 
-This utility allows users to validate catalog and/or item json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
+[![CircleCI](https://circleci.com/gh/sparkgeo/stac-validator.svg?style=svg)](https://circleci.com/gh/sparkgeo/stac-validator)
+
+This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
 
 It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against.
 
@@ -10,9 +12,6 @@ It can be installed as command line utility and passed either a local file path 
     * Requests
     * Docopt
     * pytest
-    * cachetools
-    * trio
-    * asks
 
 ## Example
 
@@ -34,7 +33,7 @@ Options:
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
-    --loglevel LOGLEVEL          Standard level of logging to report. [default: CRITICAL]
+    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
     
 stac_validator https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/057/122/catalog.json -v v0.5.2
 ```
