@@ -107,7 +107,7 @@ class StacVersion:
         return cls(version, "json-schema", filename).ITEM_URL
 
     @classmethod
-    def item_geojson_schema_url(cls, version, filename="geojson.json"):
+    def geojson_schema_url(cls, version, filename="geojson.json"):
         """
         Return path to item geojson spec
         :param version: version to validate
