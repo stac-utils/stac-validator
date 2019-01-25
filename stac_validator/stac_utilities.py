@@ -43,6 +43,7 @@ class StacVersion:
             self.CATALOG_URL = os.path.join(cdn_base_url, self.filename)
             self.COLLECTION_URL = os.path.join(cdn_base_url, self.filename)
         else:
+            
             if self.version in old_versions:
                 self.CATALOG_URL = os.path.join(
                     git_base_url, f"static-catalog/{self.input_type}/{self.filename}"
@@ -75,7 +76,7 @@ class StacVersion:
         return filename
 
     @classmethod
-    def catalog_schema_url(cls, version, filename="catalog.json"):
+    def get_catalog_schema_url(cls, version, filename="catalog.json"):
         """
         Return path to catalog spec
         :param version: version to validate
@@ -85,7 +86,7 @@ class StacVersion:
         return cls(version, "json-schema", filename).CATALOG_URL
 
     @classmethod
-    def collection_schema_url(cls, version, filename="collection.json"):
+    def get_collection_schema_url(cls, version, filename="collection.json"):
         """
         Return path to collection spec
         :param version: version to validate
@@ -95,7 +96,7 @@ class StacVersion:
         return cls(version, "json-schema", filename).COLLECTION_URL
 
     @classmethod
-    def item_schema_url(cls, version, filename="stac-item.json"):
+    def get_item_schema_url(cls, version, filename="stac-item.json"):
         """
         Return path to item spec
         :param version: version to validate
@@ -107,7 +108,7 @@ class StacVersion:
         return cls(version, "json-schema", filename).ITEM_URL
 
     @classmethod
-    def geojson_schema_url(cls, version, filename="geojson.json"):
+    def get_geojson_schema_url(cls, version, filename="geojson.json"):
         """
         Return path to item geojson spec
         :param version: version to validate

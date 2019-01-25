@@ -91,7 +91,7 @@ class StacValidate:
 
         try:
             logging.debug("Gathering STAC specs from remote.")
-            url = getattr(StacVersion, f"{spec_name}_schema_url")
+            url = getattr(StacVersion, f"get_{spec_name}_schema_url")
             spec = requests.get(url(self.stac_version)).json()
         except Exception as error:
             logger.exception("STAC Download Error")
@@ -99,12 +99,12 @@ class StacValidate:
                 f"Could not download STAC specification files for version: {self.stac_version}"
             )
 
-        # Write the stac file to a filepath. used as absolute links for geojson schmea
+        # Write the stac file to a filepath. used as absolute links for geojson schema
         if spec_name == "geojson":
             file_name = os.path.join(self.dirpath, "geojson.json")
         else:
             file_name = os.path.join(
-                self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
+                self.dirpath, f"{spec_name}_{self.stac_version.replace('.', '_')}.json"
             )
 
         with open(file_name, "w") as fp:
@@ -125,9 +125,10 @@ class StacValidate:
             if "title" in stac_schema and "item" in stac_schema["title"].lower():
                 logger.debug("Changing GeoJson definition to reference local file")
                 # rewrite relative reference to use local geojson file
-                stac_schema["definitions"]["core"]["allOf"][0]["oneOf"][0]["$ref"] = (
-                    "file://" + self.dirpath + "/geojson.json#definitions/feature"
-                )
+                stac_schema['id'] = f"item_{self.stac_version.replace('.', '_')}.json"
+                stac_schema["definitions"]["core"]["allOf"][0]["oneOf"][0][
+                    "$ref"
+                ] = f"file://{self.dirpath}/geojson.json#/definitions/feature"
             logging.info("Validating STAC")
             validate(stac_content, stac_schema)
             return True, None
@@ -135,6 +136,7 @@ class StacValidate:
             # See https://github.com/Julian/jsonschema/issues/362
             # See https://github.com/Julian/jsonschema/issues/313
             # See https://github.com/Julian/jsonschema/issues/98
+            # See https://github.com/Julian/jsonschema/issues/343
             try:
                 self.fetch_spec("geojson")
                 self.geojson_resolver = RefResolver(
