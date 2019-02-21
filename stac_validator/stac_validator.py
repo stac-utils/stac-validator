@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL]
+    stac_validator <stac_file> [--spec_dir STAC_SPEC_DIR] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -10,6 +10,7 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
+    --spec_dir STAC_SPEC_DIR     Path to local directory containing specification files [default: None]
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
@@ -45,7 +46,7 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(self, stac_file, version="master", log_level="CRITICAL"):
+    def __init__(self, stac_file, stac_spec_dir=None, version="master", log_level="CRITICAL"):
         """
         Validate a STAC file.
         :param stac_file: file to validate
@@ -65,6 +66,7 @@ class StacValidate:
         self.stac_version = version
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
+        self.stac_spec_dir = stac_spec_dir
 
         self.message = []
         self.status = {
@@ -89,27 +91,37 @@ class StacValidate:
         else:
             spec_name = "item"
 
-        try:
-            logging.debug("Gathering STAC specs from remote.")
-            url = getattr(StacVersion, f"{spec_name}_schema_url")
-            spec = requests.get(url(self.stac_version)).json()
-        except Exception as error:
-            logger.exception("STAC Download Error")
-            raise VersionException(
-                f"Could not download STAC specification files for version: {self.stac_version}"
-            )
+        if self.stac_spec_dir is None:
 
-        # Write the stac file to a filepath. used as absolute links for geojson schmea
-        if spec_name == "geojson":
-            file_name = os.path.join(self.dirpath, "geojson.json")
+            try:
+                logging.debug("Gathering STAC specs from remote.")
+                url = getattr(StacVersion, f"{spec_name}_schema_url")
+                spec = requests.get(url(self.stac_version)).json()
+            except Exception as error:
+                logger.exception("STAC Download Error")
+                raise VersionException(
+                    f"Could not download STAC specification files for version: {self.stac_version}"
+                )
         else:
-            file_name = os.path.join(
-                self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
-            )
 
-        with open(file_name, "w") as fp:
-            logging.debug(f"Copying {spec_name} spec from local file to cache")
-            fp.write(json.dumps(spec))
+            try:
+                logging.debug("Gathering STAC specs from local directory.")
+                with open(os.path.join(self.stac_spec_dir, spec_name + ".json"), "r") as f:
+                    spec = json.load(f)
+            except Exception as e:
+                logging.exception(e)
+
+            # Write the stac file to a filepath. used as absolute links for geojson schmea
+            if spec_name == "geojson":
+                file_name = os.path.join(self.dirpath, "geojson.json")
+            else:
+                file_name = os.path.join(
+                    self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
+                )
+
+            with open(file_name, "w") as fp:
+                logging.debug(f"Copying {spec_name} spec from local file to cache")
+                fp.write(json.dumps(spec))
 
         return spec
 
@@ -360,6 +372,7 @@ class StacValidate:
 def main():
     args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
+    stac_spec_dir = args.get("--spec_dir", None)
     version = args.get("--version")
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
@@ -369,7 +382,7 @@ def main():
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, log_level)
+    stac = StacValidate(stac_file,stac_spec_dir, version, log_level)
     _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
