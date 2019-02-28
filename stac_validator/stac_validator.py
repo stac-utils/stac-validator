@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--spec_dir STAC_SPEC_DIR] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL]
+    stac_validator <stac_file> [--spec_dir STAC_SPEC_DIR] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL] [--follow]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -15,6 +15,7 @@ Options:
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
+    --follow                     Follow any links and validate those likes. [default: False]
 """
 
 import os
@@ -46,7 +47,7 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(self, stac_file, stac_spec_dir=None, version="master", log_level="CRITICAL"):
+    def __init__(self, stac_file, stac_spec_dir=None, version="master", log_level="CRITICAL", follow=False):
         """
         Validate a STAC file.
         :param stac_file: file to validate
@@ -67,6 +68,8 @@ class StacValidate:
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.stac_spec_dir = stac_spec_dir
+
+        self.follow = follow
 
         self.message = []
         self.status = {
@@ -294,7 +297,10 @@ class StacValidate:
             else:
                 status["catalogs"]["invalid"] = 1
 
-            children = self._get_children_urls(stac_content, stac_path)
+            if self.follow:
+                children = self._get_children_urls(stac_content, stac_path)
+            else:
+                children = []
 
         elif type(stac_content) is dict and any(
             field in Collections_Fields for field in stac_content.keys()
@@ -315,7 +321,10 @@ class StacValidate:
             else:
                 status["collections"]["invalid"] = 1
 
-            children = self._get_children_urls(stac_content, stac_path)
+            if self.follow:
+                children = self._get_children_urls(stac_content, stac_path)
+            else:
+                children = []
 
         elif "error_type" in message:
             pass
@@ -371,6 +380,7 @@ class StacValidate:
 
 def main():
     args = docopt(__doc__)
+    follow = args.get("--follow")
     stac_file = args.get("<stac_file>")
     stac_spec_dir = args.get("--spec_dir", None)
     version = args.get("--version")
@@ -382,7 +392,7 @@ def main():
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file,stac_spec_dir, version, log_level)
+    stac = StacValidate(stac_file,stac_spec_dir, version, log_level, follow)
     _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
