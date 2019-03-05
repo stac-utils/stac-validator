@@ -116,8 +116,10 @@ class StacValidate:
 
         if spec == "geojson":
             spec_name = "geojson"
-        elif spec == "catalog" or spec == "collection":
+        elif spec == "catalog":
             spec_name = "catalog"
+        elif spec == "collection":
+            spec_name = "collection"
         else:
             spec_name = "item"
 
@@ -341,11 +343,11 @@ class StacValidate:
             field in Collections_Fields for field in stac_content.keys()
         ):
             # Congratulations, It's a Collection!
-            # Collections will validate as catalog.
+            # Collections will validate as catalog as well.
             logger.info("STAC is a Collection")
             message["asset_type"] = "collection"
             is_valid_stac, err_message = self.validate_json(
-                stac_content, self.fetch_spec("catalog")
+                stac_content, self.fetch_spec("collection")
             )
 
             message["valid_stac"] = is_valid_stac
@@ -417,7 +419,7 @@ def main():
     args = docopt(__doc__)
     follow = args.get("--follow")
     stac_file = args.get("<stac_file>")
-    stac_spec_dirs = args.get("--spec_dir", None)
+    stac_spec_dirs = args.get("--spec_dirs", None)
     version = args.get("--version")
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
