@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--spec_dir STAC_SPEC_DIR] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL] [--follow]
+    stac_validator <stac_file> [--spec_dirs STAC_SPEC_DIRS] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL] [--follow]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -10,7 +10,7 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
-    --spec_dir STAC_SPEC_DIR     Path to local directory containing specification files [default: None]
+    --spec_dirs STAC_SPEC_DIRS   Path(s) to local directory containing specification files [default: None]
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC (seconds)
@@ -19,6 +19,7 @@ Options:
 """
 
 import os
+import sys
 import shutil
 import tempfile
 import logging
@@ -47,9 +48,24 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(self, stac_file, stac_spec_dir=None, version="master", log_level="CRITICAL", follow=False):
+    def __init__(
+        self,
+        stac_file,
+        stac_spec_dirs=None,
+        version="master",
+        log_level="CRITICAL",
+        follow=False,
+    ):
         """
         Validate a STAC file.
+        :param stac_file: File to validate
+        :param stac_spec_dirs: Local specification directories to check for JSON schema files
+        :param version: STAC version to validate against. Uses github tags from the stac-spec repo. ex: v0.6.2
+        :param log_level: Level of logging to report
+        :param follow: Follow links in STAC
+        """
+        """
+
         :param stac_file: file to validate
         :param version: github tag - defaults to master
         """
@@ -67,7 +83,7 @@ class StacValidate:
         self.stac_version = version
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
-        self.stac_spec_dir = stac_spec_dir
+        self.stac_spec_dirs = self.check_none(stac_spec_dirs)
 
         self.follow = follow
 
@@ -78,6 +94,17 @@ class StacValidate:
             "items": {"valid": 0, "invalid": 0},
             "unknown": 0,
         }
+
+    @staticmethod
+    def check_none(input):
+        """
+        Checks if the string is None
+        :param input: input string to check
+        :return:
+        """
+        if input == "None":
+            return None
+        return input
 
     @lru_cache(maxsize=48)
     def fetch_spec(self, spec):
@@ -94,7 +121,7 @@ class StacValidate:
         else:
             spec_name = "item"
 
-        if self.stac_spec_dir is None:
+        if self.stac_spec_dirs is None:
 
             try:
                 logging.debug("Gathering STAC specs from remote.")
@@ -109,22 +136,30 @@ class StacValidate:
 
             try:
                 logging.debug("Gathering STAC specs from local directory.")
-                with open(os.path.join(self.stac_spec_dir, spec_name + ".json"), "r") as f:
+                with open(
+                    os.path.join(self.stac_spec_dirs, spec_name + ".json"), "r"
+                ) as f:
                     spec = json.load(f)
-            except Exception as e:
-                logging.exception(e)
-
-            # Write the stac file to a filepath. used as absolute links for geojson schmea
-            if spec_name == "geojson":
-                file_name = os.path.join(self.dirpath, "geojson.json")
-            else:
-                file_name = os.path.join(
-                    self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
+            except FileNotFoundError as error:
+                logger.exception(
+                    "The STAC specification file does not exist or does not match the STAC file you are trying to validate. Please check your stac_spec_dirs path."
                 )
+                sys.exit(1)
+            except Exception as error:
+                logging.exception(error)
 
-            with open(file_name, "w") as fp:
-                logging.debug(f"Copying {spec_name} spec from local file to cache")
-                fp.write(json.dumps(spec))
+        # Write the stac file to a filepath. used as absolute links for geojson schmea
+        if spec_name == "geojson":
+            file_name = os.path.join(self.dirpath, "geojson.json")
+        else:
+            file_name = os.path.join(
+                self.dirpath,
+                f"{spec_name}_{self.stac_version.replace('.','_')}.json",
+            )
+
+        with open(file_name, "w") as fp:
+            logging.debug(f"Copying {spec_name} spec from local file to cache")
+            fp.write(json.dumps(spec))
 
         return spec
 
@@ -382,7 +417,7 @@ def main():
     args = docopt(__doc__)
     follow = args.get("--follow")
     stac_file = args.get("<stac_file>")
-    stac_spec_dir = args.get("--spec_dir", None)
+    stac_spec_dirs = args.get("--spec_dir", None)
     version = args.get("--version")
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
@@ -392,7 +427,7 @@ def main():
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file,stac_spec_dir, version, log_level, follow)
+    stac = StacValidate(stac_file, stac_spec_dirs, version, log_level, follow)
     _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
