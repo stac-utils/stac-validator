@@ -15,6 +15,9 @@ def _run_validate(
     return stac
 
 
+# -------------------- ITEM --------------------
+
+
 @pytest.mark.item
 def test_item_master():
     stac = _run_validate(
@@ -52,6 +55,40 @@ def test_good_item_validation_v060_verbose():
             "path": "tests/test_data/good_item_v060.json",
         }
     ]
+
+
+@pytest.mark.item
+def test_good_item_validation_v061_verbose():
+    stac = _run_validate(url="tests/test_data/good_item_v061.json", version="v0.6.1")
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "valid_stac": True,
+            "error_message": None,
+            "path": "tests/test_data/good_item_v061.json",
+        }
+    ]
+
+
+@pytest.mark.local_schema
+@pytest.mark.item
+def test_local_schema_item():
+    stac = _run_validate(
+        url="tests/test_data/good_item_v061.json",
+        version="v0.6.1",
+        stac_spec_dirs="/home/anik/PycharmProjects/STAC/stac-validator/tests/test_data/local_schema/item_v061/json-schema",
+    )
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "valid_stac": True,
+            "error_message": None,
+            "path": "tests/test_data/good_item_v061.json",
+        }
+    ]
+
+
+# -------------------- CATALOG --------------------
 
 
 @pytest.mark.catalog
@@ -108,6 +145,44 @@ def test_nested_catalog_v052():
     }
 
 
+@pytest.mark.local_schema
+@pytest.mark.catalog
+def test_local_schema_catalog():
+    stac = _run_validate(
+        url="tests/test_data/good_catalog_v061.json",
+        version="v0.6.1",
+        stac_spec_dirs="/home/anik/PycharmProjects/STAC/stac-validator/tests/test_data/local_schema/catalog_v061/json-schema",
+    )
+    assert stac.message == [
+        {
+            "asset_type": "catalog",
+            "valid_stac": True,
+            "error_message": None,
+            "path": "tests/test_data/good_catalog_v061.json",
+        }
+    ]
+
+@pytest.mark.local_schema
+@pytest.mark.catalog
+def test_local_schema_catalog_schema_fail():
+    stac = _run_validate(
+        url="tests/test_data/good_catalog_v052.json",
+        version="v0.6.1",
+        stac_spec_dirs="/home/anik/PycharmProjects/STAC/stac-validator/tests/test_data/local_schema/catalog_v061/json-schema",
+    )
+    assert stac.message == [
+        {
+            "asset_type": "catalog",
+            "valid_stac": False,
+            "error_message": "'stac_version' is a required property of []",
+            "path": "tests/test_data/good_catalog_v052.json",
+        }
+    ]
+
+
+# -------------------- COLLECTION --------------------
+
+
 @pytest.mark.collection
 def test_collection_master():
     stac = _run_validate(
@@ -119,6 +194,28 @@ def test_collection_master():
         "items": {"valid": 0, "invalid": 0},
         "unknown": 0,
     }
+
+
+@pytest.mark.local_schema
+@pytest.mark.catalog
+def test_local_schema_collection():
+    stac = _run_validate(
+        url="tests/test_data/good_collection_v061.json",
+        version="v0.6.1",
+        stac_spec_dirs="/home/anik/PycharmProjects/STAC/stac-validator/tests/test_data/local_schema/collection_v061/json-schema",
+    )
+    assert stac.message == [
+        {
+            "asset_type": "collection",
+            "valid_stac": True,
+            "error_message": None,
+            "path": "tests/test_data/good_collection_v061.json",
+        }
+    ]
+
+
+# -------------------- VALIDATOR --------------------
+
 
 @pytest.mark.validator
 def test_bad_url():
@@ -140,3 +237,15 @@ def test_bad_url():
             "error_message": "https://s3.amazonaws.com/spacenet-stac/spacenet-dataset/AOI_4_Shanghai_MUL-PanSharpen_Cloud is not Valid JSON",
         }
     ]
+
+@pytest.mark.validator
+@pytest.mark.local_schema
+@pytest.mark.catalog
+def test_local_schema_catalog_wrong_schema():
+    with pytest.raises(SystemExit) as e:
+        stac = _run_validate(
+            url="tests/test_data/good_catalog_v052.json",
+            version="v0.6.1",
+            stac_spec_dirs="/home/anik/PycharmProjects/STAC/stac-validator/tests/test_data/local_schema/item_v061/json-schema",
+        )
+        assert e.value.code == 1
