@@ -155,8 +155,7 @@ class StacValidate:
             file_name = os.path.join(self.dirpath, "geojson.json")
         else:
             file_name = os.path.join(
-                self.dirpath,
-                f"{spec_name}_{self.stac_version.replace('.','_')}.json",
+                self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
             )
 
         with open(file_name, "w") as fp:
