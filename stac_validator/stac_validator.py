@@ -10,12 +10,12 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
-    --spec_dirs STAC_SPEC_DIRS   Path(s) to local directory containing specification files. Separate paths with a space. [default: None]
+    --spec_dirs STAC_SPEC_DIRS   Path(s) to local directory containing specification files. Separate paths with a comma. [default: None]
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC. (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --follow                     Follow any links and validate those likes. [default: False]
+    --follow                     Follow any child links and validate those links. [default: False]
 """
 
 import json
