@@ -12,7 +12,7 @@ __version__ = open("./VERSION", "r").read().strip()
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-c
+
 with open(req_path) as f:
     requires = f.read().splitlines()
 
