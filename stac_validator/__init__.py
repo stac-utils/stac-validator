@@ -1,1 +1,1 @@
-__version__ = open("./VERSION", "r").read().strip()
+__version__ = '0.0.2'
