@@ -10,33 +10,30 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
-    --spec_dirs STAC_SPEC_DIRS   Path(s) to local directory containing specification files [default: None]
+    --spec_dirs STAC_SPEC_DIRS   Path(s) to local directory containing specification files. Separate paths with a space. [default: None]
     --threads NTHREADS           Number of threads to use. [default: 10]
     --verbose                    Verbose output. [default: False]
-    --timer                      Reports time to validate the STAC (seconds)
+    --timer                      Reports time to validate the STAC. (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
     --follow                     Follow any links and validate those likes. [default: False]
 """
 
-import os
-import sys
-import shutil
-import tempfile
+import json
 import logging
-
-from pathlib import Path
+import os
+import shutil
+import sys
+import tempfile
 from concurrent import futures
 from functools import lru_cache
+from json.decoder import JSONDecodeError
+from pathlib import Path
 from timeit import default_timer
 from urllib.parse import urljoin, urlparse
 
-import json
-from json.decoder import JSONDecodeError
-from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
-
 import requests
 from docopt import docopt
-
+from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 
 from .stac_utilities import StacVersion
 
@@ -48,18 +45,11 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(
-        self,
-        stac_file,
-        stac_spec_dirs=None,
-        version="master",
-        log_level="CRITICAL",
-        follow=False,
-    ):
+    def __init__(self, stac_file, stac_spec_dirs=None, version="master", log_level="CRITICAL", follow=False):
         """
         Validate a STAC file.
         :param stac_file: File to validate
-        :param stac_spec_dirs: Local specification directories to check for JSON schema files
+        :param stac_spec_dirs: List of local specification directories to check for JSON schema files.
         :param version: STAC version to validate against. Uses github tags from the stac-spec repo. ex: v0.6.2
         :param log_level: Level of logging to report
         :param follow: Follow links in STAC
@@ -104,7 +94,12 @@ class StacValidate:
         """
         if input == "None":
             return None
-        return input
+        try:
+            return input.split(",")
+        except AttributeError as e:
+            return input
+        except Exception as e:
+            logger.Warning("Could not find input file.")
 
     @lru_cache(maxsize=48)
     def fetch_spec(self, spec):
@@ -124,43 +119,58 @@ class StacValidate:
             spec_name = "item"
 
         if self.stac_spec_dirs is None:
-
             try:
                 logging.debug("Gathering STAC specs from remote.")
                 url = getattr(StacVersion, f"{spec_name}_schema_url")
                 spec = requests.get(url(self.stac_version)).json()
+                valid_dir = True
             except Exception as error:
                 logger.exception("STAC Download Error")
-                raise VersionException(
-                    f"Could not download STAC specification files for version: {self.stac_version}"
-                )
+                raise VersionException(f"Could not download STAC specification files for version: {self.stac_version}")
         else:
-
-            try:
-                logging.debug("Gathering STAC specs from local directory.")
-                with open(
-                    os.path.join(self.stac_spec_dirs, spec_name + ".json"), "r"
-                ) as f:
-                    spec = json.load(f)
-            except FileNotFoundError as error:
-                logger.exception(
-                    "The STAC specification file does not exist or does not match the STAC file you are trying to validate. Please check your stac_spec_dirs path."
-                )
-                sys.exit(1)
-            except Exception as error:
-                logging.exception(error)
+            valid_dir = False
+            for stac_spec_dir in self.stac_spec_dirs:
+                # needed for old local specs
+                if self.stac_version in ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2"] and spec_name == "item":
+                    spec_name = "stac-item"
+                if os.path.isfile(os.path.join(stac_spec_dir, spec_name + ".json")):
+                    valid_dir = True
+                    try:
+                        logging.debug("Gathering STAC specs from local directory.")
+                        with open(os.path.join(stac_spec_dir, spec_name + ".json"), "r") as f:
+                            spec = json.load(f)
+                    except FileNotFoundError as error:
+                        try:
+                            logger.critical("Something big messed up")
+                            url = getattr(StacVersion, f"{spec_name}_schema_url")
+                            spec = requests.get(url(self.stac_version)).json()
+                        except:
+                            logger.exception(
+                                "The STAC specification file does not exist or does not match the STAC file you are trying "
+                                "to validate. Please check your stac_spec_dirs path."
+                            )
+                            sys.exit(1)
+                    except Exception as error:
+                        logging.exception(error)
 
         # Write the stac file to a filepath. used as absolute links for geojson schmea
-        if spec_name == "geojson":
-            file_name = os.path.join(self.dirpath, "geojson.json")
-        else:
-            file_name = os.path.join(
-                self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json"
-            )
+        if valid_dir:
+            if spec_name == "geojson":
+                file_name = os.path.join(self.dirpath, "geojson.json")
+            else:
+                file_name = os.path.join(self.dirpath, f"{spec_name}_{self.stac_version.replace('.','_')}.json")
 
-        with open(file_name, "w") as fp:
-            logging.debug(f"Copying {spec_name} spec from local file to cache")
-            fp.write(json.dumps(spec))
+            with open(file_name, "w") as fp:
+                logging.debug(f"Copying {spec_name} spec from local file to cache")
+                fp.write(json.dumps(spec))
+
+        else:
+            logger.exception(
+                "The STAC specification file does not exist or does not match the STAC file you are trying "
+                "to validate. Please check your stac_spec_dirs path."
+            )
+            logging.critical("Exiting.")
+            sys.exit(1)
 
         return spec
 
@@ -189,8 +199,7 @@ class StacValidate:
             try:
                 self.fetch_spec("geojson")
                 self.geojson_resolver = RefResolver(
-                    base_uri=f"file://{self.dirpath}/geojson.json",
-                    referrer="geojson.json",
+                    base_uri=f"file://{self.dirpath}/geojson.json", referrer="geojson.json"
                 )
                 validate(stac_content, stac_schema, resolver=self.geojson_resolver)
                 return True, None
@@ -294,15 +303,7 @@ class StacValidate:
 
         fpath = Path(stac_path)
 
-        Collections_Fields = [
-            "keywords",
-            "license",
-            "title",
-            "provider",
-            "version",
-            "description",
-            "stac_version",
-        ]
+        Collections_Fields = ["keywords", "license", "title", "provider", "version", "description", "stac_version"]
 
         message = {}
         status = {
@@ -322,9 +323,7 @@ class StacValidate:
             # Congratulations, It's a Catalog!
             logger.info("STAC is a Catalog")
             message["asset_type"] = "catalog"
-            is_valid_stac, err_message = self.validate_json(
-                stac_content, self.fetch_spec("catalog")
-            )
+            is_valid_stac, err_message = self.validate_json(stac_content, self.fetch_spec("catalog"))
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
 
@@ -338,16 +337,12 @@ class StacValidate:
             else:
                 children = []
 
-        elif type(stac_content) is dict and any(
-            field in Collections_Fields for field in stac_content.keys()
-        ):
+        elif type(stac_content) is dict and any(field in Collections_Fields for field in stac_content.keys()):
             # Congratulations, It's a Collection!
             # Collections will validate as catalog as well.
             logger.info("STAC is a Collection")
             message["asset_type"] = "collection"
-            is_valid_stac, err_message = self.validate_json(
-                stac_content, self.fetch_spec("collection")
-            )
+            is_valid_stac, err_message = self.validate_json(stac_content, self.fetch_spec("collection"))
 
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
@@ -370,9 +365,7 @@ class StacValidate:
             logger.info("STAC is an Item")
             message["asset_type"] = "item"
             self.fetch_spec("geojson")
-            is_valid_stac, err_message = self.validate_json(
-                stac_content, self.fetch_spec("item")
-            )
+            is_valid_stac, err_message = self.validate_json(stac_content, self.fetch_spec("item"))
             message["valid_stac"] = is_valid_stac
             message["error_message"] = err_message
 
@@ -398,9 +391,7 @@ class StacValidate:
         logger.info(f"Using {concurrent} threads")
         while True:
             with futures.ThreadPoolExecutor(max_workers=int(concurrent)) as executor:
-                future_tasks = [
-                    executor.submit(self._validate, url) for url in children
-                ]
+                future_tasks = [executor.submit(self._validate, url) for url in children]
                 children = []
                 for task in futures.as_completed(future_tasks):
                     message, status, new_children = task.result()
