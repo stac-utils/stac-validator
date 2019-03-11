@@ -20,7 +20,7 @@ For tests
 ## Example
 
 ```bash
-pip install .
+pip install stac_validator
 stac_validator --help
 
 Description: Validate a STAC item or catalog against the STAC specification.
