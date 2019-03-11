@@ -284,7 +284,7 @@ def test_multiple_local_schemas_catalog():
 @pytest.mark.local_schema
 @pytest.mark.multiple_dirs
 @pytest.mark.catalog
-def test_multiple_local_schemas_catalog():
+def test_multiple_local_schemas_nested_catalog():
 
     stac = _run_validate(
         url="tests/test_data/nested_catalogs/parent_catalog.json",
