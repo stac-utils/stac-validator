@@ -13,6 +13,8 @@ Example usages can be found below
 * Python 3.6
     * Requests
     * Docopt
+
+For tests
     * pytest
 
 ## Example

@@ -35,9 +35,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
     install_requires=requires,
+    tests_require=['pytest>=3.8.2'],
     packages=["stac_validator"],
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
-    tests_require=["pytest"],
 )
