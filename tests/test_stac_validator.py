@@ -19,7 +19,7 @@ def _run_validate(
 
 
 @pytest.mark.item
-def test_item_master():
+def test_item_v061_remote():
     stac = _run_validate(
         url="https://raw.githubusercontent.com/radiantearth/stac-spec/v0.6.1/item-spec/examples/sample.json"
     )
@@ -92,9 +92,9 @@ def test_local_schema_item():
 
 
 @pytest.mark.catalog
-def test_catalog_master():
+def test_catalog_v061_remote():
     stac = _run_validate(
-        url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json"
+        url="https://raw.githubusercontent.com/radiantearth/stac-spec/v0.6.1/catalog-spec/examples/catalog.json"
     )
     assert stac.status == {
         "catalogs": {"valid": 1, "invalid": 0},
@@ -184,9 +184,9 @@ def test_local_schema_catalog_schema_fail():
 
 
 @pytest.mark.collection
-def test_collection_master():
+def test_collection_v061_remote():
     stac = _run_validate(
-        "https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json"
+        "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.6.1/collection-spec/examples/sentinel2.json"
     )
     assert stac.status == {
         "catalogs": {"valid": 0, "invalid": 0},
