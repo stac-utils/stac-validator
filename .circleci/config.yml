@@ -1,11 +1,6 @@
 cirlcversion: 2
 jobs:
   build:
-    branches:
-      only:
-        - dev
-        - master
-        - ci
     working_directory: ~/circleci/stac-validator
     docker:
       - image: circleci/python:3.6.4
