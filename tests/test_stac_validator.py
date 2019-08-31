@@ -21,7 +21,7 @@ def _run_validate(
 @pytest.mark.item
 def test_item_master():
     stac = _run_validate(
-        url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
+        url="https://raw.githubusercontent.com/radiantearth/stac-spec/v0.6.1/item-spec/examples/sample.json"
     )
     assert stac.status == {
         "catalogs": {"valid": 0, "invalid": 0},
