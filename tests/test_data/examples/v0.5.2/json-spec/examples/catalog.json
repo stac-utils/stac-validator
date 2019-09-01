@@ -1,0 +1,14 @@
+{
+  "name": "CBERS4 MUX 057/122",
+  "description": "CBERS4 MUX camera path 057 row 122 catalog",
+  "links": [
+    {
+      "rel": "self",
+      "href": "catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json"
+    }
+  ]
+}
