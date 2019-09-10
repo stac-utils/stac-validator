@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "item.json#",
+  "title": "STAC Item",
+  "type": "object",
+  "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "#/definitions/core"
+    }
+  ],
+  "definitions": {
+    "core": {
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "$ref": "https://geojson.org/schema/Feature.json"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "stac_version",
+            "id",
+            "type",
+            "geometry",
+            "links",
+            "assets",
+            "bbox",
+            "properties"
+          ],
+          "properties": {
+            "stac_version": {
+              "title": "STAC version",
+              "type": "string",
+              "const": "0.8.0"
+            },
+            "stac_extensions": {
+              "title": "STAC extensions",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "anyOf": [
+                  {
+                    "title": "Reference to a JSON Schema",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "title": "Reference to a core extension",
+                    "type": "string",
+                    "enum": [
+                      "checksum",
+                      "cube",
+                      "datetime-range",
+                      "eo",
+                      "label",
+                      "pointcloud",
+                      "sar",
+                      "scientific"
+                    ]
+                  }
+                ]
+              }
+            },
+            "id": {
+              "title": "Provider ID",
+              "description": "Provider item ID",
+              "type": "string"
+            },
+            "links": {
+              "title": "Item links",
+              "description": "Links to item relations",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/link"
+              }
+            },
+            "assets": {
+              "title": "Asset links",
+              "description": "Links to assets",
+              "type": "object",
+              "patternProperties": {
+                ".+": {
+                  "$ref": "#/definitions/asset"
+                }
+              },
+              "additionalProperties": false
+            },
+            "properties": {
+              "type": "object",
+              "required": [
+                "datetime"
+              ],
+              "properties": {
+                "datetime": {
+                  "title": "Date and Time",
+                  "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "title": {
+                  "title": "Item Title",
+                  "description": "A human-readable title describing the item.",
+                  "type": "string"
+                },
+                "license": {
+                  "title": "Item Licenses",
+                  "type": "string"
+                },
+                "providers": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "title": "Organization name",
+                        "type": "string"
+                      },
+                      "description": {
+                        "title": "Provider description",
+                        "type": "string"
+                      },
+                      "roles": {
+                        "title": "Organization roles",
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "producer",
+                            "licensor",
+                            "processor",
+                            "host"
+                          ]
+                        }
+                      },
+                      "url": {
+                        "title": "Homepage",
+                        "type": "string",
+                        "format": "url"
+                      }
+                    }
+                  }
+                },
+                "created": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "collection": {
+              "title": "Collection ID",
+              "description": "The ID of the STAC Collection this Item references to.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "rel",
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "title": "Link reference",
+          "type": "string"
+        },
+        "rel": {
+          "title": "Link relation type",
+          "type": "string"
+        },
+        "type": {
+          "title": "Link type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Link title",
+          "type": "string"
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "required": [
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "title": "Asset reference",
+          "type": "string"
+        },
+        "title": {
+          "title": "Asset title",
+          "type": "string"
+        },
+        "type": {
+          "title": "Asset type",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
