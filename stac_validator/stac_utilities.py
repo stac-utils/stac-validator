@@ -43,14 +43,24 @@ class StacVersion:
             self.COLLECTION_URL = os.path.join(cdn_base_url, self.filename)
         else:
             if self.version in old_versions:
-                self.CATALOG_URL = os.path.join(git_base_url, f"static-catalog/{self.input_type}/{self.filename}")
-                self.ITEM_URL = os.path.join(git_base_url, f"json-spec/{self.input_type}/{self.filename}")
+                self.CATALOG_URL = os.path.join(
+                    git_base_url, f"static-catalog/{self.input_type}/{self.filename}"
+                )
+                self.ITEM_URL = os.path.join(
+                    git_base_url, f"json-spec/{self.input_type}/{self.filename}"
+                )
 
             else:
 
-                self.CATALOG_URL = os.path.join(git_base_url, f"catalog-spec/{self.input_type}/{self.filename}")
-                self.COLLECTION_URL = os.path.join(git_base_url, f"collection-spec/{self.input_type}/{self.filename}")
-                self.ITEM_URL = os.path.join(git_base_url, f"item-spec/{self.input_type}/{self.filename}")
+                self.CATALOG_URL = os.path.join(
+                    git_base_url, f"catalog-spec/{self.input_type}/{self.filename}"
+                )
+                self.COLLECTION_URL = os.path.join(
+                    git_base_url, f"collection-spec/{self.input_type}/{self.filename}"
+                )
+                self.ITEM_URL = os.path.join(
+                    git_base_url, f"item-spec/{self.input_type}/{self.filename}"
+                )
 
     @staticmethod
     def fix_stac_item(version, filename):
