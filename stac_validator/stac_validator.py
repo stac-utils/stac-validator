@@ -205,7 +205,11 @@ class StacValidate:
             message["valid_stac"] = True
         except ValidationError as e:
             self.status[f"{self.stac_type}s"]["invalid"] += 1
-            message.update(self.create_err_msg("ValidationError", e.message))
+            if e.absolute_path:
+                err_msg = f"{e.message}. Error is in {' -> '.join(e.absolute_path)}"
+            else:
+                err_msg = f"{e.message} of the root of the STAC object"
+            message.update(self.create_err_msg("ValidationError", err_msg ))
 
         self.message.append(message)
 
