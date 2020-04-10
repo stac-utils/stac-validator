@@ -74,7 +74,10 @@ class StacValidate:
             level=numeric_log_level,
         )
         logging.info("STAC Validator Started.")
-        self.stac_version = version
+        if version in ['master', 'latest'] or version.startswith("v"):
+            self.stac_version = version
+        else: 
+            self.stac_version = f"v{version}"
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.stac_spec_host = stac_spec_host
