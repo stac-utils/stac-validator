@@ -19,7 +19,7 @@ with open(req_path) as f:
 setup(
     name="stac_validator",
     version=__version__,
-    author="James Banting",
+    author="James Banting, Darren Wiens",
     author_email="jbanting@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
@@ -36,8 +36,6 @@ setup(
     url="https://github.com/sparkgeo/stac-validator",
     install_requires=requires,
     packages=["stac_validator"],
-    entry_points={
-        "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
-    },
+    entry_points={"console_scripts": ["stac_validator = stac_validator.stac_validator:main"]},
     tests_require=["pytest"],
 )
