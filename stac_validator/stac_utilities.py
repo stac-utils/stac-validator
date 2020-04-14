@@ -21,9 +21,9 @@ class StacVersion:
         self.input_type = input_type
         self.filename = filename
         self.version = version
-        self._determine_verison()
+        self._determine_version()
 
-    def _determine_verison(self):
+    def _determine_version(self):
         """
         Determine the path structure based on versions.
         Try CDN first, then fall back to github

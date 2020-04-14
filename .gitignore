@@ -105,5 +105,9 @@ venv.bak/
 .envrc
 .idea/
 .DS_Store
+
 # lambda file
 .zip
+
+# IDE
+.vscode
