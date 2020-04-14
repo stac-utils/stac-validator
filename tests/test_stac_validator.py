@@ -55,7 +55,7 @@ def test_bad_item_validation_v090_verbose():
             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
             "valid_stac": False,
             "error_type": "ValidationError",
-            "error_message": "'id' is a required property",
+            "error_message": "'id' is a required property of the root of the STAC object",
         }
     ]
 
