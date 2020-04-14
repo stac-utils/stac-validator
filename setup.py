@@ -19,7 +19,7 @@ with open(req_path) as f:
 setup(
     name="stac_validator",
     version=__version__,
-    author="James Banting",
+    author="James Banting, Darren Wiens",
     author_email="jbanting@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
