@@ -124,11 +124,12 @@ class StacValidate:
         """Check if path is URL or not.
 
         :param url: Path to check
-        :return: Path
+        :return: Boolean
         """
         try:
             result = urlparse(url)
-            return result.path
+            if result.scheme in ("http", "https"):
+                return
         except Exception as e:
             return False
 
