@@ -97,6 +97,20 @@ class StacValidate:
         stac_object = identify_stac_object(stac_content)
         return stac_object.object_type.lower()
 
+    def save_schema(self, tmp_path: str, schema: dict):
+        """ Save a JSON schema locally
+        :param tmp_path: Path to save JSON to
+        :type: tmp_path: str
+        :param schema: STAC content dictonary (schema)
+        :type: schema: dict
+        """
+        if not Path(tmp_path).parent.is_dir():
+            Path(tmp_path).parent.mkdir(parents=True, exist_ok=True)
+            
+        with open(tmp_path, "w") as f:
+            json.dump(schema, f)
+
+
     def fetch_common_schemas(self, stac_json: dict):
         """Fetch additional schemas, linked within a parent schema
 
@@ -110,14 +124,10 @@ class StacValidate:
                 stac_schema = requests.get(
                     os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
                 ).json()
-            tmp_schema = os.path.join(self.dirpath, i["$ref"])
-            i["$ref"] = f"file://{tmp_schema}"
+            tmp_schema_path = os.path.join(self.dirpath, i["$ref"])
+            i["$ref"] = f"file://{tmp_schema_path}"
 
-            if not Path(tmp_schema).parent.is_dir():
-                Path(tmp_schema).parent.mkdir(parents=True, exist_ok=True)
-                
-            with open(tmp_schema, "w") as f:
-                json.dump(stac_schema, f)
+            self.save_schema(tmp_schema_path, stac_schema)
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -129,7 +139,9 @@ class StacValidate:
         try:
             result = urlparse(url)
             if result.scheme in ("http", "https"):
-                return
+                return True
+            else:
+                return False
         except Exception as e:
             return False
 
@@ -200,6 +212,10 @@ class StacValidate:
 
         schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
         schema_json = requests.get(schema_url).json()
+        local_schema_path=os.path.join(self.dirpath, schema_url)
+        
+        self.save_schema(local_schema_path, schema_json)
+        
         message["schema"] = schema_url
 
         if self.stac_type == "item":
