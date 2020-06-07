@@ -104,13 +104,18 @@ class StacValidate:
         :type stac_json: dict
         """
         for i in stac_json["definitions"]["common_metadata"]["allOf"]:
-            stac_schema = requests.get(
-                os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
-            ).json()
-
+            if self.is_valid_url(i["$ref"]):
+                stac_schema = requests.get(i["$ref"]).json()
+            else:
+                stac_schema = requests.get(
+                    os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
+                ).json()
             tmp_schema = os.path.join(self.dirpath, i["$ref"])
             i["$ref"] = f"file://{tmp_schema}"
 
+            if not Path(tmp_schema).parent.is_dir():
+                Path(tmp_schema).parent.mkdir(parents=True, exist_ok=True)
+                
             with open(tmp_schema, "w") as f:
                 json.dump(stac_schema, f)
 
@@ -119,11 +124,11 @@ class StacValidate:
         """Check if path is URL or not.
 
         :param url: Path to check
-        :return: boolean
+        :return: Path
         """
         try:
             result = urlparse(url)
-            return result.scheme and result.netloc and result.path
+            return result.path
         except Exception as e:
             return False
 
