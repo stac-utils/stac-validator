@@ -174,7 +174,7 @@ def test_local_schema_catalog_schema_fail():
         {
             "asset_type": "catalog",
             "valid_stac": False,
-            "error_message": "'stac_version' is a required property of []",
+            "error_message": "'stac_version' is a required property of the root of the STAC object.",
             "path": "tests/test_data/good_catalog_v052.json",
         }
     ]
