@@ -61,6 +61,7 @@ def test_bad_schema_version_verbose():
         }
     ]
 
+
 @pytest.mark.item
 def test_bad_schema_verbose():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.1")
@@ -68,9 +69,10 @@ def test_bad_schema_verbose():
         {
             "path": "tests/test_data/good_item_v090.json",
             "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v0.8.1/item.json",
             "valid_stac": False,
-            "error_type": "SchemaError",
-            "error_message": "Cannot get schema to validate against",
+            "error_type": "ValidationError",
+            "error_message": "'0.8.1' was expected. Error is in stac_version",
         }
     ]
 
