@@ -49,8 +49,21 @@ def test_good_item_validation_v090_verbose():
 
 
 @pytest.mark.item
-def test_bad_schema_verbose():
+def test_bad_schema_version_verbose():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.2")
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v090.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "SchemaError",
+            "error_message": "Cannot get schema to validate against",
+        }
+    ]
+
+@pytest.mark.item
+def test_bad_schema_verbose():
+    stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.1")
     assert stac.message == [
         {
             "path": "tests/test_data/good_item_v090.json",

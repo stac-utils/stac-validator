@@ -227,7 +227,7 @@ class StacValidate:
 
         message["schema"] = schema_url
 
-        if self.stac_type == "item":
+        if self.stac_type == "item" and self.stac_version > 'v0.9.0':
             self.fetch_common_schemas(schema_json)
 
         try:
