@@ -212,7 +212,15 @@ class StacValidate:
         message["asset_type"] = self.stac_type
 
         schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
-        schema_json = requests.get(schema_url).json()
+        try:
+            schema_json = requests.get(schema_url).json()
+        except JSONDecodeError as e:
+            self.status["unknown"] = 1
+            message.update(
+                self.create_err_msg("SchemaError", "Cannot get schema to validate against")
+            )
+            self.message.append(message)
+            return json.dumps(self.message)
         local_schema_path = os.path.join(self.dirpath, schema_url)
 
         self.save_schema(local_schema_path, schema_json)
