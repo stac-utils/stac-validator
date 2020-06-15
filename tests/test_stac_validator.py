@@ -4,7 +4,9 @@ Description: Test the validator
 """
 __author__ = "James Banting"
 import os
+
 import pytest
+
 from stac_validator import stac_validator
 
 
@@ -108,24 +110,22 @@ def test_collection_master():
 
 # -------------------- SPECIAL --------------------
 
+
 @pytest.mark.spec
 def test_gh_item_examples():
-    for (_,_,test_files) in os.walk("tests/test_data/stac_examples"):
+    for (_, _, test_files) in os.walk("tests/test_data/stac_examples"):
         for f in test_files:
-            stac = _run_validate(
-                url=f"tests/test_data/stac_examples/{f}"
-            )
+            stac = _run_validate(url=f"tests/test_data/stac_examples/{f}")
             if f == "digitalglobe-sample.json":
                 print("KNOWN")
-                assert stac.message[0]['valid_stac'] == False
+                assert stac.message[0]["valid_stac"] == False
             else:
-                assert stac.message[0]['valid_stac']
+                assert stac.message[0]["valid_stac"]
+
 
 @pytest.mark.smoke
 def test_bad_items():
-    for (_,_,test_files) in os.walk("tests/test_data"):
+    for (_, _, test_files) in os.walk("tests/test_data"):
         for f in test_files:
-            stac = _run_validate(
-                url=f"tests/test_data/{f}"
-            )
-            assert stac.message[0]['valid_stac'] == False
+            stac = _run_validate(url=f"tests/test_data/{f}")
+            assert stac.message[0]["valid_stac"] == False

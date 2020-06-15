@@ -106,10 +106,9 @@ class StacValidate:
         """
         if not Path(tmp_path).parent.is_dir():
             Path(tmp_path).parent.mkdir(parents=True, exist_ok=True)
-            
+
         with open(tmp_path, "w") as f:
             json.dump(schema, f)
-
 
     def fetch_common_schemas(self, stac_json: dict):
         """Fetch additional schemas, linked within a parent schema
@@ -124,7 +123,9 @@ class StacValidate:
                 stac_schema = requests.get(
                     os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
                 ).json()
-            tmp_schema_path = os.path.join(self.dirpath, self.stac_spec_host, self.stac_version, i["$ref"])
+            tmp_schema_path = os.path.join(
+                self.dirpath, self.stac_spec_host, self.stac_version, i["$ref"]
+            )
             i["$ref"] = f"file://{tmp_schema_path}"
 
             self.save_schema(tmp_schema_path, stac_schema)
@@ -212,10 +213,10 @@ class StacValidate:
 
         schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
         schema_json = requests.get(schema_url).json()
-        local_schema_path=os.path.join(self.dirpath, schema_url)
-        
+        local_schema_path = os.path.join(self.dirpath, schema_url)
+
         self.save_schema(local_schema_path, schema_json)
-        
+
         message["schema"] = schema_url
 
         if self.stac_type == "item":
@@ -230,10 +231,12 @@ class StacValidate:
         except ValidationError as e:
             self.status[f"{self.stac_type}s"]["invalid"] += 1
             if e.absolute_path:
-                err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                err_msg = (
+                    f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                )
             else:
                 err_msg = f"{e.message} of the root of the STAC object"
-            message.update(self.create_err_msg("ValidationError", err_msg ))
+            message.update(self.create_err_msg("ValidationError", err_msg))
 
         self.message.append(message)
 

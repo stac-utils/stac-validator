@@ -8,7 +8,7 @@ repos:
         hooks:
             - id: black
               name: Black
-              exclude: templates/
+              exclude: tests/test_data/*
               args: ['--safe', '-l 100', '.']
 
     -
@@ -17,16 +17,5 @@ repos:
         hooks:
             - id: isort
               name: Sort Imports
-              exclude: templates/
+              exclude: tests/test_data/*
               args: ['-rc', '-m 3', '-tc', '-w 100', '-e']
-    -
-        repo: https://github.com/pre-commit/pre-commit-hooks
-        rev: v2.0.0
-        hooks:
-        -   id: trailing-whitespace
-        -   id: end-of-file-fixer
-        -   id: check-yaml
-        -   id: debug-statements
-        -   id: check-merge-conflict
-        -   id: check-docstring-first
-            language_version: python3.6

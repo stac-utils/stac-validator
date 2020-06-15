@@ -1,9 +1,12 @@
 __version__ = "0.0.2"
-import boto3
 import json
 import urllib.request
 from urllib.parse import urlparse
+
+import boto3
 from pystac import STAC_IO
+
+from . import stac_validator
 
 
 def read_remote_stacs(uri):
@@ -25,6 +28,5 @@ def read_remote_stacs(uri):
     else:
         return STAC_IO.default_read_text_method(uri)
 
-STAC_IO.read_text_method = read_remote_stacs
 
-from . import stac_validator
+STAC_IO.read_text_method = read_remote_stacs
