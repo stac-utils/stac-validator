@@ -3,12 +3,13 @@ Description: Test the validator
 
 """
 __author__ = "James Banting"
+import os
 import pytest
 from stac_validator import stac_validator
 
 
 def _run_validate(
-    url, stac_spec_dirs="https://cdn.staclint.com/", version="v0.9.0", log_level="DEBUG"
+    url, stac_spec_dirs="https://cdn.staclint.com/", version="dev", log_level="DEBUG"
 ):
     stac = stac_validator.StacValidate(url, stac_spec_dirs, version, log_level)
     stac.run()
@@ -33,7 +34,7 @@ def test_item_master():
 
 @pytest.mark.item
 def test_good_item_validation_v090_verbose():
-    stac = _run_validate(url="tests/test_data/good_item_v090.json")
+    stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.9.0")
     print(stac.message)
     assert stac.message == [
         {
@@ -47,7 +48,7 @@ def test_good_item_validation_v090_verbose():
 
 @pytest.mark.item
 def test_bad_item_validation_v090_verbose():
-    stac = _run_validate(url="tests/test_data/bad_item_v090.json")
+    stac = _run_validate(url="tests/test_data/bad_item_v090.json", version="v0.9.0")
     assert stac.message == [
         {
             "path": "tests/test_data/bad_item_v090.json",
@@ -55,7 +56,7 @@ def test_bad_item_validation_v090_verbose():
             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
             "valid_stac": False,
             "error_type": "ValidationError",
-            "error_message": "'id' is a required property",
+            "error_message": "'id' is a required property of the root of the STAC object",
         }
     ]
 
@@ -103,3 +104,28 @@ def test_collection_master():
         "items": {"valid": 0, "invalid": 0},
         "unknown": 0,
     }
+
+
+# -------------------- SPECIAL --------------------
+
+@pytest.mark.spec
+def test_gh_item_examples():
+    for (_,_,test_files) in os.walk("tests/test_data/stac_examples"):
+        for f in test_files:
+            stac = _run_validate(
+                url=f"tests/test_data/stac_examples/{f}"
+            )
+            if f == "digitalglobe-sample.json":
+                print("KNOWN")
+                assert stac.message[0]['valid_stac'] == False
+            else:
+                assert stac.message[0]['valid_stac']
+
+@pytest.mark.smoke
+def test_bad_items():
+    for (_,_,test_files) in os.walk("tests/test_data"):
+        for f in test_files:
+            stac = _run_validate(
+                url=f"tests/test_data/{f}"
+            )
+            assert stac.message[0]['valid_stac'] == False
