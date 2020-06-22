@@ -33,6 +33,19 @@ def test_item_master():
         "unknown": 0,
     }
 
+@pytest.mark.item
+def test_master_verbose():
+    stac = _run_validate(url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json", version="master")
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
+            "schema": "https://cdn.staclint.com/master/item.json",
+            "valid_stac": True,
+        }
+    ]
+
+
 
 @pytest.mark.item
 def test_good_item_validation_v090_verbose():
@@ -90,7 +103,6 @@ def test_bad_item_validation_v090_verbose():
             "error_message": "'id' is a required property of the root of the STAC object",
         }
     ]
-
 
 @pytest.mark.item
 def test_missing_item():
@@ -150,6 +162,21 @@ def test_gh_item_examples():
                 assert stac.message[0]["valid_stac"] == False
             else:
                 assert stac.message[0]["valid_stac"]
+
+@pytest.mark.validator
+def test_version_numbering():
+    # Makes sure verisons without a 'v' prefix work
+    stac = _run_validate(url="tests/test_data/good_item_v090.json", version="0.9.0")
+    print(stac.message)
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "path": "tests/test_data/good_item_v090.json",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "valid_stac": True,
+        }
+    ]
+
 
 
 @pytest.mark.smoke

@@ -74,7 +74,7 @@ class StacValidate:
             level=numeric_log_level,
         )
         logging.info("STAC Validator Started.")
-        self.stac_version = version
+        self.stac_version = self.fix_version(version)
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.stac_spec_host = stac_spec_host
@@ -85,6 +85,15 @@ class StacValidate:
             "items": {"valid": 0, "invalid": 0},
             "unknown": 0,
         }
+
+    def fix_version(self, version: str ) -> str:
+        """
+        add a 'v' to the front of the version
+        """
+        if version[0] not in ['m','d','v']:
+            version = 'v' + version
+        return version
+
 
     def get_stac_type(self, stac_content: dict) -> str:
         """Identify the STAC object type
@@ -235,6 +244,10 @@ class StacValidate:
             self.status[f"{self.stac_type}s"]["valid"] += 1
             message["valid_stac"] = True
         except RefResolutionError as e:
+            self.status[f"{self.stac_type}s"]["invalid"] += 1
+            err_msg = ("JSON Reference Resolution Error.")
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("RefResolutionError", err_msg))            
             print(e)
         except ValidationError as e:
             self.status[f"{self.stac_type}s"]["invalid"] += 1
