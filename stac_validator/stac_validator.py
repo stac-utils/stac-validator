@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--spec_host stac_spec_host] [--version STAC_VERSION] [--verbose] [--timer] [--log_level LOGLEVEL]
+    stac_validator <stac_file> [--spec_host stac_spec_host] [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,7 +11,6 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: dev]
     -h, --help                   Show this screen.
     --spec_host stac_spec_host     Path to directory containing specification files. [default: https://cdn.staclint.com]
-    --verbose                    Verbose output. [default: False]
     --timer                      Reports time to validate the STAC. (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
 """
@@ -79,12 +78,6 @@ class StacValidate:
         self.dirpath = tempfile.mkdtemp()
         self.stac_spec_host = stac_spec_host
         self.message = []
-        self.status = {
-            "catalogs": {"valid": 0, "invalid": 0},
-            "collections": {"valid": 0, "invalid": 0},
-            "items": {"valid": 0, "invalid": 0},
-            "unknown": 0,
-        }
 
     def fix_version(self, version: str ) -> str:
         """
@@ -212,7 +205,6 @@ class StacValidate:
         stac_content, err_message = self.fetch_and_parse_file(self.stac_file)
 
         if err_message:
-            self.status["unknown"] = 1
             message.update(err_message)
             self.message = [message]
             return json.dumps(self.message)
@@ -224,7 +216,6 @@ class StacValidate:
         try:
             schema_json = requests.get(schema_url).json()
         except JSONDecodeError as e:
-            self.status["unknown"] = 1
             message.update(
                 self.create_err_msg("SchemaError", "Cannot get schema to validate against")
             )
@@ -241,16 +232,13 @@ class StacValidate:
 
         try:
             result = validate(stac_content, schema_json)
-            self.status[f"{self.stac_type}s"]["valid"] += 1
             message["valid_stac"] = True
         except RefResolutionError as e:
-            self.status[f"{self.stac_type}s"]["invalid"] += 1
             err_msg = ("JSON Reference Resolution Error.")
             message["valid_stac"] = False
             message.update(self.create_err_msg("RefResolutionError", err_msg))            
             print(e)
         except ValidationError as e:
-            self.status[f"{self.stac_type}s"]["invalid"] += 1
             if e.absolute_path:
                 err_msg = (
                     f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
@@ -269,7 +257,6 @@ def main():
     stac_file = args.get("<stac_file>")
     stac_spec_host = args.get("--spec_host", "https://cdn.staclint.com/")
     version = args.get("--version")
-    verbose = args.get("--verbose")
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
 
@@ -281,10 +268,7 @@ def main():
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
 
-    if verbose:
-        print(json.dumps(stac.message, indent=4))
-    else:
-        print(json.dumps(stac.status, indent=4))
+    print(json.dumps(stac.message, indent=4))
 
     if timer:
         print(f"Validator took {default_timer() - start:.2f} seconds")
