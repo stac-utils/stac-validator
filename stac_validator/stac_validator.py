@@ -153,7 +153,7 @@ class StacValidate:
                     except Exception as error:
                         logging.exception(error)
 
-        # Write the stac file to a filepath. used as absolute links for geojson schmea
+        # Write the stac file to a filepath. used as absolute links for geojson schema
         if valid_dir:
             if spec_name == "geojson":
                 file_name = os.path.join(self.dirpath, "geojson.json")
