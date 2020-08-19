@@ -21,6 +21,7 @@ import os
 import shutil
 import sys
 import tempfile
+import pystac
 from concurrent import futures
 from functools import lru_cache
 from json.decoder import JSONDecodeError
@@ -33,7 +34,7 @@ import requests
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pystac.serialization import identify_stac_object
-
+from pystac import Item, Catalog
 from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
@@ -251,7 +252,16 @@ class StacValidate:
             self.fetch_common_schemas(schema_json)
 
         try:
-            result = validate(stac_content, schema_json)
+            # # pystac validation ## not working
+            stac_item = 'stac_validator/good_item_v090.json'
+            item = Item.from_file(stac_item)
+            item.validate()
+            
+            # item = pystac.serialization.stac_object_from_dict(stac_content)
+            # item.validate()
+            
+            
+            # result = validate(stac_content, schema_json)
             message["valid_stac"] = True
         except RefResolutionError as e:
             err_msg = ("JSON Reference Resolution Error.")
