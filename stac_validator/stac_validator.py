@@ -252,8 +252,8 @@ class StacValidate:
             self.fetch_common_schemas(schema_json)
 
         try:
-            # # pystac validation ## not working
-            stac_item = 'stac_validator/good_item_v090.json'
+            # # # pystac validation ## not working
+            stac_item = 'stac_validator/stac_item.json'
             item = Item.from_file(stac_item)
             item.validate()
             
