@@ -257,13 +257,8 @@ class StacValidate:
             # item = Item.from_file(stac_item)
             # item.validate()
 
-            # # stac_item = 'stac_validator/stac_item.json'
             item = Item.from_dict(stac_content)
             result = item.validate()
-            
-            # item = pystac.serialization.stac_object_from_dict(stac_content)
-            # item.validate()
-            print(result)
             
             # result = validate(stac_content, schema_json)
             message["valid_stac"] = True
