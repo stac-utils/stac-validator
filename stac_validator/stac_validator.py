@@ -253,16 +253,26 @@ class StacValidate:
 
         try:
             # # # pystac validation ## not working
-            stac_item = 'stac_validator/stac_item.json'
-            item = Item.from_file(stac_item)
-            item.validate()
+            # stac_item = 'stac_validator/stac_item.json'
+            # item = Item.from_file(stac_item)
+            # item.validate()
+
+            # # stac_item = 'stac_validator/stac_item.json'
+            item = Item.from_dict(stac_content)
+            result = item.validate()
             
             # item = pystac.serialization.stac_object_from_dict(stac_content)
             # item.validate()
-            
+            print(result)
             
             # result = validate(stac_content, schema_json)
             message["valid_stac"] = True
+
+        except KeyError as e:
+            err_msg = ("Key Error: " + str(e))
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("KeyError", err_msg))   
+            # print(e)
         except RefResolutionError as e:
             err_msg = ("JSON Reference Resolution Error.")
             message["valid_stac"] = False
