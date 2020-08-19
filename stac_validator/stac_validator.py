@@ -8,7 +8,7 @@ Arguments:
     stac_file  Fully qualified path or url to a STAC file.
 
 Options:
-    -v, --version STAC_VERSION   Version to validate against. [default: dev]
+    -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --spec_host stac_spec_host     Path to directory containing specification files. [default: https://cdn.staclint.com]
     --timer                      Reports time to validate the STAC. (seconds)
@@ -87,6 +87,16 @@ class StacValidate:
             version = 'v' + version
         return version
 
+    def get_stac_version(self, stac_content: dict) -> str:
+        """Identify the STAC object type
+
+        :param stac_content: STAC content dictionary
+        :type stac_content: dict
+        :return: STAC object type
+        :rtype: str
+        """
+        stac_object = identify_stac_object(stac_content)
+        return stac_object.version_range.max_version
 
     def get_stac_type(self, stac_content: dict) -> str:
         """Identify the STAC object type
@@ -210,6 +220,16 @@ class StacValidate:
             return json.dumps(self.message)
 
         self.stac_type = self.get_stac_type(stac_content)
+
+        # Need to add to pystac to update derived versions
+        # derived_version = self.get_stac_version(stac_content)
+        # if self.stac_version != derived_version:
+        #     if self.stac_version in ('dev', 'master'):
+        #         logger.warning("STAC version is different than Master or Dev Branches. Correcting to derived version")
+        #         self.stac_version = self.fix_version(derived_version)
+        #     else:
+        #         logger.info(f"The supplied STAC version ({self.stac_version}) is different than the derived version ({derived_version})")
+
         message["asset_type"] = self.stac_type
 
         schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
