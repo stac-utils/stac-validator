@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--spec_host stac_spec_host] [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -10,7 +10,6 @@ Arguments:
 Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
-    --spec_host stac_spec_host     Path to directory containing specification files. [default: https://cdn.staclint.com]
     --timer                      Reports time to validate the STAC. (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
 """
@@ -48,7 +47,6 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str,
-        stac_spec_host: str = "https://cdn.staclint.com",
         version: str = "master",
         log_level: str = "CRITICAL",
     ):
@@ -56,8 +54,6 @@ class StacValidate:
 
         :param stac_file: File to validate
         :type stac_file: str
-        :param stac_spec_host: Schema host location, defaults to "https://cdn.staclint.com"
-        :type stac_spec_host: str, optional
         :param version: STAC version to validate against, defaults to "master"
         :type version: str, optional
         :param log_level: Level of logging to report, defaults to "CRITICAL"
@@ -77,7 +73,6 @@ class StacValidate:
         self.stac_version = self.fix_version(version)
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
-        self.stac_spec_host = stac_spec_host
         self.message = []
 
     def fix_version(self, version: str ) -> str:
@@ -123,25 +118,25 @@ class StacValidate:
         with open(tmp_path, "w") as f:
             json.dump(schema, f)
 
-    def fetch_common_schemas(self, stac_json: dict):
-        """Fetch additional schemas, linked within a parent schema
+    # def fetch_common_schemas(self, stac_json: dict):
+    #     """Fetch additional schemas, linked within a parent schema
 
-        :param stac_json: STAC content dictionary
-        :type stac_json: dict
-        """
-        for i in stac_json["definitions"]["common_metadata"]["allOf"]:
-            if self.is_valid_url(i["$ref"]):
-                stac_schema = requests.get(i["$ref"]).json()
-            else:
-                stac_schema = requests.get(
-                    os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
-                ).json()
-            tmp_schema_path = os.path.join(
-                self.dirpath, self.stac_spec_host, self.stac_version, i["$ref"]
-            )
-            i["$ref"] = f"file://{tmp_schema_path}"
+    #     :param stac_json: STAC content dictionary
+    #     :type stac_json: dict
+    #     """
+    #     for i in stac_json["definitions"]["common_metadata"]["allOf"]:
+    #         if self.is_valid_url(i["$ref"]):
+    #             stac_schema = requests.get(i["$ref"]).json()
+    #         else:
+    #             stac_schema = requests.get(
+    #                 os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
+    #             ).json()
+    #         tmp_schema_path = os.path.join(
+    #             self.dirpath, self.stac_spec_host, self.stac_version, i["$ref"]
+    #         )
+    #         i["$ref"] = f"file://{tmp_schema_path}"
 
-            self.save_schema(tmp_schema_path, stac_schema)
+    #         self.save_schema(tmp_schema_path, stac_schema)
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -233,23 +228,23 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
-        schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
-        try:
-            schema_json = requests.get(schema_url).json()
-        except JSONDecodeError as e:
-            message.update(
-                self.create_err_msg("SchemaError", "Cannot get schema to validate against")
-            )
-            self.message.append(message)
-            return json.dumps(self.message)
-        local_schema_path = os.path.join(self.dirpath, schema_url)
+        # schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
+        # try:
+        #     schema_json = requests.get(schema_url).json()
+        # except JSONDecodeError as e:
+        #     message.update(
+        #         self.create_err_msg("SchemaError", "Cannot get schema to validate against")
+        #     )
+        #     self.message.append(message)
+        #     return json.dumps(self.message)
+        # local_schema_path = os.path.join(self.dirpath, schema_url)
 
-        self.save_schema(local_schema_path, schema_json)
+        # self.save_schema(local_schema_path, schema_json)
 
-        message["schema"] = schema_url
+        # message["schema"] = schema_url
 
-        if self.stac_type == "item" and self.stac_version > "v0.9.0":
-            self.fetch_common_schemas(schema_json)
+        # if self.stac_type == "item" and self.stac_version > "v0.9.0":
+        #     self.fetch_common_schemas(schema_json)
 
         try:
             # # # pystac validation ## not working
@@ -290,7 +285,6 @@ class StacValidate:
 def main():
     args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
-    stac_spec_host = args.get("--spec_host", "https://cdn.staclint.com/")
     version = args.get("--version")
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
@@ -298,7 +292,7 @@ def main():
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, stac_spec_host, version, log_level)
+    stac = StacValidate(stac_file, version, log_level)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
