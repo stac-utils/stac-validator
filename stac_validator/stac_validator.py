@@ -33,7 +33,7 @@ import requests
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 from pystac.serialization import identify_stac_object
-from pystac import Item, Catalog
+from pystac import Item, Catalog, Collection
 from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
@@ -251,10 +251,19 @@ class StacValidate:
             # stac_item = 'stac_validator/stac_item.json'
             # item = Item.from_file(stac_item)
             # item.validate()
-
-            item = Item.from_dict(stac_content)
-            result = item.validate()
-            
+            print()
+            if self.stac_type == 'item':
+                item = Item.from_dict(stac_content)
+                print('Item name: ', item.id)
+                result = item.validate()
+            elif self.stac_type == 'catalog':
+                catalog = Catalog.from_dict(stac_content)
+                print('Catalog name: ', catalog.id)
+                result = catalog.validate()
+            elif self.stac_type == 'collection':
+                collection = Collection.from_dict(stac_content)
+                print('Collection name: ', collection.id)
+                result = collection.validate()
             # result = validate(stac_content, schema_json)
             message["valid_stac"] = True
 
@@ -268,6 +277,11 @@ class StacValidate:
             message["valid_stac"] = False
             message.update(self.create_err_msg("RefResolutionError", err_msg))            
             print(e)
+        except pystac.validation.STACValidationError as e:
+            err_msg = ("STAC Validation Error: " + str(e))
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("STACValidationError", err_msg))
+            # print(e)
         except ValidationError as e:
             if e.absolute_path:
                 err_msg = (
