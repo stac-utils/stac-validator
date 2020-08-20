@@ -118,26 +118,6 @@ class StacValidate:
         with open(tmp_path, "w") as f:
             json.dump(schema, f)
 
-    # def fetch_common_schemas(self, stac_json: dict):
-    #     """Fetch additional schemas, linked within a parent schema
-
-    #     :param stac_json: STAC content dictionary
-    #     :type stac_json: dict
-    #     """
-    #     for i in stac_json["definitions"]["common_metadata"]["allOf"]:
-    #         if self.is_valid_url(i["$ref"]):
-    #             stac_schema = requests.get(i["$ref"]).json()
-    #         else:
-    #             stac_schema = requests.get(
-    #                 os.path.join(self.stac_spec_host, self.stac_version, i["$ref"])
-    #             ).json()
-    #         tmp_schema_path = os.path.join(
-    #             self.dirpath, self.stac_spec_host, self.stac_version, i["$ref"]
-    #         )
-    #         i["$ref"] = f"file://{tmp_schema_path}"
-
-    #         self.save_schema(tmp_schema_path, stac_schema)
-
     @staticmethod
     def is_valid_url(url: str) -> bool:
         """Check if path is URL or not.
@@ -217,54 +197,23 @@ class StacValidate:
 
         self.stac_type = self.get_stac_type(stac_content)
 
-        # Need to add to pystac to update derived versions
-        # derived_version = self.get_stac_version(stac_content)
-        # if self.stac_version != derived_version:
-        #     if self.stac_version in ('dev', 'master'):
-        #         logger.warning("STAC version is different than Master or Dev Branches. Correcting to derived version")
-        #         self.stac_version = self.fix_version(derived_version)
-        #     else:
-        #         logger.info(f"The supplied STAC version ({self.stac_version}) is different than the derived version ({derived_version})")
-
         message["asset_type"] = self.stac_type
 
-        # schema_url = os.path.join(self.stac_spec_host, self.stac_version, f"{self.stac_type}.json")
-        # try:
-        #     schema_json = requests.get(schema_url).json()
-        # except JSONDecodeError as e:
-        #     message.update(
-        #         self.create_err_msg("SchemaError", "Cannot get schema to validate against")
-        #     )
-        #     self.message.append(message)
-        #     return json.dumps(self.message)
-        # local_schema_path = os.path.join(self.dirpath, schema_url)
-
-        # self.save_schema(local_schema_path, schema_json)
-
-        # message["schema"] = schema_url
-
-        # if self.stac_type == "item" and self.stac_version > "v0.9.0":
-        #     self.fetch_common_schemas(schema_json)
-
         try:
-            # # # pystac validation ## not working
-            # stac_item = 'stac_validator/stac_item.json'
-            # item = Item.from_file(stac_item)
-            # item.validate()
+            # # # pystac validation # # #
             print()
             if self.stac_type == 'item':
                 item = Item.from_dict(stac_content)
                 print('Item name: ', item.id)
-                result = item.validate()
             elif self.stac_type == 'catalog':
-                catalog = Catalog.from_dict(stac_content)
-                print('Catalog name: ', catalog.id)
-                result = catalog.validate()
+                item = Catalog.from_dict(stac_content)
+                print('Catalog name: ', item.id)
             elif self.stac_type == 'collection':
-                collection = Collection.from_dict(stac_content)
-                print('Collection name: ', collection.id)
-                result = collection.validate()
-            # result = validate(stac_content, schema_json)
+                item = Collection.from_dict(stac_content)
+                print('Collection name: ', item.id)
+
+            result = item.validate()
+            
             message["valid_stac"] = True
 
         except KeyError as e:
