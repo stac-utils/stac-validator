@@ -203,6 +203,11 @@ class StacValidate:
         # print(new_version)
         # print("----")
         # print(stac_content)
+        #self.stac_version = self.fix_version(version)
+
+        version = stac_content['stac_version']
+        if version[0] != 'v':
+            version = 'v' + version
 
         try:
             # # # pystac validation # # #
@@ -210,6 +215,7 @@ class StacValidate:
             if self.stac_type == 'item':
                 item = Item.from_dict(stac_content)
                 print('Item name: ', item.id)
+                print('Stac version: ', version)
                 formatted_time = item.to_dict()['properties']['datetime']
                 print("Time: ", formatted_time)
             elif self.stac_type == 'catalog':
@@ -219,10 +225,10 @@ class StacValidate:
                 item = Collection.from_dict(stac_content)
                 print('Collection name: ', item.id)
 
-            #ditem = item.to_dict()
-            #result = pystac.validation.validate_dict(ditem)
+            ditem = item.to_dict()
+            result = pystac.validation.validate_dict(ditem, stac_version=version)
             
-            result = item.validate()
+            # result = item.validate()
 
             # # # validate different stac version # # #
             # # stac_validator tests/test_data/good_item_v090.json # #
