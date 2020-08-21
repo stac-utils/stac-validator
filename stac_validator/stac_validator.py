@@ -197,43 +197,39 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
-        # # # update stac version # # # (not quite working ?)
+        # # # # update stac version - needs work # # # 
         # identify = pystac.serialization.identify_stac_object(stac_content)
         # new_version = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
-        # print(new_version)
+        # nsv = new_version[0]['stac_version']
+        # print("new_version: ", str(nsv))
         # print("----")
-        # print(stac_content)
-        #self.stac_version = self.fix_version(version)
-
-        version = stac_content['stac_version']
-        if version[0] != 'v':
-            version = 'v' + version
 
         try:
             # # # pystac validation # # #
+            version = stac_content['stac_version']
+            if version[0] != 'v':
+                version = 'v' + version
             print()
+            
+            # # this is just for display purposes # #
             if self.stac_type == 'item':
-                item = Item.from_dict(stac_content)
-                print('Item name: ', item.id)
+                print('Item name: ', stac_content['id'])
                 print('Stac version: ', version)
-                formatted_time = item.to_dict()['properties']['datetime']
+                formatted_time = stac_content['properties']['datetime']
                 print("Time: ", formatted_time)
             elif self.stac_type == 'catalog':
-                item = Catalog.from_dict(stac_content)
-                print('Catalog name: ', item.id)
+                print('Catalog name: ', stac_content['id'])
             elif self.stac_type == 'collection':
-                item = Collection.from_dict(stac_content)
-                print('Collection name: ', item.id)
+                print('Collection name: ', stac_content['id'])
+            # # end display # #
 
-            ditem = item.to_dict()
-            result = pystac.validation.validate_dict(ditem, stac_version=version)
+            # # # validate on stac_content # # #
+            result = pystac.validation.validate_dict(stac_content, stac_version=version)
             
-            # result = item.validate()
+            # # # validate on new version/ migrate to latest # # #
+            # result = pystac.validation.validate_dict(new_version[0], stac_version=nsv)
 
-            # # # validate different stac version # # #
-            # # stac_validator tests/test_data/good_item_v090.json # #
-            # ditem = item.to_dict()
-            # result = pystac.validation.validate_dict(ditem, stac_version='v0.9.0')
+            # result = item.validate()
             
             message["valid_stac"] = True
 
