@@ -31,17 +31,15 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from docopt import docopt
-from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
+# from jsonschema import RefResolutionError, RefResolver, ValidationError
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
 from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
 
-
 class VersionException(Exception):
     pass
-
 
 class StacValidate:
     def __init__(
@@ -199,12 +197,21 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
+        # # # update stac version # # # (not quite working ?)
+        # identify = pystac.serialization.identify_stac_object(stac_content)
+        # new_version = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
+        # print(new_version)
+        # print("----")
+        # print(stac_content)
+
         try:
             # # # pystac validation # # #
             print()
             if self.stac_type == 'item':
                 item = Item.from_dict(stac_content)
                 print('Item name: ', item.id)
+                formatted_time = item.to_dict()['properties']['datetime']
+                print("Time: ", formatted_time)
             elif self.stac_type == 'catalog':
                 item = Catalog.from_dict(stac_content)
                 print('Catalog name: ', item.id)
@@ -212,7 +219,15 @@ class StacValidate:
                 item = Collection.from_dict(stac_content)
                 print('Collection name: ', item.id)
 
+            #ditem = item.to_dict()
+            #result = pystac.validation.validate_dict(ditem)
+            
             result = item.validate()
+
+            # # # validate different stac version # # #
+            # # stac_validator tests/test_data/good_item_v090.json # #
+            # ditem = item.to_dict()
+            # result = pystac.validation.validate_dict(ditem, stac_version='v0.9.0')
             
             message["valid_stac"] = True
 
@@ -221,24 +236,24 @@ class StacValidate:
             message["valid_stac"] = False
             message.update(self.create_err_msg("KeyError", err_msg))   
             # print(e)
-        except RefResolutionError as e:
-            err_msg = ("JSON Reference Resolution Error.")
-            message["valid_stac"] = False
-            message.update(self.create_err_msg("RefResolutionError", err_msg))            
-            print(e)
+        # except RefResolutionError as e:
+        #     err_msg = ("JSON Reference Resolution Error.")
+        #     message["valid_stac"] = False
+        #     message.update(self.create_err_msg("RefResolutionError", err_msg))            
+        #     print(e)
         except pystac.validation.STACValidationError as e:
             err_msg = ("STAC Validation Error: " + str(e))
             message["valid_stac"] = False
             message.update(self.create_err_msg("STACValidationError", err_msg))
             # print(e)
-        except ValidationError as e:
-            if e.absolute_path:
-                err_msg = (
-                    f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
-                )
-            else:
-                err_msg = f"{e.message} of the root of the STAC object"
-            message.update(self.create_err_msg("ValidationError", err_msg))
+        # except ValidationError as e:
+        #     if e.absolute_path:
+        #         err_msg = (
+        #             f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+        #         )
+        #     else:
+        #         err_msg = f"{e.message} of the root of the STAC object"
+        #     message.update(self.create_err_msg("ValidationError", err_msg))
 
         self.message.append(message)
 
