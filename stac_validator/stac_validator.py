@@ -68,7 +68,7 @@ class StacValidate:
             level=numeric_log_level,
         )
         logging.info("STAC Validator Started.")
-        self.stac_version = self.fix_version(version)
+        # self.stac_version = self.fix_version(version)
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.message = []
@@ -205,16 +205,15 @@ class StacValidate:
         # print("----")
 
         try:
+
             # # # pystac validation # # #
-            version = stac_content['stac_version']
-            if version[0] != 'v':
-                version = 'v' + version
+            self.version = self.fix_version(stac_content['stac_version'])
             print()
-            
+
             # # this is just for display purposes # #
             if self.stac_type == 'item':
                 print('Item name: ', stac_content['id'])
-                print('Stac version: ', version)
+                print('Stac version: ', self.version)
                 formatted_time = stac_content['properties']['datetime']
                 print("Time: ", formatted_time)
             elif self.stac_type == 'catalog':
@@ -224,7 +223,7 @@ class StacValidate:
             # # end display # #
 
             # # # validate on stac_content # # #
-            result = pystac.validation.validate_dict(stac_content, stac_version=version)
+            result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
             # # # validate on new version/ migrate to latest # # #
             # result = pystac.validation.validate_dict(new_version[0], stac_version=nsv)
