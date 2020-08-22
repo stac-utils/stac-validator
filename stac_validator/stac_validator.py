@@ -72,6 +72,7 @@ class StacValidate:
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.message = []
+        self.version = version
 
     def fix_version(self, version: str ) -> str:
         """
@@ -80,6 +81,22 @@ class StacValidate:
         if version[0] not in ['m','d','v']:
             version = 'v' + version
         return version
+
+    def fix_stac_missing(self, stac_content: dict) -> dict:
+        # # # add stac version field if there isn't one # # # 
+        if not 'stac_version' in stac_content:
+            if self.version == 'master':
+                stac_content['stac_version'] = 'v0.9.0'
+            else:
+                stac_content['stac_version'] = self.version
+            print("added stac version field")
+
+        # # # add id field if there isn't one # # #
+        if not 'id' in stac_content:
+            stac_content['id'] = 'missing'
+            print("added stac id field")
+
+        return stac_content
 
     def get_stac_version(self, stac_content: dict) -> str:
         """Identify the STAC object type
@@ -197,14 +214,16 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
-        # # # # update stac version - needs work # # # 
-        # identify = pystac.serialization.identify_stac_object(stac_content)
-        # new_version = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
-        # nsv = new_version[0]['stac_version']
-        # print("new_version: ", str(nsv))
-        # print("----")
+        print()
 
         try:
+
+            stac_content = self.fix_stac_missing(stac_content)
+
+            # # # # update stac version - works # # # 
+            # identify = pystac.serialization.identify_stac_object(stac_content)
+            # new_version = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
+            # nsv = self.fix_version(new_version[0]['stac_version'])
 
             # # # pystac validation # # #
             self.version = self.fix_version(stac_content['stac_version'])
@@ -223,11 +242,12 @@ class StacValidate:
             # # end display # #
 
             # # # validate on stac_content # # #
-            result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
+            result = pystac.validation.validate_dict(stac_content, stac_version='v0.5.2')
             
             # # # validate on new version/ migrate to latest # # #
             # result = pystac.validation.validate_dict(new_version[0], stac_version=nsv)
 
+            # # # validate item object # # #
             # result = item.validate()
             
             message["valid_stac"] = True
