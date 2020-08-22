@@ -194,6 +194,19 @@ class StacValidate:
 
         return data, err_message
 
+    def displayInfo(self, stac_content):
+        # # this is just for display purposes # #
+        if self.stac_type == 'item':
+            print('Item name: ', stac_content['id'])
+            print('Stac version: ', self.version)
+            formatted_time = stac_content['properties']['datetime']
+            print("Time: ", formatted_time)
+        elif self.stac_type == 'catalog':
+            print('Catalog name: ', stac_content['id'])
+        elif self.stac_type == 'collection':
+            print('Collection name: ', stac_content['id'])
+        # # end display # #
+
     def run(self):
 
         """
@@ -229,20 +242,10 @@ class StacValidate:
             self.version = self.fix_version(stac_content['stac_version'])
             print()
 
-            # # this is just for display purposes # #
-            if self.stac_type == 'item':
-                print('Item name: ', stac_content['id'])
-                print('Stac version: ', self.version)
-                formatted_time = stac_content['properties']['datetime']
-                print("Time: ", formatted_time)
-            elif self.stac_type == 'catalog':
-                print('Catalog name: ', stac_content['id'])
-            elif self.stac_type == 'collection':
-                print('Collection name: ', stac_content['id'])
-            # # end display # #
+            self.displayInfo(stac_content)
 
             # # # validate on stac_content # # #
-            result = pystac.validation.validate_dict(stac_content, stac_version='v0.5.2')
+            result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
             # # # validate on new version/ migrate to latest # # #
             # result = pystac.validation.validate_dict(new_version[0], stac_version=nsv)
