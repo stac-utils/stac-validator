@@ -19,6 +19,8 @@ Example usages can be found below
 
 ```bash
 pip install .
+or  
+pip install --editable .  
 stac_validator --help
 
 Description: Validate a STAC item or catalog against the STAC specification.

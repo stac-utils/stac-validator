@@ -21,6 +21,8 @@ import shutil
 import sys
 import tempfile
 import pystac
+import requests
+
 from concurrent import futures
 from functools import lru_cache
 from json.decoder import JSONDecodeError
@@ -28,13 +30,9 @@ from pathlib import Path
 from timeit import default_timer
 from typing import Tuple
 from urllib.parse import urljoin, urlparse
-
-import requests
 from docopt import docopt
-# from jsonschema import RefResolutionError, RefResolver, ValidationError
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
-from .stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
 
@@ -78,23 +76,23 @@ class StacValidate:
         """
         add a 'v' to the front of the version
         """
-        if version[0] not in ['m','d','v']:
-            version = 'v' + version
+        if version[0] in ['m','d','v']:
+            version = version[1:]
         return version
 
     def fix_stac_missing(self, stac_content: dict) -> dict:
         # # # add stac version field if there isn't one # # # 
         if not 'stac_version' in stac_content:
             if self.version == 'master':
-                stac_content['stac_version'] = 'v0.9.0'
+                stac_content['stac_version'] = '0.9.0'
             else:
                 stac_content['stac_version'] = self.version
-            print("added stac version field")
+            print("temporarily added stac version field to try to pass validation")
 
         # # # add id field if there isn't one # # #
         if not 'id' in stac_content:
             stac_content['id'] = 'missing'
-            print("added stac id field")
+            print("temporarily added stac id field to try to pass validation")
 
         return stac_content
 
@@ -235,24 +233,24 @@ class StacValidate:
 
             # # # # update stac version - works # # # 
             # identify = pystac.serialization.identify_stac_object(stac_content)
-            # new_version = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
-            # nsv = self.fix_version(new_version[0]['stac_version'])
+            # stac_content = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
+            # self.version = self.fix_version(stac_content[0]['stac_version'])
+            # self.displayInfo(stac_content[0])
+
+            # # # validate on new version/ migrate to latest # # #
+            # result = pystac.validation.validate_dict(stac_content[0], stac_version=self.version)
 
             # # # pystac validation # # #
             self.version = self.fix_version(stac_content['stac_version'])
             print()
-
+            
             self.displayInfo(stac_content)
 
             # # # validate on stac_content # # #
             result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
-            # # # validate on new version/ migrate to latest # # #
-            # result = pystac.validation.validate_dict(new_version[0], stac_version=nsv)
-
-            # # # validate item object # # #
-            # result = item.validate()
-            
+            message['version'] = self.version
+            # message = {"version": self.version}
             message["valid_stac"] = True
 
         except KeyError as e:
