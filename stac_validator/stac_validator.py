@@ -31,10 +31,11 @@ from pathlib import Path
 from timeit import default_timer
 from typing import Tuple
 from urllib.parse import urljoin, urlparse
+from urllib.error import HTTPError
 from docopt import docopt
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
-# from jsonschema import RefResolutionError, RefResolver, ValidationError
+from jsonschema import RefResolutionError, RefResolver, ValidationError
 
 logger = logging.getLogger(__name__)
 
@@ -202,12 +203,14 @@ class StacValidate:
         if self.stac_type == 'item':
             print('Stac id: ', stac_content['id'])
             print('Stac version: ', self.version)
-            formatted_time = stac_content['properties']['datetime']
-            print("Time: ", formatted_time)
+            # formatted_time = stac_content['properties']['datetime']
+            # print("Time: ", formatted_time)
         elif self.stac_type == 'catalog':
             print('Catalog name: ', stac_content['id'])
+            print('Stac version: ', self.version)
         elif self.stac_type == 'collection':
             print('Collection name: ', stac_content['id'])
+            print('Stac version: ', self.version)
 
     def migrate(self, stac_content) -> dict:
         """
@@ -245,7 +248,6 @@ class StacValidate:
         print()
 
         try:
-
             stac_content = self.fix_stac_missing(stac_content)
 
             print("Update: ", self.update)
@@ -257,32 +259,40 @@ class StacValidate:
 
             self.displayInfo(stac_content)
 
-            result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
+            #result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
+            ### This method can be used to validate with custom schemas
+            stacschema = pystac.validation.JsonSchemaSTACValidator()
+            result = stacschema.validate_core(stac_dict=stac_content, stac_object_type='ITEM', stac_version=self.version)
+    
             message['version'] = self.version
             message["valid_stac"] = True
 
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
             message["valid_stac"] = False
-            message.update(self.create_err_msg("KeyError", err_msg))   
-        # except RefResolutionError as e:
-        #     err_msg = ("JSON Reference Resolution Error.")
-        #     message["valid_stac"] = False
-        #     message.update(self.create_err_msg("RefResolutionError", err_msg))            
+            message.update(self.create_err_msg("KeyError", err_msg)) 
+        except HTTPError as e:
+            err_msg = (str(e) + " (Possible cause, can't find schema, try --update True)")
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("HTTP", err_msg)) 
+        except RefResolutionError as e:
+            err_msg = ("JSON Reference Resolution Error.")
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("RefResolutionError", err_msg))   
+        except ValidationError as e:
+            if e.absolute_path:
+                err_msg = (
+                    f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                )
+            else:
+                err_msg = f"{e.message} of the root of the STAC object"
+            message.update(self.create_err_msg("ValidationError", err_msg))         
         except pystac.validation.STACValidationError as e:
             err_msg = ("STAC Validation Error: " + str(e))
             message["valid_stac"] = False
             message.update(self.create_err_msg("STACValidationError", err_msg))
-        # except ValidationError as e:
-        #     if e.absolute_path:
-        #         err_msg = (
-        #             f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
-        #         )
-        #     else:
-        #         err_msg = f"{e.message} of the root of the STAC object"
-        #     message.update(self.create_err_msg("ValidationError", err_msg))
-
+        
         self.message.append(message)
 
         return json.dumps(self.message)

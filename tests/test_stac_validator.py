@@ -11,7 +11,7 @@ from stac_validator import stac_validator
 
 
 def _run_validate(
-    url, stac_spec_dirs="https://cdn.staclint.com/", version="dev", log_level="DEBUG"
+    url, stac_spec_dirs="https://cdn.staclint.com/", version, log_level="DEBUG"
 ):
     stac = stac_validator.StacValidate(url, stac_spec_dirs, version, log_level)
     stac.run()
