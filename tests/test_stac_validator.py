@@ -23,7 +23,7 @@ def _run_validate(
 # -------------------- ITEM --------------------
 
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_item_master():
     stac = _run_validate(
         url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
@@ -37,7 +37,7 @@ def test_item_master():
     }
 ]
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_good_item_validation_v090():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.9.0")
     print(stac.message)
@@ -51,7 +51,7 @@ def test_good_item_validation_v090():
     ]
 
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_bad_schema_version_HTTP_error():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.2")
     assert stac.message == [
@@ -65,7 +65,7 @@ def test_bad_schema_version_HTTP_error():
     ]
 
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_bad_schema_verbose():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.1")
     assert stac.message == [
@@ -79,7 +79,7 @@ def test_bad_schema_verbose():
     ]
 
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_bad_item_validation_v090_verbose():
     stac = _run_validate(url="tests/test_data/bad_item_v090.json", version="v0.9.0")
     assert stac.message == [
@@ -92,7 +92,7 @@ def test_bad_item_validation_v090_verbose():
         }
     ]
 
-@pytest.mark.item
+# @pytest.mark.item
 def test_missing_item():
     stac = _run_validate(url="tests/test_data/missing_item_v090.json")
     assert stac.message == [
@@ -108,7 +108,7 @@ def test_missing_item():
 # -------------------- CATALOG --------------------
 
 
-@pytest.mark.catalog
+# @pytest.mark.catalog
 def test_catalog_master():
     stac = _run_validate(
         url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json"
@@ -126,7 +126,7 @@ def test_catalog_master():
 # -------------------- COLLECTION --------------------
 
 
-@pytest.mark.collection
+# @pytest.mark.collection
 def test_collection_master():
     stac = _run_validate(
         "https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json"
@@ -156,7 +156,7 @@ def test_collection_master():
 #             else:
 #                 assert stac.message[0]["valid_stac"] == True
 
-@pytest.mark.validator
+# @pytest.mark.validator
 def test_version_numbering():
     # Makes sure verisons without a 'v' prefix work
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="0.9.0")
