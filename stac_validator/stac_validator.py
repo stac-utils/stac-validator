@@ -11,7 +11,7 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
-    --update OPTION             Migrate to newest STAC version for testing
+    --update OPTION              Migrate to newest STAC version for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
 """
 
@@ -34,6 +34,7 @@ from urllib.parse import urljoin, urlparse
 from docopt import docopt
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
+# from jsonschema import RefResolutionError, RefResolver, ValidationError
 
 logger = logging.getLogger(__name__)
 
