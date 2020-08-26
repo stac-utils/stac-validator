@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL] [--update OPTION]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,6 +11,7 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
+    --update OPTION             Migrate to newest STAC version for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
 """
 
@@ -45,6 +46,7 @@ class StacValidate:
         stac_file: str,
         version: str = "master",
         log_level: str = "CRITICAL",
+        update: bool = False,
     ):
         """Validate a STAC file.
 
@@ -66,11 +68,11 @@ class StacValidate:
             level=numeric_log_level,
         )
         logging.info("STAC Validator Started.")
-        # self.stac_version = self.fix_version(version)
         self.stac_file = stac_file.strip()
         self.dirpath = tempfile.mkdtemp()
         self.message = []
         self.version = version
+        self.update = update
 
     def fix_version(self, version: str ) -> str:
         """
@@ -87,11 +89,11 @@ class StacValidate:
                 stac_content['stac_version'] = '0.9.0'
             else:
                 stac_content['stac_version'] = self.version
-            print("temporarily added stac version field to try to pass validation")
+            print("temporarily added stac version field (0.9.0) to try to pass validation")
 
         # # # add id field if there isn't one # # #
         if not 'id' in stac_content:
-            stac_content['id'] = 'missing'
+            stac_content['id'] = 'temporary'
             print("temporarily added stac id field to try to pass validation")
 
         return stac_content
@@ -193,9 +195,11 @@ class StacValidate:
         return data, err_message
 
     def displayInfo(self, stac_content):
-        # # this is just for display purposes # #
+        """
+        Display information.
+        """
         if self.stac_type == 'item':
-            print('Item name: ', stac_content['id'])
+            print('Stac id: ', stac_content['id'])
             print('Stac version: ', self.version)
             formatted_time = stac_content['properties']['datetime']
             print("Time: ", formatted_time)
@@ -203,7 +207,19 @@ class StacValidate:
             print('Catalog name: ', stac_content['id'])
         elif self.stac_type == 'collection':
             print('Collection name: ', stac_content['id'])
-        # # end display # #
+
+    def migrate(self, stac_content) -> dict:
+        """
+        Migrate STAC to newest version 1.0.0-beta.2.
+        :return: STAC content dict
+        """
+
+        # # # update stac version - works # # # 
+        identify = pystac.serialization.identify_stac_object(stac_content)
+        stac_content = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
+        self.version = self.fix_version(stac_content[0]['stac_version'])
+
+        return stac_content[0]
 
     def run(self):
 
@@ -231,43 +247,32 @@ class StacValidate:
 
             stac_content = self.fix_stac_missing(stac_content)
 
-            # # # # update stac version - works # # # 
-            # identify = pystac.serialization.identify_stac_object(stac_content)
-            # stac_content = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
-            # self.version = self.fix_version(stac_content[0]['stac_version'])
-            # self.displayInfo(stac_content[0])
+            print("Update: ", self.update)
+            if(self.update) == 'True':
+                stac_content = self.migrate(stac_content)
 
-            # # # validate on new version/ migrate to latest # # #
-            # result = pystac.validation.validate_dict(stac_content[0], stac_version=self.version)
-
-            # # # pystac validation # # #
             self.version = self.fix_version(stac_content['stac_version'])
             print()
-            
+
             self.displayInfo(stac_content)
 
-            # # # validate on stac_content # # #
             result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
             message['version'] = self.version
-            # message = {"version": self.version}
             message["valid_stac"] = True
 
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
             message["valid_stac"] = False
             message.update(self.create_err_msg("KeyError", err_msg))   
-            # print(e)
         # except RefResolutionError as e:
         #     err_msg = ("JSON Reference Resolution Error.")
         #     message["valid_stac"] = False
         #     message.update(self.create_err_msg("RefResolutionError", err_msg))            
-        #     print(e)
         except pystac.validation.STACValidationError as e:
             err_msg = ("STAC Validation Error: " + str(e))
             message["valid_stac"] = False
             message.update(self.create_err_msg("STACValidationError", err_msg))
-            # print(e)
         # except ValidationError as e:
         #     if e.absolute_path:
         #         err_msg = (
@@ -288,11 +293,12 @@ def main():
     version = args.get("--version")
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
+    update = args.get("--update")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, log_level)
+    stac = StacValidate(stac_file, version, log_level, update)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
