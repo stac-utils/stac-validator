@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL] [--update OPTION]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL] [--update OPTION] [--force OPTION]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,8 +11,9 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
-    --update OPTION              Migrate to newest STAC version for testing
+    --update OPTION              Migrate to newest STAC version for testing (True or False)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
+    --force OPTION               Add missing 'id' or 'version' for older STAC objects to force validatoin (True or False)
 """
 
 import json
@@ -49,6 +50,7 @@ class StacValidate:
         version: str = "master",
         log_level: str = "CRITICAL",
         update: bool = False,
+        force: bool = False,
     ):
         """Validate a STAC file.
 
@@ -75,6 +77,7 @@ class StacValidate:
         self.message = []
         self.version = version
         self.update = update
+        self.force = force
 
     def fix_version(self, version: str ) -> str:
         """
@@ -248,14 +251,20 @@ class StacValidate:
         print()
 
         try:
-            stac_content = self.fix_stac_missing(stac_content)
+
+            if(self.force) == 'True':
+                stac_content = self.fix_stac_missing(stac_content)
+
+            if(self.version!='master'):
+                self.version = self.fix_version(self.version)
+            else:
+                self.version = self.fix_version(stac_content['stac_version'])
+            
+            print()
 
             print("Update: ", self.update)
             if(self.update) == 'True':
                 stac_content = self.migrate(stac_content)
-
-            self.version = self.fix_version(stac_content['stac_version'])
-            print()
 
             self.displayInfo(stac_content)
 
@@ -263,7 +272,8 @@ class StacValidate:
             
             ### This method can be used to validate with custom schemas
             stacschema = pystac.validation.JsonSchemaSTACValidator()
-            result = stacschema.validate_core(stac_dict=stac_content, stac_object_type='ITEM', stac_version=self.version)
+            self.stac_type = self.stac_type.upper()
+            result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
     
             message['version'] = self.version
             message["valid_stac"] = True
@@ -305,11 +315,12 @@ def main():
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
     update = args.get("--update")
+    force = args.get("--force")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, log_level, update)
+    stac = StacValidate(stac_file, version, log_level, update, force)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)

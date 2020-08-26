@@ -49,3 +49,8 @@ Example for STAC extensions
 stac-spec/extensions/eo/example-landsat8.json --spec_dirs stac-spec/extensions/eo,local_schema/item_v061/json-schema --verbose
 ```
 See the tests directory for examples on different usages.
+
+Testing
+```bash
+pytest tests/
+```
