@@ -24,7 +24,7 @@ import sys
 import tempfile
 import pystac
 import requests
-
+import jsonschema
 from concurrent import futures
 from functools import lru_cache
 from json.decoder import JSONDecodeError
@@ -36,7 +36,8 @@ from urllib.error import HTTPError
 from docopt import docopt
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
-from jsonschema import RefResolutionError, RefResolver, ValidationError
+from jsonschema import RefResolutionError, RefResolver
+from jsonschema.exceptions import ValidationError
 
 logger = logging.getLogger(__name__)
 
@@ -278,6 +279,16 @@ class StacValidate:
             message['version'] = self.version
             message["valid_stac"] = True
 
+            version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
+            if self.version not in version_list:
+                raise VersionException
+                
+                
+        except VersionException as e:
+            err_msg = ("Version Not Valid: " + self.version)
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("VersionError", err_msg))
+            print("Version error, try --update True")
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
             message["valid_stac"] = False
@@ -306,7 +317,6 @@ class StacValidate:
         self.message.append(message)
 
         return json.dumps(self.message)
-
 
 def main():
     args = docopt(__doc__)
