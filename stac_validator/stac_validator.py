@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--log_level LOGLEVEL] [--update OPTION] [--force OPTION]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update OPTION] [--force OPTION]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -14,6 +14,7 @@ Options:
     --update OPTION              Migrate to newest STAC version for testing (True or False)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
     --force OPTION               Add missing 'id' or 'version' for older STAC objects to force validatoin (True or False)
+    --recursive                  Recursively validate an entire collection or catalog.
 """
 
 import json
@@ -52,6 +53,7 @@ class StacValidate:
         log_level: str = "CRITICAL",
         update: bool = False,
         force: bool = False,
+        recursive: bool = False,
     ):
         """Validate a STAC file.
 
@@ -79,6 +81,7 @@ class StacValidate:
         self.version = version
         self.update = update
         self.force = force
+        self.recursive = recursive
 
     def fix_version(self, version: str ) -> str:
         """
@@ -126,18 +129,18 @@ class StacValidate:
         stac_object = identify_stac_object(stac_content)
         return stac_object.object_type.lower()
 
-    def save_schema(self, tmp_path: str, schema: dict):
-        """ Save a JSON schema locally
-        :param tmp_path: Path to save JSON to
-        :type: tmp_path: str
-        :param schema: STAC content dictonary (schema)
-        :type: schema: dict
-        """
-        if not Path(tmp_path).parent.is_dir():
-            Path(tmp_path).parent.mkdir(parents=True, exist_ok=True)
+    # def save_schema(self, tmp_path: str, schema: dict):
+    #     """ Save a JSON schema locally
+    #     :param tmp_path: Path to save JSON to
+    #     :type: tmp_path: str
+    #     :param schema: STAC content dictonary (schema)
+    #     :type: schema: dict
+    #     """
+    #     if not Path(tmp_path).parent.is_dir():
+    #         Path(tmp_path).parent.mkdir(parents=True, exist_ok=True)
 
-        with open(tmp_path, "w") as f:
-            json.dump(schema, f)
+    #     with open(tmp_path, "w") as f:
+    #         json.dump(schema, f)
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -271,10 +274,16 @@ class StacValidate:
 
             #result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
-            ### This method can be used to validate with custom schemas
-            stacschema = pystac.validation.JsonSchemaSTACValidator()
-            self.stac_type = self.stac_type.upper()
-            result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
+            if(self.recursive):
+                ### Recursive validate all object in a catalog or collection
+                print("recursive")
+                result = pystac.validation.validate_all(stac_content, 'https://radarstac.s3.amazonaws.com/stac/catalog.json')
+                
+            else:
+                ### This method can be used to validate with custom schemas
+                stacschema = pystac.validation.JsonSchemaSTACValidator()
+                self.stac_type = self.stac_type.upper()
+                result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
     
             message['version'] = self.version
             message["valid_stac"] = True
@@ -283,7 +292,7 @@ class StacValidate:
             if self.version not in version_list:
                 raise VersionException
                 
-                
+
         except VersionException as e:
             err_msg = ("Version Not Valid: " + self.version)
             message["valid_stac"] = False
@@ -326,11 +335,12 @@ def main():
     log_level = args.get("--log_level", "DEBUG")
     update = args.get("--update")
     force = args.get("--force")
+    recursive = args.get("--recursive")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, log_level, update, force)
+    stac = StacValidate(stac_file, version, log_level, update, force, recursive)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
