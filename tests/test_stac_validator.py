@@ -22,7 +22,7 @@ def _run_validate(
 
 # # # --- new tests - Aug. 28 --- # # # 
 
-# -------------- Recursive / Validate All ----------------
+''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
 # this test indicates a failure. pystac will not validate 1.0.0-beta.1. --update flag will change version to 1.0.0-beta.2 in next test
 def test_recursive_1beta1():
     # stac = _run_validate(url="tests/test_data/stac_examples/catalog-items.json", recursive=True)
@@ -54,28 +54,91 @@ def test_recursive_1beta1_update():
         }
     ]
 
+''' -------------- Catalog / 0.7.0 / not recursive ---------------- '''
+# this should return a version error, this is without recursion, pystac does not test against 0.7.0 schema
+def test_catalog_v070():
+    stac = stac_validator.StacValidate("https://radarstac.s3.amazonaws.com/stac/catalog.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+            "asset_type": "catalog",
+            "version": "0.7.0",
+            "valid_stac": False,
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid: 0.7.0"
+        }
+    ]
+
+# this should return a version error, --force adds a stac verison if one does not exist
+def test_catalog_v070_force():
+    stac = stac_validator.StacValidate("https://radarstac.s3.amazonaws.com/stac/catalog.json", force=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+            "asset_type": "catalog",
+            "version": "0.7.0",
+            "valid_stac": False,
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid: 0.7.0"
+        }
+    ]
+
+# --update to 1.0.0-beta.2 to pass validation
+def test_catalog_v070_update():
+    stac = stac_validator.StacValidate("https://radarstac.s3.amazonaws.com/stac/catalog.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+            "asset_type": "catalog",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
+
+
 # # # --- old tests - pre Aug. 28 - updated to pass --- # # # 
-
-# -------------------- ITEM --------------------
-
-
+''' -------------- Item / 1.0.0-beta.2 / no flags ---------------- '''
+# this item passes because it version 1.0.0-beta.2
 # @pytest.mark.item
 def test_item_master():
     stac = _run_validate(
         url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
     )
     assert stac.message == [
-    {
-        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
-        "asset_type": "item",
-        "version": "1.0.0-beta.2",
-        "valid_stac": True
-    }
-]
+        {
+            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
+            "asset_type": "item",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
 
+''' -------------- Item / 0.9.0 ---------------- '''
+
+# test 0.9.0 item with --version 'v0.9.0' (with the v)
 # @pytest.mark.item
 def test_good_item_validation_v090():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.9.0")
+    print(stac.message)
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "path": "tests/test_data/good_item_v090.json",
+            "version": "0.9.0",
+            "valid_stac": True,
+        }
+    ]
+
+# test 0.9.0 item with --version '0.9.0' (without the v)
+# @pytest.mark.item
+def test_good_item_validation_090():
+    stac = _run_validate(url="tests/test_data/good_item_v090.json", version="0.9.0")
     print(stac.message)
     assert stac.message == [
         {
@@ -96,7 +159,7 @@ def test_bad_schema_version_HTTP_error():
             "asset_type": "item",
             "valid_stac": False,
             "error_type": "HTTP",
-            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update True)"
+            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)"
         }
     ]
 
@@ -123,8 +186,8 @@ def test_bad_item_validation_v090_verbose():
             "path": "tests/test_data/bad_item_v090.json",
             "asset_type": "item",
             "valid_stac": False,
-            "error_type": "KeyError",
-            "error_message": "Key Error: 'id'"
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json"
         }
     ]
 

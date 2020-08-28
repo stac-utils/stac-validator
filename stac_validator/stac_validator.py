@@ -302,16 +302,15 @@ class StacValidate:
             if self.version not in version_list:
                 raise VersionException
                 
-
-        except VersionException as e:
-            err_msg = ("Version Not Valid: " + self.version)
-            message["valid_stac"] = False
-            message.update(self.create_err_msg("VersionError", err_msg))
-            print("Version error, try --update True")
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
             message["valid_stac"] = False
             message.update(self.create_err_msg("KeyError", err_msg)) 
+        except VersionException as e:
+            err_msg = ("Version Not Valid: " + self.version)
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("VersionError", err_msg))
+            print("Version error, try --update True")  
         except HTTPError as e:
             err_msg = (str(e) + " (Possible cause, can't find schema, try --update)")
             message["valid_stac"] = False
