@@ -20,6 +20,42 @@ def _run_validate(
     stac.run()
     return stac
 
+# # # --- new tests - Aug. 28 --- # # # 
+
+# -------------- Recursive / Validate All ----------------
+# this test indicates a failure. pystac will not validate 1.0.0-beta.1. --update flag will change version to 1.0.0-beta.2 in next test
+def test_recursive_1beta1():
+    # stac = _run_validate(url="tests/test_data/stac_examples/catalog-items.json", recursive=True)
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples/catalog-items.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples/catalog-items.json",
+            "asset_type": "catalog",
+            "valid_stac": False,
+            "error_type": "HTTP",
+            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)",
+        }
+    ]
+
+# this test indicates success. --update changes stac version field from 1.0.0-beta.1 to 1.0.0-beta.2 
+def test_recursive_1beta1_update():
+    # stac = _run_validate(url="tests/test_data/stac_examples/catalog-items.json", update)
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples/catalog-items.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples/catalog-items.json",
+            "asset_type": "catalog",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
+
+# # # --- old tests - pre Aug. 28 - updated to pass --- # # # 
+
 # -------------------- ITEM --------------------
 
 

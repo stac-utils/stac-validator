@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update OPTION] [--force OPTION]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,9 +11,9 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
-    --update OPTION              Migrate to newest STAC version for testing (True or False)
+    --update                     Migrate to newest STAC version for testing (True or False)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --force OPTION               Add missing 'id' or 'version' for older STAC objects to force validatoin (True or False)
+    --force                      Add missing 'id' or 'version' for older STAC objects to force validatoin (True or False)
     --recursive                  Recursively validate an entire collection or catalog.
 """
 
@@ -255,8 +255,8 @@ class StacValidate:
         print()
 
         try:
-
-            if(self.force) == 'True':
+            if(self.force):
+                print("Force: True")
                 stac_content = self.fix_stac_missing(stac_content)
 
             if(self.version!='master'):
@@ -264,20 +264,30 @@ class StacValidate:
             else:
                 self.version = self.fix_version(stac_content['stac_version'])
             
-            print()
-
-            print("Update: ", self.update)
-            if(self.update) == 'True':
-                stac_content = self.migrate(stac_content)
-
-            self.displayInfo(stac_content)
+            if(self.update):
+                print("Update: True")
+                stac_content = self.migrate(stac_content)   
 
             #result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
             if(self.recursive):
                 ### Recursive validate all object in a catalog or collection
-                print("recursive")
-                result = pystac.validation.validate_all(stac_content, 'https://radarstac.s3.amazonaws.com/stac/catalog.json')
+                print("Recursive: True")
+                rootlink = stac_content["links"][0]["href"]
+                print(rootlink)
+
+                # # # this is an attempt to limit search but is throwing a maximum recursion depth reached error # # #
+                # link_content = pystac.read_file(rootlink)
+                # for root, _, items in link_content.walk():
+                #     root.validate()
+                #     limit = 3
+                #     for index, item in zip(range(limit), items):
+                #         print("item")
+                #         item.validate()
+
+                self.displayInfo(stac_content)
+
+                result = pystac.validation.validate_all(stac_content, rootlink)
                 
             else:
                 ### This method can be used to validate with custom schemas
@@ -303,7 +313,7 @@ class StacValidate:
             message["valid_stac"] = False
             message.update(self.create_err_msg("KeyError", err_msg)) 
         except HTTPError as e:
-            err_msg = (str(e) + " (Possible cause, can't find schema, try --update True)")
+            err_msg = (str(e) + " (Possible cause, can't find schema, try --update)")
             message["valid_stac"] = False
             message.update(self.create_err_msg("HTTP", err_msg)) 
         except RefResolutionError as e:
@@ -328,6 +338,7 @@ class StacValidate:
         return json.dumps(self.message)
 
 def main():
+
     args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
