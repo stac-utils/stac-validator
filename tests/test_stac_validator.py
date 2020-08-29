@@ -20,6 +20,42 @@ def _run_validate(
     stac.run()
     return stac
 
+# # # --- new tests - Aug. 29 --- # # # 
+''' ----------------------------------------------- '''
+''' -------------- Extension Flag ---------------- '''
+''' ----------------------------------------------- '''
+
+# this test indicates sucess. this item is correctly validated against the 0.9.0 eo schema
+def test_extension_eo_090():
+    # stac = _run_validate(url="tests/test_data/stac_examples_1beta1_1beta1/catalog-items.json", recursive=True)
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", extension='eo')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "asset_type": "item",
+            "version": "0.9.0",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates failure. this item is not correctly validated against the 0.9.0 eo schema
+def test_extension_eo_061():
+    # stac = _run_validate(url="tests/test_data/stac_examples_1beta1_1beta1/catalog-items.json", recursive=True)
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v061.json", force=True, extension='eo')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v061.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
+        }
+    ]
+
 # # # --- new tests - Aug. 28 --- # # # 
 ''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
@@ -197,7 +233,8 @@ def test_good_item_validation_v090_no_version():
 # test 0.9.0 item with --version 'v0.9.0' (with the v)
 # @pytest.mark.item
 def test_good_item_validation_v090_with_version():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="v0.9.0")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.9.0')
+    stac.run()
     print(stac.message)
     assert stac.message == [
         {
@@ -211,7 +248,9 @@ def test_good_item_validation_v090_with_version():
 # test 0.9.0 item with --version '0.9.0' (without the v)
 # @pytest.mark.item
 def test_good_item_validation_090_with_version():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="0.9.0")
+    #stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version='0.9.0')
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='0.9.0')
+    stac.run()
     print(stac.message)
     assert stac.message == [
         {
@@ -371,9 +410,11 @@ def test_good_item_validation_052_with_force():
 ''' -------------- HTTP error / wrong version can't find schema ---------------- '''
 ''' ---------------------------------------------------------------------------- '''
 
+# this fails because there is no 0.8.2 schema so it gives a http error
 # @pytest.mark.item
 def test_bad_schema_version_HTTP_error():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="v0.8.2")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.8.2')
+    stac.run()
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
@@ -388,9 +429,12 @@ def test_bad_schema_version_HTTP_error():
 ''' -------------- STAC Validation error ---------------- '''
 ''' ----------------------------------------------------- '''
 
+# this fails and gives a stac validation error. the v0.9.0 item does not validate against the v0.8.1 schema
 # @pytest.mark.item
 def test_bad_schema_verbose_validation_error():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="v0.8.1")
+    #stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="v0.8.1")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.8.1')
+    stac.run()
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
@@ -501,10 +545,33 @@ def test_collection_master():
 #             else:
 #                 assert stac.message[0]["valid_stac"] == True
 
+
+''' ------------------------------------------------- '''
+''' -------------- Version Numbering ---------------- '''
+''' ------------------------------------------------- '''
+
+# itmes should pass validation if they are in the form of '0.9.0' of 'v0.9.0'
+
 # @pytest.mark.validator
-def test_version_numbering():
+def test_version_numbering_090():
     # Makes sure verisons without a 'v' prefix work
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="0.9.0")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='0.9.0')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "version": "0.9.0",
+            "valid_stac": True,
+        }
+    ]
+
+# @pytest.mark.validator
+def test_version_numbering_v090():
+    # Makes sure verisons without a 'v' prefix work
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.9.0')
+    stac.run()
     print(stac.message)
     assert stac.message == [
         {
@@ -517,12 +584,20 @@ def test_version_numbering():
 
 # # # TODO: fix these tests
 
+''' --------------------------------------------------------- '''
+''' -------------- Test Folder of Good Items ---------------- '''
+''' --------------------------------------------------------- '''
+
 # @pytest.mark.smoke
-# def test_bad_items():
-#     for (_, _, test_files) in os.walk("tests/test_data/stac_examples_older"):
-#         for f in test_files:
-#             stac = _run_validate(url=f"tests/test_data/stac_examples_older/{f}")
-#             assert stac.message[0]["valid_stac"] == False
+def test_good_items_in_folder():
+    for (_, _, test_files) in os.walk("tests/test_data/stac_examples_good_items"):
+        for f in test_files:
+            if(f[-4:]=='json'):
+                # stac = _run_validate(url=f"tests/test_data/stac_examples_1beta2/{f}")
+                #print(f)
+                stac = stac_validator.StacValidate(f"tests/test_data/stac_examples_good_items/{f}")
+                stac.run()
+                assert stac.message[0]["valid_stac"] == True
 
 # @pytest.mark.smoke
 # def test_cli():

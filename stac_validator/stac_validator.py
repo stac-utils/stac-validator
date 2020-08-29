@@ -50,7 +50,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str,
-        extension: str,
+        extension: str = "",
         version: str = "master",
         log_level: str = "CRITICAL",
         update: bool = False,
@@ -357,13 +357,12 @@ def main():
     args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
-    extension = args.get("--extension")
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
     update = args.get("--update")
     force = args.get("--force")
     recursive = args.get("--recursive")
-    
+    extension = args.get("--extension")
 
     if timer:
         start = default_timer()
