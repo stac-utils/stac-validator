@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -11,10 +11,11 @@ Options:
     -v, --version STAC_VERSION   Version to validate against. [default: master]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
-    --update                     Migrate to newest STAC version for testing (True or False)
+    --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --force                      Add missing 'id' or 'version' for older STAC objects to force validatoin (True or False)
+    --force                      Add missing 'id' or 'version 0.9.0' for older STAC objects to force validation
     --recursive                  Recursively validate an entire collection or catalog.
+    --extension EXTENSION        Validate an extension
 """
 
 import json
@@ -49,11 +50,13 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str,
+        extension: str,
         version: str = "master",
         log_level: str = "CRITICAL",
         update: bool = False,
         force: bool = False,
         recursive: bool = False,
+        
     ):
         """Validate a STAC file.
 
@@ -82,6 +85,7 @@ class StacValidate:
         self.update = update
         self.force = force
         self.recursive = recursive
+        self.extension = extension
 
     def fix_version(self, version: str ) -> str:
         """
@@ -294,7 +298,13 @@ class StacValidate:
                 self.displayInfo(stac_content)
 
                 result = pystac.validation.validate_all(stac_content, rootlink)
-                
+
+            elif(self.extension):
+                print("Extension: True")
+                stacschema = pystac.validation.JsonSchemaSTACValidator()
+                self.stac_type = self.stac_type.upper()
+                result = stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version, extension_id=self.extension)
+
             else:
                 ### This method can be used to validate with custom schemas
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
@@ -347,16 +357,18 @@ def main():
     args = docopt(__doc__)
     stac_file = args.get("<stac_file>")
     version = args.get("--version")
+    extension = args.get("--extension")
     timer = args.get("--timer")
     log_level = args.get("--log_level", "DEBUG")
     update = args.get("--update")
     force = args.get("--force")
     recursive = args.get("--recursive")
+    
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, version, log_level, update, force, recursive)
+    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
