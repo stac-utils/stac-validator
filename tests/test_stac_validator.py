@@ -21,8 +21,10 @@ def _run_validate(
     return stac
 
 # # # --- new tests - Aug. 28 --- # # # 
-
+''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
+''' --------------------------------------------------------------------------------- '''
+
 # this test indicates a failure. pystac will not validate 1.0.0-beta.1. --update flag will change version to 1.0.0-beta.2 in next test
 def test_recursive_1beta1():
     # stac = _run_validate(url="tests/test_data/stac_examples/catalog-items.json", recursive=True)
@@ -54,7 +56,10 @@ def test_recursive_1beta1_update():
         }
     ]
 
+''' --------------------------------------------------------------- '''
 ''' -------------- Catalog / 0.7.0 / not recursive ---------------- '''
+''' --------------------------------------------------------------- '''
+
 # this should return a version error, this is without recursion, pystac does not test against 0.7.0 schema
 def test_catalog_v070():
     stac = stac_validator.StacValidate("https://radarstac.s3.amazonaws.com/stac/catalog.json")
@@ -71,7 +76,7 @@ def test_catalog_v070():
         }
     ]
 
-# this should return a version error, --force adds a stac verison if one does not exist
+# --force stac_version to v0.9.0 in order to pass validation
 def test_catalog_v070_force():
     stac = stac_validator.StacValidate("https://radarstac.s3.amazonaws.com/stac/catalog.json", force=True)
     stac.run()
@@ -80,10 +85,8 @@ def test_catalog_v070_force():
         {
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset_type": "catalog",
-            "version": "0.7.0",
-            "valid_stac": False,
-            "error_type": "VersionError",
-            "error_message": "Version Not Valid: 0.7.0"
+            "version": "0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -101,12 +104,66 @@ def test_catalog_v070_update():
         }
     ]
 
+''' --------------------------------------------------------------- '''
+''' -------------- Collection / 0.6.1 / not recursive ---------------- '''
+''' --------------------------------------------------------------- '''
 
-# # # --- old tests - pre Aug. 28 - updated to pass --- # # # 
-''' -------------- Item / 1.0.0-beta.2 / no flags ---------------- '''
-# this item passes because it version 1.0.0-beta.2
+# test 0.6.1 collection gives Version Error
 # @pytest.mark.item
-def test_item_master():
+def test_good_collection_validation_061():
+    stac = stac_validator.StacValidate("tests/test_data/good_collection_v061.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_collection_v061.json",
+            "asset_type": "collection",
+            "version": "0.6.1",
+            "valid_stac": False,
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid: 0.6.1"
+        }
+    ]
+
+# test 0.6.1 collection with --update gives STAC Validation Error, fails against 1.0.0-beta.2 schema
+# @pytest.mark.item
+def test_good_collection_validation_061_update():
+    stac = stac_validator.StacValidate("tests/test_data/good_collection_v061.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_collection_v061.json",
+            "asset_type": "collection",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+        }
+    ]
+
+# test 0.6.1 collection with --force gives STAC Validation Error, fails against 0.9.0 schema (this would hopefully not be False)
+# @pytest.mark.item
+def test_good_collection_validation_061_force():
+    stac = stac_validator.StacValidate("tests/test_data/good_collection_v061.json", force=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_collection_v061.json",
+            "asset_type": "collection",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/collection-spec/json-schema/collection.json"
+        }
+    ]
+
+''' ---------------------------------------------------------------------- '''
+''' -------------- Item / 1.0.0-beta.2 / https / no flags ---------------- '''
+''' ---------------------------------------------------------------------- '''
+
+# this item passes because it is version 1.0.0-beta.2
+# @pytest.mark.item
+def test_good_item_validation_1beta2_https():
     stac = _run_validate(
         url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
     )
@@ -119,11 +176,27 @@ def test_item_master():
         }
     ]
 
+''' -------------------------------------------- '''
 ''' -------------- Item / 0.9.0 ---------------- '''
+''' -------------------------------------------- '''
+
+# test 0.9.0 item without --version
+# @pytest.mark.item
+def test_good_item_validation_v090_no_version():
+    stac = _run_validate(url="tests/test_data/good_item_v090.json")
+    print(stac.message)
+    assert stac.message == [
+        {
+            "asset_type": "item",
+            "path": "tests/test_data/good_item_v090.json",
+            "version": "0.9.0",
+            "valid_stac": True,
+        }
+    ]
 
 # test 0.9.0 item with --version 'v0.9.0' (with the v)
 # @pytest.mark.item
-def test_good_item_validation_v090():
+def test_good_item_validation_v090_with_version():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.9.0")
     print(stac.message)
     assert stac.message == [
@@ -137,7 +210,7 @@ def test_good_item_validation_v090():
 
 # test 0.9.0 item with --version '0.9.0' (without the v)
 # @pytest.mark.item
-def test_good_item_validation_090():
+def test_good_item_validation_090_with_version():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="0.9.0")
     print(stac.message)
     assert stac.message == [
@@ -149,6 +222,154 @@ def test_good_item_validation_090():
         }
     ]
 
+# test 0.9.0 item with --update (1.0.0-beta.2)
+# @pytest.mark.item
+def test_good_item_validation_090_with_update():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v090.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v090.json",
+            "asset_type": "item",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True,
+        }
+    ]
+
+''' -------------------------------------------- '''
+''' -------------- Item / 0.6.1 ---------------- '''
+''' -------------------------------------------- '''
+
+# this test points to a failure because pystac does not work with v0.6.1
+def test_good_item_validation_061():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v061.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v061.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'stac_version'"
+        }
+    ]
+
+# this test points to a failure because pystac migrate does not work for v0.6.1 in fixing missing stac_version field
+def test_good_item_validation_061_with_update():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v061.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v061.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'stac_version'"
+        }
+    ]
+
+# this test points to a successful outcome because --force fills in the missing stac_version with v0.9.0
+def test_good_item_validation_061_with_force():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v061.json", force=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v061.json",
+            "asset_type": "item",
+            "version": "0.9.0",
+            "valid_stac": True,
+        }   
+    ]
+
+''' -------------------------------------------- '''
+''' -------------- Item / 0.6.0 ---------------- '''
+''' -------------------------------------------- '''
+
+# this test points to a failure because pystac does not work with v0.6.0
+def test_good_item_validation_060():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v060.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v060.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'stac_version'"
+        }
+    ]
+
+# this test points to a failure because pystac migrate does not work for v0.6.0 in fixing missing stac_version field
+def test_good_item_validation_060_with_update():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v060.json", update=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v060.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'stac_version'"
+        }
+    ]
+
+# this test points to a successful outcome because --force fills in the missing stac_version with v0.9.0
+def test_good_item_validation_060_with_force():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v060.json", force=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v060.json",
+            "asset_type": "item",
+            "version": "0.9.0",
+            "valid_stac": True,
+        }   
+    ]
+
+''' -------------------------------------------- '''
+''' -------------- Item / 0.5.2 ---------------- '''
+''' -------------------------------------------- '''
+
+# this test points to a failure because pystac does not work with v0.5.2
+def test_good_item_validation_052():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v052.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v052.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'stac_version'"
+        }
+    ]
+
+# this test does not point to a successful outcome even with --force (which works for v0.6.0, v0.6.1)
+def test_good_item_validation_052_with_force():
+    stac = stac_validator.StacValidate("tests/test_data/good_item_v052.json", force=True)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/good_item_v052.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID CBERS_4_MUX_20180713_057_122_L2 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json"
+        } 
+    ]
+
+''' ---------------------------------------------------------------------------- '''
+''' -------------- HTTP error / wrong version can't find schema ---------------- '''
+''' ---------------------------------------------------------------------------- '''
 
 # @pytest.mark.item
 def test_bad_schema_version_HTTP_error():
@@ -163,9 +384,12 @@ def test_bad_schema_version_HTTP_error():
         }
     ]
 
+''' ----------------------------------------------------- '''
+''' -------------- STAC Validation error ---------------- '''
+''' ----------------------------------------------------- '''
 
 # @pytest.mark.item
-def test_bad_schema_verbose():
+def test_bad_schema_verbose_validation_error():
     stac = _run_validate(url="tests/test_data/good_item_v090.json", version="v0.8.1")
     assert stac.message == [
         {
@@ -177,10 +401,14 @@ def test_bad_schema_verbose():
         }
     ]
 
+''' ------------------------------------------------ '''
+''' -------------- Bad Item / 0.9.0 ---------------- '''
+''' ------------------------------------------------ '''
 
+# bad item, no flags, valid_stac: false
 # @pytest.mark.item
 def test_bad_item_validation_v090_verbose():
-    stac = _run_validate(url="tests/test_data/bad_item_v090.json", version="v0.9.0")
+    stac = _run_validate(url="tests/test_data/bad_item_v090.json")
     assert stac.message == [
         {
             "path": "tests/test_data/bad_item_v090.json",
@@ -190,6 +418,24 @@ def test_bad_item_validation_v090_verbose():
             "error_message": "STAC Validation Error: Validation failed for ITEM against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json"
         }
     ]
+
+# bad item, no flags, valid_stac: true, -force add temporary id field that was missing
+# @pytest.mark.item
+def test_bad_item_validation_v090_force():
+    stac = stac_validator.StacValidate("tests/test_data/bad_item_v090.json", force=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/bad_item_v090.json",
+            "asset_type": "item",
+            "version": "0.9.0",
+            "valid_stac": True
+        }
+    ]
+
+
+
+
 
 # @pytest.mark.item
 def test_missing_item():

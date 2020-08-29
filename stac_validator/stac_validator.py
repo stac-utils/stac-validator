@@ -93,17 +93,23 @@ class StacValidate:
 
     def fix_stac_missing(self, stac_content: dict) -> dict:
         # # # add stac version field if there isn't one # # # 
+        # if not 'stac_version' in stac_content:
+        #     if self.version == 'master':
+        #         stac_content['stac_version'] = '0.9.0'
+        #     else:
+        #         stac_content['stac_version'] = self.version
         if not 'stac_version' in stac_content:
-            if self.version == 'master':
-                stac_content['stac_version'] = '0.9.0'
-            else:
-                stac_content['stac_version'] = self.version
-            print("temporarily added stac version field (0.9.0) to try to pass validation")
+            stac_content['stac_version'] = '0.9.0'
+            print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
+        if(stac_content['stac_version'] != '0.9.0'):
+            stac_content['stac_version'] = '0.9.0'
+            print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
+        
 
         # # # add id field if there isn't one # # #
         if not 'id' in stac_content:
             stac_content['id'] = 'temporary'
-            print("temporarily added stac id field to try to pass validation")
+            print("temporarily added stac id field to try to force validation")
 
         return stac_content
 
