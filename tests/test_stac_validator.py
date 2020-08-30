@@ -20,15 +20,14 @@ def _run_validate(
     stac.run()
     return stac
 
-# # # --- new tests - Aug. 29 --- # # # 
+
 ''' ----------------------------------------------- '''
 ''' -------------- Extension Flag ---------------- '''
-''' ----------------------------------------------- '''
 
 
 ''' -- checksum -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 pointcloud schema
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 checksum schema
 def test_extension_checksum_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json", extension='checksum')
     stac.run()
@@ -44,7 +43,7 @@ def test_extension_checksum_1beta2():
 
 ''' -- collection-assets -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 pointcloud schema
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 collection-assets schema
 def test_extension_collection_assets_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/example-esm.json", extension='collection-assets')
     stac.run()
@@ -60,7 +59,7 @@ def test_extension_collection_assets_1beta2():
 
 ''' -- datacube -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 pointcloud schema
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 datacubeschema
 def test_extension_datacube_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/datacube/examples/example-item.json", extension='datacube')
     stac.run()
@@ -121,7 +120,7 @@ def test_extension_eo_061():
 
 ''' -- item-assets -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 pointcloud schema
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 item-assets schema
 def test_extension_item_assets_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/item-assets/examples/example-landsat8.json", extension='item-assets')
     stac.run()
@@ -313,12 +312,10 @@ def test_extension_view_1beta2():
 
 ''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
-''' --------------------------------------------------------------------------------- '''
 
 # this test indicates a failure. pystac will not validate 1.0.0-beta.1. --update flag will change version to 1.0.0-beta.2 in next test
 def test_recursive_1beta1():
-    # stac = _run_validate(url="tests/test_data/stac_examples_1beta1_1beta1/catalog-items.json", recursive=True)
-    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/catalog-items.json")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/catalog-items.json", recursive=True)
     stac.run()
     print(stac.message)
     assert stac.message == [
@@ -333,8 +330,7 @@ def test_recursive_1beta1():
 
 # this test indicates success. --update changes stac version field from 1.0.0-beta.1 to 1.0.0-beta.2 
 def test_recursive_1beta1_update():
-    # stac = _run_validate(url="tests/test_data/stac_examples_1beta1/catalog-items.json", update)
-    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/catalog-items.json", update=True)
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/catalog-items.json", update=True, recursive=True)
     stac.run()
     print(stac.message)
     assert stac.message == [
@@ -348,7 +344,6 @@ def test_recursive_1beta1_update():
 
 ''' --------------------------------------------------------------- '''
 ''' -------------- Catalog / 0.7.0 / not recursive ---------------- '''
-''' --------------------------------------------------------------- '''
 
 # this should return a version error, this is without recursion, pystac does not test against 0.7.0 schema
 def test_catalog_v070():
@@ -394,9 +389,8 @@ def test_catalog_v070_update():
         }
     ]
 
-''' --------------------------------------------------------------- '''
+''' ------------------------------------------------------------------ '''
 ''' -------------- Collection / 0.6.1 / not recursive ---------------- '''
-''' --------------------------------------------------------------- '''
 
 # test 0.6.1 collection gives Version Error
 # @pytest.mark.item
@@ -449,7 +443,6 @@ def test_good_collection_validation_061_force():
 
 ''' ---------------------------------------------------------------------- '''
 ''' -------------- Item / 1.0.0-beta.2 / https / no flags ---------------- '''
-''' ---------------------------------------------------------------------- '''
 
 # this item passes because it is version 1.0.0-beta.2
 # @pytest.mark.item
@@ -468,7 +461,6 @@ def test_good_item_validation_1beta2_https():
 
 ''' -------------------------------------------- '''
 ''' -------------- Item / 0.9.0 ---------------- '''
-''' -------------------------------------------- '''
 
 # test 0.9.0 item without --version
 # @pytest.mark.item
@@ -532,7 +524,6 @@ def test_good_item_validation_090_with_update():
 
 ''' -------------------------------------------- '''
 ''' -------------- Item / 0.6.1 ---------------- '''
-''' -------------------------------------------- '''
 
 # this test points to a failure because pystac does not work with v0.6.1
 def test_good_item_validation_061():
@@ -580,7 +571,6 @@ def test_good_item_validation_061_with_force():
 
 ''' -------------------------------------------- '''
 ''' -------------- Item / 0.6.0 ---------------- '''
-''' -------------------------------------------- '''
 
 # this test points to a failure because pystac does not work with v0.6.0
 def test_good_item_validation_060():
@@ -628,7 +618,6 @@ def test_good_item_validation_060_with_force():
 
 ''' -------------------------------------------- '''
 ''' -------------- Item / 0.5.2 ---------------- '''
-''' -------------------------------------------- '''
 
 # this test points to a failure because pystac does not work with v0.5.2
 def test_good_item_validation_052():
@@ -662,7 +651,6 @@ def test_good_item_validation_052_with_force():
 
 ''' ---------------------------------------------------------------------------- '''
 ''' -------------- HTTP error / wrong version can't find schema ---------------- '''
-''' ---------------------------------------------------------------------------- '''
 
 # this fails because there is no 0.8.2 schema so it gives a http error
 # @pytest.mark.item
@@ -681,7 +669,6 @@ def test_bad_schema_version_HTTP_error():
 
 ''' ----------------------------------------------------- '''
 ''' -------------- STAC Validation error ---------------- '''
-''' ----------------------------------------------------- '''
 
 # this fails and gives a stac validation error. the v0.9.0 item does not validate against the v0.8.1 schema
 # @pytest.mark.item
@@ -701,7 +688,6 @@ def test_bad_schema_verbose_validation_error():
 
 ''' ------------------------------------------------ '''
 ''' -------------- Bad Item / 0.9.0 ---------------- '''
-''' ------------------------------------------------ '''
 
 # bad item, no flags, valid_stac: false
 # @pytest.mark.item
@@ -731,9 +717,8 @@ def test_bad_item_validation_v090_force():
         }
     ]
 
-
-
-
+''' -------------------------------------------- '''
+''' -------------- Missing Item ---------------- '''
 
 # @pytest.mark.item
 def test_missing_item():
@@ -747,9 +732,8 @@ def test_missing_item():
         }
     ]
 
-
-# -------------------- CATALOG --------------------
-
+''' ---------------------------------------------- '''
+''' -------------- Catalog Master ---------------- '''
 
 # @pytest.mark.catalog
 def test_catalog_master():
@@ -766,8 +750,8 @@ def test_catalog_master():
     ]
 
 
-# -------------------- COLLECTION --------------------
-
+''' ------------------------------------------------- '''
+''' -------------- Collection Master ---------------- '''
 
 # @pytest.mark.collection
 def test_collection_master():
@@ -802,7 +786,6 @@ def test_collection_master():
 
 ''' ------------------------------------------------- '''
 ''' -------------- Version Numbering ---------------- '''
-''' ------------------------------------------------- '''
 
 # itmes should pass validation if they are in the form of '0.9.0' of 'v0.9.0'
 
@@ -838,9 +821,8 @@ def test_version_numbering_v090():
 
 # # # TODO: fix these tests
 
-''' --------------------------------------------------------- '''
-''' -------------- Test Folder of Good Items ---------------- '''
-''' --------------------------------------------------------- '''
+''' -------------------------------------------------------- '''
+''' -------------- Test Folder - Good Items ---------------- '''
 
 # @pytest.mark.smoke
 def test_good_items_in_folder():
