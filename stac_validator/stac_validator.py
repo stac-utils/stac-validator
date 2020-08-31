@@ -46,6 +46,9 @@ logger = logging.getLogger(__name__)
 class VersionException(Exception):
     pass
 
+class ExtensionException(Exception):
+    pass
+
 class StacValidate:
     def __init__(
         self,
@@ -96,12 +99,10 @@ class StacValidate:
         return version
 
     def fix_stac_missing(self, stac_content: dict) -> dict:
+        """
+        add stac_version='0.9.0' and a temporary id field if it's missing.
+        """
         # # # add stac version field if there isn't one # # # 
-        # if not 'stac_version' in stac_content:
-        #     if self.version == 'master':
-        #         stac_content['stac_version'] = '0.9.0'
-        #     else:
-        #         stac_content['stac_version'] = self.version
         if not 'stac_version' in stac_content:
             stac_content['stac_version'] = '0.9.0'
             print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
@@ -109,7 +110,6 @@ class StacValidate:
             stac_content['stac_version'] = '0.9.0'
             print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
         
-
         # # # add id field if there isn't one # # #
         if not 'id' in stac_content:
             stac_content['id'] = 'temporary'
@@ -277,8 +277,6 @@ class StacValidate:
             if(self.update):
                 print("Update: True")
                 stac_content = self.migrate(stac_content)   
-
-            #result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
             
             if(self.recursive):
                 ### Recursive validate all object in a catalog or collection
@@ -309,7 +307,8 @@ class StacValidate:
                 ### This method can be used to validate with custom schemas
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
-                result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
+                #result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
+                result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
             message['version'] = self.version
             message["valid_stac"] = True
@@ -317,6 +316,10 @@ class StacValidate:
             version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
             if self.version not in version_list:
                 raise VersionException
+
+            extension_list = ['eo', 'sar', 'checksum']
+            if self.extension not in extension_list:
+                raise ExtensionException
                 
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
@@ -327,6 +330,10 @@ class StacValidate:
             message["valid_stac"] = False
             message.update(self.create_err_msg("VersionError", err_msg))
             print("Version error, try --update True")  
+        except ExtensionException as e:
+            err_msg = ("Extension Not Valid: " + self.extension)
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("ExtensionError", err_msg))
         except HTTPError as e:
             err_msg = (str(e) + " (Possible cause, can't find schema, try --update)")
             message["valid_stac"] = False

@@ -24,6 +24,23 @@ def _run_validate(
 ''' ----------------------------------------------- '''
 ''' -------------- Extension Flag ---------------- '''
 
+''' -- bad extension -- '''
+
+# test bad extension
+def test_bad_extension_name():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json", extension='chcksum')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json",
+            "asset_type": "item",
+            "version": "1.0.0-beta.2",
+            "valid_stac": False,
+            "error_type": "ExtensionError",
+            "error_message": "Extension Not Valid: chcksum"
+        }
+    ]
 
 ''' -- checksum -- '''
 
@@ -77,15 +94,45 @@ def test_extension_datacube_1beta2():
 
 # this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 eo schema
 def test_extension_eo_1beta2():
-    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/planet-sample.json", extension='eo')
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json", extension='eo')
     stac.run()
     print(stac.message)
     assert stac.message == [
         {
-            "path": "tests/test_data/stac_examples_1beta2/planet-sample.json",
+            "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json",
             "asset_type": "item",
             "version": "1.0.0-beta.2",
             "valid_stac": True
+        }
+    ]
+
+# this test indicates failure. this item is not correctly validated against the 1.0.0-beta.2 eo schema
+def test_extension_bad_eo_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/eo/examples/bad-example-landsat8.json", extension='eo')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/bad-example-landsat8.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID LC08_L1TP_107018_20181001_20181001_01_RT against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
+        }
+    ]
+
+# this test indicates failure. this item is not correctly validated against the 1.0.0-beta.2 sar schema
+def test_extension_eo_wrong_extension_sar_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json", extension='sar')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID LC08_L1TP_107018_20181001_20181001_01_RT against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sar/json-schema/schema.jsonfor STAC extension 'sar'"
         }
     ]
 
@@ -163,6 +210,36 @@ def test_extension_pointcloud_1beta2():
             "asset_type": "item",
             "version": "1.0.0-beta.2",
             "valid_stac": True
+        }
+    ]
+
+# this test indicates success. this item is INcorrectly validated against the 1.0.0-beta.2 pointcloud schema (should not be true)
+def test_extension_bad_pointcloud_extension_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json", extension='pointcloud')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json",
+            "asset_type": "item",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates failure. this item is correctly NOT validated against the 1.0.0-beta.2 pointcloud schema
+# notice this works without the extension flag?
+def test_extension_bad_pointcloud_no_extension_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID autzen-full.laz against schema at https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
         }
     ]
 
@@ -507,7 +584,7 @@ def test_good_item_validation_090_with_version():
         }
     ]
 
-# test 0.9.0 item with --update (1.0.0-beta.2)
+# test 0.9.0 item with --update (1.0.0-beta.2), fails on eo extension
 # @pytest.mark.item
 def test_good_item_validation_090_with_update():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", update=True)
@@ -517,8 +594,9 @@ def test_good_item_validation_090_with_update():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
-            "valid_stac": True,
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
         }
     ]
 
