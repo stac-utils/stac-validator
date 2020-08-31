@@ -406,7 +406,7 @@ def test_good_item_validation_1beta2_https():
             "valid_stac": True
         }
     ]
-    
+
 ''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
 

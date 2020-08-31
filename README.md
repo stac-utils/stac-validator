@@ -50,11 +50,12 @@ Options:
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
 ```
-## CLI
+---
+# CLI
 
 Basic Usage  
 ```    
-$ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json
 ```
 ```
 [
@@ -68,7 +69,7 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 ```
 --version  
 ```    
-$ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json --version 0.9.0
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json --version 0.9.0
 ```
 ```
 [
@@ -87,7 +88,7 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 
 --extension
 ```
-$ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension sat
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension sat
 ```
 ```
 [
@@ -106,4 +107,27 @@ Testing
 ```bash
 pytest -v
 ```
-See the tests directory for examples on different usages.
+See the tests directory for examples on different usages.  
+  
+---
+# Import stac-validator
+
+```
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json")
+stac.run()
+
+print(stac.message)
+
+if stac.message[0]["valid_stac"] == False:
+    print("False")
+```
+```
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate("tests/sample-full.json", extension='eo', update=True)
+stac.run()
+
+print(stac.message)
+```
