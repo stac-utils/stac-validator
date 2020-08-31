@@ -220,8 +220,6 @@ class StacValidate:
         if self.stac_type == 'item':
             print('Stac id: ', stac_content['id'])
             print('Stac version: ', self.version)
-            # formatted_time = stac_content['properties']['datetime']
-            # print("Time: ", formatted_time)
         elif self.stac_type == 'catalog':
             print('Catalog name: ', stac_content['id'])
             print('Stac version: ', self.version)
@@ -317,10 +315,14 @@ class StacValidate:
             if self.version not in version_list:
                 raise VersionException
 
-            extension_list = ['eo', 'sar', 'checksum']
-            if self.extension not in extension_list:
-                raise ExtensionException
-                
+            extension_list = ['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 
+                'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
+            if(self.extension):    
+                if self.extension not in extension_list:
+                    raise ExtensionException
+            else:
+                pass
+                          
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
             message["valid_stac"] = False

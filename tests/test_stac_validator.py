@@ -2,31 +2,19 @@
 Description: Test the validator
 
 """
-__author__ = "James Banting"
+__authors__ = "James Banting", "Jonathan Healy"
 import os
 import subprocess
 import pytest
 
 from stac_validator import stac_validator
 
-
-def _run_validate(
-    url, version=None, log_level="DEBUG"
-):
-    if(version==None):
-        stac = stac_validator.StacValidate(url)
-    else:
-        stac = stac_validator.StacValidate(url, version, log_level)
-    stac.run()
-    return stac
-
-
 ''' ----------------------------------------------- '''
 ''' -------------- Extension Flag ---------------- '''
 
-''' -- bad extension -- '''
+''' -- bad extension name -- '''
 
-# test bad extension
+# test bad extension name
 def test_bad_extension_name():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json", extension='chcksum')
     stac.run()
@@ -71,6 +59,21 @@ def test_extension_collection_assets_1beta2():
             "asset_type": "collection",
             "version": "1.0.0-beta.2",
             "valid_stac": True
+        }
+    ]
+
+# this test indicates failure. this item is not correctly validated against the 1.0.0-beta.2 collection-assets schema
+def test_extension_bad_collection_assets_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/bad-example-esm.json", extension='collection-assets')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/bad-example-esm.json",
+            "asset_type": "collection",
+            "valid_stac": False,
+            "error_type": "STACValidationError",
+            "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID pangeo-cmip6 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/collection-assets/json-schema/schema.jsonfor STAC extension 'collection-assets'"
         }
     ]
 
@@ -524,9 +527,8 @@ def test_good_collection_validation_061_force():
 # this item passes because it is version 1.0.0-beta.2
 # @pytest.mark.item
 def test_good_item_validation_1beta2_https():
-    stac = _run_validate(
-        url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json"
-    )
+    stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json")
+    stac.run()
     assert stac.message == [
         {
             "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
@@ -542,7 +544,8 @@ def test_good_item_validation_1beta2_https():
 # test 0.9.0 item without --version
 # @pytest.mark.item
 def test_good_item_validation_v090_no_version():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json")
+    stac.run()
     print(stac.message)
     assert stac.message == [
         {
@@ -770,7 +773,8 @@ def test_bad_schema_verbose_validation_error():
 # bad item, no flags, valid_stac: false
 # @pytest.mark.item
 def test_bad_item_validation_v090_verbose():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/bad_item_v090.json")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/bad_item_v090.json")
+    stac.run()
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
@@ -800,7 +804,8 @@ def test_bad_item_validation_v090_force():
 
 # @pytest.mark.item
 def test_missing_item():
-    stac = _run_validate(url="tests/test_data/stac_examples_older/missing_item_v090.json")
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/missing_item_v090.json")
+    stac.run()
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/missing_item_v090.json",
@@ -815,9 +820,8 @@ def test_missing_item():
 
 # @pytest.mark.catalog
 def test_catalog_master():
-    stac = _run_validate(
-        url="https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json"
-    )
+    stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json")
+    stac.run()
     assert stac.message == [
         {
             "asset_type": "catalog",
@@ -833,9 +837,8 @@ def test_catalog_master():
 
 # @pytest.mark.collection
 def test_collection_master():
-    stac = _run_validate(
-        "https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json"
-    )
+    stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json")
+    stac.run()
     assert stac.message == [
         {
             "asset_type": "collection",
@@ -844,23 +847,6 @@ def test_collection_master():
             "valid_stac": True
         }
     ]
-
-# -------------------- SPECIAL --------------------
-
-
-# @pytest.mark.spec
-# def test_gh_item_examples():
-#     # Test to ensure stac on gh is validating
-#     # relies on pystac serialization to work
-#     for (_, _, test_files) in os.walk("tests/test_data/stac_examples_older/stac_examples_1beta1"):
-#         for f in test_files:
-#             stac = _run_validate(url=f"tests/test_data/stac_examples_older/stac_examples_1beta1/{f}")
-#             if f == "digitalglobe-sample.json":
-#                 print("KNOWN")
-#                 assert stac.message[0]["valid_stac"] == False
-#             else:
-#                 assert stac.message[0]["valid_stac"] == True
-
 
 ''' ------------------------------------------------- '''
 ''' -------------- Version Numbering ---------------- '''
@@ -897,8 +883,6 @@ def test_version_numbering_v090():
         }
     ]
 
-# # # TODO: fix these tests
-
 ''' -------------------------------------------------------- '''
 ''' -------------- Test Folder - Good Items ---------------- '''
 
@@ -907,22 +891,6 @@ def test_good_items_in_folder():
     for (_, _, test_files) in os.walk("tests/test_data/stac_examples_good_items"):
         for f in test_files:
             if(f[-4:]=='json'):
-                # stac = _run_validate(url=f"tests/test_data/stac_examples_1beta2/{f}")
-                #print(f)
                 stac = stac_validator.StacValidate(f"tests/test_data/stac_examples_good_items/{f}")
                 stac.run()
                 assert stac.message[0]["valid_stac"] == True
-
-# @pytest.mark.smoke
-# def test_cli():
-#     for (_, _, test_files) in os.walk("tests/test_data/stac_examples_older"):
-#         for f in test_files:
-#             subprocess.call(["stac_validator", f"{f}", "--version" ])
-#             stac = _run_validate(url=f"tests/test_data/stac_examples_older/{f}")
-#             assert stac.message[0]["valid_stac"] == False
-
-# @pytest.mark.smoke
-# def test_cli():
-#     stac = subprocess.check_output(["stac_validator", "tests/test_data/stac_examples_older/good_catalog_v052.json", "--version" , "5.2"])
-#     stac = json.loads(stac)
-#     assert stac[0]['valid_stac'] == False
