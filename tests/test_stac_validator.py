@@ -390,6 +390,23 @@ def test_extension_view_1beta2():
         }
     ]
 
+''' ---------------------------------------------------------------------- '''
+''' -------------- Item / 1.0.0-beta.2 / https / no flags ---------------- '''
+
+# this item passes because it is version 1.0.0-beta.2
+# @pytest.mark.item
+def test_good_item_validation_1beta2_https():
+    stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json")
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
+            "asset_type": "item",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
+    
 ''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
 
@@ -518,23 +535,6 @@ def test_good_collection_validation_061_force():
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/collection-spec/json-schema/collection.json"
-        }
-    ]
-
-''' ---------------------------------------------------------------------- '''
-''' -------------- Item / 1.0.0-beta.2 / https / no flags ---------------- '''
-
-# this item passes because it is version 1.0.0-beta.2
-# @pytest.mark.item
-def test_good_item_validation_1beta2_https():
-    stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json")
-    stac.run()
-    assert stac.message == [
-        {
-            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
-            "asset_type": "item",
-            "version": "1.0.0-beta.2",
-            "valid_stac": True
         }
     ]
 
