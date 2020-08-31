@@ -28,8 +28,8 @@ import tempfile
 import pystac
 import requests
 import jsonschema
-from concurrent import futures
-from functools import lru_cache
+#from concurrent import futures
+#from functools import lru_cache
 from json.decoder import JSONDecodeError
 from pathlib import Path
 from timeit import default_timer
@@ -66,10 +66,20 @@ class StacValidate:
 
         :param stac_file: File to validate
         :type stac_file: str
-        :param version: STAC version to validate against, defaults to "master"
+        :param extension: extension to validate against
+        :type extension: str, optional
+        :param version: STAC version to validate against
         :type version: str, optional
         :param log_level: Level of logging to report, defaults to "CRITICAL"
         :type log_level: str, optional
+        :param update: bool, optional
+        :type upate: bool
+        :param force: bool, optional
+        :type force: bool
+        :param recursive: bool, optional
+        :type recursive: bool
+        :param core: bool, optional
+        :type core: bool
         :raises ValueError: [description]
         """
         numeric_log_level = getattr(logging, log_level.upper(), None)
@@ -93,26 +103,33 @@ class StacValidate:
         self.core = core
 
     def fix_version(self, version: str ) -> str:
-        """
+        """remove v from stac_version field
         add a 'v' to the front of the version
+        :param version: STAC version
+        :type str: str
+        :return: updated STAC version
+        :rtype: str
         """
         if version[0] in ['m','d','v']:
             version = version[1:]
         return version
 
     def fix_stac_missing(self, stac_content: dict) -> dict:
+        """add stac_version='0.9.0' and/ or a temporary id field if it's missing
+        :param stac_content: STAC object
+        :type str: dict
+        :return: updated STAC content
+        :rtype: Dict
         """
-        add stac_version='0.9.0' and a temporary id field if it's missing.
-        """
-        # # # add stac version field if there isn't one # # # 
+        # add stac version field if there isn't one
         if not 'stac_version' in stac_content:
             stac_content['stac_version'] = '0.9.0'
-            print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
+            print("temporarily added stac version field v0.9.0 to try to force validation")
         if(stac_content['stac_version'] != '0.9.0'):
             stac_content['stac_version'] = '0.9.0'
-            print("temporarily added/ changed stac version field to v0.9.0 to try to force validation")
+            print("temporarily changed stac version field to v0.9.0 to try to force validation")
         
-        # # # add id field if there isn't one # # #
+        # add id field if there isn't one
         if not 'id' in stac_content:
             stac_content['id'] = 'temporary'
             print("temporarily added stac id field to try to force validation")
@@ -140,19 +157,6 @@ class StacValidate:
         """
         stac_object = identify_stac_object(stac_content)
         return stac_object.object_type.lower()
-
-    # def save_schema(self, tmp_path: str, schema: dict):
-    #     """ Save a JSON schema locally
-    #     :param tmp_path: Path to save JSON to
-    #     :type: tmp_path: str
-    #     :param schema: STAC content dictonary (schema)
-    #     :type: schema: dict
-    #     """
-    #     if not Path(tmp_path).parent.is_dir():
-    #         Path(tmp_path).parent.mkdir(parents=True, exist_ok=True)
-
-    #     with open(tmp_path, "w") as f:
-    #         json.dump(schema, f)
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -242,7 +246,7 @@ class StacValidate:
         :rtype: Dict
         """
 
-        # # # update stac version - works # # # 
+        # # # update stac version # # # 
         identify = pystac.serialization.identify_stac_object(stac_content)
         stac_content = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
         self.version = self.fix_version(stac_content[0]['stac_version'])
@@ -289,7 +293,7 @@ class StacValidate:
                 ### Recursive validate all object in a catalog or collection
                 print("Recursive: True")
                 rootlink = stac_content["links"][0]["href"]
-                print(rootlink)
+                # print(rootlink)
 
                 # # # this is an attempt to limit search but is throwing a maximum recursion depth reached error # # #
                 # link_content = pystac.read_file(rootlink)
@@ -299,8 +303,6 @@ class StacValidate:
                 #     for index, item in zip(range(limit), items):
                 #         print("item")
                 #         item.validate()
-
-                self.displayInfo(stac_content)
 
                 result = pystac.validation.validate_all(stac_content, rootlink)
 
@@ -315,12 +317,11 @@ class StacValidate:
                 self.stac_type = self.stac_type.upper()
                 result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
             else:
-                ### This method can be used to validate with custom schemas
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
-                #result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
                 result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
+            self.displayInfo(stac_content)
             message['version'] = self.version
             message["valid_stac"] = True
 
@@ -333,8 +334,6 @@ class StacValidate:
             if(self.extension):    
                 if self.extension not in extension_list:
                     raise ExtensionException
-            else:
-                pass
                           
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
