@@ -53,7 +53,7 @@ Options:
 ---
 # CLI
 
-Basic Usage  
+**Basic Usage**  
 ```    
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json
 ```
@@ -67,7 +67,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/c
     }
 ]
 ```
---version  
+**--version**  
 ```    
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json --version 0.9.0
 ```
@@ -86,7 +86,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/c
 
 
 
---extension
+**--extension**
 ```
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension sat
 ```
@@ -103,7 +103,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/i
 ```
 
 
-Testing
+**Testing**
 ```bash
 pytest -v
 ```
@@ -111,7 +111,7 @@ See the tests directory for examples on different usages.
   
 ---
 # Import stac-validator
-
+**remote source**
 ```
 from stac_validator import stac_validator
   
@@ -123,6 +123,7 @@ print(stac.message)
 if stac.message[0]["valid_stac"] == False:
     print("False")
 ```
+**local file**
 ```
 from stac_validator import stac_validator
   
