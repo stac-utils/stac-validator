@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -13,9 +13,10 @@ Options:
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --force                      Add missing 'id' or 'version 0.9.0' for older STAC objects to force validation
+    --force                      Add missing 'id' field or version='0.9.0' for older STAC objects to force validation
     --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
+    --core                       Validate on core only
 """
 
 import json
@@ -59,7 +60,7 @@ class StacValidate:
         update: bool = False,
         force: bool = False,
         recursive: bool = False,
-        
+        core: bool = False,
     ):
         """Validate a STAC file.
 
@@ -89,6 +90,7 @@ class StacValidate:
         self.force = force
         self.recursive = recursive
         self.extension = extension
+        self.core = core
 
     def fix_version(self, version: str ) -> str:
         """
@@ -214,8 +216,12 @@ class StacValidate:
         return data, err_message
 
     def displayInfo(self, stac_content):
-        """
-        Display information.
+        """Display information for cli
+
+        :param stac_content: STAC objext
+        :type dict: dict
+        :return: display information
+        :rtype: None
         """
         if self.stac_type == 'item':
             print('Stac id: ', stac_content['id'])
@@ -228,9 +234,12 @@ class StacValidate:
             print('Stac version: ', self.version)
 
     def migrate(self, stac_content) -> dict:
-        """
-        Migrate STAC to newest version 1.0.0-beta.2.
-        :return: STAC content dict
+        """Migrate STAC to newest version 1.0.0-beta.2
+        
+        :param stac_content: STAC object
+        :type str: dict
+        :return: updated STAC content
+        :rtype: Dict
         """
 
         # # # update stac version - works # # # 
@@ -300,7 +309,11 @@ class StacValidate:
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
                 result = stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version, extension_id=self.extension)
-
+            elif(self.core):
+                print("Core: True")
+                stacschema = pystac.validation.JsonSchemaSTACValidator()
+                self.stac_type = self.stac_type.upper()
+                result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
             else:
                 ### This method can be used to validate with custom schemas
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
@@ -372,11 +385,12 @@ def main():
     force = args.get("--force")
     recursive = args.get("--recursive")
     extension = args.get("--extension")
+    core = args.get("--core")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive)
+    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive, core)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
