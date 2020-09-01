@@ -38,6 +38,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.error import HTTPError
 from docopt import docopt
 from pystac.serialization import identify_stac_object
+from pystac.validation import STACValidationError
 from pystac import Item, Catalog, Collection
 from jsonschema import RefResolutionError, RefResolver, validate
 from jsonschema.exceptions import ValidationError
