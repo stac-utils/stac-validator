@@ -125,15 +125,12 @@ class StacValidate:
         # add stac version field if there isn't one
         if not 'stac_version' in stac_content:
             stac_content['stac_version'] = '0.9.0'
-            print("temporarily added stac version field v0.9.0 to try to force validation")
         if(stac_content['stac_version'] != '0.9.0'):
             stac_content['stac_version'] = '0.9.0'
-            print("temporarily changed stac version field to v0.9.0 to try to force validation")
         
         # add id field if there isn't one
         if not 'id' in stac_content:
             stac_content['id'] = 'temporary'
-            print("temporarily added stac id field to try to force validation")
 
         return stac_content
 
@@ -220,24 +217,6 @@ class StacValidate:
 
         return data, err_message
 
-    def displayInfo(self, stac_content):
-        """Display information for cli
-
-        :param stac_content: STAC objext
-        :type dict: dict
-        :return: display information
-        :rtype: None
-        """
-        if self.stac_type == 'item':
-            print('Stac id: ', stac_content['id'])
-            print('Stac version: ', self.version)
-        elif self.stac_type == 'catalog':
-            print('Catalog name: ', stac_content['id'])
-            print('Stac version: ', self.version)
-        elif self.stac_type == 'collection':
-            print('Collection name: ', stac_content['id'])
-            print('Stac version: ', self.version)
-
     def migrate(self, stac_content) -> dict:
         """Migrate STAC to newest version 1.0.0-beta.2
         
@@ -260,10 +239,11 @@ class StacValidate:
         Entry point.
         :return: message json
         """
-
+        
         message = {"path": self.stac_file}
 
         stac_content, err_message = self.fetch_and_parse_file(self.stac_file)
+        message["id"] = stac_content["id"]
 
         if err_message:
             message.update(err_message)
@@ -274,12 +254,11 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
-        print()
-
         try:
 
             if(self.force):
-                print("Force: True")
+                message["original_verson"] = self.version
+                message["force"] = True
                 stac_content = self.fix_stac_missing(stac_content)
 
             if(self.version!='missing'):
@@ -287,15 +266,16 @@ class StacValidate:
             else:
                 self.version = self.fix_version(stac_content['stac_version'])
 
-            self.displayInfo(stac_content)
-
             if(self.update):
-                print("Update: True")
+                message["original_verson"] = self.version
+                message["update"] = True
                 stac_content = self.migrate(stac_content)   
             
+            message['validated_version'] = self.version
+
             if(self.recursive):
                 # Recursively validate all object in a catalog or collection
-                print("Recursive: True")
+                message["recursive"] = True
                 rootlink = stac_content["links"][0]["href"]
 
                 # # # this is an attempt to limit search but is throwing a maximum recursion depth reached error # # #
@@ -310,12 +290,12 @@ class StacValidate:
                 result = pystac.validation.validate_all(stac_content, rootlink)
 
             elif(self.extension):
-                print("Extension: True")
+                message["extension_flag"] = self.extension
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
                 result = stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version, extension_id=self.extension)
             elif(self.core):
-                print("Core: True")
+                message["core"] = True
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
                 result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
@@ -324,10 +304,9 @@ class StacValidate:
                     schema_example, err2 = self.fetch_and_parse_file('https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json')
                     jsonschema.validate(stac_content, schema_example)
 
-                print('hello')
                 result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
-            message['version'] = self.version
+            
             message["valid_stac"] = True
 
             version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
@@ -345,10 +324,9 @@ class StacValidate:
             message["valid_stac"] = False
             message.update(self.create_err_msg("KeyError", err_msg)) 
         except VersionException as e:
-            err_msg = ("Version Not Valid: " + self.version)
+            err_msg = ("Version Not Valid (try --update): " + self.version)
             message["valid_stac"] = False
-            message.update(self.create_err_msg("VersionError", err_msg))
-            print("Version error, try --update True")  
+            message.update(self.create_err_msg("VersionError", err_msg)) 
         except ExtensionException as e:
             err_msg = ("Extension Not Valid: " + self.extension)
             message["valid_stac"] = False

@@ -22,8 +22,10 @@ def test_bad_extension_name():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json",
+            "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "chcksum",
             "valid_stac": False,
             "error_type": "ExtensionError",
             "error_message": "Extension Not Valid: chcksum"
@@ -40,8 +42,10 @@ def test_extension_checksum_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json",
+            "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "checksum",
             "valid_stac": True
         }
     ]
@@ -56,8 +60,10 @@ def test_extension_collection_assets_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/example-esm.json",
+            "id": "pangeo-cmip6",
             "asset_type": "collection",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "collection-assets",
             "valid_stac": True
         }
     ]
@@ -70,7 +76,10 @@ def test_extension_bad_collection_assets_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/bad-example-esm.json",
+            "id": "pangeo-cmip6",
             "asset_type": "collection",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "collection-assets",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID pangeo-cmip6 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/collection-assets/json-schema/schema.jsonfor STAC extension 'collection-assets'"
@@ -87,8 +96,10 @@ def test_extension_datacube_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/datacube/examples/example-item.json",
+            "id": "datacube-123",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "datacube",
             "valid_stac": True
         }
     ]
@@ -103,8 +114,10 @@ def test_extension_eo_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json",
+            "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "eo",
             "valid_stac": True
         }
     ]
@@ -117,7 +130,10 @@ def test_extension_bad_eo_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/bad-example-landsat8.json",
+            "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
             "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "eo",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID LC08_L1TP_107018_20181001_20181001_01_RT against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
@@ -132,7 +148,10 @@ def test_extension_eo_wrong_extension_sar_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/eo/examples/example-landsat8.json",
+            "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
             "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "sar",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID LC08_L1TP_107018_20181001_20181001_01_RT against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sar/json-schema/schema.jsonfor STAC extension 'sar'"
@@ -147,8 +166,10 @@ def test_extension_eo_090():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "id": "CS3-20160503_132131_05",
             "asset_type": "item",
-            "version": "0.9.0",
+            "validated_version": "0.9.0",
+            "extension_flag": "eo",
             "valid_stac": True
         }
     ]
@@ -161,7 +182,12 @@ def test_extension_eo_061():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v061.json",
+            "id": "CS3-20160503_132131_05",
             "asset_type": "item",
+            "original_verson": "missing",
+            "force": True,
+            "validated_version": "0.9.0",
+            "extension_flag": "eo",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
@@ -434,6 +460,38 @@ def test_recursive_1beta1_update():
         {
             "path": "tests/test_data/stac_examples_1beta1/catalog-items.json",
             "asset_type": "catalog",
+            "version": "1.0.0-beta.2",
+            "valid_stac": True
+        }
+    ]
+
+''' --------------------------------------------------------------------------------- '''
+''' -------------- Item / 1.0.0-beta.1 ---------------- '''
+
+# valid stac = false because no schema for 1.0.0-beta.1
+def test_good_item_1beta1():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/landsat8-sample.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta1/landsat8-sample.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "HTTP",
+            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)"
+        }
+    ]
+
+# valid stac = because although no schema for 1.0.0-beta.1, update changes to 1.0.0-beta.2
+def test_good_item_1beta1_update():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/landsat8-sample.json", update='True')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta1/landsat8-sample.json",
+            "asset_type": "item",
             "version": "1.0.0-beta.2",
             "valid_stac": True
         }

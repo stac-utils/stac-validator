@@ -61,8 +61,9 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/c
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json",
+        "id": "NAIP",
         "asset_type": "catalog",
-        "version": "1.0.0-beta.2",
+        "validated_version": "1.0.0-beta.2",
         "valid_stac": true
     }
 ]
@@ -75,7 +76,9 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/c
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json",
+        "id": "NAIP",
         "asset_type": "catalog",
+        "validated_version": "0.9.0",
         "valid_stac": false,
         "error_type": "STACValidationError",
         "error_message": "STAC Validation Error: Validation failed for CATALOG with ID NAIP against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/catalog-spec/json-schema/catalog.json"
@@ -94,7 +97,10 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/i
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
+        "id": "CS3-20160503_132131_05",
         "asset_type": "item",
+        "validated_version": "1.0.0-beta.2",
+        "extension_flag": "sat",
         "valid_stac": false,
         "error_type": "STACValidationError",
         "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sat/json-schema/schema.jsonfor STAC extension 'sat'"
