@@ -1,4 +1,4 @@
-__version__ = "0.0.2"
+__version__ = "1.0.0"
 import json
 import urllib.request
 from urllib.parse import urlparse

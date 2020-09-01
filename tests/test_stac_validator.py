@@ -14,7 +14,7 @@ from stac_validator import stac_validator
 
 ''' -- bad extension name -- '''
 
-# test bad extension name
+# test bad extension name - False on extension error
 def test_bad_extension_name():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json", extension='chcksum')
     stac.run()
@@ -34,7 +34,7 @@ def test_bad_extension_name():
 
 ''' -- checksum -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 checksum schema
+# this test indicates success. this item is correctly validated against the 1.0.0-beta.2 checksum schema
 def test_extension_checksum_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json", extension='checksum')
     stac.run()
@@ -46,6 +46,21 @@ def test_extension_checksum_1beta2():
             "asset_type": "item",
             "validated_version": "1.0.0-beta.2",
             "extension_flag": "checksum",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_checksum_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json",
+            "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -64,6 +79,21 @@ def test_extension_collection_assets_1beta2():
             "asset_type": "collection",
             "validated_version": "1.0.0-beta.2",
             "extension_flag": "collection-assets",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_collection_assets_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/example-esm.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/example-esm.json",
+            "id": "pangeo-cmip6",
+            "asset_type": "collection",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -88,7 +118,7 @@ def test_extension_bad_collection_assets_1beta2():
 
 ''' -- datacube -- '''
 
-# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 datacubeschema
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 datacube schema
 def test_extension_datacube_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/datacube/examples/example-item.json", extension='datacube')
     stac.run()
@@ -100,6 +130,21 @@ def test_extension_datacube_1beta2():
             "asset_type": "item",
             "validated_version": "1.0.0-beta.2",
             "extension_flag": "datacube",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_datacube_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/datacube/examples/example-item.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/datacube/examples/example-item.json",
+            "id": "datacube-123",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -204,8 +249,10 @@ def test_extension_item_assets_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/item-assets/examples/example-landsat8.json",
+            "id": "landsat-8-l1",
             "asset_type": "collection",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "item-assets",
             "valid_stac": True
         }
     ]
@@ -220,8 +267,9 @@ def test_extension_label_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/label/examples/multidataset/zanzibar/znz029.json",
+            "id": "znz029",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -236,8 +284,25 @@ def test_extension_pointcloud_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/example-autzen.json",
+            "id": "autzen-full.laz",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "pointcloud",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_pointcloud_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/example-autzen.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/example-autzen.json",
+            "id": "autzen-full.laz",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -250,8 +315,10 @@ def test_extension_bad_pointcloud_extension_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json",
+            "id": "autzen-full.laz",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "pointcloud",
             "valid_stac": True
         }
     ]
@@ -265,7 +332,9 @@ def test_extension_bad_pointcloud_no_extension_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json",
+            "id": "autzen-full.laz",
             "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "ValidationError",
             "error_message": "'datetime' is a required property. Error is in properties"
@@ -282,8 +351,25 @@ def test_extension_projection_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/projection/examples/example-landsat8.json",
+            "id": "LC81530252014153LGN00",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "projection",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_projection_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/projection/examples/example-landsat8.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/projection/examples/example-landsat8.json",
+            "id": "LC81530252014153LGN00",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -298,8 +384,25 @@ def test_extension_sar_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/sar/examples/envisat.json",
+            "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "sar",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_sar_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/sar/examples/envisat.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/sar/examples/envisat.json",
+            "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -314,8 +417,10 @@ def test_extension_sat_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/sat/examples/example-landsat8.json",
+            "id": "LC08_L1TP_107018_20181001",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "sat",
             "valid_stac": True
         }
     ]
@@ -330,8 +435,10 @@ def test_extension_scientific_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/scientific/examples/item.json",
+            "id": "MERRAclim.2_5m_min_80s",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "scientific",
             "valid_stac": True
         }
     ]
@@ -346,8 +453,10 @@ def test_extension_single_file_stac_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/single-file-stac/examples/example-search.json",
+            "id": "mysearchresults",
             "asset_type": "catalog",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "single-file-stac",
             "valid_stac": True
         }
     ]
@@ -362,8 +471,25 @@ def test_extension_tiled_assets_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/tiled-assets/examples/example-tiled.json",
+            "id": "s2cloudless_2018",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "tiled-assets",
+            "valid_stac": True
+        }
+    ]
+
+# this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
+def test_no_extension_tiled_assets_1beta2():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/tiled-assets/examples/example-tiled.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/extensions/tiled-assets/examples/example-tiled.json",
+            "id": "s2cloudless_2018",
+            "asset_type": "item",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -378,8 +504,10 @@ def test_extension_timestamps_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/timestamps/examples/example-landsat8.json",
+            "id": "LC08_L1TP_107018_20181001",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "timestamps",
             "valid_stac": True
         }
     ]
@@ -394,8 +522,10 @@ def test_extension_version_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/version/examples/item.json",
+            "id": "MERRAclim.2_5m_min_80s",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "version",
             "valid_stac": True
         }
     ]
@@ -720,6 +850,7 @@ def test_good_item_validation_060():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v060.json",
             "asset_type": "item",
+            "id": "20171110_121030_1013",
             "valid_stac": False,
             "error_type": "KeyError",
             "error_message": "Key Error: 'stac_version'"
@@ -735,6 +866,7 @@ def test_good_item_validation_060_with_update():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v060.json",
             "asset_type": "item",
+            "id": "20171110_121030_1013",
             "valid_stac": False,
             "error_type": "KeyError",
             "error_message": "Key Error: 'stac_version'"
@@ -750,8 +882,11 @@ def test_good_item_validation_060_with_force():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v060.json",
             "asset_type": "item",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "original_verson": "missing",
+            "force": True,
+            "id": "20171110_121030_1013",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }   
     ]
 
@@ -767,6 +902,7 @@ def test_good_item_validation_052():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v052.json",
             "asset_type": "item",
+            "id": "CBERS_4_MUX_20180713_057_122_L2",
             "valid_stac": False,
             "error_type": "KeyError",
             "error_message": "Key Error: 'stac_version'"
@@ -782,6 +918,10 @@ def test_good_item_validation_052_with_force():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v052.json",
             "asset_type": "item",
+            "original_verson": "missing",
+            "force": True,
+            "id": "CBERS_4_MUX_20180713_057_122_L2",
+            "validated_version": "0.9.0",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID CBERS_4_MUX_20180713_057_122_L2 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json"
@@ -800,6 +940,8 @@ def test_bad_schema_version_HTTP_error():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.8.2",
             "valid_stac": False,
             "error_type": "HTTP",
             "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)"
@@ -811,14 +953,15 @@ def test_bad_schema_version_HTTP_error():
 
 # this fails and gives a stac validation error. the v0.9.0 item does not validate against the v0.8.1 schema
 # @pytest.mark.item
-def test_bad_schema_verbose_validation_error():
-    #stac = _run_validate(url="tests/test_data/stac_examples_older/good_item_v090.json", version="v0.8.1")
+def test_wrong_version_schema_stac_validation_error():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.8.1')
     stac.run()
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.8.1",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.8.1/item-spec/json-schema/item.json"
@@ -837,13 +980,15 @@ def test_bad_item_validation_v1beta2_wo_version():
         {
             "path": "tests/test_data/stac_examples_1beta2/bad-sample-full.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "ValidationError",
             "error_message": "'geometry' is a required property of the root of the STAC object"
         }
     ]
 
-# bad item, no flags, valid_stac: false
+# bad item, version flags, valid_stac: false
 # @pytest.mark.item
 def test_bad_item_validation_v1beta2_with_version():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/bad-sample-full.json", version='1.0.0-beta.2')
@@ -852,6 +997,8 @@ def test_bad_item_validation_v1beta2_with_version():
         {
             "path": "tests/test_data/stac_examples_1beta2/bad-sample-full.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "ValidationError",
             "error_message": "'geometry' is a required property of the root of the STAC object"
@@ -863,7 +1010,7 @@ def test_bad_item_validation_v1beta2_with_version():
 
 # bad item, no flags, valid_stac: false
 # @pytest.mark.item
-def test_bad_item_validation_v090_verbose():
+def test_bad_item_validation_v090():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/bad_item_v090.json")
     stac.run()
     assert stac.message == [
@@ -885,7 +1032,10 @@ def test_bad_item_validation_v090_force():
         {
             "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
             "asset_type": "item",
-            "version": "0.9.0",
+            "original_verson": "missing",
+            "force": True,
+            "id": "temporary",
+            "validated_version": "0.9.0",
             "valid_stac": True
         }
     ]
@@ -902,7 +1052,7 @@ def test_missing_item():
             "path": "tests/test_data/stac_examples_older/missing_item_v090.json",
             "valid_stac": False,
             "error_type": "FileNotFoundError",
-            "error_message": "tests/test_data/stac_examples_older/missing_item_v090.json cannot be found",
+            "error_message": "tests/test_data/stac_examples_older/missing_item_v090.json cannot be found"
         }
     ]
 
@@ -915,9 +1065,10 @@ def test_catalog_master():
     stac.run()
     assert stac.message == [
         {
-            "asset_type": "catalog",
             "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json",
-            "version": "1.0.0-beta.2",
+            "id": "NAIP",
+            "asset_type": "catalog",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -926,15 +1077,15 @@ def test_catalog_master():
 ''' ------------------------------------------------- '''
 ''' -------------- Collection Master ---------------- '''
 
-# @pytest.mark.collection
 def test_collection_master():
     stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json")
     stac.run()
     assert stac.message == [
         {
-            "asset_type": "collection",
             "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/collection-spec/examples/sentinel2.json",
-            "version": "1.0.0-beta.2",
+            "id": "COPERNICUS/S2",
+            "asset_type": "collection",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -943,8 +1094,6 @@ def test_collection_master():
 ''' -------------- Version Numbering ---------------- '''
 
 # itmes should pass validation if they are in the form of '0.9.0' of 'v0.9.0'
-
-# @pytest.mark.validator
 def test_version_numbering_090():
     # Makes sure verisons without a 'v' prefix work
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='0.9.0')
@@ -952,14 +1101,14 @@ def test_version_numbering_090():
     print(stac.message)
     assert stac.message == [
         {
-            "asset_type": "item",
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }
     ]
 
-# @pytest.mark.validator
 def test_version_numbering_v090():
     # Makes sure verisons without a 'v' prefix work
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.9.0')
@@ -967,10 +1116,11 @@ def test_version_numbering_v090():
     print(stac.message)
     assert stac.message == [
         {
-            "asset_type": "item",
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }
     ]
 

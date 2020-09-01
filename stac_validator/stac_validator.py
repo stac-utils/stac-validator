@@ -28,13 +28,13 @@ import tempfile
 import pystac
 import requests
 import jsonschema
-#from concurrent import futures
-#from functools import lru_cache
+# from concurrent import futures
+# from functools import lru_cache
 from json.decoder import JSONDecodeError
-from pathlib import Path
+# from pathlib import Path
 from timeit import default_timer
 from typing import Tuple
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 from urllib.error import HTTPError
 from docopt import docopt
 from pystac.serialization import identify_stac_object
@@ -243,7 +243,6 @@ class StacValidate:
         message = {"path": self.stac_file}
 
         stac_content, err_message = self.fetch_and_parse_file(self.stac_file)
-        message["id"] = stac_content["id"]
 
         if err_message:
             message.update(err_message)
@@ -254,12 +253,16 @@ class StacValidate:
 
         message["asset_type"] = self.stac_type
 
-        try:
+        
 
+        try:
+            
             if(self.force):
                 message["original_verson"] = self.version
                 message["force"] = True
                 stac_content = self.fix_stac_missing(stac_content)
+
+            message["id"] = stac_content["id"]
 
             if(self.version!='missing'):
                 self.version = self.fix_version(self.version)
@@ -306,7 +309,6 @@ class StacValidate:
 
                 result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
-            
             message["valid_stac"] = True
 
             version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']

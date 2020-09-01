@@ -13,7 +13,9 @@ Example usages can be found below
 * Python 3.6
     * Requests
     * Docopt
-    * pytest
+    * Pytest
+    * Pystac
+    * Jsonschema
 
 ## Installation from repo
 
