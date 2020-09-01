@@ -8,7 +8,7 @@ Arguments:
     stac_file  Fully qualified path or url to a STAC file.
 
 Options:
-    -v, --version STAC_VERSION   Version to validate against. [default: master]
+    -v, --version STAC_VERSION   Version to validate against. [default: missing]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
@@ -39,7 +39,7 @@ from urllib.error import HTTPError
 from docopt import docopt
 from pystac.serialization import identify_stac_object
 from pystac import Item, Catalog, Collection
-from jsonschema import RefResolutionError, RefResolver
+from jsonschema import RefResolutionError, RefResolver, validate
 from jsonschema.exceptions import ValidationError
 
 logger = logging.getLogger(__name__)
@@ -55,7 +55,7 @@ class StacValidate:
         self,
         stac_file: str,
         extension: str = "",
-        version: str = "master",
+        version: str = "missing",
         log_level: str = "CRITICAL",
         update: bool = False,
         force: bool = False,
@@ -276,24 +276,26 @@ class StacValidate:
         print()
 
         try:
+
             if(self.force):
                 print("Force: True")
                 stac_content = self.fix_stac_missing(stac_content)
 
-            if(self.version!='master'):
+            if(self.version!='missing'):
                 self.version = self.fix_version(self.version)
             else:
                 self.version = self.fix_version(stac_content['stac_version'])
-            
+
+            self.displayInfo(stac_content)
+
             if(self.update):
                 print("Update: True")
                 stac_content = self.migrate(stac_content)   
             
             if(self.recursive):
-                ### Recursive validate all object in a catalog or collection
+                # Recursively validate all object in a catalog or collection
                 print("Recursive: True")
                 rootlink = stac_content["links"][0]["href"]
-                # print(rootlink)
 
                 # # # this is an attempt to limit search but is throwing a maximum recursion depth reached error # # #
                 # link_content = pystac.read_file(rootlink)
@@ -317,11 +319,13 @@ class StacValidate:
                 self.stac_type = self.stac_type.upper()
                 result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
             else:
-                stacschema = pystac.validation.JsonSchemaSTACValidator()
-                self.stac_type = self.stac_type.upper()
+                if self.version == '1.0.0-beta.2' and self.stac_type == 'item':
+                    schema_example, err2 = self.fetch_and_parse_file('https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json')
+                    jsonschema.validate(stac_content, schema_example)
+
+                print('hello')
                 result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
-            self.displayInfo(stac_content)
             message['version'] = self.version
             message["valid_stac"] = True
 

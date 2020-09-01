@@ -241,8 +241,8 @@ def test_extension_bad_pointcloud_no_extension_1beta2():
             "path": "tests/test_data/stac_examples_1beta2/extensions/pointcloud/examples/bad-example-autzen.json",
             "asset_type": "item",
             "valid_stac": False,
-            "error_type": "STACValidationError",
-            "error_message": "STAC Validation Error: Validation failed for ITEM with ID autzen-full.laz against schema at https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
+            "error_type": "ValidationError",
+            "error_message": "'datetime' is a required property. Error is in properties"
         }
     ]
 
@@ -768,6 +768,39 @@ def test_bad_schema_verbose_validation_error():
     ]
 
 ''' ------------------------------------------------ '''
+''' -------------- Bad Item / 1.0.0-beta.2 ---------------- '''
+
+# bad item, no flags, valid_stac: false
+# @pytest.mark.item
+def test_bad_item_validation_v1beta2_wo_version():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/bad-sample-full.json")
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/bad-sample-full.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'geometry' is a required property of the root of the STAC object"
+        }
+    ]
+
+# bad item, no flags, valid_stac: false
+# @pytest.mark.item
+def test_bad_item_validation_v1beta2_with_version():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/bad-sample-full.json", version='1.0.0-beta.2')
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta2/bad-sample-full.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'geometry' is a required property of the root of the STAC object"
+        }
+    ]
+
+''' ------------------------------------------------ '''
 ''' -------------- Bad Item / 0.9.0 ---------------- '''
 
 # bad item, no flags, valid_stac: false
@@ -780,8 +813,8 @@ def test_bad_item_validation_v090_verbose():
             "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
             "asset_type": "item",
             "valid_stac": False,
-            "error_type": "STACValidationError",
-            "error_message": "STAC Validation Error: Validation failed for ITEM against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json"
+            "error_type": "KeyError",
+            "error_message": "Key Error: 'id'"
         }
     ]
 
