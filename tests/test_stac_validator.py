@@ -22,10 +22,9 @@ def test_bad_extension_name():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/checksum/examples/sentinel1.json",
-            "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
             "asset_type": "item",
+            "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
             "validated_version": "1.0.0-beta.2",
-            "extension_flag": "chcksum",
             "valid_stac": False,
             "error_type": "ExtensionError",
             "error_message": "Extension Not Valid: chcksum"
@@ -227,10 +226,10 @@ def test_extension_eo_061():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_older/good_item_v061.json",
-            "id": "CS3-20160503_132131_05",
             "asset_type": "item",
-            "original_verson": "missing",
+            "original_version": "missing",
             "force": True,
+            "id": "CS3-20160503_132131_05",
             "validated_version": "0.9.0",
             "extension_flag": "eo",
             "valid_stac": False,
@@ -267,9 +266,10 @@ def test_extension_label_1beta2():
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/label/examples/multidataset/zanzibar/znz029.json",
-            "id": "znz029",
             "asset_type": "item",
+            "id": "znz029",
             "validated_version": "1.0.0-beta.2",
+            "extension_flag": "label",
             "valid_stac": True
         }
     ]
@@ -541,7 +541,9 @@ def test_extension_view_1beta2():
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/view/examples/example-landsat8.json",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "id": "LC08_L1TP_107018_20181001",
+            "validated_version": "1.0.0-beta.2",
+            "extension_flag": "view",
             "valid_stac": True
         }
     ]
@@ -558,7 +560,8 @@ def test_good_item_validation_1beta2_https():
         {
             "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -575,9 +578,11 @@ def test_recursive_1beta1():
         {
             "path": "tests/test_data/stac_examples_1beta1/catalog-items.json",
             "asset_type": "catalog",
+            "id": "hurricane-harvey-0831",
+            "validated_version": "1.0.0-beta.1",
             "valid_stac": False,
-            "error_type": "HTTP",
-            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)",
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid (try --update): 1.0.0-beta.1"
         }
     ]
 
@@ -590,7 +595,11 @@ def test_recursive_1beta1_update():
         {
             "path": "tests/test_data/stac_examples_1beta1/catalog-items.json",
             "asset_type": "catalog",
-            "version": "1.0.0-beta.2",
+            "id": "hurricane-harvey-0831",
+            "original_verson": "1.0.0-beta.1",
+            "update": True,
+            "validated_version": "1.0.0-beta.2",
+            "recursive": True,
             "valid_stac": True
         }
     ]
@@ -607,9 +616,11 @@ def test_good_item_1beta1():
         {
             "path": "tests/test_data/stac_examples_1beta1/landsat8-sample.json",
             "asset_type": "item",
+            "id": "LC81530252014153LGN00",
+            "validated_version": "1.0.0-beta.1",
             "valid_stac": False,
-            "error_type": "HTTP",
-            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)"
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid (try --update): 1.0.0-beta.1"
         }
     ]
 
@@ -622,7 +633,10 @@ def test_good_item_1beta1_update():
         {
             "path": "tests/test_data/stac_examples_1beta1/landsat8-sample.json",
             "asset_type": "item",
-            "version": "1.0.0-beta.2",
+            "id": "LC81530252014153LGN00",
+            "original_verson": "1.0.0-beta.1",
+            "update": True,
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -639,10 +653,11 @@ def test_catalog_v070():
         {
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset_type": "catalog",
-            "version": "0.7.0",
+            "id": "radarstac",
+            "validated_version": "0.7.0",
             "valid_stac": False,
             "error_type": "VersionError",
-            "error_message": "Version Not Valid: 0.7.0"
+            "error_message": "Version Not Valid (try --update): 0.7.0"
         }
     ]
 
@@ -655,7 +670,10 @@ def test_catalog_v070_force():
         {
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset_type": "catalog",
-            "version": "0.9.0",
+            "original_version": "0.7.0",
+            "force": True,
+            "id": "radarstac",
+            "validated_version": "0.9.0",
             "valid_stac": True
         }
     ]
@@ -669,7 +687,10 @@ def test_catalog_v070_update():
         {
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset_type": "catalog",
-            "version": "1.0.0-beta.2",
+            "id": "radarstac",
+            "original_verson": "0.7.0",
+            "update": True,
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
     ]
@@ -687,10 +708,11 @@ def test_good_collection_validation_061():
         {
             "path": "tests/test_data/stac_examples_older/good_collection_v061.json",
             "asset_type": "collection",
-            "version": "0.6.1",
+            "id": "COPERNICUS/S2",
+            "validated_version": "0.6.1",
             "valid_stac": False,
             "error_type": "VersionError",
-            "error_message": "Version Not Valid: 0.6.1"
+            "error_message": "Version Not Valid (try --update): 0.6.1"
         }
     ]
 
@@ -704,6 +726,10 @@ def test_good_collection_validation_061_update():
         {
             "path": "tests/test_data/stac_examples_older/good_collection_v061.json",
             "asset_type": "collection",
+            "id": "COPERNICUS/S2",
+            "original_verson": "0.6.1",
+            "update": True,
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
@@ -720,6 +746,10 @@ def test_good_collection_validation_061_force():
         {
             "path": "tests/test_data/stac_examples_older/good_collection_v061.json",
             "asset_type": "collection",
+            "original_version": "0.6.1",
+            "force": True,
+            "id": "COPERNICUS/S2",
+            "validated_version": "0.9.0",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/collection-spec/json-schema/collection.json"
@@ -737,10 +767,11 @@ def test_good_item_validation_v090_no_version():
     print(stac.message)
     assert stac.message == [
         {
-            "asset_type": "item",
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -752,10 +783,11 @@ def test_good_item_validation_v090_with_version():
     print(stac.message)
     assert stac.message == [
         {
-            "asset_type": "item",
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -768,10 +800,11 @@ def test_good_item_validation_090_with_version():
     print(stac.message)
     assert stac.message == [
         {
-            "asset_type": "item",
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -785,6 +818,10 @@ def test_good_item_validation_090_with_update():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
+            "original_verson": "0.9.0",
+            "update": True,
+            "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "STACValidationError",
             "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.jsonfor STAC extension 'eo'"
@@ -803,6 +840,7 @@ def test_good_item_validation_061():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v061.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
             "valid_stac": False,
             "error_type": "KeyError",
             "error_message": "Key Error: 'stac_version'"
@@ -818,6 +856,7 @@ def test_good_item_validation_061_with_update():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v061.json",
             "asset_type": "item",
+            "id": "CS3-20160503_132131_05",
             "valid_stac": False,
             "error_type": "KeyError",
             "error_message": "Key Error: 'stac_version'"
@@ -833,8 +872,11 @@ def test_good_item_validation_061_with_force():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v061.json",
             "asset_type": "item",
-            "version": "0.9.0",
-            "valid_stac": True,
+            "original_version": "missing",
+            "force": True,
+            "id": "CS3-20160503_132131_05",
+            "validated_version": "0.9.0",
+            "valid_stac": True
         }   
     ]
 
@@ -882,7 +924,7 @@ def test_good_item_validation_060_with_force():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v060.json",
             "asset_type": "item",
-            "original_verson": "missing",
+            "original_version": "missing",
             "force": True,
             "id": "20171110_121030_1013",
             "validated_version": "0.9.0",
@@ -910,7 +952,7 @@ def test_good_item_validation_052():
     ]
 
 # this test does not point to a successful outcome even with --force (which works for v0.6.0, v0.6.1)
-def test_good_item_validation_052_with_force():
+def test_good_item_validation_052_force():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v052.json", force=True)
     stac.run()
     print(stac.message)
@@ -918,7 +960,7 @@ def test_good_item_validation_052_with_force():
         {
             "path": "tests/test_data/stac_examples_older/good_item_v052.json",
             "asset_type": "item",
-            "original_verson": "missing",
+            "original_version": "missing",
             "force": True,
             "id": "CBERS_4_MUX_20180713_057_122_L2",
             "validated_version": "0.9.0",
@@ -933,7 +975,7 @@ def test_good_item_validation_052_with_force():
 
 # this fails because there is no 0.8.2 schema so it gives a http error
 # @pytest.mark.item
-def test_bad_schema_version_HTTP_error():
+def test_bad_schema_version_version_error():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.8.2')
     stac.run()
     assert stac.message == [
@@ -943,8 +985,8 @@ def test_bad_schema_version_HTTP_error():
             "id": "CS3-20160503_132131_05",
             "validated_version": "0.8.2",
             "valid_stac": False,
-            "error_type": "HTTP",
-            "error_message": "HTTP Error 404: Not Found (Possible cause, can't find schema, try --update)"
+            "error_type": "VersionError",
+            "error_message": "Version Not Valid (try --update): 0.8.2"
         }
     ]
 
@@ -1032,7 +1074,7 @@ def test_bad_item_validation_v090_force():
         {
             "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
             "asset_type": "item",
-            "original_verson": "missing",
+            "original_version": "0.9.0",
             "force": True,
             "id": "temporary",
             "validated_version": "0.9.0",

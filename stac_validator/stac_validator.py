@@ -256,25 +256,38 @@ class StacValidate:
         
 
         try:
-            
+
             if(self.force):
-                message["original_verson"] = self.version
+                if 'stac_version' in stac_content:
+                        self.version = stac_content['stac_version']        
+                message["original_version"] = self.version
                 message["force"] = True
                 stac_content = self.fix_stac_missing(stac_content)
-
+                self.version = stac_content['stac_version']
+                
             message["id"] = stac_content["id"]
 
             if(self.version!='missing'):
                 self.version = self.fix_version(self.version)
             else:
                 self.version = self.fix_version(stac_content['stac_version'])
-
+               
             if(self.update):
                 message["original_verson"] = self.version
                 message["update"] = True
                 stac_content = self.migrate(stac_content)   
             
             message['validated_version'] = self.version
+
+            version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
+            if self.version not in version_list:
+                raise VersionException
+
+            extension_list = ['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 
+                'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
+            if(self.extension):    
+                if self.extension not in extension_list:
+                    raise ExtensionException
 
             if(self.recursive):
                 # Recursively validate all object in a catalog or collection
@@ -310,16 +323,6 @@ class StacValidate:
                 result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
             message["valid_stac"] = True
-
-            version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
-            if self.version not in version_list:
-                raise VersionException
-
-            extension_list = ['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 
-                'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
-            if(self.extension):    
-                if self.extension not in extension_list:
-                    raise ExtensionException
                           
         except KeyError as e:
             err_msg = ("Key Error: " + str(e))
