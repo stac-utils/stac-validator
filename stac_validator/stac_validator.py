@@ -233,6 +233,14 @@ class StacValidate:
 
         return stac_content[0]
 
+    # http://code.activestate.com/recipes/576644-diff-two-dictionaries/
+    def diff(self, d1, d2, NO_KEY='<KEYNOTFOUND>'):
+        both = d1.keys() & d2.keys()
+        diff = {k:(d1[k], d2[k]) for k in both if d1[k] != d2[k]}
+        diff.update({k:(d1[k], NO_KEY) for k in d1.keys() - both})
+        diff.update({k:(NO_KEY, d2[k]) for k in d2.keys() - both})
+        return diff
+
     def run(self):
 
         """
@@ -252,8 +260,6 @@ class StacValidate:
         self.stac_type = self.get_stac_type(stac_content)
 
         message["asset_type"] = self.stac_type
-
-        
 
         try:
 
@@ -275,7 +281,12 @@ class StacValidate:
             if(self.update):
                 message["original_verson"] = self.version
                 message["update"] = True
-                stac_content = self.migrate(stac_content)   
+                stac_content_migrated = self.migrate(stac_content)   
+
+                diffy = self.diff(stac_content, stac_content_migrated)
+                message["diff"] = diffy
+                
+                stac_content = stac_content_migrated
             
             message['validated_version'] = self.version
 

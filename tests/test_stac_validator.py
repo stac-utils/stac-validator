@@ -598,9 +598,15 @@ def test_recursive_1beta1_update():
             "id": "hurricane-harvey-0831",
             "original_verson": "1.0.0-beta.1",
             "update": True,
+            "diff": {
+                "stac_version": (
+                    "1.0.0-beta.1",
+                    "1.0.0-beta.2"
+                )
+            },
             "validated_version": "1.0.0-beta.2",
             "recursive": True,
-            "valid_stac": True
+            "valid_stac": True,
         }
     ]
 
@@ -636,6 +642,12 @@ def test_good_item_1beta1_update():
             "id": "LC81530252014153LGN00",
             "original_verson": "1.0.0-beta.1",
             "update": True,
+            "diff": {
+                "stac_version": (
+                    "1.0.0-beta.1",
+                    "1.0.0-beta.2"
+                )
+            },
             "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
@@ -690,6 +702,16 @@ def test_catalog_v070_update():
             "id": "radarstac",
             "original_verson": "0.7.0",
             "update": True,
+            "diff": {
+                "stac_version": (
+                    "0.7.0",
+                    "1.0.0-beta.2"
+                ),
+                "stac_extensions": (
+                    "<KEYNOTFOUND>",
+                    []
+                )
+            },
             "validated_version": "1.0.0-beta.2",
             "valid_stac": True
         }
@@ -729,6 +751,16 @@ def test_good_collection_validation_061_update():
             "id": "COPERNICUS/S2",
             "original_verson": "0.6.1",
             "update": True,
+            "diff": {
+                "stac_version": (
+                    "0.6.1",
+                    "1.0.0-beta.2"
+                ),
+                "stac_extensions": (
+                    "<KEYNOTFOUND>",
+                    []
+                )
+            },
             "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "STACValidationError",
@@ -821,6 +853,78 @@ def test_good_item_validation_090_with_update():
             "id": "CS3-20160503_132131_05",
             "original_verson": "0.9.0",
             "update": True,
+            "diff": {
+                "properties": (
+                    {
+                        "datetime": "2016-05-03T13:22:30Z",
+                        "title": "A CS3 item",
+                        "license": "PDDL-1.0",
+                        "providers": [
+                            {
+                                "name": "CoolSat",
+                                "roles": [
+                                    "producer",
+                                    "licensor"
+                                ],
+                                "url": "https://cool-sat.com/"
+                            }
+                        ],
+                        "created": "2016-05-04T00:00:01Z",
+                        "updated": "2017-01-01T00:30:55Z",
+                        "view:sun_azimuth": 168.7,
+                        "eo:cloud_cover": 0.12,
+                        "view:off_nadir": 1.4,
+                        "platform": "coolsat2",
+                        "instruments": [
+                            "cool_sensor_v1"
+                        ],
+                        "eo:bands": [],
+                        "view:sun_elevation": 33.4,
+                        "eo:gsd": 0.512,
+                        "cs:type": "scene",
+                        "cs:anomalous_pixels": 0.14,
+                        "cs:earth_sun_distance": 1.014156,
+                        "cs:sat_id": "CS3",
+                        "cs:product_level": "LV1B"
+                    },
+                    {
+                        "datetime": "2016-05-03T13:22:30Z",
+                        "title": "A CS3 item",
+                        "license": "PDDL-1.0",
+                        "providers": [
+                            {
+                                "name": "CoolSat",
+                                "roles": [
+                                    "producer",
+                                    "licensor"
+                                ],
+                                "url": "https://cool-sat.com/"
+                            }
+                        ],
+                        "created": "2016-05-04T00:00:01Z",
+                        "updated": "2017-01-01T00:30:55Z",
+                        "view:sun_azimuth": 168.7,
+                        "eo:cloud_cover": 0.12,
+                        "view:off_nadir": 1.4,
+                        "platform": "coolsat2",
+                        "instruments": [
+                            "cool_sensor_v1"
+                        ],
+                        "eo:bands": [],
+                        "view:sun_elevation": 33.4,
+                        "cs:type": "scene",
+                        "cs:anomalous_pixels": 0.14,
+                        "cs:earth_sun_distance": 1.014156,
+                        "cs:sat_id": "CS3",
+                        "cs:product_level": "LV1B",
+                        "gsd": 0.512
+                    }
+                ),
+                "stac_version": (
+                    "0.9.0",
+                    "1.0.0-beta.2"
+                )
+            },
             "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
             "error_type": "STACValidationError",

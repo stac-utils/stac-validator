@@ -88,9 +88,6 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/c
 ]
 ```
 
-
-
-
 **--extension**
 ```
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension sat
@@ -110,6 +107,33 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/i
 ]
 ```
 
+**--update**
+```
+stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --update
+```
+```
+[
+    {
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "asset_type": "catalog",
+        "id": "radarstac",
+        "original_verson": "0.7.0",
+        "update": true,
+        "diff": {
+            "stac_version": [
+                "0.7.0",
+                "1.0.0-beta.2"
+            ],
+            "stac_extensions": [
+                "<KEYNOTFOUND>",
+                []
+            ]
+        },
+        "validated_version": "1.0.0-beta.2",
+        "valid_stac": true
+    }
+]
+```
 
 **Testing**
 ```bash
