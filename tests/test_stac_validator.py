@@ -9,7 +9,80 @@ import pytest
 
 from stac_validator import stac_validator
 
-''' ----------------------------------------------- '''
+''' -------------- Legacy ---------------- '''
+
+def test_legacy_v090():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", legacy=True, version='v0.9.0')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "legacy": True,
+            "validated_version": "v0.9.0"
+        }
+    ]
+
+def test_legacy_090():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", legacy=True, version='0.9.0')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "legacy": True,
+            "validated_version": "v0.9.0"
+        }
+    ]
+
+def test_legacy_bad_version_num_090():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", legacy=True, version='0.9.110')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "LegacyVersionError",
+            "error_message": "Version Not Valid (set --version): v0.9.110"
+        }
+    ]
+
+def test_legacy_bad_item_090():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/bad_item_v090.json", legacy=True, version='0.9.0')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+
+            "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'id' is a required property of the root of the STAC object"
+        }
+    ]
+
+def test_legacy_v1beta1():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/sample-full.json", legacy=True, version='v1.0.0-beta.1')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_1beta1/sample-full.json",
+            "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v1.0.0-beta.1/item.json",
+            "legacy": True,
+            "validated_version": "v1.0.0-beta.1"
+        }
+    ]
+
 ''' -------------- Extension Flag ---------------- '''
 
 ''' -- bad extension name -- '''

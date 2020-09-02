@@ -13,11 +13,11 @@ Options:
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --force                      Add missing 'id' field or version='0.9.0' for older STAC objects to force validation
+    --force                      Set version='0.9.0' and fix missing id for older objects to force validation
     --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
-    --legacy                     Validate on older schemas
+    --legacy                     Validate on older schemas, must be accompanied by --version
 """
 
 import json
@@ -29,10 +29,7 @@ import tempfile
 import pystac
 import requests
 import jsonschema
-# from concurrent import futures
-# from functools import lru_cache
 from json.decoder import JSONDecodeError
-# from pathlib import Path
 from timeit import default_timer
 from typing import Tuple
 from urllib.parse import urlparse
@@ -50,6 +47,9 @@ class VersionException(Exception):
     pass
 
 class ExtensionException(Exception):
+    pass
+
+class LegacyVersionException(Exception):
     pass
 
 class StacValidate:
@@ -140,16 +140,16 @@ class StacValidate:
 
         return stac_content
 
-    def get_stac_version(self, stac_content: dict) -> str:
-        """Identify the STAC object type
+    # def get_stac_version(self, stac_content: dict) -> str:
+    #     """Identify the STAC object type
 
-        :param stac_content: STAC content dictionary
-        :type stac_content: dict
-        :return: STAC object type
-        :rtype: str
-        """
-        stac_object = identify_stac_object(stac_content)
-        return stac_object.version_range.max_version
+    #     :param stac_content: STAC content dictionary
+    #     :type stac_content: dict
+    #     :return: STAC object type
+    #     :rtype: str
+    #     """
+    #     stac_object = identify_stac_object(stac_content)
+    #     return stac_object.version_range.max_version
 
     def get_stac_type(self, stac_content: dict) -> str:
         """Identify the STAC object type
@@ -232,7 +232,6 @@ class StacValidate:
         :rtype: Dict
         """
 
-        # # # update stac version # # # 
         identify = pystac.serialization.identify_stac_object(stac_content)
         stac_content = pystac.serialization.migrate.migrate_to_latest(stac_content, identify)
         self.version = self.fix_version(stac_content[0]['stac_version'])
@@ -250,14 +249,16 @@ class StacValidate:
     def validate_legacy(self, stac_content):
         root_schema = 'https://cdn.staclint.com/'
         # https://cdn.staclint.com/v0.6.1/item.json
-        valid_versions = ['v0.6.1', 'v0.6.0', 'v0.9.0']   
-        print(self.version)
-        print(self.stac_type)
+        if self.version[0] not in ['v']:
+            self.version = 'v' + self.version 
+        valid_versions = ['v0.4.0','v0.4.1','v0.5.0','v0.5.1','v0.5.2','v0.6.0', 'v0.6.0-rc1',
+            'v0.6.0-rc2','v0.6.1','v0.6.2','v0.7.0','v0.8.0','v0.8.0-rc1','v0.8.1','v0.9.0',
+            'v0.9.0-rc1','v0.9.0-rc2','v1.0.0-beta.1']   
         if self.version in valid_versions and self.stac_type in ['item', 'collection', 'catalog']:
-            schema_example, err2 = self.fetch_and_parse_file(root_schema + f'{self.version}/{self.stac_type}.json')
-            # message['schema'] = root_schema + f'{self.version}/{self.stac_type}.json'
-            # print(root_schema + f'{self.version}/{self.stac_type}.json')
+            schema_example, _ = self.fetch_and_parse_file(root_schema + f'{self.version}/{self.stac_type}.json')
             jsonschema.validate(stac_content, schema_example)
+        if self.version not in valid_versions:
+            raise LegacyVersionException
         return(root_schema + f'{self.version}/{self.stac_type}.json')
 
     def run(self):
@@ -282,11 +283,6 @@ class StacValidate:
 
         try:
             if(self.legacy):
-                print('hi')
-                # if(self.version!='missing'):
-                #     self.version = self.fix_version(self.version)
-                # else:
-                #     self.version = self.fix_version(stac_content['stac_version'])
                 schema = self.validate_legacy(stac_content)
                 self.message.append(message)
                 message['schema'] = schema
@@ -375,6 +371,10 @@ class StacValidate:
             err_msg = ("Version Not Valid (try --update): " + self.version)
             message["valid_stac"] = False
             message.update(self.create_err_msg("VersionError", err_msg)) 
+        except LegacyVersionException as e:
+            err_msg = ("Version Not Valid (set --version): " + self.version)
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("LegacyVersionError", err_msg)) 
         except ExtensionException as e:
             err_msg = ("Extension Not Valid: " + self.extension)
             message["valid_stac"] = False
@@ -383,10 +383,10 @@ class StacValidate:
             err_msg = (str(e) + " (Possible cause, can't find schema, try --update)")
             message["valid_stac"] = False
             message.update(self.create_err_msg("HTTP", err_msg)) 
-        # except RefResolutionError as e:
-        #     err_msg = ("JSON Reference Resolution Error.")
-        #     message["valid_stac"] = False
-        #     message.update(self.create_err_msg("RefResolutionError", err_msg))   
+        except RefResolutionError as e:
+            err_msg = ("JSON Reference Resolution Error.")
+            message["valid_stac"] = False
+            message.update(self.create_err_msg("RefResolutionError", err_msg))   
         except ValidationError as e:
             if e.absolute_path:
                 err_msg = (

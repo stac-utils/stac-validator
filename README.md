@@ -36,7 +36,7 @@ pip install stac-validator
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core] [--legacy]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -47,10 +47,11 @@ Options:
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
-    --force                      Add missing 'id' field or version='0.9.0' for older STAC objects to force validation
-    --recursive                  Recursively validate an entire collection or catalog
+    --force                      Set version='0.9.0' and fix missing id for older objects to force validation
+    --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
+    --legacy                     Validate on older schemas, must be accompanied by --version
 ```
 ---
 # CLI
@@ -131,6 +132,22 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --update
         },
         "validated_version": "1.0.0-beta.2",
         "valid_stac": true
+    }
+]
+```
+
+**--legacy** (must be accompanied by --version)
+```
+stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --legacy --version 0.7.0
+```
+```
+[
+    {
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "asset_type": "catalog",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "legacy": true,
+        "validated_version": "v0.7.0"
     }
 ]
 ```
