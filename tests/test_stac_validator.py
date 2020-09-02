@@ -763,8 +763,8 @@ def test_good_collection_validation_061_update():
             },
             "validated_version": "1.0.0-beta.2",
             "valid_stac": False,
-            "error_type": "STACValidationError",
-            "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID COPERNICUS/S2 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+            "error_type": "ValidationError",
+            "error_message": "[-180.0, -56.0, 180.0, 83.0] is not of type 'object'. Error is in extent -> spatial"
         }
     ]
 

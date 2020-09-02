@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core] [--legacy]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -17,6 +17,7 @@ Options:
     --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
+    --legacy                     Validate on older schemas
 """
 
 import json
@@ -62,6 +63,7 @@ class StacValidate:
         force: bool = False,
         recursive: bool = False,
         core: bool = False,
+        legacy: bool = False,
     ):
         """Validate a STAC file.
 
@@ -81,6 +83,9 @@ class StacValidate:
         :type recursive: bool
         :param core: bool, optional
         :type core: bool
+        :raises ValueError: [description]
+        :param legacy: bool, optional
+        :type legacy: bool
         :raises ValueError: [description]
         """
         numeric_log_level = getattr(logging, log_level.upper(), None)
@@ -102,6 +107,7 @@ class StacValidate:
         self.recursive = recursive
         self.extension = extension
         self.core = core
+        self.legacy = legacy
 
     def fix_version(self, version: str ) -> str:
         """remove v from stac_version field
@@ -241,6 +247,19 @@ class StacValidate:
         diff.update({k:(NO_KEY, d2[k]) for k in d2.keys() - both})
         return diff
 
+    def validate_legacy(self, stac_content):
+        root_schema = 'https://cdn.staclint.com/'
+        # https://cdn.staclint.com/v0.6.1/item.json
+        valid_versions = ['v0.6.1', 'v0.6.0', 'v0.9.0']   
+        print(self.version)
+        print(self.stac_type)
+        if self.version in valid_versions and self.stac_type in ['item', 'collection', 'catalog']:
+            schema_example, err2 = self.fetch_and_parse_file(root_schema + f'{self.version}/{self.stac_type}.json')
+            # message['schema'] = root_schema + f'{self.version}/{self.stac_type}.json'
+            # print(root_schema + f'{self.version}/{self.stac_type}.json')
+            jsonschema.validate(stac_content, schema_example)
+        return(root_schema + f'{self.version}/{self.stac_type}.json')
+
     def run(self):
 
         """
@@ -262,7 +281,19 @@ class StacValidate:
         message["asset_type"] = self.stac_type
 
         try:
-
+            if(self.legacy):
+                print('hi')
+                # if(self.version!='missing'):
+                #     self.version = self.fix_version(self.version)
+                # else:
+                #     self.version = self.fix_version(stac_content['stac_version'])
+                schema = self.validate_legacy(stac_content)
+                self.message.append(message)
+                message['schema'] = schema
+                message["legacy"] = True
+                message['validated_version'] = self.version
+                return json.dumps(self.message)
+            
             if(self.force):
                 if 'stac_version' in stac_content:
                         self.version = stac_content['stac_version']        
@@ -290,9 +321,10 @@ class StacValidate:
             
             message['validated_version'] = self.version
 
-            version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
-            if self.version not in version_list:
-                raise VersionException
+            if(self.legacy == False):
+                version_list = ['0.8.0', '0.8.1', '0.9.0', '1.0.0-beta.2']
+                if self.version not in version_list:
+                    raise VersionException
 
             extension_list = ['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 
                 'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
@@ -300,6 +332,7 @@ class StacValidate:
                 if self.extension not in extension_list:
                     raise ExtensionException
 
+            
             if(self.recursive):
                 # Recursively validate all object in a catalog or collection
                 message["recursive"] = True
@@ -314,24 +347,23 @@ class StacValidate:
                 #         print("item")
                 #         item.validate()
 
-                result = pystac.validation.validate_all(stac_content, rootlink)
-
+                pystac.validation.validate_all(stac_content, rootlink)
             elif(self.extension):
                 message["extension_flag"] = self.extension
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
-                result = stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version, extension_id=self.extension)
+                stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version, extension_id=self.extension)
             elif(self.core):
                 message["core"] = True
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.stac_type.upper()
-                result = stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
+                stacschema.validate_core(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.version)
             else:
-                if self.version == '1.0.0-beta.2' and self.stac_type == 'item':
-                    schema_example, err2 = self.fetch_and_parse_file('https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json')
+                root_schema = 'https://schemas.stacspec.org/v1.0.0-beta.2/'
+                if self.version == '1.0.0-beta.2' and self.stac_type in ['item', 'collection', 'catalog']:
+                    schema_example, err2 = self.fetch_and_parse_file(root_schema + f'{self.stac_type}-spec/json-schema/{self.stac_type}.json')
                     jsonschema.validate(stac_content, schema_example)
-
-                result = pystac.validation.validate_dict(stac_content, stac_version=self.version)
+                pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
             message["valid_stac"] = True
                           
@@ -351,10 +383,10 @@ class StacValidate:
             err_msg = (str(e) + " (Possible cause, can't find schema, try --update)")
             message["valid_stac"] = False
             message.update(self.create_err_msg("HTTP", err_msg)) 
-        except RefResolutionError as e:
-            err_msg = ("JSON Reference Resolution Error.")
-            message["valid_stac"] = False
-            message.update(self.create_err_msg("RefResolutionError", err_msg))   
+        # except RefResolutionError as e:
+        #     err_msg = ("JSON Reference Resolution Error.")
+        #     message["valid_stac"] = False
+        #     message.update(self.create_err_msg("RefResolutionError", err_msg))   
         except ValidationError as e:
             if e.absolute_path:
                 err_msg = (
@@ -384,11 +416,12 @@ def main():
     recursive = args.get("--recursive")
     extension = args.get("--extension")
     core = args.get("--core")
+    legacy = args.get("--legacy")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive, core)
+    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive, core, legacy)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)
