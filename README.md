@@ -48,7 +48,7 @@ Options:
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
     --force                      Add missing 'id' field or version='0.9.0' for older STAC objects to force validation
-    --recursive                  Recursively validate an entire collection or catalog.
+    --recursive                  Recursively validate an entire collection or catalog
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
 ```
