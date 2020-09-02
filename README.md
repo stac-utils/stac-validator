@@ -42,7 +42,7 @@ Arguments:
     stac_file  Fully qualified path or url to a STAC file.
 
 Options:
-    -v, --version STAC_VERSION   Version to validate against. [default: master]
+    -v, --version STAC_VERSION   Version to validate against. [default: missing]
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
