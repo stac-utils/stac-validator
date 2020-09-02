@@ -9,6 +9,38 @@ import pytest
 
 from stac_validator import stac_validator
 
+''' -------------- Custom ---------------- '''
+
+def test_custom_item_v090():
+    schema = 'https://cdn.staclint.com/v0.9.0/item.json'
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", custom=schema)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v090.json",
+            "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "custom": True,
+            "valid_stac": True
+        }
+    ]
+
+def test_custom_bad_item_v090():
+    schema = 'https://cdn.staclint.com/v0.9.0/item.json'
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/bad_item_v090.json", custom=schema)
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
+            "asset_type": "item",
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'id' is a required property of the root of the STAC object"
+        }
+    ]
+
 ''' -------------- Legacy ---------------- '''
 
 def test_legacy_v090():
@@ -21,7 +53,8 @@ def test_legacy_v090():
             "asset_type": "item",
             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
             "legacy": True,
-            "validated_version": "v0.9.0"
+            "validated_version": "v0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -35,7 +68,8 @@ def test_legacy_090():
             "asset_type": "item",
             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
             "legacy": True,
-            "validated_version": "v0.9.0"
+            "validated_version": "v0.9.0",
+            "valid_stac": True
         }
     ]
 
@@ -69,6 +103,21 @@ def test_legacy_bad_item_090():
         }
     ]
 
+def test_legacy_v052():
+    stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v052.json", legacy=True, version='0.5.2')
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/stac_examples_older/good_item_v052.json",
+            "asset_type": "item",
+            "schema": "https://cdn.staclint.com/v0.5.2/item.json",
+            "legacy": True,
+            "validated_version": "v0.5.2",
+            "valid_stac": True
+        }
+    ]
+
 def test_legacy_v1beta1():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta1/sample-full.json", legacy=True, version='v1.0.0-beta.1')
     stac.run()
@@ -79,7 +128,8 @@ def test_legacy_v1beta1():
             "asset_type": "item",
             "schema": "https://cdn.staclint.com/v1.0.0-beta.1/item.json",
             "legacy": True,
-            "validated_version": "v1.0.0-beta.1"
+            "validated_version": "v1.0.0-beta.1",
+            "valid_stac": True
         }
     ]
 
@@ -621,7 +671,6 @@ def test_extension_view_1beta2():
         }
     ]
 
-''' ---------------------------------------------------------------------- '''
 ''' -------------- Item / 1.0.0-beta.2 / https / no flags ---------------- '''
 
 # this item passes because it is version 1.0.0-beta.2
@@ -639,7 +688,6 @@ def test_good_item_validation_1beta2_https():
         }
     ]
 
-''' --------------------------------------------------------------------------------- '''
 ''' -------------- Catalog / Recursive / Validate All / 1.0.0-beta.1 ---------------- '''
 
 # this test indicates a failure. pystac will not validate 1.0.0-beta.1. --update flag will change version to 1.0.0-beta.2 in next test
@@ -683,7 +731,6 @@ def test_recursive_1beta1_update():
         }
     ]
 
-''' --------------------------------------------------------------------------------- '''
 ''' -------------- Item / 1.0.0-beta.1 ---------------- '''
 
 # valid stac = false because no schema for 1.0.0-beta.1
@@ -726,7 +773,6 @@ def test_good_item_1beta1_update():
         }
     ]
 
-''' --------------------------------------------------------------- '''
 ''' -------------- Catalog / 0.7.0 / not recursive ---------------- '''
 
 # this should return a version error, this is without recursion, pystac does not test against 0.7.0 schema
@@ -790,7 +836,6 @@ def test_catalog_v070_update():
         }
     ]
 
-''' ------------------------------------------------------------------ '''
 ''' -------------- Collection / 0.6.1 / not recursive ---------------- '''
 
 # test 0.6.1 collection gives Version Error
@@ -861,7 +906,6 @@ def test_good_collection_validation_061_force():
         }
     ]
 
-''' -------------------------------------------- '''
 ''' -------------- Item / 0.9.0 ---------------- '''
 
 # test 0.9.0 item without --version
@@ -1005,7 +1049,6 @@ def test_good_item_validation_090_with_update():
         }
     ]
 
-''' -------------------------------------------- '''
 ''' -------------- Item / 0.6.1 ---------------- '''
 
 # this test points to a failure because pystac does not work with v0.6.1
@@ -1057,7 +1100,6 @@ def test_good_item_validation_061_with_force():
         }   
     ]
 
-''' -------------------------------------------- '''
 ''' -------------- Item / 0.6.0 ---------------- '''
 
 # this test points to a failure because pystac does not work with v0.6.0
@@ -1109,7 +1151,6 @@ def test_good_item_validation_060_with_force():
         }   
     ]
 
-''' -------------------------------------------- '''
 ''' -------------- Item / 0.5.2 ---------------- '''
 
 # this test points to a failure because pystac does not work with v0.5.2
@@ -1147,7 +1188,6 @@ def test_good_item_validation_052_force():
         } 
     ]
 
-''' ---------------------------------------------------------------------------- '''
 ''' -------------- HTTP error / wrong version can't find schema ---------------- '''
 
 # this fails because there is no 0.8.2 schema so it gives a http error
@@ -1167,7 +1207,6 @@ def test_bad_schema_version_version_error():
         }
     ]
 
-''' ----------------------------------------------------- '''
 ''' -------------- STAC Validation error ---------------- '''
 
 # this fails and gives a stac validation error. the v0.9.0 item does not validate against the v0.8.1 schema
@@ -1187,7 +1226,6 @@ def test_wrong_version_schema_stac_validation_error():
         }
     ]
 
-''' ------------------------------------------------ '''
 ''' -------------- Bad Item / 1.0.0-beta.2 ---------------- '''
 
 # bad item, no flags, valid_stac: false
@@ -1224,7 +1262,6 @@ def test_bad_item_validation_v1beta2_with_version():
         }
     ]
 
-''' ------------------------------------------------ '''
 ''' -------------- Bad Item / 0.9.0 ---------------- '''
 
 # bad item, no flags, valid_stac: false
@@ -1259,7 +1296,6 @@ def test_bad_item_validation_v090_force():
         }
     ]
 
-''' -------------------------------------------- '''
 ''' -------------- Missing Item ---------------- '''
 
 # @pytest.mark.item
@@ -1275,7 +1311,7 @@ def test_missing_item():
         }
     ]
 
-''' ---------------------------------------------- '''
+
 ''' -------------- Catalog Master ---------------- '''
 
 # @pytest.mark.catalog
@@ -1293,7 +1329,6 @@ def test_catalog_master():
     ]
 
 
-''' ------------------------------------------------- '''
 ''' -------------- Collection Master ---------------- '''
 
 def test_collection_master():
@@ -1309,7 +1344,6 @@ def test_collection_master():
         }
     ]
 
-''' ------------------------------------------------- '''
 ''' -------------- Version Numbering ---------------- '''
 
 # itmes should pass validation if they are in the form of '0.9.0' of 'v0.9.0'
@@ -1343,7 +1377,6 @@ def test_version_numbering_v090():
         }
     ]
 
-''' -------------------------------------------------------- '''
 ''' -------------- Test Folder - Good Items ---------------- '''
 
 # @pytest.mark.smoke

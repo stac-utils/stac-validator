@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core] [--legacy]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] 
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -12,7 +12,8 @@ Options:
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
-    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
+    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]  
+    --custom CUSTOM              Validate against a custom schema whether local or remote
     --force                      Set version='0.9.0' and fix missing id for older objects to force validation
     --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
@@ -64,6 +65,7 @@ class StacValidate:
         recursive: bool = False,
         core: bool = False,
         legacy: bool = False,
+        custom: str = "",
     ):
         """Validate a STAC file.
 
@@ -83,10 +85,10 @@ class StacValidate:
         :type recursive: bool
         :param core: bool, optional
         :type core: bool
-        :raises ValueError: [description]
         :param legacy: bool, optional
         :type legacy: bool
-        :raises ValueError: [description]
+        :param schema: custom schema to validate against
+        :type schema: str, optional
         """
         numeric_log_level = getattr(logging, log_level.upper(), None)
         if not isinstance(numeric_log_level, int):
@@ -108,6 +110,7 @@ class StacValidate:
         self.extension = extension
         self.core = core
         self.legacy = legacy
+        self.custom = custom
 
     def fix_version(self, version: str ) -> str:
         """remove v from stac_version field
@@ -140,16 +143,16 @@ class StacValidate:
 
         return stac_content
 
-    # def get_stac_version(self, stac_content: dict) -> str:
-    #     """Identify the STAC object type
+    def get_stac_version(self, stac_content: dict) -> str:
+        """Identify the STAC object type
 
-    #     :param stac_content: STAC content dictionary
-    #     :type stac_content: dict
-    #     :return: STAC object type
-    #     :rtype: str
-    #     """
-    #     stac_object = identify_stac_object(stac_content)
-    #     return stac_object.version_range.max_version
+        :param stac_content: STAC content dictionary
+        :type stac_content: dict
+        :return: STAC object type
+        :rtype: str
+        """
+        stac_object = identify_stac_object(stac_content)
+        return stac_object.version_range.max_version
 
     def get_stac_type(self, stac_content: dict) -> str:
         """Identify the STAC object type
@@ -247,8 +250,15 @@ class StacValidate:
         return diff
 
     def validate_legacy(self, stac_content):
+        """Validate legacy schemas
+        
+        :param stac_content: STAC object
+        :type str: dict
+        :return: string representing schema location
+        :rtype: str
+        """
         root_schema = 'https://cdn.staclint.com/'
-        # https://cdn.staclint.com/v0.6.1/item.json
+
         if self.version[0] not in ['v']:
             self.version = 'v' + self.version 
         valid_versions = ['v0.4.0','v0.4.1','v0.5.0','v0.5.1','v0.5.2','v0.6.0', 'v0.6.0-rc1',
@@ -282,12 +292,22 @@ class StacValidate:
         message["asset_type"] = self.stac_type
 
         try:
+            if(self.custom):
+                schema, _ = self.fetch_and_parse_file(self.custom)
+                jsonschema.validate(stac_content, schema)
+                self.message.append(message)
+                message['schema'] = self.custom
+                message["custom"] = True
+                message["valid_stac"] = True
+                return json.dumps(self.message)
+
             if(self.legacy):
                 schema = self.validate_legacy(stac_content)
                 self.message.append(message)
                 message['schema'] = schema
                 message["legacy"] = True
                 message['validated_version'] = self.version
+                message["valid_stac"] = True
                 return json.dumps(self.message)
             
             if(self.force):
@@ -357,7 +377,7 @@ class StacValidate:
             else:
                 root_schema = 'https://schemas.stacspec.org/v1.0.0-beta.2/'
                 if self.version == '1.0.0-beta.2' and self.stac_type in ['item', 'collection', 'catalog']:
-                    schema_example, err2 = self.fetch_and_parse_file(root_schema + f'{self.stac_type}-spec/json-schema/{self.stac_type}.json')
+                    schema_example, _ = self.fetch_and_parse_file(root_schema + f'{self.stac_type}-spec/json-schema/{self.stac_type}.json')
                     jsonschema.validate(stac_content, schema_example)
                 pystac.validation.validate_dict(stac_content, stac_version=self.version)
     
@@ -417,11 +437,12 @@ def main():
     extension = args.get("--extension")
     core = args.get("--core")
     legacy = args.get("--legacy")
+    custom = args.get("--custom")
 
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive, core, legacy)
+    stac = StacValidate(stac_file, extension, version, log_level, update, force, recursive, core, legacy, custom)
 
     _ = stac.run()
     shutil.rmtree(stac.dirpath)

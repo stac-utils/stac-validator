@@ -36,7 +36,7 @@ pip install stac-validator
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--update] [--force] [--extension EXTENSION] [--core] [--legacy]
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] 
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -46,7 +46,8 @@ Options:
     -h, --help                   Show this screen.
     --timer                      Reports time to validate the STAC. (seconds)
     --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
-    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
+    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]  
+    --custom CUSTOM              Validate against a custom schema whether local or remote
     --force                      Set version='0.9.0' and fix missing id for older objects to force validation
     --recursive                  Recursively validate an entire collection or catalog.
     --extension EXTENSION        Validate an extension
@@ -136,6 +137,24 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --update
 ]
 ```
 
+**--force** 
+```
+stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --force
+```
+```
+[
+    {
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "asset_type": "catalog",
+        "original_version": "0.7.0",
+        "force": true,
+        "id": "radarstac",
+        "validated_version": "0.9.0",
+        "valid_stac": true
+    }
+]
+```
+
 **--legacy** (must be accompanied by --version)
 ```
 stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --legacy --version 0.7.0
@@ -151,6 +170,24 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --legacy --v
     }
 ]
 ```
+
+**--custom**
+```
+stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
+```
+```
+[
+    {
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "asset_type": "catalog",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "custom": true,
+        "valid_stac": true
+    }
+]
+```
+
+
 
 **Testing**
 ```bash
