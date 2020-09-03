@@ -8,7 +8,7 @@ except ImportError:
 
 req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirements.txt")
 
-__version__ = '0.8.9'
+__version__ = '1.0.1'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -34,7 +34,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
-    download_url="https://github.com/sparkgeo/stac-validator/archive/v0.8.9.tar.gz",
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v1.0.1.tar.gz",
     install_requires=[
         'requests',
         'pytest',
