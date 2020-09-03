@@ -1362,8 +1362,8 @@ def test_version_numbering_090():
         }
     ]
 
+# Makes sure verisons without a 'v' prefix work
 def test_version_numbering_v090():
-    # Makes sure verisons without a 'v' prefix work
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", version='v0.9.0')
     stac.run()
     print(stac.message)

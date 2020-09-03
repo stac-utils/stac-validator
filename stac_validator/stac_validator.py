@@ -87,8 +87,8 @@ class StacValidate:
         :type core: bool
         :param legacy: bool, optional
         :type legacy: bool
-        :param schema: custom schema to validate against
-        :type schema: str, optional
+        :param custom: custom schema to validate against
+        :type custom: str, optional
         """
         numeric_log_level = getattr(logging, log_level.upper(), None)
         if not isinstance(numeric_log_level, int):
@@ -243,6 +243,13 @@ class StacValidate:
 
     # http://code.activestate.com/recipes/576644-diff-two-dictionaries/
     def diff(self, d1, d2, NO_KEY='<KEYNOTFOUND>'):
+        """Output difference between two dictionaries
+        
+        :param d1, d2: dictionaries
+        :type str: dict
+        :return: dict representing the difference 
+        :rtype: str: dict
+        """
         both = d1.keys() & d2.keys()
         diff = {k:(d1[k], d2[k]) for k in both if d1[k] != d2[k]}
         diff.update({k:(d1[k], NO_KEY) for k in d1.keys() - both})
@@ -350,19 +357,8 @@ class StacValidate:
 
             
             if(self.recursive):
-                # Recursively validate all object in a catalog or collection
                 message["recursive"] = True
                 rootlink = stac_content["links"][0]["href"]
-
-                # # # this is an attempt to limit search but is throwing a maximum recursion depth reached error # # #
-                # link_content = pystac.read_file(rootlink)
-                # for root, _, items in link_content.walk():
-                #     root.validate()
-                #     limit = 3
-                #     for index, item in zip(range(limit), items):
-                #         print("item")
-                #         item.validate()
-
                 pystac.validation.validate_all(stac_content, rootlink)
             elif(self.extension):
                 message["extension_flag"] = self.extension
@@ -451,7 +447,6 @@ def main():
 
     if timer:
         print(f"Validator took {default_timer() - start:.2f} seconds")
-
 
 if __name__ == "__main__":
     main()
