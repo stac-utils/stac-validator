@@ -8,7 +8,7 @@ except ImportError:
 
 req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirements.txt")
 
-__version__ = open("./VERSION", "r").read().strip()
+__version__ = '1.0.0'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -34,6 +34,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v1.0.0.tar.gz",
     install_requires=requires,
     packages=["stac_validator"],
     entry_points={"console_scripts": ["stac_validator = stac_validator.stac_validator:main"]},
