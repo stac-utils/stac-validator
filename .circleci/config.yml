@@ -1,11 +1,6 @@
-version: 2
+cirlcversion: 2
 jobs:
   build:
-    branches:
-      only:
-        - dev
-        - master
-        - ci
     working_directory: ~/circleci/stac-validator
     docker:
       - image: circleci/python:3.6.4
@@ -16,8 +11,11 @@ jobs:
       - restore_cache:
           key: v1-python-requirements-{{ checksum "requirements.txt" }}
       - run:
-          command: |
-            pip install -r requirements.txt
+          name: install pytest
+          command:  pip install pytest
+      - run:
+          name: install requirements
+          command:  pip install -r requirements.txt
       - save_cache:
           key: v1-python-requirements-{{ checksum "requirements.txt" }}
           paths:

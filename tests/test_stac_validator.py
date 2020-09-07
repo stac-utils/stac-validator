@@ -73,12 +73,14 @@ def test_legacy_090():
         }
     ]
 
+
 def test_legacy_bad_version_num_090():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_older/good_item_v090.json", legacy=True, version='0.9.110')
     stac.run()
     print(stac.message)
     assert stac.message == [
         {
+
 
             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
             "asset_type": "item",
@@ -205,6 +207,7 @@ def test_extension_collection_assets_1beta2():
         }
     ]
 
+
 # this test indicates sucess. this item is correctly validated against the 1.0.0-beta.2 schema
 def test_no_extension_collection_assets_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/collection-assets/examples/example-esm.json")
@@ -237,6 +240,7 @@ def test_extension_bad_collection_assets_1beta2():
             "error_message": "STAC Validation Error: Validation failed for COLLECTION with ID pangeo-cmip6 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/collection-assets/json-schema/schema.jsonfor STAC extension 'collection-assets'"
         }
     ]
+
 
 ''' -- datacube -- '''
 
@@ -368,6 +372,7 @@ def test_extension_item_assets_1beta2():
     stac = stac_validator.StacValidate("tests/test_data/stac_examples_1beta2/extensions/item-assets/examples/example-landsat8.json", extension='item-assets')
     stac.run()
     print(stac.message)
+
     assert stac.message == [
         {
             "path": "tests/test_data/stac_examples_1beta2/extensions/item-assets/examples/example-landsat8.json",

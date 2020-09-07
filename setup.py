@@ -16,6 +16,10 @@ with open("README.md", "r") as fh:
 with open(req_path) as f:
     requires = f.read().splitlines()
 
+extra_reqs = {
+    "test": ["pytest"],
+}
+
 setup(
     name="stac_validator",
     version=__version__,
@@ -34,6 +38,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
+
     download_url="https://github.com/sparkgeo/stac-validator/archive/v1.0.1.tar.gz",
     install_requires=[
         'requests',
@@ -47,4 +52,5 @@ setup(
     packages=["stac_validator"],
     entry_points={"console_scripts": ["stac_validator = stac_validator.stac_validator:main"]},
     tests_require=["pytest"],
+
 )
