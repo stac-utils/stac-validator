@@ -13,7 +13,6 @@ Example usages can be found below.
 * Python 3.6
     * Requests
     * Docopt
-
     * Pytest
     * Pystac
     * Jsonschema
@@ -22,7 +21,6 @@ Example usages can be found below.
 ## Installation from repo
 
 ```bash
-
 pip install .
 or (for development)
 pip install --editable .  
@@ -57,7 +55,20 @@ Options:
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
     --legacy                     Validate on older schemas, must be accompanied by --version
+```  
+
+## versions supported
 ```
+default: ['0.8.0','0.8.1','0.9.0','1.0.0-beta.2']  
+legacy: ['0.4.0','0.4.1','0.5.0','0.5.1','0.5.2','0.6.0','0.6.0-rc1','0.6.0-rc2','0.6.1','0.6.2',
+'0.7.0','0.8.0','0.8.0-rc1','0.8.1','0.9.0', '0.9.0-rc1','0.9.0-rc2','1.0.0-beta.1'] 
+```
+
+## extensions supported
+```
+['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
+```
+
 ---
 # CLI
 
