@@ -66,7 +66,8 @@ legacy: ['0.4.0','0.4.1','0.5.0','0.5.1','0.5.2','0.6.0','0.6.0-rc1','0.6.0-rc2'
 
 ## extensions supported
 ```
-['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
+['checksum','collection-assets','datacube','eo','item-assets','label','pointcloud','projection',
+'sar','sat','scientific','single-file-stac','tiled-assets','timestamps','version','view']
 ```
 
 ---
