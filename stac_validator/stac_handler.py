@@ -7,7 +7,6 @@ __author__ = "James Banting"
 import logging
 import json
 import uuid
-# from stac_validator import stac_validator
 import stac_validator
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

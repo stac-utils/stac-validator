@@ -31,7 +31,7 @@ from pathlib import Path
 from timeit import default_timer
 from urllib.parse import urljoin, urlparse
 import pystac
-
+import pystac.validation
 import requests
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
@@ -119,6 +119,8 @@ class StacValidate:
         else:
             spec_name = "item"
 
+        if self.stac_version == 'v1.0.0-beta.2':
+            self.stac_version = '1.0.0-beta.2'
         if self.stac_version == '1.0.0-beta.2':
             valid_dir = True
         elif self.stac_spec_dirs is None:
