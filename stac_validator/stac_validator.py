@@ -30,12 +30,13 @@ from json.decoder import JSONDecodeError
 from pathlib import Path
 from timeit import default_timer
 from urllib.parse import urljoin, urlparse
+import pystac
 
 import requests
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
 
-from .stac_utilities import StacVersion
+from stac_utilities import StacVersion
 
 logger = logging.getLogger(__name__)
 
@@ -118,7 +119,9 @@ class StacValidate:
         else:
             spec_name = "item"
 
-        if self.stac_spec_dirs is None:
+        if self.stac_version == '1.0.0-beta.2':
+            valid_dir = True
+        elif self.stac_spec_dirs is None:
             try:
                 logging.debug("Gathering STAC specs from remote.")
                 url = getattr(StacVersion, f"{spec_name}_schema_url")
@@ -190,7 +193,10 @@ class StacValidate:
                     "file://" + self.dirpath + "/geojson.json#definitions/feature"
                 )
             logging.info("Validating STAC")
-            validate(stac_content, stac_schema)
+            if self.stac_version=='1.0.0-beta.2':
+                pystac.validation.validate_dict(stac_content, stac_version=self.stac_version)
+            else:
+                validate(stac_content, stac_schema)
             return True, None
         except RefResolutionError as error:
             # See https://github.com/Julian/jsonschema/issues/362
