@@ -119,9 +119,11 @@ class StacValidate:
         else:
             spec_name = "item"
 
-        if self.stac_version == 'v1.0.0-beta.2':
-            self.stac_version = '1.0.0-beta.2'
-        if self.stac_version == '1.0.0-beta.2':
+        pystacVersions1 = ['v0.8.0','v0.8.1','v0.9.0','v1.0.0-beta.2']  
+        pystacVersions2 = ['0.8.0','0.8.1','0.9.0','1.0.0-beta.2']
+        if self.stac_version in pystacVersions1:
+            self.stac_version = self.stac_version[1:]
+        if self.stac_version in pystacVersions2:
             valid_dir = True
         elif self.stac_spec_dirs is None:
             try:
@@ -195,7 +197,8 @@ class StacValidate:
                     "file://" + self.dirpath + "/geojson.json#definitions/feature"
                 )
             logging.info("Validating STAC")
-            if self.stac_version=='1.0.0-beta.2':
+            pystacVersions = ['0.8.0','0.8.1','0.9.0','1.0.0-beta.2']  
+            if self.stac_version in pystacVersions:
                 pystac.validation.validate_dict(stac_content, stac_version=self.stac_version)
             else:
                 validate(stac_content, stac_schema)
