@@ -35,6 +35,7 @@ def handler(event, context):
     json_STAC = event.get('json')
     url_STAC = event.get('url')
     version = event.get('schemaVersion', None)
+    extension = event.get('schemaExtension', None)
     log_level="DEBUG"
     verbose=True
     stac_spec_dirs=None
@@ -55,7 +56,7 @@ def handler(event, context):
     else:
         stac_file = url_STAC
 
-    stac = stac_validator.StacValidate(stac_file, stac_spec_dirs, version, log_level, follow)
+    stac = stac_validator.StacValidate(stac_file, stac_spec_dirs, version, log_level, follow, extension)
     _ = stac.run(1)
     logger.info(stac.message)
     return stac.message[0]

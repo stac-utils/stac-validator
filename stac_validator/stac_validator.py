@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--spec_dirs STAC_SPEC_DIRS] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL] [--follow]
+    stac_validator <stac_file> [--spec_dirs STAC_SPEC_DIRS] [--version STAC_VERSION] [--threads NTHREADS] [--verbose] [--timer] [--log_level LOGLEVEL] [--follow] [--extension EXTENSION]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -16,6 +16,7 @@ Options:
     --timer                      Reports time to validate the STAC. (seconds)
     --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]
     --follow                     Follow any child links and validate those links. [default: False]
+    --extension EXTENSION       Validate an extension
 """
 
 import json
@@ -32,6 +33,7 @@ from timeit import default_timer
 from urllib.parse import urljoin, urlparse
 import pystac
 import pystac.validation
+from pystac.serialization import identify_stac_object
 import requests
 from docopt import docopt
 from jsonschema import RefResolutionError, RefResolver, ValidationError, validate
@@ -46,7 +48,7 @@ class VersionException(Exception):
 
 
 class StacValidate:
-    def __init__(self, stac_file, stac_spec_dirs=None, version="master", log_level="CRITICAL", follow=False):
+    def __init__(self, stac_file, stac_spec_dirs=None, version="master", log_level="CRITICAL", follow=False, extension=None):
         """
         Validate a STAC file.
         :param stac_file: File to validate
@@ -85,6 +87,7 @@ class StacValidate:
             "items": {"valid": 0, "invalid": 0},
             "unknown": 0,
         }
+        self.extension = extension
 
     @staticmethod
     def check_none(input):
@@ -181,6 +184,16 @@ class StacValidate:
 
         return spec
 
+    def get_stac_type(self, stac_content: dict) -> str:
+        """Identify the STAC object type
+        :param stac_content: STAC content dictionary
+        :type stac_content: dict
+        :return: STAC object type
+        :rtype: str
+        """
+        stac_object = identify_stac_object(stac_content)
+        return stac_object.object_type.lower()
+
     def validate_json(self, stac_content, stac_schema):
         """
         Validate STAC.
@@ -188,6 +201,10 @@ class StacValidate:
         :param stac_schema of STAC (item, catalog, collection)
         :return: validation message
         """
+        print(json.dumps(stac_content, indent=4))
+
+        #valid - python3 stac_validator.py https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension eo --version 1.0.0-beta.2
+        #invalid - python3 stac_validator.py https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension eo --version 0.9.0
 
         try:
             if "title" in stac_schema and "item" in stac_schema["title"].lower():
@@ -197,8 +214,28 @@ class StacValidate:
                     "file://" + self.dirpath + "/geojson.json#definitions/feature"
                 )
             logging.info("Validating STAC")
+
             pystacVersions = ['0.8.0','0.8.1','0.9.0','1.0.0-beta.2']  
-            if self.stac_version in pystacVersions:
+            extension_list = ['checksum', 'collection-assets', 'datacube', 'eo', 'item-assets', 'label', 'pointcloud', 
+                'projection', 'sar', 'sat', 'scientific', 'single-file-stac', 'tiled-assets', 'timestamps', 'version', 'view']
+            if(self.extension):    
+                # if self.extension not in extension_list:
+                #     raise ExtensionException
+                if self.extension in extension_list:
+                    print(self.extension)
+
+            print(self.extension)
+            # print(self.stac_version)
+            if(self.extension):
+                # message["extension_flag"] = self.extension
+                stacschema = pystac.validation.JsonSchemaSTACValidator()
+                self.stac_type = self.get_stac_type(stac_content)
+                print(self.stac_type)
+                print("here")
+                self.stac_type = self.stac_type.upper()
+                # self.stac_version = '1.0.0-beta.2'
+                stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.stac_version, extension_id=self.extension)   
+            elif self.stac_version in pystacVersions:
                 pystac.validation.validate_dict(stac_content, stac_version=self.stac_version)
             else:
                 validate(stac_content, stac_schema)
@@ -422,6 +459,7 @@ def main():
     stac_file = args.get("<stac_file>")
     stac_spec_dirs = args.get("--spec_dirs", None)
     version = args.get("--version")
+    extension = args.get("--extension", None)
     verbose = args.get("--verbose")
     nthreads = args.get("--threads", 10)
     timer = args.get("--timer")
@@ -430,7 +468,7 @@ def main():
     if timer:
         start = default_timer()
 
-    stac = StacValidate(stac_file, stac_spec_dirs, version, log_level, follow)
+    stac = StacValidate(stac_file, stac_spec_dirs, version, log_level, follow, extension)
     _ = stac.run(nthreads)
     shutil.rmtree(stac.dirpath)
 
