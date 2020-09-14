@@ -201,7 +201,7 @@ class StacValidate:
         :param stac_schema of STAC (item, catalog, collection)
         :return: validation message
         """
-        print(json.dumps(stac_content, indent=4))
+        #print(json.dumps(stac_content, indent=4))
 
         #valid - python3 stac_validator.py https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension eo --version 1.0.0-beta.2
         #invalid - python3 stac_validator.py https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension eo --version 0.9.0
@@ -222,16 +222,18 @@ class StacValidate:
                 # if self.extension not in extension_list:
                 #     raise ExtensionException
                 if self.extension in extension_list:
-                    print(self.extension)
+                    pass
+                    #print(self.extension)
 
-            print(self.extension)
+            # print(self.extension)
             # print(self.stac_version)
-            if(self.extension):
-                # message["extension_flag"] = self.extension
+            if(self.extension != 'None'):
+                print("here")
+                message["extension_flag"] = self.extension
                 stacschema = pystac.validation.JsonSchemaSTACValidator()
                 self.stac_type = self.get_stac_type(stac_content)
-                print(self.stac_type)
-                print("here")
+                # print(self.stac_type)
+                # print("here")
                 self.stac_type = self.stac_type.upper()
                 # self.stac_version = '1.0.0-beta.2'
                 stacschema.validate_extension(stac_dict=stac_content, stac_object_type=self.stac_type, stac_version=self.stac_version, extension_id=self.extension)   
