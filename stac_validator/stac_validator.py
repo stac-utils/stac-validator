@@ -301,7 +301,18 @@ class StacValidate:
         try:
             if(self.custom):
                 schema, _ = self.fetch_and_parse_file(self.custom)
-                jsonschema.validate(stac_content, schema)
+                
+                # in case the path to custom json schema is local
+                # it may contain relative references
+                if(os.path.exists(self.custom)):
+                    custom_abspath = os.path.abspath(self.custom)
+                    custom_dir = os.path.dirname(custom_abspath).replace('\\', '/')
+                    custom_uri = f'file:///{custom_dir}/'
+                    resolver = RefResolver(custom_uri, self.custom)
+                    jsonschema.validate(stac_content, schema, resolver=resolver)
+                else:
+                    jsonschema.validate(stac_content, schema)
+
                 self.message.append(message)
                 message['schema'] = self.custom
                 message["custom"] = True
