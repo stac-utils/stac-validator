@@ -1,0 +1,21 @@
+name: Test Runner
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+
+  test:
+
+    name: Execute tests
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Call test execution script
+        run: ./test_in_container.sh
