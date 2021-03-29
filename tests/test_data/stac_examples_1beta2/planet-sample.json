@@ -3,6 +3,7 @@
   "stac_extensions": [
       "eo",
       "view",
+      "pointcloud",
       "https://example.planet.com/stac/1.0/schema.json"
   ],
   "links": [
@@ -61,10 +62,9 @@
   "id": "20171110_121030_1013",
   "properties": {
     "datetime": "2017-11-10T12:10:30.535417Z",
-    "eo:cloud_cover": 23,
-    "gsd": 3.7,
+  
     "view:sun_azimuth": 101.8,
-    "view:sun_elevation": 58.8,
+    "view:sun_elevation": "hello",
     "view:off_nadir": 1,
     "pl:acquired": "2017-11-10T12:10:30.535417Z",
     "pl:anomalous_pixels": 0.14,
