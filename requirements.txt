@@ -4,5 +4,5 @@ pytest-mypy>=0.4.2
 pytest-cov>=2.8.1
 docopt>=0.6.2
 jsonschema>=3.2.0
-pystac>=0.5.2
+pystac==0.5.6
 
