@@ -1,4 +1,5 @@
 install:
+	pre-commit install
 	pip install .
 
 code-check:
