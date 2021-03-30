@@ -6,3 +6,4 @@ docopt>=0.6.2
 jsonschema>=3.2.0
 pystac==0.5.6
 pre-commit
+click==7.1.2

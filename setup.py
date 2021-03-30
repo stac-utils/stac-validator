@@ -47,6 +47,7 @@ setup(
         "docopt",
         "jsonschema",
         "pystac",
+        "Click",
     ],
     packages=["stac_validator"],
     entry_points={
