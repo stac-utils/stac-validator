@@ -4,5 +4,5 @@ select = C,E,F,W,B,B950
 max-complexity = 5
 
 # Error Codes: http://pycdestyle.pycqa.org/en/latest/intro.html#configuration
-ignore = E501,C901,W503
+ignore = E501,C901,W503,E302
 exclude = lib

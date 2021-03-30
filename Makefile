@@ -1,8 +1,9 @@
 install:
-	pre-commit install
 	pip install .
 
 code-check:
+	pre-commit install
+	pre-commit update
 	pre-commit run --all-files
 
 test:
