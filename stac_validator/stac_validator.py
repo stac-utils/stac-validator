@@ -224,7 +224,8 @@ class StacValidate:
             )
 
         except FileNotFoundError as e:
-            logger.exception("STAC File Not Found: ", str(e))
+            logger.exception("STAC File Not Found: ")
+            print(str(e))
             err_message = self.create_err_msg(
                 "FileNotFoundError", f"{input_path} cannot be found"
             )
