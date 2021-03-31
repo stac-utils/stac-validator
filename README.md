@@ -38,7 +38,7 @@ pip install stac-validator
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] 
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] [--with_error_code]
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -55,6 +55,7 @@ Options:
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
     --legacy                     Validate on older schemas, must be accompanied by --version
+    --with_error_code            Return a non-zero exit code in case of a failure during validation
 ```  
 
 ## versions supported

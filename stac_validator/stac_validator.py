@@ -2,7 +2,7 @@
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] 
+    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] [--with_error_code] 
 
 Arguments:
     stac_file  Fully qualified path or url to a STAC file.
@@ -19,6 +19,7 @@ Options:
     --extension EXTENSION        Validate an extension
     --core                       Validate on core only
     --legacy                     Validate on older schemas, must be accompanied by --version
+    --with_error_code            Return a non-zero exit code in case of a failure during validation
 """
 
 import json
@@ -41,6 +42,7 @@ from pystac.validation import STACValidationError
 from pystac import Item, Catalog, Collection
 from jsonschema import RefResolutionError, RefResolver, validate
 from jsonschema.exceptions import ValidationError
+from functools import reduce
 
 logger = logging.getLogger(__name__)
 
@@ -301,7 +303,18 @@ class StacValidate:
         try:
             if(self.custom):
                 schema, _ = self.fetch_and_parse_file(self.custom)
-                jsonschema.validate(stac_content, schema)
+                
+                # in case the path to custom json schema is local
+                # it may contain relative references
+                if(os.path.exists(self.custom)):
+                    custom_abspath = os.path.abspath(self.custom)
+                    custom_dir = os.path.dirname(custom_abspath).replace('\\', '/')
+                    custom_uri = f'file:///{custom_dir}/'
+                    resolver = RefResolver(custom_uri, self.custom)
+                    jsonschema.validate(stac_content, schema, resolver=resolver)
+                else:
+                    jsonschema.validate(stac_content, schema)
+
                 self.message.append(message)
                 message['schema'] = self.custom
                 message["custom"] = True
@@ -434,6 +447,7 @@ def main():
     core = args.get("--core")
     legacy = args.get("--legacy")
     custom = args.get("--custom")
+    with_error_code = args.get("--with_error_code")
 
     if timer:
         start = default_timer()
@@ -447,6 +461,9 @@ def main():
 
     if timer:
         print(f"Validator took {default_timer() - start:.2f} seconds")
+
+    if with_error_code and (not reduce(lambda l, r: l and r, [m['valid_stac'] for m in stac.message])):
+        exit(1)
 
 if __name__ == "__main__":
     main()
