@@ -1,0 +1,21 @@
+minimum_pre_commit_version: 1.15.0
+default_language_version:
+    python: python3.6
+repos:
+    -
+        repo: 'https://github.com/ambv/black'
+        rev: 19.3b0
+        hooks:
+            - id: black
+              name: Black
+              exclude: tests/test_data/*
+              args: ['--safe', '-l 100', '.']
+
+    -
+        repo: 'https://github.com/timothycrosley/isort.git'
+        rev: 4.3.21
+        hooks:
+            - id: isort
+              name: Sort Imports
+              exclude: tests/test_data/*
+              args: ['-rc', '-m 3', '-tc', '-w 100', '-e']
