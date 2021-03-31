@@ -52,7 +52,7 @@ def cli():
 
 
 @click.command()
-@click.argument("stac_file", type=click.Path(exists=True))
+@click.argument("stac_file")
 def validate_core(stac_file):
     """
     Will validate a core stac object using json schemas without
@@ -64,7 +64,7 @@ def validate_core(stac_file):
         stacschema = pystac.validation.JsonSchemaSTACValidator()
         stac_type = stac_val.get_stac_type(stac_content).upper()
         print("stac_type: ", stac_type)
-        version = "1.0.0-beta.2"
+        version = "1.0.0-rc.2"
         val = stacschema.validate_core(
             stac_dict=stac_content,
             stac_object_type=stac_type,
@@ -79,7 +79,7 @@ def validate_core(stac_file):
 
 
 @click.command()
-@click.argument("stac_file", type=click.Path(exists=True))
+@click.argument("stac_file")
 def validate_all(stac_file):
     """
     Will validate a core stac object and any known extensions.
@@ -99,7 +99,7 @@ def validate_all(stac_file):
 
 
 @click.command()
-@click.argument("stac_file", type=click.Path(exists=True))
+@click.argument("stac_file")
 def validate_recursive(stac_file):
     """
     If used with a catalog or collection, this method will attempt to
