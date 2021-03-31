@@ -20,7 +20,7 @@ class StacValidate:
 
     def get_stac_type(self, stac_content: dict) -> str:
         stac_object = identify_stac_object(stac_content)
-        return stac_object.object_type.lower()
+        return stac_object.object_type
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -37,12 +37,10 @@ class StacValidate:
         data = None
 
         if self.is_valid_url(input_path):
-            # logger.info("Loading STAC from URL")
             resp = requests.get(input_path)
             data = resp.json()
         else:
             with open(input_path) as f:
-                # logger.info("Loading STAC from filesystem")
                 data = json.load(f)
 
         return data
@@ -55,22 +53,70 @@ def cli():
 
 @click.command()
 @click.argument("stac_file", type=click.Path(exists=True))
-def validate(stac_file):
-    """Print FILENAME if the file exists."""
+def validate_core(stac_file):
+    """
+    Will validate a core stac object using json schemas without
+    validating extensions.
+    """
     stac_val = StacValidate(stac_file)
-    # stac_val.print_file_name()
+    try:
+        stac_content = stac_val.fetch_and_parse_file(stac_file)
+        stacschema = pystac.validation.JsonSchemaSTACValidator()
+        stac_type = stac_val.get_stac_type(stac_content).upper()
+        print("stac_type: ", stac_type)
+        version = "1.0.0-beta.2"
+        val = stacschema.validate_core(
+            stac_dict=stac_content,
+            stac_object_type=stac_type,
+            stac_version=version,
+        )
+        print(val)
+    except pystac.validation.STACValidationError as e:
+        err_msg = "STAC Validation Error: " + str(e)
+        print(err_msg)
+    except ValueError as e:
+        print("Decoding JSON has failed: ", str(e))
 
-    stac_content = stac_val.fetch_and_parse_file(stac_file)
-    stacschema = pystac.validation.JsonSchemaSTACValidator()
-    stac_type = stac_val.get_stac_type(stac_content).upper()
-    version = "1.0.0"
-    val = stacschema.validate_core(
-        stac_dict=stac_content,
-        stac_object_type=stac_type,
-        stac_version=version,
-    )
-    # val = pystac.validation.validate_all(stac_content, '')
-    print(val)
+
+@click.command()
+@click.argument("stac_file", type=click.Path(exists=True))
+def validate_all(stac_file):
+    """
+    Will validate a core stac object and any known extensions.
+    """
+    stac_val = StacValidate(stac_file)
+    try:
+        stac_content = stac_val.fetch_and_parse_file(stac_file)
+        stac_type = stac_val.get_stac_type(stac_content).upper()
+        print("stac_type: ", stac_type)
+        val = pystac.validation.validate_dict(stac_dict=stac_content, href=stac_file)
+        print(val)
+    except pystac.validation.STACValidationError as e:
+        err_msg = "STAC Validation Error: " + str(e)
+        print(err_msg)
+    except ValueError as e:
+        print("Decoding JSON has failed: ", str(e))
+
+
+@click.command()
+@click.argument("stac_file", type=click.Path(exists=True))
+def validate_recursive(stac_file):
+    """
+    If used with a catalog or collection, this method will attempt to
+    validate each child link.
+    """
+    stac_val = StacValidate(stac_file)
+    try:
+        stac_content = stac_val.fetch_and_parse_file(stac_file)
+        stac_type = stac_val.get_stac_type(stac_content).upper()
+        print("stac_type: ", stac_type)
+        val = pystac.validation.validate_all(stac_dict=stac_content, href=stac_file)
+        print(val)
+    except pystac.validation.STACValidationError as e:
+        err_msg = "STAC Validation Error: " + str(e)
+        print(err_msg)
+    except ValueError as e:
+        print("Decoding JSON has failed: ", str(e))
 
 
 # @click.command()
@@ -87,6 +133,7 @@ def validate(stac_file):
 
 
 if __name__ == "__main__":
-    # cli.add_command(hello)
-    cli.add_command(validate)
+    cli.add_command(validate_all)
+    cli.add_command(validate_core)
+    cli.add_command(validate_recursive)
     cli()
