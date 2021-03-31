@@ -3,7 +3,9 @@ name: Test Runner
 on:
   push:
     branches:
-      - master, dev
+      - master
+      - dev
+      - gh_actions
 
 jobs:
 
