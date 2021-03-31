@@ -25,8 +25,10 @@ Options:
 
 import json
 import logging
+import os
 import shutil
 import tempfile
+from functools import reduce
 from json.decoder import JSONDecodeError
 from timeit import default_timer
 from typing import Tuple
@@ -37,10 +39,9 @@ import jsonschema
 import pystac
 import requests
 from docopt import docopt
-from jsonschema import RefResolutionError
+from jsonschema import RefResolutionError, RefResolver
 from jsonschema.exceptions import ValidationError
 from pystac.serialization import identify_stac_object
-from functools import reduce
 
 logger = logging.getLogger(__name__)
 
@@ -335,13 +336,13 @@ class StacValidate:
         try:
             if self.custom:
                 schema, _ = self.fetch_and_parse_file(self.custom)
-                
+
                 # in case the path to custom json schema is local
                 # it may contain relative references
-                if(os.path.exists(self.custom)):
+                if os.path.exists(self.custom):
                     custom_abspath = os.path.abspath(self.custom)
-                    custom_dir = os.path.dirname(custom_abspath).replace('\\', '/')
-                    custom_uri = f'file:///{custom_dir}/'
+                    custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
+                    custom_uri = f"file:///{custom_dir}/"
                     resolver = RefResolver(custom_uri, self.custom)
                     jsonschema.validate(stac_content, schema, resolver=resolver)
                 else:
@@ -535,9 +536,11 @@ def main():
     if timer:
         print(f"Validator took {default_timer() - start:.2f} seconds")
 
-
-    if with_error_code and (not reduce(lambda l, r: l and r, [m['valid_stac'] for m in stac.message])):
+    if with_error_code and (
+        not reduce(lambda l, r: l and r, [m["valid_stac"] for m in stac.message])
+    ):
         exit(1)
+
 
 if __name__ == "__main__":
     main()
