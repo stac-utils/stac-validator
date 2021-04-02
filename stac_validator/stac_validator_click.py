@@ -10,6 +10,7 @@ import pystac
 import requests
 from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object
+from requests import exceptions
 
 
 class StacValidate:
@@ -18,38 +19,38 @@ class StacValidate:
         stac_file: str,
     ):
         self.stac_file = stac_file
-        self.stac_content = self.fetch_and_parse_file(self.stac_file)
-        self.stac_type = self.get_stac_type(self.stac_content).upper()
-        self.version = self.get_stac_version(self.stac_content)
         self.message = {}
-        self.message["path"] = self.stac_file
-        self.message["asset type"] = self.stac_type
 
     def print_file_name(self):
         if self.stac_file:
             click.echo(click.format_filename(self.stac_file))
 
     def get_stac_type(self, stac_content: dict) -> str:
-        stac_object = identify_stac_object(stac_content)
-        return stac_object.object_type
+        try:
+            stac_object = identify_stac_object(stac_content)
+            return stac_object.object_type
+        except TypeError as e:
+            print("TypeError: " + str(e))
+            return ""
+
+    @staticmethod
+    def create_err_msg(err_type: str, err_msg: str) -> dict:
+        return {"valid stac": False, "error type": err_type, "error message": err_msg}
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
-        try:
-            result = urlparse(url)
-            if result.scheme in ("http", "https"):
-                return True
-            else:
-                return False
-        except Exception as e:
-            print(str(e))
+        result = urlparse(url)
+        if result.scheme in ("http", "https"):
+            return True
+        else:
+            return False
 
     def get_stac_version(self, stac_content: dict) -> str:
         return stac_content["stac_version"]
 
     def fetch_and_parse_file(self, input_path: str):
         data = None
-
+        # try:
         if self.is_valid_url(input_path):
             resp = requests.get(input_path)
             data = resp.json()
@@ -59,30 +60,30 @@ class StacValidate:
 
         return data
 
-    def recursive(self):
+    def recursive(self, stac_content):
         val = pystac.validation.validate_all(
-            stac_dict=self.stac_content, href=self.stac_file
+            stac_dict=stac_content, href=self.stac_file
         )
         print(val)
 
-    def core(self):
+    def core(self, stac_content, stac_type, version):
         stacschema = pystac.validation.JsonSchemaSTACValidator()
-        print("version: ", self.version)
+        version = self.get_stac_version(stac_content)
         val = stacschema.validate_core(
-            stac_dict=self.stac_content,
-            stac_object_type=self.stac_type,
-            stac_version=self.version,
+            stac_dict=stac_content,
+            stac_object_type=stac_type,
+            stac_version=version,
         )
         print(val)
 
-    def extensions(self):
+    def extensions(self, stac_content):
         self.print_file_name()
         val = pystac.validation.validate_dict(
-            stac_dict=self.stac_content, href=self.stac_file
+            stac_dict=stac_content, href=self.stac_file
         )
         print(val)
 
-    def custom(self, custom):
+    def custom(self, custom, stac_content):
         schema = self.fetch_and_parse_file(custom)
         # in case the path to custom json schema is local
         # it may contain relative references
@@ -91,9 +92,9 @@ class StacValidate:
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
             custom_uri = f"file:///{custom_dir}/"
             resolver = RefResolver(custom_uri, custom)
-            jsonschema.validate(self.stac_content, schema, resolver=resolver)
+            jsonschema.validate(stac_content, schema, resolver=resolver)
         else:
-            jsonschema.validate(self.stac_content, schema)
+            jsonschema.validate(stac_content, schema)
 
 
 @click.command()
@@ -111,30 +112,46 @@ class StacValidate:
 )
 def stac_validator_click(stac_file, recursive, core, extensions, custom):
     stac_val = StacValidate(stac_file)
+    stac_val.message["path"] = stac_val.stac_file
     try:
+        stac_content = stac_val.fetch_and_parse_file(stac_val.stac_file)
+        stac_type = stac_val.get_stac_type(stac_content).upper()
+        version = stac_val.get_stac_version(stac_content)
+        stac_val.message["asset type"] = stac_type
+        stac_val.message["version"] = version
+
         if recursive:
             stac_val.message["validation method"] = "recursive"
-            stac_val.recursive()
+            stac_val.recursive(stac_content)
         if core:
             stac_val.message["validation method"] = "core"
-            stac_val.core()
+            stac_val.core(stac_content, stac_type, version)
         if extensions:
             stac_val.message["validation method"] = "extensions"
-            stac_val.extensions()
+            stac_val.extensions(stac_content)
         if custom:
             stac_val.message["validation method"] = "custom"
             stac_val.message["schema"] = custom
-            stac_val.custom(custom)
+            stac_val.custom(custom, stac_content)
+
     except pystac.validation.STACValidationError as e:
-        stac_val.message["err_msg"] = "STAC Validation Error: " + str(e)
+        stac_val.message.update(stac_val.create_err_msg("STACValidationError", str(e)))
     except ValueError as e:
-        stac_val.message["err_msg"] = "Decoding JSON has failed: " + str(e)
+        stac_val.message.update(stac_val.create_err_msg("ValueError", str(e)))
     except URLError as e:
-        stac_val.message["err_msg"] = "URL Error: " + str(e)
+        stac_val.message.update(stac_val.create_err_msg("URLError", str(e)))
     except JSONDecodeError as e:
-        stac_val.message["err_msg"] = "JSON Decode Error, InvalidJSON: " + str(e)
+        stac_val.message.update(stac_val.create_err_msg("JSONDecodeError", str(e)))
+    except TypeError as e:
+        stac_val.message.update(stac_val.create_err_msg("TypeError", str(e)))
     except FileNotFoundError as e:
-        stac_val.message["err_msg"] = "FileNotFoundError: " + str(e)
+        stac_val.message.update(stac_val.create_err_msg("FileNotFoundError", str(e)))
+    except ConnectionError as e:
+        stac_val.message.update(stac_val.create_err_msg("ConnectionError", str(e)))
+    except exceptions.SSLError as e:
+        stac_val.message.update(stac_val.create_err_msg("SSLError", str(e)))
+    except OSError as e:
+        stac_val.message.update(stac_val.create_err_msg("OSError", str(e)))
 
     print(json.dumps([stac_val.message], indent=4))
 
