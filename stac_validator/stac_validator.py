@@ -20,12 +20,13 @@ class StacValidate:
         recursive: bool = False,
         core: bool = False,
         extensions: bool = False,
-        custom: str = None,
+        custom: str = "",
         homegrown: bool = False,
     ):
         self.stac_file = stac_file
         self.message = []
         self.custom = custom
+        self.homegrown = homegrown
 
     def print_file_name(self):
         if self.stac_file:
@@ -90,10 +91,9 @@ class StacValidate:
         print(val)
 
     def custom_val(self, stac_content):
-        schema = self.fetch_and_parse_file(self.custom)
         # in case the path to custom json schema is local
         # it may contain relative references
-        print("----", self.custom)
+        schema = self.fetch_and_parse_file(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
@@ -103,12 +103,16 @@ class StacValidate:
         else:
             jsonschema.validate(stac_content, schema)
 
+    def homegrown_val(self, version, stac_content, stac_type):
+        print(version)
+        if version == "0.9.0":
+            self.custom = "https://cdn.staclint.com/v0.9.0/collection.json"
+            self.custom_val(stac_content)
+
     def run(cls):
         # stac_val = StacValidate(stac_file)
         message = {"path": cls.stac_file}
-
         # cls.message["path"] = cls.stac_file
-        print(cls.custom)
         valid = False
         try:
             stac_content = cls.fetch_and_parse_file(cls.stac_file)
@@ -117,6 +121,9 @@ class StacValidate:
             message["asset type"] = stac_type
             message["version"] = version
 
+            if cls.homegrown is True:
+                message["validation method"] = "homegrown"
+                cls.homegrown_val(version, stac_content, stac_type)
             if cls.recursive is True:
                 message["validation method"] = "recursive"
                 if stac_type == "ITEM":
@@ -132,9 +139,10 @@ class StacValidate:
                 cls.message["validation method"] = "extensions"
                 cls.extensions(stac_content)
                 valid = True
-            if cls.custom is not None:
+            if cls.custom != "":
                 message["validation method"] = "custom"
                 message["schema"] = cls.custom
+                # schema = cls.fetch_and_parse_file(cls.custom)
                 cls.custom_val(stac_content)
                 valid = True
 
@@ -157,7 +165,11 @@ class StacValidate:
         except OSError as e:
             message.update(cls.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
-            message.update(cls.create_err_msg("ValidationError", str(e)))
+            if e.absolute_path:
+                err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+            else:
+                err_msg = f"{e.message} of the root of the STAC object"
+            message.update(cls.create_err_msg("ValidationError", err_msg))
         except KeyError as e:
             message.update(cls.create_err_msg("KeyError", str(e)))
         except HTTPError as e:

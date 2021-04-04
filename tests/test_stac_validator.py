@@ -9,13 +9,12 @@ from stac_validator import stac_validator
 """ -------------- Custom ---------------- """
 
 
-def test_custom_item_remote_v090():
+def test_custom_item_remote_schema_v090():
     schema = "https://cdn.staclint.com/v0.9.0/catalog.json"
 
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json"
     stac = stac_validator.StacValidate(stac_file, custom=schema)
     stac.run()
-    print(stac.message)
     assert stac.message == [
         {
             "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
@@ -28,22 +27,41 @@ def test_custom_item_remote_v090():
     ]
 
 
-# def test_custom_bad_item_v090():
-#     schema = "https://cdn.staclint.com/v0.9.0/item.json"
-#     stac = stac_validator.StacValidate(
-#         "tests/test_data/stac_examples_older/bad_item_v090.json", custom=schema
-#     )
-#     stac.run()
-#     print(stac.message)
-#     assert stac.message == [
-#         {
-#             "path": "tests/test_data/stac_examples_older/bad_item_v090.json",
-#             "asset_type": "item",
-#             "valid_stac": False,
-#             "error_type": "ValidationError",
-#             "error_message": "'id' is a required property of the root of the STAC object",
-#         }
-#     ]
+def test_custom_item_local_schema_v090():
+    schema = "tests/test_data/schema/v0.9.0/catalog.json"
+
+    stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
+            "asset type": "COLLECTION",
+            "version": "0.9.0",
+            "validation method": "custom",
+            "schema": "tests/test_data/schema/v0.9.0/catalog.json",
+            "valid stac": True,
+        }
+    ]
+
+
+def test_custom_bad_item_remote_schema_v090():
+    schema = "https://cdn.staclint.com/v0.9.0/item.json"
+    stac_file = "tests/test_data/bad_data/bad_item_v090.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/bad_data/bad_item_v090.json",
+            "asset type": "ITEM",
+            "version": "0.9.0",
+            "validation method": "custom",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "valid stac": False,
+            "error type": "ValidationError",
+            "error message": "'id' is a required property of the root of the STAC object",
+        }
+    ]
 
 
 # """ -------------- Legacy ---------------- """
