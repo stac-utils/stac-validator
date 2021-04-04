@@ -121,7 +121,6 @@ class StacValidate:
             version = cls.get_stac_version(stac_content)
             message["asset type"] = stac_type
             message["version"] = version
-            # print(cls.recursive)
 
             if cls.core is True:
                 message["validation method"] = "core"
@@ -144,6 +143,15 @@ class StacValidate:
                 message["validation method"] = "extensions"
                 schemas = cls.extensions_val(stac_content, stac_type)
                 message["schema"] = schemas
+                valid = True
+            else:
+                message["validation method"] = "default"
+                cls.core_val(version, stac_content, stac_type)
+                message["schema"] = []
+                message["schema"].append(cls.custom)
+                schemas = cls.extensions_val(stac_content, stac_type)
+                for msg in schemas:
+                    message["schema"].append(msg)
                 valid = True
 
         except pystac.validation.STACValidationError as e:
@@ -170,13 +178,10 @@ class StacValidate:
             else:
                 err_msg = f"{e.message} of the root of the STAC object"
             message.update(cls.create_err_msg("ValidationError", err_msg))
-            # cls.message.append(err_msg)
         except KeyError as e:
             message.update(cls.create_err_msg("KeyError", str(e)))
-            # cls.message.append(err_msg)
         except HTTPError as e:
             message.update(cls.create_err_msg("HTTPError", str(e)))
-            # cls.message.append(err_msg)
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 

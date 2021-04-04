@@ -261,6 +261,28 @@ def test_extensions_remote_v1rc2():
     ]
 
 
+# Default
+
+
+def test_default_v1beta1():
+    stac_file = "tests/test_data/1beta1/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1beta1/sentinel2.json",
+            "asset type": "COLLECTION",
+            "version": "1.0.0-beta.1",
+            "validation method": "default",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json",
+            ],
+            "valid stac": True,
+        }
+    ]
+
+
 # """ -------------- Legacy ---------------- """
 
 
