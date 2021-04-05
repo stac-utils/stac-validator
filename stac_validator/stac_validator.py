@@ -54,12 +54,10 @@ class StacValidate:
             return False
 
     def get_stac_version(self, stac_content: dict) -> str:
-        # stac_content["stac_version"] = 'v0.9.0'
         return stac_content["stac_version"]
 
     def fetch_and_parse_file(self, input_path: str):
         data = None
-        # try:
         if self.is_valid_url(input_path):
             resp = requests.get(input_path)
             data = resp.json()
@@ -69,16 +67,18 @@ class StacValidate:
 
         return data
 
-    # pystac recursion does not like 1.0.0-rc.2
+    # pystac recursion does not like 1.0.0-rc.2 or 1.0.0-beta.1
     def recursive_val(self, stac_content):
         version = self.get_stac_version(stac_content)
-        if version == "1.0.0-beta.1" or version == "1.0.0-rc.2":
+        add_versions = ["1.0.0-beta.1", "1.0.0-rc.2", "1.0.0-rc.1"]
+        if version in add_versions:
             stac_content["stac_version"] = "1.0.0-beta.2"
         val = pystac.validation.validate_all(
             stac_dict=stac_content, href=self.stac_file
         )
         print(val)
 
+    # pystac extension schemas are broken
     def extensions_val(self, stac_content, stac_type, version):
         if stac_type == "ITEM":
             schemas = stac_content["stac_extensions"]
@@ -89,6 +89,7 @@ class StacValidate:
                     self.custom_val(stac_content)
                     new_schemas.append(extension)
                 else:
+                    # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                     if version == "1.0.0-beta.2":
                         stac_content["stac_version"] = "1.0.0-beta.1"
                         version = stac_content["stac_version"]
