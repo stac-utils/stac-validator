@@ -79,27 +79,27 @@ class StacValidate:
         )
         print(val)
 
-    # v090 eo extension always fails?
-    # pystac extensions seems to only work for 1beta2
     def extensions_val(self, stac_content, stac_type, version):
-        # version = self.get_stac_version(stac_content)
-        if version == "1.0.0-rc.2" and stac_type == "ITEM":
+        if stac_type == "ITEM":
             schemas = stac_content["stac_extensions"]
+            new_schemas = []
             for extension in schemas:
-                self.custom = extension
-                self.custom_val(stac_content)
-        elif (
-            version == "1.0.0-beta.1"
-            or stac_type == "CATALOG"
-            or stac_type == "COLLECTION"
-        ):
-            self.core_val(version, stac_content, stac_type)
-            schemas = self.custom
+                if "http" in extension:
+                    self.custom = extension
+                    self.custom_val(stac_content)
+                    new_schemas.append(extension)
+                else:
+                    if version == "1.0.0-beta.2":
+                        stac_content["stac_version"] = "1.0.0-beta.1"
+                        version = stac_content["stac_version"]
+                    extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
+                    self.custom = extension
+                    self.custom_val(stac_content)
+                    new_schemas.append(extension)
         else:
-            schemas = pystac.validation.validate_dict(
-                stac_dict=stac_content, href=self.stac_file
-            )
-        return schemas
+            self.core_val(version, stac_content, stac_type)
+            new_schemas = self.custom
+        return new_schemas
 
     def custom_val(self, stac_content):
         # in case the path to custom json schema is local

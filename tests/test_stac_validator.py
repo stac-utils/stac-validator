@@ -41,20 +41,20 @@ def test_core_item_local_v090():
     ]
 
 
-# def test_core_item_local_extensions_v090():
-#     stac_file = "tests/test_data/v090/items/good_item_v090.json"
-#     stac = stac_validator.StacValidate(stac_file, core=True)
-#     stac.run()
-#     assert stac.message == [
-#         {
-#             "path": "tests/test_data/v090/items/good_item_v090.json",
-#             "asset type": "ITEM",
-#             "version": "0.9.0",
-#             "validation method": "core",
-#             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
-#             "valid stac": True,
-#         }
-#     ]
+def test_core_item_local_extensions_v090():
+    stac_file = "tests/test_data/v090/items/CBERS_4.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/v090/items/CBERS_4.json",
+            "asset type": "ITEM",
+            "version": "0.9.0",
+            "validation method": "core",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "valid stac": True,
+        }
+    ]
 
 
 def test_core_bad_item_local_v090():
@@ -247,9 +247,8 @@ def test_default_v090():
             "validation method": "default",
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/item.json",
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json",
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/eo/json-schema/schema.json",
-                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/view/json-schema/schema.json",
+                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.9.0/extension/view.json",
             ],
             "valid stac": True,
         }
@@ -310,9 +309,7 @@ def test_no_extensions_v1beta2():
             "asset type": "ITEM",
             "version": "1.0.0-beta.2",
             "validation method": "extensions",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
-            ],
+            "schema": [],
             "valid stac": True,
         }
     ]
@@ -329,9 +326,8 @@ def test_extensions_v1beta2():
             "version": "1.0.0-beta.2",
             "validation method": "extensions",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/projection/json-schema/schema.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/view/json-schema/schema.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
             ],
             "valid stac": True,
         }
