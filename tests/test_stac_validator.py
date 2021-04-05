@@ -64,6 +64,24 @@ def test_custom_bad_item_remote_schema_v090():
     ]
 
 
+def test_custom_item_remote_schema_v1rc2():
+    schema = "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+
+    stac_file = "tests/test_data/1rc2/simple-item.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1rc2/simple-item.json",
+            "asset type": "ITEM",
+            "version": "1.0.0-rc.2",
+            "validation method": "custom",
+            "schema": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            "valid stac": True,
+        }
+    ]
+
+
 # Core
 
 
@@ -274,9 +292,86 @@ def test_default_v1beta1():
             "asset type": "COLLECTION",
             "version": "1.0.0-beta.1",
             "validation method": "default",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "valid stac": True,
+        }
+    ]
+
+
+def test_default_simple_v1rc2():
+    stac_file = "tests/test_data/1rc2/simple-item.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1rc2/simple-item.json",
+            "asset type": "ITEM",
+            "version": "1.0.0-rc.2",
+            "validation method": "default",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
+            "valid stac": True,
+        }
+    ]
+
+
+def test_default_v090():
+    stac = stac_validator.StacValidate("tests/test_data/v090/good_item_v090.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "path": "tests/test_data/v090/good_item_v090.json",
+            "asset type": "ITEM",
+            "version": "0.9.0",
+            "validation method": "default",
+            "schema": [
+                "https://cdn.staclint.com/v0.9.0/item.json",
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/item-spec/json-schema/item.json",
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/eo/json-schema/schema.json",
+                "https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/extensions/view/json-schema/schema.json",
+            ],
+            "valid stac": True,
+        }
+    ]
+
+
+def test_default_extended_v1rc2():
+    stac_file = "tests/test_data/1rc2/extended-item.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1rc2/extended-item.json",
+            "asset type": "ITEM",
+            "version": "1.0.0-rc.2",
+            "validation method": "default",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            ],
+            "valid stac": True,
+        }
+    ]
+
+
+def test_default_catalog_v1rc2():
+    stac_file = "tests/test_data/1rc2/catalog.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1rc2/catalog.json",
+            "asset type": "CATALOG",
+            "version": "1.0.0-rc.2",
+            "validation method": "default",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/catalog-spec/json-schema/catalog.json"
             ],
             "valid stac": True,
         }
@@ -284,26 +379,6 @@ def test_default_v1beta1():
 
 
 # """ -------------- Legacy ---------------- """
-
-
-# def test_legacy_v090():
-#     stac = stac_validator.StacValidate(
-#         "tests/test_data/stac_examples_older/good_item_v090.json",
-#         legacy=True,
-#         version="v0.9.0",
-#     )
-#     stac.run()
-#     print(stac.message)
-#     assert stac.message == [
-#         {
-#             "path": "tests/test_data/stac_examples_older/good_item_v090.json",
-#             "asset_type": "item",
-#             "schema": "https://cdn.staclint.com/v0.9.0/item.json",
-#             "legacy": True,
-#             "validated_version": "v0.9.0",
-#             "valid_stac": True,
-#         }
-#     ]
 
 
 # def test_legacy_090():

@@ -107,9 +107,13 @@ class StacValidate:
         else:
             jsonschema.validate(stac_content, schema)
 
+    # https://cdn.staclint.com/v{version}/{stac_type}.json tries to validate 1.0.0-rc.2 to 1.0.0-rc.1
     def core_val(self, version, stac_content, stac_type):
         stac_type = stac_type.lower()
-        self.custom = f"https://cdn.staclint.com/v{version}/{stac_type}.json"
+        if version == "1.0.0-rc.2":
+            self.custom = f"https://schemas.stacspec.org/v{version}/{stac_type}-spec/json-schema/{stac_type}.json"
+        else:
+            self.custom = f"https://cdn.staclint.com/v{version}/{stac_type}.json"
         self.custom_val(stac_content)
 
     def run(cls):
@@ -149,9 +153,10 @@ class StacValidate:
                 cls.core_val(version, stac_content, stac_type)
                 message["schema"] = []
                 message["schema"].append(cls.custom)
-                schemas = cls.extensions_val(stac_content, stac_type)
-                for msg in schemas:
-                    message["schema"].append(msg)
+                if stac_type == "ITEM":
+                    schemas = cls.extensions_val(stac_content, stac_type)
+                    for msg in schemas:
+                        message["schema"].append(msg)
                 valid = True
 
         except pystac.validation.STACValidationError as e:
