@@ -69,25 +69,32 @@ class StacValidate:
 
         return data
 
+    # pystac recursion does not like 1.0.0-rc.2
     def recursive_val(self, stac_content):
         version = self.get_stac_version(stac_content)
-        if version == "1.0.0-beta.1":
+        if version == "1.0.0-beta.1" or version == "1.0.0-rc.2":
             stac_content["stac_version"] = "1.0.0-beta.2"
         val = pystac.validation.validate_all(
             stac_dict=stac_content, href=self.stac_file
         )
         print(val)
 
+    # v090 eo extension always fails?
     # pystac extensions seems to only work for 1beta2
-    def extensions_val(self, stac_content, stac_type):
-        version = self.get_stac_version(stac_content)
-        if version == "1.0.0-beta.1":
-            stac_content["stac_version"] = "1.0.0-beta.2"
+    def extensions_val(self, stac_content, stac_type, version):
+        # version = self.get_stac_version(stac_content)
         if version == "1.0.0-rc.2" and stac_type == "ITEM":
             schemas = stac_content["stac_extensions"]
             for extension in schemas:
                 self.custom = extension
                 self.custom_val(stac_content)
+        elif (
+            version == "1.0.0-beta.1"
+            or stac_type == "CATALOG"
+            or stac_type == "COLLECTION"
+        ):
+            self.core_val(version, stac_content, stac_type)
+            schemas = self.custom
         else:
             schemas = pystac.validation.validate_dict(
                 stac_dict=stac_content, href=self.stac_file
@@ -145,7 +152,7 @@ class StacValidate:
                     valid = True
             elif cls.extensions is True:
                 message["validation method"] = "extensions"
-                schemas = cls.extensions_val(stac_content, stac_type)
+                schemas = cls.extensions_val(stac_content, stac_type, version)
                 message["schema"] = schemas
                 valid = True
             else:
@@ -154,7 +161,7 @@ class StacValidate:
                 message["schema"] = []
                 message["schema"].append(cls.custom)
                 if stac_type == "ITEM":
-                    schemas = cls.extensions_val(stac_content, stac_type)
+                    schemas = cls.extensions_val(stac_content, stac_type, version)
                     for msg in schemas:
                         message["schema"].append(msg)
                 valid = True
