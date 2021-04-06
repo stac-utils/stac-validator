@@ -137,11 +137,11 @@ class StacValidate:
             if cls.core is True:
                 message["validation method"] = "core"
                 cls.core_val(version, stac_content, stac_type)
-                message["schema"] = cls.custom
+                message["schema"] = [cls.custom]
                 valid = True
             elif cls.custom != "":
                 message["validation method"] = "custom"
-                message["schema"] = cls.custom
+                message["schema"] = [cls.custom]
                 cls.custom_val(stac_content)
                 valid = True
             elif cls.recursive is True:

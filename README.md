@@ -5,7 +5,7 @@
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
 It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
-Example usages can be found below.
+Examples can be found below.
 
 
 ## Requirements
@@ -89,7 +89,9 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
         "asset type": "ITEM",
         "version": "1.0.0-rc.2",
         "validation method": "core",
-        "schema": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+        "schema": [
+            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+        ],
         "valid stac": true
     }
 ]
@@ -103,10 +105,13 @@ $ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom h
 [
     {
         "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset_type": "catalog",
-        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
-        "custom": true,
-        "valid_stac": true
+        "asset type": "CATALOG",
+        "version": "0.7.0",
+        "validation method": "custom",
+        "schema": [
+            "https://cdn.staclint.com/v0.7.0/catalog.json"
+        ],
+        "valid stac": true
     }
 ]
 ```

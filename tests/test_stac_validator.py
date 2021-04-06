@@ -19,7 +19,7 @@ def test_core_collection_remote_v090():
             "asset type": "COLLECTION",
             "version": "0.9.0",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v0.9.0/collection.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/collection.json"],
             "valid stac": True,
         }
     ]
@@ -35,7 +35,7 @@ def test_core_item_local_v090():
             "asset type": "ITEM",
             "version": "0.9.0",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid stac": True,
         }
     ]
@@ -51,7 +51,7 @@ def test_core_item_local_extensions_v090():
             "asset type": "ITEM",
             "version": "0.9.0",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid stac": True,
         }
     ]
@@ -84,7 +84,7 @@ def test_core_item_local_v1beta2():
             "asset type": "ITEM",
             "version": "1.0.0-beta.2",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v1.0.0-beta.2/item.json",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.2/item.json"],
             "valid stac": True,
         }
     ]
@@ -100,7 +100,7 @@ def test_core_item_local_v1beta1():
             "asset type": "COLLECTION",
             "version": "1.0.0-beta.1",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "valid stac": True,
         }
     ]
@@ -116,7 +116,7 @@ def test_core_v1beta1():
             "asset type": "COLLECTION",
             "version": "1.0.0-beta.1",
             "validation method": "core",
-            "schema": "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "valid stac": True,
         }
     ]
@@ -137,7 +137,7 @@ def test_custom_item_remote_schema_v090():
             "asset type": "COLLECTION",
             "version": "0.9.0",
             "validation method": "custom",
-            "schema": "https://cdn.staclint.com/v0.9.0/catalog.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/catalog.json"],
             "valid stac": True,
         }
     ]
@@ -155,7 +155,7 @@ def test_custom_item_local_schema_v090():
             "asset type": "COLLECTION",
             "version": "0.9.0",
             "validation method": "custom",
-            "schema": "tests/test_data/schema/v0.9.0/catalog.json",
+            "schema": ["tests/test_data/schema/v0.9.0/catalog.json"],
             "valid stac": True,
         }
     ]
@@ -172,7 +172,7 @@ def test_custom_bad_item_remote_schema_v090():
             "asset type": "ITEM",
             "version": "0.9.0",
             "validation method": "custom",
-            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid stac": False,
             "error type": "ValidationError",
             "error message": "'id' is a required property of the root of the STAC object",
@@ -192,7 +192,9 @@ def test_custom_item_remote_schema_v1rc2():
             "asset type": "ITEM",
             "version": "1.0.0-rc.2",
             "validation method": "custom",
-            "schema": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
             "valid stac": True,
         }
     ]
