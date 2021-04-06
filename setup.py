@@ -44,7 +44,6 @@ setup(
         "pytest",
         "pytest-mypy",
         "pytest-cov",
-        "docopt",
         "jsonschema",
         "pystac",
         "Click",
