@@ -148,6 +148,7 @@ class StacValidate:
                 message["validation method"] = "recursive"
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
+
                 else:
                     cls.recursive_val(stac_content)
                     valid = True
