@@ -38,7 +38,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
-    download_url="https://github.com/sparkgeo/stac-validator/archive/v1.0.1.tar.gz",
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v2.0.0.tar.gz",
     install_requires=[
         "requests",
         "pytest",
