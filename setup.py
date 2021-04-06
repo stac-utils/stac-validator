@@ -8,7 +8,7 @@ except ImportError:
 
 req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirements.txt")
 
-__version__ = "1.0.1"
+__version__ = "2.0.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -42,8 +42,6 @@ setup(
     install_requires=[
         "requests",
         "pytest",
-        "pytest-mypy",
-        "pytest-cov",
         "jsonschema",
         "pystac",
         "Click",

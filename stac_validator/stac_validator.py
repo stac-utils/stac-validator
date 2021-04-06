@@ -73,10 +73,7 @@ class StacValidate:
         add_versions = ["1.0.0-beta.1", "1.0.0-rc.2", "1.0.0-rc.1"]
         if version in add_versions:
             stac_content["stac_version"] = "1.0.0-beta.2"
-        val = pystac.validation.validate_all(
-            stac_dict=stac_content, href=self.stac_file
-        )
-        print(val)
+        pystac.validation.validate_all(stac_dict=stac_content, href=self.stac_file)
 
     # pystac extension schemas are broken
     def extensions_val(self, stac_content, stac_type, version):
@@ -115,7 +112,7 @@ class StacValidate:
         else:
             jsonschema.validate(stac_content, schema)
 
-    # https://cdn.staclint.com/v{version}/{stac_type}.json tries to validate 1.0.0-rc.2 to 1.0.0-rc.1
+    # https://cdn.staclint.com/v{version}/{stac_type}.json tries to validate 1.0.0-rc.2 to 1.0.0-rc.1?
     def core_val(self, version, stac_content, stac_type):
         stac_type = stac_type.lower()
         if version == "1.0.0-rc.2":
@@ -210,8 +207,10 @@ class StacValidate:
 @click.option(
     "--recursive", is_flag=True, help="Recursively validate all related stac objects."
 )
-@click.option("--core", is_flag=True, help="Validate core stac object.")
-@click.option("--extensions", is_flag=True, help="Validate stac object and extensions.")
+@click.option(
+    "--core", is_flag=True, help="Validate core stac object only without extensions."
+)
+@click.option("--extensions", is_flag=True, help="Validate extensions only.")
 @click.option(
     "--custom",
     "-c",
