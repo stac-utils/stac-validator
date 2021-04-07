@@ -70,36 +70,27 @@ class StacValidate:
         return data
 
     # pystac recursion does not like 1.0.0-rc.2 or 1.0.0-beta.1
-    def recursive_val(self, stac_content):
-        # version = self.get_stac_version(stac_content)
+    def recursive_val(self, stac_content: dict):
         add_versions = ["1.0.0-beta.1", "1.0.0-rc.2", "1.0.0-rc.1"]
         if self.version in add_versions:
             stac_content["stac_version"] = "1.0.0-beta.2"
         pystac.validation.validate_all(stac_dict=stac_content, href=self.stac_file)
 
-    # def recursive_val_new(self, stac_content):
-    #     for link in stac_content["links"]:
-    #         print(link)
-
     # pystac extension schemas are broken
-    def extensions_val(self, stac_type):
+    def extensions_val(self, stac_type: str) -> list:
         if stac_type == "ITEM":
             schemas = self.stac_content["stac_extensions"]
             new_schemas = []
             for extension in schemas:
-                if "http" in extension:
-                    self.custom = extension
-                    self.custom_val()
-                    new_schemas.append(extension)
-                else:
+                if "http" not in extension:
                     # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                     if self.version == "1.0.0-beta.2":
                         self.stac_content["stac_version"] = "1.0.0-beta.1"
-                        self.version = self.stac_content["stac_version"]
-                    extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
-                    self.custom = extension
-                    self.custom_val()
-                    new_schemas.append(extension)
+                    version = self.stac_content["stac_version"]
+                    extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
+                self.custom = extension
+                self.custom_val()
+                new_schemas.append(extension)
         else:
             self.core_val(stac_type)
             new_schemas = self.custom
@@ -118,12 +109,12 @@ class StacValidate:
         else:
             jsonschema.validate(self.stac_content, schema)
 
-    def core_val(self, stac_type):
+    def core_val(self, stac_type: str):
         stac_type = stac_type.lower()
         self.set_schema_addr(stac_type)
         self.custom_val()
 
-    def default_val(self, stac_type):
+    def default_val(self, stac_type: str) -> list:
         schemas = []
         item_schemas = []
         self.core_val(stac_type)
@@ -135,31 +126,30 @@ class StacValidate:
         return schemas
 
     # https://cdn.staclint.com/v{version}/{stac_type}.json tries to validate 1.0.0-rc.2 to 1.0.0-rc.1?
-    def set_schema_addr(self, stac_type):
+    def set_schema_addr(self, stac_type: str):
         if self.version == "1.0.0-rc.2":
             self.custom = f"https://schemas.stacspec.org/v{self.version}/{stac_type}-spec/json-schema/{stac_type}.json"
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
 
-    def create_message(self, stac_type, val_type):
+    def create_message(self, stac_type: str, val_type: str) -> dict:
         message = {}
         message["version"] = self.version
         message["path"] = self.stac_file
-        message["schema"] = self.custom
+        if self.custom != "":
+            message["schema"] = self.custom
         message["asset type"] = stac_type.upper()
         message["validation method"] = val_type
         return message
 
-    def recursive_val_new(self, stac_type):
+    def recursive_val_new(self, stac_type: str):
         _ = self.default_val(stac_type)
         base_url = self.stac_file
         for link in self.stac_content["links"]:
             if link["rel"] == "child" or link["rel"] == "item":
                 address = link["href"]
                 x = base_url.split("/")
-                x.pop(-1)
-                x.pop(0)
-                x.pop(0)
+                x.pop(-1), x.pop(0), x.pop(0)
                 st = "https:/"
                 for it in x:
                     st = st + "/" + it
@@ -172,27 +162,25 @@ class StacValidate:
 
             if link["rel"] == "child":
                 self.message.append(message)
-                print([message])
+                click.echo(message)
                 self.recursive_val_new(stac_type)
 
             if link["rel"] == "item":
-                print("self.custom: ", self.custom)
+                # print("self.custom: ", self.custom)
                 schema = self.fetch_and_parse_file(self.custom)
                 schema["allOf"] = [{}]
                 jsonschema.validate(self.stac_content, schema)
                 message["valid stac"] = True
                 self.message.append(message)
-                print([message])
+                click.echo(message)
 
     def run(cls):
-        message = {"path": cls.stac_file}
+        message = {}
         valid = False
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type(cls.stac_content).upper()
             cls.version = cls.get_stac_version(cls.stac_content)
-            message["asset type"] = stac_type
-            message["version"] = cls.version
 
             if cls.core is True:
                 message = cls.create_message(stac_type, "core")
@@ -200,12 +188,12 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 valid = True
             elif cls.custom != "":
-                message["validation method"] = "custom"
+                message = cls.create_message(stac_type, "custom")
                 message["schema"] = [cls.custom]
                 cls.custom_val()
                 valid = True
             elif cls.recursive is True:
-                message["validation method"] = "recursive"
+                message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
 
@@ -217,12 +205,12 @@ class StacValidate:
                         cls.recursive_val(cls.stac_content)
                     valid = True
             elif cls.extensions is True:
-                message["validation method"] = "extensions"
                 schemas = cls.extensions_val(stac_type)
+                message = cls.create_message(stac_type, "extensions")
                 message["schema"] = schemas
                 valid = True
             else:
-                message["validation method"] = "default"
+                message = cls.create_message(stac_type, "default")
                 schemas = cls.default_val(stac_type)
                 message["schema"] = schemas
                 valid = True

@@ -65,7 +65,6 @@ def test_core_bad_item_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/bad_data/bad_item_v090.json",
-            "schema": "",
             "asset type": "ITEM",
             "validation method": "core",
             "valid stac": False,
@@ -118,11 +117,11 @@ def test_custom_item_remote_schema_v090():
     stac.run()
     assert stac.message == [
         {
-            "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
-            "asset type": "COLLECTION",
             "version": "0.9.0",
-            "validation method": "custom",
+            "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
             "schema": ["https://cdn.staclint.com/v0.9.0/catalog.json"],
+            "asset type": "COLLECTION",
+            "validation method": "custom",
             "valid stac": True,
         }
     ]
