@@ -148,7 +148,6 @@ class StacValidate:
         base_url = self.stac_file
         for link in self.stac_content["links"]:
             if link["rel"] == "child" or link["rel"] == "item":
-                # print(link["rel"])
                 address = link["href"]
                 x = base_url.split("/")
                 x.pop(-1)
