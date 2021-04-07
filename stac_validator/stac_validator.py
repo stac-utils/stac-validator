@@ -148,12 +148,15 @@ class StacValidate:
         for link in self.stac_content["links"]:
             if link["rel"] == "child" or link["rel"] == "item":
                 address = link["href"]
-                x = base_url.split("/")
-                x.pop(-1), x.pop(0), x.pop(0)
-                st = "https:/"
-                for it in x:
-                    st = st + "/" + it
-                self.stac_file = st + "/" + address
+                if "http" not in address:
+                    x = base_url.split("/")
+                    x.pop(-1), x.pop(0), x.pop(0)
+                    st = "https:/"
+                    for it in x:
+                        st = st + "/" + it
+                    self.stac_file = st + "/" + address
+                else:
+                    self.stac_file = address
                 self.stac_content = self.fetch_and_parse_file(self.stac_file)
                 self.stac_content["stac_version"] = self.version
                 stac_type = self.get_stac_type(self.stac_content).lower()
@@ -166,7 +169,6 @@ class StacValidate:
                 self.recursive_val_new(stac_type)
 
             if link["rel"] == "item":
-                # print("self.custom: ", self.custom)
                 schema = self.fetch_and_parse_file(self.custom)
                 schema["allOf"] = [{}]
                 jsonschema.validate(self.stac_content, schema)
