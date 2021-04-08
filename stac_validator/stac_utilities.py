@@ -14,10 +14,10 @@ old_versions = ["v0.4.0", "v0.4.1", "v0.5.0", "v0.5.1", "v0.5.2"]
 class StacVersion:
     def __init__(self, version="master", input_type="", filename=""):
         """
-         Get the appropriate spec of example file from stac-spec repo
-         :param input_type: folder to grab (spec or examples)
-         :param filename: json file to find
-         """
+        Get the appropriate spec of example file from stac-spec repo
+        :param input_type: folder to grab (spec or examples)
+        :param filename: json file to find
+        """
         self.input_type = input_type
         self.filename = filename
         self.version = version
@@ -32,7 +32,9 @@ class StacVersion:
         """
 
         cdn_base_url = f"https://cdn.staclint.com/{self.version}"
-        git_base_url = f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
+        git_base_url = (
+            f"https://raw.githubusercontent.com/radiantearth/stac-spec/{self.version}"
+        )
 
         self.filename = StacVersion.fix_stac_item(self.version, self.filename)
 

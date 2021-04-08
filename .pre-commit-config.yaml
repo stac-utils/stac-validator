@@ -1,32 +1,14 @@
-minimum_pre_commit_version: 1.15.0
-default_language_version:
-    python: python3.6
 repos:
-    -
-        repo: 'https://github.com/ambv/black'
-        rev: 19.3b0
-        hooks:
-            - id: black
-              name: Black
-              exclude: templates/
-              args: ['--safe', '-l 100', '.']
-
-    -
-        repo: 'https://github.com/timothycrosley/isort.git'
-        rev: 4.3.21
-        hooks:
-            - id: isort
-              name: Sort Imports
-              exclude: templates/
-              args: ['-rc', '-m 3', '-tc', '-w 100', '-e']
-    -
-        repo: https://github.com/pre-commit/pre-commit-hooks
-        rev: v2.0.0
-        hooks:
-        -   id: trailing-whitespace
-        -   id: end-of-file-fixer
-        -   id: check-yaml
-        -   id: debug-statements
-        -   id: check-merge-conflict
-        -   id: check-docstring-first
-            language_version: python3.6
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.9.0
+    hooks:
+    - id: flake8
+-   repo: https://github.com/timothycrosley/isort
+    rev: 5.8.0
+    hooks:
+    - id: isort
+-   repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+    - id: black
+      language_version: python3.8

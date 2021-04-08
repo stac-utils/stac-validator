@@ -2,13 +2,13 @@
 import os.path
 
 try:
-    from setuptools import setup, find_packages
+    from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
 req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirements.txt")
 
-__version__ = open("./VERSION", "r").read().strip()
+__version__ = "1.0.1"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -16,10 +16,14 @@ with open("README.md", "r") as fh:
 with open(req_path) as f:
     requires = f.read().splitlines()
 
+extra_reqs = {
+    "test": ["pytest"],
+}
+
 setup(
     name="stac_validator",
     version=__version__,
-    author="James Banting, Darren Wiens",
+    author="James Banting, Darren Wiens, Jonathan Healy",
     author_email="jbanting@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
@@ -34,8 +38,19 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
-    install_requires=requires,
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v1.0.1.tar.gz",
+    install_requires=[
+        "requests",
+        "pytest",
+        "pytest-mypy",
+        "pytest-cov",
+        "docopt",
+        "jsonschema",
+        "pystac",
+    ],
     packages=["stac_validator"],
-    entry_points={"console_scripts": ["stac_validator = stac_validator.stac_validator:main"]},
+    entry_points={
+        "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
+    },
     tests_require=["pytest"],
 )
