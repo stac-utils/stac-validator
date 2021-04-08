@@ -150,10 +150,11 @@ class StacValidate:
                 address = link["href"]
                 if "http" not in address:
                     x = base_url.split("/")
-                    x.pop(-1), x.pop(0), x.pop(0)
-                    st = "https:/"
-                    for it in x:
-                        st = st + "/" + it
+                    x.pop(-1)
+                    st = x[0]
+                    for i in range(len(x)):
+                        if i > 0:
+                            st = st + "/" + x[i]
                     self.stac_file = st + "/" + address
                 else:
                     self.stac_file = address

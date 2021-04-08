@@ -439,7 +439,10 @@ def test_recursive_local_v090():
     ]
 
 
+# manual tests - take a long time
 # stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --recursive
+# stac_validator https://cmr.earthdata.nasa.gov/stac --recursive
+# stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive
 
 # """ -------------- Test Folder - Good Items ---------------- """
 
