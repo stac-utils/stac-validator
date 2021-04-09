@@ -279,6 +279,7 @@ class StacValidate:
     default="",
     help="Validate against a custom schema.",
 )
+@click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode")
 @click.version_option(version="2.0.0")
 def main(stac_file, recursive, core, extensions, custom):
     stac = StacValidate(
