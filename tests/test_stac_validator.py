@@ -460,6 +460,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
             "asset type": "COLLECTION",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -467,6 +468,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -514,6 +516,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -521,6 +524,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -528,6 +532,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -535,6 +540,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -542,6 +548,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
             "asset type": "CATALOG",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -549,6 +556,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
             "asset type": "COLLECTION",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",
@@ -556,6 +564,7 @@ def test_recursive_lvl_3_v070():
             "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
             "asset type": "COLLECTION",
             "validation method": "recursive",
+            "valid stac": True,
         },
         {
             "version": "0.7.0",

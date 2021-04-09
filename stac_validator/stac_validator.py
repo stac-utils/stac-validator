@@ -34,6 +34,7 @@ class StacValidate:
         self.depth = 0
         self.skip_val = False
         self.verbose = verbose
+        self.valid = False
 
     def print_file_name(self):
         if self.stac_file:
@@ -74,7 +75,7 @@ class StacValidate:
         return data
 
     # pystac recursion does not like 1.0.0-rc.2 or 1.0.0-beta.1
-    def recursive_val(self, stac_content: dict):
+    def recursive_val_old(self, stac_content: dict):
         add_versions = ["1.0.0-beta.1", "1.0.0-rc.2", "1.0.0-rc.1"]
         if self.version in add_versions:
             stac_content["stac_version"] = "1.0.0-beta.2"
@@ -146,7 +147,7 @@ class StacValidate:
         message["validation method"] = val_type
         return message
 
-    def recursive_val_new(self, stac_type: str):
+    def recursive_val(self, stac_type: str):
         if self.skip_val is False:
             _ = self.default_val(stac_type)
             self.depth = self.depth + 1
@@ -175,9 +176,10 @@ class StacValidate:
 
                 if link["rel"] == "child":
                     self.message.append(message)
+                    self.recursive_val(stac_type)
+                    message["valid stac"] = True
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
-                    self.recursive_val_new(stac_type)
 
                 if link["rel"] == "item":
                     schema = self.fetch_and_parse_file(self.custom)
@@ -190,7 +192,6 @@ class StacValidate:
 
     def run(cls):
         message = {}
-        valid = False
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type(cls.stac_content).upper()
@@ -200,31 +201,31 @@ class StacValidate:
                 message = cls.create_message(stac_type, "core")
                 cls.core_val(stac_type)
                 message["schema"] = [cls.custom]
-                valid = True
+                cls.valid = True
             elif cls.custom != "":
                 message = cls.create_message(stac_type, "custom")
                 message["schema"] = [cls.custom]
                 cls.custom_val()
-                valid = True
+                cls.valid = True
             elif cls.recursive > -2:
                 message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
 
                 else:
-                    cls.recursive_val_new(stac_type)
+                    cls.recursive_val(stac_type)
                     message["schema"] = cls.custom
-                    valid = True
+                    cls.valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)
                 message = cls.create_message(stac_type, "extensions")
                 message["schema"] = schemas
-                valid = True
+                cls.valid = True
             else:
                 message = cls.create_message(stac_type, "default")
                 schemas = cls.default_val(stac_type)
                 message["schema"] = schemas
-                valid = True
+                cls.valid = True
 
         except pystac.validation.STACValidationError as e:
             message.update(cls.create_err_msg("STACValidationError", str(e)))
@@ -257,7 +258,7 @@ class StacValidate:
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 
-        message["valid stac"] = valid
+        message["valid stac"] = cls.valid
         cls.message.append(message)
 
         print(json.dumps(cls.message, indent=4))
