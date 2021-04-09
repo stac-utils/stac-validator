@@ -143,6 +143,7 @@ class StacValidate:
         message = {}
         message["version"] = self.version
         message["path"] = self.stac_file
+        self.set_schema_addr(stac_type.lower())
         if self.custom != "":
             message["schema"] = self.custom
         message["asset type"] = stac_type.upper()
@@ -151,6 +152,7 @@ class StacValidate:
 
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
+            message = self.create_message(stac_type, "recursive")
             _ = self.default_val(stac_type)
             self.depth = self.depth + 1
             if self.recursive > -1:
@@ -173,20 +175,21 @@ class StacValidate:
                     self.stac_content = self.fetch_and_parse_file(self.stac_file)
                     self.stac_content["stac_version"] = self.version
                     stac_type = self.get_stac_type(self.stac_content).lower()
-                    self.set_schema_addr(stac_type)
-                    message = self.create_message(stac_type, "recursive")
+                    # self.set_schema_addr(stac_type)
 
                 if link["rel"] == "child":
-                    self.message.append(message)
                     self.recursive_val(stac_type)
                     message["valid stac"] = True
+                    self.message.append(message)
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
 
                 if link["rel"] == "item":
+                    message = self.create_message(stac_type, "recursive")
                     schema = self.fetch_and_parse_file(self.custom)
                     schema["allOf"] = [{}]
                     jsonschema.validate(self.stac_content, schema)
+                    message["schema"] = self.custom
                     message["valid stac"] = True
                     if self.log != "":
                         self.message.append(message)
@@ -219,7 +222,7 @@ class StacValidate:
 
                 else:
                     cls.recursive_val(stac_type)
-                    message["schema"] = cls.custom
+                    # message["schema"] = cls.custom
                     cls.valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)
