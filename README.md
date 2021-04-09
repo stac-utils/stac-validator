@@ -1,7 +1,5 @@
 # Spatial Temporal Asset Catalog (STAC) Validator
 
-[![CircleCI](https://circleci.com/gh/sparkgeo/stac-validator.svg?style=svg)](https://circleci.com/gh/sparkgeo/stac-validator)
-
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
 It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
