@@ -193,9 +193,9 @@ def test_default_v070():
     stac.run()
     assert stac.message == [
         {
+            "version": "0.7.0",
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset type": "CATALOG",
-            "version": "0.7.0",
             "validation method": "default",
             "schema": ["https://cdn.staclint.com/v0.7.0/catalog.json"],
             "valid stac": True,

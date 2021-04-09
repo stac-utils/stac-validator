@@ -17,7 +17,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
-        recursive: int = 0,
+        recursive: int = -1,
         core: bool = False,
         extensions: bool = False,
         custom: str = "",
@@ -200,7 +200,7 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 cls.custom_val()
                 valid = True
-            elif cls.recursive != "":
+            elif cls.recursive > -1:
                 message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
@@ -266,6 +266,7 @@ class StacValidate:
     "--recursive",
     "-r",
     type=int,
+    default=-1,
     help="Recursively validate all related stac objects. A depth of 0 indicates full recursion.",
 )
 @click.option(

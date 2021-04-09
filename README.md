@@ -145,7 +145,7 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 
 **--recursive**
 ```
-$ stac_validator tests/test_data/1beta1/sentinel2.json --recursive   
+$ stac_validator tests/test_data/1beta1/sentinel2.json --recursive 2
 ```
 ```
 [
