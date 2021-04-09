@@ -21,6 +21,7 @@ class StacValidate:
         core: bool = False,
         extensions: bool = False,
         custom: str = "",
+        verbose: bool = False,
     ):
         self.stac_file = stac_file
         self.message = []
@@ -32,6 +33,7 @@ class StacValidate:
         self.version = ""
         self.depth = 0
         self.skip_val = False
+        self.verbose = verbose
 
     def print_file_name(self):
         if self.stac_file:
@@ -150,7 +152,6 @@ class StacValidate:
             self.depth = self.depth + 1
             if self.recursive > -1:
                 if self.depth >= int(self.recursive):
-                    print(json.dumps(self.message, indent=4))
                     self.skip_val = True
             base_url = self.stac_file
             for link in self.stac_content["links"]:
@@ -174,7 +175,8 @@ class StacValidate:
 
                 if link["rel"] == "child":
                     self.message.append(message)
-                    click.echo(json.dumps(message, indent=4))
+                    if self.verbose is True:
+                        click.echo(json.dumps(message, indent=4))
                     self.recursive_val_new(stac_type)
 
                 if link["rel"] == "item":
@@ -183,7 +185,8 @@ class StacValidate:
                     jsonschema.validate(self.stac_content, schema)
                     message["valid stac"] = True
                     self.message.append(message)
-                    click.echo(json.dumps(message, indent=4))
+                    if self.verbose is True:
+                        click.echo(json.dumps(message, indent=4))
 
     def run(cls):
         message = {}
@@ -263,13 +266,6 @@ class StacValidate:
 @click.command()
 @click.argument("stac_file")
 @click.option(
-    "--recursive",
-    "-r",
-    type=int,
-    default=-2,
-    help="Recursively validate all related stac objects. A depth of -1 indicates full recursion.",
-)
-@click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
@@ -279,15 +275,25 @@ class StacValidate:
     default="",
     help="Validate against a custom schema.",
 )
-@click.option("-v", "--verbose", is_flag=True, help="Enables verbose mode")
+@click.option(
+    "--recursive",
+    "-r",
+    type=int,
+    default=-2,
+    help="Recursively validate all related stac objects. A depth of -1 indicates full recursion.",
+)
+@click.option(
+    "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
+)
 @click.version_option(version="2.0.0")
-def main(stac_file, recursive, core, extensions, custom):
+def main(stac_file, recursive, core, extensions, custom, verbose):
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
         core=core,
         extensions=extensions,
         custom=custom,
+        verbose=verbose,
     )
     stac.run()
 
