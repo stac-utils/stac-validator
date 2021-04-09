@@ -22,6 +22,7 @@ class StacValidate:
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
+        log: str = "",
     ):
         self.stac_file = stac_file
         self.message = []
@@ -35,6 +36,7 @@ class StacValidate:
         self.skip_val = False
         self.verbose = verbose
         self.valid = False
+        self.log = log
 
     def print_file_name(self):
         if self.stac_file:
@@ -186,7 +188,10 @@ class StacValidate:
                     schema["allOf"] = [{}]
                     jsonschema.validate(self.stac_content, schema)
                     message["valid stac"] = True
-                    self.message.append(message)
+                    if self.log != "":
+                        self.message.append(message)
+                    if self.recursive < 5:
+                        self.message.append(message)
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
 
@@ -263,6 +268,11 @@ class StacValidate:
 
         print(json.dumps(cls.message, indent=4))
 
+        if cls.log != "":
+            f = open(cls.log, "w")
+            f.write(json.dumps(cls.message, indent=4))
+            f.close()
+
 
 @click.command()
 @click.argument("stac_file")
@@ -286,8 +296,11 @@ class StacValidate:
 @click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
 )
+@click.option(
+    "-l", "--log_file", default="", help="Save full recursive output to log file."
+)
 @click.version_option(version="2.0.0")
-def main(stac_file, recursive, core, extensions, custom, verbose):
+def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
@@ -295,6 +308,7 @@ def main(stac_file, recursive, core, extensions, custom, verbose):
         extensions=extensions,
         custom=custom,
         verbose=verbose,
+        log=log_file,
     )
     stac.run()
 

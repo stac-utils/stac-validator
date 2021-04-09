@@ -43,6 +43,7 @@ Options:
                            depth of -1 indicates full recursion.
 
   -v, --verbose            Enables verbose output for recursive mode.
+  -l, --log_file TEXT      Save full recursive output to log file.
   --version                Show the version and exit.
   --help                   Show this message and exit.
 ```  
