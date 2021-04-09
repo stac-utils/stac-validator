@@ -38,11 +38,14 @@ pip install stac-validator
 Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
-  --recursive        Recursively validate all related stac objects.
-  --core             Validate core stac object.
-  --extensions       Validate stac object and extensions.
-  -c, --custom TEXT  Validate against a custom schema.
-  --help             Show this message and exit.
+  -r, --recursive INTEGER  Recursively validate all related stac objects. A
+                           depth of 0 indicates full recursion.
+
+  --core                   Validate core stac object only without extensions.
+  --extensions             Validate extensions only.
+  -c, --custom TEXT        Validate against a custom schema.
+  --version                Show the version and exit.
+  --help                   Show this message and exit.
 ```  
 
 ## versions supported

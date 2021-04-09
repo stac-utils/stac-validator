@@ -17,7 +17,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
-        recursive: str = None,
+        recursive: int = 0,
         core: bool = False,
         extensions: bool = False,
         custom: str = "",
@@ -146,7 +146,7 @@ class StacValidate:
     def recursive_val_new(self, stac_type: str):
         _ = self.default_val(stac_type)
         self.depth = self.depth + 1
-        if self.recursive != "all":
+        if self.recursive > 0:
             if self.depth > int(self.recursive):
                 quit()
         base_url = self.stac_file
@@ -263,7 +263,10 @@ class StacValidate:
 @click.command()
 @click.argument("stac_file")
 @click.option(
-    "--recursive", default="", help="Recursively validate all related stac objects."
+    "--recursive",
+    "-r",
+    type=int,
+    help="Recursively validate all related stac objects. A depth of 0 indicates full recursion.",
 )
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
@@ -275,6 +278,7 @@ class StacValidate:
     default="",
     help="Validate against a custom schema.",
 )
+@click.version_option(version="2.0.0")
 def main(stac_file, recursive, core, extensions, custom):
     stac = StacValidate(
         stac_file=stac_file,
