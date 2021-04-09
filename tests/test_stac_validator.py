@@ -193,9 +193,9 @@ def test_default_v070():
     stac.run()
     assert stac.message == [
         {
+            "version": "0.7.0",
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
             "asset type": "CATALOG",
-            "version": "0.7.0",
             "validation method": "default",
             "schema": ["https://cdn.staclint.com/v0.7.0/catalog.json"],
             "valid stac": True,
@@ -395,7 +395,7 @@ def test_extensions_catalog_v1rc2():
 
 def test_recursive_v1beta2():
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=3)
     stac.run()
     assert stac.message == [
         {
@@ -411,14 +411,15 @@ def test_recursive_v1beta2():
 
 def test_recursive_v1beta1():
     stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=3)
     stac.run()
     assert stac.message == [
         {
+            "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
             "asset type": "COLLECTION",
-            "version": "1.0.0-beta.1",
             "validation method": "recursive",
+            "schema": "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
             "valid stac": True,
         }
     ]
@@ -426,16 +427,144 @@ def test_recursive_v1beta1():
 
 def test_recursive_local_v090():
     stac_file = "tests/test_data/v090/catalog.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
     stac.run()
     assert stac.message == [
         {
-            "path": "tests/test_data/v090/catalog.json",
-            "asset type": "CATALOG",
             "version": "0.9.0",
+            "path": "tests/test_data/v090/items/sample.json",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "asset type": "ITEM",
             "validation method": "recursive",
             "valid stac": True,
-        }
+        },
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "valid stac": True,
+        },
+    ]
+
+
+def test_recursive_lvl_3_v070():
+    stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=3)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/collection.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+            "asset type": "COLLECTION",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/2012-05-13/RS1_M0630938_F2N_20120513_225708_HH_SLC.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "asset type": "ITEM",
+            "validation method": "recursive",
+            "valid stac": True,
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/2012-06-14/RS1_M0634796_F3F_20120614_110317_HH_SLC.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "asset type": "ITEM",
+            "validation method": "recursive",
+            "valid stac": True,
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/2012-06-14/RS1_M0634795_F3F_20120614_110311_HH_SLC.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "asset type": "ITEM",
+            "validation method": "recursive",
+            "valid stac": True,
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/2012-10-12/RS1_M0634798_F3F_20121012_110325_HH_SLC.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "asset type": "ITEM",
+            "validation method": "recursive",
+            "valid stac": True,
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/slc/2012-10-12/RS1_M0634799_F3F_20121012_110331_HH_SLC.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "asset type": "ITEM",
+            "validation method": "recursive",
+            "valid stac": True,
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/raw/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/sgf/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/sgx/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/scn/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/scw/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-2/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+            "asset type": "COLLECTION",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/rcm/catalog.json",
+            "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+            "asset type": "COLLECTION",
+            "validation method": "recursive",
+        },
+        {
+            "version": "0.7.0",
+            "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+            "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+            "valid stac": True,
+        },
     ]
 
 
