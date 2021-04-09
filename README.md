@@ -1,7 +1,5 @@
 # Spatial Temporal Asset Catalog (STAC) Validator
 
-[![CircleCI](https://circleci.com/gh/sparkgeo/stac-validator.svg?style=svg)](https://circleci.com/gh/sparkgeo/stac-validator)
-
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
 It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
@@ -38,12 +36,13 @@ pip install stac-validator
 Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
-  -r, --recursive INTEGER  Recursively validate all related stac objects. A
-                           depth of -1 indicates full recursion.
-
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
   -c, --custom TEXT        Validate against a custom schema.
+  -r, --recursive INTEGER  Recursively validate all related stac objects. A
+                           depth of -1 indicates full recursion.
+
+  -v, --verbose            Enables verbose output for recursive mode.
   --version                Show the version and exit.
   --help                   Show this message and exit.
 ```  
