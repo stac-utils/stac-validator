@@ -209,11 +209,8 @@ class StacValidate:
                     message["error message"] = "Can not recursively validate an ITEM"
 
                 else:
-                    if "http" in cls.stac_file:
-                        cls.recursive_val_new(stac_type)
-                        message["schema"] = cls.custom
-                    else:
-                        cls.recursive_val(cls.stac_content)
+                    cls.recursive_val_new(stac_type)
+                    message["schema"] = cls.custom
                     valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)

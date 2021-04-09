@@ -415,10 +415,11 @@ def test_recursive_v1beta1():
     stac.run()
     assert stac.message == [
         {
+            "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
             "asset type": "COLLECTION",
-            "version": "1.0.0-beta.1",
             "validation method": "recursive",
+            "schema": "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
             "valid stac": True,
         }
     ]
@@ -430,12 +431,21 @@ def test_recursive_local_v090():
     stac.run()
     assert stac.message == [
         {
-            "path": "tests/test_data/v090/catalog.json",
-            "asset type": "CATALOG",
             "version": "0.9.0",
+            "path": "tests/test_data/v090/items/sample.json",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "asset type": "ITEM",
             "validation method": "recursive",
             "valid stac": True,
-        }
+        },
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/catalog.json",
+            "asset type": "CATALOG",
+            "validation method": "recursive",
+            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "valid stac": True,
+        },
     ]
 
 
