@@ -395,7 +395,7 @@ def test_extensions_catalog_v1rc2():
 
 def test_recursive_v1beta2():
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=3)
     stac.run()
     assert stac.message == [
         {
@@ -411,7 +411,7 @@ def test_recursive_v1beta2():
 
 def test_recursive_v1beta1():
     stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=3)
     stac.run()
     assert stac.message == [
         {
@@ -426,7 +426,7 @@ def test_recursive_v1beta1():
 
 def test_recursive_local_v090():
     stac_file = "tests/test_data/v090/catalog.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
     stac.run()
     assert stac.message == [
         {

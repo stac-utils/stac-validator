@@ -17,7 +17,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
-        recursive: bool = False,
+        recursive: str = None,
         core: bool = False,
         extensions: bool = False,
         custom: str = "",
@@ -30,6 +30,7 @@ class StacValidate:
         self.core = core
         self.stac_content = {}
         self.version = ""
+        self.depth = 0
 
     def print_file_name(self):
         if self.stac_file:
@@ -144,6 +145,10 @@ class StacValidate:
 
     def recursive_val_new(self, stac_type: str):
         _ = self.default_val(stac_type)
+        self.depth = self.depth + 1
+        if self.recursive != "all":
+            if self.depth > int(self.recursive):
+                quit()
         base_url = self.stac_file
         for link in self.stac_content["links"]:
             if link["rel"] == "child" or link["rel"] == "item":
@@ -195,7 +200,7 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 cls.custom_val()
                 valid = True
-            elif cls.recursive is True:
+            elif cls.recursive != "":
                 message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
@@ -258,7 +263,7 @@ class StacValidate:
 @click.command()
 @click.argument("stac_file")
 @click.option(
-    "--recursive", is_flag=True, help="Recursively validate all related stac objects."
+    "--recursive", default="", help="Recursively validate all related stac objects."
 )
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
