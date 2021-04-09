@@ -17,7 +17,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
-        recursive: int = -1,
+        recursive: int = -2,
         core: bool = False,
         extensions: bool = False,
         custom: str = "",
@@ -31,6 +31,7 @@ class StacValidate:
         self.stac_content = {}
         self.version = ""
         self.depth = 0
+        self.skip_val = False
 
     def print_file_name(self):
         if self.stac_file:
@@ -144,43 +145,45 @@ class StacValidate:
         return message
 
     def recursive_val_new(self, stac_type: str):
-        _ = self.default_val(stac_type)
-        self.depth = self.depth + 1
-        if self.recursive > 0:
-            if self.depth > int(self.recursive):
-                quit()
-        base_url = self.stac_file
-        for link in self.stac_content["links"]:
-            if link["rel"] == "child" or link["rel"] == "item":
-                address = link["href"]
-                if "http" not in address:
-                    x = base_url.split("/")
-                    x.pop(-1)
-                    st = x[0]
-                    for i in range(len(x)):
-                        if i > 0:
-                            st = st + "/" + x[i]
-                    self.stac_file = st + "/" + address
-                else:
-                    self.stac_file = address
-                self.stac_content = self.fetch_and_parse_file(self.stac_file)
-                self.stac_content["stac_version"] = self.version
-                stac_type = self.get_stac_type(self.stac_content).lower()
-                self.set_schema_addr(stac_type)
-                message = self.create_message(stac_type, "recursive")
+        if self.skip_val is False:
+            _ = self.default_val(stac_type)
+            self.depth = self.depth + 1
+            if self.recursive > -1:
+                if self.depth >= int(self.recursive):
+                    print(json.dumps(self.message, indent=4))
+                    self.skip_val = True
+            base_url = self.stac_file
+            for link in self.stac_content["links"]:
+                if link["rel"] == "child" or link["rel"] == "item":
+                    address = link["href"]
+                    if "http" not in address:
+                        x = base_url.split("/")
+                        x.pop(-1)
+                        st = x[0]
+                        for i in range(len(x)):
+                            if i > 0:
+                                st = st + "/" + x[i]
+                        self.stac_file = st + "/" + address
+                    else:
+                        self.stac_file = address
+                    self.stac_content = self.fetch_and_parse_file(self.stac_file)
+                    self.stac_content["stac_version"] = self.version
+                    stac_type = self.get_stac_type(self.stac_content).lower()
+                    self.set_schema_addr(stac_type)
+                    message = self.create_message(stac_type, "recursive")
 
-            if link["rel"] == "child":
-                self.message.append(message)
-                click.echo(message)
-                self.recursive_val_new(stac_type)
+                if link["rel"] == "child":
+                    self.message.append(message)
+                    click.echo(json.dumps(message, indent=4))
+                    self.recursive_val_new(stac_type)
 
-            if link["rel"] == "item":
-                schema = self.fetch_and_parse_file(self.custom)
-                schema["allOf"] = [{}]
-                jsonschema.validate(self.stac_content, schema)
-                message["valid stac"] = True
-                self.message.append(message)
-                click.echo(message)
+                if link["rel"] == "item":
+                    schema = self.fetch_and_parse_file(self.custom)
+                    schema["allOf"] = [{}]
+                    jsonschema.validate(self.stac_content, schema)
+                    message["valid stac"] = True
+                    self.message.append(message)
+                    click.echo(json.dumps(message, indent=4))
 
     def run(cls):
         message = {}
@@ -200,7 +203,7 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 cls.custom_val()
                 valid = True
-            elif cls.recursive > -1:
+            elif cls.recursive > -2:
                 message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error message"] = "Can not recursively validate an ITEM"
@@ -266,8 +269,8 @@ class StacValidate:
     "--recursive",
     "-r",
     type=int,
-    default=-1,
-    help="Recursively validate all related stac objects. A depth of 0 indicates full recursion.",
+    default=-2,
+    help="Recursively validate all related stac objects. A depth of -1 indicates full recursion.",
 )
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."

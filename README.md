@@ -39,7 +39,7 @@ Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
   -r, --recursive INTEGER  Recursively validate all related stac objects. A
-                           depth of 0 indicates full recursion.
+                           depth of -1 indicates full recursion.
 
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
@@ -50,7 +50,7 @@ Options:
 
 ## versions supported
 ```
-default: ['0.8.0','0.8.1','0.9.0','1.0.0-beta.1','1.0.0-beta.2','1.0.0-rc.1','1.0.0-rc.2']  
+default: ['0.7.0','0.8.0','0.8.1','0.9.0','1.0.0-beta.1','1.0.0-beta.2','1.0.0-rc.1','1.0.0-rc.2']  
 ```
 
 ## extensions supported
@@ -145,15 +145,37 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 
 **--recursive**
 ```
-$ stac_validator tests/test_data/1beta1/sentinel2.json --recursive 2
+$ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --recursive 0
 ```
 ```
 [
     {
-        "path": "tests/test_data/1beta1/sentinel2.json",
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/collection.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
         "asset type": "COLLECTION",
-        "version": "1.0.0-beta.1",
+        "validation method": "recursive"
+    },
+    {
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-2/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+        "asset type": "COLLECTION",
+        "validation method": "recursive"
+    },
+    {
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/rcm/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+        "asset type": "COLLECTION",
+        "validation method": "recursive"
+    },
+    {
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "asset type": "CATALOG",
         "validation method": "recursive",
+        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
         "valid stac": true
     }
 ]
