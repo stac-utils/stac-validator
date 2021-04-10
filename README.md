@@ -151,34 +151,34 @@ $ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --recursiv
 [
     {
         "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/collection.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
-        "asset type": "COLLECTION",
-        "validation method": "recursive",
-        "valid stac": true
-    },
-    {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-2/catalog.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
-        "asset type": "COLLECTION",
-        "validation method": "recursive",
-        "valid stac": true
-    },
-    {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/rcm/catalog.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
-        "asset type": "COLLECTION",
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "asset type": "CATALOG",
         "validation method": "recursive",
         "valid stac": true
     },
     {
         "version": "0.7.0",
         "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
         "asset type": "CATALOG",
         "validation method": "recursive",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+        "valid stac": true
+    },
+    {
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.7.0",
+        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
         "valid stac": true
     }
 ]
