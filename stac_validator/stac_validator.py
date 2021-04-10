@@ -37,6 +37,7 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
+        self.addresses = []
 
     def print_file_name(self):
         if self.stac_file:
@@ -106,6 +107,7 @@ class StacValidate:
     def custom_val(self):
         # in case the path to custom json schema is local
         # it may contain relative references
+        # self.stac_content = self.fetch_and_parse_file(self.stac_file)
         schema = self.fetch_and_parse_file(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
@@ -142,8 +144,8 @@ class StacValidate:
     def create_message(self, stac_type: str, val_type: str) -> dict:
         message = {}
         message["version"] = self.version
-        message["path"] = self.stac_file
         self.set_schema_addr(stac_type.lower())
+        message["path"] = self.stac_file
         if self.custom != "":
             message["schema"] = self.custom
         message["asset type"] = stac_type.upper()
@@ -152,51 +154,52 @@ class StacValidate:
 
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
-            message = self.create_message(stac_type, "recursive")
-            _ = self.default_val(stac_type)
-            self.depth = self.depth + 1
-            if self.recursive > -1:
-                if self.depth >= int(self.recursive):
-                    self.skip_val = True
-            base_url = self.stac_file
-            for link in self.stac_content["links"]:
-                if link["rel"] == "child" or link["rel"] == "item":
-                    address = link["href"]
-                    if "http" not in address:
-                        x = base_url.split("/")
-                        x.pop(-1)
-                        st = x[0]
-                        for i in range(len(x)):
-                            if i > 0:
-                                st = st + "/" + x[i]
-                        self.stac_file = st + "/" + address
-                    else:
-                        self.stac_file = address
-                    self.stac_content = self.fetch_and_parse_file(self.stac_file)
-                    self.stac_content["stac_version"] = self.version
-                    stac_type = self.get_stac_type(self.stac_content).lower()
-                    # self.set_schema_addr(stac_type)
+            if self.stac_file not in self.addresses:
+                self.addresses.append(self.stac_file)
+                _ = self.default_val(stac_type)
+                self.depth = self.depth + 1
+                if self.recursive > -1:
+                    if self.depth >= int(self.recursive):
+                        self.skip_val = True
+                base_url = self.stac_file
+                for link in self.stac_content["links"]:
+                    if link["rel"] == "child" or link["rel"] == "item":
+                        address = link["href"]
+                        if "http" not in address:
+                            x = base_url.split("/")
+                            x.pop(-1)
+                            st = x[0]
+                            for i in range(len(x)):
+                                if i > 0:
+                                    st = st + "/" + x[i]
+                            self.stac_file = st + "/" + address
+                        else:
+                            self.stac_file = address
+                        self.stac_content = self.fetch_and_parse_file(self.stac_file)
+                        self.stac_content["stac_version"] = self.version
+                        stac_type = self.get_stac_type(self.stac_content).lower()
 
-                if link["rel"] == "child":
-                    self.recursive_val(stac_type)
-                    message["valid stac"] = True
-                    self.message.append(message)
-                    if self.verbose is True:
-                        click.echo(json.dumps(message, indent=4))
+                    if link["rel"] == "child":
+                        message = self.create_message(stac_type, "recursive")
+                        self.recursive_val(stac_type)
+                        message["valid stac"] = True
+                        self.message.append(message)
+                        if self.verbose is True:
+                            click.echo(json.dumps(message, indent=4))
 
-                if link["rel"] == "item":
-                    message = self.create_message(stac_type, "recursive")
-                    schema = self.fetch_and_parse_file(self.custom)
-                    schema["allOf"] = [{}]
-                    jsonschema.validate(self.stac_content, schema)
-                    message["schema"] = self.custom
-                    message["valid stac"] = True
-                    if self.log != "":
-                        self.message.append(message)
-                    if self.recursive < 5:
-                        self.message.append(message)
-                    if self.verbose is True:
-                        click.echo(json.dumps(message, indent=4))
+                    if link["rel"] == "item":
+                        message = self.create_message(stac_type, "recursive")
+                        schema = self.fetch_and_parse_file(self.custom)
+                        schema["allOf"] = [{}]
+                        jsonschema.validate(self.stac_content, schema)
+                        message["schema"] = self.custom
+                        message["valid stac"] = True
+                        if self.log != "":
+                            self.message.append(message)
+                        if self.recursive < 5:
+                            self.message.append(message)
+                        if self.verbose is True:
+                            click.echo(json.dumps(message, indent=4))
 
     def run(cls):
         message = {}
@@ -222,7 +225,6 @@ class StacValidate:
 
                 else:
                     cls.recursive_val(stac_type)
-                    # message["schema"] = cls.custom
                     cls.valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)
