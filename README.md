@@ -145,38 +145,78 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 
 **--recursive**
 ```
-$ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --recursive 0
+$ stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive 3 --verbose
 ```
 ```
 [
+     {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2006/S4_10952_6057_20060916/S4_10952_6057_20060916.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/item.json",
+        "asset type": "ITEM",
+        "validation method": "recursive",
+        "valid stac": true
+    },
     {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/collection.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2007/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2005/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2008/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2009/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2010/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2003/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset type": "CATALOG",
+        "validation method": "recursive",
+        "valid stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot5_orthoimages/collection.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/collection.json",
         "asset type": "COLLECTION",
         "validation method": "recursive",
         "valid stac": true
     },
     {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-2/catalog.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
-        "asset type": "COLLECTION",
-        "validation method": "recursive",
-        "valid stac": true
-    },
-    {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/rcm/catalog.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/collection.json",
-        "asset type": "COLLECTION",
-        "validation method": "recursive",
-        "valid stac": true
-    },
-    {
-        "version": "0.7.0",
-        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+        "version": "0.8.1",
+        "path": "https://spot-canada-ortho.s3.amazonaws.com/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
         "asset type": "CATALOG",
         "validation method": "recursive",
         "valid stac": true

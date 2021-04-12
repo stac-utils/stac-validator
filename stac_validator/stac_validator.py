@@ -181,11 +181,11 @@ class StacValidate:
 
                     if link["rel"] == "child":
                         message = self.create_message(stac_type, "recursive")
-                        self.recursive_val(stac_type)
                         message["valid stac"] = True
                         self.message.append(message)
                         if self.verbose is True:
                             click.echo(json.dumps(message, indent=4))
+                        self.recursive_val(stac_type)
 
                     if link["rel"] == "item":
                         message = self.create_message(stac_type, "recursive")
