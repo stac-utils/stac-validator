@@ -31,3 +31,9 @@ build-cdk:
 deploy-cdk:
 	cd validator-cdk && \
 	cdk deploy
+
+cdk-pipeline:
+	make build-cdk
+	cd validator-cdk && \
+	pip install -r requirements.txt && \
+	cdk deploy
