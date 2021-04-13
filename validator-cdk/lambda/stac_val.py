@@ -11,10 +11,13 @@ def handler(event, context):
     val_file = want[1:-3]
     stac = stac_validator.StacValidate(val_file)
     stac.run()
+    output = stac.message[0]
+    if "validation method" in output:
+        output.pop("validation method")
 
     return {
         "statusCode": 200,
         "isBase64Encoded": False,
         "headers": {"Content-Type": "text/plain", "x-test-header": "foobar"},
-        "body": json.dumps({"body: ": stac.message}),
+        "body": json.dumps(output),
     }
