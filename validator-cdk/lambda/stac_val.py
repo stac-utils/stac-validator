@@ -6,13 +6,10 @@ from stac_validator import stac_validator
 def handler(event, context):
     body = {}
     body["event"] = event
-    print(body)
     wanted = body["event"]["body"].split(" ")
     want = str(wanted[3])
-    want = want[1:-3]
-    stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
-    print(stac_file)
-    stac = stac_validator.StacValidate(want)
+    val_file = want[1:-3]
+    stac = stac_validator.StacValidate(val_file)
     stac.run()
 
     return {
