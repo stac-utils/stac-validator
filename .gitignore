@@ -112,3 +112,7 @@ venv.bak/
 
 # IDE
 .vscode
+
+validator-cdk/lambda/stac_validator/
+validator-cdk/lambda/libraries.zip
+
