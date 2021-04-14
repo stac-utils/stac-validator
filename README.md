@@ -1,10 +1,34 @@
-# Spatial Temporal Asset Catalog (STAC) Validator
+# SpatioTemporal Asset Catalog (STAC) Validator
 
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
+<<<<<<< HEAD
 It can be installed as a command line utility locally or run with Docker. It works with either a local file path or a url. 
 Examples can be found below.
+=======
+It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
+>>>>>>> 9ebd70a... Updated Readme and closes #79
 
+``` bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json             
+[
+    {
+        "version": "1.0.0-rc.2",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+        ],
+        "asset type": "ITEM",
+        "validation method": "default",
+        "valid stac": true
+    }
+]
+```
 
 ## Requirements
 
@@ -15,24 +39,44 @@ Examples can be found below.
     * Pystac
     * Jsonschema
 
+## Install
 
-## Installation from repo
+Installation from PyPi  
+
+```bash
+pip install stac-validator  
+```
+Installation from Repo
 
 ```bash
 pip install .
 or (for development)
 pip install --editable .  
 ```
+## Versions supported
+```
+['0.7.0','0.8.0','0.8.1','0.9.0','1.0.0-beta.1','1.0.0-beta.2','1.0.0-rc.1','1.0.0-rc.2']  
+```
 
-## Installation from PyPi  
+## Extensions supported
+```
+['checksum','collection-assets',
+'datacube','eo',
+'item-assets','label',
+'pointcloud','projection',
+'sar','sat',
+'scientific','single-file-stac',
+'tiled-assets','timestamps',
+'version','view']
+```
 
+---
+# CLI
+
+**Basic Usage**  
 ```bash
-pip install stac-validator  
-```
+stac_validator --help
 
-
-## stac_validator --help
-```
 Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
@@ -47,45 +91,42 @@ Options:
   --version                Show the version and exit.
   --help                   Show this message and exit.
 ```  
-
-## versions supported
-```
-default: ['0.7.0','0.8.0','0.8.1','0.9.0','1.0.0-beta.1','1.0.0-beta.2','1.0.0-rc.1','1.0.0-rc.2']  
-```
-
-## extensions supported
-```
-['checksum','collection-assets','datacube','eo','item-assets','label','pointcloud','projection',
-'sar','sat','scientific','single-file-stac','tiled-assets','timestamps','version','view']
-```
-
 ---
-# CLI
+# Python
+#### Import stac-validator
+**remote source**
+``` python
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
+stac.run()
 
-**Basic Usage**  
-```    
-$ stac_validator https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json
+print(stac.message)
+
 ```
+**local file**
+``` python
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
+stac.run()
+
+print(stac.message)
+``` 
+---
+# Testing 
+```bash
+pytest -v
 ```
-[
-    {
-        "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
-        "asset type": "COLLECTION",
-        "version": "0.9.0",
-        "validation method": "default",
-        "schema": [
-            "https://cdn.staclint.com/v0.9.0/collection.json"
-        ],
-        "valid stac": true
-    }
-]
-```
+See the [tests](./tests/test_stac_validator.py) files for examples on different usages.  
+  
+---
+# Additional Examples
+
 
 **--core**
-```
-$ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core  
-```
-```
+``` bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core  
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
@@ -101,10 +142,8 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 ```
 
 **--custom**
-```
-$ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
-```
-```
+``` bash
+stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
 [
     {
         "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
@@ -120,10 +159,8 @@ $ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom h
 ```
 
 **--extensions**
-```
-$ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions  
-```
-```
+``` bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions  
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
@@ -144,10 +181,8 @@ $ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 
 
 **--recursive**
-```
-$ stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive 3 --verbose
-```
-```
+``` bash
+stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive 3 --verbose
 [
      {
         "version": "0.8.1",
@@ -224,32 +259,3 @@ $ stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recur
 ]
 ```
 
-
-
-**Testing**
-```bash
-pytest -v
-```
-See the tests directory for examples on different usages.  
-  
----
-# Import stac-validator
-**remote source**
-```
-from stac_validator import stac_validator
-  
-stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
-stac.run()
-
-print(stac.message)
-
-```
-**local file**
-```
-from stac_validator import stac_validator
-  
-stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
-stac.run()
-
-print(stac.message)
-```
