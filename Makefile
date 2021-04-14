@@ -37,3 +37,9 @@ cdk-pipeline:
 	cd validator-cdk && \
 	pip install -r requirements.txt && \
 	cdk deploy
+
+build-container:
+	docker build -t stac_val .
+
+run-container:
+	docker container run -it stac_val /bin/bash
