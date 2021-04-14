@@ -2,7 +2,7 @@
 
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
-It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
+It can be installed as a command line utility locally or run with Docker. It works with either a local file path or a url. 
 Examples can be found below.
 
 
