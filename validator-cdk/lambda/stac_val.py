@@ -17,6 +17,12 @@ def handler(event, context):
     return {
         "statusCode": 200,
         "isBase64Encoded": False,
-        "headers": {"Content-Type": "text/plain", "x-test-header": "foobar"},
+        "headers": {
+            "Content-Type": "application/json",
+            "x-test-header": "foobar",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        },
         "body": json.dumps(output),
     }

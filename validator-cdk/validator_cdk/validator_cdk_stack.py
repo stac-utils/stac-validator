@@ -28,8 +28,11 @@ class ValidatorCdkStack(cdk.Stack):
             layers=[stac_lib],
         )
 
+        cors = apigw.CorsOptions(allow_origins=["*"])
+
         apigw.LambdaRestApi(
             self,
             "Endpoint",
             handler=validator_lambda,
+            default_cors_preflight_options=cors,
         )
