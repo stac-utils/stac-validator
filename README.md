@@ -65,7 +65,7 @@ pip install --editable .
 | 1.0.0-rc.2   |
 
 ## Extensions supported
-
+[STAC Extensions](https://stac-extensions.github.io/)
 ```
 [
 'checksum','collection-assets',
