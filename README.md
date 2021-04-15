@@ -2,7 +2,7 @@
 
 This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
 
-It can be installed as a command line utility and passed either a local file path or a url along with the STAC version to validate against. 
+It can be installed as a command line utility and passed either a local file path or a url. 
 
 ``` bash
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json             
@@ -18,9 +18,9 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
             "https://stac-extensions.github.io/view/v1.0.0/schema.json",
             "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
         ],
-        "asset type": "ITEM",
-        "validation method": "default",
-        "valid stac": true
+        "asset_type": "ITEM",
+        "validation_method": "default",
+        "valid_stac": true
     }
 ]
 ```
@@ -87,8 +87,14 @@ Options:
   --help                   Show this message and exit.
 ```  
 ---
+# Docker
+```bash
+$ make build-container
+$ make run-container
+# stac_validator --help
+```
+---
 # Python
-#### Import stac-validator
 **remote source**
 ``` python
 from stac_validator import stac_validator
@@ -125,13 +131,13 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
-        "asset type": "ITEM",
+        "asset_type": "ITEM",
         "version": "1.0.0-rc.2",
-        "validation method": "core",
+        "validation_method": "core",
         "schema": [
             "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
         ],
-        "valid stac": true
+        "valid_stac": true
     }
 ]
 ```
@@ -142,13 +148,13 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom htt
 [
     {
         "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset type": "CATALOG",
+        "asset_type": "CATALOG",
         "version": "0.7.0",
-        "validation method": "custom",
+        "validation_method": "custom",
         "schema": [
             "https://cdn.staclint.com/v0.7.0/catalog.json"
         ],
-        "valid stac": true
+        "valid_stac": true
     }
 ]
 ```
@@ -159,9 +165,9 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 [
     {
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
-        "asset type": "ITEM",
+        "asset_type": "ITEM",
         "version": "1.0.0-rc.2",
-        "validation method": "extensions",
+        "validation_method": "extensions",
         "schema": [
             "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
             "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
@@ -169,7 +175,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
             "https://stac-extensions.github.io/view/v1.0.0/schema.json",
             "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
         ],
-        "valid stac": true
+        "valid_stac": true
     }
 ]
 ```
@@ -183,73 +189,73 @@ stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2006/S4_10952_6057_20060916/S4_10952_6057_20060916.json",
         "schema": "https://cdn.staclint.com/v0.8.1/item.json",
-        "asset type": "ITEM",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "ITEM",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2007/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2005/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2008/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2009/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2010/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/S4_2003/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot5_orthoimages/collection.json",
         "schema": "https://cdn.staclint.com/v0.8.1/collection.json",
-        "asset type": "COLLECTION",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "COLLECTION",
+        "validation_method": "recursive",
+        "valid_stac": true
     },
     {
         "version": "0.8.1",
         "path": "https://spot-canada-ortho.s3.amazonaws.com/catalog.json",
         "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
-        "asset type": "CATALOG",
-        "validation method": "recursive",
-        "valid stac": true
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
     }
 ]
 ```
