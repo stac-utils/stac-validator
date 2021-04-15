@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.0.0] - 2021-04-15
+
+### Added
+
+- Stac versions 1.0.0-rc.2 and 1.0.0-rc.1 are now supported.
+- Version is detected automatically
+- Default validation attempts to validate a core Stac object as well as any extensions.
+
+### Changed
+
+- Pystac is now only being used for recursion to validate links in catalogs and collections - and to identify stac objects. Jsonschema is being used for all other validation.
+- The cli library was changed from Docopt to Click.
+- Custom validation was updated to allow for local schemas.
+- Readme updated
+
+### Removed
+
+- The force, legacy, version, and update methods were removed.
+- stac versions where a `stac_version` field is not present are
+  no longer supported.
+
 ## [1.0.0] - 2020-09-01
 
 ### Added
@@ -29,18 +50,3 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Updated core validation to use validation from pystac instead of jsonchema.
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
-
-## [2.0.0] - 2021-04-15
-
-### Changed
-
-- Stac versions 1.0.0-rc.2 and 1.0.0-rc.1 are now supported.
-- Pystac is now only being used for recursion to validate links in catalogs and collections - and to identify stac objects.
-  Jsonschema is being used for all other validation.
-- The force, legacy, version, and update methods were removed.
-- Version is now only detected automatically. Therefore, older stac versions where a stac_version field is not present are
-  no longer supported.
-- Default validation attempts to validate a core Stac object as well as any extensions.
-- The cli library was changed from Docopt to Click.
-- Custom validation was updated to allow for local schemas.
-- Readme updated
