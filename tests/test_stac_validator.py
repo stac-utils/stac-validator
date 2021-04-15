@@ -187,6 +187,27 @@ def test_custom_item_remote_schema_v1rc2():
 # Default
 
 
+def test_default_proj_v1b2():
+    stac_file = "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.2/item.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "default",
+            "valid_stac": True,
+        }
+    ]
+
+
 def test_default_v070():
     stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
     stac = stac_validator.StacValidate(stac_file)
