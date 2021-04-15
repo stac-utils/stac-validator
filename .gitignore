@@ -107,7 +107,7 @@ venv.bak/
 .DS_Store
 
 # lambda file
-.zip
+*.zip
 
 
 # IDE
