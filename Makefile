@@ -15,6 +15,12 @@ code-check:		## Check and format code using pre-commit
 test:			## Run the tests
 	pytest --verbose
 
+build:			## Build a Docker container
+	docker build -t stac_validator .
+
+run:			## Run the Docker Container and enter into bash
+	docker container run -it stac_validator /bin/bash
+
 build-libraries:
 	cd cdk-deployment/lambda-libraries && \
 	docker build -f "Dockerfile" -t lambdalayer:latest .
@@ -40,9 +46,3 @@ cdk-pipeline:
 	cd cdk-deployment && \
 	pip install -r requirements.txt && \
 	cdk deploy
-
-build-container:
-	docker build -t stac_val .
-
-run-container:
-	docker container run -it stac_val /bin/bash

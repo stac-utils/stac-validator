@@ -53,7 +53,7 @@ class StacValidate:
 
     @staticmethod
     def create_err_msg(err_type: str, err_msg: str) -> dict:
-        return {"valid stac": False, "error type": err_type, "error message": err_msg}
+        return {"valid_stac": False, "error_type": err_type, "error_message": err_msg}
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -148,8 +148,8 @@ class StacValidate:
         message["path"] = self.stac_file
         if self.custom != "":
             message["schema"] = self.custom
-        message["asset type"] = stac_type.upper()
-        message["validation method"] = val_type
+        message["asset_type"] = stac_type.upper()
+        message["validation_method"] = val_type
         return message
 
     def recursive_val(self, stac_type: str):
@@ -181,7 +181,7 @@ class StacValidate:
 
                     if link["rel"] == "child":
                         message = self.create_message(stac_type, "recursive")
-                        message["valid stac"] = True
+                        message["valid_stac"] = True
                         self.message.append(message)
                         if self.verbose is True:
                             click.echo(json.dumps(message, indent=4))
@@ -193,7 +193,7 @@ class StacValidate:
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
                         message["schema"] = self.custom
-                        message["valid stac"] = True
+                        message["valid_stac"] = True
                         if self.log != "":
                             self.message.append(message)
                         if self.recursive < 5:
@@ -221,7 +221,7 @@ class StacValidate:
             elif cls.recursive > -2:
                 message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
-                    message["error message"] = "Can not recursively validate an ITEM"
+                    message["error_message"] = "Can not recursively validate an ITEM"
 
                 else:
                     cls.recursive_val(stac_type)
@@ -268,7 +268,7 @@ class StacValidate:
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 
-        message["valid stac"] = cls.valid
+        message["valid_stac"] = cls.valid
         cls.message.append(message)
 
         print(json.dumps(cls.message, indent=4))
@@ -289,7 +289,7 @@ class StacValidate:
     "--custom",
     "-c",
     default="",
-    help="Validate against a custom schema.",
+    help="Validate against a custom schema (local filepath or remote schema).",
 )
 @click.option(
     "--recursive",
@@ -302,7 +302,10 @@ class StacValidate:
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
 )
 @click.option(
-    "-l", "--log_file", default="", help="Save full recursive output to log file."
+    "-l",
+    "--log_file",
+    default="",
+    help="Save full recursive output to log file (local filepath).",
 )
 @click.version_option(version="2.0.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
