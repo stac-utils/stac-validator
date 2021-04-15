@@ -3,8 +3,6 @@
 
 Validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
 
-It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against.
-
 ```bash
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
 [
