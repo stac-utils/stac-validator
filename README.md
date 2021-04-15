@@ -1,4 +1,5 @@
 # SpatioTemporal Asset Catalog (STAC) Validator
+[![Test Runner](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg)](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml)
 
 Validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
 
