@@ -302,7 +302,10 @@ class StacValidate:
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
 )
 @click.option(
-    "-l", "--log_file", default="", help="Save full recursive output to log file (local filepath)."
+    "-l",
+    "--log_file",
+    default="",
+    help="Save full recursive output to log file (local filepath).",
 )
 @click.version_option(version="2.0.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
