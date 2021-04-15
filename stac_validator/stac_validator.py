@@ -219,8 +219,8 @@ class StacValidate:
                 message["schema"] = schemas
                 cls.valid = True
             else:
-                message = cls.create_message(stac_type, "default")
                 schemas = cls.default_val(stac_type)
+                message = cls.create_message(stac_type, "default")
                 message["schema"] = schemas
                 cls.valid = True
 
