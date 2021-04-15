@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 
 import click
 import jsonschema
-import pystac
 import requests
 from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object
@@ -38,10 +37,6 @@ class StacValidate:
         self.valid = False
         self.log = log
         self.addresses = []
-
-    def print_file_name(self):
-        if self.stac_file:
-            click.echo(click.format_filename(self.stac_file))
 
     def get_stac_type(self, stac_content: dict) -> str:
         try:
@@ -77,13 +72,6 @@ class StacValidate:
 
         return data
 
-    # pystac recursion does not like 1.0.0-rc.2 or 1.0.0-beta.1
-    def recursive_val_old(self, stac_content: dict):
-        add_versions = ["1.0.0-beta.1", "1.0.0-rc.2", "1.0.0-rc.1"]
-        if self.version in add_versions:
-            stac_content["stac_version"] = "1.0.0-beta.2"
-        pystac.validation.validate_all(stac_dict=stac_content, href=self.stac_file)
-
     # pystac extension schemas are broken
     def extensions_val(self, stac_type: str) -> list:
         if stac_type == "ITEM":
@@ -101,13 +89,12 @@ class StacValidate:
                 new_schemas.append(extension)
         else:
             self.core_val(stac_type)
-            new_schemas = self.custom
+            new_schemas = [self.custom]
         return new_schemas
 
     def custom_val(self):
         # in case the path to custom json schema is local
         # it may contain relative references
-        # self.stac_content = self.fetch_and_parse_file(self.stac_file)
         schema = self.fetch_and_parse_file(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
@@ -147,7 +134,7 @@ class StacValidate:
         self.set_schema_addr(stac_type.lower())
         message["path"] = self.stac_file
         if self.custom != "":
-            message["schema"] = self.custom
+            message["schema"] = [self.custom]
         message["asset_type"] = stac_type.upper()
         message["validation_method"] = val_type
         return message
@@ -190,9 +177,9 @@ class StacValidate:
                     if link["rel"] == "item":
                         message = self.create_message(stac_type, "recursive")
                         schema = self.fetch_and_parse_file(self.custom)
+                        # this next line prevents this: unknown url type: 'geojson.json' ??
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
-                        message["schema"] = self.custom
                         message["valid_stac"] = True
                         if self.log != "":
                             self.message.append(message)
@@ -237,8 +224,6 @@ class StacValidate:
                 message["schema"] = schemas
                 cls.valid = True
 
-        except pystac.validation.STACValidationError as e:
-            message.update(cls.create_err_msg("STACValidationError", str(e)))
         except ValueError as e:
             message.update(cls.create_err_msg("ValueError", str(e)))
         except URLError as e:
