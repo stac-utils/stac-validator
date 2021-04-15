@@ -1,0 +1,7 @@
+FROM python:3.8-buster
+RUN apt-get -y update && \
+	apt-get -y install zip unzip && \
+	python -m pip install --upgrade pip && \
+	pip install requests>=2.19.1 pytest==6.2.2 pystac==0.5.6 jsonschema==3.2.0 click==7.1.2 -t ./python && \
+	# tar -czvf python.tar.gz ./python/
+	zip -r libraries.zip ./python/

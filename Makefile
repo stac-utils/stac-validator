@@ -13,28 +13,28 @@ test:
 	pytest --verbose
 
 build-libraries:
-	cd lambda-libraries && \
+	cd cdk-deployment/lambda-libraries && \
 	docker build -f "Dockerfile" -t lambdalayer:latest .
 	docker run -d -it --name lambdalayer lambdalayer:latest
-	docker cp lambdalayer:libraries.zip ./validator-cdk/lambda
+	docker cp lambdalayer:libraries.zip ./cdk-deployment/lambda
 	docker stop lambdalayer
 	docker rm lambdalayer
 	docker rmi lambdalayer
 
 add-val:
-	cp -r stac_validator validator-cdk/lambda
+	cp -r stac_validator cdk-deployment/lambda
 
 build-cdk:
 	make build-libraries
 	make add-val
 
 deploy-cdk:
-	cd validator-cdk && \
+	cd cdk-deployment && \
 	cdk deploy
 
 cdk-pipeline:
 	make build-cdk
-	cd validator-cdk && \
+	cd cdk-deployment && \
 	pip install -r requirements.txt && \
 	cdk deploy
 
