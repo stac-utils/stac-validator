@@ -1,15 +1,18 @@
-install:
+help:			## Show this help
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+install:		## Install using pip
 	pip install .
 
-install-edit:
+install-edit:		## Install using pip in edit mode
 	pip install --editable .  
 
-code-check:
+code-check:		## Check and format code using pre-commit
 	pre-commit install
 	pre-commit autoupdate
 	pre-commit run --all-files
 
-test:
+test:			## Run the tests
 	pytest --verbose
 
 build-libraries:
