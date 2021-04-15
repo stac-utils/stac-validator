@@ -93,7 +93,7 @@ Usage: stac_validator [OPTIONS] STAC_FILE
 Options:
   --core                   Validate core stac object without extensions.
   --extensions             Validate extensions only.
-  -c, --custom TEXT        Validate against a custom schema (local filepth or remote schema).
+  -c, --custom TEXT        Validate against a custom schema (local filepath or remote schema).
   -r, --recursive INTEGER  Recursively validate all related stac objects. A
                            depth of -1 indicates full recursion.
 
