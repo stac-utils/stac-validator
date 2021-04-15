@@ -342,11 +342,11 @@ def test_extensions_v1beta1():
     stac.run()
     assert stac.message == [
         {
-            "path": "tests/test_data/1beta1/sentinel2.json",
-            "asset_type": "COLLECTION",
             "version": "1.0.0-beta.1",
-            "validation_method": "extensions",
+            "path": "tests/test_data/1beta1/sentinel2.json",
             "schema": "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
+            "asset_type": "COLLECTION",
+            "validation_method": "extensions",
             "valid_stac": True,
         }
     ]
