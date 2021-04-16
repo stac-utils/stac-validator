@@ -81,15 +81,12 @@ class StacValidate:
         if stac_type == "ITEM":
             try:
                 new_schemas = []
-                # if 'extensions' in self.stac_content:
                 # error with the 'proj' extension not being 'projection' in older stac
                 if "proj" in self.stac_content["stac_extensions"]:
                     index = self.stac_content["stac_extensions"].index("proj")
                     self.stac_content["stac_extensions"][index] = "projection"
                 schemas = self.stac_content["stac_extensions"]
-                print(schemas)
                 for extension in schemas:
-                    print(extension)
                     if "http" not in extension:
                         # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                         if self.version == "1.0.0-beta.2":
@@ -97,7 +94,6 @@ class StacValidate:
                         version = self.stac_content["stac_version"]
                         extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
                     self.custom = extension
-                    print(self.custom)
                     self.custom_val()
                     new_schemas.append(extension)
             # skip extension we can't validate
@@ -204,7 +200,6 @@ class StacValidate:
 
                     if link["rel"] == "item":
                         message = self.create_message(stac_type, "recursive")
-                        print(self.version)
                         if self.version == "0.7.0":
                             schema = self.fetch_and_parse_file(self.custom)
                             # this next line prevents this: unknown url type: 'geojson.json' ??
