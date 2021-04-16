@@ -107,7 +107,6 @@ class StacValidate:
     def custom_val(self):
         # in case the path to custom json schema is local
         # it may contain relative references
-        # self.stac_content = self.fetch_and_parse_file(self.stac_file)
         schema = self.fetch_and_parse_file(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
@@ -214,7 +213,6 @@ class StacValidate:
 
     def run(cls):
         message = {}
-        # final_msg = True
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type(cls.stac_content).upper()
@@ -234,9 +232,7 @@ class StacValidate:
                 if stac_type == "ITEM":
                     message["error_message"] = "Can not recursively validate an ITEM"
                 else:
-                    # message = cls.create_message(stac_type, "recursive")
                     cls.recursive_val(stac_type)
-                    # print(final_msg)
                     cls.valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)
