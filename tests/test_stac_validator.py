@@ -437,7 +437,7 @@ def test_recursive_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/catalog.json",
-            "schema": "https://cdn.staclint.com/v0.9.0/catalog.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/catalog.json"],
             "asset_type": "CATALOG",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -445,7 +445,7 @@ def test_recursive_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/items/sample.json",
-            "schema": "https://cdn.staclint.com/v0.9.0/item.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -461,7 +461,7 @@ def test_recursive_lvl_3_v070():
         {
             "version": "0.7.0",
             "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-            "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
+            "schema": ["https://cdn.staclint.com/v0.7.0/catalog.json"],
             "asset_type": "CATALOG",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -533,7 +533,7 @@ def test_recursive_lvl_3_v070():
         {
             "version": "0.7.0",
             "path": "https://radarstac.s3.amazonaws.com/stac/radarsat-1/raw/2012-05-13/RS1_M0000676_F2N_20120513_225701_HH_RAW.json",
-            "schema": "https://cdn.staclint.com/v0.7.0/item.json",
+            "schema": ["https://cdn.staclint.com/v0.7.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
