@@ -78,18 +78,26 @@ class StacValidate:
     # pystac extension schemas are broken
     def extensions_val(self, stac_type: str) -> list:
         if stac_type == "ITEM":
-            schemas = self.stac_content["stac_extensions"]
-            new_schemas = []
-            for extension in schemas:
-                if "http" not in extension:
-                    # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
-                    if self.version == "1.0.0-beta.2":
-                        self.stac_content["stac_version"] = "1.0.0-beta.1"
-                    version = self.stac_content["stac_version"]
-                    extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
-                self.custom = extension
-                self.custom_val()
-                new_schemas.append(extension)
+            try:
+                # error with the 'proj' extension not being 'projection' in older stac
+                if "proj" in self.stac_content["stac_extensions"]:
+                    index = self.stac_content["stac_extensions"].index("proj")
+                    self.stac_content["stac_extensions"][index] = "projection"
+                schemas = self.stac_content["stac_extensions"]
+                new_schemas = []
+                for extension in schemas:
+                    if "http" not in extension:
+                        # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
+                        if self.version == "1.0.0-beta.2":
+                            self.stac_content["stac_version"] = "1.0.0-beta.1"
+                        version = self.stac_content["stac_version"]
+                        extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
+                    self.custom = extension
+                    self.custom_val()
+                    new_schemas.append(extension)
+            # skip extension we can't validate
+            except Exception:
+                pass
         else:
             self.core_val(stac_type)
             new_schemas = [self.custom]
