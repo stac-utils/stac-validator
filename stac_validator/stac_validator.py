@@ -204,11 +204,6 @@ class StacValidate:
 
                     if link["rel"] == "item":
                         message = self.create_message(stac_type, "recursive")
-
-                        # schema = self.fetch_and_parse_file(self.custom)
-                        # this next line prevents this: unknown url type: 'geojson.json' ??
-                        # schema["allOf"] = [{}]
-                        # jsonschema.validate(self.stac_content, schema)
                         print(self.version)
                         if self.version == "0.7.0":
                             schema = self.fetch_and_parse_file(self.custom)

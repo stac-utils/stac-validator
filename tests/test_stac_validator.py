@@ -471,6 +471,18 @@ def test_recursive_local_v090():
             "validation_method": "recursive",
             "valid_stac": True,
         },
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/items/good_item_v090.json",
+            "schema": [
+                "https://cdn.staclint.com/v0.9.0/item.json",
+                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.9.0/extension/view.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
     ]
 
 
