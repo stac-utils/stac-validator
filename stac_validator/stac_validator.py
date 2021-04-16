@@ -40,6 +40,9 @@ class StacValidate:
 
     def get_stac_type(self, stac_content: dict) -> str:
         try:
+            content_types = ["Item", "Catalog", "Collection"]
+            if "type" in stac_content and stac_content["type"] in content_types:
+                return stac_content["type"]
             stac_object = identify_stac_object(stac_content)
             return stac_object.object_type
         except TypeError as e:
