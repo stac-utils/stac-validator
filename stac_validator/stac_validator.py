@@ -156,7 +156,20 @@ class StacValidate:
         if self.skip_val is False:
             if self.stac_file not in self.addresses:
                 self.addresses.append(self.stac_file)
-                _ = self.default_val(stac_type)
+                message = self.create_message(stac_type, "recursive")
+                message["valid_stac"] = False
+                try:
+                    _ = self.default_val(stac_type)
+                except jsonschema.exceptions.ValidationError as e:
+                    if e.absolute_path:
+                        err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                    else:
+                        err_msg = f"{e.message} of the root of the STAC object"
+                    message.update(self.create_err_msg("ValidationError", err_msg))
+                    self.message.append(message)
+                    return
+                message["valid_stac"] = True
+                self.message.append(message)
                 self.depth = self.depth + 1
                 if self.recursive > -1:
                     if self.depth >= int(self.recursive):
@@ -180,9 +193,7 @@ class StacValidate:
                         stac_type = self.get_stac_type(self.stac_content).lower()
 
                     if link["rel"] == "child":
-                        message = self.create_message(stac_type, "recursive")
-                        message["valid_stac"] = True
-                        self.message.append(message)
+
                         if self.verbose is True:
                             click.echo(json.dumps(message, indent=4))
                         self.recursive_val(stac_type)
@@ -203,6 +214,7 @@ class StacValidate:
 
     def run(cls):
         message = {}
+        # final_msg = True
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type(cls.stac_content).upper()
@@ -219,12 +231,12 @@ class StacValidate:
                 cls.custom_val()
                 cls.valid = True
             elif cls.recursive > -2:
-                message = cls.create_message(stac_type, "recursive")
                 if stac_type == "ITEM":
                     message["error_message"] = "Can not recursively validate an ITEM"
-
                 else:
+                    # message = cls.create_message(stac_type, "recursive")
                     cls.recursive_val(stac_type)
+                    # print(final_msg)
                     cls.valid = True
             elif cls.extensions is True:
                 schemas = cls.extensions_val(stac_type)
@@ -269,7 +281,8 @@ class StacValidate:
             message.update(cls.create_err_msg("Exception", str(e)))
 
         message["valid_stac"] = cls.valid
-        cls.message.append(message)
+        if cls.recursive < -1:
+            cls.message.append(message)
 
         print(json.dumps(cls.message, indent=4))
 
