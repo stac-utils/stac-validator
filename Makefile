@@ -1,16 +1,25 @@
-install:
+help:			## Show this help
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
+install:		## Install using pip
 	pip install .
 
-install-edit:
+install-edit:		## Install using pip in edit mode
 	pip install --editable .  
 
-code-check:
+code-check:		## Check and format code using pre-commit
 	pre-commit install
 	pre-commit autoupdate
 	pre-commit run --all-files
 
-test:
+test:			## Run the tests
 	pytest --verbose
+
+build:			## Build a Docker container
+	docker build -t stac_validator .
+
+run:			## Run the Docker Container and enter into bash
+	docker container run -it stac_validator /bin/bash
 
 build-libraries:
 	cd cdk-deployment/lambda-libraries && \
@@ -37,9 +46,3 @@ cdk-pipeline:
 	cd cdk-deployment && \
 	pip install -r requirements.txt && \
 	cdk deploy
-
-build-container:
-	docker build -t stac_val .
-
-run-container:
-	docker container run -it stac_val /bin/bash

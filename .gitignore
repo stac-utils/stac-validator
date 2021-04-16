@@ -107,7 +107,7 @@ venv.bak/
 .DS_Store
 
 # lambda file
-.zip
+*.zip
 
 
 # IDE
@@ -116,3 +116,4 @@ venv.bak/
 validator-cdk/lambda/stac_validator/
 validator-cdk/lambda/libraries.zip
 
+Pipfile*

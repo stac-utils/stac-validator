@@ -2,7 +2,7 @@ from stac_validator import stac_validator
 
 
 def main():
-    stac_file = "/https://radarstac.s3.amazonaws.com/stac/catalog.json"
+    stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
     stac = stac_validator.StacValidate(stac_file)
     stac.run()
     print(stac.message)
@@ -10,6 +10,7 @@ def main():
     if "validation method" in output:
         output.pop("validation method")
     print(output)
+    print(stac_file.split('"')[0])
 
 
 if __name__ == "__main__":
