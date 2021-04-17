@@ -83,7 +83,9 @@ def test_core_item_local_v1beta2():
         {
             "version": "1.0.0-beta.2",
             "path": "tests/test_data/1beta2/stac_item.json",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.2/item.json"],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
+            ],
             "asset_type": "ITEM",
             "validation_method": "core",
             "valid_stac": True,
@@ -196,7 +198,7 @@ def test_default_proj_v1b2():
             "version": "1.0.0-beta.2",
             "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.2/item.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
@@ -420,13 +422,15 @@ def test_extensions_catalog_v1rc2():
 
 def test_recursive_v1beta2():
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=3)
+    stac = stac_validator.StacValidate(stac_file, recursive=0)
     stac.run()
     assert stac.message == [
         {
             "version": "1.0.0-beta.2",
             "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.2/collection.json"],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+            ],
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
