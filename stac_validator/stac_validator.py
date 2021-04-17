@@ -11,6 +11,8 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object
 from requests import exceptions
 
+NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2"]
+
 
 class StacValidate:
     def __init__(
@@ -134,9 +136,9 @@ class StacValidate:
             schemas.append(item)
         return schemas
 
-    # https://cdn.staclint.com/v{version}/{stac_type}.json tries to validate 1.0.0-rc.2 to 1.0.0-rc.1?
+    # validate new versions at schemas.stacspec.org
     def set_schema_addr(self, stac_type: str):
-        if self.version == "1.0.0-rc.2":
+        if self.version in NEW_VERSIONS:
             self.custom = f"https://schemas.stacspec.org/v{self.version}/{stac_type}-spec/json-schema/{stac_type}.json"
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
