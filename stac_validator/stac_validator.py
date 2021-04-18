@@ -163,7 +163,7 @@ class StacValidate:
     def create_message(self, stac_type: str, val_type: str) -> dict:
         message = {}
         message["version"] = self.version
-        self.set_schema_addr(stac_type.lower())
+        # self.set_schema_addr(stac_type.lower())
         message["path"] = self.stac_file
         if self.custom != "":
             message["schema"] = [self.custom]
@@ -175,6 +175,7 @@ class StacValidate:
         if self.skip_val is False:
             if self.stac_file not in self.addresses:
                 self.addresses.append(self.stac_file)
+                self.set_schema_addr(stac_type.lower())
                 message = self.create_message(stac_type, "recursive")
                 message["valid_stac"] = False
                 try:
@@ -218,6 +219,7 @@ class StacValidate:
                         self.recursive_val(stac_type)
 
                     if link["rel"] == "item":
+                        self.set_schema_addr(stac_type.lower())
                         message = self.create_message(stac_type, "recursive")
                         if self.version == "0.7.0":
                             schema = self.fetch_and_parse_file(self.custom)
@@ -240,6 +242,7 @@ class StacValidate:
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type(cls.stac_content).upper()
+            print(stac_type)
             cls.version = cls.get_stac_version(cls.stac_content)
 
             if cls.core is True:
@@ -248,8 +251,11 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 cls.valid = True
             elif cls.custom != "":
+                # cls.set_schema_addr(stac_type.lower())
+                print(cls.custom)
                 message = cls.create_message(stac_type, "custom")
                 message["schema"] = [cls.custom]
+                print(cls.custom)
                 cls.custom_val()
                 cls.valid = True
             elif cls.recursive > -2:
