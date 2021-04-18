@@ -51,9 +51,15 @@ class StacValidate:
             print("TypeError: " + str(e))
             return ""
 
-    @staticmethod
-    def create_err_msg(err_type: str, err_msg: str) -> dict:
-        return {"valid_stac": False, "error_type": err_type, "error_message": err_msg}
+    def create_err_msg(self, err_type: str, err_msg: str) -> dict:
+        return {
+            "version": self.version,
+            "path": self.stac_file,
+            "schema": [self.custom],
+            "valid_stac": False,
+            "error_type": err_type,
+            "error_message": err_msg,
+        }
 
     @staticmethod
     def is_valid_url(url: str) -> bool:
@@ -79,10 +85,10 @@ class StacValidate:
 
     # pystac extension schemas are broken
     def extensions_val(self, stac_type: str) -> list:
-        print(stac_type)
+        message = self.create_message(stac_type, "extensions")
+        message["schema"] = []
         if stac_type == "ITEM":
             try:
-                new_schemas = []
                 # error with the 'proj' extension not being 'projection' in older stac
                 if "proj" in self.stac_content["stac_extensions"]:
                     index = self.stac_content["stac_extensions"].index("proj")
@@ -97,14 +103,19 @@ class StacValidate:
                         extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
                     self.custom = extension
                     self.custom_val()
-                    new_schemas.append(extension)
-            # skip extension we can't validate
-            except Exception:
-                pass
+                    message["schema"].append(extension)
+            except jsonschema.exceptions.ValidationError as e:
+                if e.absolute_path:
+                    err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                else:
+                    err_msg = f"{e.message} of the root of the STAC object"
+                message = self.create_err_msg("ValidationError", err_msg)
+                return message
         else:
             self.core_val(stac_type)
-            new_schemas = [self.custom]
-        return new_schemas
+            message["schema"] = [self.custom]
+        self.valid = True
+        return message
 
     def custom_val(self):
         # in case the path to custom json schema is local
@@ -117,6 +128,7 @@ class StacValidate:
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         else:
+            schema = self.fetch_and_parse_file(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
     def core_val(self, stac_type: str):
@@ -125,16 +137,21 @@ class StacValidate:
         self.custom_val()
 
     def default_val(self, stac_type: str) -> list:
+        message = self.create_message(stac_type, "default")
+        message["schema"] = []
         schemas = []
         item_schemas = []
         self.core_val(stac_type)
-        schemas.append(self.custom)
+        core_schema = self.custom
+        message["schema"].append(core_schema)
         stac_type = stac_type.upper()
         if stac_type == "ITEM":
-            item_schemas = self.extensions_val(stac_type)
+            message = self.extensions_val(stac_type)
+            message["validation_method"] = "default"
+            message["schema"].append(core_schema)
         for item in item_schemas:
             schemas.append(item)
-        return schemas
+        return message
 
     # validate new versions at schemas.stacspec.org
     def set_schema_addr(self, stac_type: str):
@@ -146,7 +163,6 @@ class StacValidate:
     def create_message(self, stac_type: str, val_type: str) -> dict:
         message = {}
         message["version"] = self.version
-        self.set_schema_addr(stac_type.lower())
         message["path"] = self.stac_file
         if self.custom != "":
             message["schema"] = [self.custom]
@@ -158,6 +174,7 @@ class StacValidate:
         if self.skip_val is False:
             if self.stac_file not in self.addresses:
                 self.addresses.append(self.stac_file)
+                self.set_schema_addr(stac_type.lower())
                 message = self.create_message(stac_type, "recursive")
                 message["valid_stac"] = False
                 try:
@@ -201,6 +218,7 @@ class StacValidate:
                         self.recursive_val(stac_type)
 
                     if link["rel"] == "item":
+                        self.set_schema_addr(stac_type.lower())
                         message = self.create_message(stac_type, "recursive")
                         if self.version == "0.7.0":
                             schema = self.fetch_and_parse_file(self.custom)
@@ -208,8 +226,8 @@ class StacValidate:
                             schema["allOf"] = [{}]
                             jsonschema.validate(self.stac_content, schema)
                         else:
-                            schemas = self.default_val(stac_type)
-                            message["schema"] = schemas
+                            msg = self.default_val(stac_type)
+                            message["schema"] = msg["schema"]
                         message["valid_stac"] = True
                         if self.log != "":
                             self.message.append(message)
@@ -242,14 +260,9 @@ class StacValidate:
                     cls.recursive_val(stac_type)
                     cls.valid = True
             elif cls.extensions is True:
-                schemas = cls.extensions_val(stac_type)
-                message = cls.create_message(stac_type, "extensions")
-                message["schema"] = schemas
-                cls.valid = True
+                message = cls.extensions_val(stac_type)
             else:
-                schemas = cls.default_val(stac_type)
-                message = cls.create_message(stac_type, "default")
-                message["schema"] = schemas
+                message = cls.default_val(stac_type)
                 cls.valid = True
 
         except ValueError as e:
