@@ -110,15 +110,9 @@ class StacValidate:
                 else:
                     err_msg = f"{e.message} of the root of the STAC object"
                 message = self.create_err_msg("ValidationError", err_msg)
-                # message['schema'].append(extension)
                 return message
-            # except Exception as e:
-            #     new_schemas.append(extension)
-            #     self.message.append(str(e))
-            #     return new_schemas
         else:
             self.core_val(stac_type)
-            # new_schemas = [self.custom]
             message["schema"] = [self.custom]
         self.valid = True
         return message
@@ -266,10 +260,8 @@ class StacValidate:
                     cls.valid = True
             elif cls.extensions is True:
                 message = cls.extensions_val(stac_type)
-                # message["schema"] = schemas
             else:
                 message = cls.default_val(stac_type)
-                # message["schema"].append(schemas)
                 cls.valid = True
 
         except ValueError as e:
