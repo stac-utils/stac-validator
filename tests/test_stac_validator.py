@@ -65,12 +65,28 @@ def test_core_bad_item_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/bad_data/bad_item_v090.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "core",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid_stac": False,
             "error_type": "ValidationError",
             "error_message": "'id' is a required property of the root of the STAC object",
+        }
+    ]
+
+
+def test_core_v1beta1():
+    stac_file = "tests/test_data/1beta1/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.1",
+            "path": "tests/test_data/1beta1/sentinel2.json",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "asset_type": "COLLECTION",
+            "validation_method": "core",
+            "valid_stac": True,
         }
     ]
 
@@ -93,15 +109,35 @@ def test_core_item_local_v1beta2():
     ]
 
 
-def test_core_v1beta1():
-    stac_file = "tests/test_data/1beta1/sentinel2.json"
+def test_core_item_local_v1rc1():
+    stac_file = "tests/test_data/1rc1/collectionless-item.json"
     stac = stac_validator.StacValidate(stac_file, core=True)
     stac.run()
     assert stac.message == [
         {
-            "version": "1.0.0-beta.1",
-            "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/collectionless-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "core",
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_core_collection_local_v1rc1():
+    stac_file = "tests/test_data/1rc1/collection.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.1/collection-spec/json-schema/collection.json"
+            ],
             "asset_type": "COLLECTION",
             "validation_method": "core",
             "valid_stac": True,
@@ -189,27 +225,6 @@ def test_custom_item_remote_schema_v1rc2():
 # Default
 
 
-def test_default_proj_v1b2():
-    stac_file = "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C"
-    stac = stac_validator.StacValidate(stac_file)
-    stac.run()
-    assert stac.message == [
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-            ],
-            "asset_type": "ITEM",
-            "validation_method": "default",
-            "valid_stac": True,
-        }
-    ]
-
-
 def test_default_v070():
     stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
     stac = stac_validator.StacValidate(stac_file)
@@ -221,6 +236,47 @@ def test_default_v070():
             "asset_type": "CATALOG",
             "validation_method": "default",
             "schema": ["https://cdn.staclint.com/v0.7.0/catalog.json"],
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_default_v090():
+    stac = stac_validator.StacValidate("tests/test_data/v090/items/good_item_v090.json")
+    stac.run()
+    print(stac.message)
+    assert stac.message == [
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/items/good_item_v090.json",
+            "schema": [
+                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.9.0/extension/view.json",
+                "https://cdn.staclint.com/v0.9.0/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "default",
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_default_proj_v1b2():
+    stac_file = "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l1c/items/S2A_51SXT_20210415_0_L1C",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "default",
             "valid_stac": True,
         }
     ]
@@ -260,44 +316,24 @@ def test_default_simple_v1rc2():
     ]
 
 
-def test_default_v090():
-    stac = stac_validator.StacValidate("tests/test_data/v090/items/good_item_v090.json")
-    stac.run()
-    print(stac.message)
-    assert stac.message == [
-        {
-            "path": "tests/test_data/v090/items/good_item_v090.json",
-            "asset_type": "ITEM",
-            "version": "0.9.0",
-            "validation_method": "default",
-            "schema": [
-                "https://cdn.staclint.com/v0.9.0/item.json",
-                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
-                "https://cdn.staclint.com/v0.9.0/extension/view.json",
-            ],
-            "valid_stac": True,
-        }
-    ]
-
-
 def test_default_extended_v1rc2():
     stac_file = "tests/test_data/1rc2/extended-item.json"
     stac = stac_validator.StacValidate(stac_file)
     stac.run()
     assert stac.message == [
         {
-            "path": "tests/test_data/1rc2/extended-item.json",
-            "asset_type": "ITEM",
             "version": "1.0.0-rc.2",
-            "validation_method": "default",
+            "path": "tests/test_data/1rc2/extended-item.json",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
                 "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
             ],
+            "asset_type": "ITEM",
+            "validation_method": "default",
             "valid_stac": True,
         }
     ]
@@ -346,14 +382,14 @@ def test_extensions_v1beta2():
     stac.run()
     assert stac.message == [
         {
-            "path": "tests/test_data/1beta2/CBERS_4.json",
-            "asset_type": "ITEM",
             "version": "1.0.0-beta.2",
-            "validation_method": "extensions",
+            "path": "tests/test_data/1beta2/CBERS_4.json",
             "schema": [
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
             ],
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
             "valid_stac": True,
         }
     ]
@@ -399,6 +435,25 @@ def test_extensions_remote_v1rc2():
     ]
 
 
+# This should not return an empty schema
+def test_extensions_local_v1rc2():
+    stac_file = (
+        "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json"
+    )
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
+            "schema": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name",
+        }
+    ]
+
+
 def test_extensions_catalog_v1rc2():
     stac_file = "tests/test_data/1rc2/catalog.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
@@ -418,76 +473,6 @@ def test_extensions_catalog_v1rc2():
 
 
 # Recursive
-
-
-def test_recursive_v1beta2():
-    stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=0)
-    stac.run()
-    assert stac.message == [
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
-            ],
-            "asset_type": "COLLECTION",
-            "validation_method": "recursive",
-            "valid_stac": True,
-        }
-    ]
-
-
-def test_recursive_v1beta1():
-    stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=0)
-    stac.run()
-    assert stac.message == [
-        {
-            "version": "1.0.0-beta.1",
-            "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
-            "asset_type": "COLLECTION",
-            "validation_method": "recursive",
-            "valid_stac": True,
-        }
-    ]
-
-
-def test_recursive_local_v090():
-    stac_file = "tests/test_data/v090/catalog.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=1)
-    stac.run()
-    assert stac.message == [
-        {
-            "version": "0.9.0",
-            "path": "tests/test_data/v090/catalog.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/catalog.json"],
-            "asset_type": "CATALOG",
-            "validation_method": "recursive",
-            "valid_stac": True,
-        },
-        {
-            "version": "0.9.0",
-            "path": "tests/test_data/v090/items/sample.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
-            "asset_type": "ITEM",
-            "validation_method": "recursive",
-            "valid_stac": True,
-        },
-        {
-            "version": "0.9.0",
-            "path": "tests/test_data/v090/items/good_item_v090.json",
-            "schema": [
-                "https://cdn.staclint.com/v0.9.0/item.json",
-                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
-                "https://cdn.staclint.com/v0.9.0/extension/view.json",
-            ],
-            "asset_type": "ITEM",
-            "validation_method": "recursive",
-            "valid_stac": True,
-        },
-    ]
 
 
 def test_recursive_lvl_3_v070():
@@ -578,6 +563,210 @@ def test_recursive_lvl_3_v070():
     ]
 
 
+def test_recursive_local_v090():
+    stac_file = "tests/test_data/v090/catalog.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/catalog.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/catalog.json"],
+            "asset_type": "CATALOG",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/items/sample.json",
+            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/items/good_item_v090.json",
+            "schema": [
+                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.9.0/extension/view.json",
+                "https://cdn.staclint.com/v0.9.0/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+    ]
+
+
+def test_recursive_v1beta1():
+    stac_file = "tests/test_data/1beta1/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=0)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.1",
+            "path": "tests/test_data/1beta1/sentinel2.json",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_recursive_v1beta2():
+    stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=0)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+            ],
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_recursion_collection_local_v1rc1():
+    stac_file = "tests/test_data/1rc1/collection.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.1/collection-spec/json-schema/collection.json"
+            ],
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/./simple-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/./core-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.1",
+            "path": "tests/test_data/1rc1/./extended-item.json",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-rc.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-rc.1/extension/projection.json",
+                "https://cdn.staclint.com/v1.0.0-rc.1/extension/scientific.json",
+                "https://cdn.staclint.com/v1.0.0-rc.1/extension/view.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+    ]
+
+
+def test_recursion_collection_local_v1rc2():
+    stac_file = "tests/test_data/1rc2/collection.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/collection-spec/json-schema/collection.json"
+            ],
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/./simple-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/./core-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/./extended-item.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+    ]
+
+
+def test_recursion_collection_local_2_v1rc2():
+    stac_file = "tests/test_data/1rc2/extensions-collection/collection.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/extensions-collection/collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/collection-spec/json-schema/collection.json"
+            ],
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+        {
+            "version": "1.0.0-rc.2",
+            "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "recursive",
+            "valid_stac": True,
+        },
+    ]
+
+
 # manual tests - take a long time
 # stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --recursive 5 --verbose
 # stac_validator https://cmr.earthdata.nasa.gov/stac --recursive 5 --verbose
@@ -587,11 +776,11 @@ def test_recursive_lvl_3_v070():
 
 # # @pytest.mark.smoke
 # def test_good_items_in_folder():
-#     for (_, _, test_files) in os.walk("tests/test_data/stac_examples_good_items"):
+#     for (_, _, test_files) in os.walk("tests/test_data/1rc2"):
 #         for f in test_files:
 #             if f[-4:] == "json":
 #                 stac = stac_validator.StacValidate(
-#                     f"tests/test_data/stac_examples_good_items/{f}"
+#                     f"tests/test_data/1rc2/{f}", core=True
 #                 )
 #                 stac.run()
 #                 assert stac.message[0]["valid_stac"] is True
