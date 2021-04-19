@@ -47,8 +47,7 @@ class StacValidate:
             stac_object = identify_stac_object(stac_content)
             return stac_object.object_type
         except TypeError as e:
-            print("TypeError: " + str(e))
-            return ""
+            return str(e)
 
     def create_err_msg(self, err_type: str, err_msg: str) -> dict:
         return {
@@ -58,6 +57,16 @@ class StacValidate:
             "valid_stac": False,
             "error_type": err_type,
             "error_message": err_msg,
+        }
+
+    def create_message(self, stac_type: str, val_type: str) -> dict:
+        return {
+            "version": self.version,
+            "path": self.stac_file,
+            "schema": [self.custom],
+            "valid_stac": False,
+            "asset_type": stac_type.upper(),
+            "validation_method": val_type,
         }
 
     @staticmethod
@@ -157,16 +166,6 @@ class StacValidate:
             self.custom = f"https://schemas.stacspec.org/v{self.version}/{stac_type}-spec/json-schema/{stac_type}.json"
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
-
-    def create_message(self, stac_type: str, val_type: str) -> dict:
-        message = {}
-        message["version"] = self.version
-        message["path"] = self.stac_file
-        if self.custom != "":
-            message["schema"] = [self.custom]
-        message["asset_type"] = stac_type.upper()
-        message["validation_method"] = val_type
-        return message
 
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
