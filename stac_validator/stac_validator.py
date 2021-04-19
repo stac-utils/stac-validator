@@ -39,16 +39,18 @@ class StacValidate:
         self.valid = False
         self.log = log
 
-    def get_stac_type(self, stac_content: dict) -> str:
+    def get_stac_type(self) -> str:
         try:
             content_types = ["Item", "Catalog", "Collection"]
-            if "type" in stac_content and stac_content["type"] in content_types:
-                return stac_content["type"]
-            stac_object = identify_stac_object(stac_content)
+            if (
+                "type" in self.stac_content
+                and self.stac_content["type"] in content_types
+            ):
+                return self.stac_content["type"]
+            stac_object = identify_stac_object(self.stac_content)
             return stac_object.object_type
         except TypeError as e:
-            print("TypeError: " + str(e))
-            return ""
+            return str(e)
 
     def create_err_msg(self, err_type: str, err_msg: str) -> dict:
         return {
@@ -60,6 +62,16 @@ class StacValidate:
             "error_message": err_msg,
         }
 
+    def create_message(self, stac_type: str, val_type: str) -> dict:
+        return {
+            "version": self.version,
+            "path": self.stac_file,
+            "schema": [self.custom],
+            "valid_stac": False,
+            "asset_type": stac_type.upper(),
+            "validation_method": val_type,
+        }
+
     @staticmethod
     def is_valid_url(url: str) -> bool:
         result = urlparse(url)
@@ -68,8 +80,8 @@ class StacValidate:
         else:
             return False
 
-    def get_stac_version(self, stac_content: dict) -> str:
-        return stac_content["stac_version"]
+    def get_stac_version(self) -> str:
+        return self.stac_content["stac_version"]
 
     def fetch_and_parse_file(self, input_path: str):
         data = None
@@ -97,7 +109,7 @@ class StacValidate:
                         # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                         if self.version == "1.0.0-beta.2":
                             self.stac_content["stac_version"] = "1.0.0-beta.1"
-                        version = self.stac_content["stac_version"]
+                        version = self.get_stac_version()
                         extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
                     self.custom = extension
                     self.custom_val()
@@ -158,16 +170,6 @@ class StacValidate:
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
 
-    def create_message(self, stac_type: str, val_type: str) -> dict:
-        message = {}
-        message["version"] = self.version
-        message["path"] = self.stac_file
-        if self.custom != "":
-            message["schema"] = [self.custom]
-        message["asset_type"] = stac_type.upper()
-        message["validation_method"] = val_type
-        return message
-
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
             self.set_schema_addr(stac_type.lower())
@@ -204,8 +206,8 @@ class StacValidate:
                     else:
                         self.stac_file = address
                     self.stac_content = self.fetch_and_parse_file(self.stac_file)
-                    self.stac_content["stac_version"] = self.version
-                    stac_type = self.get_stac_type(self.stac_content).lower()
+                    # self.stac_content["stac_version"] = self.version
+                    stac_type = self.get_stac_type().lower()
 
                 if link["rel"] == "child":
 
@@ -236,8 +238,8 @@ class StacValidate:
         message = {}
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
-            stac_type = cls.get_stac_type(cls.stac_content).upper()
-            cls.version = cls.get_stac_version(cls.stac_content)
+            stac_type = cls.get_stac_type().upper()
+            cls.version = cls.get_stac_version()
 
             if cls.core is True:
                 message = cls.create_message(stac_type, "core")

@@ -10,17 +10,17 @@ from stac_validator import stac_validator
 
 
 def test_core_collection_local_v070():
-    stac_file = "tests/test_data/v070/collections/landsat-collection.json"
+    stac_file = "tests/test_data/v070/collections/sentinel2.json"
     stac = stac_validator.StacValidate(stac_file, core=True)
     stac.run()
     assert stac.message == [
         {
             "version": "0.7.0",
             "path": "tests/test_data/v070/collections/sentinel2.json",
-            "asset_type": "COLLECTION",
-            "validation_method": "core",
             "schema": ["https://cdn.staclint.com/v0.7.0/collection.json"],
             "valid_stac": True,
+            "asset_type": "COLLECTION",
+            "validation_method": "core",
         }
     ]
 
