@@ -97,23 +97,26 @@ class StacValidate:
     def extensions_val(self, stac_type: str) -> list:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
+
         if stac_type == "ITEM":
             try:
-                # error with the 'proj' extension not being 'projection' in older stac
-                if "proj" in self.stac_content["stac_extensions"]:
-                    index = self.stac_content["stac_extensions"].index("proj")
-                    self.stac_content["stac_extensions"][index] = "projection"
-                schemas = self.stac_content["stac_extensions"]
-                for extension in schemas:
-                    if "http" not in extension:
-                        # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
-                        if self.version == "1.0.0-beta.2":
-                            self.stac_content["stac_version"] = "1.0.0-beta.1"
-                        version = self.get_stac_version()
-                        extension = f"https://cdn.staclint.com/v{version}/extension/{extension}.json"
-                    self.custom = extension
-                    self.custom_val()
-                    message["schema"].append(extension)
+
+                if "stac_extensions" in self.stac_content:
+                    # error with the 'proj' extension not being 'projection' in older stac
+                    if "proj" in self.stac_content["stac_extensions"]:
+                        index = self.stac_content["stac_extensions"].index("proj")
+                        self.stac_content["stac_extensions"][index] = "projection"
+                    schemas = self.stac_content["stac_extensions"]
+                    for extension in schemas:
+                        if "http" not in extension:
+                            # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
+                            if self.version == "1.0.0-beta.2":
+                                self.stac_content["stac_version"] = "1.0.0-beta.1"
+                                self.version = self.get_stac_version()
+                            extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
+                        self.custom = extension
+                        self.custom_val()
+                        message["schema"].append(extension)
             except jsonschema.exceptions.ValidationError as e:
                 if e.absolute_path:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
@@ -121,6 +124,8 @@ class StacValidate:
                     err_msg = f"{e.message} of the root of the STAC object"
                 message = self.create_err_msg("ValidationError", err_msg)
                 return message
+            except Exception as e:
+                return self.create_err_msg("ValidationError", str(e))
         else:
             self.core_val(stac_type)
             message["schema"] = [self.custom]
@@ -227,6 +232,7 @@ class StacValidate:
                         msg = self.default_val(stac_type)
                         message["schema"] = msg["schema"]
                     message["valid_stac"] = True
+
                     if self.log != "":
                         self.message.append(message)
                     if self.recursive < 5:
