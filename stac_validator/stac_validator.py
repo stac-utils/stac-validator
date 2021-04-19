@@ -182,6 +182,7 @@ class StacValidate:
             message["valid_stac"] = False
             try:
                 _ = self.default_val(stac_type)
+
             except jsonschema.exceptions.ValidationError as e:
                 if e.absolute_path:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
@@ -211,7 +212,7 @@ class StacValidate:
                     else:
                         self.stac_file = address
                     self.stac_content = self.fetch_and_parse_file(self.stac_file)
-                    # self.stac_content["stac_version"] = self.version
+                    self.stac_content["stac_version"] = self.version
                     stac_type = self.get_stac_type().lower()
 
                 if link["rel"] == "child":
