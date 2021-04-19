@@ -435,6 +435,22 @@ def test_default_catalog_v1rc2():
 # Extensions
 
 
+def test_extensions_item_local_v080():
+    stac_file = "tests/test_data/v080/items/sample-full.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.8.0",
+            "path": "tests/test_data/v080/items/sample-full.json",
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+            "schema": ["https://cdn.staclint.com/v0.8.0/extension/eo.json"],
+            "valid_stac": True,
+        }
+    ]
+
+
 def test_extensions_v090():
     stac_file = "tests/test_data/v090/extensions/eo/examples/example-landsat8.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
@@ -529,7 +545,6 @@ def test_extensions_remote_v1rc2():
     ]
 
 
-# This should not return an empty schema
 def test_extensions_local_v1rc2():
     stac_file = (
         "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json"
