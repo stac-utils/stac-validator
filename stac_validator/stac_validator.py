@@ -38,7 +38,6 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
-        self.addresses = []
 
     def get_stac_type(self, stac_content: dict) -> str:
         try:
@@ -83,7 +82,6 @@ class StacValidate:
 
         return data
 
-    # pystac extension schemas are broken
     def extensions_val(self, stac_type: str) -> list:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
@@ -172,69 +170,67 @@ class StacValidate:
 
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
-            if self.stac_file not in self.addresses:
-                self.addresses.append(self.stac_file)
-                self.set_schema_addr(stac_type.lower())
-                message = self.create_message(stac_type, "recursive")
-                message["valid_stac"] = False
-                try:
-                    _ = self.default_val(stac_type)
-                except jsonschema.exceptions.ValidationError as e:
-                    if e.absolute_path:
-                        err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
-                    else:
-                        err_msg = f"{e.message} of the root of the STAC object"
-                    message.update(self.create_err_msg("ValidationError", err_msg))
-                    self.message.append(message)
-                    return
-                message["valid_stac"] = True
+            self.set_schema_addr(stac_type.lower())
+            message = self.create_message(stac_type, "recursive")
+            message["valid_stac"] = False
+            try:
+                _ = self.default_val(stac_type)
+            except jsonschema.exceptions.ValidationError as e:
+                if e.absolute_path:
+                    err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                else:
+                    err_msg = f"{e.message} of the root of the STAC object"
+                message.update(self.create_err_msg("ValidationError", err_msg))
                 self.message.append(message)
-                self.depth = self.depth + 1
-                if self.recursive > -1:
-                    if self.depth >= int(self.recursive):
-                        self.skip_val = True
-                base_url = self.stac_file
-                for link in self.stac_content["links"]:
-                    if link["rel"] == "child" or link["rel"] == "item":
-                        address = link["href"]
-                        if "http" not in address:
-                            x = base_url.split("/")
-                            x.pop(-1)
-                            st = x[0]
-                            for i in range(len(x)):
-                                if i > 0:
-                                    st = st + "/" + x[i]
-                            self.stac_file = st + "/" + address
-                        else:
-                            self.stac_file = address
-                        self.stac_content = self.fetch_and_parse_file(self.stac_file)
-                        self.stac_content["stac_version"] = self.version
-                        stac_type = self.get_stac_type(self.stac_content).lower()
+                return
+            message["valid_stac"] = True
+            self.message.append(message)
+            self.depth = self.depth + 1
+            if self.recursive > -1:
+                if self.depth >= int(self.recursive):
+                    self.skip_val = True
+            base_url = self.stac_file
+            for link in self.stac_content["links"]:
+                if link["rel"] == "child" or link["rel"] == "item":
+                    address = link["href"]
+                    if "http" not in address:
+                        x = base_url.split("/")
+                        x.pop(-1)
+                        st = x[0]
+                        for i in range(len(x)):
+                            if i > 0:
+                                st = st + "/" + x[i]
+                        self.stac_file = st + "/" + address
+                    else:
+                        self.stac_file = address
+                    self.stac_content = self.fetch_and_parse_file(self.stac_file)
+                    self.stac_content["stac_version"] = self.version
+                    stac_type = self.get_stac_type(self.stac_content).lower()
 
-                    if link["rel"] == "child":
+                if link["rel"] == "child":
 
-                        if self.verbose is True:
-                            click.echo(json.dumps(message, indent=4))
-                        self.recursive_val(stac_type)
+                    if self.verbose is True:
+                        click.echo(json.dumps(message, indent=4))
+                    self.recursive_val(stac_type)
 
-                    if link["rel"] == "item":
-                        self.set_schema_addr(stac_type.lower())
-                        message = self.create_message(stac_type, "recursive")
-                        if self.version == "0.7.0":
-                            schema = self.fetch_and_parse_file(self.custom)
-                            # this next line prevents this: unknown url type: 'geojson.json' ??
-                            schema["allOf"] = [{}]
-                            jsonschema.validate(self.stac_content, schema)
-                        else:
-                            msg = self.default_val(stac_type)
-                            message["schema"] = msg["schema"]
-                        message["valid_stac"] = True
-                        if self.log != "":
-                            self.message.append(message)
-                        if self.recursive < 5:
-                            self.message.append(message)
-                        if self.verbose is True:
-                            click.echo(json.dumps(message, indent=4))
+                if link["rel"] == "item":
+                    self.set_schema_addr(stac_type.lower())
+                    message = self.create_message(stac_type, "recursive")
+                    if self.version == "0.7.0":
+                        schema = self.fetch_and_parse_file(self.custom)
+                        # this next line prevents this: unknown url type: 'geojson.json' ??
+                        schema["allOf"] = [{}]
+                        jsonschema.validate(self.stac_content, schema)
+                    else:
+                        msg = self.default_val(stac_type)
+                        message["schema"] = msg["schema"]
+                    message["valid_stac"] = True
+                    if self.log != "":
+                        self.message.append(message)
+                    if self.recursive < 5:
+                        self.message.append(message)
+                    if self.verbose is True:
+                        click.echo(json.dumps(message, indent=4))
 
     def run(cls):
         message = {}
@@ -254,11 +250,8 @@ class StacValidate:
                 cls.custom_val()
                 cls.valid = True
             elif cls.recursive > -2:
-                if stac_type == "ITEM":
-                    message["error_message"] = "Can not recursively validate an ITEM"
-                else:
-                    cls.recursive_val(stac_type)
-                    cls.valid = True
+                cls.recursive_val(stac_type)
+                cls.valid = True
             elif cls.extensions is True:
                 message = cls.extensions_val(stac_type)
             else:

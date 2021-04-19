@@ -9,6 +9,22 @@ from stac_validator import stac_validator
 # Core
 
 
+def test_core_item_local_v080():
+    stac_file = "tests/test_data/v080/items/sample-full.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.8.0",
+            "path": "tests/test_data/v080/items/sample-full.json",
+            "asset_type": "ITEM",
+            "validation_method": "core",
+            "schema": ["https://cdn.staclint.com/v0.8.0/item.json"],
+            "valid_stac": True,
+        }
+    ]
+
+
 def test_core_collection_remote_v090():
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json"
     stac = stac_validator.StacValidate(stac_file, core=True)
@@ -148,6 +164,25 @@ def test_core_collection_local_v1rc1():
 # Custom
 
 
+def test_custom_item_remote_schema_v080():
+    schema = "https://cdn.staclint.com/v0.8.0/item.json"
+    stac_file = "tests/test_data/v080/items/digitalglobe-sample.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.8.0",
+            "path": "tests/test_data/v080/items/digitalglobe-sample.json",
+            "schema": ["https://cdn.staclint.com/v0.8.0/item.json"],
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'bbox' is a required property of the root of the STAC object",
+        }
+    ]
+
+
 def test_custom_item_remote_schema_v090():
     schema = "https://cdn.staclint.com/v0.9.0/catalog.json"
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json"
@@ -222,7 +257,6 @@ def test_custom_item_remote_schema_v1rc2():
     ]
 
 
-# This should not return an empty schema
 def test_custom_eo_error_v1rc2():
     schema = "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
     stac_file = (
@@ -263,6 +297,25 @@ def test_default_v070():
     ]
 
 
+def test_default_item_local_v080():
+    stac_file = "tests/test_data/v080/items/sample-full.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.8.0",
+            "path": "tests/test_data/v080/items/sample-full.json",
+            "schema": [
+                "https://cdn.staclint.com/v0.8.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.8.0/item.json",
+            ],
+            "asset_type": "ITEM",
+            "validation_method": "default",
+            "valid_stac": True,
+        }
+    ]
+
+
 def test_default_v090():
     stac = stac_validator.StacValidate("tests/test_data/v090/items/good_item_v090.json")
     stac.run()
@@ -278,6 +331,22 @@ def test_default_v090():
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_default_v1beta1():
+    stac_file = "tests/test_data/1beta1/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "path": "tests/test_data/1beta1/sentinel2.json",
+            "asset_type": "COLLECTION",
+            "version": "1.0.0-beta.1",
+            "validation_method": "default",
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "valid_stac": True,
         }
     ]
@@ -299,22 +368,6 @@ def test_default_proj_v1b2():
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
-            "valid_stac": True,
-        }
-    ]
-
-
-def test_default_v1beta1():
-    stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file)
-    stac.run()
-    assert stac.message == [
-        {
-            "path": "tests/test_data/1beta1/sentinel2.json",
-            "asset_type": "COLLECTION",
-            "version": "1.0.0-beta.1",
-            "validation_method": "default",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "valid_stac": True,
         }
     ]
@@ -382,6 +435,59 @@ def test_default_catalog_v1rc2():
 # Extensions
 
 
+def test_extensions_item_local_v080():
+    stac_file = "tests/test_data/v080/items/sample-full.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.8.0",
+            "path": "tests/test_data/v080/items/sample-full.json",
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+            "schema": ["https://cdn.staclint.com/v0.8.0/extension/eo.json"],
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_extensions_v090():
+    stac_file = "tests/test_data/v090/extensions/eo/examples/example-landsat8.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "0.9.0",
+            "path": "tests/test_data/v090/extensions/eo/examples/example-landsat8.json",
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+            "schema": [
+                "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+                "https://cdn.staclint.com/v0.9.0/extension/view.json",
+            ],
+            "valid_stac": True,
+        }
+    ]
+
+
+def test_extensions_v1beta1():
+    stac_file = "tests/test_data/1beta1/sentinel2.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.1",
+            "path": "tests/test_data/1beta1/sentinel2.json",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
+            ],
+            "asset_type": "COLLECTION",
+            "validation_method": "extensions",
+            "valid_stac": True,
+        }
+    ]
+
+
 def test_no_extensions_v1beta2():
     stac_file = "tests/test_data/1beta2/stac_item.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
@@ -417,24 +523,6 @@ def test_extensions_v1beta2():
     ]
 
 
-def test_extensions_v1beta1():
-    stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, extensions=True)
-    stac.run()
-    assert stac.message == [
-        {
-            "version": "1.0.0-beta.1",
-            "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
-            ],
-            "asset_type": "COLLECTION",
-            "validation_method": "extensions",
-            "valid_stac": True,
-        }
-    ]
-
-
 def test_extensions_remote_v1rc2():
     stac_file = "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
@@ -457,7 +545,6 @@ def test_extensions_remote_v1rc2():
     ]
 
 
-# This should not return an empty schema
 def test_extensions_local_v1rc2():
     stac_file = (
         "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json"
