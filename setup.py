@@ -40,11 +40,12 @@ setup(
     url="https://github.com/sparkgeo/stac-validator",
     download_url="https://github.com/sparkgeo/stac-validator/archive/v2.0.0.tar.gz",
     install_requires=[
-        "requests",
-        "pytest",
-        "jsonschema",
-        "pystac",
-        "Click",
+        "requests>=2.19.1",
+        "pytest==6.2.2",
+        "jsonschema==3.2.0",
+        "pystac==0.5.6",
+        "click==7.1.2",
+        "pre-commit",
     ],
     packages=["stac_validator"],
     entry_points={
