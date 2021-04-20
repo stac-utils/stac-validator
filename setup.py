@@ -1,20 +1,14 @@
 #!/usr/bin/env python
-import os.path
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-req_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "requirements.txt")
-
 __version__ = "2.0.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
-with open(req_path) as f:
-    requires = f.read().splitlines()
 
 extra_reqs = {
     "test": ["pytest"],
@@ -24,7 +18,7 @@ setup(
     name="stac_validator",
     version=__version__,
     author="James Banting, Darren Wiens, Jonathan Healy",
-    author_email="jbanting@sparkgeo.com",
+    author_email="jhealy@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
     classifiers=[
