@@ -39,7 +39,7 @@ setup(
         "jsonschema==3.2.0",
         "pystac==0.5.6",
         "click==7.1.2",
-        "pre-commit==2.11.1",
+        "pre-commit==1.21.0",
         "tox==3.23.0",
     ],
     packages=["stac_validator"],

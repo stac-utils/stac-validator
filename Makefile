@@ -46,3 +46,6 @@ cdk-pipeline:
 	cd cdk-deployment && \
 	pip install -r requirements.txt && \
 	cdk deploy
+
+build-tox:		## Test stac_validator on multiple Python versions
+	docker build -f Dockerfile-tox -t stac_tox .
