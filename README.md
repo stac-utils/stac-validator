@@ -1,4 +1,18 @@
-# SpatioTemporal Asset Catalog (STAC) Validator [![Test Runner](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg)](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml)
+# SpatioTemporal Asset Catalog (STAC) Validator
+
+[//]: # "Badges"
+
+<p align="center">
+  <a href="https://pypi.org/project/stac-validator" target="_blank">
+      <img src="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg" alt="Package version">
+  </a>
+  <a href="https://pypi.org/project/stac-validator" target="_blank">
+      <img src="https://img.shields.io/pypi/v/stac-validator?color=%2334D058&label=pypi" alt="Package version">
+  </a>
+  <a href="https://github.com/sparkgeo/stac-validator/blob/master/LICENSE" target="_blank">
+      <img src="https://img.shields.io/github/license/sparkgeo/stac-validator.svg" alt="License">
+  </a>
+</p>
 
 Validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
 
@@ -45,7 +59,9 @@ Installation from Repo
 ```bash
 pip install .
 ```
+
 or (for development)
+
 ```
 pip install --editable .["test"]
 ```
@@ -95,13 +111,15 @@ Options:
 
 ---
 
-# Docker
+# Deployment
+
+## Docker
 
 The validator can run using docker containers.
 
 ```bash
 docker build -t stac_validator:2.0.0 .
-docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json 
+docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
 [
     {
         "version": "1.0.0-rc.1",
@@ -117,32 +135,57 @@ docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extension
 ]
 ```
 
+## AWS (CDK)
+An example [AWS CDK](https://aws.amazon.com/cdk/) deployment is available in [cdk-deployment](./cdk-deployment/README.md)
+```bash
+cd cdk-deployment
+cdk diff
+```
 
 ---
 
 # Python
 
-Remote source
+**Remote source**
 
 ```python
 from stac_validator import stac_validator
 
 stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
 stac.run()
-
-print(stac.message)
-
+[
+    {
+        "version": "0.9.0",
+        "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
+        "schema": [
+            "https://cdn.staclint.com/v0.9.0/collection.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "COLLECTION",
+        "validation_method": "default"
+    }
+]
 ```
 
-local file
+**Local file**
 
 ```python
 from stac_validator import stac_validator
 
 stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
 stac.run()
-
-print(stac.message)
+[
+    {
+        "version": "1.0.0-beta.1",
+        "path": "tests/test_data/1beta1/sentinel2.json",
+        "schema": [
+            "https://cdn.staclint.com/v1.0.0-beta.1/collection.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "COLLECTION",
+        "validation_method": "extensions"
+    }
+]
 ```
 
 ---
@@ -156,7 +199,6 @@ pytest -v
 See the [tests](./tests/test_stac_validator.py) files for examples on different usages.
 
 ---
-
 # Additional Examples
 
 **--core**
