@@ -11,10 +11,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Stac versions 1.0.0-rc.2 and 1.0.0-rc.1 are now supported.
 - Version is detected automatically
 - Default validation attempts to validate a core Stac object as well as any extensions.
+- Recursion which was previously handled by Pystac is now done natively with both a depth option to limit the time it takes to validate and a verbose option to display output as individual objects are being validated one by one.  
 
 ### Changed
 
-- Pystac is now only being used for recursion to validate links in catalogs and collections - and to identify stac objects. Jsonschema is being used for all other validation.
+- Pystac is now only being used to identify stac objects. Jsonschema is being used for all other validation.  
 - The cli library was changed from Docopt to Click.
 - Custom validation was updated to allow for local schemas.
 - Readme updated
