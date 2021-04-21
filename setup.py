@@ -43,5 +43,5 @@ setup(
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
-    tests_require=["pre-commit==2.9.0", "pytest"],
+    tests_require=["pre-commit", "pytest"],
 )
