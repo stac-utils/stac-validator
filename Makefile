@@ -5,7 +5,7 @@ install:		## Install using pip
 	pip install .
 
 install-edit:		## Install using pip in edit mode
-	pip install --editable .  
+	pip install --editable .["test"]
 
 code-check:		## Check and format code using pre-commit
 	pre-commit install

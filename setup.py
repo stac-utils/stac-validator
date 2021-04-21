@@ -38,11 +38,10 @@ setup(
         "jsonschema==3.2.0",
         "pystac==0.5.6",
         "click==7.1.2",
-        "pre-commit==2.9.0",
     ],
     packages=["stac_validator"],
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
-    tests_require=["pytest"],
+    tests_require=["pre-commit==2.9.0", "pytest"],
 )
