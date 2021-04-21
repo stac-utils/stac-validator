@@ -16,12 +16,12 @@ test:			## Run the tests
 	pytest --verbose
 
 build:			## Build a Docker container
-	docker build -t stac_validator .
+	docker build -t stac_validator:2.0.0 .
 
 run:			## Run the Docker Container and enter into bash
-	docker container run -it stac_validator /bin/bash
+	docker run -it --entrypoint /bin/bash stac_validator:2.0.0
 
-build-libraries:
+build-libraries: # Build the libraries for layers. Used internally
 	cd cdk-deployment/lambda-libraries && \
 	docker build -f "Dockerfile" -t lambdalayer:latest .
 	docker run -d -it --name lambdalayer lambdalayer:latest
@@ -29,13 +29,10 @@ build-libraries:
 	docker stop lambdalayer
 	docker rm lambdalayer
 	docker rmi lambdalayer
-
-add-val:
 	cp -r stac_validator cdk-deployment/lambda
 
 build-cdk:
 	make build-libraries
-	make add-val
 
 deploy-cdk:
 	cd cdk-deployment && \

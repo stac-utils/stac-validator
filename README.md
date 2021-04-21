@@ -1,5 +1,4 @@
-# SpatioTemporal Asset Catalog (STAC) Validator
-[![Test Runner](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg)](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml)
+# SpatioTemporal Asset Catalog (STAC) Validator [![Test Runner](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg)](https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml)
 
 Validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
 
@@ -45,8 +44,16 @@ Installation from Repo
 
 ```bash
 pip install .
+```
 or (for development)
-pip install --editable .
+```
+pip install --editable .["test"]
+```
+
+The [Makefile](./Makefile) has convenience commands if Make is installed.
+
+```
+make help
 ```
 
 ## Versions supported
@@ -61,21 +68,6 @@ pip install --editable .
 | 1.0.0-beta.2 |
 | 1.0.0-rc.1   |
 | 1.0.0-rc.2   |
-
-## Extensions supported
-[STAC Extensions](https://stac-extensions.github.io/)
-```
-[
-'checksum','collection-assets',
-'datacube','eo',
-'item-assets','label',
-'pointcloud','projection',
-'sar','sat',
-'scientific','single-file-stac',
-'tiled-assets','timestamps',
-'version','view'
-]
-```
 
 ---
 
@@ -104,6 +96,27 @@ Options:
 ---
 
 # Docker
+
+The validator can run using docker containers.
+
+```bash
+docker build -t stac_validator:2.0.0 .
+docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json 
+[
+    {
+        "version": "1.0.0-rc.1",
+        "path": "https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json",
+        "schema": [
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "default"
+    }
+]
+```
+
 
 ---
 
