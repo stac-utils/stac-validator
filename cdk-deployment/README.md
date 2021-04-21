@@ -2,12 +2,12 @@ STAC Validator [AWS CDK](https://aws.amazon.com/cdk/) Deployment
 
 Assuming you have CDK configured. Run the following to standup a copy of the validator running on Lambda. *We are defining a specific AWS profile to use for deployment here.*
 
-```bash
+```bashs
 cdk diff --profile stac-validator
 cdk deploy --profile stac-validator
 ```
 
-Post a STAC JSON to the returned endpoint in order to validate a STAC JSON.
+Post a STAC url or local file to the returned endpoint in order to validate a STAC JSON.
 
 ```bash
 curl --request POST \
@@ -28,6 +28,23 @@ https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
   ],
   "asset_type": "ITEM",
   "validation_method": "default",
+  "valid_stac": true
+}
+
+curl --request POST \
+--header "Content-Type: application/json" \
+--data @./tests/test_data/v090/items/landsat8-sample.json \
+https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
+
+{
+  "version": "0.9.0",
+  "path": "/tmp/tmpl123z34l",
+  "schema": [
+    "https://cdn.staclint.com/v0.9.0/item.json",
+    "https://cdn.staclint.com/v0.9.0/extension/eo.json",
+    "https://cdn.staclint.com/v0.9.0/extension/view.json"
+  ],
+  "asset_type": "ITEM",
   "valid_stac": true
 }
 
