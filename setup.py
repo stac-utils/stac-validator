@@ -39,7 +39,6 @@ setup(
         "pystac==0.5.6",
         "click==7.1.2",
         "pre-commit==2.9.0",
-        "tox==3.23.0",
     ],
     packages=["stac_validator"],
     entry_points={

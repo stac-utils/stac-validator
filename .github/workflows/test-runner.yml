@@ -26,3 +26,5 @@ jobs:
         run: |
           pip install --editable .["test"]
           pytest --mypy
+      - name: Run pre-commit
+        run: make code-check
