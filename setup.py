@@ -39,6 +39,7 @@ setup(
         "pystac==0.5.6",
         "click==7.1.2",
         "pytest",
+        "pytest-mypy",
     ],
     packages=["stac_validator"],
     entry_points={
