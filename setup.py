@@ -40,10 +40,11 @@ setup(
         "click==7.1.2",
         "pytest",
         "pytest-mypy",
+        "pre-commit",
     ],
     packages=["stac_validator"],
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
-    tests_require=["pre-commit", "pytest"],
+    tests_require=["pytest"],
 )
