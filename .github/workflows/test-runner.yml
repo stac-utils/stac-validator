@@ -25,6 +25,6 @@ jobs:
       - name: Run unit tests
         run: |
           pip install .
-          pytest --mypy
+          pytest
       - name: Run pre-commit
         run: make code-check
