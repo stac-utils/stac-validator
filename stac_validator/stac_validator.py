@@ -154,8 +154,6 @@ class StacValidate:
     def default_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "default")
         message["schema"] = []
-        # schemas = []
-        # item_schemas: list = []
         self.core_val(stac_type)
         core_schema = self.custom
         message["schema"].append(core_schema)
@@ -164,8 +162,6 @@ class StacValidate:
             message = self.extensions_val(stac_type)
             message["validation_method"] = "default"
             message["schema"].append(core_schema)
-        # for item in item_schemas:
-        #     schemas.append(item)
         return message
 
     # validate new versions at schemas.stacspec.org
