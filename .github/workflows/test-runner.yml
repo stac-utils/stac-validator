@@ -27,7 +27,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          pip install pytest pre-commit
+          pip install .
           pytest --mypy stac_validator
 
       - name: Run pre-commit
