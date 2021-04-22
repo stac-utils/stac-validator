@@ -5,10 +5,10 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 
 import click
-import jsonschema
+import jsonschema  # type: ignore
 import requests
 from jsonschema import RefResolver
-from pystac.serialization import identify_stac_object
+from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
 NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2"]
@@ -26,14 +26,14 @@ class StacValidate:
         log: str = "",
     ):
         self.stac_file = stac_file
-        self.message = []
+        self.message: list = []
         self.custom = custom
         self.recursive = recursive
         self.extensions = extensions
         self.core = core
-        self.stac_content = {}
+        self.stac_content: dict = {}
         self.version = ""
-        self.depth = 0
+        self.depth: int = 0
         self.skip_val = False
         self.verbose = verbose
         self.valid = False
@@ -83,7 +83,7 @@ class StacValidate:
     def get_stac_version(self) -> str:
         return self.stac_content["stac_version"]
 
-    def fetch_and_parse_file(self, input_path: str):
+    def fetch_and_parse_file(self, input_path) -> dict:
         data = None
         if self.is_valid_url(input_path):
             resp = requests.get(input_path)
@@ -94,7 +94,7 @@ class StacValidate:
 
         return data
 
-    def extensions_val(self, stac_type: str) -> list:
+    def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
 
@@ -151,11 +151,11 @@ class StacValidate:
         self.set_schema_addr(stac_type)
         self.custom_val()
 
-    def default_val(self, stac_type: str) -> list:
+    def default_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "default")
         message["schema"] = []
-        schemas = []
-        item_schemas = []
+        # schemas = []
+        # item_schemas: list = []
         self.core_val(stac_type)
         core_schema = self.custom
         message["schema"].append(core_schema)
@@ -164,8 +164,8 @@ class StacValidate:
             message = self.extensions_val(stac_type)
             message["validation_method"] = "default"
             message["schema"].append(core_schema)
-        for item in item_schemas:
-            schemas.append(item)
+        # for item in item_schemas:
+        #     schemas.append(item)
         return message
 
     # validate new versions at schemas.stacspec.org
@@ -202,7 +202,7 @@ class StacValidate:
                 if link["rel"] == "child" or link["rel"] == "item":
                     address = link["href"]
                     if "http" not in address:
-                        x = base_url.split("/")
+                        x = str(base_url).split("/")
                         x.pop(-1)
                         st = x[0]
                         for i in range(len(x)):
