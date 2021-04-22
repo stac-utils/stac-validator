@@ -5,7 +5,7 @@ install:		## Install using pip
 	pip install .
 
 install-edit:		## Install using pip in edit mode
-	pip install --editable .  
+	pip install --editable .["test"]
 
 code-check:		## Check and format code using pre-commit
 	pre-commit install
@@ -43,3 +43,6 @@ cdk-pipeline:
 	cd cdk-deployment && \
 	pip install -r requirements.txt && \
 	cdk deploy
+
+build-tox:		## Test stac_validator on multiple Python versions
+	docker build -f Dockerfile-tox -t stac_tox .

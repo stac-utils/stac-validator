@@ -24,5 +24,7 @@ jobs:
           python-version: 3.8
       - name: Run unit tests
         run: |
-          pip install -r requirements.txt
-          pytest
+          pip install --editable .["test"]
+          pytest --mypy
+      - name: Run pre-commit
+        run: make code-check

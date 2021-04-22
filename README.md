@@ -153,6 +153,7 @@ from stac_validator import stac_validator
 
 stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
 stac.run()
+print(stac.message)
 [
     {
         "version": "0.9.0",
@@ -174,6 +175,7 @@ from stac_validator import stac_validator
 
 stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
 stac.run()
+print(stac.message)
 [
     {
         "version": "1.0.0-beta.1",

@@ -300,7 +300,7 @@ class StacValidate:
         if cls.recursive < -1:
             cls.message.append(message)
 
-        print(json.dumps(cls.message, indent=4))
+        click.echo(json.dumps(cls.message, indent=4))
 
         if cls.log != "":
             f = open(cls.log, "w")
