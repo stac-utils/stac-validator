@@ -14,6 +14,7 @@ code-check:		## Check and format code using pre-commit
 
 test:			## Run the tests
 	pytest --verbose
+	pytest --mypy stac_validator
 
 build:			## Build a Docker container
 	docker build -t stac_validator:2.0.0 .

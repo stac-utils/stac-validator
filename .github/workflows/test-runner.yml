@@ -22,9 +22,15 @@ jobs:
         uses: actions/setup-python@master
         with:
           python-version: 3.8
+
       - name: Run unit tests
         run: |
           pip install .
-          pytest
+          pytest --mypy stac_validator
+          pytest -v
+
       - name: Run pre-commit
-        run: make code-check
+        run: |
+          pre-commit install
+          pre-commit autoupdate
+          pre-commit run --all-files
