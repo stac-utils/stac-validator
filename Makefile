@@ -18,9 +18,6 @@ test:			## Run the tests
 build:			## Build a Docker container
 	docker build -t stac_validator:2.0.0 .
 
-run:			## Run the Docker Container and enter into bash
-	docker run -it --entrypoint /bin/bash stac_validator:2.0.0
-
 build-libraries: # Build the libraries for layers. Used internally
 	cd cdk-deployment/lambda-libraries && \
 	docker build -f "Dockerfile" -t lambdalayer:latest .
@@ -31,18 +28,12 @@ build-libraries: # Build the libraries for layers. Used internally
 	docker rmi lambdalayer
 	cp -r stac_validator cdk-deployment/lambda
 
-build-cdk:
+build-cdk: 		## Build the libraries in preperation for CDK deployment
 	make build-libraries
-
-deploy-cdk:
-	cd cdk-deployment && \
-	cdk deploy
-
-cdk-pipeline:
-	make build-cdk
-	cd cdk-deployment && \
-	pip install -r requirements.txt && \
-	cdk deploy
 
 build-tox:		## Test stac_validator on multiple Python versions
 	docker build -f Dockerfile-tox -t stac_tox .
+
+run:			## Run the Docker Container and enter into bash
+	docker run -it --entrypoint /bin/bash stac_validator:2.0.0	
+>>>>>>> Stashed changes

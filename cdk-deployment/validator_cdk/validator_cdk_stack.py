@@ -23,7 +23,7 @@ class ValidatorCdkStack(cdk.Stack):
             self,
             "STACHandler",
             runtime=_lambda.Runtime.PYTHON_3_8,
-            code=_lambda.Code.asset("lambda"),
+            code=_lambda.Code.asset("../../stac_validator"),
             handler="stac_val.handler",
             layers=[stac_lib],
         )
