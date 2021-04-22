@@ -30,5 +30,5 @@ jobs:
       - name: Run pre-commit
         run: |
           pre-commit install
-	        pre-commit autoupdate
-	        pre-commit run --all-files
+	  pre-commit autoupdate
+	  pre-commit run --all-files
