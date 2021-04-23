@@ -18,6 +18,13 @@ class ValidatorCdkStack(cdk.Stack):
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_8],
         )
 
+        val_lib = _lambda.LayerVersion(
+            self,
+            "val-lib-layer",
+            code=_lambda.AssetCode("lambda/stac_validator.zip"),
+            compatible_runtimes=[_lambda.Runtime.PYTHON_3_8],
+        )
+
         # Defines an AWS Lambda resource
         validator_lambda = _lambda.Function(
             self,
@@ -26,7 +33,7 @@ class ValidatorCdkStack(cdk.Stack):
             code=_lambda.Code.asset("lambda"),
             handler="lambda.handler",
             timeout=cdk.Duration.seconds(30),
-            layers=[stac_lib],
+            layers=[stac_lib, val_lib],
         )
 
         cors = apigw.CorsOptions(allow_origins=["*"])

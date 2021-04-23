@@ -27,7 +27,8 @@ build-libraries: # Build the libraries for layers. Used internally
 	docker stop lambdalayer
 	docker rm lambdalayer
 	docker rmi lambdalayer
-	cp -r stac_validator cdk-deployment/lambda
+	zip -r stac_validator.zip ./stac_validator/
+	cp -r stac_validator.zip cdk-deployment/lambda
 
 build-cdk: 		## Build the libraries in preperation for CDK deployment
 	make build-libraries
