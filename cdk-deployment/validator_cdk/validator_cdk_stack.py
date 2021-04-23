@@ -23,9 +23,9 @@ class ValidatorCdkStack(cdk.Stack):
             self,
             "STACHandler",
             runtime=_lambda.Runtime.PYTHON_3_8,
-            code=_lambda.Code.asset("../stac_validator"),
-            handler="stac_val.handler",
-            timeout=cdk.Duration.seconds(20),
+            code=_lambda.Code.asset("lambda"),
+            handler="lambda.handler",
+            timeout=cdk.Duration.seconds(30),
             layers=[stac_lib],
         )
 
