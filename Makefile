@@ -20,10 +20,9 @@ build:			## Build a Docker container
 	docker build -t stac_validator:2.0.0 .
 
 build-libraries: # Build the libraries for layers. Used internally
-	cd cdk-deployment/lambda-libraries && \
-	docker build -f "Dockerfile" -t lambdalayer:latest .
+	docker build -f "Dockerfile-libraries" -t lambdalayer:latest .
 	docker run -d -it --name lambdalayer lambdalayer:latest
-	docker cp lambdalayer:libraries.zip ./cdk-deployment/lambda
+	docker cp lambdalayer:code/libraries.zip ./cdk-deployment/lambda
 	docker stop lambdalayer
 	docker rm lambdalayer
 	docker rmi lambdalayer
