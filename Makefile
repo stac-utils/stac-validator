@@ -36,4 +36,3 @@ build-tox:		## Test stac_validator on multiple Python versions
 
 run:			## Run the Docker Container and enter into bash
 	docker run -it --entrypoint /bin/bash stac_validator:2.0.0	
->>>>>>> Stashed changes
