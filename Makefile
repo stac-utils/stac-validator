@@ -20,7 +20,7 @@ build:			## Build a Docker container
 	docker build -t stac_validator:2.0.0 .
 
 build-libraries: # Build the libraries for layers. Used internally
-	docker build -f "Dockerfile-libraries" -t lambdalayer:latest .
+	docker build -f "cdk-deployment/build-libraries/Dockerfile-libraries" -t lambdalayer:latest .
 	docker run -d -it --name lambdalayer lambdalayer:latest
 	docker cp lambdalayer:code/libraries.zip ./cdk-deployment/lambda
 	docker stop lambdalayer
@@ -32,7 +32,7 @@ build-cdk: 		## Build the libraries in preperation for CDK deployment
 	make build-libraries
 
 build-tox:		## Test stac_validator on multiple Python versions
-	docker build -f Dockerfile-tox -t stac_tox .
+	docker build -f tox/Dockerfile-tox -t stac_tox .
 
 run:			## Run the Docker Container and enter into bash
 	docker run -it --entrypoint /bin/bash stac_validator:2.0.0
