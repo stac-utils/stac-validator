@@ -1,8 +1,8 @@
 # import json
 # import tempfile
 
-import Mangum
 from fastapi import FastAPI
+from mangum import Mangum
 
 # from stac_validator import stac_validator
 

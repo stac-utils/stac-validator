@@ -14,7 +14,7 @@ class FastAPICdkStack(cdk.Stack):
         all_lib = _lambda.LayerVersion(
             self,
             "all-lib-layer",
-            code=_lambda.AssetCode("lambda/libraries.zip"),
+            code=_lambda.AssetCode("build-libraries/libraries.zip"),
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_8],
         )
 
