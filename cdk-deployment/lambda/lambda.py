@@ -18,11 +18,6 @@ app.add_middleware(
 )
 
 
-@app.get("/hello")
-async def root():
-    return {"message": "Hello World"}
-
-
 @app.get("/validate")
 async def validate_url(stac_url):
     stac = stac_validator.StacValidate(str(stac_url))
