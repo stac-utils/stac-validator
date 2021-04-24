@@ -7,26 +7,26 @@ from aws_cdk import aws_lambda as _lambda
 from aws_cdk import core as cdk
 
 
-class ValidatorCdkStack(cdk.Stack):
+class FastAPICdkStack(cdk.Stack):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        stac_lib = _lambda.LayerVersion(
+        all_lib = _lambda.LayerVersion(
             self,
-            "stac-lib-layer",
+            "all-lib-layer",
             code=_lambda.AssetCode("lambda/libraries.zip"),
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_8],
         )
 
         # Defines an AWS Lambda resource
-        validator_lambda = _lambda.Function(
+        fast_api_lambda = _lambda.Function(
             self,
-            "STACHandler",
+            "STACFastAPI",
             runtime=_lambda.Runtime.PYTHON_3_8,
             code=_lambda.Code.asset("lambda"),
             handler="lambda.handler",
             timeout=cdk.Duration.seconds(30),
-            layers=[stac_lib],
+            layers=[all_lib],
         )
 
         cors = apigw.CorsOptions(allow_origins=["*"])
@@ -34,6 +34,6 @@ class ValidatorCdkStack(cdk.Stack):
         apigw.LambdaRestApi(
             self,
             "Endpoint",
-            handler=validator_lambda,
+            handler=fast_api_lambda,
             default_cors_preflight_options=cors,
         )
