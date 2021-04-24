@@ -18,7 +18,7 @@ app.add_middleware(
 )
 
 
-@app.get("/validate")
+@app.get("/url")
 async def validate_url(stac_url):
     stac = stac_validator.StacValidate(str(stac_url))
     stac.run()
