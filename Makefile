@@ -22,7 +22,7 @@ build:			## Build a Docker container
 build-libraries: # Build the libraries for layers. Used internally
 	docker build -f "cdk-deployment/build-libraries/Dockerfile-libraries" -t lambdalayer:latest .
 	docker run -d -it --name lambdalayer lambdalayer:latest
-	docker cp lambdalayer:code/libraries.zip ./cdk-deployment/lambda
+	docker cp lambdalayer:code/libraries.zip ./cdk-deployment/build-libraries
 	docker stop lambdalayer
 	docker rm lambdalayer
 	docker rmi lambdalayer
