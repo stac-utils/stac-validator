@@ -7,7 +7,7 @@ from mangum import Mangum
 
 from stac_validator import stac_validator
 
-app = FastAPI(title="STAC Validator", version=0.1, root_path="/prod/")
+app = FastAPI(title="STAC Validator", version=2.0, root_path="/prod/")
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,7 +19,15 @@ app.add_middleware(
 
 
 @app.get("/url")
-async def validate_url(stac_url):
+async def validate_url_get_request(stac_url):
+    stac = stac_validator.StacValidate(str(stac_url))
+    stac.run()
+    output = stac.message[0]
+    return {"body": output}
+
+
+@app.post("/url")
+async def validate_url_post_request(stac_url):
     stac = stac_validator.StacValidate(str(stac_url))
     stac.run()
     output = stac.message[0]
