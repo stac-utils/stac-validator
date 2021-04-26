@@ -17,7 +17,7 @@ extra_reqs = {
 setup(
     name="stac_validator",
     version=__version__,
-    author="James Banting, Darren Wiens, Jonathan Healy",
+    author="James Banting, Jonathan Healy",
     author_email="jhealy@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
