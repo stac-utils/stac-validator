@@ -18,19 +18,22 @@ app.add_middleware(
 )
 
 
-@app.get("/url")
-async def validate_url_get_request(stac_url):
-    stac = stac_validator.StacValidate(str(stac_url))
+def validate(stac_object):
+    stac = stac_validator.StacValidate(stac_object)
     stac.run()
     output = stac.message[0]
+    return output
+
+
+@app.get("/url")
+async def validate_url_get_request(stac_url):
+    output = validate(str(stac_url))
     return {"body": output}
 
 
 @app.post("/url")
 async def validate_url_post_request(stac_url):
-    stac = stac_validator.StacValidate(str(stac_url))
-    stac.run()
-    output = stac.message[0]
+    output = validate(str(stac_url))
     return {"body": output}
 
 
@@ -45,9 +48,7 @@ async def validate_json(request: Request):
     temp_stac_file.flush()
     temp_stac_file.close()
     body = temp_stac_file.name
-    stac = stac_validator.StacValidate(body)
-    stac.run()
-    output = stac.message[0]
+    output = validate(body)
     return {"body": output}
 
 
