@@ -11,22 +11,22 @@ class ValidatorCdkStack(cdk.Stack):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        stac_lib = _lambda.LayerVersion(
+        val_lib = _lambda.LayerVersion(
             self,
-            "stac-lib-layer",
-            code=_lambda.AssetCode("lambda/libraries.zip"),
+            "validator-library-layer",
+            code=_lambda.AssetCode("build-libraries/libraries.zip"),
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_8],
         )
 
         # Defines an AWS Lambda resource
         validator_lambda = _lambda.Function(
             self,
-            "STACHandler",
+            "STACValidator",
             runtime=_lambda.Runtime.PYTHON_3_8,
             code=_lambda.Code.asset("lambda"),
             handler="lambda.handler",
             timeout=cdk.Duration.seconds(30),
-            layers=[stac_lib],
+            layers=[val_lib],
         )
 
         cors = apigw.CorsOptions(allow_origins=["*"])

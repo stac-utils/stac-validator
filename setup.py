@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 __version__ = "2.0.0"
 
@@ -17,7 +14,7 @@ extra_reqs = {
 setup(
     name="stac_validator",
     version=__version__,
-    author="James Banting, Darren Wiens, Jonathan Healy",
+    author="James Banting, Jonathan Healy",
     author_email="jhealy@sparkgeo.com",
     description="A package to validate STAC files",
     license="MIT",
@@ -38,13 +35,11 @@ setup(
         "jsonschema==3.2.0",
         "pystac==0.5.6",
         "click==7.1.2",
-        "pytest",
-        "pytest-mypy",
-        "pre-commit",
     ],
     packages=["stac_validator"],
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
+    python_requires=">=3.6",
     tests_require=["pytest"],
 )

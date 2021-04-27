@@ -114,6 +114,6 @@ venv.bak/
 .vscode
 
 cdk-deployment/lambda/stac_validator/
-cdk-deployment/lambda/libraries.zip
+cdk-deployment/build-libraries/libraries.zip
 
 Pipfile*
