@@ -26,6 +26,7 @@ jobs:
 
       - name: Run unit tests
         run: |
+          pip install .
           pip install -r requirements-dev.txt
           pytest --mypy stac_validator
 
