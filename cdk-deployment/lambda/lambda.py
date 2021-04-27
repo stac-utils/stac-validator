@@ -7,7 +7,11 @@ from mangum import Mangum
 
 from stac_validator import stac_validator
 
-app = FastAPI(title="STAC Validator", version=2.0)
+app = FastAPI(
+    title="STAC Validator",
+    description="API for validating STAC files. Powered by Sparkgeo.",
+    version=2.0,
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,6 +27,11 @@ def validate(stac_object):
     stac.run()
     output = stac.message[0]
     return output
+
+
+@app.get("/")
+async def homepage():
+    return {"body": "https://api.staclint.com/docs"}
 
 
 @app.get("/url")
