@@ -14,7 +14,7 @@
   </a>
 </p>
 
-Validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.
+Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
@@ -83,7 +83,8 @@ make help
 | 1.0.0-beta.1 |
 | 1.0.0-beta.2 |
 | 1.0.0-rc.1   |
-| 1.0.0-rc.2   |
+| 1.0.0-rc.3   |
+
 
 ---
 
