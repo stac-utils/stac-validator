@@ -7,7 +7,7 @@ from mangum import Mangum
 
 from stac_validator import stac_validator
 
-app = FastAPI(title="STAC Validator", version=2.0, root_path="/prod/")
+app = FastAPI(title="STAC Validator", version=2.0)
 
 app.add_middleware(
     CORSMiddleware,
