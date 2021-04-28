@@ -62,13 +62,13 @@ pip install .
 
 or (for development)
 
-```
+```bash
 pip install --editable .["test"]
 ```
 
 The [Makefile](./Makefile) has convenience commands if Make is installed.
 
-```
+```bash
 make help
 ```
 
@@ -76,13 +76,13 @@ make help
 
 | STAC         |
 | ------------ |
-| 0.7.0        |
 | 0.8.0        |
 | 0.8.1        |
 | 0.9.0        |
 | 1.0.0-beta.1 |
 | 1.0.0-beta.2 |
 | 1.0.0-rc.1   |
+| 1.0.0-rc.2   |
 | 1.0.0-rc.3   |
 
 
