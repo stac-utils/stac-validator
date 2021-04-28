@@ -1,237 +1,295 @@
-# Spatial Temporal Asset Catalog (STAC) Validator
+# SpatioTemporal Asset Catalog (STAC) Validator
 
-[![CircleCI](https://circleci.com/gh/sparkgeo/stac-validator.svg?style=svg)](https://circleci.com/gh/sparkgeo/stac-validator)
+[//]: # "Badges"
 
-This utility allows users to validate STAC json files against the [STAC](https://github.com/radiantearth/stac-spec) spec.   
+<p align="center">
+  <a href="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml" target="_blank">
+      <img src="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg" alt="Package version">
+  </a>
+  <a href="https://pypi.org/project/stac-validator" target="_blank">
+      <img src="https://img.shields.io/pypi/v/stac-validator?color=%2334D058&label=pypi" alt="Package version">
+  </a>
+  <a href="https://github.com/sparkgeo/stac-validator/blob/master/LICENSE" target="_blank">
+      <img src="https://img.shields.io/github/license/sparkgeo/stac-validator.svg" alt="License">
+  </a>
+</p>
 
-It can be installed as command line utility and passed either a local file path or a url along with the STAC version to validate against. 
-Example usages can be found below.
+Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
+```bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
+[
+    {
+        "version": "1.0.0-rc.2",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+        ],
+        "asset_type": "ITEM",
+        "validation_method": "default",
+        "valid_stac": true
+    }
+]
+```
 
 ## Requirements
 
-* Python 3.6
-    * Requests
-    * Docopt
-    * Pytest
-    * Pystac
-    * Jsonschema
+- Python 3.6+
+  - Requests
+  - Click
+  - Pytest
+  - Pystac
+  - Jsonschema
 
+## Install
 
-## Installation from repo
+Installation from PyPi
+
+```bash
+pip install stac-validator
+```
+
+Installation from Repo
 
 ```bash
 pip install .
-or (for development)
-pip install --editable .  
 ```
 
-## Installation from PyPi  
+or (for development)
 
 ```bash
-pip install stac-validator  
+pip install --editable .["test"]
 ```
 
+The [Makefile](./Makefile) has convenience commands if Make is installed.
 
-## stac_validator --help
+```bash
+make help
 ```
-Description: Validate a STAC item or catalog against the STAC specification.
 
-Usage:
-    stac_validator <stac_file> [--version STAC_VERSION] [--timer] [--recursive] [--log_level LOGLEVEL] [--custom CUSTOM] [--update] [--force] [--extension EXTENSION] [--core] [--legacy] [--with_error_code]
+## Versions supported
 
-Arguments:
-    stac_file  Fully qualified path or url to a STAC file.
+| STAC         |
+| ------------ |
+| 0.8.0        |
+| 0.8.1        |
+| 0.9.0        |
+| 1.0.0-beta.1 |
+| 1.0.0-beta.2 |
+| 1.0.0-rc.1   |
+| 1.0.0-rc.2   |
+| 1.0.0-rc.3   |
+
+
+---
+
+# CLI
+
+**Basic Usage**
+
+```bash
+stac_validator --help
+
+Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
-    -v, --version STAC_VERSION   Version to validate against. [default: missing]
-    -h, --help                   Show this screen.
-    --timer                      Reports time to validate the STAC. (seconds)
-    --update                     Migrate to newest STAC version (1.0.0-beta.2) for testing
-    --log_level LOGLEVEL         Standard level of logging to report. [default: CRITICAL]  
-    --custom CUSTOM              Validate against a custom schema whether local or remote
-    --force                      Set version='0.9.0' and fix missing id for older objects to force validation
-    --recursive                  Recursively validate an entire collection or catalog.
-    --extension EXTENSION        Validate an extension
-    --core                       Validate on core only
-    --legacy                     Validate on older schemas, must be accompanied by --version
-    --with_error_code            Return a non-zero exit code in case of a failure during validation
-```  
+  --core                   Validate core stac object without extensions.
+  --extensions             Validate extensions only.
+  -c, --custom TEXT        Validate against a custom schema (local filepath or remote schema).
+  -r, --recursive INTEGER  Recursively validate all related stac objects. A
+                           depth of -1 indicates full recursion.
 
-## versions supported
-```
-default: ['0.8.0','0.8.1','0.9.0','1.0.0-beta.2']  
-legacy: ['0.4.0','0.4.1','0.5.0','0.5.1','0.5.2','0.6.0','0.6.0-rc1','0.6.0-rc2','0.6.1','0.6.2',
-'0.7.0','0.8.0','0.8.0-rc1','0.8.1','0.9.0','0.9.0-rc1','0.9.0-rc2','1.0.0-beta.1'] 
-```
-
-## extensions supported
-```
-['checksum','collection-assets','datacube','eo','item-assets','label','pointcloud','projection',
-'sar','sat','scientific','single-file-stac','tiled-assets','timestamps','version','view']
+  -v, --verbose            Enables verbose output for recursive mode.
+  -l, --log_file TEXT      Save full recursive output to log file. (local filepath)
+  --version                Show the version and exit.
+  --help                   Show this message and exit.
 ```
 
 ---
-# CLI
 
-**Basic Usage**  
-```    
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json
-```
-```
+# Deployment
+
+## Docker
+
+The validator can run using docker containers.
+
+```bash
+docker build -t stac_validator:2.0.0 .
+docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
 [
     {
-        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json",
-        "id": "NAIP",
-        "asset_type": "catalog",
-        "validated_version": "1.0.0-beta.2",
+        "version": "1.0.0-rc.1",
+        "path": "https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json",
+        "schema": [
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "default"
+    }
+]
+```
+
+## AWS (CDK)
+An example [AWS CDK](https://aws.amazon.com/cdk/) deployment is available in [cdk-deployment](./cdk-deployment/README.md)
+```bash
+cd cdk-deployment
+cdk diff
+```
+
+---
+
+# Python
+
+**Remote source**
+
+```python
+from stac_validator import stac_validator
+
+stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
+stac.run()
+print(stac.message)
+[
+    {
+        "version": "0.9.0",
+        "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
+        "schema": [
+            "https://cdn.staclint.com/v0.9.0/collection.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "COLLECTION",
+        "validation_method": "default"
+    }
+]
+```
+
+**Local file**
+
+```python
+from stac_validator import stac_validator
+
+stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
+stac.run()
+print(stac.message)
+[
+    {
+        "version": "1.0.0-beta.1",
+        "path": "tests/test_data/1beta1/sentinel2.json",
+        "schema": [
+            "https://cdn.staclint.com/v1.0.0-beta.1/collection.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "COLLECTION",
+        "validation_method": "extensions"
+    }
+]
+```
+
+---
+
+# Testing
+
+```bash
+pytest -v
+```
+
+See the [tests](./tests/test_stac_validator.py) files for examples on different usages.
+
+---
+# Additional Examples
+
+**--core**
+
+```bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
+[
+    {
+        "version": "1.0.0-rc.2",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+        ],
+        "asset_type": "ITEM",
+        "validation_method": "core",
         "valid_stac": true
-    }
-]
-```
-**--version**  
-```    
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json --version 0.9.0
-```
-```
-[
-    {
-        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/examples/catalog.json",
-        "id": "NAIP",
-        "asset_type": "catalog",
-        "validated_version": "0.9.0",
-        "valid_stac": false,
-        "error_type": "STACValidationError",
-        "error_message": "STAC Validation Error: Validation failed for CATALOG with ID NAIP against schema at https://raw.githubusercontent.com/radiantearth/stac-spec/v0.9.0/catalog-spec/json-schema/catalog.json"
-    }
-]
-```
-
-**--extension**
-```
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json --extension sat
-```
-```
-[
-    {
-        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json",
-        "id": "CS3-20160503_132131_05",
-        "asset_type": "item",
-        "validated_version": "1.0.0-beta.2",
-        "extension_flag": "sat",
-        "valid_stac": false,
-        "error_type": "STACValidationError",
-        "error_message": "STAC Validation Error: Validation failed for ITEM with ID CS3-20160503_132131_05 against schema at https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sat/json-schema/schema.jsonfor STAC extension 'sat'"
-    }
-]
-```
-
-**--update**
-```
-stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --update
-```
-```
-[
-    {
-        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset_type": "catalog",
-        "id": "radarstac",
-        "original_verson": "0.7.0",
-        "update": true,
-        "diff": {
-            "stac_version": [
-                "0.7.0",
-                "1.0.0-beta.2"
-            ],
-            "stac_extensions": [
-                "<KEYNOTFOUND>",
-                []
-            ]
-        },
-        "validated_version": "1.0.0-beta.2",
-        "valid_stac": true
-    }
-]
-```
-
-**--force** 
-```
-stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --force
-```
-```
-[
-    {
-        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset_type": "catalog",
-        "original_version": "0.7.0",
-        "force": true,
-        "id": "radarstac",
-        "validated_version": "0.9.0",
-        "valid_stac": true
-    }
-]
-```
-
-**--legacy** (must be accompanied by --version)
-```
-stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --legacy --version 0.7.0
-```
-```
-[
-    {
-        "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset_type": "catalog",
-        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
-        "legacy": true,
-        "validated_version": "v0.7.0"
     }
 ]
 ```
 
 **--custom**
-```
+
+```bash
 stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
-```
-```
 [
     {
+        "version": "0.7.0",
         "path": "https://radarstac.s3.amazonaws.com/stac/catalog.json",
-        "asset_type": "catalog",
-        "schema": "https://cdn.staclint.com/v0.7.0/catalog.json",
-        "custom": true,
+        "schema": [
+            "https://cdn.staclint.com/v0.7.0/catalog.json"
+        ],
+        "asset_type": "CATALOG",
+        "validation_method": "custom",
         "valid_stac": true
     }
 ]
 ```
 
+**--extensions**
 
-
-**Testing**
 ```bash
-pytest -v
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
+[
+    {
+        "version": "1.0.0-rc.2",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+        ],
+        "asset_type": "ITEM",
+        "validation_method": "extensions",
+        "valid_stac": true
+    }
+]
 ```
-See the tests directory for examples on different usages.  
-  
----
-# Import stac-validator
-**remote source**
-```
-from stac_validator import stac_validator
-  
-stac = stac_validator.StacValidate("https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/examples/sample-full.json")
-stac.run()
 
-print(stac.message)
+**--recursive**
 
-if stac.message[0]["valid_stac"] == False:
-    print("False")
-```
-**local file**
-```
-from stac_validator import stac_validator
-  
-stac = stac_validator.StacValidate("tests/sample-full.json", extension='eo', update=True)
-stac.run()
-
-print(stac.message)
+```bash
+stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive 1 --verbose
+[
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/collection.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/collection.json",
+        "asset_type": "COLLECTION",
+        "validation_method": "recursive",
+        "valid_stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot5_orthoimages/collection.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/collection.json",
+        "asset_type": "COLLECTION",
+        "validation_method": "recursive",
+        "valid_stac": true
+    },
+    {
+        "version": "0.8.1",
+        "path": "https://spot-canada-ortho.s3.amazonaws.com/catalog.json",
+        "schema": "https://cdn.staclint.com/v0.8.1/catalog.json",
+        "asset_type": "CATALOG",
+        "validation_method": "recursive",
+        "valid_stac": true
+    }
+]
 ```

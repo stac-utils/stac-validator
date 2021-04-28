@@ -107,8 +107,13 @@ venv.bak/
 .DS_Store
 
 # lambda file
-.zip
+*.zip
 
 
 # IDE
 .vscode
+
+cdk-deployment/lambda/stac_validator/
+cdk-deployment/build-libraries/libraries.zip
+
+Pipfile*
