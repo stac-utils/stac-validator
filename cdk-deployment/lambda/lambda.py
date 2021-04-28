@@ -3,15 +3,12 @@ import tempfile
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from mangum import Mangum
 
 from stac_validator import stac_validator
 
-app = FastAPI(
-    title="STAC Validator",
-    description="API for validating STAC files. Powered by Sparkgeo.",
-    version=2.0,
-)
+app = FastAPI()  # OpenAPI docs are in a custom function below.
 
 app.add_middleware(
     CORSMiddleware,
@@ -60,5 +57,24 @@ async def validate_json(request: Request):
     output = validate(body)
     return {"body": output}
 
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="STAC Validator",
+        description="API for validating STAC files. Powered by Sparkgeo.",
+        version=2.0,
+        routes=app.routes,
+    )
+    openapi_schema["paths"]["/json"]["post"] = {
+        "description": "This endpoint supports validation of STAC JSON directly. Post your data as JSON.",
+    }
+
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 
 handler = Mangum(app)
