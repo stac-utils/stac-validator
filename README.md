@@ -3,7 +3,7 @@
 [//]: # "Badges"
 
 <p align="center">
-  <a href="https://pypi.org/project/stac-validator" target="_blank">
+  <a href="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml" target="_blank">
       <img src="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg" alt="Package version">
   </a>
   <a href="https://pypi.org/project/stac-validator" target="_blank">

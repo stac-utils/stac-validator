@@ -7,7 +7,7 @@ cdk diff --profile stac-validator
 cdk deploy --profile stac-validator
 ```
 
-Post a STAC url or local file to the returned endpoint in order to validate a STAC JSON.
+## Post a STAC url 
 
 ```bash
 curl --request POST \
@@ -31,6 +31,11 @@ https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
   "valid_stac": true
 }
 
+```
+
+## Post a STAC file 
+`@` reads a local file. This is equivalent to posting the STAC json data.
+```bash
 curl --request POST \
 --header "Content-Type: application/json" \
 --data @./tests/test_data/v090/items/landsat8-sample.json \
