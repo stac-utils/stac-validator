@@ -1,0 +1,4 @@
+**/cdk.out/
+**/.cdk.staging/
+**/.direnv
+**/__pycache__/
