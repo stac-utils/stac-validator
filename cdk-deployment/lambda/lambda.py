@@ -67,6 +67,12 @@ def custom_openapi():
         version=2.0,
         routes=app.routes,
     )
+    # openapi_schema["paths"]["/url"]["get"] = {
+    #     "description": "This endpoint supports validation of STAC file. Use stac_url as the query parameter.",
+    # }
+    # openapi_schema["paths"]["/url"]["post"] = {
+    #     "description": "This endpoint supports validation of a STAC file. Post your data as JSON with stac_url as the key and your path as the value.",
+    # }
     openapi_schema["paths"]["/json"]["post"] = {
         "description": "This endpoint supports validation of STAC JSON directly. Post your data as JSON.",
     }
