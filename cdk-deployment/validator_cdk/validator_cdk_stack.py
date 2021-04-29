@@ -9,7 +9,7 @@ from aws_cdk import aws_lambda as _lambda
 from aws_cdk import core as cdk
 
 
-class ValidatorTestStack(cdk.Stack):
+class ValidatorCdkStack(cdk.Stack):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
@@ -19,7 +19,7 @@ class ValidatorTestStack(cdk.Stack):
         # Defines an AWS Lambda resource
         validator_lambda = _lambda.Function(
             self,
-            "TESTValidator",
+            "STACValidator",
             runtime=_lambda.Runtime.PYTHON_3_8,
             code=_lambda.Code.from_docker_build(
                 path=str(build_path.resolve()),
@@ -33,7 +33,7 @@ class ValidatorTestStack(cdk.Stack):
 
         apigw.LambdaRestApi(
             self,
-            "TestEndpoint",
+            "Endpoint",
             handler=validator_lambda,
             default_cors_preflight_options=cors,
         )
