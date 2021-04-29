@@ -240,7 +240,6 @@ class StacValidate:
 
     def run(cls):
         message = {}
-        click.echo("HELLO")
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type().upper()
