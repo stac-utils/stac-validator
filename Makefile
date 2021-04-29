@@ -16,7 +16,7 @@ test:			## Run the tests
 	pytest --verbose
 	pytest --mypy stac_validator
 
-build:			## Build a Docker container
+build-docker:	## Build a Docker container
 	docker build -t stac_validator:2.0.0 .
 
 build-libraries: # Build the libraries for layers. Used internally

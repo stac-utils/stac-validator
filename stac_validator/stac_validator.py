@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
@@ -239,6 +240,7 @@ class StacValidate:
 
     def run(cls):
         message = {}
+        click.echo("HELLO")
         try:
             cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type().upper()
@@ -293,6 +295,7 @@ class StacValidate:
             message.update(cls.create_err_msg("Exception", str(e)))
 
         message["valid_stac"] = cls.valid
+
         if cls.recursive < -1:
             cls.message.append(message)
 
@@ -302,6 +305,9 @@ class StacValidate:
             f = open(cls.log, "w")
             f.write(json.dumps(cls.message, indent=4))
             f.close()
+
+        if message["valid_stac"] is False:
+            sys.exit(1)
 
 
 @click.command()
