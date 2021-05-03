@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
@@ -305,8 +304,9 @@ class StacValidate:
             f.write(json.dumps(cls.message, indent=4))
             f.close()
 
-        if message["valid_stac"] is False:
-            sys.exit(1)
+        # this is making tests fail as it is not returning stac.message
+        # if message["valid_stac"] is False:
+        #     sys.exit(1)
 
 
 @click.command()

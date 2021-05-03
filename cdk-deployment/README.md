@@ -16,10 +16,10 @@ curl --request POST \
 https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
 
 {
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
   "schema": [
-    "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+    "https://schemas.stacspec.org/v1.0.0-rc.3/item-spec/json-schema/item.json",
     "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
     "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
