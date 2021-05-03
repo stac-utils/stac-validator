@@ -20,19 +20,19 @@ Validate STAC json files against the [STAC spec](https://github.com/radiantearth
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
 [
     {
-        "version": "1.0.0-rc.2",
+        "version": "1.0.0-rc.3",
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
         "schema": [
-            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
             "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
             "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
             "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
             "https://stac-extensions.github.io/view/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            "https://schemas.stacspec.org/v1.0.0-rc.3/item-spec/json-schema/item.json"
         ],
+        "valid_stac": true,
         "asset_type": "ITEM",
-        "validation_method": "default",
-        "valid_stac": true
+        "validation_method": "default"
     }
 ]
 ```
@@ -210,14 +210,14 @@ See the [tests](./tests/test_stac_validator.py) files for examples on different 
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
 [
     {
-        "version": "1.0.0-rc.2",
+        "version": "1.0.0-rc.3",
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
         "schema": [
-            "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            "https://schemas.stacspec.org/v1.0.0-rc.3/item-spec/json-schema/item.json"
         ],
+        "valid_stac": true,
         "asset_type": "ITEM",
-        "validation_method": "core",
-        "valid_stac": true
+        "validation_method": "core"
     }
 ]
 ```
@@ -246,7 +246,7 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom htt
 stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
 [
     {
-        "version": "1.0.0-rc.2",
+        "version": "1.0.0-rc.3",
         "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
         "schema": [
             "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
@@ -255,9 +255,9 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
             "https://stac-extensions.github.io/view/v1.0.0/schema.json",
             "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
         ],
+        "valid_stac": true,
         "asset_type": "ITEM",
-        "validation_method": "extensions",
-        "valid_stac": true
+        "validation_method": "extensions"
     }
 ]
 ```
