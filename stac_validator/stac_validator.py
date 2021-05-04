@@ -347,7 +347,7 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     )
     stac.run()
 
-    if recursive is False and stac.message[0]["valid_stac"] is False:
+    if recursive == -2 and stac.message[0]["valid_stac"] is False:
         sys.exit(1)
 
 
