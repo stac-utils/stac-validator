@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
@@ -304,10 +305,6 @@ class StacValidate:
             f.write(json.dumps(cls.message, indent=4))
             f.close()
 
-        # this is making tests fail as it is not returning stac.message
-        # if message["valid_stac"] is False:
-        #     sys.exit(1)
-
 
 @click.command()
 @click.argument("stac_file")
@@ -349,6 +346,9 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
         log=log_file,
     )
     stac.run()
+
+    if recursive is False and stac.message[0]["valid_stac"] is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

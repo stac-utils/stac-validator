@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.1.0] - 2021-05-04
+### Added
+
+- Added more tests for STAC 1.0.0-rc.3
+
+### Changed 
+
+- Modified how Lambda CDK is built
+
 ## [v2.0.0] - 2021-04-28
 
 ### Added
