@@ -12,7 +12,7 @@ extra_reqs = {
 }
 
 setup(
-    name="stac_validator",
+    name="stac_validator_test",
     version=__version__,
     author="James Banting, Jonathan Healy",
     author_email="jhealy@sparkgeo.com",
