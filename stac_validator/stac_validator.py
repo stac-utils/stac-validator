@@ -12,7 +12,7 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
-NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3"]
+NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3", "1.0.0-rc.4"]
 
 
 class StacValidate:
@@ -334,7 +334,7 @@ class StacValidate:
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.0.0")
+@click.version_option(version="2.1.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
