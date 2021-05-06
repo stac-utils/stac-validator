@@ -26,3 +26,7 @@ __pycache__
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+**/cdk.out/
+**/.cdk.staging/
+**/.direnv
+**/__pycache__/

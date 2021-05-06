@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
@@ -11,7 +12,7 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
-NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3"]
+NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3", "1.0.0-rc.4"]
 
 
 class StacValidate:
@@ -293,6 +294,7 @@ class StacValidate:
             message.update(cls.create_err_msg("Exception", str(e)))
 
         message["valid_stac"] = cls.valid
+
         if cls.recursive < -1:
             cls.message.append(message)
 
@@ -332,7 +334,7 @@ class StacValidate:
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.0.0")
+@click.version_option(version="2.1.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
@@ -344,6 +346,9 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
         log=log_file,
     )
     stac.run()
+
+    if recursive == -2 and stac.message[0]["valid_stac"] is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

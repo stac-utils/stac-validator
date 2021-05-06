@@ -4,6 +4,10 @@ Description: Test the validator
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
+import subprocess
+
+import pytest
+
 from stac_validator import stac_validator
 
 # Core
@@ -555,16 +559,14 @@ def test_extensions_v1beta2():
     ]
 
 
-def test_extensions_remote_v1rc2():
+def test_extensions_remote_v1rc3():
     stac_file = "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
     stac.run()
     assert stac.message == [
         {
+            "version": "1.0.0-rc.3",
             "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
-            "asset_type": "ITEM",
-            "version": "1.0.0-rc.2",
-            "validation_method": "extensions",
             "schema": [
                 "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
@@ -573,6 +575,8 @@ def test_extensions_remote_v1rc2():
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
         }
     ]
 
@@ -906,6 +910,30 @@ def test_recursion_collection_local_2_v1rc2():
             "valid_stac": True,
         },
     ]
+
+
+@pytest.mark.sys
+def test_correct_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/bad_data/bad_item_v090.json"],
+            check=True,
+        )
+        assert False
+    except subprocess.CalledProcessError:
+        assert True
+
+
+@pytest.mark.sys
+def test_false_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/v090/items/good_item_v090.json"],
+            check=True,
+        )
+        assert True
+    except subprocess.CalledProcessError:
+        assert False
 
 
 # manual tests - take a long time

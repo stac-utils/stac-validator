@@ -16,19 +16,8 @@ test:			## Run the tests
 	pytest --verbose
 	pytest --mypy stac_validator
 
-build:			## Build a Docker container
+build-docker:		## Build a Docker container
 	docker build -t stac_validator:2.0.0 .
-
-build-libraries: # Build the libraries for layers. Used internally
-	docker build -f "cdk-deployment/build-libraries/Dockerfile-libraries" -t lambdalayer:latest .
-	docker run -d -it --name lambdalayer lambdalayer:latest
-	docker cp lambdalayer:code/libraries.zip ./cdk-deployment/build-libraries
-	docker stop lambdalayer
-	docker rm lambdalayer
-	docker rmi lambdalayer
-
-build-cdk: 		## Build the libraries in preperation for CDK deployment
-	make build-libraries
 
 build-tox:		## Test stac_validator on multiple Python versions
 	docker build -f tox/Dockerfile-tox -t stac_tox .
