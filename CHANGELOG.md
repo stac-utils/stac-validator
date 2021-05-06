@@ -8,6 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Added
 
 - Added more tests for STAC 1.0.0-rc.3
+- Add system exit code to CLI. see #144
 
 ### Changed 
 
