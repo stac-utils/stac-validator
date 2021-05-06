@@ -84,6 +84,7 @@ make help
 | 1.0.0-rc.1   |
 | 1.0.0-rc.2   |
 | 1.0.0-rc.3   |
+| 1.0.0-rc.4   |
 
 
 ---
@@ -119,8 +120,8 @@ Options:
 The validator can run using docker containers.
 
 ```bash
-docker build -t stac_validator:2.0.0 .
-docker run stac_validator:2.0.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
+docker build -t stac_validator:2.1.0 .
+docker run stac_validator:2.1.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
 [
     {
         "version": "1.0.0-rc.1",
@@ -195,7 +196,10 @@ print(stac.message)
 
 # Testing
 
+
 ```bash
+make test
+# or
 pytest -v
 ```
 

@@ -4,6 +4,10 @@ Description: Test the validator
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
+import subprocess
+
+import pytest
+
 from stac_validator import stac_validator
 
 # Core
@@ -906,6 +910,32 @@ def test_recursion_collection_local_2_v1rc2():
             "valid_stac": True,
         },
     ]
+
+
+@pytest.mark.sys
+def test_correct_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/bad_data/bad_item_v090.json"],
+            capture_output=True,
+            check=True,
+        )
+        assert False
+    except subprocess.CalledProcessError:
+        assert True
+
+
+@pytest.mark.sys
+def test_false_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/v090/items/good_item_v090.json"],
+            capture_output=True,
+            check=True,
+        )
+        assert True
+    except subprocess.CalledProcessError:
+        assert False
 
 
 # manual tests - take a long time
