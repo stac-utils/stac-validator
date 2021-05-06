@@ -4,7 +4,9 @@ Description: Test the validator
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
-# import pytest
+import subprocess
+
+import pytest
 
 from stac_validator import stac_validator
 
@@ -910,15 +912,30 @@ def test_recursion_collection_local_2_v1rc2():
     ]
 
 
-# @pytest.mark.sys
-# def test_sys_exit_error_python():
-#     with pytest.raises(SystemExit) as pytest_error:
-#         stac_file = "tests/test_data/bad_data/bad_item_v090.json"
-#         stac = stac_validator.StacValidate(stac_file, recursive=0)
-#         stac.run()
-# print("ERRORTYPE", pytest_error.type)
-# assert pytest_error.type == SystemExit  # Exit code should happen on CLI only
-# assert pytest_error.value.code == 1
+@pytest.mark.sys
+def test_correct_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/bad_data/bad_item_v090.json"],
+            capture_output=True,
+            check=True,
+        )
+        assert False
+    except subprocess.CalledProcessError:
+        assert True
+
+
+@pytest.mark.sys
+def test_false_sys_exit_error_python():
+    try:
+        subprocess.run(
+            ["stac_validator", "tests/test_data/v090/items/good_item_v090.json"],
+            capture_output=True,
+            check=True,
+        )
+        assert True
+    except subprocess.CalledProcessError:
+        assert False
 
 
 # manual tests - take a long time
