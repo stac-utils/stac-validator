@@ -247,7 +247,6 @@ class StacValidate:
         try:
             if cls.stac_file is not None:
                 cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
-            print(cls.stac_content)
             stac_type = cls.get_stac_type().upper()
             cls.version = cls.get_stac_version()
 
@@ -304,8 +303,6 @@ class StacValidate:
         if cls.recursive < -1:
             cls.message.append(message)
 
-        click.echo(json.dumps(cls.message, indent=4))
-
         if cls.log != "":
             f = open(cls.log, "w")
             f.write(json.dumps(cls.message, indent=4))
@@ -352,6 +349,8 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
         log=log_file,
     )
     stac.run()
+
+    click.echo(json.dumps(stac.message, indent=4))
 
     if recursive == -2 and stac.message[0]["valid_stac"] is False:
         sys.exit(1)

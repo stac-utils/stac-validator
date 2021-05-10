@@ -42,13 +42,8 @@ content = {
             "title": "3-Band Visual",
             "roles": ["visual"],
         },
-        "thumbnail": {
-            "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
-            "title": "Thumbnail",
-            "type": "image/jpeg",
-            "roles": ["thumbnail"],
-        },
     },
 }
-stac.to_dict(content)
-print("Message: ", stac.message)
+
+stac.validate_dict(content)
+print("Valid?: ", stac.valid)
