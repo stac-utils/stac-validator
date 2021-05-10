@@ -238,10 +238,16 @@ class StacValidate:
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
 
+    def validate_dict(cls, stac_content):
+        cls.stac_content = stac_content
+        cls.run()
+
     def run(cls):
         message = {}
         try:
-            cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
+            if cls.stac_file is not None:
+                cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
+            print(cls.stac_content)
             stac_type = cls.get_stac_type().upper()
             cls.version = cls.get_stac_version()
 
