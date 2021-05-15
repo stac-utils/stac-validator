@@ -513,6 +513,129 @@ def test_validate_dict_catalog_v1rc2():
 # Extensions
 
 
+def test_validate_dict_bad_extension_1b2():
+    stac_file = {
+        "stac_version": "1.0.0-beta.2",
+        "stac_extensions": [
+            "eo",
+            "view",
+            "https://example.com/cs-extension/1.0/schema.json",
+        ],
+        "type": "Feature",
+        "id": "CS3-20160503_132131_05",
+        "bbox": [-122.59750209, 37.48803556, -122.2880486, 37.613537207],
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [-122.308150179, 37.488035566],
+                    [-122.597502109, 37.538869539],
+                    [-122.576687533, 37.613537207],
+                    [-122.288048600, 37.562818007],
+                    [-122.308150179, 37.488035566],
+                ]
+            ],
+        },
+        "properties": {
+            "random": 10,
+            "datetime": "2016-05-03T13:22:30Z",
+            "title": "A CS3 item",
+            "license": "PDDL-1.0",
+            "providers": [
+                {
+                    "name": "CoolSat",
+                    "roles": ["producer", "licensor"],
+                    "url": "https://cool-sat.com/",
+                }
+            ],
+            "created": "2016-05-04T00:00:01Z",
+            "updated": "2017-01-01T00:30:55Z",
+            "view:sun_azimuth": 168.7,
+            "eo:cloud_cover": 0.12,
+            "view:off_nadir": 1.4,
+            "platform": "coolsat2",
+            "instruments": ["cool_sensor_v1"],
+            "eo:bands": [
+                {"name": "band1"},
+                {"name": "band1"},
+                {"name": "band2"},
+                {"name": "band3"},
+            ],
+            "view:sun_elevation": 33.4,
+            "gsd": 0.512,
+            "cs:type": "scene",
+            "cs:anomalous_pixels": 0.14,
+            "cs:earth_sun_distance": 1.0141560,
+            "cs:sat_id": "CS3",
+            "cs:product_level": "LV1B",
+        },
+        "collection": "CS3",
+        "links": [
+            {
+                "rel": "self",
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json",
+            },
+            {"rel": "root", "href": "http://cool-sat.com/catalog/catalog.json"},
+            {
+                "rel": "parent",
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json",
+            },
+            {
+                "rel": "collection",
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json",
+            },
+            {
+                "rel": "alternate",
+                "type": "text/html",
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.html",
+            },
+        ],
+        "assets": {
+            "analytic": {
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
+                "title": "4-Band Analytic",
+            },
+            "thumbnail": {
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
+                "title": "Thumbnail",
+                "type": "image/png",
+                "roles": ["thumbnail"],
+            },
+            "udm": {
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
+                "title": "Unusable Data Mask",
+            },
+            "json-metadata": {
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
+                "title": "Extended Metadata",
+                "type": "application/json",
+                "roles": ["metadata"],
+            },
+            "ephemeris": {
+                "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
+                "title": "Satellite Ephemeris Metadata",
+            },
+        },
+    }
+
+    stac = stac_validator.StacValidate()
+    stac.validate_dict(stac_file)
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.1",
+            "path": None,
+            "schema": [
+                "https://example.com/cs-extension/1.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": False,
+            "error_type": "Exception",
+            "error_message": "Expecting value: line 1 column 1 (char 0)",
+            "validation_method": "default",
+        }
+    ]
+
+
 def test_extensions_item_local_v080():
     stac_file = "tests/test_data/v080/items/sample-full.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
