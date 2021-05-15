@@ -129,7 +129,8 @@ class StacValidate:
                 return message
             except Exception as e:
                 valid = False
-                return self.create_err_msg("Exception", str(e))
+                err_msg = f"{e}. Error in Extensions."
+                return self.create_err_msg("Exception", err_msg)
         else:
             self.core_val(stac_type)
             message["schema"] = [self.custom]
@@ -247,8 +248,6 @@ class StacValidate:
 
     def run(cls):
         message = {}
-        print("HELLO")
-        print(cls.valid)
         try:
             if cls.stac_file is not None:
                 cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
@@ -291,7 +290,6 @@ class StacValidate:
         except OSError as e:
             message.update(cls.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
-            print("HELLO2")
             if e.absolute_path:
                 err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
             else:
@@ -304,7 +302,6 @@ class StacValidate:
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 
-        print("HELLO3")
         message["valid_stac"] = cls.valid
 
         if cls.recursive < -1:
