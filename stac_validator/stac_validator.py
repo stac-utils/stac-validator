@@ -54,6 +54,7 @@ class StacValidate:
             return str(e)
 
     def create_err_msg(self, err_type: str, err_msg: str) -> dict:
+        self.valid = False
         return {
             "version": self.version,
             "path": self.stac_file,
@@ -98,7 +99,7 @@ class StacValidate:
     def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
-
+        valid = True
         if stac_type == "ITEM":
             try:
 
@@ -119,6 +120,7 @@ class StacValidate:
                         self.custom_val()
                         message["schema"].append(extension)
             except jsonschema.exceptions.ValidationError as e:
+                valid = False
                 if e.absolute_path:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
                 else:
@@ -126,11 +128,13 @@ class StacValidate:
                 message = self.create_err_msg("ValidationError", err_msg)
                 return message
             except Exception as e:
-                return self.create_err_msg("ValidationError", str(e))
+                valid = False
+                err_msg = f"{e}. Error in Extensions."
+                return self.create_err_msg("Exception", err_msg)
         else:
             self.core_val(stac_type)
             message["schema"] = [self.custom]
-        self.valid = True
+        self.valid = valid
         return message
 
     def custom_val(self):
@@ -266,8 +270,8 @@ class StacValidate:
             elif cls.extensions is True:
                 message = cls.extensions_val(stac_type)
             else:
-                message = cls.default_val(stac_type)
                 cls.valid = True
+                message = cls.default_val(stac_type)
 
         except ValueError as e:
             message.update(cls.create_err_msg("ValueError", str(e)))
