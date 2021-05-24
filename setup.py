@@ -29,7 +29,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
-    download_url="https://github.com/sparkgeo/stac-validator/archive/v2.1.0.tar.gz",
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v2.2.0.tar.gz",
     install_requires=[
         "requests>=2.19.1",
         "jsonschema==3.2.0",

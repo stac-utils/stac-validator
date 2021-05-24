@@ -17,10 +17,10 @@ test:			## Run the tests
 	pytest --mypy stac_validator
 
 build-docker:		## Build a Docker container
-	docker build -t stac_validator:2.0.0 .
+	docker build -t stac_validator:2.2.0 .
 
 build-tox:		## Test stac_validator on multiple Python versions
 	docker build -f tox/Dockerfile-tox -t stac_tox .
 
 run:			## Run the Docker Container and enter into bash
-	docker run -it --entrypoint /bin/bash stac_validator:2.0.0
+	docker run -it --entrypoint /bin/bash stac_validator:2.2.0
