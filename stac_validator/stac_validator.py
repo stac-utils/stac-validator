@@ -238,10 +238,15 @@ class StacValidate:
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
 
+    def validate_dict(cls, stac_content):
+        cls.stac_content = stac_content
+        return cls.run()
+
     def run(cls):
         message = {}
         try:
-            cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
+            if cls.stac_file is not None:
+                cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type().upper()
             cls.version = cls.get_stac_version()
 
@@ -298,12 +303,15 @@ class StacValidate:
         if cls.recursive < -1:
             cls.message.append(message)
 
-        click.echo(json.dumps(cls.message, indent=4))
-
         if cls.log != "":
             f = open(cls.log, "w")
             f.write(json.dumps(cls.message, indent=4))
             f.close()
+
+        if cls.valid:
+            return True
+        else:
+            return False
 
 
 @click.command()
@@ -346,6 +354,8 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
         log=log_file,
     )
     stac.run()
+
+    click.echo(json.dumps(stac.message, indent=4))
 
     if recursive == -2 and stac.message[0]["valid_stac"] is False:
         sys.exit(1)
