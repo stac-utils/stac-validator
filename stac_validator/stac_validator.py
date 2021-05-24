@@ -244,7 +244,7 @@ class StacValidate:
 
     def validate_dict(cls, stac_content):
         cls.stac_content = stac_content
-        cls.run()
+        return cls.run()
 
     def run(cls):
         message = {}
@@ -311,6 +311,11 @@ class StacValidate:
             f = open(cls.log, "w")
             f.write(json.dumps(cls.message, indent=4))
             f.close()
+
+        if cls.valid:
+            return True
+        else:
+            return False
 
 
 @click.command()

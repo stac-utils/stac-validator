@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.2.0] - 2021-05-10
+### Added
+
+- Option to pass stac dictionary into validator in python with new stac_dict method
+
+### Changed
+
+- Moved std out to cli so that it doesn't display in pure python applications
+
 ## [v2.1.0] - 2021-05-06
 ### Added
 
