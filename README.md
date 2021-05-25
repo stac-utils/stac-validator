@@ -120,8 +120,8 @@ Options:
 The validator can run using docker containers.
 
 ```bash
-docker build -t stac_validator:2.1.0 .
-docker run stac_validator:2.1.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
+docker build -t stac_validator:2.2.0 .
+docker run stac_validator:2.2.0 https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
 [
     {
         "version": "1.0.0-rc.1",
