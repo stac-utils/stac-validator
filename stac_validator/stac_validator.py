@@ -12,7 +12,14 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
-NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3", "1.0.0-rc.4"]
+NEW_VERSIONS = [
+    "1.0.0-beta.2",
+    "1.0.0-rc.1",
+    "1.0.0-rc.2",
+    "1.0.0-rc.3",
+    "1.0.0-rc.4",
+    "1.0.0",
+]
 
 
 class StacValidate:
