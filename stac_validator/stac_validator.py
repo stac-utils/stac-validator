@@ -115,6 +115,7 @@ class StacValidate:
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
                                 self.version = self.get_stac_version()
+                            extension = f"https://schemas.stacspec.org/v{self.version}/extension/{stac_type}-spec/json-schema/{stac_type}.json"
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
                         self.custom = extension
                         self.custom_val()
@@ -346,7 +347,7 @@ class StacValidate:
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.1.0")
+@click.version_option(version="2.2.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
