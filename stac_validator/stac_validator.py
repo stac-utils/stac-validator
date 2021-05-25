@@ -122,7 +122,6 @@ class StacValidate:
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
                                 self.version = self.get_stac_version()
-                            extension = f"https://schemas.stacspec.org/v{self.version}/extension/{stac_type}-spec/json-schema/{stac_type}.json"
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
                         self.custom = extension
                         self.custom_val()
