@@ -4,9 +4,8 @@ Description: Test the validator
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
+import json
 import subprocess
-
-import pytest
 
 from stac_validator import stac_validator
 
@@ -468,6 +467,50 @@ def test_default_catalog_v1rc2():
     ]
 
 
+def test_validate_dict_catalog_v1rc2():
+    stac_file = {
+        "id": "examples",
+        "type": "Catalog",
+        "stac_version": "1.0.0-rc.2",
+        "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
+        "links": [
+            {"rel": "root", "href": "./catalog.json", "type": "application/json"},
+            {
+                "rel": "child",
+                "href": "./extensions-collection/collection.json",
+                "type": "application/json",
+                "title": "Collection Demonstrating STAC Extensions",
+            },
+            {
+                "rel": "child",
+                "href": "./collection-only/collection.json",
+                "type": "application/json",
+                "title": "Collection with no items (standalone)",
+            },
+            {
+                "rel": "self",
+                "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.2/examples/catalog.json",
+                "type": "application/json",
+            },
+        ],
+    }
+
+    stac = stac_validator.StacValidate()
+    stac.validate_dict(stac_file)
+    assert stac.message == [
+        {
+            "path": None,
+            "asset_type": "CATALOG",
+            "version": "1.0.0-rc.2",
+            "validation_method": "default",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/catalog-spec/json-schema/catalog.json"
+            ],
+            "valid_stac": True,
+        }
+    ]
+
+
 # Extensions
 
 
@@ -560,13 +603,35 @@ def test_extensions_v1beta2():
 
 
 def test_extensions_remote_v1rc3():
-    stac_file = "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json"
+    stac_file = "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.3/examples/extended-item.json"
     stac = stac_validator.StacValidate(stac_file, extensions=True)
     stac.run()
     assert stac.message == [
         {
             "version": "1.0.0-rc.3",
-            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.3/examples/extended-item.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+        }
+    ]
+
+
+def test_extensions_remote_v1rc4():
+    stac_file = "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.4/examples/extended-item.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0-rc.4",
+            "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.4/examples/extended-item.json",
             "schema": [
                 "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
@@ -912,7 +977,23 @@ def test_recursion_collection_local_2_v1rc2():
     ]
 
 
-@pytest.mark.sys
+def test_correct_validate_dict_return_method():
+    stac = stac_validator.StacValidate()
+    with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
+        good_stac = json.load(f)
+    if stac.validate_dict(good_stac) is True:
+        return True
+
+
+def test_incorrect_validate_dict_return_method():
+    stac = stac_validator.StacValidate()
+    with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
+        good_stac = json.load(f)
+        bad_stac = good_stac.pop("type", None)
+    if stac.validate_dict(bad_stac) is False:
+        return True
+
+
 def test_correct_sys_exit_error_python():
     try:
         subprocess.run(
@@ -924,7 +1005,6 @@ def test_correct_sys_exit_error_python():
         assert True
 
 
-@pytest.mark.sys
 def test_false_sys_exit_error_python():
     try:
         subprocess.run(

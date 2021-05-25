@@ -12,7 +12,14 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
-NEW_VERSIONS = ["1.0.0-beta.2", "1.0.0-rc.1", "1.0.0-rc.2", "1.0.0-rc.3", "1.0.0-rc.4"]
+NEW_VERSIONS = [
+    "1.0.0-beta.2",
+    "1.0.0-rc.1",
+    "1.0.0-rc.2",
+    "1.0.0-rc.3",
+    "1.0.0-rc.4",
+    "1.0.0",
+]
 
 
 class StacValidate:
@@ -54,6 +61,7 @@ class StacValidate:
             return str(e)
 
     def create_err_msg(self, err_type: str, err_msg: str) -> dict:
+        self.valid = False
         return {
             "version": self.version,
             "path": self.stac_file,
@@ -98,7 +106,7 @@ class StacValidate:
     def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
-
+        valid = True
         if stac_type == "ITEM":
             try:
 
@@ -119,6 +127,7 @@ class StacValidate:
                         self.custom_val()
                         message["schema"].append(extension)
             except jsonschema.exceptions.ValidationError as e:
+                valid = False
                 if e.absolute_path:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
                 else:
@@ -126,11 +135,13 @@ class StacValidate:
                 message = self.create_err_msg("ValidationError", err_msg)
                 return message
             except Exception as e:
-                return self.create_err_msg("ValidationError", str(e))
+                valid = False
+                err_msg = f"{e}. Error in Extensions."
+                return self.create_err_msg("Exception", err_msg)
         else:
             self.core_val(stac_type)
             message["schema"] = [self.custom]
-        self.valid = True
+        self.valid = valid
         return message
 
     def custom_val(self):
@@ -238,10 +249,15 @@ class StacValidate:
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
 
+    def validate_dict(cls, stac_content):
+        cls.stac_content = stac_content
+        return cls.run()
+
     def run(cls):
         message = {}
         try:
-            cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
+            if cls.stac_file is not None:
+                cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
             stac_type = cls.get_stac_type().upper()
             cls.version = cls.get_stac_version()
 
@@ -261,8 +277,8 @@ class StacValidate:
             elif cls.extensions is True:
                 message = cls.extensions_val(stac_type)
             else:
-                message = cls.default_val(stac_type)
                 cls.valid = True
+                message = cls.default_val(stac_type)
 
         except ValueError as e:
             message.update(cls.create_err_msg("ValueError", str(e)))
@@ -298,12 +314,15 @@ class StacValidate:
         if cls.recursive < -1:
             cls.message.append(message)
 
-        click.echo(json.dumps(cls.message, indent=4))
-
         if cls.log != "":
             f = open(cls.log, "w")
             f.write(json.dumps(cls.message, indent=4))
             f.close()
+
+        if cls.valid:
+            return True
+        else:
+            return False
 
 
 @click.command()
@@ -334,7 +353,7 @@ class StacValidate:
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.1.0")
+@click.version_option(version="2.2.0")
 def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
@@ -346,6 +365,8 @@ def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
         log=log_file,
     )
     stac.run()
+
+    click.echo(json.dumps(stac.message, indent=4))
 
     if recursive == -2 and stac.message[0]["valid_stac"] is False:
         sys.exit(1)
