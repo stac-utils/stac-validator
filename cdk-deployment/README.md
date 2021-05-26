@@ -11,9 +11,9 @@ cdk deploy --profile stac-validator
 
 ```bash
 curl --request POST \
---header "Content-Type: Application/json" \
+--header "Content-Type: application/json" \
 --data '{"stac_file": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json"}' \
-https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
+https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/url
 
 {
   "version": "1.0.0-rc.3",
@@ -39,7 +39,7 @@ https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
 curl --request POST \
 --header "Content-Type: application/json" \
 --data @./tests/test_data/v090/items/landsat8-sample.json \
-https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/
+https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/prod/json
 
 {
   "version": "0.9.0",
