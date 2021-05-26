@@ -6,10 +6,10 @@ COPY . /code/
 
 RUN mkdir -p /asset && \
 	python -m pip install --upgrade pip && \
-	pip install mangum uvicorn fastapi[all] -t /asset
+	pip install stac-validator mangum uvicorn fastapi[all] -t /asset --no-binary pydantic
 
-RUN pip install /code -t /asset
+# RUN pip install -e /code -t /asset
+RUN ls
+RUN cp /code/lambda.py /asset/
 
-RUN cp /code/cdk-deployment/lambda/lambda.py /asset/lambda.py
-
-CMD ["echo", "hello world"]
+CMD ["lambda.handler"]
