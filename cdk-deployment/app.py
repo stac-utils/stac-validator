@@ -8,6 +8,6 @@ from aws_cdk import core
 from validator_cdk.validator_cdk_stack import ValidatorCdkStack
 
 app = core.App()
-ValidatorCdkStack(app, "ValidatorCdkStack")
+ValidatorCdkStack(app, "STAC-Validator")
 
 app.synth()
