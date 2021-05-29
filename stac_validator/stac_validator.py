@@ -183,7 +183,7 @@ class StacValidate:
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
 
-    def recursive_val(self, stac_type: str):
+    def recursive_validator(self, stac_type: str):
         if self.skip_val is False:
             self.set_schema_addr(stac_type.lower())
             message = self.create_message(stac_type, "recursive")
@@ -272,7 +272,7 @@ class StacValidate:
                 cls.custom_validator()
                 cls.valid = True
             elif cls.recursive > -2:
-                cls.recursive_val(stac_type)
+                cls.recursive_validator(stac_type)
                 cls.valid = True
             elif cls.extensions is True:
                 message = cls.extensions_validator(stac_type)
