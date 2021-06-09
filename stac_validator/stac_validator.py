@@ -103,7 +103,7 @@ class StacValidate:
 
         return data
 
-    def extensions_val(self, stac_type: str) -> dict:
+    def extensions_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
         valid = True
@@ -124,7 +124,7 @@ class StacValidate:
                                 self.version = self.get_stac_version()
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
                         self.custom = extension
-                        self.custom_val()
+                        self.custom_validator()
                         message["schema"].append(extension)
             except jsonschema.exceptions.ValidationError as e:
                 valid = False
@@ -139,12 +139,12 @@ class StacValidate:
                 err_msg = f"{e}. Error in Extensions."
                 return self.create_err_msg("Exception", err_msg)
         else:
-            self.core_val(stac_type)
+            self.core_validator(stac_type)
             message["schema"] = [self.custom]
         self.valid = valid
         return message
 
-    def custom_val(self):
+    def custom_validator(self):
         # in case the path to custom json schema is local
         # it may contain relative references
         schema = self.fetch_and_parse_file(self.custom)
@@ -158,20 +158,20 @@ class StacValidate:
             schema = self.fetch_and_parse_file(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
-    def core_val(self, stac_type: str):
+    def core_validator(self, stac_type: str):
         stac_type = stac_type.lower()
         self.set_schema_addr(stac_type)
-        self.custom_val()
+        self.custom_validator()
 
-    def default_val(self, stac_type: str) -> dict:
+    def default_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "default")
         message["schema"] = []
-        self.core_val(stac_type)
+        self.core_validator(stac_type)
         core_schema = self.custom
         message["schema"].append(core_schema)
         stac_type = stac_type.upper()
         if stac_type == "ITEM":
-            message = self.extensions_val(stac_type)
+            message = self.extensions_validator(stac_type)
             message["validation_method"] = "default"
             message["schema"].append(core_schema)
         return message
@@ -183,13 +183,13 @@ class StacValidate:
         else:
             self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
 
-    def recursive_val(self, stac_type: str):
+    def recursive_validator(self, stac_type: str):
         if self.skip_val is False:
             self.set_schema_addr(stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
             try:
-                _ = self.default_val(stac_type)
+                _ = self.default_validator(stac_type)
 
             except jsonschema.exceptions.ValidationError as e:
                 if e.absolute_path:
@@ -227,7 +227,7 @@ class StacValidate:
 
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
-                    self.recursive_val(stac_type)
+                    self.recursive_validator(stac_type)
 
                 if link["rel"] == "item":
                     self.set_schema_addr(stac_type.lower())
@@ -238,7 +238,7 @@ class StacValidate:
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
                     else:
-                        msg = self.default_val(stac_type)
+                        msg = self.default_validator(stac_type)
                         message["schema"] = msg["schema"]
                     message["valid_stac"] = True
 
@@ -263,22 +263,22 @@ class StacValidate:
 
             if cls.core is True:
                 message = cls.create_message(stac_type, "core")
-                cls.core_val(stac_type)
+                cls.core_validator(stac_type)
                 message["schema"] = [cls.custom]
                 cls.valid = True
             elif cls.custom != "":
                 message = cls.create_message(stac_type, "custom")
                 message["schema"] = [cls.custom]
-                cls.custom_val()
+                cls.custom_validator()
                 cls.valid = True
             elif cls.recursive > -2:
-                cls.recursive_val(stac_type)
+                cls.recursive_validator(stac_type)
                 cls.valid = True
             elif cls.extensions is True:
-                message = cls.extensions_val(stac_type)
+                message = cls.extensions_validator(stac_type)
             else:
                 cls.valid = True
-                message = cls.default_val(stac_type)
+                message = cls.default_validator(stac_type)
 
         except ValueError as e:
             message.update(cls.create_err_msg("ValueError", str(e)))
