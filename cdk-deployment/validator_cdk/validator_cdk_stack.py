@@ -4,10 +4,14 @@
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from pathlib import Path
 
-from aws_cdk import aws_apigateway as apigw
-from aws_cdk import aws_lambda as _lambda
-from aws_cdk import core as cdk
-from aws_cdk import aws_certificatemanager as acm
+from aws_cdk import (
+    core as cdk,
+    aws_apigateway as apigw,
+    aws_lambda as _lambda,
+    aws_certificatemanager as acm,
+    aws_route53 as r53,
+    aws_route53_targets as targets
+)
 
 class ValidatorCdkStack(cdk.Stack):
     def __init__(self, scope: cdk.Construct, id: str, deploy_env:str, **kwargs) -> None:
@@ -56,4 +60,10 @@ class ValidatorCdkStack(cdk.Stack):
                 ),
                 domain_name=f"{deploy_env}-api.staclint.com",                
             ),
+        )
+
+        r53.ARecord(
+            target=r53.RecordTarget.from_alias(targets.ApiGatewayDomain(f"{deploy_env}-api.staclint.com")),
+            zone=r53.HostedZone.from_lookup(self, f"{id_prefix}-hz", "staclint.com"),
+            record_name=f"{deploy_env}-api.staclint.com"
         )
