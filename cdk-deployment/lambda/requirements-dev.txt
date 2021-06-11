@@ -1,0 +1,4 @@
+# Install DEV stactools
+fastapi
+mangum
+git+https://github.com/sparkgeo/stac-validator@dev

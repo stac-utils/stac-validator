@@ -1,0 +1,5 @@
+# PROD requirements
+
+fastapi
+mangum
+stac-D

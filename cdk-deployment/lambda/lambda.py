@@ -11,7 +11,7 @@ from stac_validator import stac_validator
 # app = FastAPI()  # OpenAPI docs are in a custom function below.
 
 # this is used to push to aws cdk with prod endpoint
-app = FastAPI(title="STAC Validator", version=2.0, root_path="/prod/")
+app = FastAPI(title="STAC Validator", version=2.0)
 
 app.add_middleware(
     CORSMiddleware,
@@ -76,9 +76,9 @@ def custom_openapi():
     # openapi_schema["paths"]["/url"]["post"] = {
     #     "description": "This endpoint supports validation of a STAC file. Post your data as JSON with stac_url as the key and your path as the value.",
     # }
-    openapi_schema["paths"]["/json"]["post"] = {
-        "description": "This endpoint supports validation of STAC JSON directly. Post your data as JSON.",
-    }
+    # openapi_schema["paths"]["/json"]["post"] = {
+    #     "description": "This endpoint supports validation of STAC JSON directly. Post your data as JSON.",
+    # }
 
     app.openapi_schema = openapi_schema
     return app.openapi_schema
