@@ -28,6 +28,7 @@ class StacValidate:
         stac_file: str = None,
         recursive: int = -2,
         core: bool = False,
+        links: bool = False,
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
@@ -36,6 +37,7 @@ class StacValidate:
         self.stac_file = stac_file
         self.message: list = []
         self.custom = custom
+        self.links = links
         self.recursive = recursive
         self.extensions = extensions
         self.core = core
@@ -102,6 +104,10 @@ class StacValidate:
                 data = json.load(f)
 
         return data
+
+    def links_val(self) -> dict:
+        message = {"links": "test"}
+        return message
 
     def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
@@ -174,6 +180,8 @@ class StacValidate:
             message = self.extensions_val(stac_type)
             message["validation_method"] = "default"
             message["schema"].append(core_schema)
+        if self.links:
+            message["links"] = self.links_val()
         return message
 
     # validate new versions at schemas.stacspec.org
@@ -331,7 +339,11 @@ class StacValidate:
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
-@click.option("--links", is_flag=True, help="Additionally validate links.")
+@click.option(
+    "--links",
+    is_flag=True,
+    help="Additionally validate links. Only works with default mode.",
+)
 @click.option(
     "--custom",
     "-c",
@@ -354,11 +366,12 @@ class StacValidate:
     help="Save full recursive output to log file (local filepath).",
 )
 @click.version_option(version="2.2.0")
-def main(stac_file, recursive, core, extensions, custom, verbose, log_file):
+def main(stac_file, recursive, core, extensions, links, custom, verbose, log_file):
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
         core=core,
+        links=links,
         extensions=extensions,
         custom=custom,
         verbose=verbose,
