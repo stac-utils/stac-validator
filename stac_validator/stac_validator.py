@@ -105,9 +105,11 @@ class StacValidate:
 
         return data
 
-    def links_val(self) -> dict:
-        message = {"links": "test"}
-        return message
+    def links_val(self) -> list:
+        links = []
+        for link in self.stac_content["links"]:
+            links.append(link["href"])
+        return links
 
     def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
@@ -181,7 +183,7 @@ class StacValidate:
             message["validation_method"] = "default"
             message["schema"].append(core_schema)
         if self.links:
-            message["links"] = self.links_val()
+            message["links_validated"] = self.links_val()
         return message
 
     # validate new versions at schemas.stacspec.org
