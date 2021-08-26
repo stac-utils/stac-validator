@@ -105,11 +105,24 @@ class StacValidate:
 
         return data
 
-    def links_val(self) -> list:
-        links = []
+    def is_url(self, url):
+        try:
+            result = urlparse(url)
+            return all([result.scheme, result.netloc])
+        except ValueError:
+            return False
+
+    def links_val(self) -> dict:
+        true_links = []
+        false_links = []
         for link in self.stac_content["links"]:
-            links.append(link["href"])
-        return links
+            if self.is_url(link["href"]):
+                true_links.append(link["href"])
+            else:
+                false_links.append(link["href"])
+
+        message = {"true": true_links, "false": false_links}
+        return message
 
     def extensions_val(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
