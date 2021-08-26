@@ -357,7 +357,7 @@ class StacValidate:
 @click.option(
     "--links",
     is_flag=True,
-    help="Additionally validate links. Only works with default mode.",
+    help="Additionally validate links. Only works in default mode and with urls.",
 )
 @click.option(
     "--custom",
