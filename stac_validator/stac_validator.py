@@ -113,15 +113,15 @@ class StacValidate:
             return False
 
     def links_val(self) -> dict:
-        true_links = []
-        false_links = []
+        format_valid = []
+        format_invalid = []
         for link in self.stac_content["links"]:
             if self.is_url(link["href"]):
-                true_links.append(link["href"])
+                format_valid.append(link["href"])
             else:
-                false_links.append(link["href"])
+                format_invalid.append(link["href"])
 
-        message = {"true": true_links, "false": false_links}
+        message = {"format_valid": format_valid, "format_invalid": format_invalid}
         return message
 
     def extensions_val(self, stac_type: str) -> dict:
