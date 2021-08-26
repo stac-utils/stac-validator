@@ -331,6 +331,7 @@ class StacValidate:
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
+@click.option("--links", is_flag=True, help="Additionally validate links.")
 @click.option(
     "--custom",
     "-c",
@@ -348,7 +349,6 @@ class StacValidate:
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
 )
 @click.option(
-    "-l",
     "--log_file",
     default="",
     help="Save full recursive output to log file (local filepath).",
