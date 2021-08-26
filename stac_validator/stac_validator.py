@@ -4,6 +4,7 @@ import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
+from urllib.request import urlopen
 
 import click
 import jsonschema  # type: ignore
@@ -115,13 +116,29 @@ class StacValidate:
     def links_val(self) -> dict:
         format_valid = []
         format_invalid = []
+        request_valid = []
+        request_invalid = []
         for link in self.stac_content["links"]:
+
             if self.is_url(link["href"]):
+                try:
+                    response = urlopen(link["href"])
+                    status_code = response.getcode()
+                    if status_code == 200:
+                        request_valid.append(link["href"])
+                except Exception:
+                    request_invalid.append(link["href"])
                 format_valid.append(link["href"])
             else:
+                request_invalid.append(link["href"])
                 format_invalid.append(link["href"])
 
-        message = {"format_valid": format_valid, "format_invalid": format_invalid}
+        message = {
+            "format_valid": format_valid,
+            "format_invalid": format_invalid,
+            "request_valid": request_valid,
+            "request_invalid": request_invalid,
+        }
         return message
 
     def extensions_val(self, stac_type: str) -> dict:

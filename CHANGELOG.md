@@ -7,7 +7,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ## [] - 2021-08-26
 ### Added
 
-- added --links option to validate url links on format and a valid response
+- Added --links option to validate url links on format and a valid response
+- Added test_links.py
 
 ## [v2.2.0] - 2021-05-25
 ### Added
