@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [] - 2021-08-26
+### Added
+
+- added --links option to validate url links on format and a valid response
+
 ## [v2.2.0] - 2021-05-25
 ### Added
 
