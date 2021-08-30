@@ -40,6 +40,7 @@ class StacValidate:
         self.message: list = []
         self.custom = custom
         self.links = links
+        self.assets = assets
         self.recursive = recursive
         self.extensions = extensions
         self.core = core
@@ -114,11 +115,34 @@ class StacValidate:
         except ValueError:
             return False
 
-    # def assets_val(self) -> dict:
-    #     format_valid = []
-    #     format_invalid = []
-    #     request_valid = []
-    #     request_invalid = []
+    def assets_val(self) -> dict:
+        format_valid = []
+        format_invalid = []
+        request_valid = []
+        request_invalid = []
+        print("ASSSETS!")
+        for _, value in self.stac_content["assets"].items():
+            # print(key, '->', value)
+            if self.is_url(value["href"]):
+                try:
+                    response = urlopen(value["href"])
+                    status_code = response.getcode()
+                    if status_code == 200:
+                        request_valid.append(value["href"])
+                except Exception:
+                    request_invalid.append(value["href"])
+                format_valid.append(value["href"])
+            else:
+                request_invalid.append(value["href"])
+                format_invalid.append(value["href"])
+
+        message = {
+            "format_valid": format_valid,
+            "format_invalid": format_invalid,
+            "request_valid": request_valid,
+            "request_invalid": request_invalid,
+        }
+        return message
 
     def links_val(self) -> dict:
         format_valid = []
@@ -228,6 +252,8 @@ class StacValidate:
             message["schema"].append(core_schema)
         if self.links:
             message["links_validated"] = self.links_val()
+        if self.assets:
+            message["assets_validated"] = self.assets_val()
         return message
 
     # validate new versions at schemas.stacspec.org
