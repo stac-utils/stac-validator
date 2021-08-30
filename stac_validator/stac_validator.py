@@ -119,6 +119,17 @@ class StacValidate:
         request_valid = []
         request_invalid = []
         for link in self.stac_content["links"]:
+            if link["rel"] == "self":
+                root_url = (
+                    link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
+                )
+                print(root_url)
+            else:
+                root_url = ""
+        for link in self.stac_content["links"]:
+            if link["href"][0:4] != "http":
+                link["href"] = root_url + link["href"][1:]
+                print(link["href"])
 
             if self.is_url(link["href"]):
                 try:
