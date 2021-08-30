@@ -13,6 +13,8 @@ from jsonschema import RefResolver
 from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
+from .utilities import is_url
+
 NEW_VERSIONS = [
     "1.0.0-beta.2",
     "1.0.0-rc.1",
@@ -108,20 +110,13 @@ class StacValidate:
 
         return data
 
-    def is_url(self, url):
-        try:
-            result = urlparse(url)
-            return all([result.scheme, result.netloc])
-        except ValueError:
-            return False
-
     def assets_val(self) -> dict:
         format_valid = []
         format_invalid = []
         request_valid = []
         request_invalid = []
         for _, value in self.stac_content["assets"].items():
-            if self.is_url(value["href"]):
+            if is_url(value["href"]):
                 try:
                     response = urlopen(value["href"])
                     status_code = response.getcode()
@@ -157,7 +152,7 @@ class StacValidate:
             if link["href"][0:4] != "http":
                 link["href"] = root_url + link["href"][1:]
 
-            if self.is_url(link["href"]):
+            if is_url(link["href"]):
                 try:
                     response = urlopen(link["href"])
                     status_code = response.getcode()
