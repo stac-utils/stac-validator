@@ -10,6 +10,9 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Added --links option to validate links on format and a valid response
 - Added --assets option to validate assets on format and and a valid response
 - Added test_links.py
+
+### Changed
+
 - Moved tests for cli options out of test_stac_validator into individual files
 
 ## [v2.2.0] - 2021-05-25

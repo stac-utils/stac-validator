@@ -1,5 +1,5 @@
 """
-Description: Test the validator
+Description: Test the validator for core functionality without validating extensions
 
 """
 __authors__ = "James Banting", "Jonathan Healy"
