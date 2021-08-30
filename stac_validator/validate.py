@@ -1,8 +1,8 @@
 import json
 import os
 from json.decoder import JSONDecodeError
+from typing import List
 from urllib.error import HTTPError, URLError
-from urllib.request import urlopen
 
 import click
 import jsonschema  # type: ignore
@@ -10,7 +10,7 @@ import requests
 from jsonschema import RefResolver
 from requests import exceptions
 
-from .utilities import get_stac_type, is_url, is_valid_url, set_schema_addr
+from .utilities import get_stac_type, is_valid_url, link_message, set_schema_addr
 
 
 class StacValidate:
@@ -75,23 +75,14 @@ class StacValidate:
         return data
 
     def assets_val(self) -> dict:
-        format_valid = []
-        format_invalid = []
-        request_valid = []
-        request_invalid = []
+        format_valid: List[str] = []
+        format_invalid: List[str] = []
+        request_valid: List[str] = []
+        request_invalid: List[str] = []
         for _, value in self.stac_content["assets"].items():
-            if is_url(value["href"]):
-                try:
-                    response = urlopen(value["href"])
-                    status_code = response.getcode()
-                    if status_code == 200:
-                        request_valid.append(value["href"])
-                except Exception:
-                    request_invalid.append(value["href"])
-                format_valid.append(value["href"])
-            else:
-                request_invalid.append(value["href"])
-                format_invalid.append(value["href"])
+            link_message(
+                value, request_valid, request_invalid, format_valid, format_invalid
+            )
 
         message = {
             "format_valid": format_valid,
@@ -102,10 +93,10 @@ class StacValidate:
         return message
 
     def links_val(self) -> dict:
-        format_valid = []
-        format_invalid = []
-        request_valid = []
-        request_invalid = []
+        format_valid: List[str] = []
+        format_invalid: List[str] = []
+        request_valid: List[str] = []
+        request_invalid: List[str] = []
         root_url = ""
         for link in self.stac_content["links"]:
             if link["rel"] == "self":
@@ -115,19 +106,9 @@ class StacValidate:
         for link in self.stac_content["links"]:
             if link["href"][0:4] != "http":
                 link["href"] = root_url + link["href"][1:]
-
-            if is_url(link["href"]):
-                try:
-                    response = urlopen(link["href"])
-                    status_code = response.getcode()
-                    if status_code == 200:
-                        request_valid.append(link["href"])
-                except Exception:
-                    request_invalid.append(link["href"])
-                format_valid.append(link["href"])
-            else:
-                request_invalid.append(link["href"])
-                format_invalid.append(link["href"])
+            link_message(
+                link, request_valid, request_invalid, format_valid, format_invalid
+            )
 
         message = {
             "format_valid": format_valid,

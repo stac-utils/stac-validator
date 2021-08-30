@@ -1,4 +1,5 @@
 from urllib.parse import urlparse
+from urllib.request import urlopen
 
 from pystac.serialization import identify_stac_object  # type: ignore
 
@@ -45,3 +46,24 @@ def set_schema_addr(version, stac_type: str):
         return f"https://schemas.stacspec.org/v{version}/{stac_type}-spec/json-schema/{stac_type}.json"
     else:
         return f"https://cdn.staclint.com/v{version}/{stac_type}.json"
+
+
+def link_message(
+    link,
+    request_valid: list,
+    request_invalid: list,
+    format_valid: list,
+    format_invalid: list,
+):
+    if is_url(link["href"]):
+        try:
+            response = urlopen(link["href"])
+            status_code = response.getcode()
+            if status_code == 200:
+                request_valid.append(link["href"])
+        except Exception:
+            request_invalid.append(link["href"])
+        format_valid.append(link["href"])
+    else:
+        request_invalid.append(link["href"])
+        format_invalid.append(link["href"])
