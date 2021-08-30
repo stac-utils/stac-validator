@@ -30,6 +30,7 @@ class StacValidate:
         recursive: int = -2,
         core: bool = False,
         links: bool = False,
+        assets: bool = False,
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
@@ -161,7 +162,6 @@ class StacValidate:
         valid = True
         if stac_type == "ITEM":
             try:
-
                 if "stac_extensions" in self.stac_content:
                     # error with the 'proj' extension not being 'projection' in older stac
                     if "proj" in self.stac_content["stac_extensions"]:
@@ -388,7 +388,12 @@ class StacValidate:
 @click.option(
     "--links",
     is_flag=True,
-    help="Additionally validate links. Only works in default mode and with urls.",
+    help="Additionally validate links. Only works with default mode.",
+)
+@click.option(
+    "--assets",
+    is_flag=True,
+    help="Additionally validate assets. Only works with default mode.",
 )
 @click.option(
     "--custom",
@@ -412,12 +417,15 @@ class StacValidate:
     help="Save full recursive output to log file (local filepath).",
 )
 @click.version_option(version="2.2.0")
-def main(stac_file, recursive, core, extensions, links, custom, verbose, log_file):
+def main(
+    stac_file, recursive, core, extensions, links, assets, custom, verbose, log_file
+):
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
         core=core,
         links=links,
+        assets=assets,
         extensions=extensions,
         custom=custom,
         verbose=verbose,
