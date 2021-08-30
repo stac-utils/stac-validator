@@ -37,3 +37,11 @@ def get_stac_type(stac_content) -> str:
         return stac_object.object_type
     except TypeError as e:
         return str(e)
+
+
+# validate new versions at schemas.stacspec.org
+def set_schema_addr(version, stac_type: str):
+    if version in NEW_VERSIONS:
+        return f"https://schemas.stacspec.org/v{version}/{stac_type}-spec/json-schema/{stac_type}.json"
+    else:
+        return f"https://cdn.staclint.com/v{version}/{stac_type}.json"

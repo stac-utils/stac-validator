@@ -11,7 +11,7 @@ import requests
 from jsonschema import RefResolver
 from requests import exceptions
 
-from .utilities import NEW_VERSIONS, get_stac_type, is_url, is_valid_url
+from .utilities import get_stac_type, is_url, is_valid_url, set_schema_addr
 
 
 class StacValidate:
@@ -194,7 +194,7 @@ class StacValidate:
 
     def core_val(self, stac_type: str):
         stac_type = stac_type.lower()
-        self.set_schema_addr(stac_type)
+        self.custom = set_schema_addr(self.version, stac_type.lower())
         self.custom_val()
 
     def default_val(self, stac_type: str) -> dict:
@@ -214,16 +214,9 @@ class StacValidate:
             message["assets_validated"] = self.assets_val()
         return message
 
-    # validate new versions at schemas.stacspec.org
-    def set_schema_addr(self, stac_type: str):
-        if self.version in NEW_VERSIONS:
-            self.custom = f"https://schemas.stacspec.org/v{self.version}/{stac_type}-spec/json-schema/{stac_type}.json"
-        else:
-            self.custom = f"https://cdn.staclint.com/v{self.version}/{stac_type}.json"
-
     def recursive_val(self, stac_type: str):
         if self.skip_val is False:
-            self.set_schema_addr(stac_type.lower())
+            self.custom = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
             try:
@@ -268,7 +261,7 @@ class StacValidate:
                     self.recursive_val(stac_type)
 
                 if link["rel"] == "item":
-                    self.set_schema_addr(stac_type.lower())
+                    self.custom = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
                     if self.version == "0.7.0":
                         schema = self.fetch_and_parse_file(self.custom)
