@@ -120,9 +120,7 @@ class StacValidate:
         format_invalid = []
         request_valid = []
         request_invalid = []
-        print("ASSSETS!")
         for _, value in self.stac_content["assets"].items():
-            # print(key, '->', value)
             if self.is_url(value["href"]):
                 try:
                     response = urlopen(value["href"])
