@@ -3,26 +3,15 @@ import os
 import sys
 from json.decoder import JSONDecodeError
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlparse
 from urllib.request import urlopen
 
 import click
 import jsonschema  # type: ignore
 import requests
 from jsonschema import RefResolver
-from pystac.serialization import identify_stac_object  # type: ignore
 from requests import exceptions
 
-from .utilities import is_url
-
-NEW_VERSIONS = [
-    "1.0.0-beta.2",
-    "1.0.0-rc.1",
-    "1.0.0-rc.2",
-    "1.0.0-rc.3",
-    "1.0.0-rc.4",
-    "1.0.0",
-]
+from .utilities import NEW_VERSIONS, get_stac_type, is_url, is_valid_url
 
 
 class StacValidate:
@@ -54,19 +43,6 @@ class StacValidate:
         self.valid = False
         self.log = log
 
-    def get_stac_type(self) -> str:
-        try:
-            content_types = ["Item", "Catalog", "Collection"]
-            if (
-                "type" in self.stac_content
-                and self.stac_content["type"] in content_types
-            ):
-                return self.stac_content["type"]
-            stac_object = identify_stac_object(self.stac_content)
-            return stac_object.object_type
-        except TypeError as e:
-            return str(e)
-
     def create_err_msg(self, err_type: str, err_msg: str) -> dict:
         self.valid = False
         return {
@@ -88,20 +64,9 @@ class StacValidate:
             "validation_method": val_type,
         }
 
-    @staticmethod
-    def is_valid_url(url: str) -> bool:
-        result = urlparse(url)
-        if result.scheme in ("http", "https"):
-            return True
-        else:
-            return False
-
-    def get_stac_version(self) -> str:
-        return self.stac_content["stac_version"]
-
     def fetch_and_parse_file(self, input_path) -> dict:
         data = None
-        if self.is_valid_url(input_path):
+        if is_valid_url(input_path):
             resp = requests.get(input_path)
             data = resp.json()
         else:
@@ -190,7 +155,7 @@ class StacValidate:
                             # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
-                                self.version = self.get_stac_version()
+                                self.version = self.stac_content["stac_version"]
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
                         self.custom = extension
                         self.custom_val()
@@ -294,7 +259,7 @@ class StacValidate:
                         self.stac_file = address
                     self.stac_content = self.fetch_and_parse_file(self.stac_file)
                     self.stac_content["stac_version"] = self.version
-                    stac_type = self.get_stac_type().lower()
+                    stac_type = get_stac_type(self.stac_content).lower()
 
                 if link["rel"] == "child":
 
@@ -331,8 +296,8 @@ class StacValidate:
         try:
             if cls.stac_file is not None:
                 cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
-            stac_type = cls.get_stac_type().upper()
-            cls.version = cls.get_stac_version()
+            stac_type = get_stac_type(cls.stac_content).upper()
+            cls.version = cls.stac_content["stac_version"]
 
             if cls.core is True:
                 message = cls.create_message(stac_type, "core")
