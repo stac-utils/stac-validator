@@ -189,3 +189,21 @@ def test_core_collection_local_v1rc1():
             "valid_stac": True,
         }
     ]
+
+
+def test_core_item_local_v100():
+    stac_file = "tests/test_data/v100/extended-item.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "core",
+        }
+    ]
