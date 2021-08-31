@@ -1,7 +1,7 @@
 import json
 import sys
 
-import click
+import click  # type: ignore
 
 from .validate import StacValidate
 

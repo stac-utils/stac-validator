@@ -2,7 +2,7 @@ import json
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
-import requests
+import requests  # type: ignore
 from pystac.serialization import identify_stac_object  # type: ignore
 
 NEW_VERSIONS = [
