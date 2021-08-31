@@ -92,7 +92,11 @@ class StacValidate:
         request_invalid: List[str] = []
         root_url = ""
         for link in self.stac_content["links"]:
-            if link["rel"] == "self":
+            if link["rel"] == "self" and link["href"][0:4] == "http":
+                root_url = (
+                    link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
+                )
+            elif link["rel"] == "alternate" and link["href"][0:4] == "http":
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
