@@ -14,6 +14,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Changed
 
 - Moved tests for cli options out of test_stac_validator into individual files
+- Moved utilities to utilities.py
+- Moved backend to validate.py
 
 ## [v2.2.0] - 2021-05-25
 ### Added
