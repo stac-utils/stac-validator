@@ -6,11 +6,15 @@ from urllib.error import HTTPError, URLError
 
 import click
 import jsonschema  # type: ignore
-import requests
 from jsonschema import RefResolver
 from requests import exceptions
 
-from .utilities import get_stac_type, is_valid_url, link_message, set_schema_addr
+from .utilities import (
+    fetch_and_parse_file,
+    get_stac_type,
+    link_message,
+    set_schema_addr,
+)
 
 
 class StacValidate:
@@ -62,17 +66,6 @@ class StacValidate:
             "asset_type": stac_type.upper(),
             "validation_method": val_type,
         }
-
-    def fetch_and_parse_file(self, input_path) -> dict:
-        data = None
-        if is_valid_url(input_path):
-            resp = requests.get(input_path)
-            data = resp.json()
-        else:
-            with open(input_path) as f:
-                data = json.load(f)
-
-        return data
 
     def assets_val(self) -> dict:
         format_valid: List[str] = []
@@ -161,7 +154,7 @@ class StacValidate:
     def custom_val(self):
         # in case the path to custom json schema is local
         # it may contain relative references
-        schema = self.fetch_and_parse_file(self.custom)
+        schema = fetch_and_parse_file(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
@@ -169,7 +162,7 @@ class StacValidate:
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         else:
-            schema = self.fetch_and_parse_file(self.custom)
+            schema = fetch_and_parse_file(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
     def core_val(self, stac_type: str):
@@ -230,7 +223,7 @@ class StacValidate:
                         self.stac_file = st + "/" + address
                     else:
                         self.stac_file = address
-                    self.stac_content = self.fetch_and_parse_file(self.stac_file)
+                    self.stac_content = fetch_and_parse_file(self.stac_file)
                     self.stac_content["stac_version"] = self.version
                     stac_type = get_stac_type(self.stac_content).lower()
 
@@ -244,7 +237,7 @@ class StacValidate:
                     self.custom = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
                     if self.version == "0.7.0":
-                        schema = self.fetch_and_parse_file(self.custom)
+                        schema = fetch_and_parse_file(self.custom)
                         # this next line prevents this: unknown url type: 'geojson.json' ??
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
@@ -268,7 +261,7 @@ class StacValidate:
         message = {}
         try:
             if cls.stac_file is not None:
-                cls.stac_content = cls.fetch_and_parse_file(cls.stac_file)
+                cls.stac_content = fetch_and_parse_file(cls.stac_file)
             stac_type = get_stac_type(cls.stac_content).upper()
             cls.version = cls.stac_content["stac_version"]
 

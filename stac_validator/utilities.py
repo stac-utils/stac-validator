@@ -1,6 +1,8 @@
+import json
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
+import requests
 from pystac.serialization import identify_stac_object  # type: ignore
 
 NEW_VERSIONS = [
@@ -38,6 +40,18 @@ def get_stac_type(stac_content) -> str:
         return stac_object.object_type
     except TypeError as e:
         return str(e)
+
+
+def fetch_and_parse_file(input_path) -> dict:
+    data = None
+    if is_valid_url(input_path):
+        resp = requests.get(input_path)
+        data = resp.json()
+    else:
+        with open(input_path) as f:
+            data = json.load(f)
+
+    return data
 
 
 # validate new versions at schemas.stacspec.org
