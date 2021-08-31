@@ -7,7 +7,7 @@ __authors__ = "James Banting", "Jonathan Healy"
 from stac_validator import stac_validator
 
 
-def test_links_poorly_formatted():
+def test_poorly_formatted_v090():
     stac_file = "tests/test_data/v090/items/CBERS_4_bad_links.json"
     stac = stac_validator.StacValidate(stac_file, links=True)
     stac.run()
