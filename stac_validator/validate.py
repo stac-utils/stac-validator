@@ -4,10 +4,10 @@ from json.decoder import JSONDecodeError
 from typing import List
 from urllib.error import HTTPError, URLError
 
-import click
+import click  # type: ignore
 import jsonschema  # type: ignore
 from jsonschema import RefResolver
-from requests import exceptions
+from requests import exceptions  # type: ignore
 
 from .utilities import (
     fetch_and_parse_file,
