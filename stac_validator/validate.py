@@ -58,13 +58,12 @@ class StacValidate:
         }
 
     def create_links_message(self):
-        format_valid: List[str] = []
-        format_invalid: List[str] = []
-        request_valid: List[str] = []
-        request_invalid: List[str] = []
-        return self.create_links_message(
-            request_valid, request_invalid, format_valid, format_invalid
-        )
+        return {
+            "format_valid": List[str],
+            "format_invalid": List[str],
+            "request_valid": List[str],
+            "request_invalid": List[str],
+        }
 
     def create_message(self, stac_type: str, val_type: str) -> dict:
         return {
