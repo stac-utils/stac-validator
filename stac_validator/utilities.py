@@ -62,22 +62,19 @@ def set_schema_addr(version, stac_type: str):
         return f"https://cdn.staclint.com/v{version}/{stac_type}.json"
 
 
-def link_message(
+def link_request(
     link,
-    request_valid: list,
-    request_invalid: list,
-    format_valid: list,
-    format_invalid: list,
+    initial_message,
 ):
     if is_url(link["href"]):
         try:
             response = urlopen(link["href"])
             status_code = response.getcode()
             if status_code == 200:
-                request_valid.append(link["href"])
+                initial_message["request_valid"].append(link["href"])
         except Exception:
-            request_invalid.append(link["href"])
-        format_valid.append(link["href"])
+            initial_message["request_invalid"].append(link["href"])
+        initial_message["format_valid"].append(link["href"])
     else:
-        request_invalid.append(link["href"])
-        format_invalid.append(link["href"])
+        initial_message["request_invalid"].append(link["href"])
+        initial_message["format_invalid"].append(link["href"])

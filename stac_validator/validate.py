@@ -12,7 +12,7 @@ from requests import exceptions  # type: ignore
 from .utilities import (
     fetch_and_parse_file,
     get_stac_type,
-    link_message,
+    link_request,
     set_schema_addr,
 )
 
@@ -57,6 +57,15 @@ class StacValidate:
             "error_message": err_msg,
         }
 
+    def create_links_message(self):
+        format_valid: List[str] = []
+        format_invalid: List[str] = []
+        request_valid: List[str] = []
+        request_invalid: List[str] = []
+        return self.create_links_message(
+            request_valid, request_invalid, format_valid, format_invalid
+        )
+
     def create_message(self, stac_type: str, val_type: str) -> dict:
         return {
             "version": self.version,
@@ -68,28 +77,14 @@ class StacValidate:
         }
 
     def assets_validator(self) -> dict:
-        format_valid: List[str] = []
-        format_invalid: List[str] = []
-        request_valid: List[str] = []
-        request_invalid: List[str] = []
+        initial_message = self.create_links_message()
         for _, value in self.stac_content["assets"].items():
-            link_message(
-                value, request_valid, request_invalid, format_valid, format_invalid
-            )
-
-        message = {
-            "format_valid": format_valid,
-            "format_invalid": format_invalid,
-            "request_valid": request_valid,
-            "request_invalid": request_invalid,
-        }
-        return message
+            link_request(value, initial_message)
+        return initial_message
 
     def links_validator(self) -> dict:
-        format_valid: List[str] = []
-        format_invalid: List[str] = []
-        request_valid: List[str] = []
-        request_invalid: List[str] = []
+        initial_message = self.create_links_message()
+        # get root_url for checking relative links
         root_url = ""
         for link in self.stac_content["links"]:
             if link["rel"] == "self" and link["href"][0:4] == "http":
@@ -103,17 +98,9 @@ class StacValidate:
         for link in self.stac_content["links"]:
             if link["href"][0:4] != "http":
                 link["href"] = root_url + link["href"][1:]
-            link_message(
-                link, request_valid, request_invalid, format_valid, format_invalid
-            )
+            link_request(link, initial_message)
 
-        message = {
-            "format_valid": format_valid,
-            "format_invalid": format_invalid,
-            "request_valid": request_valid,
-            "request_invalid": request_invalid,
-        }
-        return message
+        return initial_message
 
     def extensions_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
