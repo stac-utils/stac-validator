@@ -77,10 +77,10 @@ def test_assets_v100():
                     "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
                     "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
                     "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
+                    "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
                 ],
                 "request_invalid": [
-                    "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
-                    "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH",
+                    "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH"
                 ],
             },
         }

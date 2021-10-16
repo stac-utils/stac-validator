@@ -69,13 +69,13 @@ def test_item_v100():
                     "http://remotedata.io/catalog/20201211_223832_CS2/index.html",
                 ],
                 "format_invalid": [],
-                "request_valid": [],
-                "request_invalid": [
+                "request_valid": [
                     "http://remotedata.io/collection.json",
                     "http://remotedata.io/collection.json",
                     "http://remotedata.io/collection.json",
                     "http://remotedata.io/catalog/20201211_223832_CS2/index.html",
                 ],
+                "request_invalid": [],
             },
         }
     ]
