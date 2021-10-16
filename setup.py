@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "2.2.0"
+__version__ = "2.3.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -29,12 +29,12 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sparkgeo/stac-validator",
-    download_url="https://github.com/sparkgeo/stac-validator/archive/v2.2.0.tar.gz",
+    download_url="https://github.com/sparkgeo/stac-validator/archive/v2.3.0.tar.gz",
     install_requires=[
         "requests>=2.19.1",
-        "jsonschema==3.2.0",
+        "jsonschema>=3.2.0",
         "pystac==0.5.6",
-        "click==7.1.2",
+        "click>=8.0.0",
     ],
     packages=["stac_validator"],
     entry_points={
