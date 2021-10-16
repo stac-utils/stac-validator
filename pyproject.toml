@@ -4,5 +4,6 @@ requires = [
     "jsonschema",
     "pystac",
     "click",
+    "setuptools"
 ]
 build-backend = "setuptools.build_meta"
