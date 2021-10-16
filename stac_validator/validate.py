@@ -28,6 +28,7 @@ class StacValidate:
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
+        no_output: bool = False,
         log: str = "",
     ):
         self.stac_file = stac_file
@@ -43,6 +44,7 @@ class StacValidate:
         self.depth: int = 0
         self.skip_val = False
         self.verbose = verbose
+        self.no_output = False
         self.valid = False
         self.log = log
 
