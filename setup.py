@@ -40,6 +40,6 @@ setup(
     entry_points={
         "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
     },
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     tests_require=["pytest"],
 )
