@@ -33,7 +33,7 @@ setup(
     install_requires=[
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
-        "pystac[validation]==1.2.0",
+        "pystac[validation]==1.1.0",
         "click>=8.0.0",
     ],
     packages=["stac_validator"],
