@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.4.0] - 2021-11-28
+### Changed
+
+- Upgraded pystac to 1.1.0 from 0.5.6
+
 ## [v2.3.0] - 2021-08-31
 ### Added
 

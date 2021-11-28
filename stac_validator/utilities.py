@@ -34,6 +34,8 @@ def is_valid_url(url: str) -> bool:
 def get_stac_type(stac_content) -> str:
     try:
         content_types = ["Item", "Catalog", "Collection"]
+        if "type" in stac_content and stac_content["type"] == "Feature":
+            return "Item"
         if "type" in stac_content and stac_content["type"] in content_types:
             return stac_content["type"]
         stac_object = identify_stac_object(stac_content)
