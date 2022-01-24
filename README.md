@@ -100,14 +100,19 @@ stac_validator --help
 Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
-  --core                   Validate core stac object without extensions.
+  --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
-  -c, --custom TEXT        Validate against a custom schema (local filepath or remote schema).
+  --links                  Additionally validate links. Only works with
+                           default mode.
+  --assets                 Additionally validate assets. Only works with
+                           default mode.
+  -c, --custom TEXT        Validate against a custom schema (local filepath or
+                           remote schema).
   -r, --recursive INTEGER  Recursively validate all related stac objects. A
                            depth of -1 indicates full recursion.
-
   -v, --verbose            Enables verbose output for recursive mode.
-  -l, --log_file TEXT      Save full recursive output to log file. (local filepath)
+  --log_file TEXT          Save full recursive output to log file (local
+                           filepath).
   --version                Show the version and exit.
   --help                   Show this message and exit.
 ```

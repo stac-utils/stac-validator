@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [v2.3.0] - 2021-08-31 - 2021-11-28
+### Added
+
+- Added --links option to validate links on format and a valid response
+- Added --assets option to validate assets on format and and a valid response
+- Added test_links.py
+- Added v1.0.0 STAC examples from radiant earth github
+- Added v1.0.0 examples to tests
+
+### Changed
+
+- Upgraded pystac to 1.1.0 from 0.5.6
+- Moved tests for cli options out of test_stac_validator into individual files
+- Moved utilities to utilities.py
+- Moved backend to validate.py
+
 ## [v2.2.0] - 2021-05-25
 ### Added
 
