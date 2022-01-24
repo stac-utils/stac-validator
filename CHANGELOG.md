@@ -4,12 +4,8 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v2.4.0] - 2021-11-28
-### Changed
 
-- Upgraded pystac to 1.1.0 from 0.5.6
-
-## [v2.3.0] - 2021-08-31
+## [v2.3.0] - 2021-08-31 - 2021-11-28
 ### Added
 
 - Added --links option to validate links on format and a valid response
@@ -20,6 +16,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
+- Upgraded pystac to 1.1.0 from 0.5.6
 - Moved tests for cli options out of test_stac_validator into individual files
 - Moved utilities to utilities.py
 - Moved backend to validate.py
