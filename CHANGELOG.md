@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.4.0] - 2022-02-02
+### Added
+
+ - Linting option in cli to display stac-check generated information
 
 ## [v2.3.0] - 2021-08-31 - 2021-11-28
 ### Added
