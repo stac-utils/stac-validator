@@ -2,8 +2,8 @@ import json
 import sys
 
 import click  # type: ignore
-from stac_check.cli import cli_message as lint_message
-from stac_check.lint import Linter
+from stac_check.cli import cli_message as lint_message  # type: ignore
+from stac_check.lint import Linter  # type: ignore
 
 from .validate import StacValidate
 
