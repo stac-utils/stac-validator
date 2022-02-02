@@ -5,9 +5,12 @@ import click  # type: ignore
 
 from .validate import StacValidate
 
+# from stac_check.lint import Linter
+
 
 @click.command()
 @click.argument("stac_file")
+@click.option("--lint", is_flag=True, help="Use stac-check to lint stac object.")
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
@@ -47,6 +50,7 @@ from .validate import StacValidate
 @click.version_option(version="2.2.0")
 def main(
     stac_file,
+    lint,
     recursive,
     core,
     extensions,
@@ -57,6 +61,10 @@ def main(
     no_output,
     log_file,
 ):
+
+    if lint is True:
+        pass
+
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
