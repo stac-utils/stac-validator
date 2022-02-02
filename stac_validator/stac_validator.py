@@ -2,10 +2,10 @@ import json
 import sys
 
 import click  # type: ignore
+from stac_check.cli import cli_message as lint_message
+from stac_check.lint import Linter
 
 from .validate import StacValidate
-
-# from stac_check.lint import Linter
 
 
 @click.command()
@@ -63,27 +63,28 @@ def main(
 ):
 
     if lint is True:
-        pass
+        linter = Linter(stac_file, assets=True, links=True, recursive=False)
+        lint_message(linter)
+    else:
+        stac = StacValidate(
+            stac_file=stac_file,
+            recursive=recursive,
+            core=core,
+            links=links,
+            assets=assets,
+            extensions=extensions,
+            custom=custom,
+            verbose=verbose,
+            no_output=no_output,
+            log=log_file,
+        )
+        stac.run()
 
-    stac = StacValidate(
-        stac_file=stac_file,
-        recursive=recursive,
-        core=core,
-        links=links,
-        assets=assets,
-        extensions=extensions,
-        custom=custom,
-        verbose=verbose,
-        no_output=no_output,
-        log=log_file,
-    )
-    stac.run()
+        if no_output is False:
+            click.echo(json.dumps(stac.message, indent=4))
 
-    if no_output is False:
-        click.echo(json.dumps(stac.message, indent=4))
-
-    if recursive == -2 and stac.message[0]["valid_stac"] is False:
-        sys.exit(1)
+        if recursive == -2 and stac.message[0]["valid_stac"] is False:
+            sys.exit(1)
 
 
 if __name__ == "__main__":
