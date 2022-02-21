@@ -35,7 +35,7 @@ setup(
         "jsonschema>=3.2.0",
         "pystac[validation]==1.1.0",
         "click>=8.0.0",
-        "stac-check==0.1.3",
+        "stac-check==1.0.2",
     ],
     packages=["stac_validator"],
     entry_points={
