@@ -2,12 +2,15 @@ import json
 import sys
 
 import click  # type: ignore
+from stac_check.cli import cli_message as lint_message  # type: ignore
+from stac_check.lint import Linter  # type: ignore
 
 from .validate import StacValidate
 
 
 @click.command()
 @click.argument("stac_file")
+@click.option("--lint", is_flag=True, help="Use stac-check to lint stac object.")
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
@@ -47,6 +50,7 @@ from .validate import StacValidate
 @click.version_option(version="2.2.0")
 def main(
     stac_file,
+    lint,
     recursive,
     core,
     extensions,
@@ -57,25 +61,30 @@ def main(
     no_output,
     log_file,
 ):
-    stac = StacValidate(
-        stac_file=stac_file,
-        recursive=recursive,
-        core=core,
-        links=links,
-        assets=assets,
-        extensions=extensions,
-        custom=custom,
-        verbose=verbose,
-        no_output=no_output,
-        log=log_file,
-    )
-    stac.run()
 
-    if no_output is False:
-        click.echo(json.dumps(stac.message, indent=4))
+    if lint is True:
+        linter = Linter(stac_file, assets=True, links=True, recursive=False)
+        lint_message(linter)
+    else:
+        stac = StacValidate(
+            stac_file=stac_file,
+            recursive=recursive,
+            core=core,
+            links=links,
+            assets=assets,
+            extensions=extensions,
+            custom=custom,
+            verbose=verbose,
+            no_output=no_output,
+            log=log_file,
+        )
+        stac.run()
 
-    if recursive == -2 and stac.message[0]["valid_stac"] is False:
-        sys.exit(1)
+        if no_output is False:
+            click.echo(json.dumps(stac.message, indent=4))
+
+        if recursive == -2 and stac.message[0]["valid_stac"] is False:
+            sys.exit(1)
 
 
 if __name__ == "__main__":
