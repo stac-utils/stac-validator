@@ -100,6 +100,7 @@ stac_validator --help
 Usage: stac_validator [OPTIONS] STAC_FILE
 
 Options:
+  --lint                   Use stac-check to lint stac object.
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
   --links                  Additionally validate links. Only works with
@@ -111,6 +112,7 @@ Options:
   -r, --recursive INTEGER  Recursively validate all related stac objects. A
                            depth of -1 indicates full recursion.
   -v, --verbose            Enables verbose output for recursive mode.
+  --no_output              Do not print output to console.
   --log_file TEXT          Save full recursive output to log file (local
                            filepath).
   --version                Show the version and exit.
