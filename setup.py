@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "2.4.1"
+__version__ = "2.4.2"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -33,7 +33,7 @@ setup(
     install_requires=[
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
-        "pystac[validation]==1.1.0",
+        "pystac[validation]>=1.1.0",
         "click>=8.0.0",
         "stac-check>=1.0.2",
     ],
