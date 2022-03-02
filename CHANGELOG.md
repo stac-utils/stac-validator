@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.4.1] - 2022-03-02
+### Changed
+
+ - Loosen stac-check version dependency
+
 ## [v2.4.0] - 2022-02-02
 ### Added
 
