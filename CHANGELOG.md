@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Split the `--recursive` option into a `--recursive` flag and a `--max-depth` option
+- Renamed the entry point from `stac_validator` to `stac-validator`
+
 ## [v2.4.2] - 2022-03-02
 ### Changed
 
@@ -81,7 +88,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - stac versions where a `stac_version` field is not present are
   no longer supported.
 
-## [1.0.0] - 2020-09-01
+## [v1.0.1] - 2020-09-01
 
 ### Added
 
@@ -106,3 +113,15 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Updated core validation to use validation from pystac instead of jsonchema.
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
+
+[Unreleased]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.0..main>
+[v2.4.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
+[v2.3.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.2.0..v2.3.0>
+[v2.2.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.1.0..v2.2.0>
+[v2.1.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.0.0..v2.1.0>
+[v2.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v1.0.1..v2.0.0>
+[v1.0.1]: <https://github.com/sparkgeo/stac-validator/compare/v0.5.0..v1.0.1>
+[v0.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.3..v0.5.0>
+[v0.1.3]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.1..v0.1.3>
+[v0.1.1]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.0..v0.1.1>
+[v0.1.0]: <https://github.com/sparkgeo/stac-validator/releases/tag/v0.1.0>
