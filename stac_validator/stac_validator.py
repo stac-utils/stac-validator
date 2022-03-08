@@ -10,7 +10,11 @@ from .validate import StacValidate
 
 @click.command()
 @click.argument("stac_file")
-@click.option("--lint", is_flag=True, help="Use stac-check to lint stac object.")
+@click.option(
+    "--lint",
+    is_flag=True,
+    help="Use stac-check to lint stac object instead of validating it.",
+)
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
