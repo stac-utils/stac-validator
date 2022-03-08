@@ -39,7 +39,7 @@ setup(
     ],
     packages=["stac_validator"],
     entry_points={
-        "console_scripts": ["stac_validator = stac_validator.stac_validator:main"]
+        "console_scripts": ["stac-validator = stac_validator.stac_validator:main"]
     },
     python_requires=">=3.7",
     tests_require=["pytest"],
