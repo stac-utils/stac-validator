@@ -38,9 +38,14 @@ from .validate import StacValidate
 @click.option(
     "--recursive",
     "-r",
+    is_flag=True,
+    help="Recursively validate all related stac objects.",
+)
+@click.option(
+    "--max-depth",
+    "-m",
     type=int,
-    default=-2,
-    help="Recursively validate all related stac objects. A depth of -1 indicates full recursion.",
+    help="Maximum depth to traverse when recursing. Ignored if `recursive == False`.",
 )
 @click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
@@ -56,6 +61,7 @@ def main(
     stac_file,
     lint,
     recursive,
+    max_depth,
     core,
     extensions,
     links,
@@ -73,6 +79,7 @@ def main(
         stac = StacValidate(
             stac_file=stac_file,
             recursive=recursive,
+            max_depth=max_depth,
             core=core,
             links=links,
             assets=assets,
@@ -87,7 +94,7 @@ def main(
         if no_output is False:
             click.echo(json.dumps(stac.message, indent=4))
 
-        if recursive == -2 and stac.message[0]["valid_stac"] is False:
+        if not recursive and stac.message[0]["valid_stac"] is False:
             sys.exit(1)
 
 

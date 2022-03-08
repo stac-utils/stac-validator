@@ -95,12 +95,12 @@ make help
 **Basic Usage**
 
 ```bash
-stac_validator --help
-
-Usage: stac_validator [OPTIONS] STAC_FILE
+stac-validator --help
+Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
-  --lint                   Use stac-check to lint stac object.
+  --lint                   Use stac-check to lint stac object instead of
+                           validating it.
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
   --links                  Additionally validate links. Only works with
@@ -109,8 +109,9 @@ Options:
                            default mode.
   -c, --custom TEXT        Validate against a custom schema (local filepath or
                            remote schema).
-  -r, --recursive INTEGER  Recursively validate all related stac objects. A
-                           depth of -1 indicates full recursion.
+  -r, --recursive          Recursively validate all related stac objects.
+  -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Ignored
+                           if `recursive == False`.
   -v, --verbose            Enables verbose output for recursive mode.
   --no_output              Do not print output to console.
   --log_file TEXT          Save full recursive output to log file (local
@@ -277,7 +278,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 **--recursive**
 
 ```bash
-stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive 1 --verbose
+stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
 [
     {
         "version": "0.8.1",

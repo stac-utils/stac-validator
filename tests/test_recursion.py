@@ -9,7 +9,7 @@ from stac_validator import stac_validator
 
 def test_recursive_lvl_3_v070():
     stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=4)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=4)
     stac.run()
     assert stac.message == [
         {
@@ -97,7 +97,7 @@ def test_recursive_lvl_3_v070():
 
 def test_recursive_local_v090():
     stac_file = "tests/test_data/v090/catalog.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=1)
     stac.run()
     assert stac.message == [
         {
@@ -133,7 +133,7 @@ def test_recursive_local_v090():
 
 def test_recursive_v1beta1():
     stac_file = "tests/test_data/1beta1/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=0)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=0)
     stac.run()
     assert stac.message == [
         {
@@ -149,7 +149,7 @@ def test_recursive_v1beta1():
 
 def test_recursive_v1beta2():
     stac_file = "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/1.0.0-beta.2/collection-spec/examples/sentinel2.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=0)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=0)
     stac.run()
     assert stac.message == [
         {
@@ -167,7 +167,7 @@ def test_recursive_v1beta2():
 
 def test_recursion_collection_local_v1rc1():
     stac_file = "tests/test_data/1rc1/collection.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=1)
     stac.run()
     assert stac.message == [
         {
@@ -219,7 +219,7 @@ def test_recursion_collection_local_v1rc1():
 
 def test_recursion_collection_local_v1rc2():
     stac_file = "tests/test_data/1rc2/collection.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=1)
     stac.run()
     assert stac.message == [
         {
@@ -272,7 +272,7 @@ def test_recursion_collection_local_v1rc2():
 
 def test_recursion_collection_local_2_v1rc2():
     stac_file = "tests/test_data/1rc2/extensions-collection/collection.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=1)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=1)
     stac.run()
     assert stac.message == [
         {

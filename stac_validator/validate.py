@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import List
+from typing import List, Optional
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -21,7 +21,8 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
-        recursive: int = -2,
+        recursive: bool = False,
+        max_depth: Optional[int] = None,
         core: bool = False,
         links: bool = False,
         assets: bool = False,
@@ -37,6 +38,7 @@ class StacValidate:
         self.links = links
         self.assets = assets
         self.recursive = recursive
+        self.max_depth = max_depth
         self.extensions = extensions
         self.core = core
         self.stac_content: dict = {}
@@ -202,8 +204,8 @@ class StacValidate:
             message["valid_stac"] = True
             self.message.append(message)
             self.depth = self.depth + 1
-            if self.recursive > -1:
-                if self.depth >= int(self.recursive):
+            if self.max_depth:
+                if self.depth >= self.max_depth:
                     self.skip_val = True
             base_url = self.stac_file
             for link in self.stac_content["links"]:
@@ -244,7 +246,9 @@ class StacValidate:
 
                     if self.log != "":
                         self.message.append(message)
-                    if self.recursive < 5:
+                    if (
+                        self.max_depth and self.max_depth < 5
+                    ):  # TODO this should be configurable, correct?
                         self.message.append(message)
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
@@ -271,7 +275,7 @@ class StacValidate:
                 message["schema"] = [cls.custom]
                 cls.custom_validator()
                 cls.valid = True
-            elif cls.recursive > -2:
+            elif cls.recursive:
                 cls.recursive_validator(stac_type)
                 cls.valid = True
             elif cls.extensions is True:
@@ -311,7 +315,7 @@ class StacValidate:
 
         message["valid_stac"] = cls.valid
 
-        if cls.recursive < -1:
+        if not cls.recursive:
             cls.message.append(message)
 
         if cls.log != "":
