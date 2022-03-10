@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v2.4.3] - 2022-03-10
+### Changed
+
+ - Add schema caching
+
 ## [v2.4.2] - 2022-03-02
 ### Changed
 
