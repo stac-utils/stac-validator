@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "2.4.3"
+__version__ = "2.5.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -29,7 +29,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/stac-utils/stac-validator",
-    download_url="https://github.com/stac-utils/stac-validator/archive/v2.4.3.tar.gz",
+    download_url="https://github.com/stac-utils/stac-validator/archive/v2.5.0.tar.gz",
     install_requires=[
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
