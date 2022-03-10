@@ -11,6 +11,7 @@ from requests import exceptions  # type: ignore
 
 from .utilities import (
     fetch_and_parse_file,
+    fetch_and_parse_schema,
     get_stac_type,
     link_request,
     set_schema_addr,
@@ -150,7 +151,7 @@ class StacValidate:
     def custom_validator(self):
         # in case the path to custom json schema is local
         # it may contain relative references
-        schema = fetch_and_parse_file(self.custom)
+        schema = fetch_and_parse_schema(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
@@ -158,7 +159,7 @@ class StacValidate:
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         else:
-            schema = fetch_and_parse_file(self.custom)
+            schema = fetch_and_parse_schema(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
@@ -233,7 +234,7 @@ class StacValidate:
                     self.custom = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
                     if self.version == "0.7.0":
-                        schema = fetch_and_parse_file(self.custom)
+                        schema = fetch_and_parse_schema(self.custom)
                         # this next line prevents this: unknown url type: 'geojson.json' ??
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
