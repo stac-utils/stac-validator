@@ -1,3 +1,4 @@
+import functools
 import json
 from urllib.parse import urlparse
 from urllib.request import urlopen
@@ -54,6 +55,11 @@ def fetch_and_parse_file(input_path) -> dict:
             data = json.load(f)
 
     return data
+
+
+@functools.lru_cache(maxsize=48)
+def fetch_and_parse_schema(input_path) -> dict:
+    return fetch_and_parse_file(input_path)
 
 
 # validate new versions at schemas.stacspec.org
