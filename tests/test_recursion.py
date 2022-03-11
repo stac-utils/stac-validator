@@ -297,3 +297,10 @@ def test_recursion_collection_local_2_v1rc2():
             "valid_stac": True,
         },
     ]
+
+
+def test_recursion_without_max_depth():
+    stac_file = "tests/test_data/v100/catalog.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac.run()
+    assert len(stac.message) == 6

@@ -45,7 +45,7 @@ from .validate import StacValidate
     "--max-depth",
     "-m",
     type=int,
-    help="Maximum depth to traverse when recursing. Ignored if `recursive == False`.",
+    help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
 )
 @click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
