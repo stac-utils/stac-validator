@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [3.0.0] - 2022-03-10
 
 ### Added
 
@@ -13,6 +13,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Fixed
 
 - Item messages are now included even if `max_depth is None`
+- Exit with non-zero code when validation fails
 
 ## [v2.5.0] - 2022-03-10
 ### Changed
