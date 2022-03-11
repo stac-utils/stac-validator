@@ -72,6 +72,7 @@ def main(
     log_file,
 ):
 
+    valid = True
     if lint is True:
         linter = Linter(stac_file, assets=True, links=True, recursive=False)
         lint_message(linter)
@@ -89,13 +90,12 @@ def main(
             no_output=no_output,
             log=log_file,
         )
-        stac.run()
+        valid = stac.run()
 
         if no_output is False:
             click.echo(json.dumps(stac.message, indent=4))
 
-        if not recursive and stac.message[0]["valid_stac"] is False:
-            sys.exit(1)
+    sys.exit(0 if valid else 1)
 
 
 if __name__ == "__main__":
