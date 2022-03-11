@@ -14,13 +14,13 @@ code-check:		## Check and format code using pre-commit
 
 test:			## Run the tests
 	pytest --verbose
-	pytest --mypy stac_validator
+	pytest --mypy stac-validator
 
 build-docker:		## Build a Docker container
-	docker build -t stac_validator .
+	docker build -t stac-validator .
 
 build-tox:		## Test stac_validator on multiple Python versions
 	docker build -f tox/Dockerfile-tox -t stac_tox .
 
 run:			## Run the Docker Container and enter into bash
-	docker run -it --entrypoint /bin/bash stac_validator
+	docker run -it --entrypoint /bin/bash stac-validator
