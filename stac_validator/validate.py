@@ -248,7 +248,7 @@ class StacValidate:
                     if self.log != "":
                         self.message.append(message)
                     if (
-                        self.max_depth and self.max_depth < 5
+                        not self.max_depth or self.max_depth < 5
                     ):  # TODO this should be configurable, correct?
                         self.message.append(message)
                     if self.verbose is True:
