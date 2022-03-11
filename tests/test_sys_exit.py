@@ -12,19 +12,17 @@ def test_correct_sys_exit_error_python():
 
 
 def test_correct_sys_exit_error_recursion():
-    try:
+    with pytest.raises(subprocess.CalledProcessError):
         subprocess.run(
             [
-                "stac_validator",
+                "stac-validator",
                 "tests/test_data/v100/catalog-with-bad-item.json",
                 "--recursive",
-                "-1",
+                "--max-depth",
+                "10",
             ],
             check=True,
         )
-        assert False
-    except subprocess.CalledProcessError:
-        assert True
 
 
 def test_false_sys_exit_error_python():
