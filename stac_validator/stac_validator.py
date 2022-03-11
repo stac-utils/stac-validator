@@ -2,9 +2,8 @@ import json
 import sys
 
 import click  # type: ignore
-from stac_check.cli import cli_message as lint_message  # type: ignore
-from stac_check.lint import Linter  # type: ignore
 
+from .lint import StacCheck
 from .validate import StacValidate
 
 
@@ -56,7 +55,7 @@ from .validate import StacValidate
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.2.0")
+@click.version_option(version="2.5.0")
 def main(
     stac_file,
     lint,
@@ -73,8 +72,8 @@ def main(
 ):
 
     if lint is True:
-        linter = Linter(stac_file, assets=True, links=True, recursive=False)
-        lint_message(linter)
+        linter = StacCheck(stac_file=stac_file)
+        linter.lint_message()
     else:
         stac = StacValidate(
             stac_file=stac_file,
