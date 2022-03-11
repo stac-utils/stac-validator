@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- A note about full recursion to the `--max-depth` help text
+
+### Fixed
+
+- Item messages are now included even if `max_depth is None`
+
 ## [v2.5.0] - 2022-03-10
 ### Changed
 
