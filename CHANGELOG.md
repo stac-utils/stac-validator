@@ -15,6 +15,9 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Item messages are now included even if `max_depth is None`
 - Exit with non-zero code when validation fails
 
+### Removed
+
+- References to Python 3.6
 ## [v2.5.0] - 2022-03-10
 ### Changed
 

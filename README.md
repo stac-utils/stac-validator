@@ -39,7 +39,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.7+
   - Requests
   - Click
   - Pytest
