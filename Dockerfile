@@ -3,6 +3,6 @@ WORKDIR /code
 COPY . /code/
 
 RUN pip install . && \
-    stac_validator --help
+    stac-validator --help
 
-ENTRYPOINT ["stac_validator"]
+ENTRYPOINT ["stac-validator"]
