@@ -1,0 +1,31 @@
+{
+  "id": "examples",
+  "type": "Catalog",
+  "title": "Example Catalog",
+  "stac_version": "1.0.0",
+  "description": "This is a valid catalog with links to one valid item and one invalid item.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./bad-item.json",
+      "type": "application/json",
+      "title": "Invalid item"
+    },
+    {
+      "rel": "item",
+      "href": "./collectionless-item.json",
+      "type": "application/json",
+      "title": "Collection with no items (standalone)"
+    },
+    {
+      "rel": "self",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/catalog.json",
+      "type": "application/json"
+    }
+  ]
+}

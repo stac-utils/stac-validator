@@ -44,7 +44,7 @@ from .validate import StacValidate
     "--max-depth",
     "-m",
     type=int,
-    help="Maximum depth to traverse when recursing. Ignored if `recursive == False`.",
+    help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
 )
 @click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
@@ -55,7 +55,7 @@ from .validate import StacValidate
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="2.5.0")
+@click.version_option(version="3.1.0")
 def main(
     stac_file,
     lint,
@@ -71,6 +71,7 @@ def main(
     log_file,
 ):
 
+    valid = True
     stac = StacValidate(
         stac_file=stac_file,
         recursive=recursive,
@@ -84,7 +85,7 @@ def main(
         no_output=no_output,
         log=log_file,
     )
-    stac.run()
+    valid = stac.run()
 
     message = stac.message
 
@@ -95,8 +96,7 @@ def main(
     if no_output is False:
         click.echo(json.dumps(message, indent=4))
 
-    if not recursive and stac.message[0]["valid_stac"] is False:
-        sys.exit(1)
+    sys.exit(0 if valid else 1)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "2.5.0"
+__version__ = "3.0.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -22,7 +22,7 @@ setup(
         "Intended Audience :: Information Technology",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: GIS",
     ],
     keywords="STAC validation raster",

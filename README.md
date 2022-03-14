@@ -39,7 +39,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.7+
   - Requests
   - Click
   - Pytest
@@ -99,8 +99,8 @@ stac-validator --help
 Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
-  --lint                   Use stac-check to lint stac object instead of
-                           validating it.
+  --lint                   Use stac-check to lint the stac object in addition
+                           to validating it.
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
   --links                  Additionally validate links. Only works with
@@ -110,8 +110,9 @@ Options:
   -c, --custom TEXT        Validate against a custom schema (local filepath or
                            remote schema).
   -r, --recursive          Recursively validate all related stac objects.
-  -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Ignored
-                           if `recursive == False`.
+  -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Omit this
+                           argument to get full recursion. Ignored if
+                           `recursive == False`.
   -v, --verbose            Enables verbose output for recursive mode.
   --no_output              Do not print output to console.
   --log_file TEXT          Save full recursive output to log file (local
