@@ -17,7 +17,7 @@
 Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
+stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
 [
     {
         "version": "1.0.0",
@@ -130,8 +130,8 @@ Options:
 The validator can run using docker containers.
 
 ```bash
-docker build -t stac_validator .
-docker run stac_validator https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
+docker build -t stac-validator .
+docker run stac-validator https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
 [
     {
         "version": "1.0.0",
@@ -221,7 +221,7 @@ See the [tests](./tests/test_stac_validator.py) files for examples on different 
 **--core**
 
 ```bash
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
+stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
 [
     {
         "version": "1.0.0",
@@ -239,7 +239,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 **--custom**
 
 ```bash
-stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
+stac-validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
 [
     {
         "version": "0.7.0",
@@ -257,7 +257,7 @@ stac_validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom htt
 **--extensions**
 
 ```bash
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
+stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
 [
     {
         "version": "1.0.0",
@@ -279,7 +279,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 **--lint**
 
 ```bash
-stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --lint
+stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --lint
 [
     {
         "version": "1.0.0",
@@ -314,7 +314,7 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 **--recursive**
 
 ```bash
-stac_validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
+stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
 [
     {
         "version": "0.8.1",
