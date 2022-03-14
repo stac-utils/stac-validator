@@ -1,13 +1,13 @@
 from stac_check.lint import Linter  # type: ignore
 
 
-class StacLint:
+class StacCheck:
     def __init__(
         self,
         stac_file: str = None,
     ):
         self.stac_file = stac_file
 
-    def create_message(self):
+    def lint_message(self):
         linter = Linter(self.stac_file, assets=True, links=True, recursive=False)
-        return linter.best_practices_msg()
+        return linter.create_best_practices_dict()

@@ -73,7 +73,7 @@ def main(
 
     if lint is True:
         linter = StacCheck(stac_file=stac_file)
-        linter.lint_message()
+        click.echo(linter.lint_message())
     else:
         stac = StacValidate(
             stac_file=stac_file,
