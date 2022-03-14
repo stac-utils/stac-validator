@@ -275,6 +275,41 @@ stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 ]
 ```
 
+**--lint**
+
+```bash
+stac_validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --lint
+[
+    {
+        "version": "1.0.0",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "default",
+        "linting": {
+            "searchable_identifiers": [
+                "Item name '20201211_223832_CS2' should only contain Searchable identifiers",
+                "Identifiers should consist of only lowercase characters, numbers, '_', and '-'"
+            ],
+            "check_item_id": [
+                "Item file names should match their ids: 'extended-item' not equal to '20201211_223832_CS2"
+            ],
+            "bloated_metadata": [
+                "You have 21 properties. Please consider using links to avoid bloated metadata"
+            ]
+        }
+    }
+]
+```
+
 **--recursive**
 
 ```bash

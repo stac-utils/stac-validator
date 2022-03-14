@@ -9,5 +9,5 @@ class StacCheck:
         self.stac_file = stac_file
 
     def lint_message(self):
-        linter = Linter(self.stac_file, assets=True, links=True, recursive=False)
+        linter = Linter(self.stac_file)
         return linter.create_best_practices_dict()
