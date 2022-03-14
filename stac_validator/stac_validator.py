@@ -71,30 +71,32 @@ def main(
     log_file,
 ):
 
-    if lint is True:
+    stac = StacValidate(
+        stac_file=stac_file,
+        recursive=recursive,
+        max_depth=max_depth,
+        core=core,
+        links=links,
+        assets=assets,
+        extensions=extensions,
+        custom=custom,
+        verbose=verbose,
+        no_output=no_output,
+        log=log_file,
+    )
+    stac.run()
+
+    message = stac.message
+
+    if lint and not recursive:
         linter = StacCheck(stac_file=stac_file)
-        click.echo(linter.lint_message())
-    else:
-        stac = StacValidate(
-            stac_file=stac_file,
-            recursive=recursive,
-            max_depth=max_depth,
-            core=core,
-            links=links,
-            assets=assets,
-            extensions=extensions,
-            custom=custom,
-            verbose=verbose,
-            no_output=no_output,
-            log=log_file,
-        )
-        stac.run()
+        message[0]["linting"] = linter.lint_message()
 
-        if no_output is False:
-            click.echo(json.dumps(stac.message, indent=4))
+    if no_output is False:
+        click.echo(json.dumps(message, indent=4))
 
-        if not recursive and stac.message[0]["valid_stac"] is False:
-            sys.exit(1)
+    if not recursive and stac.message[0]["valid_stac"] is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
