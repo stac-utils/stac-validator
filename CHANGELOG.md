@@ -10,7 +10,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Reordered exception handlers to avoid unreachable code
 
-## [3.0.0] - 2022-03-11
+## [v3.0.0] - 2022-03-11
 
 ### Added
 
