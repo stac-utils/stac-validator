@@ -9,6 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Fixed
 
 - Reordered exception handlers to avoid unreachable code
+- Details about invalid items is shown in the message when in recursive mode
 
 ## [v3.0.0] - 2022-03-11
 
