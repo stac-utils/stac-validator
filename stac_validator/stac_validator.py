@@ -55,7 +55,7 @@ from .validate import StacValidate
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="3.1.0")
+@click.version_option(version="3.0.0")
 def main(
     stac_file,
     lint,
