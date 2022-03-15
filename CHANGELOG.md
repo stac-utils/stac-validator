@@ -9,6 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Fixed
 
 - Reordered exception handlers to avoid unreachable code
+- Details about invalid items is shown in the message when in recursive mode
 
 ## [v3.0.0] - 2022-03-11
 
@@ -140,7 +141,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
 [v3.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.5.0..main>
-[v2.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.0..v2.5.0>
+[v2.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.3..v2.5.0>
+[v2.4.3]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
+[v2.4.2]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.1..v2.4.2>
+[v2.4.1]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.0..v2.4.1>
 [v2.4.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
 [v2.3.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.2.0..v2.3.0>
 [v2.2.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.1.0..v2.2.0>

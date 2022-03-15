@@ -304,3 +304,32 @@ def test_recursion_without_max_depth():
     stac = stac_validator.StacValidate(stac_file, recursive=True)
     stac.run()
     assert len(stac.message) == 6
+
+
+def test_recursion_with_bad_item():
+    stac_file = "tests/test_data/v100/catalog-with-bad-item.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac.run()
+    assert len(stac.message) == 2
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/catalog-with-bad-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "CATALOG",
+            "validation_method": "recursive",
+        },
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/./bad-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": False,
+            "error_type": "ValidationError",
+            "error_message": "'id' is a required property of the root of the STAC object",
+        },
+    ]

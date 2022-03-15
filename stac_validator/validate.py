@@ -314,9 +314,8 @@ class StacValidate:
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 
-        message["valid_stac"] = cls.valid
-
-        if not cls.recursive:
+        if len(message) > 0:
+            message["valid_stac"] = cls.valid
             cls.message.append(message)
 
         if cls.log != "":
