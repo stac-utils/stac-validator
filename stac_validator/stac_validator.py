@@ -2,9 +2,8 @@ import json
 import sys
 
 import click  # type: ignore
-from stac_check.cli import cli_message as lint_message  # type: ignore
-from stac_check.lint import Linter  # type: ignore
 
+from .lint import StacCheck
 from .validate import StacValidate
 
 
@@ -13,7 +12,7 @@ from .validate import StacValidate
 @click.option(
     "--lint",
     is_flag=True,
-    help="Use stac-check to lint the stac object in addition to validating it.",
+    help="Use stac-check to lint the stac object in addition to validating it. Not presently implemented with --recursive.",
 )
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
@@ -73,27 +72,29 @@ def main(
 ):
 
     valid = True
-    if lint is True:
-        linter = Linter(stac_file, assets=True, links=True, recursive=False)
-        lint_message(linter)
-    else:
-        stac = StacValidate(
-            stac_file=stac_file,
-            recursive=recursive,
-            max_depth=max_depth,
-            core=core,
-            links=links,
-            assets=assets,
-            extensions=extensions,
-            custom=custom,
-            verbose=verbose,
-            no_output=no_output,
-            log=log_file,
-        )
-        valid = stac.run()
+    stac = StacValidate(
+        stac_file=stac_file,
+        recursive=recursive,
+        max_depth=max_depth,
+        core=core,
+        links=links,
+        assets=assets,
+        extensions=extensions,
+        custom=custom,
+        verbose=verbose,
+        no_output=no_output,
+        log=log_file,
+    )
+    valid = stac.run()
 
-        if no_output is False:
-            click.echo(json.dumps(stac.message, indent=4))
+    message = stac.message
+
+    if lint and not recursive:
+        linter = StacCheck(stac_file=stac_file)
+        message[0]["linting"] = linter.lint_message()
+
+    if no_output is False:
+        click.echo(json.dumps(message, indent=4))
 
     sys.exit(0 if valid else 1)
 
