@@ -285,12 +285,12 @@ class StacValidate:
                 cls.valid = True
                 message = cls.default_validator(stac_type)
 
-        except ValueError as e:
-            message.update(cls.create_err_msg("ValueError", str(e)))
         except URLError as e:
             message.update(cls.create_err_msg("URLError", str(e)))
         except JSONDecodeError as e:
             message.update(cls.create_err_msg("JSONDecodeError", str(e)))
+        except ValueError as e:
+            message.update(cls.create_err_msg("ValueError", str(e)))
         except TypeError as e:
             message.update(cls.create_err_msg("TypeError", str(e)))
         except FileNotFoundError as e:
@@ -314,9 +314,8 @@ class StacValidate:
         except Exception as e:
             message.update(cls.create_err_msg("Exception", str(e)))
 
-        message["valid_stac"] = cls.valid
-
-        if not cls.recursive:
+        if len(message) > 0:
+            message["valid_stac"] = cls.valid
             cls.message.append(message)
 
         if cls.log != "":
