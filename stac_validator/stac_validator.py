@@ -12,7 +12,7 @@ from .validate import StacValidate
 @click.option(
     "--lint",
     is_flag=True,
-    help="Use stac-check to lint the stac object in addition to validating it.",
+    help="Use stac-check to lint the stac object in addition to validating it. Not presently implemented with --recursive.",
 )
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
