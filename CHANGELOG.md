@@ -8,7 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
-- Added core linting messages from stac-check to stac-validator messages
+- Added core linting messages from stac-check to stac-validator messages https://github.com/stac-utils/stac-validator/pull/201/
 
 ### Fixed
 
