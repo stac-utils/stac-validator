@@ -12,9 +12,9 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Fixed
 
-- Reordered exception handlers to avoid unreachable code
-- Details about invalid items is shown in the message when in recursive mode
-- Dockerfile - change cli command from stac_validator to stac-validator
+- Reordered exception handlers to avoid unreachable code https://github.com/stac-utils/stac-validator/pull/203/
+- Details about invalid items is shown in the message when in recursive mode https://github.com/stac-utils/stac-validator/pull/202/
+- Dockerfile - change cli command from stac_validator to stac-validator https://github.com/stac-utils/stac-validator/pull/201/
 
 ## [v3.0.0] - 2022-03-11
 
