@@ -86,8 +86,10 @@ class StacValidate:
 
     def assets_validator(self) -> dict:
         initial_message = self.create_links_message()
-        for _, value in self.stac_content["assets"].items():
-            link_request(value, initial_message)
+        assets = self.stac_content.get("assets")
+        if assets:
+            for asset in assets.values():
+                link_request(asset, initial_message)
         return initial_message
 
     def links_validator(self) -> dict:

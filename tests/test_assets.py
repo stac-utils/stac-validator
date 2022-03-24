@@ -4,6 +4,8 @@ Description: Test --links option
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
+import json
+
 from stac_validator import stac_validator
 
 
@@ -85,3 +87,10 @@ def test_assets_v100():
             },
         }
     ]
+
+
+def test_assets_on_collection_without_assets_ok():
+    stac_file = "tests/test_data/v100/collection.json"
+    stac = stac_validator.StacValidate(stac_file, assets=True)
+    is_valid = stac.run()
+    assert is_valid, json.dumps(stac.message, indent=4)
