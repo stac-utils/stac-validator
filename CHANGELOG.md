@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased - 2022-03-14
+## Unreleased
 
 ### Added
 
@@ -15,6 +15,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Reordered exception handlers to avoid unreachable code https://github.com/stac-utils/stac-validator/pull/203/
 - Details about invalid items are shown in the message when in recursive mode https://github.com/stac-utils/stac-validator/pull/202/
 - Dockerfile - change cli command from stac_validator to stac-validator https://github.com/stac-utils/stac-validator/pull/201/
+- Items with no assets key can still be valid https://github.com/stac-utils/stac-validator/pull/206
 
 ## [v3.0.0] - 2022-03-11
 
