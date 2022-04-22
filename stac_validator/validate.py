@@ -188,7 +188,7 @@ class StacValidate:
             message["assets_validated"] = self.assets_validator()
         return message
 
-    def recursive_validator(self, stac_type: str):
+    def recursive_validator(self, stac_type: str) -> bool:
         if self.skip_val is False:
             self.custom = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
@@ -203,7 +203,7 @@ class StacValidate:
                     err_msg = f"{e.message} of the root of the STAC object"
                 message.update(self.create_err_msg("ValidationError", err_msg))
                 self.message.append(message)
-                return
+                return False
             message["valid_stac"] = True
             self.message.append(message)
             self.depth = self.depth + 1
@@ -255,6 +255,7 @@ class StacValidate:
                         self.message.append(message)
                     if self.verbose is True:
                         click.echo(json.dumps(message, indent=4))
+        return True
 
     def validate_dict(cls, stac_content):
         cls.stac_content = stac_content
@@ -279,8 +280,7 @@ class StacValidate:
                 cls.custom_validator()
                 cls.valid = True
             elif cls.recursive:
-                cls.recursive_validator(stac_type)
-                cls.valid = True
+                cls.valid = cls.recursive_validator(stac_type)
             elif cls.extensions is True:
                 message = cls.extensions_validator(stac_type)
             else:

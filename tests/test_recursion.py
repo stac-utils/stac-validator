@@ -333,3 +333,25 @@ def test_recursion_with_bad_item():
             "error_message": "'id' is a required property of the root of the STAC object",
         },
     ]
+
+
+def test_recursion_with_missing_collection_link():
+    stac_file = "tests/test_data/v100/item-without-collection-link.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    assert not stac.run()
+    assert not stac.valid
+    assert len(stac.message) == 1
+    assert stac.message == [
+        {
+            "asset_type": "ITEM",
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/item-without-collection-link.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": False,
+            "validation_method": "recursive",
+            "error_type": "ValidationError",
+            "error_message": "'simple-collection' should not be valid under {}. Error is in collection",
+        },
+    ]
