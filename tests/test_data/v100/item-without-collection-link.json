@@ -1,0 +1,58 @@
+{
+    "stac_version": "1.0.0",
+    "stac_extensions": [],
+    "type": "Feature",
+    "id": "item-without-collection-link",
+    "bbox": [
+        172.91173669923782,
+        1.3438851951615003,
+        172.95469614953714,
+        1.3690476620161975
+    ],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    172.91173669923782,
+                    1.3438851951615003
+                ],
+                [
+                    172.95469614953714,
+                    1.3438851951615003
+                ],
+                [
+                    172.95469614953714,
+                    1.3690476620161975
+                ],
+                [
+                    172.91173669923782,
+                    1.3690476620161975
+                ],
+                [
+                    172.91173669923782,
+                    1.3438851951615003
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "datetime": "2020-12-11T22:38:32.125000Z"
+    },
+    "collection": "simple-collection",
+    "links": [
+        {
+            "rel": "root",
+            "href": "./collection.json",
+            "type": "application/json",
+            "title": "Simple Example Collection"
+        },
+        {
+            "rel": "parent",
+            "href": "./collection.json",
+            "type": "application/json",
+            "title": "Simple Example Collection"
+        }
+    ],
+    "assets": {}
+}
