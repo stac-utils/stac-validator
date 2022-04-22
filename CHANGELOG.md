@@ -16,6 +16,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Details about invalid items are shown in the message when in recursive mode https://github.com/stac-utils/stac-validator/pull/202/
 - Dockerfile - change cli command from stac_validator to stac-validator https://github.com/stac-utils/stac-validator/pull/201/
 - Items with no assets key can still be valid https://github.com/stac-utils/stac-validator/pull/206
+- Top-level `is_valid` flag for recursive JSONSchema exceptions https://github.com/stac-utils/stac-validator/pull/208
 
 ## [v3.0.0] - 2022-03-11
 
