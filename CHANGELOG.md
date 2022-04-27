@@ -22,6 +22,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Stac-check linting as it creates a circular dependency https://github.com/stac-utils/stac-validator/pull/209
 - Remove v0.7.0 test data and v0.7.0 local tests 
+- Removed pystac from dependencies 
 
 ## [v3.0.0] - 2022-03-11
 
