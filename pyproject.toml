@@ -2,7 +2,6 @@
 requires = [
     "requests",
     "jsonschema",
-    "pystac",
     "click",
     "setuptools"
 ]
