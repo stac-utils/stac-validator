@@ -4,7 +4,6 @@ from urllib.parse import urlparse
 from urllib.request import urlopen
 
 import requests  # type: ignore
-from pystac.serialization import identify_stac_object  # type: ignore
 
 NEW_VERSIONS = [
     "1.0.0-beta.2",
@@ -39,8 +38,10 @@ def get_stac_type(stac_content) -> str:
             return "Item"
         if "type" in stac_content and stac_content["type"] in content_types:
             return stac_content["type"]
-        stac_object = identify_stac_object(stac_content)
-        return stac_object.object_type
+        if "extent" in stac_content or "license" in stac_content:
+            return "Collection"
+        else:
+            return "Catalog"
     except TypeError as e:
         return str(e)
 

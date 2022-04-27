@@ -32,7 +32,6 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
   - Requests
   - Click
   - Pytest
-  - Pystac
   - Jsonschema
 
 Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.  
