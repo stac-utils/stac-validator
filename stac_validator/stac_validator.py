@@ -3,17 +3,11 @@ import sys
 
 import click  # type: ignore
 
-from .lint import StacCheck
 from .validate import StacValidate
 
 
 @click.command()
 @click.argument("stac_file")
-@click.option(
-    "--lint",
-    is_flag=True,
-    help="Use stac-check to lint the stac object in addition to validating it. Not presently implemented with --recursive.",
-)
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
@@ -58,7 +52,6 @@ from .validate import StacValidate
 @click.version_option(version="3.0.0")
 def main(
     stac_file,
-    lint,
     recursive,
     max_depth,
     core,
@@ -88,10 +81,6 @@ def main(
     valid = stac.run()
 
     message = stac.message
-
-    if lint and not recursive:
-        linter = StacCheck(stac_file=stac_file)
-        message[0]["linting"] = linter.lint_message()
 
     if no_output is False:
         click.echo(json.dumps(message, indent=4))

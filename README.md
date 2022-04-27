@@ -1,20 +1,9 @@
 # SpatioTemporal Asset Catalog (STAC) Validator
 
-[//]: # "Badges"
 
-<p align="center">
-  <a href="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml" target="_blank">
-      <img src="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg" alt="Package version">
-  </a>
-  <a href="https://pypi.org/project/stac-validator" target="_blank">
-      <img src="https://img.shields.io/pypi/v/stac-validator?color=%2334D058&label=pypi" alt="Package version">
-  </a>
-  <a href="https://github.com/sparkgeo/stac-validator/blob/master/LICENSE" target="_blank">
-      <img src="https://img.shields.io/github/license/sparkgeo/stac-validator.svg" alt="License">
-  </a>
-</p>
+## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).   
+    
 
-Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
 stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
@@ -45,6 +34,9 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
   - Pytest
   - Pystac
   - Jsonschema
+
+Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.  
+https://github.com/stac-utils/stac-check
 
 ## Install
 
@@ -99,8 +91,6 @@ stac-validator --help
 Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
-  --lint                   Use stac-check to lint the stac object in addition
-                           to validating it.
   --core                   Validate core stac object only without extensions.
   --extensions             Validate extensions only.
   --links                  Additionally validate links. Only works with
@@ -275,42 +265,7 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
     }
 ]
 ```
-
-**--lint**
-
-```bash
-stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --lint
-[
-    {
-        "version": "1.0.0",
-        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
-        "schema": [
-            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": true,
-        "asset_type": "ITEM",
-        "validation_method": "default",
-        "linting": {
-            "searchable_identifiers": [
-                "Item name '20201211_223832_CS2' should only contain Searchable identifiers",
-                "Identifiers should consist of only lowercase characters, numbers, '_', and '-'"
-            ],
-            "check_item_id": [
-                "Item file names should match their ids: 'extended-item' not equal to '20201211_223832_CS2"
-            ],
-            "bloated_metadata": [
-                "You have 21 properties. Please consider using links to avoid bloated metadata"
-            ]
-        }
-    }
-]
-```
-
+   
 **--recursive**
 
 ```bash

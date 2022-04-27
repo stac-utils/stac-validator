@@ -18,6 +18,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Items with no assets key can still be valid https://github.com/stac-utils/stac-validator/pull/206
 - Top-level `is_valid` flag for recursive JSONSchema exceptions https://github.com/stac-utils/stac-validator/pull/208
 
+### Removed
+
+- stac-check linting as it creates a circular dependency
+
 ## [v3.0.0] - 2022-03-11
 
 ### Added
