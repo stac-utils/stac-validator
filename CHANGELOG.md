@@ -20,7 +20,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Removed
 
-- stac-check linting as it creates a circular dependency
+- stac-check linting as it creates a circular dependency https://github.com/stac-utils/stac-validator/pull/209
 
 ## [v3.0.0] - 2022-03-11
 
