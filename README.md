@@ -1,20 +1,9 @@
 # SpatioTemporal Asset Catalog (STAC) Validator
 
-[//]: # "Badges"
 
-<p align="center">
-  <a href="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml" target="_blank">
-      <img src="https://github.com/sparkgeo/stac-validator/actions/workflows/test-runner.yml/badge.svg" alt="Package version">
-  </a>
-  <a href="https://pypi.org/project/stac-validator" target="_blank">
-      <img src="https://img.shields.io/pypi/v/stac-validator?color=%2334D058&label=pypi" alt="Package version">
-  </a>
-  <a href="https://github.com/sparkgeo/stac-validator/blob/master/LICENSE" target="_blank">
-      <img src="https://img.shields.io/github/license/sparkgeo/stac-validator.svg" alt="License">
-  </a>
-</p>
+## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).   
+    
 
-Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
 stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
@@ -45,6 +34,9 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
   - Pytest
   - Pystac
   - Jsonschema
+
+Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.  
+https://github.com/stac-utils/stac-check
 
 ## Install
 
