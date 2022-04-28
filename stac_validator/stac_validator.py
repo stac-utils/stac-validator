@@ -6,6 +6,17 @@ import click  # type: ignore
 from .validate import StacValidate
 
 
+def print_update_message(version):
+    click.secho()
+    if version != "1.0.0":
+        click.secho(
+            f"Please upgrade from version {version} to version 1.0.0!", fg="red"
+        )
+    else:
+        click.secho("Thanks for using STAC version 1.0.0!", fg="green")
+    click.secho()
+
+
 @click.command()
 @click.argument("stac_file")
 @click.option(
@@ -81,6 +92,8 @@ def main(
     valid = stac.run()
 
     message = stac.message
+    if "version" in message[0]:
+        print_update_message(message[0]["version"])
 
     if no_output is False:
         click.echo(json.dumps(message, indent=4))
