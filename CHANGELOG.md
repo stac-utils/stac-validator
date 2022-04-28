@@ -8,6 +8,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [v3.1.0] - 2022-04-28
 
+### Added
+
+- Added update stac version message to cli output https://github.com/stac-utils/stac-validator/pull/211
+
 ### Fixed
 
 - Reordered exception handlers to avoid unreachable code https://github.com/stac-utils/stac-validator/pull/203/
