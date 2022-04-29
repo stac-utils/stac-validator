@@ -34,6 +34,7 @@ setup(
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
         "click>=8.0.0",
+        "types-setuptools",
     ],
     packages=["stac_validator"],
     entry_points={
