@@ -2,6 +2,7 @@ import json
 import sys
 
 import click  # type: ignore
+import pkg_resources
 
 from .validate import StacValidate
 
@@ -60,7 +61,7 @@ def print_update_message(version):
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version="3.1.0")
+@click.version_option(version=pkg_resources.require("stac-validator")[0].version)
 def main(
     stac_file,
     recursive,
