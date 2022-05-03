@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "3.0.0"
+__version__ = "3.1.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -34,6 +34,7 @@ setup(
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
         "click>=8.0.0",
+        "types-setuptools",
     ],
     packages=["stac_validator"],
     entry_points={

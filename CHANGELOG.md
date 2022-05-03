@@ -6,9 +6,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## Unreleased
 
+## [v3.1.0] - 2022-04-28
+
 ### Added
 
-- Added core linting messages from stac-check to stac-validator messages https://github.com/stac-utils/stac-validator/pull/201/
+- Added update stac version message to cli output https://github.com/stac-utils/stac-validator/pull/211
 
 ### Fixed
 
