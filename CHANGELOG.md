@@ -6,6 +6,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## Unreleased
 
+### Changed
+
+- Changed 'ValidationError' error type to 'JSONSchemaValidationError'
+
 ## [v3.1.0] - 2022-04-28
 
 ### Added
