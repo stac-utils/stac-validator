@@ -140,7 +140,7 @@ class StacValidate:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
                 else:
                     err_msg = f"{e.message} of the root of the STAC object"
-                message = self.create_err_msg("ValidationError", err_msg)
+                message = self.create_err_msg("JSONSchemaValidationError", err_msg)
                 return message
             except Exception as e:
                 valid = False
@@ -201,7 +201,9 @@ class StacValidate:
                     err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
                 else:
                     err_msg = f"{e.message} of the root of the STAC object"
-                message.update(self.create_err_msg("ValidationError", err_msg))
+                message.update(
+                    self.create_err_msg("JSONSchemaValidationError", err_msg)
+                )
                 self.message.append(message)
                 return False
             message["valid_stac"] = True
@@ -305,10 +307,10 @@ class StacValidate:
             message.update(cls.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
             if e.absolute_path:
-                err_msg = f"JSONSchemaError {e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])} "
+                err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])} "
             else:
-                err_msg = f"JSONSchemaError {e.message} of the root of the STAC object"
-            message.update(cls.create_err_msg("ValidationError", err_msg))
+                err_msg = f"{e.message} of the root of the STAC object"
+            message.update(cls.create_err_msg("JSONSchemaValidationError", err_msg))
         except KeyError as e:
             message.update(cls.create_err_msg("KeyError", str(e)))
         except HTTPError as e:
