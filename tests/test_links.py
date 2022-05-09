@@ -20,7 +20,7 @@ def test_poorly_formatted_v090():
                 "https://cdn.staclint.com/v0.9.0/item.json",
             ],
             "valid_stac": False,
-            "error_type": "ValidationError",
+            "error_type": "JSONSchemaValidationError",
             "error_message": "-0.00751271 is less than the minimum of 0. Error is in properties -> view:off_nadir",
             "validation_method": "default",
             "links_validated": {
