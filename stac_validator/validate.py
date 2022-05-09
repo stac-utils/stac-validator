@@ -305,9 +305,9 @@ class StacValidate:
             message.update(cls.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
             if e.absolute_path:
-                err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                err_msg = f"JSONSchemaError {e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])} "
             else:
-                err_msg = f"{e.message} of the root of the STAC object"
+                err_msg = f"JSONSchemaError {e.message} of the root of the STAC object"
             message.update(cls.create_err_msg("ValidationError", err_msg))
         except KeyError as e:
             message.update(cls.create_err_msg("KeyError", str(e)))
