@@ -20,7 +20,7 @@ def test_custom_item_remote_schema_v080():
             "asset_type": "ITEM",
             "validation_method": "custom",
             "valid_stac": False,
-            "error_type": "ValidationError",
+            "error_type": "JSONSchemaValidationError",
             "error_message": "'bbox' is a required property of the root of the STAC object",
         }
     ]
@@ -74,7 +74,7 @@ def test_custom_bad_item_remote_schema_v090():
             "validation_method": "custom",
             "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid_stac": False,
-            "error_type": "ValidationError",
+            "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property of the root of the STAC object",
         }
     ]
@@ -115,7 +115,7 @@ def test_custom_eo_error_v1rc2():
             "asset_type": "ITEM",
             "validation_method": "custom",
             "valid_stac": False,
-            "error_type": "ValidationError",
-            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name",
+            "error_type": "JSONSchemaValidationError",
+            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name ",
         }
     ]
