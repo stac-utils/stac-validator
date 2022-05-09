@@ -8,7 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
-- Changed 'ValidationError' error type to 'JSONSchemaValidationError'
+- Changed 'ValidationError' error type to 'JSONSchemaValidationError' https://github.com/stac-utils/stac-validator/pull/213
 
 ## [v3.1.0] - 2022-04-28
 
