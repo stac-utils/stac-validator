@@ -125,7 +125,7 @@ class StacValidate:
                         self.stac_content["stac_extensions"][index] = "projection"
                     schemas = self.stac_content["stac_extensions"]
                     for extension in schemas:
-                        if "http" not in extension:
+                        if "http" not in extension and "json" not in extension:
                             # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
