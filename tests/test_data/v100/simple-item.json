@@ -62,7 +62,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "3-Band Visual",
       "roles": [
@@ -70,7 +70,7 @@
       ]
     },
     "thumbnail": {
-      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.jpg",
       "title": "Thumbnail",
       "type": "image/jpeg",
       "roles": [

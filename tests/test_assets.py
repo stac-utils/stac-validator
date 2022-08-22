@@ -51,13 +51,13 @@ def test_assets_v090():
 
 
 def test_assets_v100():
-    stac_file = "tests/test_data/v100/core-item.json"
+    stac_file = "tests/test_data/v100/simple-item.json"
     stac = stac_validator.StacValidate(stac_file, assets=True)
     stac.run()
     assert stac.message == [
         {
             "version": "1.0.0",
-            "path": "tests/test_data/v100/core-item.json",
+            "path": "tests/test_data/v100/simple-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
             ],
@@ -66,23 +66,14 @@ def test_assets_v100():
             "validation_method": "default",
             "assets_validated": {
                 "format_valid": [
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic.tif",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
-                    "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
-                    "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH",
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.tif",
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.jpg",
                 ],
                 "format_invalid": [],
-                "request_valid": [
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic.tif",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
-                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
-                    "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
-                ],
+                "request_valid": [],
                 "request_invalid": [
-                    "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH"
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.tif",
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.jpg",
                 ],
             },
         }
