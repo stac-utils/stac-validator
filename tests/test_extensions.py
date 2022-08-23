@@ -4,7 +4,7 @@ Description: Test validation for extensions
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
-from pytest import pytest
+import pytest
 
 from stac_validator import stac_validator
 
