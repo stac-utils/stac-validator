@@ -9,6 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Added  
   
 - Added ability to check local schemas in item extensions https://github.com/stac-utils/stac-validator/pull/215
+- Added an example on validating a dictionary https://github.com/stac-utils/stac-validator/pull/215
 
 ### Changed
   

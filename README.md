@@ -191,6 +191,15 @@ print(stac.message)
 ]
 ```
 
+**Dictionary**
+  
+```python
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate()
+stac.validate_dict(dictionary)
+print(stac.message)
+```
 ---
 
 # Testing
