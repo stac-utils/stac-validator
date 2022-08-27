@@ -4,8 +4,6 @@ Description: Test the custom option for custom schemas
 """
 __authors__ = "James Banting", "Jonathan Healy"
 
-import pytest
-
 from stac_validator import stac_validator
 
 
@@ -102,7 +100,6 @@ def test_custom_item_remote_schema_v1rc2():
     ]
 
 
-@pytest.mark.skip("failing in CI but passing locally")
 def test_custom_eo_error_v1rc2():
     schema = "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
     stac_file = (
