@@ -159,6 +159,14 @@ class StacValidate:
     def custom_validator(self):
         # in case the path to custom json schema is local
         # it may contain relative references
+
+        # deal with relative path in schema
+        if ".." in self.custom:
+            custom_abspath = os.path.abspath(self.stac_file)
+            file_directory = os.path.dirname(custom_abspath)
+            self.custom = os.path.join(file_directory, self.custom)
+            self.custom = os.path.abspath(os.path.realpath(self.custom))
+
         schema = fetch_and_parse_schema(self.custom)
         if os.path.exists(self.custom):
             custom_abspath = os.path.abspath(self.custom)
@@ -167,7 +175,6 @@ class StacValidate:
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         else:
-            schema = fetch_and_parse_schema(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
