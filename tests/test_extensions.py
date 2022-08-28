@@ -149,10 +149,10 @@ def test_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
-            "valid_stac": False,
-            "error_type": "JSONSchemaValidationError",
-            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name",
+            "schema": [],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
         }
     ]
 

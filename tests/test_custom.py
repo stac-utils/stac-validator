@@ -100,8 +100,8 @@ def test_custom_item_remote_schema_v1rc2():
     ]
 
 
-def test_custom_eo_error_v1rc2():
-    schema = "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+def test_custom_proj_error_v1rc2():
+    schema = "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
     stac_file = (
         "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json"
     )
@@ -111,11 +111,13 @@ def test_custom_eo_error_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "schema": [
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+            ],
+            "valid_stac": False,
             "asset_type": "ITEM",
             "validation_method": "custom",
-            "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
-            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name ",
+            "error_message": "'A' is not of type 'number'. Error is in properties -> proj:centroid -> lat ",
         }
     ]

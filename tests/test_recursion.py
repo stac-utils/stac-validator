@@ -289,8 +289,7 @@ def test_recursion_collection_local_2_v1rc2():
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
             "schema": [
-                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
             ],
             "asset_type": "ITEM",
             "validation_method": "recursive",
