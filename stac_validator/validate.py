@@ -161,20 +161,19 @@ class StacValidate:
         # it may contain relative references
 
         # deal with relative path in schema
-        if not (os.path.isabs(self.custom) or self.custom.startswith("http")):
-            custom_abspath = os.path.abspath(self.stac_file)
-            file_directory = os.path.dirname(custom_abspath)
-            self.custom = os.path.join(file_directory, self.custom)
-            self.custom = os.path.abspath(os.path.realpath(self.custom))
-
-        schema = fetch_and_parse_schema(self.custom)
         if os.path.exists(self.custom):
+            schema = fetch_and_parse_schema(self.custom)
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
             custom_uri = f"file:///{custom_dir}/"
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         else:
+            if self.custom.startswith(".."):
+                file_directory = os.path.dirname(os.path.abspath(self.stac_file))
+                self.custom = os.path.join(file_directory, self.custom)
+                self.custom = os.path.abspath(os.path.realpath(self.custom))
+            schema = fetch_and_parse_schema(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
