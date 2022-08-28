@@ -161,7 +161,7 @@ class StacValidate:
         # it may contain relative references
 
         # deal with relative path in schema
-        if ".." in self.custom:
+        if not (os.path.isabs(self.custom) or self.custom.startswith("http")):
             custom_abspath = os.path.abspath(self.stac_file)
             file_directory = os.path.dirname(custom_abspath)
             self.custom = os.path.join(file_directory, self.custom)
