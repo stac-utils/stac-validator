@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "../schema/v1.0.0/item.json"
+    "../schema/v1.0.0/projection.json"
   ],
   "type": "Feature",
   "id": "20201211_223832_CS2",
