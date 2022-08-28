@@ -205,7 +205,7 @@ def test_item_v100_local_schema():
         {
             "version": "1.0.0",
             "path": "tests/test_data/v100/extended-item-local.json",
-            "schema": ["tests/test_data/schema/v1.0.0/item.json"],
+            "schema": ["../schema/v1.0.0/item.json"],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "extensions",
