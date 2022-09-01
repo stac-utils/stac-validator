@@ -95,8 +95,11 @@ def link_request(
         initial_message["format_invalid"].append(link["href"])
 
 
-# utility functions below this comment have been copied from
-# https://github.com/stac-utils/pystac without any editing
+""" utility functions below this comment have been copied from
+    https://github.com/stac-utils/pystac without any editing
+    they were added tp handle relative schema paths"""
+
+
 def safe_urlparse(href: str) -> URLParseResult:
     """Wrapper around :func:`urllib.parse.urlparse` that returns consistent results for
     both Windows and UNIX file paths.
