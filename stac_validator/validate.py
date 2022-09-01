@@ -13,6 +13,7 @@ from .utilities import (
     fetch_and_parse_file,
     fetch_and_parse_schema,
     get_stac_type,
+    is_valid_url,
     link_request,
     set_schema_addr,
 )
@@ -97,16 +98,16 @@ class StacValidate:
         # get root_url for checking relative links
         root_url = ""
         for link in self.stac_content["links"]:
-            if link["rel"] == "self" and link["href"][0:4] == "http":
+            if link["rel"] == "self" and is_valid_url(link["href"]):
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
-            elif link["rel"] == "alternate" and link["href"][0:4] == "http":
+            elif link["rel"] == "alternate" and is_valid_url(link["href"]):
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
         for link in self.stac_content["links"]:
-            if link["href"][0:4] != "http":
+            if not is_valid_url(link["href"]):
                 link["href"] = root_url + link["href"][1:]
             link_request(link, initial_message)
 
@@ -125,11 +126,7 @@ class StacValidate:
                         self.stac_content["stac_extensions"][index] = "projection"
                     schemas = self.stac_content["stac_extensions"]
                     for extension in schemas:
-                        if not (
-                            extension.startswith("http://")
-                            or extension.startswith("https://")
-                            or extension.endswith(".json")
-                        ):
+                        if not (is_valid_url(extension) or extension.endswith(".json")):
                             # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
@@ -226,7 +223,7 @@ class StacValidate:
             for link in self.stac_content["links"]:
                 if link["rel"] == "child" or link["rel"] == "item":
                     address = link["href"]
-                    if "http" not in address:
+                    if not is_valid_url(address):
                         x = str(base_url).split("/")
                         x.pop(-1)
                         st = x[0]
