@@ -157,6 +157,40 @@ def test_custom_item_v100_relative_schema_embedded():
     ]
 
 
+def test_custom_item_v100_relative_schema_embedded_same_folder():
+    schema = "./projection.json"
+    stac_file = "tests/test_data/v100/embedded/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/embedded/extended-item-no-extensions.json",
+            "schema": ["./projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
+def test_custom_item_v100_relative_schema_embedded_same_folder_2():
+    schema = "projection.json"
+    stac_file = "tests/test_data/v100/embedded/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/embedded/extended-item-no-extensions.json",
+            "schema": ["projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
 def test_custom_item_v100_local_schema():
     schema = "tests/test_data/schema/v1.0.0/projection.json"
     stac_file = "tests/test_data/v100/extended-item-no-extensions.json"
