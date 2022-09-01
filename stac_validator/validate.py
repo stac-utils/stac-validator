@@ -15,6 +15,7 @@ from .utilities import (
     get_stac_type,
     is_valid_url,
     link_request,
+    make_absolute_href,
     set_schema_addr,
 )
 
@@ -154,23 +155,22 @@ class StacValidate:
         return message
 
     def custom_validator(self):
-        # in case the path to custom json schema is local
-        # it may contain relative references
-
-        # deal with relative path in schema
-        if os.path.exists(self.custom):
+        # if schema is hosted online
+        if is_valid_url(self.custom):
+            schema = fetch_and_parse_schema(self.custom)
+            jsonschema.validate(self.stac_content, schema)
+        # in case the path to a json schema is local
+        elif os.path.exists(self.custom):
             schema = fetch_and_parse_schema(self.custom)
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
             custom_uri = f"file:///{custom_dir}/"
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
+        # deal with a relative path in the schema
         else:
-            if self.custom.startswith(".."):
-                file_directory = os.path.dirname(os.path.abspath(self.stac_file))
-                self.custom = os.path.join(file_directory, self.custom)
-                self.custom = os.path.abspath(os.path.realpath(self.custom))
-            schema = fetch_and_parse_schema(self.custom)
+            href = make_absolute_href(self.custom, self.stac_file)
+            schema = fetch_and_parse_schema(href)
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
