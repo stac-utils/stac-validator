@@ -168,6 +168,13 @@ class StacValidate:
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         # deal with a relative path in the schema
+        elif self.custom.startswith("."):
+            file_directory = os.path.dirname(os.path.abspath(self.stac_file))
+            self.custom = os.path.join(file_directory, self.custom)
+            self.custom = os.path.abspath(os.path.realpath(self.custom))
+            schema = fetch_and_parse_schema(self.custom)
+            jsonschema.validate(self.stac_content, schema)
+        # use pystac code
         else:
             href = make_absolute_href(self.custom, self.stac_file)
             schema = fetch_and_parse_schema(href)
