@@ -149,10 +149,10 @@ def test_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
-            "valid_stac": False,
-            "error_type": "JSONSchemaValidationError",
-            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name",
+            "schema": [],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
         }
     ]
 
@@ -190,6 +190,22 @@ def test_item_v100():
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
             ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+        }
+    ]
+
+
+def test_item_v100_local_schema():
+    stac_file = "tests/test_data/v100/extended-item-local.json"
+    stac = stac_validator.StacValidate(stac_file, extensions=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item-local.json",
+            "schema": ["../schema/v1.0.0/projection.json"],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "extensions",

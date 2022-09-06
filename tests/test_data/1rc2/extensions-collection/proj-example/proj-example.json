@@ -163,7 +163,7 @@
       3951000
     ],
     "proj:centroid": {
-      "lat": 34.595302781575604,
+      "lat": "A",
       "lon": -101.34448382627504
     },
     "proj:shape": [
@@ -246,21 +246,6 @@
           "center_wavelength": 0.59,
           "full_width_half_max": 0.18
         }
-      ],
-      "proj:shape": [
-        16781,
-        16621
-      ],
-      "proj:transform": [
-        15,
-        0,
-        224992.5,
-        0,
-        -15,
-        6790207.5,
-        0,
-        0,
-        1
       ]
     }
   },
@@ -270,9 +255,6 @@
     152.52758,
     60.63437
   ],
-  "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
-  ],
+  "stac_extensions": [],
   "collection": "landsat-8-l1"
 }

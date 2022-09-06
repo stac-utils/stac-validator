@@ -6,8 +6,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## Unreleased
 
-### Changed
+### Added  
+  
+- Added ability to check local schemas in item extensions https://github.com/stac-utils/stac-validator/pull/215
+- Added an example on validating a dictionary https://github.com/stac-utils/stac-validator/pull/215
 
+### Changed
+  
 - Changed 'ValidationError' error type to 'JSONSchemaValidationError' https://github.com/stac-utils/stac-validator/pull/213
 
 ## [v3.1.0] - 2022-04-28

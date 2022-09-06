@@ -100,8 +100,8 @@ def test_custom_item_remote_schema_v1rc2():
     ]
 
 
-def test_custom_eo_error_v1rc2():
-    schema = "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+def test_custom_proj_error_v1rc2():
+    schema = "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
     stac_file = (
         "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json"
     )
@@ -111,11 +111,98 @@ def test_custom_eo_error_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "schema": [
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+            ],
+            "valid_stac": False,
             "asset_type": "ITEM",
             "validation_method": "custom",
-            "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
-            "error_message": "'panchromatic' is not one of ['coastal', 'blue', 'green', 'red', 'rededge', 'yellow', 'pan', 'nir', 'nir08', 'nir09', 'cirrus', 'swir16', 'swir22', 'lwir', 'lwir11', 'lwir12']. Error is in assets -> B8 -> eo:bands -> 0 -> common_name ",
+            "error_message": "'A' is not of type 'number'. Error is in properties -> proj:centroid -> lat ",
+        }
+    ]
+
+
+def test_custom_item_v100_relative_schema():
+    schema = "../schema/v1.0.0/projection.json"
+    stac_file = "tests/test_data/v100/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item-no-extensions.json",
+            "schema": ["../schema/v1.0.0/projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
+def test_custom_item_v100_relative_schema_embedded():
+    schema = "../../schema/v1.0.0/projection.json"
+    stac_file = "tests/test_data/v100/embedded/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/embedded/extended-item-no-extensions.json",
+            "schema": ["../../schema/v1.0.0/projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
+def test_custom_item_v100_relative_schema_embedded_same_folder():
+    schema = "./projection.json"
+    stac_file = "tests/test_data/v100/embedded/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/embedded/extended-item-no-extensions.json",
+            "schema": ["./projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
+def test_custom_item_v100_relative_schema_embedded_same_folder_2():
+    schema = "projection.json"
+    stac_file = "tests/test_data/v100/embedded/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/embedded/extended-item-no-extensions.json",
+            "schema": ["projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
+        }
+    ]
+
+
+def test_custom_item_v100_local_schema():
+    schema = "tests/test_data/schema/v1.0.0/projection.json"
+    stac_file = "tests/test_data/v100/extended-item-no-extensions.json"
+    stac = stac_validator.StacValidate(stac_file, custom=schema)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item-no-extensions.json",
+            "schema": ["tests/test_data/schema/v1.0.0/projection.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
         }
     ]

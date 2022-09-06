@@ -13,6 +13,7 @@ from .utilities import (
     fetch_and_parse_file,
     fetch_and_parse_schema,
     get_stac_type,
+    is_valid_url,
     link_request,
     set_schema_addr,
 )
@@ -97,16 +98,16 @@ class StacValidate:
         # get root_url for checking relative links
         root_url = ""
         for link in self.stac_content["links"]:
-            if link["rel"] == "self" and link["href"][0:4] == "http":
+            if link["rel"] == "self" and is_valid_url(link["href"]):
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
-            elif link["rel"] == "alternate" and link["href"][0:4] == "http":
+            elif link["rel"] == "alternate" and is_valid_url(link["href"]):
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
         for link in self.stac_content["links"]:
-            if link["href"][0:4] != "http":
+            if not is_valid_url(link["href"]):
                 link["href"] = root_url + link["href"][1:]
             link_request(link, initial_message)
 
@@ -125,7 +126,7 @@ class StacValidate:
                         self.stac_content["stac_extensions"][index] = "projection"
                     schemas = self.stac_content["stac_extensions"]
                     for extension in schemas:
-                        if "http" not in extension:
+                        if not (is_valid_url(extension) or extension.endswith(".json")):
                             # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
@@ -153,16 +154,23 @@ class StacValidate:
         return message
 
     def custom_validator(self):
-        # in case the path to custom json schema is local
-        # it may contain relative references
-        schema = fetch_and_parse_schema(self.custom)
-        if os.path.exists(self.custom):
+        # if schema is hosted online
+        if is_valid_url(self.custom):
+            schema = fetch_and_parse_schema(self.custom)
+            jsonschema.validate(self.stac_content, schema)
+        # in case the path to a json schema is local
+        elif os.path.exists(self.custom):
+            schema = fetch_and_parse_schema(self.custom)
             custom_abspath = os.path.abspath(self.custom)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
             custom_uri = f"file:///{custom_dir}/"
             resolver = RefResolver(custom_uri, self.custom)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
+        # deal with a relative path in the schema
         else:
+            file_directory = os.path.dirname(os.path.abspath(self.stac_file))
+            self.custom = os.path.join(file_directory, self.custom)
+            self.custom = os.path.abspath(os.path.realpath(self.custom))
             schema = fetch_and_parse_schema(self.custom)
             jsonschema.validate(self.stac_content, schema)
 
@@ -216,7 +224,7 @@ class StacValidate:
             for link in self.stac_content["links"]:
                 if link["rel"] == "child" or link["rel"] == "item":
                     address = link["href"]
-                    if "http" not in address:
+                    if not is_valid_url(address):
                         x = str(base_url).split("/")
                         x.pop(-1)
                         st = x[0]

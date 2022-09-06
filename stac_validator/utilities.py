@@ -1,5 +1,6 @@
 import functools
 import json
+import os
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
@@ -13,6 +14,8 @@ NEW_VERSIONS = [
     "1.0.0-rc.4",
     "1.0.0",
 ]
+
+_pathlib = os.path
 
 
 def is_url(url: str):
