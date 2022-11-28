@@ -28,6 +28,12 @@ def print_update_message(version):
 @click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
+@click.option(
+    "--pages",
+    "-p",
+    type=int,
+    help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
+)
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
 @click.option(
     "--links",
@@ -70,6 +76,7 @@ def print_update_message(version):
 def main(
     stac_file,
     item_collection,
+    pages,
     recursive,
     max_depth,
     core,
@@ -86,6 +93,7 @@ def main(
     stac = StacValidate(
         stac_file=stac_file,
         item_collection=item_collection,
+        pages=pages,
         recursive=recursive,
         max_depth=max_depth,
         core=core,
