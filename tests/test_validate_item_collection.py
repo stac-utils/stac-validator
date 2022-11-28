@@ -248,7 +248,7 @@ def test_validate_item_collection_in_memory():
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "custom",
+            "validation_method": "default",
         },
     ]
 
