@@ -275,13 +275,12 @@ class StacValidate:
 
     def validate_item_collection_dict(self, item_collection):
         for item in item_collection["features"]:
+            self.custom = ""
             self.validate_dict(item)
 
     def validate_item_collection(self):
         item_collection = fetch_and_parse_file(self.stac_file)
-        for item in item_collection["features"]:
-            self.custom = ""
-            self.validate_dict(item)
+        self.validate_item_collection_dict(item_collection)
 
     def run(self):
         message = {}

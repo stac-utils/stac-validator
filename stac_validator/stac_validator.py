@@ -83,24 +83,23 @@ def main(
 ):
 
     valid = True
+    stac = StacValidate(
+        stac_file=stac_file,
+        item_collection=item_collection,
+        recursive=recursive,
+        max_depth=max_depth,
+        core=core,
+        links=links,
+        assets=assets,
+        extensions=extensions,
+        custom=custom,
+        verbose=verbose,
+        no_output=no_output,
+        log=log_file,
+    )
     if not item_collection:
-        stac = StacValidate(
-            stac_file=stac_file,
-            item_collection=item_collection,
-            recursive=recursive,
-            max_depth=max_depth,
-            core=core,
-            links=links,
-            assets=assets,
-            extensions=extensions,
-            custom=custom,
-            verbose=verbose,
-            no_output=no_output,
-            log=log_file,
-        )
         valid = stac.run()
     else:
-        stac = StacValidate(stac_file=stac_file, item_collection=item_collection)
         stac.validate_item_collection()
 
     message = stac.message
