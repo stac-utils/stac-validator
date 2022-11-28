@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import List, Optional
+from typing import Optional
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -66,10 +66,10 @@ class StacValidate:
         }
 
     def create_links_message(self):
-        format_valid: List[str] = []
-        format_invalid: List[str] = []
-        request_valid: List[str] = []
-        request_invalid: List[str] = []
+        format_valid = []
+        format_invalid = []
+        request_valid = []
+        request_invalid = []
         return {
             "format_valid": format_valid,
             "format_invalid": format_invalid,
