@@ -21,18 +21,7 @@ def print_update_message(version):
 @click.command()
 @click.argument("stac_file")
 @click.option(
-    "--item_collection",
-    is_flag=True,
-    help="Validate itemm collection response.",
-)
-@click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
-)
-@click.option(
-    "--pages",
-    "-p",
-    type=int,
-    help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
 )
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
 @click.option(
@@ -62,6 +51,17 @@ def print_update_message(version):
     "-m",
     type=int,
     help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
+)
+@click.option(
+    "--item_collection",
+    is_flag=True,
+    help="Validate item collection response. Can be combined with --pages. Defaults to one page.",
+)
+@click.option(
+    "--pages",
+    "-p",
+    type=int,
+    help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
 )
 @click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
