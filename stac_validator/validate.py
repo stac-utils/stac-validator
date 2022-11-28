@@ -287,12 +287,12 @@ class StacValidate:
         try:
             if self.pages is not None:
                 for x in range(self.pages - 1):
-                    print(f"processing page {x+2}")
                     if "links" in item_collection:
                         for link in item_collection["links"]:
                             if link["rel"] == "next":
                                 next_link = link["href"]
                                 self.stac_file = next_link
+                                print(f"processing page {x+2}")
                                 item_collection = fetch_and_parse_file(self.stac_file)
                                 self.validate_item_collection_dict(item_collection)
                                 break
