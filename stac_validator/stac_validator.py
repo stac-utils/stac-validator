@@ -21,6 +21,11 @@ def print_update_message(version):
 @click.command()
 @click.argument("stac_file")
 @click.option(
+    "--item_collection",
+    is_flag=True,
+    help="Validate itemm collection response.",
+)
+@click.option(
     "--core", is_flag=True, help="Validate core stac object only without extensions."
 )
 @click.option("--extensions", is_flag=True, help="Validate extensions only.")
@@ -64,6 +69,7 @@ def print_update_message(version):
 @click.version_option(version=pkg_resources.require("stac-validator")[0].version)
 def main(
     stac_file,
+    item_collection,
     recursive,
     max_depth,
     core,
@@ -77,20 +83,25 @@ def main(
 ):
 
     valid = True
-    stac = StacValidate(
-        stac_file=stac_file,
-        recursive=recursive,
-        max_depth=max_depth,
-        core=core,
-        links=links,
-        assets=assets,
-        extensions=extensions,
-        custom=custom,
-        verbose=verbose,
-        no_output=no_output,
-        log=log_file,
-    )
-    valid = stac.run()
+    if not item_collection:
+        stac = StacValidate(
+            stac_file=stac_file,
+            item_collection=item_collection,
+            recursive=recursive,
+            max_depth=max_depth,
+            core=core,
+            links=links,
+            assets=assets,
+            extensions=extensions,
+            custom=custom,
+            verbose=verbose,
+            no_output=no_output,
+            log=log_file,
+        )
+        valid = stac.run()
+    else:
+        stac = StacValidate(stac_file=stac_file, item_collection=item_collection)
+        stac.validate_item_collection()
 
     message = stac.message
     if "version" in message[0]:
