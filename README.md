@@ -210,8 +210,8 @@ print(stac.message)
 ```python
 from stac_validator import stac_validator
   
-stac = stac_validator.StacValidate(item_collection_dict, item_collection=True)
-stac.validate_item_collection()
+stac = stac_validator.StacValidate()
+stac.validate_item_collection_dict(item_collection_dict)
 print(stac.message)
 ```
 ---
