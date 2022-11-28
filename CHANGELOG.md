@@ -9,7 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Added
 
 - Added --item-collection to validate local and remote item collections https://github.com/stac-utils/stac-validator/pull/219
-- Added --pages to validate pagination links
+- Added --pages to validate additional itens retrived via pagination links https://github.com/stac-utils/stac-validator/pull/219
 
 ## [v3.2.0] - 2022-09-20
 
