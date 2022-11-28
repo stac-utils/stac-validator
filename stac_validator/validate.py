@@ -22,7 +22,7 @@ from .utilities import (
 class StacValidate:
     def __init__(
         self,
-        stac_file: str = None,
+        stac_file: Optional[str] = None,
         item_collection: bool = False,
         recursive: bool = False,
         max_depth: Optional[int] = None,
