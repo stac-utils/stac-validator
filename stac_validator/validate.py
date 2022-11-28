@@ -23,6 +23,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: str = None,
+        item_collection: bool = False,
         recursive: bool = False,
         max_depth: Optional[int] = None,
         core: bool = False,
@@ -35,6 +36,7 @@ class StacValidate:
         log: str = "",
     ):
         self.stac_file = stac_file
+        self.item_collection = item_collection
         self.message: list = []
         self.custom = custom
         self.links = links
@@ -267,75 +269,85 @@ class StacValidate:
                         click.echo(json.dumps(message, indent=4))
         return True
 
-    def validate_dict(cls, stac_content):
-        cls.stac_content = stac_content
-        return cls.run()
+    def validate_dict(self, stac_content):
+        self.stac_content = stac_content
+        return self.run()
 
-    def run(cls):
+    def validate_item_collection_dict(self, item_collection):
+        for item in item_collection["features"]:
+            self.validate_dict(item)
+
+    def validate_item_collection(self):
+        item_collection = fetch_and_parse_file(self.stac_file)
+        for item in item_collection["features"]:
+            self.custom = ""
+            self.validate_dict(item)
+
+    def run(self):
         message = {}
         try:
-            if cls.stac_file is not None:
-                cls.stac_content = fetch_and_parse_file(cls.stac_file)
-            stac_type = get_stac_type(cls.stac_content).upper()
-            cls.version = cls.stac_content["stac_version"]
+            if self.stac_file is not None and self.item_collection is False:
+                self.stac_content = fetch_and_parse_file(self.stac_file)
+            stac_type = get_stac_type(self.stac_content).upper()
+            self.version = self.stac_content["stac_version"]
 
-            if cls.core is True:
-                message = cls.create_message(stac_type, "core")
-                cls.core_validator(stac_type)
-                message["schema"] = [cls.custom]
-                cls.valid = True
-            elif cls.custom != "":
-                message = cls.create_message(stac_type, "custom")
-                message["schema"] = [cls.custom]
-                cls.custom_validator()
-                cls.valid = True
-            elif cls.recursive:
-                cls.valid = cls.recursive_validator(stac_type)
-            elif cls.extensions is True:
-                message = cls.extensions_validator(stac_type)
+            if self.core is True:
+                message = self.create_message(stac_type, "core")
+                self.core_validator(stac_type)
+                message["schema"] = [self.custom]
+                self.valid = True
+            elif self.custom != "":
+                message = self.create_message(stac_type, "custom")
+                message["schema"] = [self.custom]
+                self.custom_validator()
+                self.valid = True
+            elif self.recursive:
+                self.valid = self.recursive_validator(stac_type)
+            elif self.extensions is True:
+                message = self.extensions_validator(stac_type)
             else:
-                cls.valid = True
-                message = cls.default_validator(stac_type)
+                self.valid = True
+                message = self.default_validator(stac_type)
 
         except URLError as e:
-            message.update(cls.create_err_msg("URLError", str(e)))
+            message.update(self.create_err_msg("URLError", str(e)))
         except JSONDecodeError as e:
-            message.update(cls.create_err_msg("JSONDecodeError", str(e)))
+            message.update(self.create_err_msg("JSONDecodeError", str(e)))
         except ValueError as e:
-            message.update(cls.create_err_msg("ValueError", str(e)))
+            message.update(self.create_err_msg("ValueError", str(e)))
         except TypeError as e:
-            message.update(cls.create_err_msg("TypeError", str(e)))
+            message.update(self.create_err_msg("TypeError", str(e)))
         except FileNotFoundError as e:
-            message.update(cls.create_err_msg("FileNotFoundError", str(e)))
+            message.update(self.create_err_msg("FileNotFoundError", str(e)))
         except ConnectionError as e:
-            message.update(cls.create_err_msg("ConnectionError", str(e)))
+            message.update(self.create_err_msg("ConnectionError", str(e)))
         except exceptions.SSLError as e:
-            message.update(cls.create_err_msg("SSLError", str(e)))
+            message.update(self.create_err_msg("SSLError", str(e)))
         except OSError as e:
-            message.update(cls.create_err_msg("OSError", str(e)))
+            message.update(self.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
             if e.absolute_path:
                 err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])} "
             else:
                 err_msg = f"{e.message} of the root of the STAC object"
-            message.update(cls.create_err_msg("JSONSchemaValidationError", err_msg))
+            message.update(self.create_err_msg("JSONSchemaValidationError", err_msg))
         except KeyError as e:
-            message.update(cls.create_err_msg("KeyError", str(e)))
+            message.update(self.create_err_msg("KeyError", str(e)))
         except HTTPError as e:
-            message.update(cls.create_err_msg("HTTPError", str(e)))
+            message.update(self.create_err_msg("HTTPError", str(e)))
         except Exception as e:
-            message.update(cls.create_err_msg("Exception", str(e)))
+            message.update(self.create_err_msg("Exception", str(e)))
 
         if len(message) > 0:
-            message["valid_stac"] = cls.valid
-            cls.message.append(message)
+            message["valid_stac"] = self.valid
+            self.message.append(message)
 
-        if cls.log != "":
-            f = open(cls.log, "w")
-            f.write(json.dumps(cls.message, indent=4))
+        if self.log != "":
+            f = open(self.log, "w")
+            f.write(json.dumps(self.message, indent=4))
             f.close()
 
-        if cls.valid:
+        if self.valid:
             return True
         else:
             return False
