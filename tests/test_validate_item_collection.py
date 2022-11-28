@@ -253,18 +253,142 @@ def test_validate_item_collection_in_memory():
     ]
 
 
-# def test_correct_validate_dict_return_method():
-#     stac = stac_validator.StacValidate()
-#     with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
-#         good_stac = json.load(f)
-#     if stac.validate_dict(good_stac) is True:
-#         return True
+def test_validate_item_collection_remote():
+    stac_file = (
+        "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items"
+    )
+    stac = stac_validator.StacValidate(stac_file, item_collection=True)
+    stac.validate_item_collection()
 
-
-# def test_incorrect_validate_dict_return_method():
-#     stac = stac_validator.StacValidate()
-#     with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
-#         good_stac = json.load(f)
-#         bad_stac = good_stac.pop("type", None)
-#     if stac.validate_dict(bad_stac) is False:
-#         return True
+    assert stac.message == [
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.0.0-beta.2",
+            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "schema": [
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+    ]
