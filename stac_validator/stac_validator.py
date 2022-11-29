@@ -18,6 +18,17 @@ def print_update_message(version):
     click.secho()
 
 
+def item_collection_summary(message):
+    valid_count = 0
+    for item in message:
+        if "valid_stac" in item and item["valid_stac"] is True:
+            valid_count = valid_count + 1
+    click.secho()
+    click.secho("--item-collection summary", bold=True)
+    click.secho(f"items_validated: {len(message)}")
+    click.secho(f"valid_items: {valid_count}")
+
+
 @click.command()
 @click.argument("stac_file")
 @click.option(
@@ -118,14 +129,7 @@ def main(
         click.echo(json.dumps(message, indent=4))
 
     if item_collection:
-        valid_count = 0
-        for item in message:
-            if "valid_stac" in item and item["valid_stac"] is True:
-                valid_count = valid_count + 1
-        click.secho()
-        click.secho("--item-collection summary", bold=True)
-        click.secho(f"items_validated: {len(message)}")
-        click.secho(f"valid_items: {valid_count}")
+        item_collection_summary(message)
 
     sys.exit(0 if valid else 1)
 
