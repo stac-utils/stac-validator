@@ -102,7 +102,7 @@ Options:
   -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Omit this
                            argument to get full recursion. Ignored if
                            `recursive == False`.
-  --item_collection        Validate item collection response. Can be combined
+  --item-collection        Validate item collection response. Can be combined
                            with --pages. Defaults to one page.
   -p, --pages INTEGER      Maximum number of pages to validate via --item-
                            collection. Defaults to one page.
