@@ -2,7 +2,6 @@
 Description: Test the default which validates core and extensions
 
 """
-__authors__ = "James Banting", "Jonathan Healy"
 
 from stac_validator import stac_validator
 

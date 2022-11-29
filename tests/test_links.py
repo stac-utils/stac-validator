@@ -2,7 +2,6 @@
 Description: Test --links option
 
 """
-__authors__ = "James Banting", "Jonathan Healy"
 
 from stac_validator import stac_validator
 
