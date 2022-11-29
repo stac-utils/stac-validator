@@ -53,7 +53,7 @@ def print_update_message(version):
     help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
 )
 @click.option(
-    "--item_collection",
+    "--item-collection",
     is_flag=True,
     help="Validate item collection response. Can be combined with --pages. Defaults to one page.",
 )
