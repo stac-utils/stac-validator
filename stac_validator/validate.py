@@ -281,24 +281,30 @@ class StacValidate:
             self.validate_dict(item)
 
     def validate_item_collection(self):
-        print("processing page 1")
+        page = 1
+        print(f"processing page {page}")
         item_collection = fetch_and_parse_file(self.stac_file)
         self.validate_item_collection_dict(item_collection)
         try:
             if self.pages is not None:
-                for x in range(self.pages - 1):
+                for _ in range(self.pages - 1):
                     if "links" in item_collection:
                         for link in item_collection["links"]:
                             if link["rel"] == "next":
+                                page = page + 1
+                                print(f"processing page {page}")
                                 next_link = link["href"]
                                 self.stac_file = next_link
-                                print(f"processing page {x+2}")
                                 item_collection = fetch_and_parse_file(self.stac_file)
                                 self.validate_item_collection_dict(item_collection)
                                 break
         except Exception as e:
-            error_msg = ("Error is in pagination: ", str(e))
-            return error_msg
+            message = {}
+            message["pagination_error"] = (
+                f"Validating the item collection failed on page {page}: ",
+                str(e),
+            )
+            self.message.append(message)
 
     def run(self):
         message = {}
