@@ -117,6 +117,16 @@ def main(
     if no_output is False:
         click.echo(json.dumps(message, indent=4))
 
+    if item_collection:
+        valid_count = 0
+        for item in message:
+            if "valid_stac" in item and item["valid_stac"] is True:
+                valid_count = valid_count + 1
+        click.secho()
+        click.secho("--item-collection summary", bold=True)
+        click.secho(f"items_validated: {len(message)}")
+        click.secho(f"valid_items: {valid_count}")
+
     sys.exit(0 if valid else 1)
 
 
