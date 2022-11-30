@@ -2,7 +2,6 @@
 Description: Test --links option
 
 """
-__authors__ = "James Banting", "Jonathan Healy"
 
 import json
 

@@ -2,7 +2,6 @@
 Description: Test the validator
 
 """
-__authors__ = "James Banting", "Jonathan Healy"
 
 import json
 

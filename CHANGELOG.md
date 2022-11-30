@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v3.3.0] - 2022-11-28
+
+### Added
+
+- Added --item-collection to validate local and remote item collections https://github.com/stac-utils/stac-validator/pull/219
+- Added --pages to validate additional items retrieved via pagination links https://github.com/stac-utils/stac-validator/pull/219
+
 ## [v3.2.0] - 2022-09-20
 
 ### Added  
@@ -164,7 +171,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[v3.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.5.0..main>
+[Unreleased]: <https://github.com/sparkgeo/stac-validator/compare/v3.3.0..main>
+[v3.3.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.2.0..v3.3.0>
+[v3.2.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.1.0..v3.2.0>
+[v3.1.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.0.0..v3.1.0>
+[v3.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.5.0..v3.0.0>
 [v2.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.3..v2.5.0>
 [v2.4.3]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
 [v2.4.2]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.1..v2.4.2>

@@ -2,7 +2,6 @@
 Description: Test the custom option for custom schemas
 
 """
-__authors__ = "James Banting", "Jonathan Healy"
 
 from stac_validator import stac_validator
 

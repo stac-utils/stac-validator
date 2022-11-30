@@ -102,6 +102,10 @@ Options:
   -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Omit this
                            argument to get full recursion. Ignored if
                            `recursive == False`.
+  --item-collection        Validate item collection response. Can be combined
+                           with --pages. Defaults to one page.
+  -p, --pages INTEGER      Maximum number of pages to validate via --item-
+                           collection. Defaults to one page.
   -v, --verbose            Enables verbose output for recursive mode.
   --no_output              Do not print output to console.
   --log_file TEXT          Save full recursive output to log file (local
@@ -198,6 +202,16 @@ from stac_validator import stac_validator
   
 stac = stac_validator.StacValidate()
 stac.validate_dict(dictionary)
+print(stac.message)
+```
+
+**Item Collection**
+  
+```python
+from stac_validator import stac_validator
+  
+stac = stac_validator.StacValidate()
+stac.validate_item_collection_dict(item_collection_dict)
 print(stac.message)
 ```
 ---
@@ -304,4 +318,9 @@ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
         "valid_stac": true
     }
 ]
+```
+**--item-collection**
+
+```bash
+stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item_collection --pages 2
 ```

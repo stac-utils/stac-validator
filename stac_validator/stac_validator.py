@@ -18,6 +18,17 @@ def print_update_message(version):
     click.secho()
 
 
+def item_collection_summary(message):
+    valid_count = 0
+    for item in message:
+        if "valid_stac" in item and item["valid_stac"] is True:
+            valid_count = valid_count + 1
+    click.secho()
+    click.secho("--item-collection summary", bold=True)
+    click.secho(f"items_validated: {len(message)}")
+    click.secho(f"valid_items: {valid_count}")
+
+
 @click.command()
 @click.argument("stac_file")
 @click.option(
@@ -53,6 +64,17 @@ def print_update_message(version):
     help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
 )
 @click.option(
+    "--item-collection",
+    is_flag=True,
+    help="Validate item collection response. Can be combined with --pages. Defaults to one page.",
+)
+@click.option(
+    "--pages",
+    "-p",
+    type=int,
+    help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
+)
+@click.option(
     "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
 )
 @click.option("--no_output", is_flag=True, help="Do not print output to console.")
@@ -64,6 +86,8 @@ def print_update_message(version):
 @click.version_option(version=pkg_resources.require("stac-validator")[0].version)
 def main(
     stac_file,
+    item_collection,
+    pages,
     recursive,
     max_depth,
     core,
@@ -79,6 +103,8 @@ def main(
     valid = True
     stac = StacValidate(
         stac_file=stac_file,
+        item_collection=item_collection,
+        pages=pages,
         recursive=recursive,
         max_depth=max_depth,
         core=core,
@@ -90,7 +116,10 @@ def main(
         no_output=no_output,
         log=log_file,
     )
-    valid = stac.run()
+    if not item_collection:
+        valid = stac.run()
+    else:
+        stac.validate_item_collection()
 
     message = stac.message
     if "version" in message[0]:
@@ -98,6 +127,9 @@ def main(
 
     if no_output is False:
         click.echo(json.dumps(message, indent=4))
+
+    if item_collection:
+        item_collection_summary(message)
 
     sys.exit(0 if valid else 1)
 
