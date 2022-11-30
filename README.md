@@ -322,5 +322,5 @@ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
 **--item-collection**
 
 ```bash
-stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item_collection --pages 2
+stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item-collection --pages 2
 ```
