@@ -8,7 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Fixed
 
-- Moved --verbose messaging for --recursive https://github.com/stac-utils/stac-validator/pull/222
+- Moved --verbose messaging for --recursive as --verbose was printing out the wrong messages https://github.com/stac-utils/stac-validator/pull/222
 
 ## [v3.3.0] - 2022-11-28
 
