@@ -217,9 +217,14 @@ class StacValidate:
                     self.create_err_msg("JSONSchemaValidationError", err_msg)
                 )
                 self.message.append(message)
+                if self.verbose is True:
+                    click.echo(json.dumps(message, indent=4))
                 return False
+
             message["valid_stac"] = True
             self.message.append(message)
+            if self.verbose is True:
+                click.echo(json.dumps(message, indent=4))
             self.depth = self.depth + 1
             if self.max_depth:
                 if self.depth >= self.max_depth:
@@ -243,9 +248,6 @@ class StacValidate:
                     stac_type = get_stac_type(self.stac_content).lower()
 
                 if link["rel"] == "child":
-
-                    if self.verbose is True:
-                        click.echo(json.dumps(message, indent=4))
                     self.recursive_validator(stac_type)
 
                 if link["rel"] == "item":
@@ -267,8 +269,6 @@ class StacValidate:
                         not self.max_depth or self.max_depth < 5
                     ):  # TODO this should be configurable, correct?
                         self.message.append(message)
-                    if self.verbose is True:
-                        click.echo(json.dumps(message, indent=4))
         return True
 
     def validate_dict(self, stac_content):
