@@ -113,7 +113,6 @@ def main(
         extensions=extensions,
         custom=custom,
         verbose=verbose,
-        no_output=no_output,
         log=log_file,
     )
     if not item_collection:

@@ -33,7 +33,6 @@ class StacValidate:
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
-        no_output: bool = False,
         log: str = "",
     ):
         self.stac_file = stac_file
@@ -52,7 +51,6 @@ class StacValidate:
         self.depth: int = 0
         self.skip_val = False
         self.verbose = verbose
-        self.no_output = False
         self.valid = False
         self.log = log
 
@@ -90,6 +88,12 @@ class StacValidate:
         }
 
     def assets_validator(self) -> dict:
+        """
+        Validate assets.
+
+        Returns:
+            A dictionary containing the asset validation results.
+        """
         initial_message = self.create_links_message()
         assets = self.stac_content.get("assets")
         if assets:
@@ -98,6 +102,12 @@ class StacValidate:
         return initial_message
 
     def links_validator(self) -> dict:
+        """
+        Validate links.
+
+        Returns:
+            A dictionary containing the link validation results.
+        """
         initial_message = self.create_links_message()
         # get root_url for checking relative links
         root_url = ""
@@ -112,30 +122,6 @@ class StacValidate:
             link_request(link, initial_message)
 
         return initial_message
-
-    # def links_validator(self) -> dict:
-    # """
-    # Validate links in the STAC content.
-
-    # Returns:
-    #     A dictionary containing the validation results for each link.
-    # """
-    # initial_message = self.create_links_message()
-    # # Get root_url for checking relative links
-    # root_url = next(
-    #     (link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
-    #      for link in self.stac_content["links"]
-    #      if link["rel"] in ["self", "alternate"] and is_valid_url(link["href"])
-    #     ), ""
-    # )
-    # for link in self.stac_content["links"]:
-    #     try:
-    #         if not is_valid_url(link["href"]):
-    #             link["href"] = root_url + link["href"][1:]
-    #         link_request(link, initial_message)
-    #     except Exception as e:
-    #         initial_message[link["href"]] = str(e)
-    # return initial_message
 
     def extensions_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
