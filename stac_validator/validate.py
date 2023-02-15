@@ -102,11 +102,7 @@ class StacValidate:
         # get root_url for checking relative links
         root_url = ""
         for link in self.stac_content["links"]:
-            if link["rel"] == "self" and is_valid_url(link["href"]):
-                root_url = (
-                    link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
-                )
-            elif link["rel"] == "alternate" and is_valid_url(link["href"]):
+            if link["rel"] in ["self", "alternate"] and is_valid_url(link["href"]):
                 root_url = (
                     link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
                 )
@@ -116,6 +112,30 @@ class StacValidate:
             link_request(link, initial_message)
 
         return initial_message
+
+    # def links_validator(self) -> dict:
+    # """
+    # Validate links in the STAC content.
+
+    # Returns:
+    #     A dictionary containing the validation results for each link.
+    # """
+    # initial_message = self.create_links_message()
+    # # Get root_url for checking relative links
+    # root_url = next(
+    #     (link["href"].split("/")[0] + "//" + link["href"].split("/")[2]
+    #      for link in self.stac_content["links"]
+    #      if link["rel"] in ["self", "alternate"] and is_valid_url(link["href"])
+    #     ), ""
+    # )
+    # for link in self.stac_content["links"]:
+    #     try:
+    #         if not is_valid_url(link["href"]):
+    #             link["href"] = root_url + link["href"][1:]
+    #         link_request(link, initial_message)
+    #     except Exception as e:
+    #         initial_message[link["href"]] = str(e)
+    # return initial_message
 
     def extensions_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "extensions")
