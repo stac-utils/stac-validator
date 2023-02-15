@@ -1,6 +1,7 @@
 import functools
 import json
 import os
+import ssl
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
@@ -80,7 +81,11 @@ def link_request(
 ):
     if is_url(link["href"]):
         try:
-            response = urlopen(link["href"])
+            if "s3" in link["href"]:
+                context = ssl._create_unverified_context()
+                response = urlopen(link["href"], context=context)
+            else:
+                response = urlopen(link["href"])
             status_code = response.getcode()
             if status_code == 200:
                 initial_message["request_valid"].append(link["href"])
