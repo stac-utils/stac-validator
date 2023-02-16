@@ -39,7 +39,7 @@ class StacValidate:
         self.item_collection = item_collection
         self.pages = pages
         self.message: list = []
-        self.custom = custom
+        self.schema = custom
         self.links = links
         self.assets = assets
         self.recursive = recursive
@@ -59,7 +59,7 @@ class StacValidate:
         return {
             "version": self.version,
             "path": self.stac_file,
-            "schema": [self.custom],
+            "schema": [self.schema],
             "valid_stac": False,
             "error_type": err_type,
             "error_message": err_msg,
@@ -81,7 +81,7 @@ class StacValidate:
         return {
             "version": self.version,
             "path": self.stac_file,
-            "schema": [self.custom],
+            "schema": [self.schema],
             "valid_stac": False,
             "asset_type": stac_type.upper(),
             "validation_method": val_type,
@@ -142,7 +142,7 @@ class StacValidate:
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
                                 self.version = self.stac_content["stac_version"]
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
-                        self.custom = extension
+                        self.schema = extension
                         self.custom_validator()
                         message["schema"].append(extension)
             except jsonschema.exceptions.ValidationError as e:
@@ -159,41 +159,44 @@ class StacValidate:
                 return self.create_err_msg("Exception", err_msg)
         else:
             self.core_validator(stac_type)
-            message["schema"] = [self.custom]
+            message["schema"] = [self.schema]
         self.valid = valid
         return message
 
     def custom_validator(self):
         # if schema is hosted online
-        if is_valid_url(self.custom):
-            schema = fetch_and_parse_schema(self.custom)
+        if is_valid_url(self.schema):
+            schema = fetch_and_parse_schema(self.schema)
             jsonschema.validate(self.stac_content, schema)
         # in case the path to a json schema is local
-        elif os.path.exists(self.custom):
-            schema = fetch_and_parse_schema(self.custom)
-            custom_abspath = os.path.abspath(self.custom)
+        elif os.path.exists(self.schema):
+            schema = fetch_and_parse_schema(self.schema)
+            custom_abspath = os.path.abspath(self.schema)
             custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
             custom_uri = f"file:///{custom_dir}/"
-            resolver = RefResolver(custom_uri, self.custom)
+            resolver = RefResolver(custom_uri, self.schema)
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         # deal with a relative path in the schema
         else:
             file_directory = os.path.dirname(os.path.abspath(self.stac_file))
-            self.custom = os.path.join(file_directory, self.custom)
-            self.custom = os.path.abspath(os.path.realpath(self.custom))
-            schema = fetch_and_parse_schema(self.custom)
+            self.schema = os.path.join(file_directory, self.schema)
+            self.schema = os.path.abspath(os.path.realpath(self.schema))
+            schema = fetch_and_parse_schema(self.schema)
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
         stac_type = stac_type.lower()
-        self.custom = set_schema_addr(self.version, stac_type.lower())
+        if stac_type == "item" and self.version in ["0.9.0", "1.0.0"]:
+            self.schema = f"stac_validator/schemas/v{self.version}/item.json"
+        else:
+            self.schema = set_schema_addr(self.version, stac_type)
         self.custom_validator()
 
     def default_validator(self, stac_type: str) -> dict:
         message = self.create_message(stac_type, "default")
         message["schema"] = []
         self.core_validator(stac_type)
-        core_schema = self.custom
+        core_schema = self.schema
         message["schema"].append(core_schema)
         stac_type = stac_type.upper()
         if stac_type == "ITEM":
@@ -208,7 +211,7 @@ class StacValidate:
 
     def recursive_validator(self, stac_type: str) -> bool:
         if self.skip_val is False:
-            self.custom = set_schema_addr(self.version, stac_type.lower())
+            self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
             try:
@@ -257,10 +260,10 @@ class StacValidate:
                     self.recursive_validator(stac_type)
 
                 if link["rel"] == "item":
-                    self.custom = set_schema_addr(self.version, stac_type.lower())
+                    self.schema = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
                     if self.version == "0.7.0":
-                        schema = fetch_and_parse_schema(self.custom)
+                        schema = fetch_and_parse_schema(self.schema)
                         # this next line prevents this: unknown url type: 'geojson.json' ??
                         schema["allOf"] = [{}]
                         jsonschema.validate(self.stac_content, schema)
@@ -283,7 +286,7 @@ class StacValidate:
 
     def validate_item_collection_dict(self, item_collection):
         for item in item_collection["features"]:
-            self.custom = ""
+            self.schema = ""
             self.validate_dict(item)
 
     def validate_item_collection(self):
@@ -323,11 +326,11 @@ class StacValidate:
             if self.core is True:
                 message = self.create_message(stac_type, "core")
                 self.core_validator(stac_type)
-                message["schema"] = [self.custom]
+                message["schema"] = [self.schema]
                 self.valid = True
-            elif self.custom != "":
+            elif self.schema != "":
                 message = self.create_message(stac_type, "custom")
-                message["schema"] = [self.custom]
+                message["schema"] = [self.schema]
                 self.custom_validator()
                 self.valid = True
             elif self.recursive:
