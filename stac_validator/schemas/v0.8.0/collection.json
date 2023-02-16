@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "allOf": [
         {
-            "$ref": "https://cdn.staclint.com/v0.9.0/catalog.json"
+            "$ref": "catalog.json"
         },
         {
             "$ref": "#/definitions/collection"
@@ -81,15 +81,18 @@
                     "type": "array"
                 },
                 "license": {
-                    "pattern": "^[\\w\\-\\.\\+]+$",
                     "title": "Collection License Name",
                     "type": "string"
+                },
+                "properties": {
+                    "title": "Common properties",
+                    "type": "object"
                 },
                 "providers": {
                     "items": {
                         "properties": {
                             "description": {
-                                "title": "Organization description",
+                                "title": "Provider description",
                                 "type": "string"
                             },
                             "name": {
@@ -111,7 +114,7 @@
                             },
                             "url": {
                                 "format": "url",
-                                "title": "Organization homepage",
+                                "title": "Homepage",
                                 "type": "string"
                             }
                         }
@@ -129,11 +132,8 @@
                             {
                                 "enum": [
                                     "asset",
-                                    "commons",
                                     "checksum",
-                                    "datacube",
-                                    "scientific",
-                                    "version"
+                                    "scientific"
                                 ],
                                 "title": "Reference to a core extension",
                                 "type": "string"
@@ -144,44 +144,9 @@
                     "type": "array",
                     "uniqueItems": true
                 },
-                "summaries": {
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "properties": {
-                                    "max": {
-                                        "title": "Maximum value",
-                                        "type": [
-                                            "number",
-                                            "string"
-                                        ]
-                                    },
-                                    "min": {
-                                        "title": "Minimum value",
-                                        "type": [
-                                            "number",
-                                            "string"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "min",
-                                    "max"
-                                ],
-                                "title": "Stats",
-                                "type": "object"
-                            },
-                            {
-                                "items": {
-                                    "description": "Any data type could occur."
-                                },
-                                "minItems": 1,
-                                "title": "Set of values",
-                                "type": "array"
-                            }
-                        ]
-                    },
-                    "type": "object"
+                "version": {
+                    "title": "Collection Version",
+                    "type": "string"
                 }
             },
             "required": [
