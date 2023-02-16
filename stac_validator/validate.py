@@ -186,8 +186,10 @@ class StacValidate:
 
     def core_validator(self, stac_type: str):
         stac_type = stac_type.lower()
-        if stac_type == "item" and self.version in ["0.9.0", "1.0.0"]:
-            self.schema = f"stac_validator/schemas/v{self.version}/item.json"
+        if stac_type == "item" and self.version in ["0.8.0", "0.9.0", "1.0.0"]:
+            self.schema = f"stac_validator/schemas/v{self.version}/{stac_type}.json"
+        elif stac_type == "collection" and self.version in ["0.9.0", "1.0.0-beta.1"]:
+            self.schema = f"stac_validator/schemas/v{self.version}/{stac_type}.json"
         else:
             self.schema = set_schema_addr(self.version, stac_type)
         self.custom_validator()
