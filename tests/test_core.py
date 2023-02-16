@@ -112,9 +112,7 @@ def test_core_item_local_v1beta2():
         {
             "version": "1.0.0-beta.2",
             "path": "tests/test_data/1beta2/stac_item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0-beta.2/item.json"],
             "asset_type": "ITEM",
             "validation_method": "core",
             "valid_stac": True,

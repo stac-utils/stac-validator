@@ -71,7 +71,7 @@ def test_default_v1beta1():
             "asset_type": "COLLECTION",
             "version": "1.0.0-beta.1",
             "validation_method": "default",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "schema": ["stac_validator/schemas/v1.0.0-beta.1/collection.json"],
             "valid_stac": True,
         }
     ]
@@ -89,7 +89,7 @@ def test_default_proj_v1b2():
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "stac_validator/schemas/v1.0.0-beta.2/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
