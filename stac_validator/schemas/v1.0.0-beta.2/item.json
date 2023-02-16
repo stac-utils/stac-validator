@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json#",
+    "$id": "item.json",
     "title": "STAC Item",
     "type": "object",
     "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -13,19 +13,19 @@
       "common_metadata": {
         "allOf": [
           {
-            "$ref": "basics.json"
+            "$ref": "../v1.0.0/basics.json"
           },
           {
-            "$ref": "datetime.json"
+            "$ref": "../v1.0.0/datetime.json"
           },
           {
-            "$ref": "instrument.json"
+            "$ref": "../v1.0.0/instrument.json"
           },
           {
-            "$ref": "licensing.json"
+            "$ref": "../v1.0.0/licensing.json"
           },
           {
-            "$ref": "provider.json"
+            "$ref": "../v1.0.0/provider.json"
           }
         ]
       },

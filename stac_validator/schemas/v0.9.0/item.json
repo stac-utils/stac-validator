@@ -1,5 +1,5 @@
 {
-    "$id": "item.json#",
+    "$id": "item.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": true,
     "allOf": [
@@ -42,22 +42,22 @@
         "common_metadata": {
             "allOf": [
                 {
-                    "$ref": "https://cdn.staclint.com/v0.9.0/basics.json"
+                    "$ref": "../v1.0.0/basics.json"
                 },
                 {
                     "$ref": "https://cdn.staclint.com/v0.9.0/datetimerange.json"
                 },
                 {
-                    "$ref": "https://cdn.staclint.com/v0.9.0/instrument.json"
+                    "$ref": "../v1.0.0/instrument.json"
                 },
                 {
-                    "$ref": "https://cdn.staclint.com/v0.9.0/licensing.json"
+                    "$ref": "../v1.0.0/licensing.json"
                 },
                 {
                     "$ref": "https://cdn.staclint.com/v0.9.0/metadata.json"
                 },
                 {
-                    "$ref": "https://cdn.staclint.com/v0.9.0/provider.json"
+                    "$ref": "../v1.0.0/provider.json"
                 }
             ]
         },
