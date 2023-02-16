@@ -109,7 +109,7 @@ def test_default_simple_v1rc2():
             "version": "1.0.0-rc.2",
             "validation_method": "default",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+                "stac_validator/schemas/v1.0.0-rc.2/item.json",
             ],
             "valid_stac": True,
         }
@@ -130,7 +130,7 @@ def test_default_extended_v1rc2():
                 "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+                "stac_validator/schemas/v1.0.0-rc.2/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
