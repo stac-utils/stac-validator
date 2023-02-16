@@ -32,7 +32,7 @@ def test_default_item_local_v080():
             "path": "tests/test_data/v080/items/sample-full.json",
             "schema": [
                 "https://cdn.staclint.com/v0.8.0/extension/eo.json",
-                "https://cdn.staclint.com/v0.8.0/item.json",
+                "stac_validator/schemas/v0.8.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
