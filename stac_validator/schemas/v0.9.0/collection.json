@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "allOf": [
         {
-            "$ref": "https://cdn.staclint.com/v0.9.0/catalog.json"
+            "$ref": "catalog.json"
         },
         {
             "$ref": "#/definitions/collection"
