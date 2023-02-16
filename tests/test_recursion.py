@@ -110,7 +110,7 @@ def test_recursive_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/items/sample.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -121,7 +121,7 @@ def test_recursive_local_v090():
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/extension/eo.json",
                 "https://cdn.staclint.com/v0.9.0/extension/view.json",
-                "https://cdn.staclint.com/v0.9.0/item.json",
+                "stac_validator/schemas/v0.9.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "recursive",
@@ -323,9 +323,7 @@ def test_recursion_with_bad_item():
         {
             "version": "1.0.0",
             "path": "tests/test_data/v100/./bad-item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0/item.json"],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property of the root of the STAC object",

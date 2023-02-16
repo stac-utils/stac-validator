@@ -52,7 +52,7 @@ def test_default_v090():
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/extension/eo.json",
                 "https://cdn.staclint.com/v0.9.0/extension/view.json",
-                "https://cdn.staclint.com/v0.9.0/item.json",
+                "stac_validator/schemas/v0.9.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
