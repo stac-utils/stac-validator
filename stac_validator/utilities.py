@@ -33,13 +33,28 @@ def is_valid_url(url: str) -> bool:
 
 
 def get_stac_type(stac_content) -> str:
+    """Determine the type of a STAC resource.
+
+    Given a dictionary representing a STAC resource, this function determines the
+    resource's type and returns a string representing that type. The resource type
+    can be one of 'Item', 'Catalog', or 'Collection'.
+
+    Args:
+        stac_content: A dictionary representing a STAC resource.
+
+    Returns:
+        A string representing the type of the STAC resource.
+
+    Raises:
+        TypeError: If the input is not a dictionary.
+    """
     try:
         content_types = ["Item", "Catalog", "Collection"]
         if "type" in stac_content and stac_content["type"] == "Feature":
             return "Item"
-        if "type" in stac_content and stac_content["type"] in content_types:
+        elif "type" in stac_content and stac_content["type"] in content_types:
             return stac_content["type"]
-        if "extent" in stac_content or "license" in stac_content:
+        elif "extent" in stac_content or "license" in stac_content:
             return "Collection"
         else:
             return "Catalog"
