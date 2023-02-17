@@ -340,14 +340,35 @@ class StacValidate:
             self.message.append(message)
 
     def run(self):
+        """Runs the STAC validation process based on the input parameters.
+
+        Returns:
+            bool: True if the STAC is valid, False otherwise.
+
+        Raises:
+            URLError: If there is an error with the URL.
+            JSONDecodeError: If there is an error decoding the JSON content.
+            ValueError: If there is an invalid value.
+            TypeError: If there is an invalid type.
+            FileNotFoundError: If the file is not found.
+            ConnectionError: If there is an error with the connection.
+            exceptions.SSLError: If there is an SSL error.
+            OSError: If there is an error with the operating system.
+            jsonschema.exceptions.ValidationError: If the STAC content fails validation.
+            KeyError: If the specified key is not found.
+            HTTPError: If there is an error with the HTTP connection.
+            Exception: If there is any other type of error.
+
+        """
         message = {}
         try:
-            if self.stac_file is not None and self.item_collection is False:
+            if self.stac_file is not None and not self.item_collection:
                 self.stac_content = fetch_and_parse_file(self.stac_file)
+
             stac_type = get_stac_type(self.stac_content).upper()
             self.version = self.stac_content["stac_version"]
 
-            if self.core is True:
+            if self.core:
                 message = self.create_message(stac_type, "core")
                 self.core_validator(stac_type)
                 message["schema"] = [self.schema]
@@ -359,51 +380,42 @@ class StacValidate:
                 self.valid = True
             elif self.recursive:
                 self.valid = self.recursive_validator(stac_type)
-            elif self.extensions is True:
+            elif self.extensions:
                 message = self.extensions_validator(stac_type)
             else:
                 self.valid = True
                 message = self.default_validator(stac_type)
 
-        except URLError as e:
-            message.update(self.create_err_msg("URLError", str(e)))
-        except JSONDecodeError as e:
-            message.update(self.create_err_msg("JSONDecodeError", str(e)))
-        except ValueError as e:
-            message.update(self.create_err_msg("ValueError", str(e)))
-        except TypeError as e:
-            message.update(self.create_err_msg("TypeError", str(e)))
-        except FileNotFoundError as e:
-            message.update(self.create_err_msg("FileNotFoundError", str(e)))
-        except ConnectionError as e:
-            message.update(self.create_err_msg("ConnectionError", str(e)))
-        except exceptions.SSLError as e:
-            message.update(self.create_err_msg("SSLError", str(e)))
-        except OSError as e:
-            message.update(self.create_err_msg("OSError", str(e)))
         except jsonschema.exceptions.ValidationError as e:
             if e.absolute_path:
                 err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])} "
             else:
                 err_msg = f"{e.message} of the root of the STAC object"
             message.update(self.create_err_msg("JSONSchemaValidationError", err_msg))
-        except KeyError as e:
-            message.update(self.create_err_msg("KeyError", str(e)))
-        except HTTPError as e:
-            message.update(self.create_err_msg("HTTPError", str(e)))
+
+        except (
+            URLError,
+            JSONDecodeError,
+            ValueError,
+            TypeError,
+            FileNotFoundError,
+            ConnectionError,
+            exceptions.SSLError,
+            OSError,
+            KeyError,
+            HTTPError,
+        ) as e:
+            message.update(self.create_err_msg(type(e).__name__, str(e)))
+
         except Exception as e:
             message.update(self.create_err_msg("Exception", str(e)))
 
-        if len(message) > 0:
+        if message:
             message["valid_stac"] = self.valid
             self.message.append(message)
 
         if self.log != "":
-            f = open(self.log, "w")
-            f.write(json.dumps(self.message, indent=4))
-            f.close()
+            with open(self.log, "w") as f:
+                f.write(json.dumps(self.message, indent=4))
 
-        if self.valid:
-            return True
-        else:
-            return False
+        return self.valid
