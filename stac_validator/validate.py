@@ -314,6 +314,22 @@ class StacValidate:
             self.validate_dict(item)
 
     def validate_item_collection(self):
+        """
+        Validate a STAC item collection.
+
+        Raises:
+            URLError: If there is an issue with the URL used to fetch the item collection.
+            JSONDecodeError: If the item collection content cannot be parsed as JSON.
+            ValueError: If the item collection does not conform to the STAC specification.
+            TypeError: If the item collection content is not a dictionary or JSON object.
+            FileNotFoundError: If the item collection file cannot be found.
+            ConnectionError: If there is an issue with the internet connection used to fetch the item collection.
+            exceptions.SSLError: If there is an issue with the SSL connection used to fetch the item collection.
+            OSError: If there is an issue with the file system (e.g., read/write permissions) while trying to write to the log file.
+
+        Returns:
+            None
+        """
         page = 1
         print(f"processing page {page}")
         item_collection = fetch_and_parse_file(self.stac_file)
@@ -333,10 +349,9 @@ class StacValidate:
                                 break
         except Exception as e:
             message = {}
-            message["pagination_error"] = (
-                f"Validating the item collection failed on page {page}: ",
-                str(e),
-            )
+            message[
+                "pagination_error"
+            ] = f"Validating the item collection failed on page {page}: {str(e)}"
             self.message.append(message)
 
     def run(self):
