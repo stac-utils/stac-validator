@@ -45,7 +45,7 @@
                     "$ref": "../v1.0.0/basics.json"
                 },
                 {
-                    "$ref": "datetimerange.json"
+                    "$ref": "../v1.0.0/datetime.json"
                 },
                 {
                     "$ref": "../v1.0.0/instrument.json"
