@@ -1,6 +1,5 @@
 import functools
 import json
-import os
 import ssl
 from urllib.parse import urlparse
 from urllib.request import urlopen
@@ -15,8 +14,6 @@ NEW_VERSIONS = [
     "1.0.0-rc.4",
     "1.0.0",
 ]
-
-_pathlib = os.path
 
 
 def is_url(url: str):
@@ -51,7 +48,6 @@ def get_stac_type(stac_content) -> str:
 
 
 def fetch_and_parse_file(input_path) -> dict:
-    data = None
     if is_valid_url(input_path):
         resp = requests.get(input_path)
         data = resp.json()
