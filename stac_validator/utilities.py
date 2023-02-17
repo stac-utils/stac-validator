@@ -100,6 +100,25 @@ def fetch_and_parse_file(input_path) -> dict:
 
 @functools.lru_cache(maxsize=48)
 def fetch_and_parse_schema(input_path) -> dict:
+    """
+    Fetches and parses a JSON schema file from a URL or local file using a cache.
+
+    Given a URL or local file path to a JSON schema file, this function fetches the file
+    and parses its contents into a dictionary. If the input path is a valid URL, the
+    function uses the requests library to download the file, otherwise it opens the
+    local file with the json library. Additionally, this function caches the results of
+    previous function calls to reduce the number of times the file is fetched and parsed.
+
+    Args:
+        input_path: A string representing the URL or local file path to the JSON schema file.
+
+    Returns:
+        A dictionary containing the parsed contents of the JSON schema file.
+
+    Raises:
+        ValueError: If the input is not a valid URL or local file path.
+        requests.exceptions.RequestException: If there is an error while downloading the file.
+    """
     return fetch_and_parse_file(input_path)
 
 
