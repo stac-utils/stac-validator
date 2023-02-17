@@ -124,6 +124,19 @@ class StacValidate:
         return initial_message
 
     def extensions_validator(self, stac_type: str) -> dict:
+        """
+        Validate the STAC extensions according to their corresponding JSON schemas.
+
+        Args:
+            stac_type (str): The STAC object type ("ITEM" or "COLLECTION").
+
+        Returns:
+            dict: A dictionary containing validation results.
+
+        Raises:
+            JSONSchemaValidationError: If there is a validation error in the JSON schema.
+            Exception: If there is an error in the STAC extension validation process.
+        """
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
         valid = True
