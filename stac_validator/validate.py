@@ -217,6 +217,23 @@ class StacValidate:
         return message
 
     def recursive_validator(self, stac_type: str) -> bool:
+        """Recursively validate a STAC JSON document against its JSON Schema.
+
+        This method validates a STAC JSON document recursively against its JSON Schema by following its "child" and "item" links.
+        It uses the `default_validator` and `fetch_and_parse_file` functions to validate the current STAC document and retrieve the
+        next one to be validated, respectively.
+
+        Args:
+            self: An instance of the STACValidator class.
+            stac_type: A string representing the STAC object type to validate.
+
+        Returns:
+            A boolean indicating whether the validation was successful.
+
+        Raises:
+            jsonschema.exceptions.ValidationError: If the STAC document does not validate against its JSON Schema.
+
+        """
         if self.skip_val is False:
             self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
@@ -239,13 +256,13 @@ class StacValidate:
 
             message["valid_stac"] = True
             self.message.append(message)
-            if self.verbose is True:
+            if self.verbose:
                 click.echo(json.dumps(message, indent=4))
-            self.depth = self.depth + 1
-            if self.max_depth:
-                if self.depth >= self.max_depth:
-                    self.skip_val = True
+            self.depth += 1
+            if self.max_depth and self.depth >= self.max_depth:
+                self.skip_val = True
             base_url = self.stac_file
+
             for link in self.stac_content["links"]:
                 if link["rel"] == "child" or link["rel"] == "item":
                     address = link["href"]
