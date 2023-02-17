@@ -6,8 +6,6 @@ from urllib.request import urlopen
 
 import requests  # type: ignore
 
-# from requests.exceptions import RequestException
-
 NEW_VERSIONS = [
     "1.0.0-beta.2",
     "1.0.0-rc.1",
@@ -117,6 +115,18 @@ def link_request(
     link,
     initial_message,
 ):
+    """
+    Makes a request to a URL and appends it to the relevant field of the initial message.
+
+    Args:
+        link: A dictionary containing a "href" key which is a string representing a URL.
+        initial_message: A dictionary containing lists for "request_valid", "request_invalid",
+        "format_valid", and "format_invalid" URLs.
+
+    Returns:
+        None
+
+    """
     if is_url(link["href"]):
         try:
             if "s3" in link["href"]:
