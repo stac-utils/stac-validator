@@ -6,6 +6,8 @@ from urllib.request import urlopen
 
 import requests  # type: ignore
 
+# from requests.exceptions import RequestException
+
 NEW_VERSIONS = [
     "1.0.0-beta.2",
     "1.0.0-rc.1",
@@ -25,11 +27,15 @@ def is_url(url: str):
 
 
 def is_valid_url(url: str) -> bool:
-    result = urlparse(url)
-    if result.scheme in ("http", "https"):
-        return True
-    else:
-        return False
+    """Checks if a given string is a valid URL.
+
+    Args:
+        url: A string to check for validity as a URL.
+
+    Returns:
+        A boolean value indicating whether the input string is a valid URL.
+    """
+    return urlparse(url).scheme in ["http", "https"]
 
 
 def get_stac_type(stac_content) -> str:
