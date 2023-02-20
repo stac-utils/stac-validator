@@ -173,7 +173,7 @@ class StacValidate:
         self.valid = valid
         return message
 
-    def custom_validator(self):
+    def custom_validator(self) -> None:
         """Validates a STAC JSON file against a JSON schema, which may be located
         either online or locally.
 
@@ -184,6 +184,9 @@ class StacValidate:
         JSON file against the resolved schema. If the schema is specified as a
         relative path, the function resolves the path relative to the STAC JSON file
         being validated and uses the resolved schema to validate the STAC JSON file.
+
+        Returns:
+            None
         """
         # if schema is hosted online
         if is_valid_url(self.schema):
@@ -205,7 +208,7 @@ class StacValidate:
             schema = fetch_and_parse_schema(self.schema)
             jsonschema.validate(self.stac_content, schema)
 
-    def core_validator(self, stac_type: str):
+    def core_validator(self, stac_type: str) -> None:
         """Validate the STAC item or collection against the appropriate JSON schema.
 
         Args:
@@ -351,7 +354,7 @@ class StacValidate:
                         self.message.append(message)
         return True
 
-    def validate_dict(self, stac_content):
+    def validate_dict(self, stac_content) -> dict:
         """Validate the contents of a dictionary representing a STAC object.
 
         Args:
@@ -363,7 +366,7 @@ class StacValidate:
         self.stac_content = stac_content
         return self.run()
 
-    def validate_item_collection_dict(self, item_collection: dict):
+    def validate_item_collection_dict(self, item_collection: dict) -> None:
         """Validate the contents of an item collection.
 
         Args:
@@ -376,7 +379,7 @@ class StacValidate:
             self.schema = ""
             self.validate_dict(item)
 
-    def validate_item_collection(self):
+    def validate_item_collection(self) -> None:
         """Validate a STAC item collection.
 
         Raises:
@@ -416,7 +419,7 @@ class StacValidate:
             ] = f"Validating the item collection failed on page {page}: {str(e)}"
             self.message.append(message)
 
-    def run(self):
+    def run(self) -> bool:
         """Runs the STAC validation process based on the input parameters.
 
         Returns:
