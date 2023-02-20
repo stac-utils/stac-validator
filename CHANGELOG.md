@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Core item and collection schemas to the project so that they don't have to be requested online https://github.com/stac-utils/stac-validator/pull/224
+- Docstrings https://github.com/stac-utils/stac-validator/pull/224
+
 ## [v3.3.1] - 2022-12-16
 
 ### Fixed
