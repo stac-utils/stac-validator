@@ -224,8 +224,8 @@ class StacValidate:
             jsonschema.validate(self.stac_content, schema, resolver=resolver)
         # deal with a relative path in the schema
         else:
-            file_directory = os.path.dirname(os.path.abspath(self.stac_file))
-            self.schema = os.path.join(file_directory, self.schema)
+            file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))
+            self.schema = os.path.join(str(file_directory), self.schema)
             self.schema = os.path.abspath(os.path.realpath(self.schema))
             schema = fetch_and_parse_schema(self.schema)
             jsonschema.validate(self.stac_content, schema)
@@ -348,7 +348,7 @@ class StacValidate:
                         self.stac_file = st + "/" + address
                     else:
                         self.stac_file = address
-                    self.stac_content = fetch_and_parse_file(self.stac_file)
+                    self.stac_content = fetch_and_parse_file(str(self.stac_file))
                     self.stac_content["stac_version"] = self.version
                     stac_type = get_stac_type(self.stac_content).lower()
 
@@ -376,14 +376,14 @@ class StacValidate:
                         self.message.append(message)
         return True
 
-    def validate_dict(self, stac_content) -> dict:
+    def validate_dict(self, stac_content) -> bool:
         """Validate the contents of a dictionary representing a STAC object.
 
         Args:
             stac_content (dict): The dictionary representation of the STAC object to validate.
 
         Returns:
-            A dictionary containing the validation results.
+            A bool indicating if validation was successfull.
         """
         self.stac_content = stac_content
         return self.run()
@@ -419,7 +419,7 @@ class StacValidate:
         """
         page = 1
         print(f"processing page {page}")
-        item_collection = fetch_and_parse_file(self.stac_file)
+        item_collection = fetch_and_parse_file(str(self.stac_file))
         self.validate_item_collection_dict(item_collection)
         try:
             if self.pages is not None:
@@ -431,7 +431,9 @@ class StacValidate:
                                 print(f"processing page {page}")
                                 next_link = link["href"]
                                 self.stac_file = next_link
-                                item_collection = fetch_and_parse_file(self.stac_file)
+                                item_collection = fetch_and_parse_file(
+                                    str(self.stac_file)
+                                )
                                 self.validate_item_collection_dict(item_collection)
                                 break
         except Exception as e:
