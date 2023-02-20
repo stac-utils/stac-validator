@@ -363,7 +363,7 @@ class StacValidate:
         self.stac_content = stac_content
         return self.run()
 
-    def validate_item_collection_dict(self, item_collection):
+    def validate_item_collection_dict(self, item_collection: dict):
         """Validate the contents of an item collection.
 
         Args:

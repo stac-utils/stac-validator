@@ -1,5 +1,6 @@
 import json
 import sys
+from typing import Any, Dict, List
 
 import click  # type: ignore
 import pkg_resources
@@ -7,7 +8,16 @@ import pkg_resources
 from .validate import StacValidate
 
 
-def print_update_message(version):
+def print_update_message(version: str) -> None:
+    """Prints an update message for `stac-validator` based on the version of the
+    STAC file being validated.
+
+    Args:
+        version (str): The version of the STAC file being validated.
+
+    Returns:
+        None
+    """
     click.secho()
     if version != "1.0.0":
         click.secho(
@@ -18,7 +28,15 @@ def print_update_message(version):
     click.secho()
 
 
-def item_collection_summary(message):
+def item_collection_summary(message: List[Dict[str, Any]]) -> None:
+    """Prints a summary of the validation results for an item collection response.
+
+    Args:
+        message (List[Dict[str, Any]]): The validation results for the item collection.
+
+    Returns:
+        None
+    """
     valid_count = 0
     for item in message:
         if "valid_stac" in item and item["valid_stac"] is True:
@@ -85,21 +103,46 @@ def item_collection_summary(message):
 )
 @click.version_option(version=pkg_resources.require("stac-validator")[0].version)
 def main(
-    stac_file,
-    item_collection,
-    pages,
-    recursive,
-    max_depth,
-    core,
-    extensions,
-    links,
-    assets,
-    custom,
-    verbose,
-    no_output,
-    log_file,
-):
+    stac_file: str,
+    item_collection: bool,
+    pages: int,
+    recursive: bool,
+    max_depth: int,
+    core: bool,
+    extensions: bool,
+    links: bool,
+    assets: bool,
+    custom: str,
+    verbose: bool,
+    no_output: bool,
+    log_file: str,
+) -> None:
+    """Main function for the `stac-validator` command line tool. Validates a STAC file
+    against the STAC specification and prints the validation results to the console
+    as JSON.
 
+    Args:
+        stac_file (str): Path to the STAC file to be validated.
+        item_collection (bool): Whether to validate item collection responses.
+        pages (int): Maximum number of pages to validate via `item_collection`.
+        recursive (bool): Whether to recursively validate all related STAC objects.
+        max_depth (int): Maximum depth to traverse when recursing.
+        core (bool): Whether to validate core STAC objects only.
+        extensions (bool): Whether to validate extensions only.
+        links (bool): Whether to additionally validate links. Only works with default mode.
+        assets (bool): Whether to additionally validate assets. Only works with default mode.
+        custom (str): Path to a custom schema file to validate against.
+        verbose (bool): Whether to enable verbose output for recursive mode.
+        no_output (bool): Whether to print output to console.
+        log_file (str): Path to a log file to save full recursive output.
+
+    Returns:
+        None
+
+    Raises:
+        SystemExit: Exits the program with a status code of 0 if the STAC file is valid,
+            or 1 if it is invalid.
+    """
     valid = True
     stac = StacValidate(
         stac_file=stac_file,
