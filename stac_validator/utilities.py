@@ -16,7 +16,7 @@ NEW_VERSIONS = [
 ]
 
 
-def is_url(url: str):
+def is_url(url: str) -> bool:
     """Checks whether the input string is a valid URL.
 
     Args:
@@ -44,7 +44,7 @@ def is_valid_url(url: str) -> bool:
     return urlparse(url).scheme in ["http", "https"]
 
 
-def get_stac_type(stac_content) -> str:
+def get_stac_type(stac_content: dict) -> str:
     """Determine the type of a STAC resource.
 
     Given a dictionary representing a STAC resource, this function determines the
@@ -74,7 +74,7 @@ def get_stac_type(stac_content) -> str:
         return str(e)
 
 
-def fetch_and_parse_file(input_path) -> dict:
+def fetch_and_parse_file(input_path: str) -> dict:
     """Fetches and parses a JSON file from a URL or local file.
 
     Given a URL or local file path to a JSON file, this function fetches the file,
@@ -107,7 +107,7 @@ def fetch_and_parse_file(input_path) -> dict:
 
 
 @functools.lru_cache(maxsize=48)
-def fetch_and_parse_schema(input_path) -> dict:
+def fetch_and_parse_schema(input_path: str) -> dict:
     """Fetches and parses a JSON schema file from a URL or local file using a cache.
 
     Given a URL or local file path to a JSON schema file, this function fetches the file
@@ -129,8 +129,17 @@ def fetch_and_parse_schema(input_path) -> dict:
     return fetch_and_parse_file(input_path)
 
 
-# validate new versions at schemas.stacspec.org
-def set_schema_addr(version, stac_type: str):
+def set_schema_addr(version: str, stac_type: str) -> str:
+    """Set the URL address for the JSON schema to be used for validating the STAC object.
+    Validate new versions at schemas.stacspec.org
+
+    Args:
+        version (str): The version number of the STAC object.
+        stac_type (str): The type of the STAC object (e.g. "item", "collection").
+
+    Returns:
+        str: The URL address for the JSON schema.
+    """
     if version in NEW_VERSIONS:
         return f"https://schemas.stacspec.org/v{version}/{stac_type}-spec/json-schema/{stac_type}.json"
     else:
@@ -138,9 +147,9 @@ def set_schema_addr(version, stac_type: str):
 
 
 def link_request(
-    link,
-    initial_message,
-):
+    link: dict,
+    initial_message: dict,
+) -> None:
     """Makes a request to a URL and appends it to the relevant field of the initial message.
 
     Args:
