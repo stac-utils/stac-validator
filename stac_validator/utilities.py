@@ -17,6 +17,15 @@ NEW_VERSIONS = [
 
 
 def is_url(url: str):
+    """
+    Checks whether the input string is a valid URL.
+
+    Args:
+        url (str): The string to check.
+
+    Returns:
+        bool: True if the input string is a valid URL, False otherwise.
+    """
     try:
         result = urlparse(url)
         return all([result.scheme, result.netloc])

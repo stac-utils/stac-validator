@@ -177,6 +177,18 @@ class StacValidate:
         return message
 
     def custom_validator(self):
+        """
+        Validates a STAC JSON file against a JSON schema, which may be located
+        either online or locally.
+
+        The function checks whether the provided schema URL is valid and can be
+        fetched and parsed. If the schema is hosted online, the function uses the
+        fetched schema to validate the STAC JSON file. If the schema is local, the
+        function resolves any references in the schema and then validates the STAC
+        JSON file against the resolved schema. If the schema is specified as a
+        relative path, the function resolves the path relative to the STAC JSON file
+        being validated and uses the resolved schema to validate the STAC JSON file.
+        """
         # if schema is hosted online
         if is_valid_url(self.schema):
             schema = fetch_and_parse_schema(self.schema)
@@ -198,6 +210,24 @@ class StacValidate:
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
+        """
+        Validate the STAC item or collection against the appropriate JSON schema.
+
+        Parameters:
+            stac_type (str): The type of STAC object being validated (either "item" or "collection").
+
+        Returns:
+            None
+
+        Raises:
+            ValidationError: If the STAC object fails to validate against the JSON schema.
+
+        The function first determines the appropriate JSON schema to use based on the STAC object's type and version.
+        If the version is one of the specified versions (0.8.0, 0.9.0, 1.0.0, 1.0.0-beta.1, 1.0.0-beta.2, or 1.0.0-rc.2),
+        it uses the corresponding schema stored locally. Otherwise, it retrieves the schema from the appropriate URL
+        using the `set_schema_addr` function. The function then calls the `custom_validator` method to validate the
+        STAC object against the schema.
+        """
         stac_type = stac_type.lower()
         if stac_type in ["item", "collection"] and self.version in [
             "0.8.0",
