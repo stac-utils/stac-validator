@@ -20,6 +20,28 @@ from .utilities import (
 
 
 class StacValidate:
+    """
+    Class that validates STAC objects.
+
+    Attributes:
+        stac_file (str): The path or URL to the STAC object to be validated.
+        item_collection (bool): Whether the STAC object to be validated is an item collection.
+        pages (int): The maximum number of pages to validate if `item_collection` is True.
+        recursive (bool): Whether to recursively validate related STAC objects.
+        max_depth (int): The maximum depth to traverse when recursively validating related STAC objects.
+        core (bool): Whether to only validate the core STAC object (without extensions).
+        links (bool): Whether to additionally validate links (only works in default mode).
+        assets (bool): Whether to additionally validate assets (only works in default mode).
+        extensions (bool): Whether to only validate STAC object extensions.
+        custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
+        verbose (bool): Whether to enable verbose output in recursive mode.
+        log (str): The local filepath to save the output of the recursive validation to.
+
+    Methods:
+        run(): Validates the STAC object and returns whether it is valid.
+        validate_item_collection(): Validates an item collection.
+    """
+
     def __init__(
         self,
         stac_file: Optional[str] = None,
