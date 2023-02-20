@@ -88,8 +88,7 @@ class StacValidate:
         }
 
     def assets_validator(self) -> dict:
-        """
-        Validate assets.
+        """Validate assets.
 
         Returns:
             A dictionary containing the asset validation results.
@@ -102,8 +101,7 @@ class StacValidate:
         return initial_message
 
     def links_validator(self) -> dict:
-        """
-        Validate links.
+        """Validate links.
 
         Returns:
             A dictionary containing the link validation results.
@@ -124,8 +122,7 @@ class StacValidate:
         return initial_message
 
     def extensions_validator(self, stac_type: str) -> dict:
-        """
-        Validate the STAC extensions according to their corresponding JSON schemas.
+        """Validate the STAC extensions according to their corresponding JSON schemas.
 
         Args:
             stac_type (str): The STAC object type ("ITEM" or "COLLECTION").
@@ -177,8 +174,7 @@ class StacValidate:
         return message
 
     def custom_validator(self):
-        """
-        Validates a STAC JSON file against a JSON schema, which may be located
+        """Validates a STAC JSON file against a JSON schema, which may be located
         either online or locally.
 
         The function checks whether the provided schema URL is valid and can be
@@ -210,10 +206,9 @@ class StacValidate:
             jsonschema.validate(self.stac_content, schema)
 
     def core_validator(self, stac_type: str):
-        """
-        Validate the STAC item or collection against the appropriate JSON schema.
+        """Validate the STAC item or collection against the appropriate JSON schema.
 
-        Parameters:
+        Args:
             stac_type (str): The type of STAC object being validated (either "item" or "collection").
 
         Returns:
@@ -243,6 +238,15 @@ class StacValidate:
         self.custom_validator()
 
     def default_validator(self, stac_type: str) -> dict:
+        """Validate the STAC catalog or item against the core schema and its extensions.
+
+        Args:
+            stac_type (str): The type of STAC object being validated. Must be either "catalog" or "item".
+
+        Returns:
+            A dictionary containing the results of the default validation, including whether the STAC object is valid,
+            any validation errors encountered, and any links and assets that were validated.
+        """
         message = self.create_message(stac_type, "default")
         message["schema"] = []
         self.core_validator(stac_type)
@@ -348,17 +352,32 @@ class StacValidate:
         return True
 
     def validate_dict(self, stac_content):
+        """Validate the contents of a dictionary representing a STAC object.
+
+        Args:
+            stac_content (dict): The dictionary representation of the STAC object to validate.
+
+        Returns:
+            A dictionary containing the validation results.
+        """
         self.stac_content = stac_content
         return self.run()
 
     def validate_item_collection_dict(self, item_collection):
+        """Validate the contents of an item collection.
+
+        Args:
+            item_collection (dict): The dictionary representation of the item collection to validate.
+
+        Returns:
+            None
+        """
         for item in item_collection["features"]:
             self.schema = ""
             self.validate_dict(item)
 
     def validate_item_collection(self):
-        """
-        Validate a STAC item collection.
+        """Validate a STAC item collection.
 
         Raises:
             URLError: If there is an issue with the URL used to fetch the item collection.
