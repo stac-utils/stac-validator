@@ -110,7 +110,7 @@ def test_recursive_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/items/sample.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -121,7 +121,7 @@ def test_recursive_local_v090():
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/extension/eo.json",
                 "https://cdn.staclint.com/v0.9.0/extension/view.json",
-                "https://cdn.staclint.com/v0.9.0/item.json",
+                "stac_validator/schemas/v0.9.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "recursive",
@@ -234,9 +234,7 @@ def test_recursion_collection_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/./simple-item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0-rc.2/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -244,9 +242,7 @@ def test_recursion_collection_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/./core-item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0-rc.2/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -260,7 +256,7 @@ def test_recursion_collection_local_v1rc2():
                 "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
+                "stac_validator/schemas/v1.0.0-rc.2/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "recursive",
@@ -287,9 +283,7 @@ def test_recursion_collection_local_2_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0-rc.2/item.json"],
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
@@ -323,9 +317,7 @@ def test_recursion_with_bad_item():
         {
             "version": "1.0.0",
             "path": "tests/test_data/v100/./bad-item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0/item.json"],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property of the root of the STAC object",
@@ -344,9 +336,7 @@ def test_recursion_with_missing_collection_link():
             "asset_type": "ITEM",
             "version": "1.0.0",
             "path": "tests/test_data/v100/item-without-collection-link.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0/item.json"],
             "valid_stac": False,
             "validation_method": "recursive",
             "error_type": "JSONSchemaValidationError",

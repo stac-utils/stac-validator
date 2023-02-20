@@ -16,7 +16,7 @@ def test_core_item_local_v080():
             "path": "tests/test_data/v080/items/sample-full.json",
             "asset_type": "ITEM",
             "validation_method": "core",
-            "schema": ["https://cdn.staclint.com/v0.8.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.8.0/item.json"],
             "valid_stac": True,
         }
     ]
@@ -30,7 +30,7 @@ def test_core_collection_remote_v090():
         {
             "version": "0.9.0",
             "path": "https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/collection.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/collection.json"],
             "asset_type": "COLLECTION",
             "validation_method": "core",
             "valid_stac": True,
@@ -46,7 +46,7 @@ def test_core_item_local_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/items/good_item_v090.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "core",
             "valid_stac": True,
@@ -62,7 +62,7 @@ def test_core_item_local_extensions_v090():
         {
             "version": "0.9.0",
             "path": "tests/test_data/v090/items/CBERS_4.json",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/item.json"],
             "asset_type": "ITEM",
             "validation_method": "core",
             "valid_stac": True,
@@ -80,7 +80,7 @@ def test_core_bad_item_local_v090():
             "path": "tests/test_data/bad_data/bad_item_v090.json",
             "asset_type": "ITEM",
             "validation_method": "core",
-            "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
+            "schema": ["stac_validator/schemas/v0.9.0/item.json"],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property of the root of the STAC object",
@@ -96,7 +96,7 @@ def test_core_v1beta1():
         {
             "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
+            "schema": ["stac_validator/schemas/v1.0.0-beta.1/collection.json"],
             "asset_type": "COLLECTION",
             "validation_method": "core",
             "valid_stac": True,
@@ -112,9 +112,7 @@ def test_core_item_local_v1beta2():
         {
             "version": "1.0.0-beta.2",
             "path": "tests/test_data/1beta2/stac_item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0-beta.2/item.json"],
             "asset_type": "ITEM",
             "validation_method": "core",
             "valid_stac": True,
@@ -166,9 +164,7 @@ def test_core_item_local_v100():
         {
             "version": "1.0.0",
             "path": "tests/test_data/v100/extended-item.json",
-            "schema": [
-                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-            ],
+            "schema": ["stac_validator/schemas/v1.0.0/item.json"],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "core",

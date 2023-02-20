@@ -1,0 +1,214 @@
+{
+    "$id": "item.json#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": true,
+    "allOf": [
+        {
+            "$ref": "#/definitions/core"
+        }
+    ],
+    "definitions": {
+        "asset": {
+            "properties": {
+                "href": {
+                    "title": "Asset reference",
+                    "type": "string"
+                },
+                "title": {
+                    "title": "Asset title",
+                    "type": "string"
+                },
+                "type": {
+                    "title": "Asset type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "href"
+            ],
+            "type": "object"
+        },
+        "core": {
+            "allOf": [
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "https://geojson.org/schema/Feature.json"
+                        }
+                    ]
+                },
+                {
+                    "properties": {
+                        "assets": {
+                            "additionalProperties": false,
+                            "description": "Links to assets",
+                            "patternProperties": {
+                                ".+": {
+                                    "$ref": "#/definitions/asset"
+                                }
+                            },
+                            "title": "Asset links",
+                            "type": "object"
+                        },
+                        "collection": {
+                            "description": "The ID of the STAC Collection this Item references to.",
+                            "title": "Collection ID",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Provider item ID",
+                            "title": "Provider ID",
+                            "type": "string"
+                        },
+                        "links": {
+                            "description": "Links to item relations",
+                            "items": {
+                                "$ref": "#/definitions/link"
+                            },
+                            "title": "Item links",
+                            "type": "array"
+                        },
+                        "properties": {
+                            "properties": {
+                                "created": {
+                                    "format": "date-time",
+                                    "title": "Metadata updated at",
+                                    "type": "string"
+                                },
+                                "datetime": {
+                                    "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
+                                    "format": "date-time",
+                                    "title": "Date and Time",
+                                    "type": "string"
+                                },
+                                "license": {
+                                    "title": "Item Licenses",
+                                    "type": "string"
+                                },
+                                "providers": {
+                                    "items": {
+                                        "properties": {
+                                            "description": {
+                                                "title": "Provider description",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "title": "Organization name",
+                                                "type": "string"
+                                            },
+                                            "roles": {
+                                                "items": {
+                                                    "enum": [
+                                                        "producer",
+                                                        "licensor",
+                                                        "processor",
+                                                        "host"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "title": "Organization roles",
+                                                "type": "array"
+                                            },
+                                            "url": {
+                                                "format": "url",
+                                                "title": "Homepage",
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "array"
+                                },
+                                "title": {
+                                    "description": "A human-readable title describing the item.",
+                                    "title": "Item Title",
+                                    "type": "string"
+                                },
+                                "updated": {
+                                    "format": "date-time",
+                                    "title": "Metadata updated at",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "datetime"
+                            ],
+                            "type": "object"
+                        },
+                        "stac_extensions": {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "format": "uri",
+                                        "title": "Reference to a JSON Schema",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "enum": [
+                                            "checksum",
+                                            "cube",
+                                            "datetime-range",
+                                            "eo",
+                                            "label",
+                                            "pointcloud",
+                                            "sar",
+                                            "scientific"
+                                        ],
+                                        "title": "Reference to a core extension",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "title": "STAC extensions",
+                            "type": "array",
+                            "uniqueItems": true
+                        },
+                        "stac_version": {
+                            "const": "0.8.0",
+                            "title": "STAC version",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "stac_version",
+                        "id",
+                        "type",
+                        "geometry",
+                        "links",
+                        "assets",
+                        "bbox",
+                        "properties"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "link": {
+            "properties": {
+                "href": {
+                    "title": "Link reference",
+                    "type": "string"
+                },
+                "rel": {
+                    "title": "Link relation type",
+                    "type": "string"
+                },
+                "title": {
+                    "title": "Link title",
+                    "type": "string"
+                },
+                "type": {
+                    "title": "Link type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "rel",
+                "href"
+            ],
+            "type": "object"
+        }
+    },
+    "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
+    "title": "STAC Item",
+    "type": "object"
+}
