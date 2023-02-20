@@ -17,8 +17,7 @@ NEW_VERSIONS = [
 
 
 def is_url(url: str):
-    """
-    Checks whether the input string is a valid URL.
+    """Checks whether the input string is a valid URL.
 
     Args:
         url (str): The string to check.
@@ -109,8 +108,7 @@ def fetch_and_parse_file(input_path) -> dict:
 
 @functools.lru_cache(maxsize=48)
 def fetch_and_parse_schema(input_path) -> dict:
-    """
-    Fetches and parses a JSON schema file from a URL or local file using a cache.
+    """Fetches and parses a JSON schema file from a URL or local file using a cache.
 
     Given a URL or local file path to a JSON schema file, this function fetches the file
     and parses its contents into a dictionary. If the input path is a valid URL, the
@@ -143,8 +141,7 @@ def link_request(
     link,
     initial_message,
 ):
-    """
-    Makes a request to a URL and appends it to the relevant field of the initial message.
+    """Makes a request to a URL and appends it to the relevant field of the initial message.
 
     Args:
         link: A dictionary containing a "href" key which is a string representing a URL.
