@@ -16,7 +16,7 @@ def test_poorly_formatted_v090():
             "path": "tests/test_data/v090/items/CBERS_4_bad_links.json",
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/extension/view.json",
-                "stac_validator/schemas/v0.9.0/item.json",
+                "https://cdn.staclint.com/v0.9.0/item.json",
             ],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
@@ -55,7 +55,7 @@ def test_item_v100():
                 "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
-                "stac_validator/schemas/v1.0.0/item.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
