@@ -1,5 +1,5 @@
 ``stac-validator`` documentation
-###########################
+################################
 
 ``stac-validator`` is a library and cli tool for validating `SpatioTemporal Asset Catalogs (STAC) <https://stacspec.org/>`_ assets. It is written in Python and can be used to validate STAC Items, STAC Collections, and STAC Catalogs.      
 
@@ -13,7 +13,7 @@ Installation
    $ pip install stac-validator      
 
 CLI Usage
------
+---------
 
 ``stac-validator`` can be used as a library or as a command line tool.
 
@@ -75,8 +75,8 @@ It can be used with local or remotely-hosted STAC objects as well as STAC object
 The library will return a list of validation errors if the STAC object is valid.
 
 Examples
-~~~~~~~
-  
+~~~~~~~~
+
 ``python dictionary``
 
 .. code-block:: bash
@@ -99,6 +99,15 @@ Examples
 
 
 Versions supported
-~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
+``stac-validator`` supports the following versions of the STAC specification:
 
 ``[0.8.0, 0.8.1, 0.9.0, 1.0.0-beta.1, 1.0.0-beta.2, 1.0.0-rc.1, 1.0.0-rc.2, 1.0.0-rc.3, 1.0.0-rc.4, 1.0.0]``
+
+.. toctree::
+   :maxdepth: 1
+   
+   cli
+   utilities
+   validator
