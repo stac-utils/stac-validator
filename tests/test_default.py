@@ -32,7 +32,7 @@ def test_default_item_local_v080():
             "path": "tests/test_data/v080/items/sample-full.json",
             "schema": [
                 "https://cdn.staclint.com/v0.8.0/extension/eo.json",
-                "stac_validator/schemas/v0.8.0/item.json",
+                "https://cdn.staclint.com/v0.8.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
@@ -52,7 +52,7 @@ def test_default_v090():
             "schema": [
                 "https://cdn.staclint.com/v0.9.0/extension/eo.json",
                 "https://cdn.staclint.com/v0.9.0/extension/view.json",
-                "stac_validator/schemas/v0.9.0/item.json",
+                "https://cdn.staclint.com/v0.9.0/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
@@ -71,7 +71,7 @@ def test_default_v1beta1():
             "asset_type": "COLLECTION",
             "version": "1.0.0-beta.1",
             "validation_method": "default",
-            "schema": ["stac_validator/schemas/v1.0.0-beta.1/collection.json"],
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "valid_stac": True,
         }
     ]
@@ -89,7 +89,7 @@ def test_default_proj_v1b2():
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
                 "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "stac_validator/schemas/v1.0.0-beta.2/item.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",
@@ -109,7 +109,7 @@ def test_default_simple_v1rc2():
             "version": "1.0.0-rc.2",
             "validation_method": "default",
             "schema": [
-                "stac_validator/schemas/v1.0.0-rc.2/item.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
         }
@@ -130,7 +130,7 @@ def test_default_extended_v1rc2():
                 "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/view/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
-                "stac_validator/schemas/v1.0.0-rc.2/item.json",
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",

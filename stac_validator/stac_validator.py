@@ -118,8 +118,7 @@ def main(
     log_file: str,
 ) -> None:
     """Main function for the `stac-validator` command line tool. Validates a STAC file
-    against the STAC specification and prints the validation results to the console
-    as JSON.
+    against the STAC specification and prints the validation results to the console as JSON.
 
     Args:
         stac_file (str): Path to the STAC file to be validated.

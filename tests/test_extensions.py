@@ -50,7 +50,7 @@ def test_v1beta1():
             "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
             "schema": [
-                "stac_validator/schemas/v1.0.0-beta.1/collection.json",
+                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
             ],
             "asset_type": "COLLECTION",
             "validation_method": "extensions",

@@ -249,17 +249,7 @@ class StacValidate:
         STAC object against the schema.
         """
         stac_type = stac_type.lower()
-        if stac_type in ["item", "collection"] and self.version in [
-            "0.8.0",
-            "0.9.0",
-            "1.0.0",
-            "1.0.0-beta.1",
-            "1.0.0-beta.2",
-            "1.0.0-rc.2",
-        ]:
-            self.schema = f"stac_validator/schemas/v{self.version}/{stac_type}.json"
-        else:
-            self.schema = set_schema_addr(self.version, stac_type)
+        self.schema = set_schema_addr(self.version, stac_type)
         self.custom_validator()
 
     def default_validator(self, stac_type: str) -> dict:
