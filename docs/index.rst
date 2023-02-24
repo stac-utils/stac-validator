@@ -3,7 +3,7 @@
 
 ``stac-validator`` is a library and cli tool for validating `SpatioTemporal Asset Catalogs (STAC) <https://stacspec.org/>`_. It is written in Python and can be used to validate STAC Items, Collections, and Catalogs.  
 
-``stac-validator`` was first developed by `Sparkgeo <https://sparkgeo.com/>`_. It later received support from the `Radiant Earth Foundation <https://radiant.earth/>`_ as part of the work done for `stac-check <https://sparkgeo.com/>`_, which uses the ``stac-validator`` library and adds linting functionality. The ``stac-validator`` CLI tool offers more validation options compared to stac-check. Recent development on ``stac-validator`` has been supported by `Sparkgeo <https://sparkgeo.com/>`_ as well as other open-source contributors. 
+``stac-validator`` was first developed by `Sparkgeo <https://sparkgeo.com/>`_. It later received support from the `Radiant Earth Foundation <https://radiant.earth/>`_ as part of the work done for `stac-check <https://github.com/stac-utils/stac-check/>`_, which uses the ``stac-validator`` library and adds linting functionality. The ``stac-validator`` CLI tool offers more validation options compared to stac-check. Recent development on ``stac-validator`` has been supported by `Sparkgeo <https://sparkgeo.com/>`_ as well as other open-source contributors. 
 
 Installation
 ------------
