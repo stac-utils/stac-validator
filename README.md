@@ -1,5 +1,9 @@
 # SpatioTemporal Asset Catalog (STAC) Validator
 
+## Documentation
+
+[read the docs](https://stac-validator.readthedocs.io/en/latest/)
+
 
 ## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).   
     
