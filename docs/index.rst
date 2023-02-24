@@ -27,7 +27,7 @@ CLI Usage
 
    The `stac-validator` command line tool. Validates a STAC
    file against the STAC specification and prints the validation results to the
-   console as JSON.
+   console.
 
    Args:
       stac_file (str): Path to the STAC file to be validated.
