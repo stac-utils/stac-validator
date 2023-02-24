@@ -74,7 +74,7 @@ Library
 
 ``stac-validator`` can be used as a library to validate STAC Items, Collections, and Catalogs. 
 It can be used with local or remotely-hosted STAC objects as well as STAC objects represented as a Python dictionary. 
-The library will return a list of validation errors if the STAC object is valid.
+The library will return a list of validation errors if the STAC object is invalid.
 
 Examples
 ~~~~~~~~
