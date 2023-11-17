@@ -6,7 +6,7 @@ from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
 import jsonschema  # type: ignore
-from jsonschema import RefResolver
+from jsonschema.validators import validator_for
 from requests import exceptions  # type: ignore
 
 from .utilities import (
@@ -216,12 +216,13 @@ class StacValidate:
             jsonschema.validate(self.stac_content, schema)
         # in case the path to a json schema is local
         elif os.path.exists(self.schema):
-            schema = fetch_and_parse_schema(self.schema)
-            custom_abspath = os.path.abspath(self.schema)
-            custom_dir = os.path.dirname(custom_abspath).replace("\\", "/")
-            custom_uri = f"file:///{custom_dir}/"
-            resolver = RefResolver(custom_uri, self.schema)
-            jsonschema.validate(self.stac_content, schema, resolver=resolver)
+            schema_dict = fetch_and_parse_schema(self.schema)
+            # determine the appropriate validator class for the schema
+            ValidatorClass = validator_for(schema_dict)
+            validator = ValidatorClass(schema_dict)
+            # validate the content
+            validator.validate(self.stac_content)
+
         # deal with a relative path in the schema
         else:
             file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))

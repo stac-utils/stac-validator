@@ -2,3 +2,4 @@ black
 pytest
 pytest-mypy
 pre-commit
+types-jsonschema

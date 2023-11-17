@@ -55,11 +55,12 @@ Installation from Repo
 pip install .
 ```
 
-or (for development)
+or for local development
 
 ```bash
-pip install --editable .["test"]
+pip install -e '.[dev]'
 ```
+
 
 The [Makefile](./Makefile) has convenience commands if Make is installed.
 
