@@ -7,10 +7,6 @@ __version__ = "3.3.1"
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-extra_reqs = {
-    "test": ["pytest"],
-}
-
 setup(
     name="stac_validator",
     version=__version__,
@@ -29,17 +25,21 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/stac-utils/stac-validator",
-    download_url="https://github.com/stac-utils/stac-validator/archive/v2.5.0.tar.gz",
     install_requires=[
         "requests>=2.19.1",
         "jsonschema>=3.2.0",
         "click>=8.0.0",
-        "types-setuptools",
     ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "types-setuptools",
+        ],
+    },
     packages=["stac_validator"],
     entry_points={
         "console_scripts": ["stac-validator = stac_validator.stac_validator:main"]
     },
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     tests_require=["pytest"],
 )
