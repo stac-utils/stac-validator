@@ -17,11 +17,11 @@ setup(
     author="James Banting, Jonathan Healy",
     author_email="jhealy@sparkgeo.com",
     description="A package to validate STAC files",
-    license="MIT",
+    license="Apache-2.0",
     classifiers=[
         "Intended Audience :: Information Technology",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: GIS",
     ],
