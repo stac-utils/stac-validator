@@ -10,12 +10,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
-- Docstrings https://github.com/stac-utils/stac-validator/pull/224
+- Docstrings ([#224](https://github.com/stac-utils/stac-validator/pull/224))
 
 ### Changed 
 
 - Development dependencies removed from runtime dependency list
   ([#228](https://github.com/stac-utils/stac-check/pull/109))
+- Remove jsonschema RefResolver ([#228](https://github.com/stac-utils/stac-check/pull/109))
 
 ## [v3.3.1] - 2022-12-16
 
