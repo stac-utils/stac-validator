@@ -3,7 +3,6 @@ import sys
 from typing import Any, Dict, List
 
 import click  # type: ignore
-import pkg_resources
 
 from .validate import StacValidate
 
@@ -101,7 +100,6 @@ def item_collection_summary(message: List[Dict[str, Any]]) -> None:
     default="",
     help="Save full recursive output to log file (local filepath).",
 )
-@click.version_option(version=pkg_resources.require("stac-validator")[0].version)
 def main(
     stac_file: str,
     item_collection: bool,
