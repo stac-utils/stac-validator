@@ -3,6 +3,8 @@ Description: Test the default which validates core and extensions
 
 """
 
+import pytest
+
 from stac_validator import stac_validator
 
 
@@ -22,6 +24,7 @@ def test_default_v070():
     ]
 
 
+@pytest.mark.skip(reason="staclint eo extension schema invalid")
 def test_default_item_local_v080():
     stac_file = "tests/test_data/v080/items/sample-full.json"
     stac = stac_validator.StacValidate(stac_file)
