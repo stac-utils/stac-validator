@@ -4,6 +4,8 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+from typing import List
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -30,7 +32,7 @@ release = "3.3.1"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions: List[str] = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
