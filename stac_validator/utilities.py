@@ -1,6 +1,7 @@
 import functools
 import json
 import ssl
+from typing import Dict
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
@@ -44,7 +45,7 @@ def is_valid_url(url: str) -> bool:
     return urlparse(url).scheme in ["http", "https"]
 
 
-def get_stac_type(stac_content: dict) -> str:
+def get_stac_type(stac_content: Dict) -> str:
     """Determine the type of a STAC resource.
 
     Given a dictionary representing a STAC resource, this function determines the
@@ -74,7 +75,7 @@ def get_stac_type(stac_content: dict) -> str:
         return str(e)
 
 
-def fetch_and_parse_file(input_path: str) -> dict:
+def fetch_and_parse_file(input_path: str) -> Dict:
     """Fetches and parses a JSON file from a URL or local file.
 
     Given a URL or local file path to a JSON file, this function fetches the file,
@@ -107,7 +108,7 @@ def fetch_and_parse_file(input_path: str) -> dict:
 
 
 @functools.lru_cache(maxsize=48)
-def fetch_and_parse_schema(input_path: str) -> dict:
+def fetch_and_parse_schema(input_path: str) -> Dict:
     """Fetches and parses a JSON schema file from a URL or local file using a cache.
 
     Given a URL or local file path to a JSON schema file, this function fetches the file
@@ -147,8 +148,8 @@ def set_schema_addr(version: str, stac_type: str) -> str:
 
 
 def link_request(
-    link: dict,
-    initial_message: dict,
+    link: Dict,
+    initial_message: Dict,
 ) -> None:
     """Makes a request to a URL and appends it to the relevant field of the initial message.
 

@@ -6,6 +6,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+
+- Added mypy to pre-commit config ([#229](https://github.com/stac-utils/stac-validator/pull/224))
+
 ## [v3.3.2] - 2023-11-17
 
 ### Added

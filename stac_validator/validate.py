@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Optional
+from typing import Dict, Optional
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -68,7 +68,7 @@ class StacValidate:
         self.max_depth = max_depth
         self.extensions = extensions
         self.core = core
-        self.stac_content: dict = {}
+        self.stac_content: Dict = {}
         self.version = ""
         self.depth: int = 0
         self.skip_val = False
@@ -76,7 +76,7 @@ class StacValidate:
         self.valid = False
         self.log = log
 
-    def create_err_msg(self, err_type: str, err_msg: str) -> dict:
+    def create_err_msg(self, err_type: str, err_msg: str) -> Dict:
         self.valid = False
         return {
             "version": self.version,
@@ -99,7 +99,7 @@ class StacValidate:
             "request_invalid": request_invalid,
         }
 
-    def create_message(self, stac_type: str, val_type: str) -> dict:
+    def create_message(self, stac_type: str, val_type: str) -> Dict:
         return {
             "version": self.version,
             "path": self.stac_file,
@@ -109,7 +109,7 @@ class StacValidate:
             "validation_method": val_type,
         }
 
-    def assets_validator(self) -> dict:
+    def assets_validator(self) -> Dict:
         """Validate assets.
 
         Returns:
@@ -122,7 +122,7 @@ class StacValidate:
                 link_request(asset, initial_message)
         return initial_message
 
-    def links_validator(self) -> dict:
+    def links_validator(self) -> Dict:
         """Validate links.
 
         Returns:
@@ -143,7 +143,7 @@ class StacValidate:
 
         return initial_message
 
-    def extensions_validator(self, stac_type: str) -> dict:
+    def extensions_validator(self, stac_type: str) -> Dict:
         """Validate the STAC extensions according to their corresponding JSON schemas.
 
         Args:
@@ -253,7 +253,7 @@ class StacValidate:
         self.schema = set_schema_addr(self.version, stac_type)
         self.custom_validator()
 
-    def default_validator(self, stac_type: str) -> dict:
+    def default_validator(self, stac_type: str) -> Dict:
         """Validate the STAC catalog or item against the core schema and its extensions.
 
         Args:
@@ -379,7 +379,7 @@ class StacValidate:
         self.stac_content = stac_content
         return self.run()
 
-    def validate_item_collection_dict(self, item_collection: dict) -> None:
+    def validate_item_collection_dict(self, item_collection: Dict) -> None:
         """Validate the contents of an item collection.
 
         Args:
