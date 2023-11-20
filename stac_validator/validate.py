@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -60,7 +60,7 @@ class StacValidate:
         self.stac_file = stac_file
         self.item_collection = item_collection
         self.pages = pages
-        self.message: list = []
+        self.message: List = []
         self.schema = custom
         self.links = links
         self.assets = assets
