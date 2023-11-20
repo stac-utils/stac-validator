@@ -32,10 +32,9 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.8+
   - Requests
   - Click
-  - Pytest
   - Jsonschema
 
 Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.  
