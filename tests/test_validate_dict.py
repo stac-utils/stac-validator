@@ -56,8 +56,7 @@ def test_correct_validate_dict_return_method():
     stac = stac_validator.StacValidate()
     with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
         good_stac = json.load(f)
-    if stac.validate_dict(good_stac) is True:
-        return True
+    assert stac.validate_dict(good_stac)
 
 
 def test_incorrect_validate_dict_return_method():
@@ -65,5 +64,4 @@ def test_incorrect_validate_dict_return_method():
     with open("tests/test_data/1rc2/extensions-collection/collection.json", "r") as f:
         good_stac = json.load(f)
         bad_stac = good_stac.pop("type", None)
-    if stac.validate_dict(bad_stac) is False:
-        return True
+    assert stac.validate_dict(bad_stac) is False
