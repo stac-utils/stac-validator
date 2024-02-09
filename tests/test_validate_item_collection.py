@@ -1,5 +1,5 @@
 """
-Description: Test the validator
+Description: Test stac-validator on item-collection validation.
 
 """
 

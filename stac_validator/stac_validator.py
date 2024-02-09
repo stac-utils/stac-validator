@@ -46,6 +46,25 @@ def item_collection_summary(message: List[Dict[str, Any]]) -> None:
     click.secho(f"valid_items: {valid_count}")
 
 
+def collections_summary(message: List[Dict[str, Any]]) -> None:
+    """Prints a summary of the validation results for an item collection response.
+
+    Args:
+        message (List[Dict[str, Any]]): The validation results for the item collection.
+
+    Returns:
+        None
+    """
+    valid_count = 0
+    for collection in message:
+        if "valid_stac" in collection and collection["valid_stac"] is True:
+            valid_count = valid_count + 1
+    click.secho()
+    click.secho("--collections summary", bold=True)
+    click.secho(f"collections_validated: {len(message)}")
+    click.secho(f"valid_collections: {valid_count}")
+
+
 @click.command()
 @click.argument("stac_file")
 @click.option(
@@ -81,6 +100,11 @@ def item_collection_summary(message: List[Dict[str, Any]]) -> None:
     help="Maximum depth to traverse when recursing. Omit this argument to get full recursion. Ignored if `recursive == False`.",
 )
 @click.option(
+    "--collections",
+    is_flag=True,
+    help="Validate /collections response.",
+)
+@click.option(
     "--item-collection",
     is_flag=True,
     help="Validate item collection response. Can be combined with --pages. Defaults to one page.",
@@ -102,6 +126,7 @@ def item_collection_summary(message: List[Dict[str, Any]]) -> None:
 )
 def main(
     stac_file: str,
+    collections: bool,
     item_collection: bool,
     pages: int,
     recursive: bool,
@@ -120,6 +145,7 @@ def main(
 
     Args:
         stac_file (str): Path to the STAC file to be validated.
+        collections (bool): Validate response from /collections endpoint.
         item_collection (bool): Whether to validate item collection responses.
         pages (int): Maximum number of pages to validate via `item_collection`.
         recursive (bool): Whether to recursively validate all related STAC objects.
@@ -143,6 +169,7 @@ def main(
     valid = True
     stac = StacValidate(
         stac_file=stac_file,
+        collections=collections,
         item_collection=item_collection,
         pages=pages,
         recursive=recursive,
@@ -155,8 +182,10 @@ def main(
         verbose=verbose,
         log=log_file,
     )
-    if not item_collection:
+    if not item_collection and not collections:
         valid = stac.run()
+    elif collections:
+        stac.validate_collections()
     else:
         stac.validate_item_collection()
 
@@ -169,6 +198,8 @@ def main(
 
     if item_collection:
         item_collection_summary(message)
+    elif collections:
+        collections_summary(message)
 
     sys.exit(0 if valid else 1)
 
