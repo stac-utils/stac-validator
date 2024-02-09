@@ -3,7 +3,6 @@ Description: Test stac-validator on item-collection validation.
 
 """
 
-
 from stac_validator import stac_validator
 
 

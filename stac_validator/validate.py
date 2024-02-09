@@ -453,9 +453,9 @@ class StacValidate:
                                 break
         except Exception as e:
             message = {}
-            message[
-                "pagination_error"
-            ] = f"Validating the item collection failed on page {page}: {str(e)}"
+            message["pagination_error"] = (
+                f"Validating the item collection failed on page {page}: {str(e)}"
+            )
             self.message.append(message)
 
     def run(self) -> bool:
