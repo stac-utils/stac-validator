@@ -25,6 +25,7 @@ class StacValidate:
 
     Attributes:
         stac_file (str): The path or URL to the STAC object to be validated.
+        collections (bool): Validate response from a /collections endpoint.
         item_collection (bool): Whether the STAC object to be validated is an item collection.
         pages (int): The maximum number of pages to validate if `item_collection` is True.
         recursive (bool): Whether to recursively validate related STAC objects.
@@ -45,6 +46,7 @@ class StacValidate:
     def __init__(
         self,
         stac_file: Optional[str] = None,
+        collections: bool = False,
         item_collection: bool = False,
         pages: Optional[int] = None,
         recursive: bool = False,
@@ -58,6 +60,7 @@ class StacValidate:
         log: str = "",
     ):
         self.stac_file = stac_file
+        self.collections = collections
         self.item_collection = item_collection
         self.pages = pages
         self.message: List = []
@@ -392,6 +395,27 @@ class StacValidate:
             self.schema = ""
             self.validate_dict(item)
 
+    def validate_collections(self) -> None:
+        """ "Validate STAC collections from a /collections endpoint.
+
+        Raises:
+            URLError: If there is an issue with the URL used to fetch the item collection.
+            JSONDecodeError: If the item collection content cannot be parsed as JSON.
+            ValueError: If the item collection does not conform to the STAC specification.
+            TypeError: If the item collection content is not a dictionary or JSON object.
+            FileNotFoundError: If the item collection file cannot be found.
+            ConnectionError: If there is an issue with the internet connection used to fetch the item collection.
+            exceptions.SSLError: If there is an issue with the SSL connection used to fetch the item collection.
+            OSError: If there is an issue with the file system (e.g., read/write permissions) while trying to write to the log file.
+
+        Returns:
+            None
+        """
+        collections = fetch_and_parse_file(str(self.stac_file))
+        for collection in collections["collections"]:
+            self.schema = ""
+            self.validate_dict(collection)
+
     def validate_item_collection(self) -> None:
         """Validate a STAC item collection.
 
@@ -429,9 +453,9 @@ class StacValidate:
                                 break
         except Exception as e:
             message = {}
-            message[
-                "pagination_error"
-            ] = f"Validating the item collection failed on page {page}: {str(e)}"
+            message["pagination_error"] = (
+                f"Validating the item collection failed on page {page}: {str(e)}"
+            )
             self.message.append(message)
 
     def run(self) -> bool:
@@ -457,7 +481,11 @@ class StacValidate:
         """
         message = {}
         try:
-            if self.stac_file is not None and not self.item_collection:
+            if (
+                self.stac_file is not None
+                and not self.item_collection
+                and not self.collections
+            ):
                 self.stac_content = fetch_and_parse_file(self.stac_file)
 
             stac_type = get_stac_type(self.stac_content).upper()

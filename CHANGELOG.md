@@ -8,6 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+- Added ability to validate response from a /collections endpoint [#220](https://github.com/stac-utils/stac-validator/issues/220)
 - Added mypy to pre-commit config ([#229](https://github.com/stac-utils/stac-validator/pull/224))
 
 ## [v3.3.2] - 2023-11-17
