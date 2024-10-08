@@ -6,10 +6,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v3.4.0] - 2024-10-08
+
 ### Added
 
 - Added ability to validate response from a /collections endpoint [#220](https://github.com/stac-utils/stac-validator/issues/220)
 - Added mypy to pre-commit config ([#229](https://github.com/stac-utils/stac-validator/pull/224))
+- Support for stac spec version 1.1.0 [#235](https://github.com/stac-utils/stac-validator/pull/235)
 
 ## [v3.3.2] - 2023-11-17
 
@@ -204,7 +207,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.3.2..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.4.0..main
+[v3.4.0]: https://github.com/sparkgeo/stac-validator/compare/v3.3.2..v3.4.0
 [v3.3.2]: https://github.com/sparkgeo/stac-validator/compare/v3.3.1..v3.3.2
 [v3.3.1]: https://github.com/sparkgeo/stac-validator/compare/v3.3.0..v3.3.1
 [v3.3.0]: https://github.com/sparkgeo/stac-validator/compare/v3.2.0..v3.3.0
