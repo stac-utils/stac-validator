@@ -23,7 +23,7 @@ def print_update_message(version: str) -> None:
             f"Please upgrade from version {version} to version 1.1.0!", fg="red"
         )
     else:
-        click.secho("Thanks for using STAC version 1.0.0!", fg="green")
+        click.secho("Thanks for using STAC version 1.1.0!", fg="green")
     click.secho()
 
 
