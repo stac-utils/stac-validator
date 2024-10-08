@@ -174,3 +174,37 @@ def test_core_item_local_v100():
             "validation_method": "core",
         }
     ]
+
+def test_core_collection_local_v110():
+    stac_file = "tests/test_data/v110/collection.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.1.0",
+            "path": "tests/test_data/v110/collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.1.0/collection-spec/json-schema/collection.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "COLLECTION",
+            "validation_method": "core",
+        }
+    ]
+
+def test_core_item_local_v110():
+    stac_file = "tests/test_data/v110/simple-item.json"
+    stac = stac_validator.StacValidate(stac_file, core=True)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.1.0",
+            "path": "tests/test_data/v110/simple-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "core",
+        }
+    ]
