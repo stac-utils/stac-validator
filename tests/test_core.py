@@ -175,6 +175,7 @@ def test_core_item_local_v100():
         }
     ]
 
+
 def test_core_collection_local_v110():
     stac_file = "tests/test_data/v110/collection.json"
     stac = stac_validator.StacValidate(stac_file, core=True)
@@ -191,6 +192,7 @@ def test_core_collection_local_v110():
             "validation_method": "core",
         }
     ]
+
 
 def test_core_item_local_v110():
     stac_file = "tests/test_data/v110/simple-item.json"
