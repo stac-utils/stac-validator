@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "3.3.2"
+__version__ = "3.4.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -11,7 +11,7 @@ setup(
     name="stac_validator",
     version=__version__,
     author="James Banting, Jonathan Healy",
-    author_email="jhealy@sparkgeo.com",
+    author_email="jonathan.d.healy@gmail.com",
     description="A package to validate STAC files",
     license="Apache-2.0",
     classifiers=[

@@ -6,10 +6,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v3.4.0] - 2024-10-08
+
 ### Added
 
 - Added ability to validate response from a /collections endpoint [#220](https://github.com/stac-utils/stac-validator/issues/220)
 - Added mypy to pre-commit config ([#229](https://github.com/stac-utils/stac-validator/pull/224))
+- Support for stac spec version 1.1.0 [#235](https://github.com/stac-utils/stac-validator/pull/235)
 
 ## [v3.3.2] - 2023-11-17
 
@@ -17,7 +20,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Docstrings ([#224](https://github.com/stac-utils/stac-validator/pull/224))
 
-### Changed 
+### Changed
 
 - Development dependencies removed from runtime dependency list
   ([#228](https://github.com/stac-utils/stac-check/pull/109))
@@ -38,13 +41,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [v3.2.0] - 2022-09-20
 
-### Added  
-  
+### Added
+
 - Added ability to check local schemas in item extensions https://github.com/stac-utils/stac-validator/pull/215
 - Added an example on validating a dictionary https://github.com/stac-utils/stac-validator/pull/215
 
 ### Changed
-  
+
 - Changed 'ValidationError' error type to 'JSONSchemaValidationError' https://github.com/stac-utils/stac-validator/pull/213
 
 ## [v3.1.0] - 2022-04-28
@@ -83,32 +86,38 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - References to Python 3.6
 
 ## [v2.5.0] - 2022-03-10
+
 ### Changed
 
 - Split the `--recursive` option into a `--recursive` flag and a `--max-depth` option
 - Renamed the entry point from `stac_validator` to `stac-validator`
 
 ## [v2.4.3] - 2022-03-10
+
 ### Changed
 
- - Add schema caching
+- Add schema caching
 
 ## [v2.4.2] - 2022-03-02
+
 ### Changed
 
- - Loosen pystac version dependency
+- Loosen pystac version dependency
 
 ## [v2.4.1] - 2022-03-02
+
 ### Changed
 
- - Loosen stac-check version dependency
+- Loosen stac-check version dependency
 
 ## [v2.4.0] - 2022-02-02
+
 ### Added
 
- - Linting option in cli to display stac-check generated information
+- Linting option in cli to display stac-check generated information
 
 ## [v2.3.0] - 2021-08-31 - 2021-11-28
+
 ### Added
 
 - Added --links option to validate links on format and a valid response
@@ -125,6 +134,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Moved backend to validate.py
 
 ## [v2.2.0] - 2021-05-25
+
 ### Added
 
 - Added Support for STAC 1.0.0
@@ -133,17 +143,18 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
-- Moved std out to cli so that it doesn't display in pure python applications 
-- Added Pypi badges to readme 
-  
+- Moved std out to cli so that it doesn't display in pure python applications
+- Added Pypi badges to readme
+
 ## [v2.1.0] - 2021-05-06
+
 ### Added
 
 - Added more tests for STAC 1.0.0-rc.3
 - Added basic support for rc.4
 - Add system exit code to CLI. see #144
 
-### Changed 
+### Changed
 
 - Modified how Lambda CDK is built
 
@@ -160,7 +171,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
-- Pystac is now only being used to identify stac objects. Jsonschema is being used for all other validation.  
+- Pystac is now only being used to identify stac objects. Jsonschema is being used for all other validation.
 - The cli library was changed from Docopt to Click.
 - Custom validation was updated to allow for local schemas.
 
@@ -196,24 +207,25 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: <https://github.com/sparkgeo/stac-validator/compare/v3.3.2..main>
-[v3.3.2]: <https://github.com/sparkgeo/stac-validator/compare/v3.3.1..v3.3.2>
-[v3.3.1]: <https://github.com/sparkgeo/stac-validator/compare/v3.3.0..v3.3.1>
-[v3.3.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.2.0..v3.3.0>
-[v3.2.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.1.0..v3.2.0>
-[v3.1.0]: <https://github.com/sparkgeo/stac-validator/compare/v3.0.0..v3.1.0>
-[v3.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.5.0..v3.0.0>
-[v2.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.3..v2.5.0>
-[v2.4.3]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
-[v2.4.2]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.1..v2.4.2>
-[v2.4.1]: <https://github.com/sparkgeo/stac-validator/compare/v2.4.0..v2.4.1>
-[v2.4.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0>
-[v2.3.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.2.0..v2.3.0>
-[v2.2.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.1.0..v2.2.0>
-[v2.1.0]: <https://github.com/sparkgeo/stac-validator/compare/v2.0.0..v2.1.0>
-[v2.0.0]: <https://github.com/sparkgeo/stac-validator/compare/v1.0.1..v2.0.0>
-[v1.0.1]: <https://github.com/sparkgeo/stac-validator/compare/v0.5.0..v1.0.1>
-[v0.5.0]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.3..v0.5.0>
-[v0.1.3]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.1..v0.1.3>
-[v0.1.1]: <https://github.com/sparkgeo/stac-validator/compare/v0.1.0..v0.1.1>
-[v0.1.0]: <https://github.com/sparkgeo/stac-validator/releases/tag/v0.1.0>
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.4.0..main
+[v3.4.0]: https://github.com/sparkgeo/stac-validator/compare/v3.3.2..v3.4.0
+[v3.3.2]: https://github.com/sparkgeo/stac-validator/compare/v3.3.1..v3.3.2
+[v3.3.1]: https://github.com/sparkgeo/stac-validator/compare/v3.3.0..v3.3.1
+[v3.3.0]: https://github.com/sparkgeo/stac-validator/compare/v3.2.0..v3.3.0
+[v3.2.0]: https://github.com/sparkgeo/stac-validator/compare/v3.1.0..v3.2.0
+[v3.1.0]: https://github.com/sparkgeo/stac-validator/compare/v3.0.0..v3.1.0
+[v3.0.0]: https://github.com/sparkgeo/stac-validator/compare/v2.5.0..v3.0.0
+[v2.5.0]: https://github.com/sparkgeo/stac-validator/compare/v2.4.3..v2.5.0
+[v2.4.3]: https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0
+[v2.4.2]: https://github.com/sparkgeo/stac-validator/compare/v2.4.1..v2.4.2
+[v2.4.1]: https://github.com/sparkgeo/stac-validator/compare/v2.4.0..v2.4.1
+[v2.4.0]: https://github.com/sparkgeo/stac-validator/compare/v2.3.0..v2.4.0
+[v2.3.0]: https://github.com/sparkgeo/stac-validator/compare/v2.2.0..v2.3.0
+[v2.2.0]: https://github.com/sparkgeo/stac-validator/compare/v2.1.0..v2.2.0
+[v2.1.0]: https://github.com/sparkgeo/stac-validator/compare/v2.0.0..v2.1.0
+[v2.0.0]: https://github.com/sparkgeo/stac-validator/compare/v1.0.1..v2.0.0
+[v1.0.1]: https://github.com/sparkgeo/stac-validator/compare/v0.5.0..v1.0.1
+[v0.5.0]: https://github.com/sparkgeo/stac-validator/compare/v0.1.3..v0.5.0
+[v0.1.3]: https://github.com/sparkgeo/stac-validator/compare/v0.1.1..v0.1.3
+[v0.1.1]: https://github.com/sparkgeo/stac-validator/compare/v0.1.0..v0.1.1
+[v0.1.0]: https://github.com/sparkgeo/stac-validator/releases/tag/v0.1.0
