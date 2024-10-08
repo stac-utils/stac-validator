@@ -4,10 +4,7 @@
 
 [read the docs](https://stac-validator.readthedocs.io/en/latest/)
 
-
-## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).   
-    
-
+## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
 stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
@@ -60,7 +57,6 @@ or for local development
 pip install -e '.[dev]'
 ```
 
-
 The [Makefile](./Makefile) has convenience commands if Make is installed.
 
 ```bash
@@ -81,7 +77,7 @@ make help
 | 1.0.0-rc.3   |
 | 1.0.0-rc.4   |
 | 1.0.0        |
-
+| 1.1.0        |
 
 ---
 
@@ -146,7 +142,9 @@ docker run stac-validator https://raw.githubusercontent.com/stac-extensions/proj
 ```
 
 ## AWS (CDK)
+
 An example [AWS CDK](https://aws.amazon.com/cdk/) deployment is available in [cdk-deployment](./cdk-deployment/README.md)
+
 ```bash
 cd cdk-deployment
 cdk diff
@@ -201,28 +199,28 @@ print(stac.message)
 ```
 
 **Dictionary**
-  
+
 ```python
 from stac_validator import stac_validator
-  
+
 stac = stac_validator.StacValidate()
 stac.validate_dict(dictionary)
 print(stac.message)
 ```
 
 **Item Collection**
-  
+
 ```python
 from stac_validator import stac_validator
-  
+
 stac = stac_validator.StacValidate()
 stac.validate_item_collection_dict(item_collection_dict)
 print(stac.message)
 ```
+
 ---
 
 # Testing
-
 
 ```bash
 make test
@@ -233,6 +231,7 @@ pytest -v
 See the [tests](./tests/test_stac_validator.py) files for examples on different usages.
 
 ---
+
 # Additional Examples
 
 **--core**
@@ -292,7 +291,7 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
     }
 ]
 ```
-   
+
 **--recursive**
 
 ```bash
@@ -324,6 +323,7 @@ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
     }
 ]
 ```
+
 **--item-collection**
 
 ```bash
