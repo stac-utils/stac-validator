@@ -6,6 +6,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+
+- Added publish.yml to automatically publish new releases to PyPI [#111](https://github.com/stac-utils/stac-validator/pull/236)
+
 ## [v3.4.0] - 2024-10-08
 
 ### Added
