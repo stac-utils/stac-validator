@@ -33,6 +33,7 @@ class StacValidate:
         core (bool): Whether to only validate the core STAC object (without extensions).
         links (bool): Whether to additionally validate links (only works in default mode).
         assets (bool): Whether to additionally validate assets (only works in default mode).
+        assets_open_urls (bool): Whether to open assets URLs when validating assets.
         extensions (bool): Whether to only validate STAC object extensions.
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
         verbose (bool): Whether to enable verbose output in recursive mode.
@@ -54,6 +55,7 @@ class StacValidate:
         core: bool = False,
         links: bool = False,
         assets: bool = False,
+        assets_open_urls: bool = True,
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
@@ -67,6 +69,7 @@ class StacValidate:
         self.schema = custom
         self.links = links
         self.assets = assets
+        self.assets_open_urls = assets_open_urls
         self.recursive = recursive
         self.max_depth = max_depth
         self.extensions = extensions
@@ -122,7 +125,7 @@ class StacValidate:
         assets = self.stac_content.get("assets")
         if assets:
             for asset in assets.values():
-                link_request(asset, initial_message)
+                link_request(asset, initial_message, self.assets_open_urls)
         return initial_message
 
     def links_validator(self) -> Dict:

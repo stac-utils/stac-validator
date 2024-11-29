@@ -1,5 +1,5 @@
 """
-Description: Test --links option
+Description: Test --assets option
 
 """
 
@@ -73,6 +73,33 @@ def test_assets_v100():
                     "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.tif",
                     "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.jpg",
                 ],
+            },
+        }
+    ]
+
+
+def test_assets_v100_no_links():
+    stac_file = "tests/test_data/v100/simple-item.json"
+    stac = stac_validator.StacValidate(stac_file, assets=True, assets_open_urls=False)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/simple-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+            "assets_validated": {
+                "format_valid": [
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.tif",
+                    "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_test.jpg",
+                ],
+                "format_invalid": [],
+                "request_valid": [],
+                "request_invalid": [],
             },
         }
     ]
