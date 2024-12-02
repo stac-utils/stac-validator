@@ -33,6 +33,7 @@ setup(
     extras_require={
         "dev": [
             "pytest",
+            "requests-mock",
             "types-setuptools",
         ],
     },
@@ -41,5 +42,5 @@ setup(
         "console_scripts": ["stac-validator = stac_validator.stac_validator:main"]
     },
     python_requires=">=3.8",
-    tests_require=["pytest"],
+    tests_require=["pytest", "requests-mock"],
 )

@@ -108,6 +108,8 @@ Options:
                            with --pages. Defaults to one page.
   --no-assets-urls         Disables the opening of href links when validating
                            assets (enabled by default).
+  --header KEY VALUE       HTTP header to include in the requests. Can be used
+                           multiple times.
   -p, --pages INTEGER      Maximum number of pages to validate via --item-
                            collection. Defaults to one page.
   -v, --verbose            Enables verbose output for recursive mode.
@@ -331,4 +333,10 @@ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
 
 ```bash
 stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item-collection --pages 2
+```
+
+**--header**
+
+```bash
+stac-validator https://stac-catalog.eu/collections/sentinel-s2-l2a/items --header x-api-key $MY_API_KEY --header foo bar
 ```

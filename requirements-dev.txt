@@ -2,4 +2,5 @@ black
 pytest
 pytest-mypy
 pre-commit
+requests-mock
 types-jsonschema
