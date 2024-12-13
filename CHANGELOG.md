@@ -10,6 +10,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Added publish.yml to automatically publish new releases to PyPI [#236](https://github.com/stac-utils/stac-validator/pull/236)
 - Configure whether to open URLs when validating assets [#238](https://github.com/stac-utils/stac-validator/pull/238)
+- Allow to provide HTTP headers [#239](https://github.com/stac-utils/stac-validator/pull/239)
 
 ## [v3.4.0] - 2024-10-08
 

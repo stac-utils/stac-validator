@@ -3,7 +3,7 @@ import json
 import ssl
 from typing import Dict
 from urllib.parse import urlparse
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 import requests  # type: ignore
 
@@ -77,7 +77,7 @@ def get_stac_type(stac_content: Dict) -> str:
         return str(e)
 
 
-def fetch_and_parse_file(input_path: str) -> Dict:
+def fetch_and_parse_file(input_path: str, headers: Dict = {}) -> Dict:
     """Fetches and parses a JSON file from a URL or local file.
 
     Given a URL or local file path to a JSON file, this function fetches the file,
@@ -87,6 +87,7 @@ def fetch_and_parse_file(input_path: str) -> Dict:
 
     Args:
         input_path: A string representing the URL or local file path to the JSON file.
+        headers: For URLs: HTTP headers to include in the request
 
     Returns:
         A dictionary containing the parsed contents of the JSON file.
@@ -97,7 +98,7 @@ def fetch_and_parse_file(input_path: str) -> Dict:
     """
     try:
         if is_url(input_path):
-            resp = requests.get(input_path)
+            resp = requests.get(input_path, headers=headers)
             resp.raise_for_status()
             data = resp.json()
         else:
@@ -150,9 +151,7 @@ def set_schema_addr(version: str, stac_type: str) -> str:
 
 
 def link_request(
-    link: Dict,
-    initial_message: Dict,
-    open_urls: bool = True,
+    link: Dict, initial_message: Dict, open_urls: bool = True, headers: Dict = {}
 ) -> None:
     """Makes a request to a URL and appends it to the relevant field of the initial message.
 
@@ -161,6 +160,7 @@ def link_request(
         initial_message: A dictionary containing lists for "request_valid", "request_invalid",
         "format_valid", and "format_invalid" URLs.
         open_urls: Whether to open link href URL
+        headers: HTTP headers to include in the request
 
     Returns:
         None
@@ -169,11 +169,12 @@ def link_request(
     if is_url(link["href"]):
         try:
             if open_urls:
+                request = Request(link["href"], headers=headers)
                 if "s3" in link["href"]:
                     context = ssl._create_unverified_context()
-                    response = urlopen(link["href"], context=context)
+                    response = urlopen(request, context=context)
                 else:
-                    response = urlopen(link["href"])
+                    response = urlopen(request)
                 status_code = response.getcode()
                 if status_code == 200:
                     initial_message["request_valid"].append(link["href"])

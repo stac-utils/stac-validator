@@ -34,6 +34,7 @@ class StacValidate:
         links (bool): Whether to additionally validate links (only works in default mode).
         assets (bool): Whether to additionally validate assets (only works in default mode).
         assets_open_urls (bool): Whether to open assets URLs when validating assets.
+        headers (dict): HTTP headers to include in the requests.
         extensions (bool): Whether to only validate STAC object extensions.
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
         verbose (bool): Whether to enable verbose output in recursive mode.
@@ -56,6 +57,7 @@ class StacValidate:
         links: bool = False,
         assets: bool = False,
         assets_open_urls: bool = True,
+        headers: dict = {},
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
@@ -70,6 +72,7 @@ class StacValidate:
         self.links = links
         self.assets = assets
         self.assets_open_urls = assets_open_urls
+        self.headers: Dict = headers
         self.recursive = recursive
         self.max_depth = max_depth
         self.extensions = extensions
@@ -125,7 +128,9 @@ class StacValidate:
         assets = self.stac_content.get("assets")
         if assets:
             for asset in assets.values():
-                link_request(asset, initial_message, self.assets_open_urls)
+                link_request(
+                    asset, initial_message, self.assets_open_urls, self.headers
+                )
         return initial_message
 
     def links_validator(self) -> Dict:
@@ -145,7 +150,7 @@ class StacValidate:
         for link in self.stac_content["links"]:
             if not is_valid_url(link["href"]):
                 link["href"] = root_url + link["href"][1:]
-            link_request(link, initial_message)
+            link_request(link, initial_message, True, self.headers)
 
         return initial_message
 
@@ -345,7 +350,9 @@ class StacValidate:
                         self.stac_file = st + "/" + address
                     else:
                         self.stac_file = address
-                    self.stac_content = fetch_and_parse_file(str(self.stac_file))
+                    self.stac_content = fetch_and_parse_file(
+                        str(self.stac_file), self.headers
+                    )
                     self.stac_content["stac_version"] = self.version
                     stac_type = get_stac_type(self.stac_content).lower()
 
@@ -414,7 +421,7 @@ class StacValidate:
         Returns:
             None
         """
-        collections = fetch_and_parse_file(str(self.stac_file))
+        collections = fetch_and_parse_file(str(self.stac_file), self.headers)
         for collection in collections["collections"]:
             self.schema = ""
             self.validate_dict(collection)
@@ -437,7 +444,7 @@ class StacValidate:
         """
         page = 1
         print(f"processing page {page}")
-        item_collection = fetch_and_parse_file(str(self.stac_file))
+        item_collection = fetch_and_parse_file(str(self.stac_file), self.headers)
         self.validate_item_collection_dict(item_collection)
         try:
             if self.pages is not None:
@@ -450,7 +457,7 @@ class StacValidate:
                                 next_link = link["href"]
                                 self.stac_file = next_link
                                 item_collection = fetch_and_parse_file(
-                                    str(self.stac_file)
+                                    str(self.stac_file), self.headers
                                 )
                                 self.validate_item_collection_dict(item_collection)
                                 break
@@ -489,7 +496,7 @@ class StacValidate:
                 and not self.item_collection
                 and not self.collections
             ):
-                self.stac_content = fetch_and_parse_file(self.stac_file)
+                self.stac_content = fetch_and_parse_file(self.stac_file, self.headers)
 
             stac_type = get_stac_type(self.stac_content).upper()
             self.version = self.stac_content["stac_version"]

@@ -4,5 +4,5 @@ COPY . /code/
 RUN export LC_ALL=C.UTF-8 && \
     export LANG=C.UTF-8 && \
     pip3 install . && \
-    pip3 install tox==4.0.11 && \
+    pip3 install tox==4.23.2 && \
     tox

@@ -115,6 +115,12 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     help="Disables the opening of href links when validating assets (enabled by default).",
 )
 @click.option(
+    "--header",
+    type=(str, str),
+    multiple=True,
+    help="HTTP header to include in the requests. Can be used multiple times.",
+)
+@click.option(
     "--pages",
     "-p",
     type=int,
@@ -134,6 +140,7 @@ def main(
     collections: bool,
     item_collection: bool,
     no_assets_urls: bool,
+    header: list,
     pages: int,
     recursive: bool,
     max_depth: int,
@@ -154,6 +161,7 @@ def main(
         collections (bool): Validate response from /collections endpoint.
         item_collection (bool): Whether to validate item collection responses.
         no_assets_urls (bool): Whether to open href links when validating assets (enabled by default).
+        headers (dict): HTTP headers to include in the requests.
         pages (int): Maximum number of pages to validate via `item_collection`.
         recursive (bool): Whether to recursively validate all related STAC objects.
         max_depth (int): Maximum depth to traverse when recursing.
@@ -185,6 +193,7 @@ def main(
         links=links,
         assets=assets,
         assets_open_urls=not no_assets_urls,
+        headers=dict(header),
         extensions=extensions,
         custom=custom,
         verbose=verbose,
