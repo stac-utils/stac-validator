@@ -152,6 +152,7 @@ def set_schema_addr(version: str, stac_type: str) -> str:
 def link_request(
     link: Dict,
     initial_message: Dict,
+    open_urls: bool = True,
 ) -> None:
     """Makes a request to a URL and appends it to the relevant field of the initial message.
 
@@ -159,6 +160,7 @@ def link_request(
         link: A dictionary containing a "href" key which is a string representing a URL.
         initial_message: A dictionary containing lists for "request_valid", "request_invalid",
         "format_valid", and "format_invalid" URLs.
+        open_urls: Whether to open link href URL
 
     Returns:
         None
@@ -166,14 +168,15 @@ def link_request(
     """
     if is_url(link["href"]):
         try:
-            if "s3" in link["href"]:
-                context = ssl._create_unverified_context()
-                response = urlopen(link["href"], context=context)
-            else:
-                response = urlopen(link["href"])
-            status_code = response.getcode()
-            if status_code == 200:
-                initial_message["request_valid"].append(link["href"])
+            if open_urls:
+                if "s3" in link["href"]:
+                    context = ssl._create_unverified_context()
+                    response = urlopen(link["href"], context=context)
+                else:
+                    response = urlopen(link["href"])
+                status_code = response.getcode()
+                if status_code == 200:
+                    initial_message["request_valid"].append(link["href"])
         except Exception:
             initial_message["request_invalid"].append(link["href"])
         initial_message["format_valid"].append(link["href"])

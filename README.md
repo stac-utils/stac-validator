@@ -106,6 +106,8 @@ Options:
   --collections            Validate /collections response.
   --item-collection        Validate item collection response. Can be combined
                            with --pages. Defaults to one page.
+  --no-assets-urls         Disables the opening of href links when validating
+                           assets (enabled by default).
   -p, --pages INTEGER      Maximum number of pages to validate via --item-
                            collection. Defaults to one page.
   -v, --verbose            Enables verbose output for recursive mode.

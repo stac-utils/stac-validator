@@ -110,6 +110,11 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     help="Validate item collection response. Can be combined with --pages. Defaults to one page.",
 )
 @click.option(
+    "--no-assets-urls",
+    is_flag=True,
+    help="Disables the opening of href links when validating assets (enabled by default).",
+)
+@click.option(
     "--pages",
     "-p",
     type=int,
@@ -128,6 +133,7 @@ def main(
     stac_file: str,
     collections: bool,
     item_collection: bool,
+    no_assets_urls: bool,
     pages: int,
     recursive: bool,
     max_depth: int,
@@ -147,6 +153,7 @@ def main(
         stac_file (str): Path to the STAC file to be validated.
         collections (bool): Validate response from /collections endpoint.
         item_collection (bool): Whether to validate item collection responses.
+        no_assets_urls (bool): Whether to open href links when validating assets (enabled by default).
         pages (int): Maximum number of pages to validate via `item_collection`.
         recursive (bool): Whether to recursively validate all related STAC objects.
         max_depth (int): Maximum depth to traverse when recursing.
@@ -177,6 +184,7 @@ def main(
         core=core,
         links=links,
         assets=assets,
+        assets_open_urls=not no_assets_urls,
         extensions=extensions,
         custom=custom,
         verbose=verbose,
