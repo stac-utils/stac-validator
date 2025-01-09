@@ -6,7 +6,6 @@ from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
 import jsonschema  # type: ignore
-from jsonschema.validators import validator_for
 from requests import exceptions  # type: ignore
 
 from .utilities import (
@@ -16,6 +15,7 @@ from .utilities import (
     is_valid_url,
     link_request,
     set_schema_addr,
+    validate_with_ref_resolver,
 )
 
 
@@ -162,40 +162,42 @@ class StacValidate:
 
         Returns:
             dict: A dictionary containing validation results.
-
-        Raises:
-            JSONSchemaValidationError: If there is a validation error in the JSON schema.
-            Exception: If there is an error in the STAC extension validation process.
         """
         message = self.create_message(stac_type, "extensions")
         message["schema"] = []
         valid = True
+
         if stac_type == "ITEM":
             try:
                 if "stac_extensions" in self.stac_content:
-                    # error with the 'proj' extension not being 'projection' in older stac
+                    # Handle legacy "proj" to "projection" mapping
                     if "proj" in self.stac_content["stac_extensions"]:
                         index = self.stac_content["stac_extensions"].index("proj")
                         self.stac_content["stac_extensions"][index] = "projection"
+
                     schemas = self.stac_content["stac_extensions"]
                     for extension in schemas:
                         if not (is_valid_url(extension) or extension.endswith(".json")):
-                            # where are the extensions for 1.0.0-beta.2 on cdn.staclint.com?
                             if self.version == "1.0.0-beta.2":
                                 self.stac_content["stac_version"] = "1.0.0-beta.1"
                                 self.version = self.stac_content["stac_version"]
                             extension = f"https://cdn.staclint.com/v{self.version}/extension/{extension}.json"
                         self.schema = extension
+
+                        # Validate the schema
                         self.custom_validator()
                         message["schema"].append(extension)
+
             except jsonschema.exceptions.ValidationError as e:
                 valid = False
                 if e.absolute_path:
-                    err_msg = f"{e.message}. Error is in {' -> '.join([str(i) for i in e.absolute_path])}"
+                    # Format error message exactly as expected
+                    err_msg = f"{e.message}. Error is in {' -> '.join(map(str, e.absolute_path))}"
                 else:
                     err_msg = f"{e.message} of the root of the STAC object"
                 message = self.create_err_msg("JSONSchemaValidationError", err_msg)
                 return message
+
             except Exception as e:
                 valid = False
                 err_msg = f"{e}. Error in Extensions."
@@ -203,66 +205,50 @@ class StacValidate:
         else:
             self.core_validator(stac_type)
             message["schema"] = [self.schema]
+
         self.valid = valid
         return message
 
     def custom_validator(self) -> None:
-        """Validates a STAC JSON file against a JSON schema, which may be located
-        either online or locally.
+        """
+        Validates a STAC JSON file against a JSON schema.
 
-        The function checks whether the provided schema URL is valid and can be
-        fetched and parsed. If the schema is hosted online, the function uses the
-        fetched schema to validate the STAC JSON file. If the schema is local, the
-        function resolves any references in the schema and then validates the STAC
-        JSON file against the resolved schema. If the schema is specified as a
-        relative path, the function resolves the path relative to the STAC JSON file
-        being validated and uses the resolved schema to validate the STAC JSON file.
+        Handles three cases:
+        1. If the schema is hosted online (valid URL), fetch and validate.
+        2. If the schema is a local file, load and validate.
+        3. If the schema is a relative path, resolve it relative to the STAC file and validate.
 
         Returns:
             None
         """
-        # if schema is hosted online
         if is_valid_url(self.schema):
-            schema = fetch_and_parse_schema(self.schema)
-            jsonschema.validate(self.stac_content, schema)
-        # in case the path to a json schema is local
+            # Hosted online
+            validate_with_ref_resolver(self.schema, self.stac_content)
         elif os.path.exists(self.schema):
-            schema_dict = fetch_and_parse_schema(self.schema)
-            # determine the appropriate validator class for the schema
-            ValidatorClass = validator_for(schema_dict)
-            validator = ValidatorClass(schema_dict)
-            # validate the content
-            validator.validate(self.stac_content)
-
-        # deal with a relative path in the schema
+            # Local file
+            validate_with_ref_resolver(self.schema, self.stac_content)
         else:
+            # Relative path
             file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))
-            self.schema = os.path.join(str(file_directory), self.schema)
+            self.schema = os.path.join(file_directory, self.schema)
             self.schema = os.path.abspath(os.path.realpath(self.schema))
-            schema = fetch_and_parse_schema(self.schema)
-            jsonschema.validate(self.stac_content, schema)
+            validate_with_ref_resolver(self.schema, self.stac_content)
 
     def core_validator(self, stac_type: str) -> None:
-        """Validate the STAC item or collection against the appropriate JSON schema.
+        """
+        Validate the STAC item or collection against the appropriate JSON schema.
+
+        The schema is determined based on the STAC type and version and validated
+        against the STAC content.
 
         Args:
-            stac_type (str): The type of STAC object being validated (either "item" or "collection").
-
-        Returns:
-            None
-
-        Raises:
-            ValidationError: If the STAC object fails to validate against the JSON schema.
-
-        The function first determines the appropriate JSON schema to use based on the STAC object's type and version.
-        If the version is one of the specified versions (0.8.0, 0.9.0, 1.0.0, 1.0.0-beta.1, 1.0.0-beta.2, or 1.0.0-rc.2),
-        it uses the corresponding schema stored locally. Otherwise, it retrieves the schema from the appropriate URL
-        using the `set_schema_addr` function. The function then calls the `custom_validator` method to validate the
-        STAC object against the schema.
+            stac_type (str): The type of the STAC object (e.g., "item", "collection").
         """
         stac_type = stac_type.lower()
+        # Determine the schema address based on the version and type
         self.schema = set_schema_addr(self.version, stac_type)
-        self.custom_validator()
+        # Use the helper function for validation
+        validate_with_ref_resolver(self.schema, self.stac_content)
 
     def default_validator(self, stac_type: str) -> Dict:
         """Validate the STAC catalog or item against the core schema and its extensions.

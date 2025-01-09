@@ -26,9 +26,10 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/stac-utils/stac-validator",
     install_requires=[
-        "requests>=2.19.1",
-        "jsonschema>=3.2.0",
-        "click>=8.0.0",
+        "requests>=2.32.3",
+        "jsonschema>=4.23.0",
+        "click>=8.1.8",
+        "referencing>=0.35.1",
     ],
     extras_require={
         "dev": [
