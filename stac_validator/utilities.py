@@ -263,8 +263,8 @@ def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
             raise FileNotFoundError(f"Schema file not found: {schema_path}") from e
 
     # Set up the resource and registry for schema resolution
-    resource = Resource(contents=schema, specification=DRAFT202012)
-    registry = Registry(retrieve=cached_retrieve).with_resource(
+    resource: Resource = Resource(contents=schema, specification=DRAFT202012)
+    registry: Registry = Registry(retrieve=cached_retrieve).with_resource(
         uri=schema_path, resource=resource
     )
 
