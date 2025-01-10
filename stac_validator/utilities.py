@@ -265,7 +265,7 @@ def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
 
     # Set up the resource and registry for schema resolution
     resource: Resource = Resource(contents=schema, specification=DRAFT202012)  # type: ignore
-    registry: Registry = Registry(retrieve=cached_retrieve).with_resource( # type: ignore
+    registry: Registry = Registry(retrieve=cached_retrieve).with_resource(  # type: ignore
         uri=schema_path, resource=resource
     )  # type: ignore
 
