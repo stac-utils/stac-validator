@@ -22,7 +22,7 @@ def test_assets_v090():
             ],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
-            "error_message": "-0.00751271 is less than the minimum of 0. Error is in properties -> view:off_nadir",
+            "error_message": "-0.00751271 is less than the minimum of 0",
             "validation_method": "default",
             "assets_validated": {
                 "format_valid": [

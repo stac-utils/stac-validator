@@ -83,7 +83,7 @@ def test_core_bad_item_local_v090():
             "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
-            "error_message": "'id' is a required property of the root of the STAC object",
+            "error_message": "'id' is a required property",
         }
     ]
 

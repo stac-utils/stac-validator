@@ -1,11 +1,17 @@
 import functools
 import json
 import ssl
-from typing import Dict
+from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+import jsonschema
 import requests  # type: ignore
+from jsonschema import Draft202012Validator
+from referencing import Registry, Resource
+from referencing.jsonschema import DRAFT202012
+from referencing.retrieval import to_cached_resource
+from referencing.typing import URI
 
 NEW_VERSIONS = [
     "1.0.0-beta.2",
@@ -77,7 +83,7 @@ def get_stac_type(stac_content: Dict) -> str:
         return str(e)
 
 
-def fetch_and_parse_file(input_path: str, headers: Dict = {}) -> Dict:
+def fetch_and_parse_file(input_path: str, headers: Optional[Dict] = None) -> Dict:
     """Fetches and parses a JSON file from a URL or local file.
 
     Given a URL or local file path to a JSON file, this function fetches the file,
@@ -184,3 +190,90 @@ def link_request(
     else:
         initial_message["request_invalid"].append(link["href"])
         initial_message["format_invalid"].append(link["href"])
+
+
+def fetch_remote_schema(uri: str) -> dict:
+    """
+    Fetch a remote schema from a URI.
+
+    Args:
+        uri (str): The URI of the schema to fetch.
+
+    Returns:
+        dict: The fetched schema content as a dictionary.
+
+    Raises:
+        requests.RequestException: If the request to fetch the schema fails.
+    """
+    response = requests.get(uri)
+    response.raise_for_status()
+    return response.json()
+
+
+@to_cached_resource()  # type: ignore
+def cached_retrieve(uri: URI) -> str:
+    """
+    Retrieve and cache a remote schema.
+
+    Args:
+        uri (str): The URI of the schema.
+
+    Returns:
+        str: The raw JSON string of the schema.
+
+    Raises:
+        requests.RequestException: If the request to fetch the schema fails.
+        Exception: For any other unexpected errors.
+    """
+    try:
+        response = requests.get(uri, timeout=10)  # Set a timeout for robustness
+        response.raise_for_status()  # Raise an error for HTTP response codes >= 400
+        return response.text
+    except requests.exceptions.RequestException as e:
+        raise requests.RequestException(
+            f"Failed to fetch schema from {uri}: {str(e)}"
+        ) from e
+    except Exception as e:
+        raise Exception(
+            f"Unexpected error while retrieving schema from {uri}: {str(e)}"
+        ) from e
+
+
+def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
+    """
+    Validate a JSON document against a JSON Schema with dynamic reference resolution.
+
+    Args:
+        schema_path (str): Path or URI of the JSON Schema.
+        content (dict): JSON content to validate.
+
+    Raises:
+        jsonschema.exceptions.ValidationError: If validation fails.
+        requests.RequestException: If fetching a remote schema fails.
+        FileNotFoundError: If a local schema file is not found.
+        Exception: If any other error occurs during validation.
+    """
+    # Load the schema
+    if schema_path.startswith("http"):
+        schema = fetch_remote_schema(schema_path)
+    else:
+        try:
+            with open(schema_path, "r") as f:
+                schema = json.load(f)
+        except FileNotFoundError as e:
+            raise FileNotFoundError(f"Schema file not found: {schema_path}") from e
+
+    # Set up the resource and registry for schema resolution
+    resource: Resource = Resource(contents=schema, specification=DRAFT202012)  # type: ignore
+    registry: Registry = Registry(retrieve=cached_retrieve).with_resource(  # type: ignore
+        uri=schema_path, resource=resource
+    )  # type: ignore
+
+    # Validate the content against the schema
+    try:
+        validator = Draft202012Validator(schema, registry=registry)
+        validator.validate(content)
+    except jsonschema.exceptions.ValidationError as e:
+        raise jsonschema.exceptions.ValidationError(f"{e.message}") from e
+    except Exception as e:
+        raise Exception(f"Unexpected error during validation: {str(e)}") from e
