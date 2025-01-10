@@ -57,14 +57,12 @@ class StacValidate:
         links: bool = False,
         assets: bool = False,
         assets_open_urls: bool = True,
-        headers: dict = None,
+        headers: dict = {},
         extensions: bool = False,
         custom: str = "",
         verbose: bool = False,
         log: str = "",
     ):
-        if headers is None:
-            headers = {}
         self.stac_file = stac_file
         self.collections = collections
         self.item_collection = item_collection

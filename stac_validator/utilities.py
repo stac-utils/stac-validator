@@ -1,8 +1,7 @@
 import functools
 import json
 import ssl
-from typing import Dict
-from typing import Optional
+from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
@@ -11,8 +10,8 @@ import requests  # type: ignore
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
-from referencing.typing import URI
 from referencing.retrieval import to_cached_resource
+from referencing.typing import URI
 
 NEW_VERSIONS = [
     "1.0.0-beta.2",
@@ -211,7 +210,7 @@ def fetch_remote_schema(uri: str) -> dict:
     return response.json()
 
 
-@to_cached_resource()
+@to_cached_resource()  # type: ignore
 def cached_retrieve(uri: URI) -> str:
     """
     Retrieve and cache a remote schema.
@@ -265,10 +264,10 @@ def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
             raise FileNotFoundError(f"Schema file not found: {schema_path}") from e
 
     # Set up the resource and registry for schema resolution
-    resource: Resource = Resource(contents=schema, specification=DRAFT202012)
+    resource: Resource = Resource(contents=schema, specification=DRAFT202012)  # type: ignore
     registry: Registry = Registry(retrieve=cached_retrieve).with_resource(
         uri=schema_path, resource=resource
-    )
+    )  # type: ignore
 
     # Validate the content against the schema
     try:
