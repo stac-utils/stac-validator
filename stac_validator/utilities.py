@@ -2,6 +2,7 @@ import functools
 import json
 import ssl
 from typing import Dict
+from typing import Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
@@ -10,6 +11,7 @@ import requests  # type: ignore
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
+from referencing.typing import URI
 from referencing.retrieval import to_cached_resource
 
 NEW_VERSIONS = [
@@ -82,7 +84,7 @@ def get_stac_type(stac_content: Dict) -> str:
         return str(e)
 
 
-def fetch_and_parse_file(input_path: str, headers: Dict = {}) -> Dict:
+def fetch_and_parse_file(input_path: str, headers: Optional[Dict] = None) -> Dict:
     """Fetches and parses a JSON file from a URL or local file.
 
     Given a URL or local file path to a JSON file, this function fetches the file,
@@ -210,7 +212,7 @@ def fetch_remote_schema(uri: str) -> dict:
 
 
 @to_cached_resource()
-def cached_retrieve(uri: str) -> str:
+def cached_retrieve(uri: URI) -> str:
     """
     Retrieve and cache a remote schema.
 
