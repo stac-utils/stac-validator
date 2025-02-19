@@ -6,6 +6,7 @@ from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
 import jsonschema  # type: ignore
+from jsonschema.exceptions import best_match
 from requests import exceptions  # type: ignore
 
 from .utilities import (
@@ -253,6 +254,7 @@ class StacValidate:
                     message["schema"].append(extension)
 
         except jsonschema.exceptions.ValidationError as e:
+            e = best_match(e.context)
             valid = False
             if e.absolute_path:
                 err_msg = (
