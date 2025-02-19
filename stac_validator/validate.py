@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Iterable
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -61,6 +61,7 @@ class StacValidate:
         headers: dict = {},
         extensions: bool = False,
         custom: str = "",
+        schema_map: Optional[Dict[str, str]] = None,
         verbose: bool = False,
         log: str = "",
     ):
@@ -70,6 +71,7 @@ class StacValidate:
         self.pages = pages
         self.message: List = []
         self.schema = custom
+        self.schema_map = schema_map
         self.links = links
         self.assets = assets
         self.assets_open_urls = assets_open_urls
@@ -198,14 +200,20 @@ class StacValidate:
             None
         """
         if is_valid_url(self.schema):
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            validate_with_ref_resolver(
+                self.schema, self.stac_content, schema_map=self.schema_map
+            )
         elif os.path.exists(self.schema):
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            validate_with_ref_resolver(
+                self.schema, self.stac_content, schema_map=self.schema_map
+            )
         else:
             file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))
             self.schema = os.path.join(file_directory, self.schema)
             self.schema = os.path.abspath(os.path.realpath(self.schema))
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            validate_with_ref_resolver(
+                self.schema, self.stac_content, schema_map=self.schema_map
+            )
 
     def core_validator(self, stac_type: str) -> None:
         """
@@ -216,7 +224,9 @@ class StacValidate:
         """
         stac_type = stac_type.lower()
         self.schema = set_schema_addr(self.version, stac_type)
-        validate_with_ref_resolver(self.schema, self.stac_content)
+        validate_with_ref_resolver(
+            self.schema, self.stac_content, schema_map=self.schema_map
+        )
 
     def extensions_validator(self, stac_type: str) -> Dict:
         """
@@ -254,7 +264,7 @@ class StacValidate:
                     message["schema"].append(extension)
 
         except jsonschema.exceptions.ValidationError as e:
-            e = best_match(e.context)
+            e = best_match(e.context) # type: ignore
             valid = False
             if e.absolute_path:
                 err_msg = (

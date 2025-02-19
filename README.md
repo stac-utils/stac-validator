@@ -91,33 +91,35 @@ stac-validator --help
 Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
-  --core                   Validate core stac object only without extensions.
-  --extensions             Validate extensions only.
-  --links                  Additionally validate links. Only works with
-                           default mode.
-  --assets                 Additionally validate assets. Only works with
-                           default mode.
-  -c, --custom TEXT        Validate against a custom schema (local filepath or
-                           remote schema).
-  -r, --recursive          Recursively validate all related stac objects.
-  -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Omit this
-                           argument to get full recursion. Ignored if
-                           `recursive == False`.
-  --collections            Validate /collections response.
-  --item-collection        Validate item collection response. Can be combined
-                           with --pages. Defaults to one page.
-  --no-assets-urls         Disables the opening of href links when validating
-                           assets (enabled by default).
-  --header KEY VALUE       HTTP header to include in the requests. Can be used
-                           multiple times.
-  -p, --pages INTEGER      Maximum number of pages to validate via --item-
-                           collection. Defaults to one page.
-  -v, --verbose            Enables verbose output for recursive mode.
-  --no_output              Do not print output to console.
-  --log_file TEXT          Save full recursive output to log file (local
-                           filepath).
-  --version                Show the version and exit.
-  --help                   Show this message and exit.
+  --core                       Validate core stac object only without
+                               extensions.
+  --extensions                 Validate extensions only.
+  --links                      Additionally validate links. Only works with
+                               default mode.
+  --assets                     Additionally validate assets. Only works with
+                               default mode.
+  -c, --custom TEXT            Validate against a custom schema (local
+                               filepath or remote schema).
+  --schema-map <TEXT TEXT>...  Schema path to replaced by (local) schema path
+                               during validation. Can be used multiple times.
+  -r, --recursive              Recursively validate all related stac objects.
+  -m, --max-depth INTEGER      Maximum depth to traverse when recursing. Omit
+                               this argument to get full recursion. Ignored if
+                               `recursive == False`.
+  --collections                Validate /collections response.
+  --item-collection            Validate item collection response. Can be
+                               combined with --pages. Defaults to one page.
+  --no-assets-urls             Disables the opening of href links when
+                               validating assets (enabled by default).
+  --header <TEXT TEXT>...      HTTP header to include in the requests. Can be
+                               used multiple times.
+  -p, --pages INTEGER          Maximum number of pages to validate via --item-
+                               collection. Defaults to one page.
+  -v, --verbose                Enables verbose output for recursive mode.
+  --no_output                  Do not print output to console.
+  --log_file TEXT              Save full recursive output to log file (local
+                               filepath).
+  --help                       Show this message and exit.
 ```
 
 ---
