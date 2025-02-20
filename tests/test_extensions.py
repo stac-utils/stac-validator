@@ -211,3 +211,31 @@ def test_item_v100_local_schema():
             "validation_method": "extensions",
         }
     ]
+
+
+def test_item_v100_override_schema_with_schema_map():
+    stac_file = "tests/test_data/v100/extended-item.json"
+    stac = stac_validator.StacValidate(
+        stac_file,
+        extensions=True,
+        schema_map={
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json": "../schema/v1.0.0/projection.json"
+        },
+    )
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "../schema/v1.0.0/projection.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+        }
+    ]

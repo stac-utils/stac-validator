@@ -70,7 +70,7 @@ class StacValidate:
         self.item_collection = item_collection
         self.pages = pages
         self.message: List = []
-        self.schema = custom
+        self._schema = custom
         self.schema_map = schema_map
         self.links = links
         self.assets = assets
@@ -87,6 +87,17 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
+
+    @property
+    def schema(self) -> str:
+        return self._schema
+
+    @schema.setter
+    def schema(self, schema_path: str):
+        if self.schema_map:
+            if schema_path in self.schema_map:
+                schema_path = self.schema_map[schema_path]
+        self._schema = schema_path
 
     def create_err_msg(self, err_type: str, err_msg: str) -> Dict:
         """
@@ -209,10 +220,10 @@ class StacValidate:
             )
         else:
             file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))
-            self.schema = os.path.join(file_directory, self.schema)
-            self.schema = os.path.abspath(os.path.realpath(self.schema))
+            schema = os.path.join(file_directory, self.schema)
+            schema = os.path.abspath(os.path.realpath(schema))
             validate_with_ref_resolver(
-                self.schema, self.stac_content, schema_map=self.schema_map
+                schema, self.stac_content, schema_map=self.schema_map
             )
 
     def core_validator(self, stac_type: str) -> None:
@@ -261,7 +272,7 @@ class StacValidate:
                         )
                     self.schema = extension
                     self.custom_validator()
-                    message["schema"].append(extension)
+                    message["schema"].append(self.schema)
             else:
                 self.core_validator(stac_type)
                 message["schema"] = [self.schema]
