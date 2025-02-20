@@ -350,6 +350,6 @@ def test_recursion_with_missing_collection_link():
             "valid_stac": False,
             "validation_method": "recursive",
             "error_type": "JSONSchemaValidationError",
-            "error_message": "'simple-collection' should not be valid under {}",
+            "error_message": "'simple-collection' should not be valid under {}. Error is in collection",
         },
     ]

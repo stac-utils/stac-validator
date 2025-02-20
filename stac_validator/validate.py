@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Dict, List, Optional, Iterable
+from typing import Dict, List, Optional
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -262,9 +262,13 @@ class StacValidate:
                     self.schema = extension
                     self.custom_validator()
                     message["schema"].append(extension)
+            else:
+                self.core_validator(stac_type)
+                message["schema"] = [self.schema]
 
         except jsonschema.exceptions.ValidationError as e:
-            e = best_match(e.context) # type: ignore
+            if e.context:
+                e = best_match(e.context)  # type: ignore
             valid = False
             if e.absolute_path:
                 err_msg = (
