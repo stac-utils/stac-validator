@@ -315,14 +315,16 @@ class StacValidate:
         # Validate core
         self.core_validator(stac_type)
         core_schema = self.schema
-        message["schema"].append(core_schema)
+        if core_schema not in message["schema"]:
+            message["schema"].append(core_schema)
         stac_upper = stac_type.upper()
 
         # Validate extensions if ITEM
         if stac_upper == "ITEM" or stac_upper == "COLLECTION":
             message = self.extensions_validator(stac_upper)
             message["validation_method"] = "default"
-            message["schema"].append(core_schema)
+            if core_schema not in message["schema"]:
+                message["schema"].append(core_schema)
 
         # Optionally validate links
         if self.links:
@@ -352,7 +354,9 @@ class StacValidate:
             message["valid_stac"] = False
 
             try:
-                _ = self.default_validator(stac_type)
+                msg = self.default_validator(stac_type)
+                message["schema"] = msg["schema"]
+
             except jsonschema.exceptions.ValidationError as e:
                 if e.absolute_path:
                     err_msg = (
