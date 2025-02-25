@@ -278,6 +278,8 @@ class StacValidate:
                 message["schema"] = [self.schema]
 
         except jsonschema.exceptions.ValidationError as e:
+            if self.recursive:
+                raise
             if e.context:
                 e = best_match(e.context)  # type: ignore
             valid = False
@@ -297,6 +299,7 @@ class StacValidate:
             return self.create_err_msg("Exception", err_msg)
 
         self.valid = valid
+        message["valid_stac"] = valid
         return message
 
     def default_validator(self, stac_type: str) -> Dict:
@@ -348,6 +351,7 @@ class StacValidate:
         Returns:
             bool: True if all validations are successful, False otherwise.
         """
+        valid = False
         if not self.skip_val:
             self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
@@ -358,6 +362,8 @@ class StacValidate:
                 message["schema"] = msg["schema"]
 
             except jsonschema.exceptions.ValidationError as e:
+                if e.context:
+                    e = best_match(e.context)  # type: ignore
                 if e.absolute_path:
                     err_msg = (
                         f"{e.message}. Error is in "
@@ -371,9 +377,10 @@ class StacValidate:
                 self.message.append(message)
                 if self.verbose:
                     click.echo(json.dumps(message, indent=4))
-                return False
+                return valid
 
-            message["valid_stac"] = True
+            valid = True
+            message["valid_stac"] = valid
             self.message.append(message)
             if self.verbose:
                 click.echo(json.dumps(message, indent=4))
@@ -404,7 +411,7 @@ class StacValidate:
                     stac_type = get_stac_type(self.stac_content).lower()
 
                 if link["rel"] == "child":
-                    self.recursive_validator(stac_type)
+                    valid = self.recursive_validator(stac_type)
 
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
@@ -424,7 +431,7 @@ class StacValidate:
                     if not self.max_depth or self.max_depth < 5:
                         self.message.append(message)
 
-        return True
+        return valid
 
     def validate_dict(self, stac_content: Dict) -> bool:
         """
