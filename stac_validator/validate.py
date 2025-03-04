@@ -411,7 +411,8 @@ class StacValidate:
                     stac_type = get_stac_type(self.stac_content).lower()
 
                 if link["rel"] == "child":
-                    valid = self.recursive_validator(stac_type)
+                    if not self.skip_val:
+                        valid = self.recursive_validator(stac_type)
 
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
@@ -591,5 +592,13 @@ class StacValidate:
         if self.log:
             with open(self.log, "w") as f:
                 f.write(json.dumps(self.message, indent=4))
+
+        # filter message to only show errors if valid is False unless verbose mode is on
+        if self.recursive and not self.valid and not self.verbose:
+            filtered_messages = []
+            for message in self.message:
+                if not message["valid_stac"]:
+                    filtered_messages.append(message)
+            self.message = filtered_messages
 
         return self.valid

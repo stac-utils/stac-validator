@@ -10,6 +10,7 @@ def test_recursive_lvl_3_v070():
     stac_file = "https://radarstac.s3.amazonaws.com/stac/catalog.json"
     stac = stac_validator.StacValidate(stac_file, recursive=True, max_depth=4)
     stac.run()
+    assert stac.valid
     assert stac.message == [
         {
             "version": "0.7.0",
@@ -309,6 +310,27 @@ def test_recursion_with_bad_item():
     stac_file = "tests/test_data/v100/catalog-with-bad-item.json"
     stac = stac_validator.StacValidate(stac_file, recursive=True)
     stac.run()
+    assert not stac.valid
+    assert len(stac.message) == 1
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/./bad-item.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+            ],
+            "valid_stac": False,
+            "error_type": "JSONSchemaValidationError",
+            "error_message": "'id' is a required property",
+        },
+    ]
+
+
+def test_recursion_with_bad_item_verbose():
+    stac_file = "tests/test_data/v100/catalog-with-bad-item.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=True, verbose=True)
+    stac.run()
+    assert not stac.valid
     assert len(stac.message) == 2
     assert stac.message == [
         {

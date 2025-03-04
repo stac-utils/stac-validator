@@ -8,6 +8,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+- If a validation error occurs in recursive mode only show the invalid items unless verbose mode is on. [#243](https://github.com/stac-utils/stac-validator/pull/243)
 - Added ability to validate extensions of Collections [#243](https://github.com/stac-utils/stac-validator/pull/243)
 - Improve error reporting through use of [best_match](https://python-jsonschema.readthedocs.io/en/stable/errors/#best-match-and-relevance) [#243](https://github.com/stac-utils/stac-validator/pull/243)
 - Add `schema-map` option similar to [stac-node-validator SchemaMap](https://github.com/stac-utils/stac-node-validator?tab=readme-ov-file#usage) to allow validation against local copies of schemas. [#243](https://github.com/stac-utils/stac-validator/pull/243)
