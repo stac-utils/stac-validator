@@ -294,6 +294,8 @@ class StacValidate:
             return message
 
         except Exception as e:
+            if self.recursive:
+                raise
             valid = False
             err_msg = f"{e}. Error in Extensions."
             return self.create_err_msg("Exception", err_msg)
