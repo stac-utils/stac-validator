@@ -393,6 +393,7 @@ class StacValidate:
 
             base_url = self.stac_file
 
+            child_validity = []
             for link in self.stac_content["links"]:
                 if link["rel"] in ("child", "item"):
                     address = link["href"]
@@ -414,7 +415,8 @@ class StacValidate:
 
                 if link["rel"] == "child":
                     if not self.skip_val:
-                        valid = self.recursive_validator(stac_type)
+                        valid_child = self.recursive_validator(stac_type)
+                        child_validity.append(valid_child)
 
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
@@ -433,7 +435,10 @@ class StacValidate:
                         self.message.append(message)
                     if not self.max_depth or self.max_depth < 5:
                         self.message.append(message)
-
+            if all(child_validity):
+                valid = True
+            else:
+                valid = False
         return valid
 
     def validate_dict(self, stac_content: Dict) -> bool:

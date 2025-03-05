@@ -356,6 +356,31 @@ def test_recursion_with_bad_item_verbose():
     ]
 
 
+def test_recursion_with_bad_child_collection():
+    # It is important here that there is a second good child in the collection
+    # since a previous bug did not correctly set the valid variable if the last
+    # child passed validation
+    stac_file = "tests/test_data/v100/catalog-with-bad-child-collection.json"
+    stac = stac_validator.StacValidate(stac_file, recursive=True)
+    stac.run()
+    assert not stac.valid
+    assert len(stac.message) == 1
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/./collection-only/bad-collection.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json"
+            ],
+            "valid_stac": False,
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+            "error_type": "JSONSchemaValidationError",
+            "error_message": "'id' is a required property",
+        }
+    ]
+
+
 def test_recursion_with_missing_collection_link():
     stac_file = "tests/test_data/v100/item-without-collection-link.json"
     stac = stac_validator.StacValidate(stac_file, recursive=True)
