@@ -254,7 +254,10 @@ class StacValidate:
         valid = True
 
         try:
-            if "stac_extensions" in self.stac_content:
+            if (
+                "stac_extensions" in self.stac_content
+                and len(self.stac_content["stac_extensions"]) > 0
+            ):
                 # Handle legacy "proj" to "projection" mapping
                 if "proj" in self.stac_content["stac_extensions"]:
                     index = self.stac_content["stac_extensions"].index("proj")

@@ -52,7 +52,7 @@ def test_v1beta1():
         {
             "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": [],
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "asset_type": "COLLECTION",
             "validation_method": "extensions",
             "valid_stac": True,
@@ -70,7 +70,9 @@ def test_no_extensions_v1beta2():
             "asset_type": "ITEM",
             "version": "1.0.0-beta.2",
             "validation_method": "extensions",
-            "schema": [],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
+            ],
             "valid_stac": True,
         }
     ]
@@ -149,7 +151,9 @@ def test_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": [],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "extensions",
