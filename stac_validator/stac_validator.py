@@ -89,6 +89,7 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
 )
 @click.option(
     "--schema-map",
+    "-s",
     type=(str, str),
     multiple=True,
     help="Schema path to replaced by (local) schema path during validation. Can be used multiple times.",
