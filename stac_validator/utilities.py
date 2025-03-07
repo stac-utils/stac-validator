@@ -190,34 +190,6 @@ def link_request(
         initial_message["format_invalid"].append(link["href"])
 
 
-def fetch_remote_schema(uri: str, timeout: int = 10) -> Dict:
-    """
-    Fetch a remote schema from a URI.
-
-    Args:
-        uri (str): The URI of the schema to fetch.
-        timeout (int): Default timeout for robustness
-
-    Returns:
-        dict: The fetched schema content as a dictionary.
-
-    Raises:
-        requests.RequestException: If the request to fetch the schema fails.
-    """
-    try:
-        response = requests.get(uri, timeout=timeout)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        raise requests.RequestException(
-            f"Failed to fetch schema from {uri}: {str(e)}"
-        ) from e
-    except Exception as e:
-        raise Exception(
-            f"Unexpected error while retrieving schema from {uri}: {str(e)}"
-        ) from e
-
-
 def cached_retrieve(uri: URI, schema_map: Optional[Dict] = None) -> Resource[Dict]:
     """
     Retrieve and cache a remote schema.
