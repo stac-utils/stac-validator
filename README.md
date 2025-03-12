@@ -91,34 +91,38 @@ stac-validator --help
 Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
-  --core                   Validate core stac object only without extensions.
-  --extensions             Validate extensions only.
-  --links                  Additionally validate links. Only works with
-                           default mode.
-  --assets                 Additionally validate assets. Only works with
-                           default mode.
-  -c, --custom TEXT        Validate against a custom schema (local filepath or
-                           remote schema).
-  -r, --recursive          Recursively validate all related stac objects.
-  -m, --max-depth INTEGER  Maximum depth to traverse when recursing. Omit this
-                           argument to get full recursion. Ignored if
-                           `recursive == False`.
-  --collections            Validate /collections response.
-  --item-collection        Validate item collection response. Can be combined
-                           with --pages. Defaults to one page.
-  --no-assets-urls         Disables the opening of href links when validating
-                           assets (enabled by default).
-  --header KEY VALUE       HTTP header to include in the requests. Can be used
-                           multiple times.
-  -p, --pages INTEGER      Maximum number of pages to validate via --item-
-                           collection. Defaults to one page.
-  -v, --verbose            Enables verbose output for recursive mode.
-  --no_output              Do not print output to console.
-  --log_file TEXT          Save full recursive output to log file (local
-                           filepath).
-  --version                Show the version and exit.
-  --help                   Show this message and exit.
-```
+  --core                          Validate core stac object only without
+                                  extensions.
+  --extensions                    Validate extensions only.
+  --links                         Additionally validate links. Only works with
+                                  default mode.
+  --assets                        Additionally validate assets. Only works
+                                  with default mode.
+  -c, --custom TEXT               Validate against a custom schema (local
+                                  filepath or remote schema).
+  -s, --schema-map <TEXT TEXT>...
+                                  Schema path to replaced by (local) schema
+                                  path during validation. Can be used multiple
+                                  times.
+  -r, --recursive                 Recursively validate all related stac
+                                  objects.
+  -m, --max-depth INTEGER         Maximum depth to traverse when recursing.
+                                  Omit this argument to get full recursion.
+                                  Ignored if `recursive == False`.
+  --collections                   Validate /collections response.
+  --item-collection               Validate item collection response. Can be
+                                  combined with --pages. Defaults to one page.
+  --no-assets-urls                Disables the opening of href links when
+                                  validating assets (enabled by default).
+  --header <TEXT TEXT>...         HTTP header to include in the requests. Can
+                                  be used multiple times.
+  -p, --pages INTEGER             Maximum number of pages to validate via
+                                  --item-collection. Defaults to one page.
+  -v, --verbose                   Enables verbose output for recursive mode.
+  --no_output                     Do not print output to console.
+  --log_file TEXT                 Save full recursive output to log file
+                                  (local filepath).
+  --help                          Show this message and exit.```
 
 ---
 
@@ -340,3 +344,47 @@ stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2
 ```bash
 stac-validator https://stac-catalog.eu/collections/sentinel-s2-l2a/items --header x-api-key $MY_API_KEY --header foo bar
 ```
+
+**--schema-map**
+Schema map allows stac-validator to replace a schema in a STAC json by a schema from another URL or local schema file.
+This is especially useful when developing a schema and testing validation against your local copy of the schema.
+
+``` bash
+stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions --schema-map https://stac-extensions.github.io/projection/v1.0.0/schema.json stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json --extensions --schema-map https://stac-extensions.github.io/projection/v1.0.0/schema.json "tests/test_data/schema/v1.0.0/projection.json"
+[
+    {
+        "version": "1.0.0",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json",
+        "schema": [
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "tests/test_data/schema/v1.0.0/projection.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "extensions"
+    }
+]
+```
+
+This option is also capable of replacing URLs to subschemas:
+
+```bash
+stac-validator tests/test_data/v100/extended-item-local.json --custom tests/test_data/schema/v1.0.0/item_with_unreachable_url.json --schema-map https://geojson-wrong-url.org/schema/Feature.json https://geojson.org/schema/Feature.json --schema-map https://geojson-wrong-url.org/schema/Geometry.json https://geojson.org/schema/Geometry.json
+[
+    {
+        "version": "1.0.0",
+        "path": "tests/test_data/v100/extended-item-local.json",
+        "schema": [
+            "tests/test_data/schema/v1.0.0/item_with_unreachable_url.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "custom"
+    }
+]
+```
+
+

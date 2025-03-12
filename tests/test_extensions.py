@@ -52,9 +52,7 @@ def test_v1beta1():
         {
             "version": "1.0.0-beta.1",
             "path": "tests/test_data/1beta1/sentinel2.json",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/collection.json",
-            ],
+            "schema": ["https://cdn.staclint.com/v1.0.0-beta.1/collection.json"],
             "asset_type": "COLLECTION",
             "validation_method": "extensions",
             "valid_stac": True,
@@ -72,7 +70,9 @@ def test_no_extensions_v1beta2():
             "asset_type": "ITEM",
             "version": "1.0.0-beta.2",
             "validation_method": "extensions",
-            "schema": [],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json"
+            ],
             "valid_stac": True,
         }
     ]
@@ -151,7 +151,9 @@ def test_local_v1rc2():
         {
             "version": "1.0.0-rc.2",
             "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
-            "schema": [],
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
+            ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "extensions",
@@ -211,5 +213,60 @@ def test_item_v100_local_schema():
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "extensions",
+        }
+    ]
+
+
+def test_item_v100_override_schema_with_schema_map():
+    stac_file = "tests/test_data/v100/extended-item.json"
+    stac = stac_validator.StacValidate(
+        stac_file,
+        extensions=True,
+        schema_map={
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json": "../schema/v1.0.0/projection.json"
+        },
+    )
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "../schema/v1.0.0/projection.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "extensions",
+        }
+    ]
+
+
+def test_item_v100_local_schema_unreachable_url_schema_map_override():
+    """
+    This tests that references in schemas are also replaced by the schema_map
+    """
+    stac_file = "tests/test_data/v100/extended-item-local.json"
+    schema = "tests/test_data/schema/v1.0.0/item_with_unreachable_url.json"
+    stac = stac_validator.StacValidate(
+        stac_file,
+        custom=schema,
+        schema_map={
+            "https://geojson-wrong-url.org/schema/Feature.json": "https://geojson.org/schema/Feature.json",
+            "https://geojson-wrong-url.org/schema/Geometry.json": "https://geojson.org/schema/Geometry.json",
+        },
+    )
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/extended-item-local.json",
+            "schema": ["tests/test_data/schema/v1.0.0/item_with_unreachable_url.json"],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "custom",
         }
     ]

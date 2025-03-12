@@ -6,6 +6,7 @@ from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
 import jsonschema  # type: ignore
+from jsonschema.exceptions import best_match
 from requests import exceptions  # type: ignore
 
 from .utilities import (
@@ -60,6 +61,7 @@ class StacValidate:
         headers: dict = {},
         extensions: bool = False,
         custom: str = "",
+        schema_map: Optional[Dict[str, str]] = None,
         verbose: bool = False,
         log: str = "",
     ):
@@ -68,7 +70,8 @@ class StacValidate:
         self.item_collection = item_collection
         self.pages = pages
         self.message: List = []
-        self.schema = custom
+        self._schema = custom
+        self.schema_map = schema_map
         self.links = links
         self.assets = assets
         self.assets_open_urls = assets_open_urls
@@ -84,6 +87,17 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
+
+    @property
+    def schema(self) -> str:
+        return self._schema
+
+    @schema.setter
+    def schema(self, schema_path: str):
+        if self.schema_map:
+            if schema_path in self.schema_map:
+                schema_path = self.schema_map[schema_path]
+        self._schema = schema_path
 
     def create_err_msg(self, err_type: str, err_msg: str) -> Dict:
         """
@@ -197,14 +211,20 @@ class StacValidate:
             None
         """
         if is_valid_url(self.schema):
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            validate_with_ref_resolver(
+                self.schema, self.stac_content, schema_map=self.schema_map
+            )
         elif os.path.exists(self.schema):
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            validate_with_ref_resolver(
+                self.schema, self.stac_content, schema_map=self.schema_map
+            )
         else:
             file_directory = os.path.dirname(os.path.abspath(str(self.stac_file)))
-            self.schema = os.path.join(file_directory, self.schema)
-            self.schema = os.path.abspath(os.path.realpath(self.schema))
-            validate_with_ref_resolver(self.schema, self.stac_content)
+            schema = os.path.join(file_directory, self.schema)
+            schema = os.path.abspath(os.path.realpath(schema))
+            validate_with_ref_resolver(
+                schema, self.stac_content, schema_map=self.schema_map
+            )
 
     def core_validator(self, stac_type: str) -> None:
         """
@@ -215,7 +235,9 @@ class StacValidate:
         """
         stac_type = stac_type.lower()
         self.schema = set_schema_addr(self.version, stac_type)
-        validate_with_ref_resolver(self.schema, self.stac_content)
+        validate_with_ref_resolver(
+            self.schema, self.stac_content, schema_map=self.schema_map
+        )
 
     def extensions_validator(self, stac_type: str) -> Dict:
         """
@@ -231,49 +253,58 @@ class StacValidate:
         message["schema"] = []
         valid = True
 
-        if stac_type == "ITEM":
-            try:
-                if "stac_extensions" in self.stac_content:
-                    # Handle legacy "proj" to "projection" mapping
-                    if "proj" in self.stac_content["stac_extensions"]:
-                        index = self.stac_content["stac_extensions"].index("proj")
-                        self.stac_content["stac_extensions"][index] = "projection"
+        try:
+            if (
+                "stac_extensions" in self.stac_content
+                and len(self.stac_content["stac_extensions"]) > 0
+            ):
+                # Handle legacy "proj" to "projection" mapping
+                if "proj" in self.stac_content["stac_extensions"]:
+                    index = self.stac_content["stac_extensions"].index("proj")
+                    self.stac_content["stac_extensions"][index] = "projection"
 
-                    schemas = self.stac_content["stac_extensions"]
-                    for extension in schemas:
-                        if not (is_valid_url(extension) or extension.endswith(".json")):
-                            if self.version == "1.0.0-beta.2":
-                                self.stac_content["stac_version"] = "1.0.0-beta.1"
-                                self.version = self.stac_content["stac_version"]
-                            extension = (
-                                f"https://cdn.staclint.com/v{self.version}/extension/"
-                                f"{extension}.json"
-                            )
-                        self.schema = extension
-                        self.custom_validator()
-                        message["schema"].append(extension)
+                schemas = self.stac_content["stac_extensions"]
+                for extension in schemas:
+                    if not (is_valid_url(extension) or extension.endswith(".json")):
+                        if self.version == "1.0.0-beta.2":
+                            self.stac_content["stac_version"] = "1.0.0-beta.1"
+                            self.version = self.stac_content["stac_version"]
+                        extension = (
+                            f"https://cdn.staclint.com/v{self.version}/extension/"
+                            f"{extension}.json"
+                        )
+                    self.schema = extension
+                    self.custom_validator()
+                    message["schema"].append(self.schema)
+            else:
+                self.core_validator(stac_type)
+                message["schema"] = [self.schema]
 
-            except jsonschema.exceptions.ValidationError as e:
-                valid = False
-                if e.absolute_path:
-                    err_msg = (
-                        f"{e.message}. Error is in "
-                        f"{' -> '.join(map(str, e.absolute_path))}"
-                    )
-                else:
-                    err_msg = f"{e.message}"
-                message = self.create_err_msg("JSONSchemaValidationError", err_msg)
-                return message
+        except jsonschema.exceptions.ValidationError as e:
+            if self.recursive:
+                raise
+            if e.context:
+                e = best_match(e.context)  # type: ignore
+            valid = False
+            if e.absolute_path:
+                err_msg = (
+                    f"{e.message}. Error is in "
+                    f"{' -> '.join(map(str, e.absolute_path))}"
+                )
+            else:
+                err_msg = f"{e.message}"
+            message = self.create_err_msg("JSONSchemaValidationError", err_msg)
+            return message
 
-            except Exception as e:
-                valid = False
-                err_msg = f"{e}. Error in Extensions."
-                return self.create_err_msg("Exception", err_msg)
-        else:
-            self.core_validator(stac_type)
-            message["schema"] = [self.schema]
+        except Exception as e:
+            if self.recursive:
+                raise
+            valid = False
+            err_msg = f"{e}. Error in Extensions."
+            return self.create_err_msg("Exception", err_msg)
 
         self.valid = valid
+        message["valid_stac"] = valid
         return message
 
     def default_validator(self, stac_type: str) -> Dict:
@@ -292,14 +323,16 @@ class StacValidate:
         # Validate core
         self.core_validator(stac_type)
         core_schema = self.schema
-        message["schema"].append(core_schema)
+        if core_schema not in message["schema"]:
+            message["schema"].append(core_schema)
         stac_upper = stac_type.upper()
 
         # Validate extensions if ITEM
-        if stac_upper == "ITEM":
+        if stac_upper == "ITEM" or stac_upper == "COLLECTION":
             message = self.extensions_validator(stac_upper)
             message["validation_method"] = "default"
-            message["schema"].append(core_schema)
+            if core_schema not in message["schema"]:
+                message["schema"].append(core_schema)
 
         # Optionally validate links
         if self.links:
@@ -323,14 +356,19 @@ class StacValidate:
         Returns:
             bool: True if all validations are successful, False otherwise.
         """
+        valid = False
         if not self.skip_val:
             self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
 
             try:
-                _ = self.default_validator(stac_type)
+                msg = self.default_validator(stac_type)
+                message["schema"] = msg["schema"]
+
             except jsonschema.exceptions.ValidationError as e:
+                if e.context:
+                    e = best_match(e.context)  # type: ignore
                 if e.absolute_path:
                     err_msg = (
                         f"{e.message}. Error is in "
@@ -344,9 +382,10 @@ class StacValidate:
                 self.message.append(message)
                 if self.verbose:
                     click.echo(json.dumps(message, indent=4))
-                return False
+                return valid
 
-            message["valid_stac"] = True
+            valid = True
+            message["valid_stac"] = valid
             self.message.append(message)
             if self.verbose:
                 click.echo(json.dumps(message, indent=4))
@@ -357,6 +396,7 @@ class StacValidate:
 
             base_url = self.stac_file
 
+            child_validity = []
             for link in self.stac_content["links"]:
                 if link["rel"] in ("child", "item"):
                     address = link["href"]
@@ -377,7 +417,9 @@ class StacValidate:
                     stac_type = get_stac_type(self.stac_content).lower()
 
                 if link["rel"] == "child":
-                    self.recursive_validator(stac_type)
+                    if not self.skip_val:
+                        valid_child = self.recursive_validator(stac_type)
+                        child_validity.append(valid_child)
 
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
@@ -396,8 +438,11 @@ class StacValidate:
                         self.message.append(message)
                     if not self.max_depth or self.max_depth < 5:
                         self.message.append(message)
-
-        return True
+            if all(child_validity):
+                valid = True
+            else:
+                valid = False
+        return valid
 
     def validate_dict(self, stac_content: Dict) -> bool:
         """
@@ -557,5 +602,13 @@ class StacValidate:
         if self.log:
             with open(self.log, "w") as f:
                 f.write(json.dumps(self.message, indent=4))
+
+        # filter message to only show errors if valid is False unless verbose mode is on
+        if self.recursive and not self.valid and not self.verbose:
+            filtered_messages = []
+            for message in self.message:
+                if not message["valid_stac"]:
+                    filtered_messages.append(message)
+            self.message = filtered_messages
 
         return self.valid

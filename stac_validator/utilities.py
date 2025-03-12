@@ -5,12 +5,10 @@ from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
-import jsonschema
 import requests  # type: ignore
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
-from referencing.retrieval import to_cached_resource
 from referencing.typing import URI
 
 NEW_VERSIONS = [
@@ -192,60 +190,58 @@ def link_request(
         initial_message["format_invalid"].append(link["href"])
 
 
-def fetch_remote_schema(uri: str) -> dict:
-    """
-    Fetch a remote schema from a URI.
-
-    Args:
-        uri (str): The URI of the schema to fetch.
-
-    Returns:
-        dict: The fetched schema content as a dictionary.
-
-    Raises:
-        requests.RequestException: If the request to fetch the schema fails.
-    """
-    response = requests.get(uri)
-    response.raise_for_status()
-    return response.json()
-
-
-@to_cached_resource()  # type: ignore
-def cached_retrieve(uri: URI) -> str:
+def cached_retrieve(uri: URI, schema_map: Optional[Dict] = None) -> Resource[Dict]:
     """
     Retrieve and cache a remote schema.
 
     Args:
         uri (str): The URI of the schema.
+        schema_map_keys: Override schema location to validate against local versions of a schema
 
     Returns:
-        str: The raw JSON string of the schema.
+        dict: The parsed JSON dict of the schema.
 
     Raises:
         requests.RequestException: If the request to fetch the schema fails.
         Exception: For any other unexpected errors.
     """
-    try:
-        response = requests.get(uri, timeout=10)  # Set a timeout for robustness
-        response.raise_for_status()  # Raise an error for HTTP response codes >= 400
-        return response.text
-    except requests.exceptions.RequestException as e:
-        raise requests.RequestException(
-            f"Failed to fetch schema from {uri}: {str(e)}"
-        ) from e
-    except Exception as e:
-        raise Exception(
-            f"Unexpected error while retrieving schema from {uri}: {str(e)}"
-        ) from e
+    return Resource.from_contents(
+        fetch_schema_with_override(uri, schema_map=schema_map)
+    )
 
 
-def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
+def fetch_schema_with_override(
+    schema_path: str, schema_map: Optional[Dict] = None
+) -> Dict:
+    """
+    Retrieve and cache a remote schema.
+
+    Args:
+        schema_path (str): Path or URI of the schema.
+        schema_map (dict): Override schema location to validate against local versions of a schema
+
+    Returns:
+        dict: The parsed JSON dict of the schema.
+    """
+
+    if schema_map:
+        if schema_path in schema_map:
+            schema_path = schema_map[schema_path]
+
+    # Load the schema
+    return fetch_and_parse_schema(schema_path)
+
+
+def validate_with_ref_resolver(
+    schema_path: str, content: Dict, schema_map: Optional[Dict] = None
+) -> None:
     """
     Validate a JSON document against a JSON Schema with dynamic reference resolution.
 
     Args:
         schema_path (str): Path or URI of the JSON Schema.
         content (dict): JSON content to validate.
+        schema_map (dict): Override schema location to validate against local versions of a schema
 
     Raises:
         jsonschema.exceptions.ValidationError: If validation fails.
@@ -253,27 +249,16 @@ def validate_with_ref_resolver(schema_path: str, content: dict) -> None:
         FileNotFoundError: If a local schema file is not found.
         Exception: If any other error occurs during validation.
     """
-    # Load the schema
-    if schema_path.startswith("http"):
-        schema = fetch_remote_schema(schema_path)
-    else:
-        try:
-            with open(schema_path, "r") as f:
-                schema = json.load(f)
-        except FileNotFoundError as e:
-            raise FileNotFoundError(f"Schema file not found: {schema_path}") from e
-
+    schema = fetch_schema_with_override(schema_path, schema_map=schema_map)
     # Set up the resource and registry for schema resolution
+    cached_retrieve_with_schema_map = functools.partial(
+        cached_retrieve, schema_map=schema_map
+    )
     resource: Resource = Resource(contents=schema, specification=DRAFT202012)  # type: ignore
-    registry: Registry = Registry(retrieve=cached_retrieve).with_resource(  # type: ignore
+    registry: Registry = Registry(retrieve=cached_retrieve_with_schema_map).with_resource(  # type: ignore
         uri=schema_path, resource=resource
     )  # type: ignore
 
     # Validate the content against the schema
-    try:
-        validator = Draft202012Validator(schema, registry=registry)
-        validator.validate(content)
-    except jsonschema.exceptions.ValidationError as e:
-        raise jsonschema.exceptions.ValidationError(f"{e.message}") from e
-    except Exception as e:
-        raise Exception(f"Unexpected error during validation: {str(e)}") from e
+    validator = Draft202012Validator(schema, registry=registry)
+    validator.validate(content)

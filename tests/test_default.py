@@ -158,3 +158,24 @@ def test_default_catalog_v1rc2():
             "valid_stac": True,
         }
     ]
+
+
+def test_default_collection_validates_extensions():
+    stac_file = "tests/test_data/v100/collection.json"
+    stac = stac_validator.StacValidate(stac_file)
+    stac.run()
+    assert stac.message == [
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/v100/collection.json",
+            "schema": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "COLLECTION",
+            "validation_method": "default",
+        }
+    ]

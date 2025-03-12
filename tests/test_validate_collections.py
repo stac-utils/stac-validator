@@ -16,7 +16,8 @@ def test_validate_collections_remote():
             "version": "1.0.0-beta.2",
             "path": "https://earth-search.aws.element84.com/v0/collections",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/item-assets.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json",
             ],
             "valid_stac": True,
             "asset_type": "COLLECTION",
@@ -26,7 +27,8 @@ def test_validate_collections_remote():
             "version": "1.0.0-beta.2",
             "path": "https://earth-search.aws.element84.com/v0/collections",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/item-assets.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json",
             ],
             "valid_stac": True,
             "asset_type": "COLLECTION",
@@ -36,7 +38,8 @@ def test_validate_collections_remote():
             "version": "1.0.0-beta.2",
             "path": "https://earth-search.aws.element84.com/v0/collections",
             "schema": [
-                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json"
+                "https://cdn.staclint.com/v1.0.0-beta.1/extension/item-assets.json",
+                "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json",
             ],
             "valid_stac": True,
             "asset_type": "COLLECTION",
