@@ -8,6 +8,12 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+### Changed
+
+## [v3.6.0] - 2025-03-25
+
+### Added
+
 - If a validation error occurs in recursive mode only show the invalid items unless verbose mode is on. [#243](https://github.com/stac-utils/stac-validator/pull/243)
 - Added ability to validate extensions of Collections [#243](https://github.com/stac-utils/stac-validator/pull/243)
 - Improve error reporting through use of [best_match](https://python-jsonschema.readthedocs.io/en/stable/errors/#best-match-and-relevance) [#243](https://github.com/stac-utils/stac-validator/pull/243)
@@ -226,7 +232,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.5.0..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.6.0..main
+[v3.6.0]: https://github.com/sparkgeo/stac-validator/compare/v3.5.0..v3.6.0
 [v3.5.0]: https://github.com/sparkgeo/stac-validator/compare/v3.4.0..v3.5.0
 [v3.4.0]: https://github.com/sparkgeo/stac-validator/compare/v3.3.2..v3.4.0
 [v3.3.2]: https://github.com/sparkgeo/stac-validator/compare/v3.3.1..v3.3.2
