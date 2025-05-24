@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="left">
-  <img src="assets/stac-validator.png" width=730>
+  <img src="assets/stac-validator.png" width=560>
 </p>
 
 [![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
