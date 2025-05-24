@@ -8,7 +8,12 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+- Added a comprehensive Table of Contents to README.md [#247](https://github.com/stac-utils/stac-validator/pull/247)
+- Added Sponsors and Supporters section to README.md with organizational logos and acknowledgments [#247](https://github.com/stac-utils/stac-validator/pull/247)
+
 ### Changed
+
+- Reformatted and restructured the README.md for improved readability and organization [#247](https://github.com/stac-utils/stac-validator/pull/247)
 
 ## [v3.6.0] - 2025-03-25
 

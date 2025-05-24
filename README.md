@@ -1,13 +1,60 @@
-# SpatioTemporal Asset Catalog (STAC) Validator
+# SpatioTemporal Asset Catalog Validator
+
+<!-- markdownlint-disable MD033 MD041 -->
+
+<p align="left">
+  <img src="assets/stac-validator.png" width=560>
+</p>
+
+[![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
+  [![GitHub contributors](https://img.shields.io/github/contributors/stac-utils/stac-validator?color=blue)](https://github.com/stac-utils/stac-validator/graphs/contributors)
+  [![GitHub stars](https://img.shields.io/github/stars/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/network/members)
+   [![PyPI version](https://img.shields.io/pypi/v/stac-validator.svg?color=blue)](https://pypi.org/project/stac-validator/)
+  [![STAC](https://img.shields.io/badge/STAC-1.1.0-blue.svg)](https://github.com/radiantearth/stac-spec/tree/v1.1.0)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Documentation](#documentation)
+- [Requirements](#requirements)
+- [Installation](#install)
+- [Supported STAC Versions](#versions-supported)
+- [Usage](#usage)
+  - [CLI](#cli)
+  - [Python](#python)
+- [Examples](#additional-examples)
+  - [Core Validation](#--core)
+  - [Custom Schema](#--custom)
+  - [Extensions Validation](#--extensions)
+  - [Recursive Validation](#--recursive)
+  - [Item Collection Validation](#--item-collection)
+  - [Using Headers](#--header)
+  - [Schema Mapping](#--schema-map)
+- [Deployment](#deployment)
+  - [Docker](#docker)
+  - [AWS (CDK)](#aws-cdk)
+- [Testing](#testing)
+- [Related Projects](#related-projects)
+- [Sponsors and Supporters](#sponsors-and-supporters)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+STAC Validator is a tool to validate [STAC (SpatioTemporal Asset Catalog)](https://github.com/radiantearth/stac-spec) json files against the official STAC specification. It provides both a command-line interface and a Python API for validating STAC objects.
 
 ## Documentation
 
-[read the docs](https://stac-validator.readthedocs.io/en/latest/)
+For detailed documentation, please visit [read the docs](https://stac-validator.readthedocs.io/en/latest/).
 
 ## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
 ```bash
-stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
+```
+
+```bash
 [
     {
         "version": "1.0.0",
@@ -34,33 +81,35 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
   - Click
   - Jsonschema
 
+## Related Projects
+
 Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.  
 https://github.com/stac-utils/stac-check
 
 ## Install
 
-Installation from PyPi
+### Installation from PyPi
 
 ```bash
-pip install stac-validator
+$ pip install stac-validator
 ```
 
-Installation from Repo
+### Installation from Repo
 
 ```bash
-pip install .
+$ pip install .
 ```
 
 or for local development
 
 ```bash
-pip install -e '.[dev]'
+$ pip install -e '.[dev]'
 ```
 
 The [Makefile](./Makefile) has convenience commands if Make is installed.
 
 ```bash
-make help
+$ make help
 ```
 
 ## Versions supported
@@ -80,14 +129,17 @@ make help
 | 1.1.0-beta.1 |
 | 1.1.0        |
 
----
+## Usage
 
-# CLI
+### CLI
 
 **Basic Usage**
 
 ```bash
-stac-validator --help
+$ stac-validator --help
+```
+
+```bash
 Usage: stac-validator [OPTIONS] STAC_FILE
 
 Options:
@@ -122,46 +174,10 @@ Options:
   --no_output                     Do not print output to console.
   --log_file TEXT                 Save full recursive output to log file
                                   (local filepath).
-  --help                          Show this message and exit.```
-
----
-
-# Deployment
-
-## Docker
-
-The validator can run using docker containers.
-
-```bash
-docker build -t stac-validator .
-docker run stac-validator https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
-[
-    {
-        "version": "1.0.0",
-        "path": "https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": true,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    }
-]
+  --help                          Show this message and exit.
 ```
 
-## AWS (CDK)
-
-An example [AWS CDK](https://aws.amazon.com/cdk/) deployment is available in [cdk-deployment](./cdk-deployment/README.md)
-
-```bash
-cd cdk-deployment
-cdk diff
-```
-
----
-
-# Python
+### Python
 
 **Remote source**
 
@@ -171,6 +187,8 @@ from stac_validator import stac_validator
 stac = stac_validator.StacValidate("https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json")
 stac.run()
 print(stac.message)
+```
+```python
 [
     {
         "version": "0.9.0",
@@ -193,6 +211,8 @@ from stac_validator import stac_validator
 stac = stac_validator.StacValidate("tests/test_data/1beta1/sentinel2.json", extensions=True)
 stac.run()
 print(stac.message)
+```
+```python
 [
     {
         "version": "1.0.0-beta.1",
@@ -227,26 +247,61 @@ stac.validate_item_collection_dict(item_collection_dict)
 print(stac.message)
 ```
 
----
+## Deployment
 
-# Testing
+### Docker
+
+The validator can run using docker containers.
 
 ```bash
-make test
+$ docker build -t stac-validator .
+$ docker run stac-validator https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
+```
+
+```bash
+[
+    {
+        "version": "1.0.0",
+        "path": "https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json",
+        "schema": [
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "default"
+    }
+]
+```
+
+### AWS (CDK)
+
+An example [AWS CDK](https://aws.amazon.com/cdk/) deployment is available in [cdk-deployment](./cdk-deployment/README.md)
+
+```bash
+$ cd cdk-deployment
+$ cdk diff
+```
+
+## Testing
+
+```bash
+$ make test
 # or
-pytest -v
+$ pytest -v
 ```
 
 See the [tests](./tests/test_stac_validator.py) files for examples on different usages.
 
----
+## Additional Examples
 
-# Additional Examples
-
-**--core**
+### --core
 
 ```bash
-stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --core
+```
+
+```bash
 [
     {
         "version": "1.0.0",
@@ -261,10 +316,13 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 ]
 ```
 
-**--custom**
+### --custom
 
 ```bash
-stac-validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
+$ stac-validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom https://cdn.staclint.com/v0.7.0/catalog.json
+```
+
+```bash
 [
     {
         "version": "0.7.0",
@@ -279,10 +337,13 @@ stac-validator https://radarstac.s3.amazonaws.com/stac/catalog.json --custom htt
 ]
 ```
 
-**--extensions**
+### --extensions
 
 ```bash
-stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions
+```
+
+```bash
 [
     {
         "version": "1.0.0",
@@ -301,10 +362,13 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 ]
 ```
 
-**--recursive**
+### --recursive
 
 ```bash
-stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
+$ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
+```
+
+```bash
 [
     {
         "version": "0.8.1",
@@ -333,24 +397,28 @@ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursi
 ]
 ```
 
-**--item-collection**
+### --item-collection
 
 ```bash
-stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item-collection --pages 2
+$ stac-validator https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items --item-collection --pages 2
 ```
 
-**--header**
+### --header
 
 ```bash
-stac-validator https://stac-catalog.eu/collections/sentinel-s2-l2a/items --header x-api-key $MY_API_KEY --header foo bar
+$ stac-validator https://stac-catalog.eu/collections/sentinel-s2-l2a/items --header x-api-key $MY_API_KEY --header foo bar
 ```
 
-**--schema-map**
+### --schema-map
+
 Schema map allows stac-validator to replace a schema in a STAC json by a schema from another URL or local schema file.
 This is especially useful when developing a schema and testing validation against your local copy of the schema.
 
-``` bash
-stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --extensions --schema-map https://stac-extensions.github.io/projection/v1.0.0/schema.json stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json --extensions --schema-map https://stac-extensions.github.io/projection/v1.0.0/schema.json "tests/test_data/schema/v1.0.0/projection.json"
+```bash
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json --extensions --schema-map https://stac-extensions.github.io/projection/v1.0.0/schema.json "tests/test_data/schema/v1.0.0/projection.json"
+```
+
+```bash
 [
     {
         "version": "1.0.0",
@@ -372,7 +440,10 @@ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/e
 This option is also capable of replacing URLs to subschemas:
 
 ```bash
-stac-validator tests/test_data/v100/extended-item-local.json --custom tests/test_data/schema/v1.0.0/item_with_unreachable_url.json --schema-map https://geojson-wrong-url.org/schema/Feature.json https://geojson.org/schema/Feature.json --schema-map https://geojson-wrong-url.org/schema/Geometry.json https://geojson.org/schema/Geometry.json
+$ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/test_data/schema/v1.0.0/item_with_unreachable_url.json --schema-map https://geojson-wrong-url.org/schema/Feature.json https://geojson.org/schema/Feature.json --schema-map https://geojson-wrong-url.org/schema/Geometry.json https://geojson.org/schema/Geometry.json
+```
+
+```bash
 [
     {
         "version": "1.0.0",
@@ -387,4 +458,19 @@ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/test
 ]
 ```
 
+## Sponsors and Supporters
 
+The following organizations have contributed time and/or funding to support the development of this project:
+
+<p align="left">
+  <a href="https://healy-hyperspatial.github.io/"><img src="https://raw.githubusercontent.com/stac-utils/stac-fastapi-elasticsearch-opensearch/refs/heads/main/assets/hh-logo-blue.png" alt="Healy Hyperspatial" height="100" hspace="20"></a>
+</p>
+
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the Apache License 2.0.
