@@ -1,5 +1,20 @@
 # SpatioTemporal Asset Catalog (STAC) Validator
 
+<!-- markdownlint-disable MD033 MD041 -->
+
+
+
+<p align="left">
+  <img src="assets/STAC-01.png" width=300>
+</p>
+
+[![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
+  [![GitHub contributors](https://img.shields.io/github/contributors/stac-utils/stac-validator?color=blue)](https://github.com/stac-utils/stac-validator/graphs/contributors)
+  [![GitHub stars](https://img.shields.io/github/stars/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/network/members)
+   [![PyPI version](https://img.shields.io/pypi/v/stac-validator.svg?color=blue)](https://pypi.org/project/stac-validator/)
+  [![STAC](https://img.shields.io/badge/STAC-1.1.0-blue.svg)](https://github.com/radiantearth/stac-spec/tree/v1.1.0)
+
 ## Documentation
 
 [read the docs](https://stac-validator.readthedocs.io/en/latest/)
