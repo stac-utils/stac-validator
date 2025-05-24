@@ -5,7 +5,7 @@
 
 
 <p align="left">
-  <img src="assets/STAC-01.png" width=300>
+  <img src="assets/stac-validator-wide.png" width=700>
 </p>
 
 [![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
