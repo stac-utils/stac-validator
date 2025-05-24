@@ -1,11 +1,11 @@
-# SpatioTemporal Asset Catalog (STAC) Validator
+# SpatioTemporal Asset Catalog Validator
 
 <!-- markdownlint-disable MD033 MD041 -->
 
 
 
 <p align="left">
-  <img src="assets/stac-validator-wide.png" width=700>
+  <img src="assets/stac-validator-wide.png" width=530>
 </p>
 
 [![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
