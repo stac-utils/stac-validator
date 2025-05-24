@@ -36,6 +36,7 @@
   - [AWS (CDK)](#aws-cdk)
 - [Testing](#testing)
 - [Related Projects](#related-projects)
+- [Sponsors and Supporters](#sponsors-and-supporters)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -456,6 +457,15 @@ $ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/te
     }
 ]
 ```
+
+## Sponsors and Supporters
+
+The following organizations have contributed time and/or funding to support the development of this project:
+
+<p align="left">
+  <a href="https://healy-hyperspatial.github.io/"><img src="https://raw.githubusercontent.com/stac-utils/stac-fastapi-elasticsearch-opensearch/refs/heads/main/assets/hh-logo-blue.png" alt="Healy Hyperspatial" height="100" hspace="20"></a>
+</p>
+
 
 ## Contributing
 
