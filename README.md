@@ -461,9 +461,14 @@ $ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/te
 ## Sponsors and Supporters
 
 The following organizations have contributed time and/or funding to support the development of this project:
+- [Healy Hyperspatial](https://healy-hyperspatial.github.io/)
+- [Radiant Earth Foundation](https://radiant.earth/)
+- [Sparkgeo](https://sparkgeo.com/)
 
 <p align="left">
   <a href="https://healy-hyperspatial.github.io/"><img src="https://raw.githubusercontent.com/stac-utils/stac-fastapi-elasticsearch-opensearch/refs/heads/main/assets/hh-logo-blue.png" alt="Healy Hyperspatial" height="100" hspace="20"></a>
+  <a href="https://radiant.earth/"><img src="assets/radiant-earth.webp" alt="Radiant Earth Foundation" height="100" hspace="20"></a>
+  <a href="https://sparkgeo.com/"><img src="assets/sparkgeo_logo.jpeg" alt="Sparkgeo" height="100" hspace="20"></a>
 </p>
 
 
