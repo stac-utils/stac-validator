@@ -533,23 +533,31 @@ class StacValidate:
             dict: A dictionary containing validation results.
         """
         message = self.create_message(stac_type, "pydantic")
+        
+        # Initialize schema as empty list to avoid None issues
+        message["schema"] = [""]
 
         try:
             # Import here to make stac-pydantic an optional dependency
             try:
+                print(f"Attempting to import pydantic and stac_pydantic...")
                 from pydantic import ValidationError  # type: ignore
                 from stac_pydantic.extensions import validate_extensions  # type: ignore
-            except ImportError:
+                print(f"Successfully imported pydantic and stac_pydantic")
+            except ImportError as ie:
+                print(f"Import error: {str(ie)}")
                 raise ImportError(
                     "stac-pydantic is not installed. Install with 'pip install stac-validator[pydantic]'"
                 )
 
             # Validate based on STAC type
             if stac_type == "ITEM":
+                print(f"Validating ITEM with stac-pydantic")
                 from stac_pydantic import Item  # type: ignore
 
                 item_model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
+                print(f"Set schema to: {message['schema']}")
 
                 # Validate extensions if present
                 if (
@@ -563,10 +571,12 @@ class StacValidate:
                     message["extension_schemas"] = extension_schemas
 
             elif stac_type == "COLLECTION":
+                print(f"Validating COLLECTION with stac-pydantic")
                 from stac_pydantic import Collection  # type: ignore
 
                 collection_model = Collection.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Collection model"]
+                print(f"Set schema to: {message['schema']}")
 
                 # Validate extensions if present
                 if (
@@ -580,10 +590,12 @@ class StacValidate:
                     message["extension_schemas"] = extension_schemas
 
             elif stac_type == "CATALOG":
+                print(f"Validating CATALOG with stac-pydantic")
                 from stac_pydantic import Catalog  # type: ignore
 
                 catalog_model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
+                print(f"Set schema to: {message['schema']}")
 
                 # For catalogs, we don't need to validate extensions, but we still need to use the model
                 # to avoid flake8 warnings
@@ -596,11 +608,12 @@ class StacValidate:
 
             self.valid = True
             message["model_validation"] = "passed"
+            print(f"Validation passed, final message: {message}")
 
         except ImportError as e:
             self.valid = False
+            print(f"Import error in pydantic_validator: {str(e)}")
             message.update(self.create_err_msg("ImportError", str(e)))
-
         except ValidationError as e:
             self.valid = False
             # Provide more context for validation errors

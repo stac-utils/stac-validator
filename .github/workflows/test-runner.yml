@@ -33,6 +33,14 @@ jobs:
           # Explicitly install stac-pydantic and verify it's installed
           pip install stac-pydantic>=3.3.0
           python -c "import stac_pydantic; print('stac-pydantic installed successfully')"
+          
+          # Debug information
+          echo "Installed packages:"
+          pip list
+          echo "Python path:"
+          python -c "import sys; print(sys.path)"
+          echo "stac_pydantic location:"
+          python -c "import stac_pydantic; print(stac_pydantic.__file__)"
 
       - name: Run mypy
         run: |
