@@ -548,7 +548,7 @@ class StacValidate:
             if stac_type == "ITEM":
                 from stac_pydantic import Item  # type: ignore
 
-                model = Item.model_validate(self.stac_content)
+                item_model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
 
                 # Validate extensions if present
@@ -557,7 +557,7 @@ class StacValidate:
                     and self.stac_content["stac_extensions"]
                 ):
                     extension_schemas = []
-                    validate_extensions(model, reraise_exception=True)
+                    validate_extensions(item_model, reraise_exception=True)
                     for ext in self.stac_content["stac_extensions"]:
                         extension_schemas.append(ext)
                     message["extension_schemas"] = extension_schemas
@@ -565,7 +565,7 @@ class StacValidate:
             elif stac_type == "COLLECTION":
                 from stac_pydantic import Collection  # type: ignore
 
-                model = Collection.model_validate(self.stac_content)
+                collection_model = Collection.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Collection model"]
 
                 # Validate extensions if present
@@ -574,7 +574,7 @@ class StacValidate:
                     and self.stac_content["stac_extensions"]
                 ):
                     extension_schemas = []
-                    validate_extensions(model, reraise_exception=True)
+                    validate_extensions(collection_model, reraise_exception=True)
                     for ext in self.stac_content["stac_extensions"]:
                         extension_schemas.append(ext)
                     message["extension_schemas"] = extension_schemas
@@ -582,7 +582,7 @@ class StacValidate:
             elif stac_type == "CATALOG":
                 from stac_pydantic import Catalog  # type: ignore
 
-                model = Catalog.model_validate(self.stac_content)
+                catalog_model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
 
             else:
