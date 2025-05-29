@@ -537,8 +537,8 @@ class StacValidate:
         try:
             # Import here to make stac-pydantic an optional dependency
             try:
-                from stac_pydantic.extensions import validate_extensions
-                from pydantic import ValidationError
+                from stac_pydantic.extensions import validate_extensions  # type: ignore
+                from pydantic import ValidationError  # type: ignore
             except ImportError:
                 raise ImportError(
                     "stac-pydantic is not installed. Install with 'pip install stac-validator[pydantic]'"
@@ -546,12 +546,15 @@ class StacValidate:
 
             # Validate based on STAC type
             if stac_type == "ITEM":
-                from stac_pydantic import Item
+                from stac_pydantic import Item  # type: ignore
                 model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
 
                 # Validate extensions if present
-                if "stac_extensions" in self.stac_content and self.stac_content["stac_extensions"]:
+                if (
+                    "stac_extensions" in self.stac_content
+                    and self.stac_content["stac_extensions"]
+                ):
                     extension_schemas = []
                     validate_extensions(model, reraise_exception=True)
                     for ext in self.stac_content["stac_extensions"]:
@@ -559,12 +562,15 @@ class StacValidate:
                     message["extension_schemas"] = extension_schemas
 
             elif stac_type == "COLLECTION":
-                from stac_pydantic import Collection
+                from stac_pydantic import Collection  # type: ignore
                 model = Collection.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Collection model"]
 
                 # Validate extensions if present
-                if "stac_extensions" in self.stac_content and self.stac_content["stac_extensions"]:
+                if (
+                    "stac_extensions" in self.stac_content
+                    and self.stac_content["stac_extensions"]
+                ):
                     extension_schemas = []
                     validate_extensions(model, reraise_exception=True)
                     for ext in self.stac_content["stac_extensions"]:
@@ -572,12 +578,14 @@ class StacValidate:
                     message["extension_schemas"] = extension_schemas
 
             elif stac_type == "CATALOG":
-                from stac_pydantic import Catalog
+                from stac_pydantic import Catalog  # type: ignore
                 model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
 
             else:
-                raise ValueError(f"Unsupported STAC type for Pydantic validation: {stac_type}")
+                raise ValueError(
+                    f"Unsupported STAC type for Pydantic validation: {stac_type}"
+                )
 
             self.valid = True
             message["model_validation"] = "passed"
@@ -592,17 +600,21 @@ class StacValidate:
             errors = e.errors()
             error_details = []
             for error in errors:
-                loc = " -> ".join([str(l) for l in error.get("loc", [])])
+                loc = " -> ".join([str(loc) for loc in error.get("loc", [])])
                 msg = error.get("msg", "")
                 error_details.append(f"{loc}: {msg}")
 
             error_message = f"Pydantic validation failed: {'; '.join(error_details)}"
-            message.update(self.create_err_msg("PydanticValidationError", error_message))
+            message.update(
+                self.create_err_msg("PydanticValidationError", error_message)
+            )
 
         except Exception as e:
             self.valid = False
             error_message = str(e)
-            message.update(self.create_err_msg("PydanticValidationError", error_message))
+            message.update(
+                self.create_err_msg("PydanticValidationError", error_message)
+            )
 
         return message
 
@@ -649,7 +661,7 @@ class StacValidate:
 
             elif self.extensions:
                 message = self.extensions_validator(stac_type)
-                
+
             elif self.pydantic:
                 message = self.pydantic_validator(stac_type)
 
