@@ -32,7 +32,7 @@ jobs:
           pip install pytest
           # Explicitly install stac-pydantic and verify it's installed
           pip install stac-pydantic>=3.3.0
-          python -c "import stac_pydantic; print(f'stac-pydantic {stac_pydantic.__version__} installed successfully')"
+          python -c "import stac_pydantic; print('stac-pydantic installed successfully')"
 
       - name: Run mypy
         run: |
