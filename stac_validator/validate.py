@@ -537,8 +537,8 @@ class StacValidate:
         try:
             # Import here to make stac-pydantic an optional dependency
             try:
-                from stac_pydantic.extensions import validate_extensions  # type: ignore
                 from pydantic import ValidationError  # type: ignore
+                from stac_pydantic.extensions import validate_extensions  # type: ignore
             except ImportError:
                 raise ImportError(
                     "stac-pydantic is not installed. Install with 'pip install stac-validator[pydantic]'"
@@ -547,6 +547,7 @@ class StacValidate:
             # Validate based on STAC type
             if stac_type == "ITEM":
                 from stac_pydantic import Item  # type: ignore
+
                 model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
 
@@ -563,6 +564,7 @@ class StacValidate:
 
             elif stac_type == "COLLECTION":
                 from stac_pydantic import Collection  # type: ignore
+
                 model = Collection.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Collection model"]
 
@@ -579,6 +581,7 @@ class StacValidate:
 
             elif stac_type == "CATALOG":
                 from stac_pydantic import Catalog  # type: ignore
+
                 model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
 
