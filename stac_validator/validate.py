@@ -40,6 +40,7 @@ class StacValidate:
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
         verbose (bool): Whether to enable verbose output in recursive mode.
         log (str): The local filepath to save the output of the recursive validation to.
+        pydantic (bool): Whether to validate using Pydantic models.
 
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
@@ -64,6 +65,7 @@ class StacValidate:
         schema_map: Optional[Dict[str, str]] = None,
         verbose: bool = False,
         log: str = "",
+        pydantic: bool = False,
     ):
         self.stac_file = stac_file
         self.collections = collections
@@ -87,6 +89,7 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
+        self.pydantic = pydantic
 
     @property
     def schema(self) -> str:
@@ -372,7 +375,7 @@ class StacValidate:
                 if e.absolute_path:
                     err_msg = (
                         f"{e.message}. Error is in "
-                        f"{' -> '.join([str(i) for i in e.absolute_path])}"
+                        f"{' -> '.join([str(i) for i in e.absolute_path])} "
                     )
                 else:
                     err_msg = f"{e.message}"
@@ -519,6 +522,90 @@ class StacValidate:
             }
             self.message.append(message)
 
+    def pydantic_validator(self, stac_type: str) -> Dict:
+        """
+        Validate STAC content using Pydantic models.
+
+        Args:
+            stac_type (str): The STAC object type (e.g., "ITEM", "COLLECTION", "CATALOG").
+
+        Returns:
+            dict: A dictionary containing validation results.
+        """
+        message = self.create_message(stac_type, "pydantic")
+
+        try:
+            # Import here to make stac-pydantic an optional dependency
+            try:
+                from stac_pydantic.extensions import validate_extensions
+                from pydantic import ValidationError
+            except ImportError:
+                raise ImportError(
+                    "stac-pydantic is not installed. Install with 'pip install stac-validator[pydantic]'"
+                )
+
+            # Validate based on STAC type
+            if stac_type == "ITEM":
+                from stac_pydantic import Item
+                model = Item.model_validate(self.stac_content)
+                message["schema"] = ["stac-pydantic Item model"]
+
+                # Validate extensions if present
+                if "stac_extensions" in self.stac_content and self.stac_content["stac_extensions"]:
+                    extension_schemas = []
+                    validate_extensions(model, reraise_exception=True)
+                    for ext in self.stac_content["stac_extensions"]:
+                        extension_schemas.append(ext)
+                    message["extension_schemas"] = extension_schemas
+
+            elif stac_type == "COLLECTION":
+                from stac_pydantic import Collection
+                model = Collection.model_validate(self.stac_content)
+                message["schema"] = ["stac-pydantic Collection model"]
+
+                # Validate extensions if present
+                if "stac_extensions" in self.stac_content and self.stac_content["stac_extensions"]:
+                    extension_schemas = []
+                    validate_extensions(model, reraise_exception=True)
+                    for ext in self.stac_content["stac_extensions"]:
+                        extension_schemas.append(ext)
+                    message["extension_schemas"] = extension_schemas
+
+            elif stac_type == "CATALOG":
+                from stac_pydantic import Catalog
+                model = Catalog.model_validate(self.stac_content)
+                message["schema"] = ["stac-pydantic Catalog model"]
+
+            else:
+                raise ValueError(f"Unsupported STAC type for Pydantic validation: {stac_type}")
+
+            self.valid = True
+            message["model_validation"] = "passed"
+
+        except ImportError as e:
+            self.valid = False
+            message.update(self.create_err_msg("ImportError", str(e)))
+
+        except ValidationError as e:
+            self.valid = False
+            # Provide more context for validation errors
+            errors = e.errors()
+            error_details = []
+            for error in errors:
+                loc = " -> ".join([str(l) for l in error.get("loc", [])])
+                msg = error.get("msg", "")
+                error_details.append(f"{loc}: {msg}")
+
+            error_message = f"Pydantic validation failed: {'; '.join(error_details)}"
+            message.update(self.create_err_msg("PydanticValidationError", error_message))
+
+        except Exception as e:
+            self.valid = False
+            error_message = str(e)
+            message.update(self.create_err_msg("PydanticValidationError", error_message))
+
+        return message
+
     def run(self) -> bool:
         """
         Run the STAC validation process based on the input parameters.
@@ -562,6 +649,9 @@ class StacValidate:
 
             elif self.extensions:
                 message = self.extensions_validator(stac_type)
+                
+            elif self.pydantic:
+                message = self.pydantic_validator(stac_type)
 
             else:
                 self.valid = True
