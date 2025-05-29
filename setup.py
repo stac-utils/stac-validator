@@ -29,6 +29,7 @@ setup(
         "requests>=2.32.3",
         "jsonschema>=4.23.0",
         "click>=8.1.8",
+        "stac-pydantic>=3.3.0",
         "referencing>=0.35.1",
     ],
     extras_require={
