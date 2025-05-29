@@ -584,7 +584,7 @@ class StacValidate:
 
                 catalog_model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
-                
+
                 # For catalogs, we don't need to validate extensions, but we still need to use the model
                 # to avoid flake8 warnings
                 _ = catalog_model  # Acknowledge that we're using the model for validation
