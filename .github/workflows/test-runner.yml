@@ -30,6 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[pydantic]"
           pip install pytest
+          # Explicitly install stac-pydantic and verify it's installed
+          pip install stac-pydantic>=3.3.0
+          python -c "import stac_pydantic; print(f'stac-pydantic {stac_pydantic.__version__} installed successfully')"
 
       - name: Run mypy
         run: |
