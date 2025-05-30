@@ -535,74 +535,32 @@ class StacValidate:
             dict: A dictionary containing validation results.
         """
         message = self.create_message(stac_type, "pydantic")
-
-        # Initialize schema as empty list to avoid None issues
         message["schema"] = [""]
 
         try:
-            # Import here to make stac-pydantic an optional dependency
-            try:
-                print("Attempting to import pydantic and stac_pydantic...")
-                from pydantic import ValidationError  # type: ignore
-                from stac_pydantic.extensions import validate_extensions  # type: ignore
-
-                print("Successfully imported pydantic and stac_pydantic")
-            except ImportError as ie:
-                print("Import error: " + str(ie))
-                raise ImportError(
-                    "stac-pydantic is not installed. Install with 'pip install stac-validator[pydantic]'"
-                )
+            # Import dependencies
+            from pydantic import ValidationError  # type: ignore
+            from stac_pydantic import Catalog, Collection, Item  # type: ignore
+            from stac_pydantic.extensions import validate_extensions  # type: ignore
 
             # Validate based on STAC type
             if stac_type == "ITEM":
-                print("Validating ITEM with stac-pydantic")
-                from stac_pydantic import Item  # type: ignore
-
                 item_model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
-                print("Set schema to: " + str(message["schema"]))
-
-                # Validate extensions if present
-                if (
-                    "stac_extensions" in self.stac_content
-                    and self.stac_content["stac_extensions"]
-                ):
-                    extension_schemas = []
-                    validate_extensions(item_model, reraise_exception=True)
-                    for ext in self.stac_content["stac_extensions"]:
-                        extension_schemas.append(ext)
-                    message["extension_schemas"] = extension_schemas
+                self._validate_extensions(item_model, message, validate_extensions)
 
             elif stac_type == "COLLECTION":
-                print("Validating COLLECTION with stac-pydantic")
-                from stac_pydantic import Collection  # type: ignore
-
                 collection_model = Collection.model_validate(self.stac_content)
-                message["schema"] = ["stac-pydantic Collection model"]
-                print("Set schema to: " + str(message["schema"]))
-
-                # Validate extensions if present
-                if (
-                    "stac_extensions" in self.stac_content
-                    and self.stac_content["stac_extensions"]
-                ):
-                    extension_schemas = []
-                    validate_extensions(collection_model, reraise_exception=True)
-                    for ext in self.stac_content["stac_extensions"]:
-                        extension_schemas.append(ext)
-                    message["extension_schemas"] = extension_schemas
+                message["schema"] = [
+                    "stac-pydantic Collection model"
+                ]  # Fix applied here
+                self._validate_extensions(
+                    collection_model, message, validate_extensions
+                )
 
             elif stac_type == "CATALOG":
-                print("Validating CATALOG with stac-pydantic")
-                from stac_pydantic import Catalog  # type: ignore
-
-                catalog_model = Catalog.model_validate(self.stac_content)
+                Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
-                print("Set schema to: " + str(message["schema"]))
-
-                # For catalogs, we don't need to validate extensions, but we still need to use the model
-                # to avoid flake8 warnings
-                _ = catalog_model  # Acknowledge that we're using the model for validation
 
             else:
                 raise ValueError(
@@ -611,35 +569,42 @@ class StacValidate:
 
             self.valid = True
             message["model_validation"] = "passed"
-            print("Validation passed, final message: " + str(message))
 
-        except ImportError as e:
-            self.valid = False
-            print("Import error in pydantic_validator: " + str(e))
-            message.update(self.create_err_msg("ImportError", str(e)))
         except ValidationError as e:
             self.valid = False
-            # Provide more context for validation errors
-            errors = e.errors()
-            error_details = []
-            for error in errors:
-                loc = " -> ".join([str(loc) for loc in error.get("loc", [])])
-                msg = error.get("msg", "")
-                error_details.append(f"{loc}: {msg}")
-
-            error_message = f"Pydantic validation failed: {'; '.join(error_details)}"
+            error_details = [
+                f"{' -> '.join(map(str, error.get('loc', [])))}: {error.get('msg', '')}"
+                for error in e.errors()
+            ]
+            error_message = f"Pydantic validation failed for {stac_type}: {'; '.join(error_details)}"
             message.update(
                 self.create_err_msg("PydanticValidationError", error_message)
             )
 
         except Exception as e:
             self.valid = False
-            error_message = str(e)
-            message.update(
-                self.create_err_msg("PydanticValidationError", error_message)
-            )
+            message.update(self.create_err_msg("PydanticValidationError", str(e)))
 
         return message
+
+    def _validate_extensions(self, model, message: Dict, validate_extensions) -> None:
+        """
+        Validate extensions for a given Pydantic model.
+
+        Args:
+            model: The Pydantic model instance.
+            message (dict): The validation message dictionary to update.
+            validate_extensions: The function to validate extensions.
+        """
+        if (
+            "stac_extensions" in self.stac_content
+            and self.stac_content["stac_extensions"]
+        ):
+            extension_schemas = []
+            validate_extensions(model, reraise_exception=True)
+            for ext in self.stac_content["stac_extensions"]:
+                extension_schemas.append(ext)
+            message["extension_schemas"] = extension_schemas
 
     def run(self) -> bool:
         """
