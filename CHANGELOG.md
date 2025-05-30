@@ -6,6 +6,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v3.7.0] - 2025-05-30
+
 ### Added
 
 - Added a comprehensive Table of Contents to README.md [#247](https://github.com/stac-utils/stac-validator/pull/247)
