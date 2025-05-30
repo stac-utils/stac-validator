@@ -24,3 +24,6 @@ build-tox:		## Test stac_validator on multiple Python versions
 
 run:			## Run the Docker Container and enter into bash
 	docker run -it --entrypoint /bin/bash stac-validator
+
+docs:           ## Build documentation locally
+	sphinx-build -b html -E docs/ docs/_build/html
