@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="left">
-  <img src="assets/stac-validator.png" width=560>
+  <img src="https://raw.githubusercontent.com/stac-utils/stac-validator/main/assets/stac-validator.png" width=560>
 </p>
 
 [![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
@@ -47,7 +47,7 @@ STAC Validator is a tool to validate [STAC (SpatioTemporal Asset Catalog)](https
 
 ## Documentation
 
-For detailed documentation, please visit [read the docs](https://stac-validator.readthedocs.io/en/latest/).
+For detailed documentation, please visit our [GitHub Pages documentation site](https://stac-utils.github.io/stac-validator/).
 
 ## Validate STAC json files against the [STAC spec](https://github.com/radiantearth/stac-spec).
 
