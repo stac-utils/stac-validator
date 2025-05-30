@@ -31,6 +31,7 @@
   - [Item Collection Validation](#--item-collection)
   - [Using Headers](#--header)
   - [Schema Mapping](#--schema-map)
+  - [Pydantic Validation](#--pydantic)
 - [Deployment](#deployment)
   - [Docker](#docker)
   - [AWS (CDK)](#aws-cdk)
@@ -174,6 +175,8 @@ Options:
   --no_output                     Do not print output to console.
   --log_file TEXT                 Save full recursive output to log file
                                   (local filepath).
+  --pydantic                      Validate using stac-pydantic models for enhanced
+                                  type checking and validation.
   --help                          Show this message and exit.
 ```
 
@@ -454,6 +457,43 @@ $ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/te
         "valid_stac": true,
         "asset_type": "ITEM",
         "validation_method": "custom"
+    }
+]
+```
+
+### --pydantic
+
+The `--pydantic` option provides enhanced validation using stac-pydantic models, which offer stronger type checking and more detailed error messages. To use this feature, you need to install the optional dependency:
+
+```bash
+$ pip install stac-validator[pydantic]
+```
+
+Then you can validate your STAC objects using Pydantic models:
+
+```bash
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json --pydantic
+```
+
+```bash
+[
+    {
+        "version": "1.0.0",
+        "path": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json",
+        "schema": [
+            "stac-pydantic Item model"
+        ],
+        "valid_stac": true,
+        "asset_type": "ITEM",
+        "validation_method": "pydantic",
+        "extension_schemas": [
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
+        ],
+        "model_validation": "passed"
     }
 ]
 ```

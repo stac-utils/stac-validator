@@ -40,6 +40,7 @@ class StacValidate:
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
         verbose (bool): Whether to enable verbose output in recursive mode.
         log (str): The local filepath to save the output of the recursive validation to.
+        pydantic (bool): Whether to validate using Pydantic models.
 
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
@@ -64,6 +65,7 @@ class StacValidate:
         schema_map: Optional[Dict[str, str]] = None,
         verbose: bool = False,
         log: str = "",
+        pydantic: bool = False,
     ):
         self.stac_file = stac_file
         self.collections = collections
@@ -87,6 +89,7 @@ class StacValidate:
         self.verbose = verbose
         self.valid = False
         self.log = log
+        self.pydantic = pydantic
 
     @property
     def schema(self) -> str:
@@ -372,7 +375,7 @@ class StacValidate:
                 if e.absolute_path:
                     err_msg = (
                         f"{e.message}. Error is in "
-                        f"{' -> '.join([str(i) for i in e.absolute_path])}"
+                        f"{' -> '.join([str(i) for i in e.absolute_path])} "
                     )
                 else:
                     err_msg = f"{e.message}"
@@ -474,8 +477,9 @@ class StacValidate:
 
         Raises:
             URLError, JSONDecodeError, ValueError, TypeError, FileNotFoundError,
-            ConnectionError, exceptions.SSLError, OSError: Various errors related
-            to fetching or parsing.
+            ConnectionError, exceptions.SSLError, OSError, KeyError, HTTPError,
+            jsonschema.exceptions.ValidationError, Exception: Various errors
+            during fetching or parsing.
         """
         collections = fetch_and_parse_file(str(self.stac_file), self.headers)
         for collection in collections["collections"]:
@@ -488,8 +492,9 @@ class StacValidate:
 
         Raises:
             URLError, JSONDecodeError, ValueError, TypeError, FileNotFoundError,
-            ConnectionError, exceptions.SSLError, OSError: Various errors related
-            to fetching or parsing.
+            ConnectionError, exceptions.SSLError, OSError, KeyError, HTTPError,
+            jsonschema.exceptions.ValidationError, Exception: Various errors
+            during fetching or parsing.
         """
         page = 1
         print(f"processing page {page}")
@@ -518,6 +523,88 @@ class StacValidate:
                 )
             }
             self.message.append(message)
+
+    def pydantic_validator(self, stac_type: str) -> Dict:
+        """
+        Validate STAC content using Pydantic models.
+
+        Args:
+            stac_type (str): The STAC object type (e.g., "ITEM", "COLLECTION", "CATALOG").
+
+        Returns:
+            dict: A dictionary containing validation results.
+        """
+        message = self.create_message(stac_type, "pydantic")
+        message["schema"] = [""]
+
+        try:
+            # Import dependencies
+            from pydantic import ValidationError  # type: ignore
+            from stac_pydantic import Catalog, Collection, Item  # type: ignore
+            from stac_pydantic.extensions import validate_extensions  # type: ignore
+
+            # Validate based on STAC type
+            if stac_type == "ITEM":
+                item_model = Item.model_validate(self.stac_content)
+                message["schema"] = ["stac-pydantic Item model"]
+                self._validate_extensions(item_model, message, validate_extensions)
+
+            elif stac_type == "COLLECTION":
+                collection_model = Collection.model_validate(self.stac_content)
+                message["schema"] = [
+                    "stac-pydantic Collection model"
+                ]  # Fix applied here
+                self._validate_extensions(
+                    collection_model, message, validate_extensions
+                )
+
+            elif stac_type == "CATALOG":
+                Catalog.model_validate(self.stac_content)
+                message["schema"] = ["stac-pydantic Catalog model"]
+
+            else:
+                raise ValueError(
+                    f"Unsupported STAC type for Pydantic validation: {stac_type}"
+                )
+
+            self.valid = True
+            message["model_validation"] = "passed"
+
+        except ValidationError as e:
+            self.valid = False
+            error_details = [
+                f"{' -> '.join(map(str, error.get('loc', [])))}: {error.get('msg', '')}"
+                for error in e.errors()
+            ]
+            error_message = f"Pydantic validation failed for {stac_type}: {'; '.join(error_details)}"
+            message.update(
+                self.create_err_msg("PydanticValidationError", error_message)
+            )
+
+        except Exception as e:
+            self.valid = False
+            message.update(self.create_err_msg("PydanticValidationError", str(e)))
+
+        return message
+
+    def _validate_extensions(self, model, message: Dict, validate_extensions) -> None:
+        """
+        Validate extensions for a given Pydantic model.
+
+        Args:
+            model: The Pydantic model instance.
+            message (dict): The validation message dictionary to update.
+            validate_extensions: The function to validate extensions.
+        """
+        if (
+            "stac_extensions" in self.stac_content
+            and self.stac_content["stac_extensions"]
+        ):
+            extension_schemas = []
+            validate_extensions(model, reraise_exception=True)
+            for ext in self.stac_content["stac_extensions"]:
+                extension_schemas.append(ext)
+            message["extension_schemas"] = extension_schemas
 
     def run(self) -> bool:
         """
@@ -562,6 +649,9 @@ class StacValidate:
 
             elif self.extensions:
                 message = self.extensions_validator(stac_type)
+
+            elif self.pydantic:
+                message = self.pydantic_validator(stac_type)
 
             else:
                 self.valid = True
