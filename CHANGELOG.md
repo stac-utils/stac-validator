@@ -12,10 +12,14 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - Added Sponsors and Supporters section to README.md with organizational logos and acknowledgments [#247](https://github.com/stac-utils/stac-validator/pull/247)
 - Added `--pydantic` option for validating STAC objects using stac-pydantic models, providing enhanced type checking and validation [#249](https://github.com/stac-utils/stac-validator/pull/249)
 - Added optional dependency for stac-pydantic that can be installed with `pip install stac-validator[pydantic]` [#249](https://github.com/stac-utils/stac-validator/pull/249)
+- Added GitHub Actions workflow for automatically building and deploying documentation to GitHub Pages [#250](https://github.com/stac-utils/stac-validator/pull/250)
 
 ### Changed
 
 - Reformatted and restructured the README.md for improved readability and organization [#247](https://github.com/stac-utils/stac-validator/pull/247)
+- Migrated documentation from Read the Docs to GitHub Pages for better integration with the repository [#250](https://github.com/stac-utils/stac-validator/pull/250)
+- Updated documentation system to use Sphinx with MyST parser for improved Markdown support [#250](https://github.com/stac-utils/stac-validator/pull/250)
+- Enhanced documentation to include content directly from README.md for consistency [#250](https://github.com/stac-utils/stac-validator/pull/250)
 
 ## [v3.6.0] - 2025-03-25
 
