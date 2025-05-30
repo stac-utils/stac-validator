@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>stac-validator documentation &mdash; stac-validator 3.3.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b8bac34f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CLI API Reference" href="cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            stac-validator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validator.html">Validate API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">stac-validator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">stac-validator</span></code> documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stac-validator-documentation">
+<h1><code class="docutils literal notranslate"><span class="pre">stac-validator</span></code> documentation<a class="headerlink" href="#stac-validator-documentation" title="Permalink to this heading"></a></h1>
+<!-- markdownlint-disable MD033 MD041 -->
+<p align="left">
+  <img src="https://raw.githubusercontent.com/stac-utils/stac-validator/main/assets/stac-validator.png" width=560>
+</p>
+<p><a class="reference external" href="https://pepy.tech/project/stac-validator"><img alt="Downloads" src="https://static.pepy.tech/badge/stac-validator?color=blue" /></a>
+<a class="reference external" href="https://github.com/stac-utils/stac-validator/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/stac-utils/stac-validator?color=blue" /></a>
+<a class="reference external" href="https://github.com/stac-utils/stac-validator/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/stac-utils/stac-validator.svg?color=blue" /></a>
+<a class="reference external" href="https://github.com/stac-utils/stac-validator/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/stac-utils/stac-validator.svg?color=blue" /></a>
+<a class="reference external" href="https://pypi.org/project/stac-validator/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/stac-validator.svg?color=blue" /></a>
+<a class="reference external" href="https://github.com/radiantearth/stac-spec/tree/v1.1.0"><img alt="STAC" src="https://img.shields.io/badge/STAC-1.1.0-blue.svg" /></a></p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#documentation">Documentation</a></p></li>
+<li><p><a class="reference internal" href="#requirements">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#install">Installation</a></p></li>
+<li><p><a class="reference internal" href="#versions-supported">Supported STAC Versions</a></p></li>
+<li><p><a class="reference internal" href="#usage">Usage</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cli">CLI</a></p></li>
+<li><p><a class="reference internal" href="#python">Python</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#additional-examples">Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core">Core Validation</a></p></li>
+<li><p><a class="reference internal" href="#custom">Custom Schema</a></p></li>
+<li><p><a class="reference internal" href="#extensions">Extensions Validation</a></p></li>
+<li><p><a class="reference internal" href="#recursive">Recursive Validation</a></p></li>
+<li><p><a class="reference internal" href="#item-collection">Item Collection Validation</a></p></li>
+<li><p><a class="reference internal" href="#header">Using Headers</a></p></li>
+<li><p><a class="reference internal" href="#schema-map">Schema Mapping</a></p></li>
+<li><p><a class="reference internal" href="#pydantic">Pydantic Validation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#deployment">Deployment</a></p>
+<ul>
+<li><p><a class="reference internal" href="#docker">Docker</a></p></li>
+<li><p><a class="reference internal" href="#aws-cdk">AWS (CDK)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing">Testing</a></p></li>
+<li><p><a class="reference internal" href="#related-projects">Related Projects</a></p></li>
+<li><p><a class="reference internal" href="#sponsors-and-supporters"><span class="xref myst">Sponsors and Supporters</span></a></p></li>
+<li><p><a class="reference internal" href="#contributing"><span class="xref myst">Contributing</span></a></p></li>
+<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
+</ul>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>STAC Validator is a tool to validate <a class="reference external" href="https://github.com/radiantearth/stac-spec">STAC (SpatioTemporal Asset Catalog)</a> json files against the official STAC specification. It provides both a command-line interface and a Python API for validating STAC objects.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
+<p>For detailed documentation, please visit our <a class="reference external" href="https://stac-utils.github.io/stac-validator/">GitHub Pages documentation site</a>.</p>
+</section>
+<section id="validate-stac-json-files-against-the-stac-spec">
+<h2>Validate STAC json files against the <a class="reference external" href="https://github.com/radiantearth/stac-spec">STAC spec</a>.<a class="headerlink" href="#validate-stac-json-files-against-the-stac-spec" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/eo/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/projection/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/scientific/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/view/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/remote-data/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;default&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Python 3.8+</p>
+<ul>
+<li><p>Requests</p></li>
+<li><p>Click</p></li>
+<li><p>Jsonschema</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="related-projects">
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this heading"></a></h2>
+<p>Note: Stac-validator is also used in stac-check which adds linting messages based on the official STAC best practices document.
+https://github.com/stac-utils/stac-check</p>
+</section>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this heading"></a></h2>
+<section id="installation-from-pypi">
+<h3>Installation from PyPi<a class="headerlink" href="#installation-from-pypi" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>stac-validator
+</pre></div>
+</div>
+</section>
+<section id="installation-from-repo">
+<h3>Installation from Repo<a class="headerlink" href="#installation-from-repo" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p>or for local development</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[dev]&#39;</span>
+</pre></div>
+</div>
+<p>The <a class="reference download internal" download="" href="_downloads/b67911656ef5d18c4ae36cb6741b7965/Makefile"><span class="xref download myst">Makefile</span></a> has convenience commands if Make is installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span><span class="nb">help</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="versions-supported">
+<h2>Versions supported<a class="headerlink" href="#versions-supported" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>STAC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.8.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.8.1</p></td>
+</tr>
+<tr class="row-even"><td><p>0.9.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.0-beta.1</p></td>
+</tr>
+<tr class="row-even"><td><p>1.0.0-beta.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.0-rc.1</p></td>
+</tr>
+<tr class="row-even"><td><p>1.0.0-rc.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.0-rc.3</p></td>
+</tr>
+<tr class="row-even"><td><p>1.0.0-rc.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.0</p></td>
+</tr>
+<tr class="row-even"><td><p>1.1.0-beta.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.1.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<section id="cli">
+<h3>CLI<a class="headerlink" href="#cli" title="Permalink to this heading"></a></h3>
+<p><strong>Basic Usage</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>--help
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>stac-validator<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>STAC_FILE
+
+Options:
+<span class="w">  </span>--core<span class="w">                          </span>Validate<span class="w"> </span>core<span class="w"> </span>stac<span class="w"> </span>object<span class="w"> </span>only<span class="w"> </span>without
+<span class="w">                                  </span>extensions.
+<span class="w">  </span>--extensions<span class="w">                    </span>Validate<span class="w"> </span>extensions<span class="w"> </span>only.
+<span class="w">  </span>--links<span class="w">                         </span>Additionally<span class="w"> </span>validate<span class="w"> </span>links.<span class="w"> </span>Only<span class="w"> </span>works<span class="w"> </span>with
+<span class="w">                                  </span>default<span class="w"> </span>mode.
+<span class="w">  </span>--assets<span class="w">                        </span>Additionally<span class="w"> </span>validate<span class="w"> </span>assets.<span class="w"> </span>Only<span class="w"> </span>works
+<span class="w">                                  </span>with<span class="w"> </span>default<span class="w"> </span>mode.
+<span class="w">  </span>-c,<span class="w"> </span>--custom<span class="w"> </span>TEXT<span class="w">               </span>Validate<span class="w"> </span>against<span class="w"> </span>a<span class="w"> </span>custom<span class="w"> </span>schema<span class="w"> </span><span class="o">(</span><span class="nb">local</span>
+<span class="w">                                  </span>filepath<span class="w"> </span>or<span class="w"> </span>remote<span class="w"> </span>schema<span class="o">)</span>.
+<span class="w">  </span>-s,<span class="w"> </span>--schema-map<span class="w"> </span>&lt;TEXT<span class="w"> </span>TEXT&gt;...
+<span class="w">                                  </span>Schema<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>replaced<span class="w"> </span>by<span class="w"> </span><span class="o">(</span><span class="nb">local</span><span class="o">)</span><span class="w"> </span>schema
+<span class="w">                                  </span>path<span class="w"> </span>during<span class="w"> </span>validation.<span class="w"> </span>Can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>multiple
+<span class="w">                                  </span>times.
+<span class="w">  </span>-r,<span class="w"> </span>--recursive<span class="w">                 </span>Recursively<span class="w"> </span>validate<span class="w"> </span>all<span class="w"> </span>related<span class="w"> </span>stac
+<span class="w">                                  </span>objects.
+<span class="w">  </span>-m,<span class="w"> </span>--max-depth<span class="w"> </span>INTEGER<span class="w">         </span>Maximum<span class="w"> </span>depth<span class="w"> </span>to<span class="w"> </span>traverse<span class="w"> </span>when<span class="w"> </span>recursing.
+<span class="w">                                  </span>Omit<span class="w"> </span>this<span class="w"> </span>argument<span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>full<span class="w"> </span>recursion.
+<span class="w">                                  </span>Ignored<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="sb">`</span><span class="nv">recursive</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>False<span class="sb">`</span>.
+<span class="w">  </span>--collections<span class="w">                   </span>Validate<span class="w"> </span>/collections<span class="w"> </span>response.
+<span class="w">  </span>--item-collection<span class="w">               </span>Validate<span class="w"> </span>item<span class="w"> </span>collection<span class="w"> </span>response.<span class="w"> </span>Can<span class="w"> </span>be
+<span class="w">                                  </span>combined<span class="w"> </span>with<span class="w"> </span>--pages.<span class="w"> </span>Defaults<span class="w"> </span>to<span class="w"> </span>one<span class="w"> </span>page.
+<span class="w">  </span>--no-assets-urls<span class="w">                </span>Disables<span class="w"> </span>the<span class="w"> </span>opening<span class="w"> </span>of<span class="w"> </span>href<span class="w"> </span>links<span class="w"> </span>when
+<span class="w">                                  </span>validating<span class="w"> </span>assets<span class="w"> </span><span class="o">(</span>enabled<span class="w"> </span>by<span class="w"> </span>default<span class="o">)</span>.
+<span class="w">  </span>--header<span class="w"> </span>&lt;TEXT<span class="w"> </span>TEXT&gt;...<span class="w">         </span>HTTP<span class="w"> </span>header<span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>requests.<span class="w"> </span>Can
+<span class="w">                                  </span>be<span class="w"> </span>used<span class="w"> </span>multiple<span class="w"> </span>times.
+<span class="w">  </span>-p,<span class="w"> </span>--pages<span class="w"> </span>INTEGER<span class="w">             </span>Maximum<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>pages<span class="w"> </span>to<span class="w"> </span>validate<span class="w"> </span>via
+<span class="w">                                  </span>--item-collection.<span class="w"> </span>Defaults<span class="w"> </span>to<span class="w"> </span>one<span class="w"> </span>page.
+<span class="w">  </span>-v,<span class="w"> </span>--verbose<span class="w">                   </span>Enables<span class="w"> </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="k">for</span><span class="w"> </span>recursive<span class="w"> </span>mode.
+<span class="w">  </span>--no_output<span class="w">                     </span>Do<span class="w"> </span>not<span class="w"> </span>print<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span>console.
+<span class="w">  </span>--log_file<span class="w"> </span>TEXT<span class="w">                 </span>Save<span class="w"> </span>full<span class="w"> </span>recursive<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span>log<span class="w"> </span>file
+<span class="w">                                  </span><span class="o">(</span><span class="nb">local</span><span class="w"> </span>filepath<span class="o">)</span>.
+<span class="w">  </span>--pydantic<span class="w">                      </span>Validate<span class="w"> </span>using<span class="w"> </span>stac-pydantic<span class="w"> </span>models<span class="w"> </span><span class="k">for</span><span class="w"> </span>enhanced
+<span class="w">                                  </span><span class="nb">type</span><span class="w"> </span>checking<span class="w"> </span>and<span class="w"> </span>validation.
+<span class="w">  </span>--help<span class="w">                          </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+</pre></div>
+</div>
+</section>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this heading"></a></h3>
+<p><strong>Remote source</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stac_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">stac_validator</span>
+
+<span class="n">stac</span> <span class="o">=</span> <span class="n">stac_validator</span><span class="o">.</span><span class="n">StacValidate</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json&quot;</span><span class="p">)</span>
+<span class="n">stac</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stac</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.9.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/stac-utils/pystac/main/tests/data-files/examples/0.9.0/collection-spec/examples/landsat-collection.json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;https://cdn.staclint.com/v0.9.0/collection.json&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;valid_stac&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;asset_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COLLECTION&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;validation_method&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Local file</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stac_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">stac_validator</span>
+
+<span class="n">stac</span> <span class="o">=</span> <span class="n">stac_validator</span><span class="o">.</span><span class="n">StacValidate</span><span class="p">(</span><span class="s2">&quot;tests/test_data/1beta1/sentinel2.json&quot;</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">stac</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stac</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0-beta.1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;tests/test_data/1beta1/sentinel2.json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;https://cdn.staclint.com/v1.0.0-beta.1/collection.json&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;valid_stac&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;asset_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COLLECTION&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;validation_method&quot;</span><span class="p">:</span> <span class="s2">&quot;extensions&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Dictionary</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stac_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">stac_validator</span>
+
+<span class="n">stac</span> <span class="o">=</span> <span class="n">stac_validator</span><span class="o">.</span><span class="n">StacValidate</span><span class="p">()</span>
+<span class="n">stac</span><span class="o">.</span><span class="n">validate_dict</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stac</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Item Collection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stac_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">stac_validator</span>
+
+<span class="n">stac</span> <span class="o">=</span> <span class="n">stac_validator</span><span class="o">.</span><span class="n">StacValidate</span><span class="p">()</span>
+<span class="n">stac</span><span class="o">.</span><span class="n">validate_item_collection_dict</span><span class="p">(</span><span class="n">item_collection_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stac</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading"></a></h2>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this heading"></a></h3>
+<p>The validator can run using docker containers.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>stac-validator<span class="w"> </span>.
+$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/stac-extensions/projection/main/examples/item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/projection/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;default&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="aws-cdk">
+<h3>AWS (CDK)<a class="headerlink" href="#aws-cdk" title="Permalink to this heading"></a></h3>
+<p>An example <a class="reference external" href="https://aws.amazon.com/cdk/">AWS CDK</a> deployment is available in <a class="reference internal" href="#./cdk-deployment/README.md"><span class="xref myst">cdk-deployment</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cdk-deployment
+$<span class="w"> </span>cdk<span class="w"> </span>diff
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+<span class="c1"># or</span>
+$<span class="w"> </span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="#./tests/test_stac_validator.py"><span class="xref myst">tests</span></a> files for examples on different usages.</p>
+</section>
+<section id="additional-examples">
+<h2>Additional Examples<a class="headerlink" href="#additional-examples" title="Permalink to this heading"></a></h2>
+<section id="core">
+<h3>–core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json<span class="w"> </span>--core
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;core&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="custom">
+<h3>–custom<a class="headerlink" href="#custom" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://radarstac.s3.amazonaws.com/stac/catalog.json<span class="w"> </span>--custom<span class="w"> </span>https://cdn.staclint.com/v0.7.0/catalog.json
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.7.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://radarstac.s3.amazonaws.com/stac/catalog.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://cdn.staclint.com/v0.7.0/catalog.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;CATALOG&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;custom&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="extensions">
+<h3>–extensions<a class="headerlink" href="#extensions" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json<span class="w"> </span>--extensions
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/eo/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/projection/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/scientific/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/view/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/remote-data/v1.0.0/schema.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;extensions&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="recursive">
+<h3>–recursive<a class="headerlink" href="#recursive" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://spot-canada-ortho.s3.amazonaws.com/catalog.json<span class="w"> </span>--recursive<span class="w"> </span>--max-depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>--verbose
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.8.1&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot4_orthoimages/collection.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://cdn.staclint.com/v0.8.1/collection.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;COLLECTION&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;recursive&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.8.1&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://canada-spot-ortho.s3.amazonaws.com/canada_spot_orthoimages/canada_spot5_orthoimages/collection.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://cdn.staclint.com/v0.8.1/collection.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;COLLECTION&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;recursive&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.8.1&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://spot-canada-ortho.s3.amazonaws.com/catalog.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://cdn.staclint.com/v0.8.1/catalog.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;CATALOG&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;recursive&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="item-collection">
+<h3>–item-collection<a class="headerlink" href="#item-collection" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items<span class="w"> </span>--item-collection<span class="w"> </span>--pages<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</section>
+<section id="header">
+<h3>–header<a class="headerlink" href="#header" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://stac-catalog.eu/collections/sentinel-s2-l2a/items<span class="w"> </span>--header<span class="w"> </span>x-api-key<span class="w"> </span><span class="nv">$MY_API_KEY</span><span class="w"> </span>--header<span class="w"> </span>foo<span class="w"> </span>bar
+</pre></div>
+</div>
+</section>
+<section id="schema-map">
+<h3>–schema-map<a class="headerlink" href="#schema-map" title="Permalink to this heading"></a></h3>
+<p>Schema map allows stac-validator to replace a schema in a STAC json by a schema from another URL or local schema file.
+This is especially useful when developing a schema and testing validation against your local copy of the schema.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json<span class="w"> </span>--extensions<span class="w"> </span>--schema-map<span class="w"> </span>https://stac-extensions.github.io/projection/v1.0.0/schema.json<span class="w"> </span><span class="s2">&quot;tests/test_data/schema/v1.0.0/projection.json&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/eo/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;tests/test_data/schema/v1.0.0/projection.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/scientific/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/view/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/remote-data/v1.0.0/schema.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;extensions&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>This option is also capable of replacing URLs to subschemas:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>tests/test_data/v100/extended-item-local.json<span class="w"> </span>--custom<span class="w"> </span>tests/test_data/schema/v1.0.0/item_with_unreachable_url.json<span class="w"> </span>--schema-map<span class="w"> </span>https://geojson-wrong-url.org/schema/Feature.json<span class="w"> </span>https://geojson.org/schema/Feature.json<span class="w"> </span>--schema-map<span class="w"> </span>https://geojson-wrong-url.org/schema/Geometry.json<span class="w"> </span>https://geojson.org/schema/Geometry.json
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;tests/test_data/v100/extended-item-local.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;tests/test_data/schema/v1.0.0/item_with_unreachable_url.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;custom&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="pydantic">
+<h3>–pydantic<a class="headerlink" href="#pydantic" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--pydantic</span></code> option provides enhanced validation using stac-pydantic models, which offer stronger type checking and more detailed error messages. To use this feature, you need to install the optional dependency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>stac-validator<span class="o">[</span>pydantic<span class="o">]</span>
+</pre></div>
+</div>
+<p>Then you can validate your STAC objects using Pydantic models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>stac-validator<span class="w"> </span>https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json<span class="w"> </span>--pydantic
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/radiantearth/stac-spec/master/examples/extended-item.json&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;schema&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;stac-pydantic Item model&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;valid_stac&quot;</span>:<span class="w"> </span>true,
+<span class="w">        </span><span class="s2">&quot;asset_type&quot;</span>:<span class="w"> </span><span class="s2">&quot;ITEM&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;validation_method&quot;</span>:<span class="w"> </span><span class="s2">&quot;pydantic&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;extension_schemas&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/eo/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/projection/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/scientific/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/view/v1.0.0/schema.json&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;https://stac-extensions.github.io/remote-data/v1.0.0/schema.json&quot;</span>
+<span class="w">        </span><span class="o">]</span>,
+<span class="w">        </span><span class="s2">&quot;model_validation&quot;</span>:<span class="w"> </span><span class="s2">&quot;passed&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<p>For more detailed documentation, please see the following pages:</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validator.html">Validate API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities API Reference</a></li>
+</ul>
+</div>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cli.html" class="btn btn-neutral float-right" title="CLI API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jonathan Healy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
