@@ -477,8 +477,9 @@ class StacValidate:
 
         Raises:
             URLError, JSONDecodeError, ValueError, TypeError, FileNotFoundError,
-            ConnectionError, exceptions.SSLError, OSError: Various errors related
-            to fetching or parsing.
+            ConnectionError, exceptions.SSLError, OSError, KeyError, HTTPError,
+            jsonschema.exceptions.ValidationError, Exception: Various errors
+            during fetching or parsing.
         """
         collections = fetch_and_parse_file(str(self.stac_file), self.headers)
         for collection in collections["collections"]:
@@ -491,8 +492,9 @@ class StacValidate:
 
         Raises:
             URLError, JSONDecodeError, ValueError, TypeError, FileNotFoundError,
-            ConnectionError, exceptions.SSLError, OSError: Various errors related
-            to fetching or parsing.
+            ConnectionError, exceptions.SSLError, OSError, KeyError, HTTPError,
+            jsonschema.exceptions.ValidationError, Exception: Various errors
+            during fetching or parsing.
         """
         page = 1
         print(f"processing page {page}")
@@ -558,7 +560,7 @@ class StacValidate:
 
                 item_model = Item.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Item model"]
-                print("Set schema to: " + message["schema"])
+                print("Set schema to: " + str(message["schema"]))
 
                 # Validate extensions if present
                 if (
@@ -577,7 +579,7 @@ class StacValidate:
 
                 collection_model = Collection.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Collection model"]
-                print("Set schema to: " + message["schema"])
+                print("Set schema to: " + str(message["schema"]))
 
                 # Validate extensions if present
                 if (
@@ -596,7 +598,7 @@ class StacValidate:
 
                 catalog_model = Catalog.model_validate(self.stac_content)
                 message["schema"] = ["stac-pydantic Catalog model"]
-                print("Set schema to: " + message["schema"])
+                print("Set schema to: " + str(message["schema"]))
 
                 # For catalogs, we don't need to validate extensions, but we still need to use the model
                 # to avoid flake8 warnings

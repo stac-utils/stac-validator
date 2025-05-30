@@ -25,23 +25,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[pydantic]"
-          pip install pytest
-          # Explicitly install stac-pydantic and verify it's installed
-          pip install stac-pydantic>=3.3.0
-          python -c "import stac_pydantic; print('stac-pydantic installed successfully')"
-          
-          # Debug information
-          echo "Installed packages:"
-          pip list
-          echo "Python path:"
-          python -c "import sys; print(sys.path)"
-          echo "stac_pydantic location:"
-          python -c "import stac_pydantic; print(stac_pydantic.__file__)"
-
       - name: Run mypy
         run: |
           pip install .
@@ -49,7 +32,7 @@ jobs:
           pytest --mypy stac_validator
 
       - name: Run pre-commit
-        if: matrix.python-version == 3.10
+        if: matrix.python-version == 3.12
         run: |
           pre-commit install
           pre-commit autoupdate
