@@ -10,8 +10,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Added a comprehensive Table of Contents to README.md [#247](https://github.com/stac-utils/stac-validator/pull/247)
 - Added Sponsors and Supporters section to README.md with organizational logos and acknowledgments [#247](https://github.com/stac-utils/stac-validator/pull/247)
-- Added `--pydantic` option for validating STAC objects using stac-pydantic models, providing enhanced type checking and validation
-- Added optional dependency for stac-pydantic that can be installed with `pip install stac-validator[pydantic]`
+- Added `--pydantic` option for validating STAC objects using stac-pydantic models, providing enhanced type checking and validation [#249](https://github.com/stac-utils/stac-validator/pull/249)
+- Added optional dependency for stac-pydantic that can be installed with `pip install stac-validator[pydantic]` [#249](https://github.com/stac-utils/stac-validator/pull/249)
 
 ### Changed
 
