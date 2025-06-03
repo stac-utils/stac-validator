@@ -31,6 +31,7 @@ setup(
         "click>=8.1.8",
         "stac-pydantic>=3.3.0",
         "referencing>=0.35.1",
+        "pyYAML>=6.0.1",
     ],
     extras_require={
         "dev": [
