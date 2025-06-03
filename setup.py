@@ -39,9 +39,6 @@ setup(
             "requests-mock",
             "types-setuptools",
         ],
-        "pydantic": [
-            "stac-pydantic>=3.3.0",
-        ],
     },
     packages=["stac_validator"],
     entry_points={

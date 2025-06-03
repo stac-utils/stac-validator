@@ -6,6 +6,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+
+- Added `--schema-config` option to specify a YAML or JSON configuration file that maps remote schema URLs to local file paths, making it easier to validate against multiple local schemas
+
 ## [v3.7.0] - 2025-05-30
 
 ### Added
@@ -62,7 +66,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 - Development dependencies removed from runtime dependency list
   ([#228](https://github.com/stac-utils/stac-check/pull/109))
-- Remove jsonschema RefResolver ([#228](https://github.com/stac-utils/stac-check/pull/109))
+- Remove jsonschema RefResolver ([#228](https://github.com/stac-utils/stac-check/pull/109)
 
 ## [v3.3.1] - 2022-12-16
 
