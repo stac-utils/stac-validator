@@ -1,14 +1,13 @@
 import functools
 import json
+import os
 import ssl
 from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
-import os
-import yaml
-
 import requests  # type: ignore
+import yaml  # type: ignore
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
@@ -265,6 +264,7 @@ def validate_with_ref_resolver(
     # Validate the content against the schema
     validator = Draft202012Validator(schema, registry=registry)
     validator.validate(content)
+
 
 def load_schema_config(config_path: str) -> dict:
     """

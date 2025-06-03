@@ -15,9 +15,9 @@ from .utilities import (
     get_stac_type,
     is_valid_url,
     link_request,
+    load_schema_config,
     set_schema_addr,
     validate_with_ref_resolver,
-    load_schema_config,
 )
 
 
@@ -112,10 +112,14 @@ class StacValidate:
                     if not os.path.isabs(path) and not is_valid_url(path):
                         config_mappings[url] = os.path.join(config_dir, path)
                     abs_path = os.path.abspath(config_mappings[url])
-                    self._original_schema_paths[abs_path] = path  # <-- This line is critical
+                    self._original_schema_paths[abs_path] = (
+                        path  # <-- This line is critical
+                    )
 
             except Exception as e:
-                click.secho(f"Error loading schema config file: {e}", fg="red", err=True)
+                click.secho(
+                    f"Error loading schema config file: {e}", fg="red", err=True
+                )
                 config_mappings = {}
 
         # Handle CLI mappings
