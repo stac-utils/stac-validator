@@ -1,11 +1,13 @@
 import functools
 import json
+import os
 import ssl
 from typing import Dict, Optional
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 import requests  # type: ignore
+import yaml  # type: ignore
 from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
@@ -262,3 +264,31 @@ def validate_with_ref_resolver(
     # Validate the content against the schema
     validator = Draft202012Validator(schema, registry=registry)
     validator.validate(content)
+
+
+def load_schema_config(config_path: str) -> dict:
+    """
+    Loads a schema config file (YAML or JSON) that maps remote schema URLs to local file paths.
+    Supports an optional top-level 'schemas' key.
+
+    Args:
+        config_path: Path to the schema config file.
+
+    Returns:
+        A dict mapping remote schema URLs to local file paths.
+
+    Raises:
+        FileNotFoundError: If the config file does not exist.
+        ValueError: If the file is not valid YAML/JSON or is missing required keys.
+    """
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Schema config file not found: {config_path}")
+    with open(config_path, "r") as f:
+        if config_path.endswith(".json"):
+            data = json.load(f)
+        else:
+            data = yaml.safe_load(f)
+    # Support both top-level and nested under 'schemas'
+    if "schemas" in data:
+        return data["schemas"]
+    return data

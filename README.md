@@ -31,6 +31,7 @@
   - [Item Collection Validation](#--item-collection)
   - [Using Headers](#--header)
   - [Schema Mapping](#--schema-map)
+  - [Schema Config](#--schema-config)
   - [Pydantic Validation](#--pydantic)
 - [Deployment](#deployment)
   - [Docker](#docker)
@@ -177,6 +178,7 @@ Options:
                                   (local filepath).
   --pydantic                      Validate using stac-pydantic models for enhanced
                                   type checking and validation.
+  --schema-config TEXT            Path to a YAML or JSON schema config file.
   --help                          Show this message and exit.
 ```
 
@@ -460,6 +462,25 @@ $ stac-validator tests/test_data/v100/extended-item-local.json --custom tests/te
     }
 ]
 ```
+
+### --schema-config
+
+The `--schema-config` option allows you to specify a YAML or JSON configuration file that maps remote schema URLs to local file paths. This is useful when you need to validate against multiple local schemas and want to avoid using multiple `--schema-map` arguments.
+
+Example schema config file (YAML):
+```yaml
+schemas:
+  "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json": "local_schemas/v1.0.0/collection.json"
+  "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json": "local_schemas/v1.0.0/item.json"
+  "https://stac-extensions.github.io/eo/v1.0.0/schema.json": "local_schemas/v1.0.0/eo.json"
+```
+
+Usage:
+```bash
+$ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/extended-item.json --schema-config path/to/schema_config.yaml
+```
+
+The paths in the config file can be absolute or relative to the config file's location.
 
 ### --pydantic
 

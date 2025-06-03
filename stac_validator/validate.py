@@ -15,6 +15,7 @@ from .utilities import (
     get_stac_type,
     is_valid_url,
     link_request,
+    load_schema_config,
     set_schema_addr,
     validate_with_ref_resolver,
 )
@@ -41,6 +42,8 @@ class StacValidate:
         verbose (bool): Whether to enable verbose output in recursive mode.
         log (str): The local filepath to save the output of the recursive validation to.
         pydantic (bool): Whether to validate using Pydantic models.
+        schema_config (str): The local filepath or remote URL of a custom JSON schema config to validate the STAC object.
+        schema_map (Optional[Dict[str, str]]): A dictionary mapping schema paths to their replacements.
 
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
@@ -62,6 +65,7 @@ class StacValidate:
         headers: dict = {},
         extensions: bool = False,
         custom: str = "",
+        schema_config: Optional[str] = None,
         schema_map: Optional[Dict[str, str]] = None,
         verbose: bool = False,
         log: str = "",
@@ -74,6 +78,7 @@ class StacValidate:
         self.message: List = []
         self._schema = custom
         self.schema_map = schema_map
+        self.schema_config = schema_config
         self.links = links
         self.assets = assets
         self.assets_open_urls = assets_open_urls
@@ -90,6 +95,44 @@ class StacValidate:
         self.valid = False
         self.log = log
         self.pydantic = pydantic
+
+        self._original_schema_paths = {}
+        cli_schema_map = schema_map or {}
+
+        # Load config mappings if provided
+        config_mappings = {}
+        if schema_config:
+            try:
+                config_mappings = load_schema_config(schema_config)
+                config_dir = os.path.dirname(os.path.abspath(schema_config))
+                # Handle config mappings
+                for url, path in list(config_mappings.items()):
+                    self._original_schema_paths[url] = path
+                    # Resolve relative to config file dir for loading
+                    if not os.path.isabs(path) and not is_valid_url(path):
+                        config_mappings[url] = os.path.join(config_dir, path)
+                    abs_path = os.path.abspath(config_mappings[url])
+                    self._original_schema_paths[abs_path] = (
+                        path  # <-- This line is critical
+                    )
+
+            except Exception as e:
+                click.secho(
+                    f"Error loading schema config file: {e}", fg="red", err=True
+                )
+                config_mappings = {}
+
+        # Handle CLI mappings
+        for url, path in list(cli_schema_map.items()):
+            self._original_schema_paths[url] = path
+            # Resolve relative to CWD for loading
+            if not os.path.isabs(path) and not is_valid_url(path):
+                cli_schema_map[url] = os.path.abspath(path)
+            abs_path = os.path.abspath(cli_schema_map[url])
+            self._original_schema_paths[abs_path] = path  # <-- This line is critical
+
+        # Merge config with CLI (CLI wins)
+        self.schema_map = {**config_mappings, **cli_schema_map}
 
     @property
     def schema(self) -> str:
@@ -155,7 +198,7 @@ class StacValidate:
         return {
             "version": self.version,
             "path": self.stac_file,
-            "schema": [self.schema],
+            "schema": [self._original_schema_paths.get(self.schema, self.schema)],
             "valid_stac": False,
             "asset_type": stac_type.upper(),
             "validation_method": val_type,
@@ -278,10 +321,12 @@ class StacValidate:
                         )
                     self.schema = extension
                     self.custom_validator()
-                    message["schema"].append(self.schema)
+                    display_path = self._original_schema_paths.get(extension, extension)
+                    message["schema"].append(display_path)
             else:
                 self.core_validator(stac_type)
-                message["schema"] = [self.schema]
+                display_path = self._original_schema_paths.get(self.schema, self.schema)
+                message["schema"] = [display_path]
 
         except jsonschema.exceptions.ValidationError as e:
             if self.recursive:
@@ -326,16 +371,18 @@ class StacValidate:
         # Validate core
         self.core_validator(stac_type)
         core_schema = self.schema
-        if core_schema not in message["schema"]:
-            message["schema"].append(core_schema)
+        display_path = self._original_schema_paths.get(core_schema, core_schema)
+        if display_path not in message["schema"]:
+            message["schema"].append(display_path)
         stac_upper = stac_type.upper()
 
         # Validate extensions if ITEM
         if stac_upper == "ITEM" or stac_upper == "COLLECTION":
             message = self.extensions_validator(stac_upper)
             message["validation_method"] = "default"
-            if core_schema not in message["schema"]:
-                message["schema"].append(core_schema)
+            display_path = self._original_schema_paths.get(core_schema, core_schema)
+            if display_path not in message["schema"]:
+                message["schema"].append(display_path)
 
         # Optionally validate links
         if self.links:
@@ -635,12 +682,14 @@ class StacValidate:
             if self.core:
                 message = self.create_message(stac_type, "core")
                 self.core_validator(stac_type)
-                message["schema"] = [self.schema]
+                display_path = self._original_schema_paths.get(self.schema, self.schema)
+                message["schema"] = [display_path]
                 self.valid = True
 
             elif self.schema:
                 message = self.create_message(stac_type, "custom")
-                message["schema"] = [self.schema]
+                display_path = self._original_schema_paths.get(self.schema, self.schema)
+                message["schema"] = [display_path]
                 self.custom_validator()
                 self.valid = True
 

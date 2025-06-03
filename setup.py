@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-__version__ = "3.7.0"
+__version__ = "3.8.0"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -31,15 +31,13 @@ setup(
         "click>=8.1.8",
         "stac-pydantic>=3.3.0",
         "referencing>=0.35.1",
+        "pyYAML>=6.0.1",
     ],
     extras_require={
         "dev": [
             "pytest",
             "requests-mock",
             "types-setuptools",
-        ],
-        "pydantic": [
-            "stac-pydantic>=3.3.0",
         ],
     },
     packages=["stac_validator"],

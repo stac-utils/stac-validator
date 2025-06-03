@@ -88,6 +88,12 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     help="Validate against a custom schema (local filepath or remote schema).",
 )
 @click.option(
+    "--schema-config",
+    "-sc",
+    default="",
+    help="Validate against a custom schema config (local filepath or remote schema config).",
+)
+@click.option(
     "--schema-map",
     "-s",
     type=(str, str),
@@ -161,6 +167,7 @@ def main(
     links: bool,
     assets: bool,
     custom: str,
+    schema_config: str,
     schema_map: List[Tuple],
     verbose: bool,
     no_output: bool,
@@ -184,6 +191,7 @@ def main(
         links (bool): Whether to additionally validate links. Only works with default mode.
         assets (bool): Whether to additionally validate assets. Only works with default mode.
         custom (str): Path to a custom schema file to validate against.
+        schema_config (str): Path to a custom schema config file to validate against.
         schema_map (list(tuple)): List of tuples each having two elememts. First element is the schema path to be replaced by the path in the second element.
         verbose (bool): Whether to enable verbose output for recursive mode.
         no_output (bool): Whether to print output to console.
@@ -216,6 +224,7 @@ def main(
         headers=dict(header),
         extensions=extensions,
         custom=custom,
+        schema_config=schema_config,
         schema_map=schema_map_dict,
         verbose=verbose,
         log=log_file,
