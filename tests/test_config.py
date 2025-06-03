@@ -17,14 +17,12 @@ def test_validator_with_test_config_eo():
         stac_file="tests/test_data/v100/extended-item.json",
         schema_config="schema_config.yaml",
     )
-    print(validator)
     valid = validator.run()
-    print(validator.message)
     assert valid
     # Optionally, check that the schema path in output is as expected
     assert validator.message[-1]["schema"] == [
-        "local_schemas/v1.0.0/eo.json",
-        "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+        "local_schemas/v1.0.0/extensions/eo.json",
+        "local_schemas/v1.0.0/extensions/projection.json",
         "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
         "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
