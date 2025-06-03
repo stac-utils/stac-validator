@@ -6,9 +6,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v3.8.0] - 2025-06-03
+
 ### Added
 
-- Added `--schema-config` option to specify a YAML or JSON configuration file that maps remote schema URLs to local file paths, making it easier to validate against multiple local schemas
+- Added `--schema-config` option to specify a YAML or JSON configuration file that maps remote schema URLs to local file paths, making it easier to validate against multiple local schemas, allowing offline validation and improved performance [#253](https://github.com/stac-utils/stac-validator/pull/253)
 
 ## [v3.7.0] - 2025-05-30
 
@@ -249,7 +251,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.7.0..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.8.0..main
+[v3.8.0]: https://github.com/sparkgeo/stac-validator/compare/v3.7.0..v3.8.0
 [v3.7.0]: https://github.com/sparkgeo/stac-validator/compare/v3.6.0..v3.7.0
 [v3.6.0]: https://github.com/sparkgeo/stac-validator/compare/v3.5.0..v3.6.0
 [v3.5.0]: https://github.com/sparkgeo/stac-validator/compare/v3.4.0..v3.5.0
