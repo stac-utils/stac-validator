@@ -45,7 +45,7 @@ class StacValidate:
         schema_config (str): The local filepath or remote URL of a custom JSON schema config to validate the STAC object.
         schema_map (Optional[Dict[str, str]]): A dictionary mapping schema paths to their replacements.
         verbose (bool): Whether to enable verbose output.
-        
+
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
         validate_item_collection(): Validates an item collection.
@@ -148,7 +148,7 @@ class StacValidate:
                 schema_path = self.schema_map[schema_path]
         self._schema = schema_path
 
-    def create_err_msg(self, err_type: str, err_msg: str) -> Dict:
+    def create_err_msg(self, err_type: str, err_msg: str, error_verbose: str) -> Dict:
         """
         Create a standardized error message dictionary and mark validation as failed.
 
@@ -160,7 +160,7 @@ class StacValidate:
             dict: Dictionary containing error information.
         """
         self.valid = False
-        return {
+        message = {
             "version": self.version,
             "path": self.stac_file,
             "schema": [self.schema],
@@ -168,6 +168,9 @@ class StacValidate:
             "error_type": err_type,
             "error_message": err_msg,
         }
+        if self.verbose:
+            message["error_verbose"] = error_verbose
+        return message
 
     def create_links_message(self) -> Dict:
         """
@@ -332,6 +335,7 @@ class StacValidate:
                 message["schema"] = [display_path]
 
         except jsonschema.exceptions.ValidationError as e:
+            verbose_error = str(e)
             if self.recursive:
                 raise
             if e.context:
@@ -344,7 +348,11 @@ class StacValidate:
                 )
             else:
                 err_msg = f"{e.message}"
-            message = self.create_err_msg("JSONSchemaValidationError", err_msg)
+            message = self.create_err_msg(
+                err_type="JSONSchemaValidationError",
+                err_msg=err_msg,
+                error_verbose=verbose_error,
+            )
             return message
 
         except Exception as e:
@@ -352,7 +360,9 @@ class StacValidate:
                 raise
             valid = False
             err_msg = f"{e}. Error in Extensions."
-            return self.create_err_msg("Exception", err_msg)
+            return self.create_err_msg(
+                err_type="Exception", err_msg=err_msg, error_verbose=str(e)
+            )
 
         self.valid = valid
         message["valid_stac"] = valid
@@ -430,8 +440,14 @@ class StacValidate:
                 else:
                     err_msg = f"{e.message}"
                 message.update(
-                    self.create_err_msg("JSONSchemaValidationError", err_msg)
+                    self.create_err_msg(
+                        err_type="JSONSchemaValidationError",
+                        err_msg=err_msg,
+                        error_verbose=str(e),
+                    )
                 )
+                if self.verbose:
+                    message["error_verbose"] = str(e)
                 self.message.append(message)
                 if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
@@ -628,12 +644,22 @@ class StacValidate:
             ]
             error_message = f"Pydantic validation failed for {stac_type}: {'; '.join(error_details)}"
             message.update(
-                self.create_err_msg("PydanticValidationError", error_message)
+                self.create_err_msg(
+                    err_type="PydanticValidationError",
+                    err_msg=error_message,
+                    error_verbose=str(e),
+                )
             )
 
         except Exception as e:
             self.valid = False
-            message.update(self.create_err_msg("PydanticValidationError", str(e)))
+            message.update(
+                self.create_err_msg(
+                    err_type="PydanticValidationError",
+                    err_msg=str(e),
+                    error_verbose=str(e),
+                )
+            )
 
         return message
 
@@ -717,7 +743,13 @@ class StacValidate:
                 )
             else:
                 err_msg = f"{e.message}"
-            message.update(self.create_err_msg("JSONSchemaValidationError", err_msg))
+            message.update(
+                self.create_err_msg(
+                    err_type="JSONSchemaValidationError",
+                    err_msg=err_msg,
+                    error_verbose=str(e),
+                )
+            )
 
         except (
             URLError,
@@ -731,10 +763,18 @@ class StacValidate:
             KeyError,
             HTTPError,
         ) as e:
-            message.update(self.create_err_msg(type(e).__name__, str(e)))
+            message.update(
+                self.create_err_msg(
+                    err_type=type(e).__name__, err_msg=str(e), error_verbose=str(e)
+                )
+            )
 
         except Exception as e:
-            message.update(self.create_err_msg("Exception", str(e)))
+            message.update(
+                self.create_err_msg(
+                    err_type="Exception", err_msg=str(e), error_verbose=str(e)
+                )
+            )
 
         if message:
             message["valid_stac"] = self.valid

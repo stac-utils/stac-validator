@@ -159,7 +159,7 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
 @click.option(
     "--verbose",
     is_flag=True,
-    help="Enable verbose output. This will output additional information during validation."
+    help="Enable verbose output. This will output additional information during validation.",
 )
 def main(
     stac_file: str,
