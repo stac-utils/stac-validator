@@ -33,11 +33,7 @@ setup(
         "pyYAML>=6.0.1",
     ],
     extras_require={
-        "dev": [
-            "pytest",
-            "requests-mock",
-            "types-setuptools",
-        ],
+        "dev": ["pytest", "requests-mock", "types-setuptools", "stac-pydantic>=3.3.0"],
         "pydantic": [
             "stac-pydantic>=3.3.0",
         ],

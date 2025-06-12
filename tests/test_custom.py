@@ -21,6 +21,7 @@ def test_custom_item_remote_schema_v080():
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'bbox' is a required property",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         }
     ]
 
@@ -75,6 +76,7 @@ def test_custom_bad_item_remote_schema_v090():
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         }
     ]
 

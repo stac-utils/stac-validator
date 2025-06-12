@@ -9,9 +9,9 @@ from urllib.request import Request, urlopen
 import requests  # type: ignore
 import yaml  # type: ignore
 from jsonschema import Draft202012Validator
-from referencing import Registry, Resource
-from referencing.jsonschema import DRAFT202012
-from referencing.typing import URI
+from referencing import Registry, Resource  # type: ignore
+from referencing.jsonschema import DRAFT202012  # type: ignore
+from referencing.typing import URI  # type: ignore
 
 NEW_VERSIONS = [
     "1.0.0-beta.2",
@@ -292,3 +292,37 @@ def load_schema_config(config_path: str) -> dict:
     if "schemas" in data:
         return data["schemas"]
     return data
+
+
+def extract_relevant_oneof_error(error, instance=None):
+    """Extract the most relevant error from a 'oneOf' validation error.
+
+    Given a jsonschema.ValidationError for a 'oneOf' failure, this function returns
+    the most relevant sub-error, with preference given to errors matching the instance's 'type'.
+    If no matching type is found, it falls back to returning the first sub-error.
+
+    Args:
+        error (jsonschema.ValidationError): The validation error from a 'oneOf' validation.
+        instance (dict, optional): The instance being validated. If provided and contains a 'type'
+            field, the function will try to find a matching schema for that type. Defaults to None.
+
+    Returns:
+        jsonschema.ValidationError: The most relevant sub-error from the 'oneOf' validation.
+            If the error is not a 'oneOf' validation error or has no context, returns the
+            original error unchanged.
+    """
+    if error.validator == "oneOf" and hasattr(error, "context") and error.context:
+        if instance and "type" in instance:
+            for suberror in error.context:
+                # Try to match the instance 'type' to the schema's 'type'
+                props = suberror.schema.get("properties", {})
+                type_schema = props.get("type", {})
+                if (
+                    isinstance(type_schema, dict)
+                    and "const" in type_schema
+                    and instance["type"] == type_schema["const"]
+                ):
+                    return suberror
+        # Fallback to the first suberror
+        return error.context[0]
+    return error

@@ -6,6 +6,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+- Added separate `recommendation` field in error messages when running in non-verbose mode [#257](https://github.com/stac-utils/stac-validator/pull/257)
+- Verbose error messages for JSONSchemaValidationErrors [#257](https://github.com/stac-utils/stac-validator/pull/257)
+
+### Changed
+- Changed --verbose for recursive mode to --trace-recursive to make way for more comprehensive error messaging [#257](https://github.com/stac-utils/stac-validator/pull/257)
+
 ## [v3.8.1] - 2025-06-04
 
 ### Fixed

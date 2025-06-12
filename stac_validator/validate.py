@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -10,6 +10,7 @@ from jsonschema.exceptions import best_match
 from requests import exceptions  # type: ignore
 
 from .utilities import (
+    extract_relevant_oneof_error,
     fetch_and_parse_file,
     fetch_and_parse_schema,
     get_stac_type,
@@ -39,11 +40,12 @@ class StacValidate:
         headers (dict): HTTP headers to include in the requests.
         extensions (bool): Whether to only validate STAC object extensions.
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
-        verbose (bool): Whether to enable verbose output in recursive mode.
+        trace_recursion (bool): Whether to enable verbose output in recursive mode.
         log (str): The local filepath to save the output of the recursive validation to.
         pydantic (bool): Whether to validate using Pydantic models.
         schema_config (str): The local filepath or remote URL of a custom JSON schema config to validate the STAC object.
         schema_map (Optional[Dict[str, str]]): A dictionary mapping schema paths to their replacements.
+        verbose (bool): Whether to enable verbose output.
 
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
@@ -67,9 +69,10 @@ class StacValidate:
         custom: str = "",
         schema_config: Optional[str] = None,
         schema_map: Optional[Dict[str, str]] = None,
-        verbose: bool = False,
+        trace_recursion: bool = False,
         log: str = "",
         pydantic: bool = False,
+        verbose: bool = False,
     ):
         self.stac_file = stac_file
         self.collections = collections
@@ -91,10 +94,11 @@ class StacValidate:
         self.version = ""
         self.depth: int = 0
         self.skip_val = False
-        self.verbose = verbose
+        self.trace_recursion = trace_recursion
         self.valid = False
         self.log = log
         self.pydantic = pydantic
+        self.verbose = verbose
 
         self._original_schema_paths = {}
         cli_schema_map = schema_map or {}
@@ -145,26 +149,145 @@ class StacValidate:
                 schema_path = self.schema_map[schema_path]
         self._schema = schema_path
 
-    def create_err_msg(self, err_type: str, err_msg: str) -> Dict:
+    def _format_jsonschema_error_verbose(
+        self, error: jsonschema.exceptions.ValidationError
+    ) -> Dict[str, Any]:
+        """Format a JSON Schema validation error into a detailed dictionary.
+
+        This method transforms a jsonschema ValidationError into a structured dictionary
+        containing comprehensive information about the validation failure, including
+        error details, schema information, and relevant paths.
+
+        Args:
+            error: The jsonschema ValidationError to be formatted.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing detailed information about the
+                validation error, including:
+                - error_type: Type of validation error
+                - detail: Error message
+                - validator: The validator that failed
+                - path_in_document: Path to the error in the validated document
+                - path_in_schema: Path to the error in the schema
+                - schema: The relevant schema section that caused the validation failure
+                - validator_value: The value that failed validation
+                - instance: The actual value that caused the validation failure
+        """
+        verbose_details: Dict[str, Any] = {}
+
+        verbose_details["validator"] = error.validator
+        if error.validator_value is not None:
+            val_value_repr = repr(error.validator_value)
+            if len(val_value_repr) > 800:
+                val_value_repr = val_value_repr[:800] + "... (truncated)"
+            verbose_details["validator_value"] = val_value_repr
+        else:
+            verbose_details["validator_value"] = None
+
+        # if error.instance is not None:
+        #     instance_repr = repr(error.instance)
+        #     if len(instance_repr) > 200: # Max length for instance snippet
+        #         instance_repr = instance_repr[:200] + "... (truncated)"
+        #     verbose_details["instance_snippet"] = instance_repr
+        # else:
+        #     verbose_details["instance_snippet"] = None
+
+        if (
+            error.schema is not None
+            and error.validator is not None
+            and isinstance(error.schema, dict)
+            and isinstance(error.validator, str)
+        ):
+            verbose_details["schema"] = error.schema.get(error.validator)
+        else:
+            verbose_details["schema"] = None
+
+        verbose_details["path_in_document"] = list(error.absolute_path)
+        verbose_details["path_in_schema"] = list(error.absolute_schema_path)
+
+        # if error.context:
+        #     context_errors_list = []
+        #     for context_error in sorted(error.context, key=jsonschema.exceptions.relevance):
+        #         # Recursively format context errors, ensuring best_match is handled if nested
+        #         best_context_error = best_match([context_error]) if context_error.context else context_error
+        #         context_errors_list.append(self._format_jsonschema_error_verbose(best_context_error))
+        #     verbose_details["context_errors"] = context_errors_list
+
+        return verbose_details
+
+    def _create_verbose_err_msg(self, error_input: Any) -> Union[Dict[str, Any], str]:
+        """Create a verbose error message from various error input types.
+
+        Args:
+            error_input: The error input to process. Can be a jsonschema ValidationError,
+                dictionary, Exception, or any other type that can be converted to string.
+
+        Returns:
+            Union[Dict[str, Any], str]: A detailed error message. For jsonschema ValidationError,
+                returns a dictionary with detailed validation information. For other Exception types,
+                returns a dictionary with error type and detail. For dictionaries, returns the
+                dictionary as-is. For all other types, returns the string representation.
+        """
+        if isinstance(error_input, jsonschema.exceptions.ValidationError):
+            return self._format_jsonschema_error_verbose(error_input)
+        elif isinstance(error_input, dict):
+            return error_input
+        elif isinstance(error_input, Exception):
+            return {
+                "error_type": type(error_input).__name__,
+                "detail": str(error_input),
+            }
+        elif error_input is None:
+            return {}
+        return str(error_input)  # Fallback to string representation
+
+    def create_err_msg(
+        self, err_type: str, err_msg: str, error_obj: Optional[Exception] = None
+    ) -> Dict[str, Union[str, bool, List[str], Dict[str, Any]]]:
         """
         Create a standardized error message dictionary and mark validation as failed.
 
         Args:
             err_type (str): The type of error.
             err_msg (str): The error message.
+            error_obj (Optional[Exception]): The raw exception object for verbose details.
 
         Returns:
             dict: Dictionary containing error information.
         """
         self.valid = False
-        return {
-            "version": self.version,
-            "path": self.stac_file,
-            "schema": [self.schema],
+
+        # Ensure all values are of the correct type
+        version_str: str = str(self.version) if self.version is not None else ""
+        path_str: str = str(self.stac_file) if self.stac_file is not None else ""
+
+        # Ensure schema is properly typed
+        schema_value: str = ""
+        if self.schema is not None:
+            schema_value = str(self.schema)
+        schema_field: List[str] = [schema_value] if schema_value else []
+
+        message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
+            "version": version_str,
+            "path": path_str,
+            "schema": schema_field,  # Ensure schema is a list of strings or None
             "valid_stac": False,
             "error_type": err_type,
             "error_message": err_msg,
         }
+
+        if self.verbose and error_obj is not None:
+            verbose_err = self._create_verbose_err_msg(error_obj)
+            if isinstance(verbose_err, dict):
+                message["error_verbose"] = verbose_err
+            else:
+                message["error_verbose"] = {"detail": str(verbose_err)}
+        else:
+            message["recommendation"] = (
+                "For more accurate error information, rerun with --verbose."
+            )
+
+        return message
 
     def create_links_message(self) -> Dict:
         """
@@ -329,6 +452,8 @@ class StacValidate:
                 message["schema"] = [display_path]
 
         except jsonschema.exceptions.ValidationError as e:
+            verbose_error = e
+            e = extract_relevant_oneof_error(e, self.stac_content)
             if self.recursive:
                 raise
             if e.context:
@@ -337,11 +462,15 @@ class StacValidate:
             if e.absolute_path:
                 err_msg = (
                     f"{e.message}. Error is in "
-                    f"{' -> '.join(map(str, e.absolute_path))}"
+                    f"{' -> '.join(map(str, e.absolute_path))} "
                 )
             else:
                 err_msg = f"{e.message}"
-            message = self.create_err_msg("JSONSchemaValidationError", err_msg)
+            message = self.create_err_msg(
+                err_type="JSONSchemaValidationError",
+                err_msg=err_msg,
+                error_obj=verbose_error,
+            )
             return message
 
         except Exception as e:
@@ -349,7 +478,9 @@ class StacValidate:
                 raise
             valid = False
             err_msg = f"{e}. Error in Extensions."
-            return self.create_err_msg("Exception", err_msg)
+            return self.create_err_msg(
+                err_type="Exception", err_msg=err_msg, error_obj=e
+            )
 
         self.valid = valid
         message["valid_stac"] = valid
@@ -427,17 +558,21 @@ class StacValidate:
                 else:
                     err_msg = f"{e.message}"
                 message.update(
-                    self.create_err_msg("JSONSchemaValidationError", err_msg)
+                    self.create_err_msg(
+                        err_type="JSONSchemaValidationError",
+                        err_msg=err_msg,
+                        error_obj=e,
+                    )
                 )
                 self.message.append(message)
-                if self.verbose:
+                if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
                 return valid
 
             valid = True
             message["valid_stac"] = valid
             self.message.append(message)
-            if self.verbose:
+            if self.trace_recursion:
                 click.echo(json.dumps(message, indent=4))
 
             self.depth += 1
@@ -625,12 +760,20 @@ class StacValidate:
             ]
             error_message = f"Pydantic validation failed for {stac_type}: {'; '.join(error_details)}"
             message.update(
-                self.create_err_msg("PydanticValidationError", error_message)
+                self.create_err_msg(
+                    err_type="PydanticValidationError",
+                    err_msg=error_message,
+                    error_obj=e,
+                )
             )
 
         except Exception as e:
             self.valid = False
-            message.update(self.create_err_msg("PydanticValidationError", str(e)))
+            message.update(
+                self.create_err_msg(
+                    err_type="PydanticValidationError", err_msg=str(e), error_obj=e
+                )
+            )
 
         return message
 
@@ -714,7 +857,11 @@ class StacValidate:
                 )
             else:
                 err_msg = f"{e.message}"
-            message.update(self.create_err_msg("JSONSchemaValidationError", err_msg))
+            message.update(
+                self.create_err_msg(
+                    err_type="JSONSchemaValidationError", err_msg=err_msg, error_obj=e
+                )
+            )
 
         except (
             URLError,
@@ -728,10 +875,16 @@ class StacValidate:
             KeyError,
             HTTPError,
         ) as e:
-            message.update(self.create_err_msg(type(e).__name__, str(e)))
+            message.update(
+                self.create_err_msg(
+                    err_type=type(e).__name__, err_msg=str(e), error_obj=e
+                )
+            )
 
         except Exception as e:
-            message.update(self.create_err_msg("Exception", str(e)))
+            message.update(
+                self.create_err_msg(err_type="Exception", err_msg=str(e), error_obj=e)
+            )
 
         if message:
             message["valid_stac"] = self.valid
@@ -742,8 +895,8 @@ class StacValidate:
             with open(self.log, "w") as f:
                 f.write(json.dumps(self.message, indent=4))
 
-        # filter message to only show errors if valid is False unless verbose mode is on
-        if self.recursive and not self.valid and not self.verbose:
+        # filter message to only show errors if valid is False unless trace_recursion mode is on
+        if self.recursive and not self.valid and not self.trace_recursion:
             filtered_messages = []
             for message in self.message:
                 if not message["valid_stac"]:

@@ -172,13 +172,15 @@ Options:
                                   be used multiple times.
   -p, --pages INTEGER             Maximum number of pages to validate via
                                   --item-collection. Defaults to one page.
-  -v, --verbose                   Enables verbose output for recursive mode.
+  -t, --trace-recursion           Enables verbose output for recursive mode.
   --no_output                     Do not print output to console.
   --log_file TEXT                 Save full recursive output to log file
                                   (local filepath).
   --pydantic                      Validate using stac-pydantic models for enhanced
                                   type checking and validation.
   --schema-config TEXT            Path to a YAML or JSON schema config file.
+  --verbose                       Enable verbose output. This will output
+                                  additional information during validation.
   --help                          Show this message and exit.
 ```
 
@@ -370,7 +372,7 @@ $ stac-validator https://raw.githubusercontent.com/radiantearth/stac-spec/master
 ### --recursive
 
 ```bash
-$ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --verbose
+$ stac-validator https://spot-canada-ortho.s3.amazonaws.com/catalog.json --recursive --max-depth 1 --trace-recursion
 ```
 
 ```bash

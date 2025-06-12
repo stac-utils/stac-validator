@@ -140,7 +140,10 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
 )
 @click.option(
-    "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
+    "-t",
+    "--trace-recursion",
+    is_flag=True,
+    help="Enables verbose output for recursive mode.",
 )
 @click.option("--no_output", is_flag=True, help="Do not print output to console.")
 @click.option(
@@ -152,6 +155,11 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     "--pydantic",
     is_flag=True,
     help="Validate using stac-pydantic models for enhanced type checking and validation.",
+)
+@click.option(
+    "--verbose",
+    is_flag=True,
+    help="Enable verbose output. This will output additional information during validation.",
 )
 def main(
     stac_file: str,
@@ -169,10 +177,11 @@ def main(
     custom: str,
     schema_config: str,
     schema_map: List[Tuple],
-    verbose: bool,
+    trace_recursion: bool,
     no_output: bool,
     log_file: str,
     pydantic: bool,
+    verbose: bool = False,
 ) -> None:
     """Main function for the `stac-validator` command line tool. Validates a STAC file
     against the STAC specification and prints the validation results to the console as JSON.
@@ -193,10 +202,11 @@ def main(
         custom (str): Path to a custom schema file to validate against.
         schema_config (str): Path to a custom schema config file to validate against.
         schema_map (list(tuple)): List of tuples each having two elememts. First element is the schema path to be replaced by the path in the second element.
-        verbose (bool): Whether to enable verbose output for recursive mode.
+        trace_recursion (bool): Whether to enable verbose output for recursive mode.
         no_output (bool): Whether to print output to console.
         log_file (str): Path to a log file to save full recursive output.
         pydantic (bool): Whether to validate using stac-pydantic models for enhanced type checking and validation.
+        verbose (bool): Whether to enable verbose output. This will output additional information during validation.
 
     Returns:
         None
@@ -226,9 +236,10 @@ def main(
         custom=custom,
         schema_config=schema_config,
         schema_map=schema_map_dict,
-        verbose=verbose,
+        trace_recursion=trace_recursion,
         log=log_file,
         pydantic=pydantic,
+        verbose=verbose,
     )
     if not item_collection and not collections:
         valid = stac.run()
