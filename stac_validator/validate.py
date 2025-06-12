@@ -192,8 +192,13 @@ class StacValidate:
         # else:
         #     verbose_details["instance_snippet"] = None
 
-        if error.schema is not None and error.validator is not None:
-            verbose_details["schema"] = error.schema[error.validator]
+        if (
+            error.schema is not None
+            and error.validator is not None
+            and isinstance(error.schema, dict)
+            and isinstance(error.validator, str)
+        ):
+            verbose_details["schema"] = error.schema.get(error.validator)
         else:
             verbose_details["schema"] = None
 
@@ -261,7 +266,11 @@ class StacValidate:
             "error_message": err_msg,
         }
         if self.verbose and error_obj is not None:
-            message["error_verbose"] = self._create_verbose_err_msg(error_obj)
+            verbose_err = self._create_verbose_err_msg(error_obj)
+            if isinstance(verbose_err, dict):
+                message["error_verbose"] = verbose_err
+            else:
+                message["error_verbose"] = {"detail": str(verbose_err)}
         else:
             message["recommendation"] = (
                 "For more accurate error information, rerun with --verbose."
