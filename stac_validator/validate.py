@@ -39,7 +39,7 @@ class StacValidate:
         headers (dict): HTTP headers to include in the requests.
         extensions (bool): Whether to only validate STAC object extensions.
         custom (str): The local filepath or remote URL of a custom JSON schema to validate the STAC object.
-        verbose (bool): Whether to enable verbose output in recursive mode.
+        trace_recursion (bool): Whether to enable verbose output in recursive mode.
         log (str): The local filepath to save the output of the recursive validation to.
         pydantic (bool): Whether to validate using Pydantic models.
         schema_config (str): The local filepath or remote URL of a custom JSON schema config to validate the STAC object.
@@ -67,7 +67,7 @@ class StacValidate:
         custom: str = "",
         schema_config: Optional[str] = None,
         schema_map: Optional[Dict[str, str]] = None,
-        verbose: bool = False,
+        trace_recursion: bool = False,
         log: str = "",
         pydantic: bool = False,
     ):
@@ -91,7 +91,7 @@ class StacValidate:
         self.version = ""
         self.depth: int = 0
         self.skip_val = False
-        self.verbose = verbose
+        self.trace_recursion = trace_recursion
         self.valid = False
         self.log = log
         self.pydantic = pydantic
@@ -430,14 +430,14 @@ class StacValidate:
                     self.create_err_msg("JSONSchemaValidationError", err_msg)
                 )
                 self.message.append(message)
-                if self.verbose:
+                if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
                 return valid
 
             valid = True
             message["valid_stac"] = valid
             self.message.append(message)
-            if self.verbose:
+            if self.trace_recursion:
                 click.echo(json.dumps(message, indent=4))
 
             self.depth += 1
@@ -742,8 +742,8 @@ class StacValidate:
             with open(self.log, "w") as f:
                 f.write(json.dumps(self.message, indent=4))
 
-        # filter message to only show errors if valid is False unless verbose mode is on
-        if self.recursive and not self.valid and not self.verbose:
+        # filter message to only show errors if valid is False unless trace_recursion mode is on
+        if self.recursive and not self.valid and not self.trace_recursion:
             filtered_messages = []
             for message in self.message:
                 if not message["valid_stac"]:

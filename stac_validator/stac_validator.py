@@ -140,7 +140,10 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     help="Maximum number of pages to validate via --item-collection. Defaults to one page.",
 )
 @click.option(
-    "-v", "--verbose", is_flag=True, help="Enables verbose output for recursive mode."
+    "-t",
+    "--trace-recursion",
+    is_flag=True,
+    help="Enables verbose output for recursive mode.",
 )
 @click.option("--no_output", is_flag=True, help="Do not print output to console.")
 @click.option(
@@ -169,7 +172,7 @@ def main(
     custom: str,
     schema_config: str,
     schema_map: List[Tuple],
-    verbose: bool,
+    trace_recursion: bool,
     no_output: bool,
     log_file: str,
     pydantic: bool,
@@ -193,7 +196,7 @@ def main(
         custom (str): Path to a custom schema file to validate against.
         schema_config (str): Path to a custom schema config file to validate against.
         schema_map (list(tuple)): List of tuples each having two elememts. First element is the schema path to be replaced by the path in the second element.
-        verbose (bool): Whether to enable verbose output for recursive mode.
+        trace_recursion (bool): Whether to enable verbose output for recursive mode.
         no_output (bool): Whether to print output to console.
         log_file (str): Path to a log file to save full recursive output.
         pydantic (bool): Whether to validate using stac-pydantic models for enhanced type checking and validation.
@@ -226,7 +229,7 @@ def main(
         custom=custom,
         schema_config=schema_config,
         schema_map=schema_map_dict,
-        verbose=verbose,
+        trace_recursion=trace_recursion,
         log=log_file,
         pydantic=pydantic,
     )

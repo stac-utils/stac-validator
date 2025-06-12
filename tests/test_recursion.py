@@ -326,9 +326,9 @@ def test_recursion_with_bad_item():
     ]
 
 
-def test_recursion_with_bad_item_verbose():
+def test_recursion_with_bad_item_trace_recursion():
     stac_file = "tests/test_data/v100/catalog-with-bad-item.json"
-    stac = stac_validator.StacValidate(stac_file, recursive=True, verbose=True)
+    stac = stac_validator.StacValidate(stac_file, recursive=True, trace_recursion=True)
     stac.run()
     assert not stac.valid
     assert len(stac.message) == 2
