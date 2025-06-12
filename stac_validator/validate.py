@@ -10,6 +10,7 @@ from jsonschema.exceptions import best_match
 from requests import exceptions  # type: ignore
 
 from .utilities import (
+    extract_relevant_oneof_error,
     fetch_and_parse_file,
     fetch_and_parse_schema,
     get_stac_type,
@@ -232,6 +233,9 @@ class StacValidate:
             dict: Dictionary containing error information.
         """
         self.valid = False
+        if not self.verbose:
+            err_msg += " For more accurate error information, rerun with --verbose."
+
         message = {
             "version": self.version,
             "path": self.stac_file,
@@ -408,6 +412,7 @@ class StacValidate:
 
         except jsonschema.exceptions.ValidationError as e:
             verbose_error = e
+            e = extract_relevant_oneof_error(e, self.stac_content)
             if self.recursive:
                 raise
             if e.context:

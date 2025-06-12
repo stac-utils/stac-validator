@@ -292,3 +292,26 @@ def load_schema_config(config_path: str) -> dict:
     if "schemas" in data:
         return data["schemas"]
     return data
+
+
+def extract_relevant_oneof_error(error, instance=None):
+    """
+    Given a jsonschema.ValidationError for a 'oneOf' failure,
+    return the most relevant sub-error, preferably the one matching the instance's 'type'.
+    If not found, return the first sub-error.
+    """
+    if error.validator == "oneOf" and hasattr(error, "context") and error.context:
+        if instance and "type" in instance:
+            for suberror in error.context:
+                # Try to match the instance 'type' to the schema's 'type'
+                props = suberror.schema.get("properties", {})
+                type_schema = props.get("type", {})
+                if (
+                    isinstance(type_schema, dict)
+                    and "const" in type_schema
+                    and instance["type"] == type_schema["const"]
+                ):
+                    return suberror
+        # Fallback to the first suberror
+        return error.context[0]
+    return error
