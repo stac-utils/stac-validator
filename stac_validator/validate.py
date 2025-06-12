@@ -1,7 +1,7 @@
 import json
 import os
 from json.decoder import JSONDecodeError
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 from urllib.error import HTTPError, URLError
 
 import click  # type: ignore
@@ -148,13 +148,85 @@ class StacValidate:
                 schema_path = self.schema_map[schema_path]
         self._schema = schema_path
 
-    def create_err_msg(self, err_type: str, err_msg: str, error_verbose: str) -> Dict:
+    def _format_jsonschema_error_verbose(
+        self, error: jsonschema.exceptions.ValidationError
+    ) -> Dict[str, Any]:
+        """
+        Formats a jsonschema.exceptions.ValidationError into a structured dictionary
+        for verbose output.
+        """
+        verbose_details: Dict[str, Any] = {}
+
+        verbose_details["validator"] = error.validator
+        # if error.validator_value is not None:
+        #     # validator_value can be large, e.g. a list of required fields or an enum
+        #     # Truncate if it's a list/tuple and too long, or convert to str and truncate
+        #     val_value_repr = repr(error.validator_value)
+        #     if len(val_value_repr) > 100:
+        #          val_value_repr = val_value_repr[:100] + "... (truncated)"
+        #     verbose_details["validator_value"] = val_value_repr
+        # else:
+        #     verbose_details["validator_value"] = None
+
+        # if error.instance is not None:
+        #     instance_repr = repr(error.instance)
+        #     if len(instance_repr) > 200: # Max length for instance snippet
+        #         instance_repr = instance_repr[:200] + "... (truncated)"
+        #     verbose_details["instance_snippet"] = instance_repr
+        # else:
+        #     verbose_details["instance_snippet"] = None
+
+        if error.schema is not None:
+            schema_repr = error.schema
+            # if len(schema_repr) > 200: # Max length for schema snippet
+            #     schema_repr = schema_repr[:200] + "... (truncated)"
+            verbose_details["schema_snippet"] = sorted(schema_repr.items())
+        else:
+            verbose_details["schema_snippet"] = None
+
+        verbose_details["path_in_document"] = list(error.absolute_path)
+        verbose_details["path_in_schema"] = list(error.absolute_schema_path)
+
+        # if error.context:
+        #     context_errors_list = []
+        #     for context_error in sorted(error.context, key=jsonschema.exceptions.relevance):
+        #         # Recursively format context errors, ensuring best_match is handled if nested
+        #         best_context_error = best_match([context_error]) if context_error.context else context_error
+        #         context_errors_list.append(self._format_jsonschema_error_verbose(best_context_error))
+        #     verbose_details["context_errors"] = context_errors_list
+
+        return verbose_details
+
+    def _create_verbose_err_msg(self, error_input: Any) -> Union[Dict[str, Any], str]:
+        if isinstance(error_input, jsonschema.exceptions.ValidationError):
+            # For JSONSchema errors, use the detailed dictionary formatter
+            # Ensure we pass the 'best_match' if context was present at the top level
+            # This is typically handled by the caller before _create_verbose_err_msg
+            return self._format_jsonschema_error_verbose(error_input)
+        elif isinstance(error_input, dict):
+            # If it's already a dictionary (e.g., custom verbose info)
+            return error_input
+        elif isinstance(error_input, Exception):
+            # For other general exceptions, create a simple dictionary
+            return {
+                "error_type": type(error_input).__name__,
+                "detail": str(error_input),
+            }
+        elif error_input is None:
+            return {}  # Or an empty string, depending on desired output for None
+        # If it's already a string or some other basic type
+        return str(error_input)  # Fallback to string representation
+
+    def create_err_msg(
+        self, err_type: str, err_msg: str, error_obj: Optional[Exception] = None
+    ) -> Dict:
         """
         Create a standardized error message dictionary and mark validation as failed.
 
         Args:
             err_type (str): The type of error.
             err_msg (str): The error message.
+            error_obj (Optional[Exception]): The raw exception object for verbose details.
 
         Returns:
             dict: Dictionary containing error information.
@@ -168,8 +240,8 @@ class StacValidate:
             "error_type": err_type,
             "error_message": err_msg,
         }
-        if self.verbose:
-            message["error_verbose"] = error_verbose
+        if self.verbose and error_obj is not None:
+            message["error_verbose"] = self._create_verbose_err_msg(error_obj)
         return message
 
     def create_links_message(self) -> Dict:
@@ -335,7 +407,7 @@ class StacValidate:
                 message["schema"] = [display_path]
 
         except jsonschema.exceptions.ValidationError as e:
-            verbose_error = str(e)
+            verbose_error = e
             if self.recursive:
                 raise
             if e.context:
@@ -344,14 +416,14 @@ class StacValidate:
             if e.absolute_path:
                 err_msg = (
                     f"{e.message}. Error is in "
-                    f"{' -> '.join(map(str, e.absolute_path))}"
+                    f"{' -> '.join(map(str, e.absolute_path))} "
                 )
             else:
                 err_msg = f"{e.message}"
             message = self.create_err_msg(
                 err_type="JSONSchemaValidationError",
                 err_msg=err_msg,
-                error_verbose=verbose_error,
+                error_obj=verbose_error,
             )
             return message
 
@@ -361,7 +433,7 @@ class StacValidate:
             valid = False
             err_msg = f"{e}. Error in Extensions."
             return self.create_err_msg(
-                err_type="Exception", err_msg=err_msg, error_verbose=str(e)
+                err_type="Exception", err_msg=err_msg, error_obj=e
             )
 
         self.valid = valid
@@ -443,11 +515,9 @@ class StacValidate:
                     self.create_err_msg(
                         err_type="JSONSchemaValidationError",
                         err_msg=err_msg,
-                        error_verbose=str(e),
+                        error_obj=e,
                     )
                 )
-                if self.verbose:
-                    message["error_verbose"] = str(e)
                 self.message.append(message)
                 if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
@@ -647,7 +717,7 @@ class StacValidate:
                 self.create_err_msg(
                     err_type="PydanticValidationError",
                     err_msg=error_message,
-                    error_verbose=str(e),
+                    error_obj=e,
                 )
             )
 
@@ -655,9 +725,7 @@ class StacValidate:
             self.valid = False
             message.update(
                 self.create_err_msg(
-                    err_type="PydanticValidationError",
-                    err_msg=str(e),
-                    error_verbose=str(e),
+                    err_type="PydanticValidationError", err_msg=str(e), error_obj=e
                 )
             )
 
@@ -745,9 +813,7 @@ class StacValidate:
                 err_msg = f"{e.message}"
             message.update(
                 self.create_err_msg(
-                    err_type="JSONSchemaValidationError",
-                    err_msg=err_msg,
-                    error_verbose=str(e),
+                    err_type="JSONSchemaValidationError", err_msg=err_msg, error_obj=e
                 )
             )
 
@@ -765,15 +831,13 @@ class StacValidate:
         ) as e:
             message.update(
                 self.create_err_msg(
-                    err_type=type(e).__name__, err_msg=str(e), error_verbose=str(e)
+                    err_type=type(e).__name__, err_msg=str(e), error_obj=e
                 )
             )
 
         except Exception as e:
             message.update(
-                self.create_err_msg(
-                    err_type="Exception", err_msg=str(e), error_verbose=str(e)
-                )
+                self.create_err_msg(err_type="Exception", err_msg=str(e), error_obj=e)
             )
 
         if message:
