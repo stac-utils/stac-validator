@@ -44,7 +44,8 @@ class StacValidate:
         pydantic (bool): Whether to validate using Pydantic models.
         schema_config (str): The local filepath or remote URL of a custom JSON schema config to validate the STAC object.
         schema_map (Optional[Dict[str, str]]): A dictionary mapping schema paths to their replacements.
-
+        verbose (bool): Whether to enable verbose output.
+        
     Methods:
         run(): Validates the STAC object and returns whether it is valid.
         validate_item_collection(): Validates an item collection.
@@ -70,6 +71,7 @@ class StacValidate:
         trace_recursion: bool = False,
         log: str = "",
         pydantic: bool = False,
+        verbose: bool = False,
     ):
         self.stac_file = stac_file
         self.collections = collections
@@ -95,6 +97,7 @@ class StacValidate:
         self.valid = False
         self.log = log
         self.pydantic = pydantic
+        self.verbose = verbose
 
         self._original_schema_paths = {}
         cli_schema_map = schema_map or {}

@@ -156,6 +156,11 @@ def collections_summary(message: List[Dict[str, Any]]) -> None:
     is_flag=True,
     help="Validate using stac-pydantic models for enhanced type checking and validation.",
 )
+@click.option(
+    "--verbose",
+    is_flag=True,
+    help="Enable verbose output. This will output additional information during validation."
+)
 def main(
     stac_file: str,
     collections: bool,
@@ -176,6 +181,7 @@ def main(
     no_output: bool,
     log_file: str,
     pydantic: bool,
+    verbose: bool = False,
 ) -> None:
     """Main function for the `stac-validator` command line tool. Validates a STAC file
     against the STAC specification and prints the validation results to the console as JSON.
@@ -200,6 +206,7 @@ def main(
         no_output (bool): Whether to print output to console.
         log_file (str): Path to a log file to save full recursive output.
         pydantic (bool): Whether to validate using stac-pydantic models for enhanced type checking and validation.
+        verbose (bool): Whether to enable verbose output. This will output additional information during validation.
 
     Returns:
         None
@@ -232,6 +239,7 @@ def main(
         trace_recursion=trace_recursion,
         log=log_file,
         pydantic=pydantic,
+        verbose=verbose,
     )
     if not item_collection and not collections:
         valid = stac.run()
