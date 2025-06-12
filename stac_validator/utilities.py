@@ -9,9 +9,9 @@ from urllib.request import Request, urlopen
 import requests  # type: ignore
 import yaml  # type: ignore
 from jsonschema import Draft202012Validator
-from referencing import Registry, Resource
-from referencing.jsonschema import DRAFT202012
-from referencing.typing import URI
+from referencing import Registry, Resource  # type: ignore
+from referencing.jsonschema import DRAFT202012  # type: ignore
+from referencing.typing import URI  # type: ignore
 
 NEW_VERSIONS = [
     "1.0.0-beta.2",

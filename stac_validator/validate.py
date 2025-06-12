@@ -243,7 +243,7 @@ class StacValidate:
 
     def create_err_msg(
         self, err_type: str, err_msg: str, error_obj: Optional[Exception] = None
-    ) -> Dict:
+    ) -> Dict[str, Union[str, bool, List[str], Dict[str, Any]]]:
         """
         Create a standardized error message dictionary and mark validation as failed.
 
@@ -257,14 +257,25 @@ class StacValidate:
         """
         self.valid = False
 
-        message = {
-            "version": self.version,
-            "path": self.stac_file,
-            "schema": [self.schema],
+        # Ensure all values are of the correct type
+        version_str: str = str(self.version) if self.version is not None else ""
+        path_str: str = str(self.stac_file) if self.stac_file is not None else ""
+
+        # Ensure schema is properly typed
+        schema_value: str = ""
+        if self.schema is not None:
+            schema_value = str(self.schema)
+        schema_field: List[str] = [schema_value] if schema_value else []
+
+        message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
+            "version": version_str,
+            "path": path_str,
+            "schema": schema_field,  # Ensure schema is a list of strings or None
             "valid_stac": False,
             "error_type": err_type,
             "error_message": err_msg,
         }
+
         if self.verbose and error_obj is not None:
             verbose_err = self._create_verbose_err_msg(error_obj)
             if isinstance(verbose_err, dict):
@@ -275,6 +286,7 @@ class StacValidate:
             message["recommendation"] = (
                 "For more accurate error information, rerun with --verbose."
             )
+
         return message
 
     def create_links_message(self) -> Dict:
