@@ -46,5 +46,6 @@ def test_header():
                 "valid_stac": False,
                 "error_type": "HTTPError",
                 "error_message": "403 Client Error: None for url: https://localhost/tests/test_data/v110/simple-item.json",
+                "recommendation": "For more accurate error information, rerun with --verbose.",
             }
         ]

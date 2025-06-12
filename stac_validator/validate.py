@@ -152,22 +152,37 @@ class StacValidate:
     def _format_jsonschema_error_verbose(
         self, error: jsonschema.exceptions.ValidationError
     ) -> Dict[str, Any]:
-        """
-        Formats a jsonschema.exceptions.ValidationError into a structured dictionary
-        for verbose output.
+        """Format a JSON Schema validation error into a detailed dictionary.
+
+        This method transforms a jsonschema ValidationError into a structured dictionary
+        containing comprehensive information about the validation failure, including
+        error details, schema information, and relevant paths.
+
+        Args:
+            error: The jsonschema ValidationError to be formatted.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing detailed information about the
+                validation error, including:
+                - error_type: Type of validation error
+                - detail: Error message
+                - validator: The validator that failed
+                - path_in_document: Path to the error in the validated document
+                - path_in_schema: Path to the error in the schema
+                - schema: The relevant schema section that caused the validation failure
+                - validator_value: The value that failed validation
+                - instance: The actual value that caused the validation failure
         """
         verbose_details: Dict[str, Any] = {}
 
         verbose_details["validator"] = error.validator
-        # if error.validator_value is not None:
-        #     # validator_value can be large, e.g. a list of required fields or an enum
-        #     # Truncate if it's a list/tuple and too long, or convert to str and truncate
-        #     val_value_repr = repr(error.validator_value)
-        #     if len(val_value_repr) > 100:
-        #          val_value_repr = val_value_repr[:100] + "... (truncated)"
-        #     verbose_details["validator_value"] = val_value_repr
-        # else:
-        #     verbose_details["validator_value"] = None
+        if error.validator_value is not None:
+            val_value_repr = repr(error.validator_value)
+            if len(val_value_repr) > 800:
+                val_value_repr = val_value_repr[:800] + "... (truncated)"
+            verbose_details["validator_value"] = val_value_repr
+        else:
+            verbose_details["validator_value"] = None
 
         # if error.instance is not None:
         #     instance_repr = repr(error.instance)
@@ -177,13 +192,10 @@ class StacValidate:
         # else:
         #     verbose_details["instance_snippet"] = None
 
-        if error.schema is not None:
-            schema_repr = error.schema
-            # if len(schema_repr) > 200: # Max length for schema snippet
-            #     schema_repr = schema_repr[:200] + "... (truncated)"
-            verbose_details["schema_snippet"] = sorted(schema_repr.items())
+        if error.schema is not None and error.validator is not None:
+            verbose_details["schema"] = error.schema[error.validator]
         else:
-            verbose_details["schema_snippet"] = None
+            verbose_details["schema"] = None
 
         verbose_details["path_in_document"] = list(error.absolute_path)
         verbose_details["path_in_schema"] = list(error.absolute_schema_path)
@@ -199,23 +211,29 @@ class StacValidate:
         return verbose_details
 
     def _create_verbose_err_msg(self, error_input: Any) -> Union[Dict[str, Any], str]:
+        """Create a verbose error message from various error input types.
+
+        Args:
+            error_input: The error input to process. Can be a jsonschema ValidationError,
+                dictionary, Exception, or any other type that can be converted to string.
+
+        Returns:
+            Union[Dict[str, Any], str]: A detailed error message. For jsonschema ValidationError,
+                returns a dictionary with detailed validation information. For other Exception types,
+                returns a dictionary with error type and detail. For dictionaries, returns the
+                dictionary as-is. For all other types, returns the string representation.
+        """
         if isinstance(error_input, jsonschema.exceptions.ValidationError):
-            # For JSONSchema errors, use the detailed dictionary formatter
-            # Ensure we pass the 'best_match' if context was present at the top level
-            # This is typically handled by the caller before _create_verbose_err_msg
             return self._format_jsonschema_error_verbose(error_input)
         elif isinstance(error_input, dict):
-            # If it's already a dictionary (e.g., custom verbose info)
             return error_input
         elif isinstance(error_input, Exception):
-            # For other general exceptions, create a simple dictionary
             return {
                 "error_type": type(error_input).__name__,
                 "detail": str(error_input),
             }
         elif error_input is None:
-            return {}  # Or an empty string, depending on desired output for None
-        # If it's already a string or some other basic type
+            return {}
         return str(error_input)  # Fallback to string representation
 
     def create_err_msg(
@@ -233,8 +251,6 @@ class StacValidate:
             dict: Dictionary containing error information.
         """
         self.valid = False
-        if not self.verbose:
-            err_msg += " For more accurate error information, rerun with --verbose."
 
         message = {
             "version": self.version,
@@ -246,6 +262,10 @@ class StacValidate:
         }
         if self.verbose and error_obj is not None:
             message["error_verbose"] = self._create_verbose_err_msg(error_obj)
+        else:
+            message["recommendation"] = (
+                "For more accurate error information, rerun with --verbose."
+            )
         return message
 
     def create_links_message(self) -> Dict:

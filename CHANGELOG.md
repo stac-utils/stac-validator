@@ -6,6 +6,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+- Added separate `recommendation` field in error messages when running in non-verbose mode
+- Verbose error messages for JSONSchemaValidationErrors
+
+### Changed
+- Changed --verbose for recursive mode to --trace-recursive to make way for more comprehensive error messaging
+
 ## [v3.8.1] - 2025-06-04
 
 ### Fixed

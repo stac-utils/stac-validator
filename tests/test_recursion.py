@@ -322,6 +322,7 @@ def test_recursion_with_bad_item():
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         },
     ]
 
@@ -352,6 +353,7 @@ def test_recursion_with_bad_item_trace_recursion():
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         },
     ]
 
@@ -377,6 +379,7 @@ def test_recursion_with_bad_child_collection():
             "validation_method": "recursive",
             "error_type": "JSONSchemaValidationError",
             "error_message": "'id' is a required property",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         }
     ]
 
@@ -399,5 +402,6 @@ def test_recursion_with_missing_collection_link():
             "validation_method": "recursive",
             "error_type": "JSONSchemaValidationError",
             "error_message": "'simple-collection' should not be valid under {}. Error is in collection ",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
         },
     ]

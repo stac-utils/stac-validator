@@ -270,3 +270,42 @@ def test_item_v100_local_schema_unreachable_url_schema_map_override():
             "validation_method": "custom",
         }
     ]
+
+
+def test_verbose_mode_output():
+    """Test that verbose mode provides detailed error information in the expected format."""
+    stac_file = "tests/test_data/v100/bad-item.json"
+    stac = stac_validator.StacValidate(stac_file, verbose=True)
+    stac.run()
+
+    assert len(stac.message) == 1
+    msg = stac.message[0]
+
+    # Check basic fields
+    assert msg["version"] == "1.0.0"
+    assert msg["path"] == "tests/test_data/v100/bad-item.json"
+    assert msg["valid_stac"] is False
+    assert msg["error_type"] == "JSONSchemaValidationError"
+    assert msg["error_message"] == "'id' is a required property"
+
+    # Check schema URL
+    assert len(msg["schema"]) == 1
+    assert (
+        "schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
+        in msg["schema"][0]
+    )
+
+    # Check verbose error details
+    assert "error_verbose" in msg
+    verbose = msg["error_verbose"]
+    assert verbose["validator"] == "required"
+    assert isinstance(verbose["validator_value"], str)
+    assert all(
+        field in verbose["validator_value"]
+        for field in ["stac_version", "id", "links", "assets", "properties"]
+    )
+    assert isinstance(verbose["schema"], list)
+    assert all(isinstance(field, str) for field in verbose["schema"])
+    assert isinstance(verbose["path_in_document"], list)
+    assert isinstance(verbose["path_in_schema"], list)
+    assert len(verbose["path_in_schema"]) > 0  # Should have some path elements

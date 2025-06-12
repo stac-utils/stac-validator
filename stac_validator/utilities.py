@@ -295,10 +295,21 @@ def load_schema_config(config_path: str) -> dict:
 
 
 def extract_relevant_oneof_error(error, instance=None):
-    """
-    Given a jsonschema.ValidationError for a 'oneOf' failure,
-    return the most relevant sub-error, preferably the one matching the instance's 'type'.
-    If not found, return the first sub-error.
+    """Extract the most relevant error from a 'oneOf' validation error.
+
+    Given a jsonschema.ValidationError for a 'oneOf' failure, this function returns
+    the most relevant sub-error, with preference given to errors matching the instance's 'type'.
+    If no matching type is found, it falls back to returning the first sub-error.
+
+    Args:
+        error (jsonschema.ValidationError): The validation error from a 'oneOf' validation.
+        instance (dict, optional): The instance being validated. If provided and contains a 'type'
+            field, the function will try to find a matching schema for that type. Defaults to None.
+
+    Returns:
+        jsonschema.ValidationError: The most relevant sub-error from the 'oneOf' validation.
+            If the error is not a 'oneOf' validation error or has no context, returns the
+            original error unchanged.
     """
     if error.validator == "oneOf" and hasattr(error, "context") and error.context:
         if instance and "type" in instance:
