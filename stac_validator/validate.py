@@ -479,29 +479,19 @@ class StacValidate:
             valid = False
             # Get the current schema (extension) that caused the validation error
             failed_schema = self._original_schema_paths.get(extension, extension)
-            # Build the error message with schema and path information
+            # Build the error message with path information
             path_info = (
                 f"Error is in {' -> '.join(map(str, e.absolute_path))} "
                 if e.absolute_path
                 else ""
             )
             err_msg = f"{e.message}. {path_info}"
-            # Create a new error object with the original message
-            validator_name = None
-            if verbose_error.validator is not None:
-                # Handle different possible validator types
-                if hasattr(verbose_error.validator, "__name__"):
-                    validator_name = verbose_error.validator.__name__
-                elif hasattr(verbose_error.validator, "__class__") and hasattr(
-                    verbose_error.validator.__class__, "__name__"
-                ):
-                    validator_name = verbose_error.validator.__class__.__name__
-                elif isinstance(verbose_error.validator, str):
-                    validator_name = verbose_error.validator
 
+            # Create a new error object with the original message
+            # We'll keep the original validator object to satisfy type checking
             error_with_schema = type(verbose_error)(
                 message=verbose_error.message,
-                validator=validator_name,
+                validator=verbose_error.validator,  # Keep the original validator object
                 path=list(verbose_error.path),
                 cause=verbose_error.cause,
                 context=list(verbose_error.context) if verbose_error.context else [],
