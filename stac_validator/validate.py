@@ -478,10 +478,7 @@ class StacValidate:
                 e = best_match(e.context)  # type: ignore
             valid = False
             # Get the current schema (extension) that caused the validation error
-            current_schema = self._original_schema_paths.get(extension, extension)
-            # Set the failed schema on the error object for create_err_msg to pick up
-            if not hasattr(e, "failed_schema"):
-                e.failed_schema = current_schema
+            failed_schema = self._original_schema_paths.get(extension, extension)
             # Build the error message with schema and path information
             path_info = (
                 f"Error is in {' -> '.join(map(str, e.absolute_path))} "
@@ -489,11 +486,30 @@ class StacValidate:
                 else ""
             )
             err_msg = f"{e.message}. {path_info}"
+            # Create a new error object with the original message
+            error_with_schema = type(verbose_error)(
+                message=verbose_error.message,
+                validator=verbose_error.validator,
+                path=list(verbose_error.path),
+                cause=verbose_error.cause,
+                context=list(verbose_error.context) if verbose_error.context else [],
+                validator_value=verbose_error.validator_value,
+                instance=verbose_error.instance,
+                schema=verbose_error.schema,
+                schema_path=list(verbose_error.schema_path),
+                parent=verbose_error.parent,
+            )
+
+            # Create the error message with the original format
             message = self.create_err_msg(
                 err_type="JSONSchemaValidationError",
                 err_msg=err_msg,
-                error_obj=verbose_error,
+                error_obj=error_with_schema,
             )
+
+            # Set the failed_schema in the message if we have it
+            if failed_schema:
+                message["failed_schema"] = failed_schema
             return message
 
         except Exception as e:
