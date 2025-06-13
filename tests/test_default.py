@@ -3,8 +3,6 @@ Description: Test the default which validates core and extensions
 
 """
 
-import pytest
-
 from stac_validator import stac_validator
 
 
@@ -24,18 +22,21 @@ def test_default_v070():
     ]
 
 
-@pytest.mark.skip(reason="staclint eo extension schema invalid")
-def test_default_item_local_v080():
-    stac_file = "tests/test_data/v080/items/sample-full.json"
+def test_default_item_local_v110():
+    stac_file = "tests/test_data/v110/extended-item.json"
     stac = stac_validator.StacValidate(stac_file)
     stac.run()
     assert stac.message == [
         {
-            "version": "0.8.0",
-            "path": "tests/test_data/v080/items/sample-full.json",
+            "version": "1.1.0",
+            "path": "tests/test_data/v110/extended-item.json",
             "schema": [
-                "https://cdn.staclint.com/v0.8.0/extension/eo.json",
-                "https://cdn.staclint.com/v0.8.0/item.json",
+                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+                "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "asset_type": "ITEM",
             "validation_method": "default",

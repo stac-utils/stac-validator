@@ -267,14 +267,26 @@ class StacValidate:
             schema_value = str(self.schema)
         schema_field: List[str] = [schema_value] if schema_value else []
 
+        # Initialize the message with common fields
         message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
             "version": version_str,
             "path": path_str,
-            "schema": schema_field,  # Ensure schema is a list of strings or None
+            "schema": schema_field,  # All schemas that were checked
             "valid_stac": False,
             "error_type": err_type,
             "error_message": err_msg,
+            "failed_schema": "",  # Will be populated if we can determine which schema failed
         }
+
+        # Try to extract the failed schema from the error message if it's a validation error
+        if error_obj and hasattr(error_obj, "schema"):
+            if isinstance(error_obj.schema, dict) and "$id" in error_obj.schema:
+                message["failed_schema"] = error_obj.schema["$id"]
+            elif hasattr(error_obj, "schema_url"):
+                message["failed_schema"] = error_obj.schema_url
+            # If we can't find a schema ID, try to get it from the schema map
+            elif schema_field and len(schema_field) == 1:
+                message["failed_schema"] = schema_field[0]
 
         if self.verbose and error_obj is not None:
             verbose_err = self._create_verbose_err_msg(error_obj)
@@ -282,6 +294,12 @@ class StacValidate:
                 message["error_verbose"] = verbose_err
             else:
                 message["error_verbose"] = {"detail": str(verbose_err)}
+            # Add recommendation to check the schema if the error is not clear
+            if "failed_schema" in message and message["failed_schema"]:
+                message["recommendation"] = (
+                    "If the error is unclear, please check the schema documentation at: "
+                    f"{message['failed_schema']}"
+                )
         else:
             message["recommendation"] = (
                 "For more accurate error information, rerun with --verbose."
@@ -459,13 +477,18 @@ class StacValidate:
             if e.context:
                 e = best_match(e.context)  # type: ignore
             valid = False
-            if e.absolute_path:
-                err_msg = (
-                    f"{e.message}. Error is in "
-                    f"{' -> '.join(map(str, e.absolute_path))} "
-                )
-            else:
-                err_msg = f"{e.message}"
+            # Get the current schema (extension) that caused the validation error
+            current_schema = self._original_schema_paths.get(extension, extension)
+            # Set the failed schema on the error object for create_err_msg to pick up
+            if not hasattr(e, "failed_schema"):
+                e.failed_schema = current_schema
+            # Build the error message with schema and path information
+            path_info = (
+                f"Error is in {' -> '.join(map(str, e.absolute_path))} "
+                if e.absolute_path
+                else ""
+            )
+            err_msg = f"{e.message}. {path_info}"
             message = self.create_err_msg(
                 err_type="JSONSchemaValidationError",
                 err_msg=err_msg,
@@ -477,7 +500,13 @@ class StacValidate:
             if self.recursive:
                 raise
             valid = False
-            err_msg = f"{e}. Error in Extensions."
+            # Include the current schema in the error message for other types of exceptions
+            current_schema = (
+                self._original_schema_paths.get(extension, extension)
+                if "extension" in locals()
+                else "unknown schema"
+            )
+            err_msg = f"{e} [Schema: {current_schema}]. Error in Extensions."
             return self.create_err_msg(
                 err_type="Exception", err_msg=err_msg, error_obj=e
             )

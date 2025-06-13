@@ -20,6 +20,7 @@ def test_custom_item_remote_schema_v080():
             "validation_method": "custom",
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
+            "failed_schema": "https://cdn.staclint.com/v0.8.0/item.json",
             "error_message": "'bbox' is a required property",
             "recommendation": "For more accurate error information, rerun with --verbose.",
         }
@@ -75,6 +76,7 @@ def test_custom_bad_item_remote_schema_v090():
             "schema": ["https://cdn.staclint.com/v0.9.0/item.json"],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
+            "failed_schema": "https://cdn.staclint.com/v0.9.0/item.json",
             "error_message": "'id' is a required property",
             "recommendation": "For more accurate error information, rerun with --verbose.",
         }

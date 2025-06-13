@@ -6,6 +6,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v3.9.1] - 2025-06-13
+
+### Added
+- `failed_schema` field to error messages for easier error handling
+- `recommendation` field to --verbose mode 
 
 ## [v3.9.0] - 2025-06-13
 
