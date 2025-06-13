@@ -491,7 +491,7 @@ class StacValidate:
             # We'll keep the original validator object to satisfy type checking
             error_with_schema = type(verbose_error)(
                 message=verbose_error.message,
-                validator=verbose_error.validator,  # Keep the original validator object
+                validator=verbose_error.validator,  # type: ignore[arg-type]  # Keep the original validator object
                 path=list(verbose_error.path),
                 cause=verbose_error.cause,
                 context=list(verbose_error.context) if verbose_error.context else [],
