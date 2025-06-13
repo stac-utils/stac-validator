@@ -489,7 +489,11 @@ class StacValidate:
             # Create a new error object with the original message
             error_with_schema = type(verbose_error)(
                 message=verbose_error.message,
-                validator=verbose_error.validator,
+                validator=(
+                    verbose_error.validator.__name__
+                    if verbose_error.validator
+                    else None
+                ),
                 path=list(verbose_error.path),
                 cause=verbose_error.cause,
                 context=list(verbose_error.context) if verbose_error.context else [],
