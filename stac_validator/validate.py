@@ -490,13 +490,15 @@ class StacValidate:
             validator_name = None
             if verbose_error.validator is not None:
                 # Handle different possible validator types
-                if hasattr(verbose_error.validator, '__name__'):
+                if hasattr(verbose_error.validator, "__name__"):
                     validator_name = verbose_error.validator.__name__
-                elif hasattr(verbose_error.validator, '__class__') and hasattr(verbose_error.validator.__class__, '__name__'):
+                elif hasattr(verbose_error.validator, "__class__") and hasattr(
+                    verbose_error.validator.__class__, "__name__"
+                ):
                     validator_name = verbose_error.validator.__class__.__name__
                 elif isinstance(verbose_error.validator, str):
                     validator_name = verbose_error.validator
-                
+
             error_with_schema = type(verbose_error)(
                 message=verbose_error.message,
                 validator=validator_name,
