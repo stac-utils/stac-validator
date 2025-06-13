@@ -7,6 +7,12 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ## [Unreleased]
 
 
+## [v3.9.1] - 2025-06-13
+
+### Added
+- `failed_schema` field to error messages for easier error handling [#260](https://github.com/stac-utils/stac-validator/pull/260)
+- `recommendation` field to --verbose mode [#260](https://github.com/stac-utils/stac-validator/pull/260)
+
 ## [v3.9.0] - 2025-06-13
 
 ### Added
@@ -266,7 +272,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.9.0..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.9.1..main
+[v3.9.1]: https://github.com/sparkgeo/stac-validator/compare/v3.9.0..v3.9.1
 [v3.9.0]: https://github.com/sparkgeo/stac-validator/compare/v3.8.1..v3.9.0
 [v3.8.1]: https://github.com/sparkgeo/stac-validator/compare/v3.8.0..v3.8.1
 [v3.8.0]: https://github.com/sparkgeo/stac-validator/compare/v3.7.0..v3.8.0

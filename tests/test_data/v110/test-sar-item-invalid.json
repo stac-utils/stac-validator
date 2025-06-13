@@ -1,0 +1,415 @@
+
+{
+    "type": "Feature",
+    "stac_version": "1.1.0",
+    "stac_extensions": [
+        "https://stac-extensions.github.io/product/v0.1.0/schema.json",
+        "https://stac-extensions.github.io/sar/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/altimetry/v0.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/sentinel-1/v0.2.0/schema.json",
+        "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+        "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/ceos-ard/v0.2.0/schema.json"
+    ],
+    "id": "OPERA_L2_RTC-S1_T070-149822-IW3_20220101T124811Z_20250611T234746Z_S1A_20_v0.1",
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    164.5738105155539,
+                    -77.09744736586842
+                ],
+                [
+                    164.5841107737331,
+                    -77.06092164981267
+                ],
+                [
+                    164.5943055896268,
+                    -77.02456861667501
+                ],
+                [
+                    164.6043976249054,
+                    -76.98838437391879
+                ],
+                [
+                    164.6143886247731,
+                    -76.95236515068486
+                ],
+                [
+                    164.6242810255355,
+                    -76.91650731426346
+                ],
+                [
+                    164.6340769950861,
+                    -76.88080735064491
+                ],
+                [
+                    164.6437788191498,
+                    -76.84526186443392
+                ],
+                [
+                    164.6533879540521,
+                    -76.80986756023115
+                ],
+                [
+                    164.6629066156633,
+                    -76.77462126015926
+                ],
+                [
+                    164.6723366189091,
+                    -76.73951988279993
+                ],
+                [
+                    164.6816798029899,
+                    -76.70456044480147
+                ],
+                [
+                    164.6909381371846,
+                    -76.66974005821108
+                ],
+                [
+                    164.7001127849088,
+                    -76.63505591330626
+                ],
+                [
+                    164.7092056716351,
+                    -76.60050529702578
+                ],
+                [
+                    164.7182183385663,
+                    -76.56608557323291
+                ],
+                [
+                    164.7271523618029,
+                    -76.53179418528892
+                ],
+                [
+                    164.7360094562833,
+                    -76.49762865434306
+                ],
+                [
+                    164.7447905508336,
+                    -76.46358656324253
+                ],
+                [
+                    164.7534973361782,
+                    -76.42966557554502
+                ],
+                [
+                    164.7620626941835,
+                    -76.39613193601812
+                ],
+                [
+                    163.9577752171824,
+                    -76.3834733821606
+                ],
+                [
+                    163.9472896009472,
+                    -76.41697662475501
+                ],
+                [
+                    163.9366312297678,
+                    -76.45086671776188
+                ],
+                [
+                    163.9258819911961,
+                    -76.48487764991665
+                ],
+                [
+                    163.9150401310552,
+                    -76.51901175603307
+                ],
+                [
+                    163.9041039255227,
+                    -76.55327144154155
+                ],
+                [
+                    163.8930712657604,
+                    -76.58765917815546
+                ],
+                [
+                    163.8819407934205,
+                    -76.62217752659461
+                ],
+                [
+                    163.8707103472533,
+                    -76.65682911282163
+                ],
+                [
+                    163.8593778902213,
+                    -76.69161664748461
+                ],
+                [
+                    163.8479411325865,
+                    -76.7265429229195
+                ],
+                [
+                    163.8363984494731,
+                    -76.7616108328091
+                ],
+                [
+                    163.8247474153511,
+                    -76.79682335070363
+                ],
+                [
+                    163.8129857401177,
+                    -76.83218355043469
+                ],
+                [
+                    163.8011110570616,
+                    -76.86769460684839
+                ],
+                [
+                    163.7891207073698,
+                    -76.90335979673557
+                ],
+                [
+                    163.7770126897196,
+                    -76.93918252025401
+                ],
+                [
+                    163.7647841747692,
+                    -76.97516628039226
+                ],
+                [
+                    163.7524324309662,
+                    -77.01131470459156
+                ],
+                [
+                    163.7399544370051,
+                    -77.04763154391978
+                ],
+                [
+                    163.7273478409169,
+                    -77.08412069598076
+                ],
+                [
+                    164.5738105155539,
+                    -77.09744736586842
+                ]
+            ]
+        ]
+    },
+    "bbox": [
+        163.7273478409169,
+        -77.09744736586842,
+        164.7620626941835,
+        -76.3834733821606
+    ],
+    "properties": {
+        "gsd": 20.0,
+        "constellation": "Sentinel-1",
+        "platform": "Sentinel-1A",
+        "instruments": [
+            "Sentinel-1A CSAR"
+        ],
+        "created": "2025-06-11T23:47:50.172887Z",
+        "start_datetime": "2022-01-01T12:48:11.446000Z",
+        "end_datetime": "2022-01-01T12:48:14.539612Z",
+        "odc:product": "ga_s1_iw_hh_c1",
+        "odc:product_family": "sar_ard",
+        "odc:region_code": "t070_149822_iw3",
+        "product:type": "RTC_S1",
+        "ceosard:type": "radar",
+        "ceosard:specification": "NRB",
+        "ceosard:specification_version": "1.1",
+        "proj:code": "EPSG:3031",
+        "proj:bbox": [
+            368760.0,
+            -1438080.0,
+            416760.0,
+            -1347300.0
+        ],
+        "sar:frequency_band": "C",
+        "sar:center_frequency": 5405000454.33435,
+        "sar:polarizations": [
+            "HH"
+        ],
+        "sar:observation_direction": "right",
+        "sar:relative_burst": "t070_149822_iw3",
+        "sar:beam_ids": "IW3",
+        "altm:instrument_type": "sar",
+        "altm:instrument_mode": "IW",
+        "sat:orbit_state": "descending",
+        "sat:absolute_orbit": 41267,
+        "sat:relative_orbit": 70,
+        "sat:orbit_cycle": "12",
+        "sat:osv": [
+            "S1A_OPER_AUX_POEORB_OPOD_20220121T121549_V20211231T225942_20220102T005942.EOF"
+        ],
+        "sat:orbit_state_vectors": "TODO",
+        "s1:orbit_source": "POE precise orbit",
+        "processing:level": "L2",
+        "processing:facility": "Geoscience Australia",
+        "processing:datetime": "2025-06-11T23:47:50.172887Z",
+        "processing:version": 0.1,
+        "processing:software": {
+            "isce3": "0.15.0",
+            "s1Reader": "0.2.5",
+            "OPERA-adt/RTC": "1.0.4",
+            "sar-pipeline": "0.2.2b1.dev26+g043d201.d20250613",
+            "dem-handler": "0.2.2"
+        },
+        "sarard:source_id": [
+            "S1A_IW_SLC__1SSH_20220101T124744_20220101T124814_041267_04E7A2_1DAD.SAFE"
+        ],
+        "sarard:scene_id": "S1A_IW_SLC__1SSH_20220101T124744_20220101T124814_041267_04E7A2_1DAD",
+        "sarard:pixel_spacing_x": 20.0,
+        "sarard:pixel_spacing_y": 20.0,
+        "sarard:resolution_x": 20.0,
+        "sarard:resolution_y": 20.0,
+        "sarard:speckle_filter_applied": false,
+        "sarard:speckle_filter_type": "",
+        "sarard:speckle_filter_window": [],
+        "sarard:measurement_type": "gamma0",
+        "sarard:measurement_convention": "linear backscatter intensity",
+        "sarard:conversion_eq": "10*log10(backscatter_linear)",
+        "sarard:noise_removal_applied": true,
+        "sarard:static_tropospheric_correction_applied": true,
+        "sarard:wet_tropospheric_correction_applied": false,
+        "sarard:bistatic_correction_applied": true,
+        "sarard:ionospheric_correction_applied": false,
+        "sarard:geometric_accuracy_ALE": "TODO",
+        "sarard:geometric_accuracy_rmse": "TODO",
+        "sarard:geometric_accuracy_range": "TODO",
+        "sarard:geometric_accuracy_azimuth": "TODO",
+        "storage:schemes": {
+            "aws-std": {
+                "type": "aws-s3",
+                "platform": "https://{bucket}.s3.{region}.amazonaws.com",
+                "bucket": "deant-data-public-dev",
+                "region": "ap-southeast-2",
+                "requester_pays": true
+            }
+        },
+        "datetime": "2022-01-01T12:48:11.446000Z"
+    },
+    "links": [
+        {
+            "rel": "ceos-ard-specification",
+            "href": "https://ceos.org/ard/files/PFS/SAR/v1.1/CEOS-ARD_PFS_Synthetic_Aperture_Radar_v1.1.pdf",
+            "type": "application/pdf"
+        },
+        {
+            "rel": "geoid-source",
+            "href": "https://aria-geoid.s3.us-west-2.amazonaws.com/us_nga_egm2008_1_4326__agisoft.tif"
+        },
+        {
+            "rel": "derived_from",
+            "href": "https://datapool.asf.alaska.edu/SLC/SA/S1A_IW_SLC__1SSH_20220101T124744_20220101T124814_041267_04E7A2_1DAD.zip"
+        },
+        {
+            "rel": "dem-source",
+            "href": "https://registry.opendata.aws/copernicus-dem/"
+        },
+        {
+            "rel": "rtc-algorithm",
+            "href": "https://doi.org/10.1109/TGRS.2022.3147472"
+        },
+        {
+            "rel": "geocoding-algorithm",
+            "href": "https://doi.org/10.1109/TGRS.2022.3147472"
+        },
+        {
+            "rel": "noise-correction",
+            "href": "https://sentinels.copernicus.eu/documents/247904/2142675/Thermal-Denoising-of-Products-Generated-by-Sentinel-1-IPF.pdf"
+        },
+        {
+            "rel": "additional-metadata",
+            "href": "https://deant-data-public-dev.s3.ap-southeast-2.amazonaws.com/experimental/s1_rtc_c1/t070_149822_iw3/2022/1/1/OPERA_L2_RTC-S1_T070-149822-IW3_20220101T124811Z_20250611T234746Z_S1A_20_v0.1.h5"
+        },
+        {
+            "rel": "self",
+            "href": "https://deant-data-public-dev.s3.ap-southeast-2.amazonaws.com/experimental/s1_rtc_c1/t070_149822_iw3/2022/1/1/metadata.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "./collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "HH": {
+            "href": "https://deant-data-public-dev.s3.ap-southeast-2.amazonaws.com/experimental/s1_rtc_c1/t070_149822_iw3/2022/1/1/OPERA_L2_RTC-S1_T070-149822-IW3_20220101T124811Z_20250611T234746Z_S1A_20_v0.1_HH.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "HH",
+            "description": "HH polarised backscatter",
+            "proj:shape": [
+                4539,
+                2400
+            ],
+            "proj:transform": [
+                20.0,
+                0.0,
+                368760.0,
+                0.0,
+                -20.0,
+                -1347300.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "proj:code": "EPSG:3031",
+            "raster:data_type": "float32",
+            "raster:sampling": "Area",
+            "raster:nodata": "nan",
+            "processing:level": "L2",
+            "roles": [
+                "data",
+                "backscatter"
+            ]
+        },
+        "mask": {
+            "href": "https://deant-data-public-dev.s3.ap-southeast-2.amazonaws.com/experimental/s1_rtc_c1/t070_149822_iw3/2022/1/1/OPERA_L2_RTC-S1_T070-149822-IW3_20220101T124811Z_20250611T234746Z_S1A_20_v0.1_mask.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "mask",
+            "description": "shadow layover data mask",
+            "proj:shape": [
+                4539,
+                2400
+            ],
+            "proj:transform": [
+                20.0,
+                0.0,
+                368760.0,
+                0.0,
+                -20.0,
+                -1347300.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "proj:code": "EPSG:3031",
+            "raster:data_type": "uint8",
+            "raster:sampling": "Area",
+            "raster:nodata": 255.0,
+            "raster:values": {
+                "shadow": 1,
+                "layover": 2,
+                "shadow_and_layover": 3,
+                "invalid_sample": 255
+            },
+            "roles": [
+                "data",
+                "auxiliary",
+                "mask",
+                "shadow",
+                "layover"
+            ]
+        },
+        "thumbnail": {
+            "href": "https://deant-data-public-dev.s3.ap-southeast-2.amazonaws.com/experimental/s1_rtc_c1/t070_149822_iw3/2022/1/1/OPERA_L2_RTC-S1_T070-149822-IW3_20220101T124811Z_20250611T234746Z_S1A_20_v0.1.png",
+            "type": "image/png",
+            "title": "thumbnail",
+            "description": "thumbnail image for backscatter",
+            "roles": [
+                "thumbnail"
+            ]
+        }
+    },
+    "collection": "s1_rtc_c1"
+}

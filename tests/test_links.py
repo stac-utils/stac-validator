@@ -20,6 +20,7 @@ def test_poorly_formatted_v090():
             ],
             "valid_stac": False,
             "error_type": "JSONSchemaValidationError",
+            "failed_schema": "https://cdn.staclint.com/v0.9.0/extension/view.json",
             "error_message": "-0.00751271 is less than the minimum of 0. Error is in properties -> view:off_nadir ",
             "recommendation": "For more accurate error information, rerun with --verbose.",
             "validation_method": "default",
