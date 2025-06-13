@@ -487,26 +487,11 @@ class StacValidate:
             )
             err_msg = f"{e.message}. {path_info}"
 
-            # Create a new error object with the original message
-            # We'll keep the original validator object to satisfy type checking
-            error_with_schema = type(verbose_error)(
-                message=verbose_error.message,
-                validator=verbose_error.validator,  # type: ignore[arg-type]  # Keep the original validator object
-                path=list(verbose_error.path),
-                cause=verbose_error.cause,
-                context=list(verbose_error.context) if verbose_error.context else [],
-                validator_value=verbose_error.validator_value,
-                instance=verbose_error.instance,
-                schema=verbose_error.schema,
-                schema_path=list(verbose_error.schema_path),
-                parent=verbose_error.parent,
-            )
-
-            # Create the error message with the original format
+            # Create the error message with the original error object
             message = self.create_err_msg(
                 err_type="JSONSchemaValidationError",
                 err_msg=err_msg,
-                error_obj=error_with_schema,
+                error_obj=verbose_error,
             )
 
             # Set the failed_schema in the message if we have it
