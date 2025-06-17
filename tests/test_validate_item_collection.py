@@ -663,7 +663,7 @@ def test_validate_item_collection_remote_pages():
     ]
 
 
-def test_validate_item_collection_remote_pages_v110():
+def test_validate_item_collection_remote_pages_1_v110():
     stac_file = "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items"
     stac = stac_validator.StacValidate(stac_file, item_collection=True, pages=1)
     stac.validate_item_collection()
@@ -879,6 +879,7 @@ def test_validate_item_collection_remote_pages_v110():
             "version": "1.1.0",
         },
     ]
+    assert len(stac.message) == 10
 
 
 def test_validate_item_collection_remote_pages_3_v110():
