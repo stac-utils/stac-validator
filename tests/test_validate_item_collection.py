@@ -549,8 +549,8 @@ def test_validate_item_collection_remote_pages_1_v110():
     stac.validate_item_collection()
     assert stac.message == [
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T133004_20250618T133304_20250618T150847_0179_127_138_3420_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -566,12 +566,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T132404_20250618T132704_20250618T150743_0179_127_138_3060_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -587,12 +587,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T131804_20250618T132104_20250618T151248_0179_127_138_2700_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -608,12 +608,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T131204_20250618T131504_20250618T151049_0179_127_138_2340_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -629,12 +629,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T130304_20250618T130604_20250618T150517_0179_127_138_1800_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -650,12 +650,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T130004_20250618T130304_20250618T150517_0179_127_138_1620_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -671,12 +671,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3B_OL_2_WFR____20250618T125720_20250618T125830_20250618T153125_0070_107_380_3780_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -692,12 +692,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T125704_20250618T130004_20250618T150456_0179_127_138_1440_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -713,12 +713,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3B_OL_2_WFR____20250618T125420_20250618T125720_20250618T143053_0179_107_380_3600_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -734,12 +734,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
         {
-            "asset_type": "ITEM",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items",
+            "version": "1.1.0",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T125404_20250618T125704_20250618T150418_0179_127_138_1260_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -755,8 +755,8 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
+            "asset_type": "ITEM",
             "validation_method": "default",
-            "version": "1.1.0",
         },
     ]
     assert len(stac.message) == 10
