@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/stac-utils/stac-validator/main/assets/stac-validator.png" width=560>
 </p>
 
-[![Downloads](https://static.pepy.tech/badge/stac-validator?color=blue)](https://pepy.tech/project/stac-validator)
+[![PyPI Downloads](https://static.pepy.tech/badge/stac-validator/month)](https://pepy.tech/projects/stac-validator)
   [![GitHub contributors](https://img.shields.io/github/contributors/stac-utils/stac-validator?color=blue)](https://github.com/stac-utils/stac-validator/graphs/contributors)
   [![GitHub stars](https://img.shields.io/github/stars/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/stargazers)
   [![GitHub forks](https://img.shields.io/github/forks/stac-utils/stac-validator.svg?color=blue)](https://github.com/stac-utils/stac-validator/network/members)
