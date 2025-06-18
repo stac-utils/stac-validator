@@ -681,9 +681,21 @@ class StacValidate:
         Args:
             item_collection (dict): The dictionary representation of the item collection.
         """
+        # Store the original stac_file to restore it later
+        original_stac_file = self.stac_file
+
         for item in item_collection["features"]:
+            # Update the path to include the item ID for better traceability
+            if isinstance(original_stac_file, str) and "id" in item:
+                # Remove any query string from the URL before appending the item ID
+                base_url = original_stac_file.split("?")[0]
+                self.stac_file = f"{base_url}/{item['id']}"
+
             self.schema = ""
             self.validate_dict(item)
+
+        # Restore the original stac_file
+        self.stac_file = original_stac_file
 
     def validate_collections(self) -> None:
         """
