@@ -6,6 +6,14 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+- Fixed missing item id in the url path with --item-collection output
 
 ## [v3.9.1] - 2025-06-13
 

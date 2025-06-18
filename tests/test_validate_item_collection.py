@@ -258,403 +258,283 @@ def test_validate_item_collection_remote():
     stac = stac_validator.StacValidate(stac_file, item_collection=True)
     stac.validate_item_collection()
 
-    assert stac.message == [
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
+    # Verify we have exactly 10 items
+    assert len(stac.message) == 10, f"Expected 10 items, got {len(stac.message)}"
+
+    # Define the base URL for path assertions
+    base_url = (
+        "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items"
+    )
+
+    # Define the expected schema for all items
+    expected_schema = [
+        "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
+        "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
+        "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
+        "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
     ]
+
+    # Track which item IDs we've seen
+    seen_ids = set()
+
+    # Check each message individually
+    for i, msg in enumerate(stac.message):
+        # Check basic structure
+        assert isinstance(msg, dict), f"Message {i} is not a dictionary"
+        assert "path" in msg, f"Message {i} is missing 'path'"
+        assert "version" in msg, f"Message {i} is missing 'version'"
+        assert "schema" in msg, f"Message {i} is missing 'schema'"
+        assert "valid_stac" in msg, f"Message {i} is missing 'valid_stac'"
+        assert "asset_type" in msg, f"Message {i} is missing 'asset_type'"
+        assert "validation_method" in msg, f"Message {i} is missing 'validation_method'"
+
+        # Check version
+        assert (
+            msg["version"] == "1.0.0-beta.2"
+        ), f"Message {i} has unexpected version: {msg['version']}"
+
+        # Check path format
+        assert msg["path"].startswith(
+            base_url + "/"
+        ), f"Message {i} path does not start with base URL: {msg['path']}"
+
+        # Extract and store the item ID
+        start_pos = len(base_url) + 1
+        item_id = msg["path"][start_pos:]
+        assert item_id not in seen_ids, f"Duplicate item ID found: {item_id}"
+        seen_ids.add(item_id)
+
+        # Check schema
+        assert (
+            msg["schema"] == expected_schema
+        ), f"Message {i} has unexpected schema: {msg['schema']}"
+
+        # Check boolean flags
+        assert msg["valid_stac"] is True, f"Message {i} has valid_stac=False"
+
+        # Check enums
+        assert (
+            msg["asset_type"] == "ITEM"
+        ), f"Message {i} has unexpected asset_type: {msg['asset_type']}"
+        assert (
+            msg["validation_method"] == "default"
+        ), f"Message {i} has unexpected validation_method: {msg['validation_method']}"
+
+    # Verify we saw all expected item IDs (optional, can be adjusted based on known IDs)
+    # This is just an example - you might want to make this more specific
+    assert len(seen_ids) == 10, f"Expected 10 unique item IDs, got {len(seen_ids)}"
 
 
 def test_validate_item_collection_remote_pages():
-    stac_file = (
-        "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items"
-    )
+    stac_file = "https://stac.geobon.org/collections/chelsa-clim/items"
     stac = stac_validator.StacValidate(stac_file, item_collection=True, pages=2)
     stac.validate_item_collection()
 
     assert stac.message == [
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio9",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio8",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio7",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio6",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio5",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio4",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio3",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio2",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio19",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio18",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio17",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio16",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio15",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio14",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio13",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio12",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio11",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio10",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
             "validation_method": "default",
         },
         {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
+            "version": "1.0.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio1",
             "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.0.0-beta.2",
-            "path": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a/items?collections[]=sentinel-s2-l2a&page=2&limit=10",
-            "schema": [
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/eo.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/view.json",
-                "https://cdn.staclint.com/v1.0.0-beta.1/extension/projection.json",
-                "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json",
+                "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
