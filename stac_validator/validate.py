@@ -618,16 +618,20 @@ class StacValidate:
                 if link["rel"] in ("child", "item"):
                     address = link["href"]
                     if not is_valid_url(address):
-                        # Get the directory of the current file being processed
-                        current_dir = os.path.dirname(os.path.abspath(str(base_url)))
-                        # Join with the relative address and normalize the path
-                        self.stac_file = os.path.normpath(os.path.join(current_dir, address))
-                        # Convert to relative path for cleaner output if it's under the current working directory
-                        try:
-                            self.stac_file = os.path.relpath(self.stac_file)
-                        except ValueError:
-                            # If paths are on different drives (Windows) or other relpath issues, use the absolute path
-                            pass
+                        if is_valid_url(str(base_url)):
+                            # If base is a URL, handle URL joining
+                            from urllib.parse import urljoin
+                            self.stac_file = urljoin(str(base_url) + '/' if not str(base_url).endswith('/') else str(base_url), address)
+                        else:
+                            # Handle local file paths
+                            current_dir = os.path.dirname(os.path.abspath(str(base_url)))
+                            self.stac_file = os.path.normpath(os.path.join(current_dir, address))
+                            # Convert to relative path for cleaner output if it's under the current working directory
+                            try:
+                                self.stac_file = os.path.relpath(self.stac_file)
+                            except ValueError:
+                                # If paths are on different drives (Windows) or other relpath issues, use the absolute path
+                                pass
                     else:
                         self.stac_file = address
 
