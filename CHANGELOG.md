@@ -9,6 +9,11 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Added
 
 ### Changed
+- Improved path resolution in recursive validation to handle relative paths more reliably, especially in GitHub repository structures
+
+### Fixed
+- Fixed issue where validator would get confused by repository structure when validating catalogs with relative paths
+- Cleaned up path output by removing unnecessary `./` components from displayed paths
 
 ### Removed
 
