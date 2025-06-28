@@ -563,11 +563,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -584,11 +584,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -605,11 +605,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -626,11 +626,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -647,11 +647,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -668,11 +668,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -689,11 +689,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -710,11 +710,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -731,11 +731,11 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
+            "validation_method": "default",
         },
         {
             "version": "1.1.0",
@@ -752,12 +752,12 @@ def test_validate_item_collection_remote_pages_1_v110():
                 "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
                 "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
                 "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
             ],
             "valid_stac": True,
             "asset_type": "ITEM",
-            "validation_method": "default"
-        }
+            "validation_method": "default",
+        },
     ]
     assert len(stac.message) == 10
 
