@@ -618,12 +618,16 @@ class StacValidate:
                 if link["rel"] in ("child", "item"):
                     address = link["href"]
                     if not is_valid_url(address):
-                        path_parts = str(base_url).split("/")
-                        path_parts.pop(-1)
-                        # Build the base path and normalize it to remove any ./ or ../
-                        root = os.path.normpath(os.path.join(*path_parts))
-                        # Join with the new address and normalize again
-                        self.stac_file = os.path.normpath(os.path.join(root, address))
+                        # Get the directory of the current file being processed
+                        current_dir = os.path.dirname(os.path.abspath(str(base_url)))
+                        # Join with the relative address and normalize the path
+                        self.stac_file = os.path.normpath(os.path.join(current_dir, address))
+                        # Convert to relative path for cleaner output if it's under the current working directory
+                        try:
+                            self.stac_file = os.path.relpath(self.stac_file)
+                        except ValueError:
+                            # If paths are on different drives (Windows) or other relpath issues, use the absolute path
+                            pass
                     else:
                         self.stac_file = address
 
