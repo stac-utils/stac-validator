@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pelagic",
+  "stac_version": "1.0.0",
+  "description": "The waters of the ocean, over the continental shelf and oceanic zones.[Adapted from Matthew Lerman, Marine Biology, 1986, The Benjamin/Cummings Publishing Company, Inc., Menlo Park, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3d7ecc4f-e79e-40d1-8796-63059888bf5f?gtm_keyword=PELAGIC&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Pelagic"
+}

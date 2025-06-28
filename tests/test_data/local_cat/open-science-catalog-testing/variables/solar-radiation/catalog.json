@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-radiation",
+  "stac_version": "1.0.0",
+  "description": "Solar radiation is the total electromagnetic radiation emitted by the Sun. Also could include insolation, direct solar radiation, diffuse radiation, solar irradiance, and shortwave radiation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a0f3474e-9a54-4a82-97c4-43864b48df4c?gtm_keyword=SOLAR%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Radiation"
+}

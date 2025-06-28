@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "absorption",
+  "stac_version": "1.0.0",
+  "description": "The process by which incident radiant energy is retained by a substance. The absorbed radiation is converted to another form of energy according to the nature of the absorbing medium.The process in which incident radiant energy is retained by a substance. A further process always results from absorption, that is, the irreversible conversion of the absorbed radiation into some other form of energy within and according to the nature of the absorbing medium. The absorbing medium itself may emit radiation, but only after an energy conversion has occurred. See attenuation. The taking up or assimilation of one substance by another. The substances may combine chemically, or the absorption may just correspond to a physical solubility. A process by which incident radiation is taken into a body and retained without reflection or transmission. It increases either the internal or the kinetic energy of the molecules or atoms composing the absorbing medium.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/061f7fd0-67af-42bf-bc9f-5a007c146f65?gtm_keyword=ABSORPTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Absorption"
+}

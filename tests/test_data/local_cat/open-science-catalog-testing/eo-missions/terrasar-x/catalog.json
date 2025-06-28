@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "terrasar-x",
+  "stac_version": "1.0.0",
+  "description": "TerraSAR-X (TSX) is an Earth observation satellite mission. It provides high-resolution X-band data for use in climatology, environmental and disaster monitoring, hydrology, geology, oceanography and cartography.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=391",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "TerraSAR-X"
+}

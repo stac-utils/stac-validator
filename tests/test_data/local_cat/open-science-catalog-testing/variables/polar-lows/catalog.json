@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "polar-lows",
+  "stac_version": "1.0.0",
+  "description": "Polar Lows are small, but fairly intense maritime cyclones that form poleward of the polar front (Rasmussen and Turner, 2003). The horizontal scale of the polar low is approximately 150 to 600 kilometers, and sustained wind at 10 meter height is near or above gale force (>13,8 m/s). On average, maximum observed wind is at 22 m/s. Polar lows are a wintertime phenomenon that occurs mainly from October until April.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://resources.eumetrain.org/satmanu/CMs/PL/print.htm",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Polar Lows"
+}

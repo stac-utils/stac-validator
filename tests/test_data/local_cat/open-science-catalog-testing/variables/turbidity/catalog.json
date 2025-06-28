@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "turbidity",
+  "stac_version": "1.0.0",
+  "description": "Measurement of the degree of scattering of light in water, related to the amount of suspended material in the water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f0d83687-bc0a-4491-bb3e-697f1018da13?gtm_keyword=TURBIDITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/0eaf009f-f92b-48b5-8a71-9c44c80d03d4?gtm_keyword=TURBIDITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/227cf2d4-968a-4312-89e6-8c6bcf616e5d?gtm_keyword=TURBIDITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/68e2c729-f729-4936-af2e-0ecf7ee7d231?gtm_keyword=TURBIDITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Turbidity"
+}

@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "radiation-budget-circas",
+  "stac_version": "1.0.0",
+  "description": "Radiation budget. The spatial resolution of the CIRCAS user products is 5km. The CIRCAS products are delivered in NetCDF-4 format. The NetCDF files specification follows the CF conventions [NetCDF, 2010].",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp://ftp.brockmann-consult.de",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.circas.eu/index.php#results",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Radiation budget_Regional_S3",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "circas",
+  "osc:variables": [
+    "Earth Radiation Budget"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "radiation_budget"
+    }
+  ],
+  "osc:region": "Regional",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2019-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Radiation",
+    "Earth Radiation Budget"
+  ]
+}

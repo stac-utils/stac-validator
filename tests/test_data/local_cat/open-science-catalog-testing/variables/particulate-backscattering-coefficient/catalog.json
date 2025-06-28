@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particulate-backscattering-coefficient",
+  "stac_version": "1.0.0",
+  "description": "Particulate matter (particulate backscatter coefficient at 443nm, bbp in m^-1 at 4km resolution): The backscatter coefficient bbp represents the fraction of incident light that is scattered backward from its original path by particulate material in the water. The backscattering coefficient gives a good indication of the concentration of suspended organic and inorganic particles (e.g. sediments) in the water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.jrc.ec.europa.eu/dataset/034ff0b2-9ebe-479c-a838-2def29380287#:~:text=Particulate%20matter%20(particulate%20backscatter%20coefficient,particulate%20material%20in%20the%20water.",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Particulate Backscattering Coefficient"
+}

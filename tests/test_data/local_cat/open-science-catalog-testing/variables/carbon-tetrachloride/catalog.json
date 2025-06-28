@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbon-tetrachloride",
+  "stac_version": "1.0.0",
+  "description": "CCl4, a compound consisting of a carbon and 4 chlorines that is active in ozone depletion when the compound is broken down and releases chlorine atoms (radicals). Chlorine reacts with the ozone creating diatomic oxygen and chlorine monoxide which cycles back to chlorine radicals.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1ecb1e7c-50fc-4951-b610-5140475d87ed?gtm_keyword=CARBON%20TETRACHLORIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Carbon Tetrachloride"
+}

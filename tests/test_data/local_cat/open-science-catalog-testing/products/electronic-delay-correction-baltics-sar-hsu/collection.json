@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "electronic-delay-correction-baltics-sar-hsu",
+  "stac_version": "1.0.0",
+  "description": "The ECR electronics causes a signal delay which has to be corrected in the SAR measurements. The effect was calibrated with a set of reference ECR, yielding a model that describes the delay as a function of orbit geometry and incidence angle. The model is evaluated for each acquisition and the results are stored the in dedicated correction files. Product details available at: https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/SAR-HSU-TN-0019_Dataset_User_Manual.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/COR-EC2.zip",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "COR-EC2: ECR Electronic Delay Correction_Baltics_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "GOCE",
+    "Sentinel-1",
+    "GLONASS"
+  ],
+  "osc:project": "sar-hsu",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "electronic_delay_correction"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-07-07T00:00:00Z",
+  "start_datetime": "2020-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

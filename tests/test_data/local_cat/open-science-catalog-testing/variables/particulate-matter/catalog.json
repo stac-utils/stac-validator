@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "particulate-matter",
+  "stac_version": "1.0.0",
+  "description": "\"Particulate matter\" also known as particle pollution or PM, is a complex mixture of extremely small particles and liquid droplets. Particle pollution is made up of a number of components, including acids (such as nitrates and sulfates), organic chemicals, metals, and soil or dust particles. The size of particles is directly linked to their potential for causing health problems. EPA is concerned about particles that are 10 micrometers in diameter or smaller because those are the particles that generally pass through the throat and nose and enter the lungs. Once inhaled, these particles can affect the heart and lungs and cause serious health effects. EPA groups particle pollution into two categories: \"Inhalable coarse particles\" such as those found near roadways and dusty industries, are larger than 2.5 micrometers and smaller than 10 micrometers in diameter.  \"Fine particles\" such as those found in smoke and haze, are 2.5 micrometers in diameter and smaller. These particles can be directly emitted from sources such as forest fires, or they can form when gases emitted from power plants, industries and automobiles react in the air.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/548a3f85-bf22-473b-b641-45c32d9c6a0c?gtm_keyword=PARTICULATE%20MATTER&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Particulate Matter"
+}

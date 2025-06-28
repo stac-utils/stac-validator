@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "magnetic-fields-magnetic-currents",
+  "stac_version": "1.0.0",
+  "description": "An Electromagnetic field (EM field) is the region of space near electric currents, magnets, broadcasting antennas etc., regions in which electric and magnetic forces may act, for example on charged particles.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8cbdfa00-852c-452d-8013-86145ad318c8?gtm_keyword=MAGNETIC%20FIELDS/MAGNETIC%20CURRENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Magnetic Fields/Magnetic Currents"
+}

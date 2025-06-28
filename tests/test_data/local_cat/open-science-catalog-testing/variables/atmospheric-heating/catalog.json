@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-heating",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric heating has been used to refer to the heat transfer or heat balance of the Earth's atmosphere. Heat transfer is the exchange of heat by radiation, conduction, or convection. Heat balance is the balance of the gains and losses of heat at any point in the atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/06a24fd2-38b6-4a4a-a0cf-1abf149283e2?gtm_keyword=ATMOSPHERIC%20HEATING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Heating"
+}

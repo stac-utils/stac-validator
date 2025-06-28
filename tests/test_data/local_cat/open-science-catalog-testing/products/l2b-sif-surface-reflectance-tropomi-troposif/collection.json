@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "l2b-sif-surface-reflectance-tropomi-troposif",
+  "stac_version": "1.0.0",
+  "description": "This dataset provides daily ungridded (L2B) SIF and surface reflectance estimates derived from TROPOMI observations covering the period May 2018-March 2021. The TROPOSIF products consists in: SIF estimates at 740 nm derived from a data driven approach based on a linear forward model fitting TOA radiances in the far-red spectral region; SIF data set derived from the 743â758 nm window (baseline SIF product); SIF data set from the extended 735â758 nm window (secondary SIF product); The SIF data from the 735â758 nm window have an enhanced signal-to-noise ratio but a higher sensitivity to atmospheric conditions than the SIF estimates from the 743â758 nm window; Spectral surface reflectance in 7 bands covering the 665â785 nm range.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://ftp.sron.nl/open-access-data-2/TROPOMI/tropomi/sif/v2.1/l2b/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://s5p-troposif.noveltis.fr/wp-content/uploads/2021/05/NOV-FE-0956-MU-019_v2.0.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Daily ungridded (L2B) SIF and surface reflectance estimates derived from TROPOMI",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-sif",
+  "osc:variables": [
+    "Reflectance"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "surface_reflectance_tropomi"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2018-05-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Land Surface",
+    "Surface Radiative Properties"
+  ]
+}

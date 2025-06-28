@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-structure",
+  "stac_version": "1.0.0",
+  "description": "The combination or arrangement of primary soil particles into secondary units or peds. These secondary units may be, but usually are not, arranged in the profile in such a manner as to give a distinctive characteristic pattern. The secondary units are characterized and classified on the basis of size, shape, and degree of distinctness into classes, types, and grades, respectively.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/aa25235a-596f-4504-89e1-4c625275700d?gtm_keyword=SOIL%20STRUCTURE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4daef1d-e672-41d0-bc6d-80c6b5c0799b?gtm_keyword=SOIL%20STRUCTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Structure"
+}

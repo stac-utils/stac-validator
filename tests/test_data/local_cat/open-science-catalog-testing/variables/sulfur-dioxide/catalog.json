@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sulfur-dioxide",
+  "stac_version": "1.0.0",
+  "description": "Sulfur dioxide (SO2) is a non-inflammable colorless gas. SO2 is usually oxidized by ozone and hydrogen peroxide to form sulfur trioxide, a secondary pollutant that is extremely soluble in water. Droplets of sulfuric acid (acid rain) are formed when sulfur oxides are present in the atmosphere. The production of SO2 originating from coal-fired power plants and other fossil fuel combustion is largely responsible for the damage caused by acid rain. Volcanic eruptions also provide a sourceof sulfur dioxide in the atmosphere but are insignificant when compared to anthropogenic sources.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f5717312-c3ca-4492-a166-9f17c6d9b273?gtm_keyword=SULFUR%20DIOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sulfur Dioxide"
+}

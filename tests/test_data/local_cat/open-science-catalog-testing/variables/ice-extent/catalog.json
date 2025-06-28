@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-extent",
+  "stac_version": "1.0.0",
+  "description": "The minimum or maximum length of the ice or ice edge into the open water. Also refers to the extent of the ice pack into the open ocean (which varies seasonally). Pertaining to the geographical extent of ice on continental land masses.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/63b37017-9d57-4247-af4e-2df36ee3ed03?gtm_keyword=ICE%20EXTENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Extent"
+}

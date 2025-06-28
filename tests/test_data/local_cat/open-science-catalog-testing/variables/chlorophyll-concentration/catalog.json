@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorophyll-concentration",
+  "stac_version": "1.0.0",
+  "description": "The concentration of chlorophyll is a proxy for the number of photosynthetic plankton, or phytoplankton, present in the ocean. Phytoplankton populations are influenced by climatic factors such as sea surface temperatures and winds.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0f816677-9e94-4e3b-b409-513335769af8?gtm_keyword=CHLOROPHYLL%20CONCENTRATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorophyll Concentration"
+}

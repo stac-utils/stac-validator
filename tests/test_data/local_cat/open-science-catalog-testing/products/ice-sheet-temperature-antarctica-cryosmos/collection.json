@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "ice-sheet-temperature-antarctica-cryosmos",
+  "stac_version": "1.0.0",
+  "description": "The product provides an estimate of the Ice Thickness in an area of East Antarctica where the BEDMAP2 data has an uncertainty of 1000 m. The product consists of a NETCDF file containing data in SMOS L3 format. The spatial coverage is provided as an index map in SMOS L3 coordinates. Both ice thickness estimate as well as ice thickness estimate merged onto the surrounding BEDMAP2 ice thickness data, are proved as maps. For user convenience the latitude and longitude coordinate values are also provided. The filename is Ã¢â¬ÅSMOS_IceThickness_YYYY_vvv.ncÃ¢â¬Â, where YYYY is the year and vvv is the version number. File size is approximately 7 Mbyte. Only year 2015 version 300 is currently provided. Product details are available at: http://www.ifac.cnr.it/cryosmos/products/CryoSMOS_D8_EDUM_V2.0.pdf. The data are freely disseminated, however the use of this data set must be cited as: Macelloni G., M. Brogioni, G. Picard and M. Leduc-Leballeur. 2019. SMOS Internal ice-sheet temperature, Version 2. [Indicate subset used]. Ã¢â¬ÅCryosmos. STSE SMOS+CryosphereÃ¢â¬Â. ESA contract No.4000112262/14/I-NB.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.ifac.cnr.it/cryosmos/products/SM_TEST_MIR_ITUDP4_20130101T000000_20141231T000000_200_001_0.nc",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1016/j.rse.2019.111405"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Internal ice-sheet temperature_Antarctica_SMOS",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "SMOS"
+  ],
+  "osc:project": "cryosmos",
+  "osc:variables": [
+    "Ice Temperature"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "ice_sheet_temperature"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-03-19T00:00:00Z",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "sci:doi": "10.1016/j.rse.2019.111405",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -83.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Ice",
+    "Ice Temperature"
+  ]
+}

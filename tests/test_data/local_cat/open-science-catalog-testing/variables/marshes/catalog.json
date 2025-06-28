@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "marshes",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the environment of dense grasses (typically salt-tolerant cordgrasses of the genus Spartina) growing on broad, flat coastal areas, characterized by muddy substrate and periodic tidal draining and flooding.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/30056645-a442-4ef6-ac76-c5bc27086d83?gtm_keyword=MARSHES&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/419877cb-0c17-44b0-9b3d-a2283887a7a6?gtm_keyword=MARSHES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/419877cb-0c17-44b0-9b3d-a2283887a7a6?gtm_keyword=MARSHES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Marshes"
+}

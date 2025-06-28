@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "geodynamic-corrections-baltics-sar-hsu",
+  "stac_version": "1.0.0",
+  "description": "The geodynamic effects are computed from PTA-OBS and IERS-2010, following the definitions of the ITRF as outlined in the IERS conventions (version 2010, chapter 7, displacements of reference points). The cumulative impact on range and azimuth are stored in the correction file. The range corrections are available in units of meters 1-way. In order to apply them to the range observations, they need to be scaled by 2/c, with c denoting speed of light in vacuum. The azimuth corrections are in units of seconds and can be used as is. The following geodynamic corrections are comprised in values list in the file: Solid Earth tidal deformations caused by Sun & Moon, Ocean loading stemming from water mass redistribution by tides weighing on the coastlines using the FES2004 tidal model, Atmospheric pressure loading induced by diurnal heating of the atmosphere (S1 and S2 components), Rotational deformation due to polar motion, Ocean pole tide loading, Secular trends as inferred from nearby IGS reference site located on same tectonic plate. Multiple targets may be summarized in one file. Data blocks for different targets are placed side by side organized by dates. If a target is unavailable or detected an outlier (low SCR), the entries are set to 9. Product details available at: https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/SAR-HSU-TN-0019_Dataset_User_Manual.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/COR-GC.zip",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "COR-GC: Geodynamic Corrections_Baltics_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "GOCE",
+    "Sentinel-1",
+    "GLONASS"
+  ],
+  "osc:project": "sar-hsu",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "geodynamic_corrections"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-07-07T00:00:00Z",
+  "start_datetime": "2020-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

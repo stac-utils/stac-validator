@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particle-speed",
+  "stac_version": "1.0.0",
+  "description": "The distance per unit time of particles propagating through the Earth's atmosphere or through the interplanetary magnetic fields as a result of solar events. For example, the solar wind has a 'fast' component or high speed stream with a speed of about 10*5 M/sec. and a 'slow' component of about 5x10*4 m/sec.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/68f1ff0e-2e23-4025-ba71-7f6177352311?gtm_keyword=PARTICLE%20SPEED&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Particle Speed"
+}

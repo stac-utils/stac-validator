@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "industrial-emissions",
+  "stac_version": "1.0.0",
+  "description": "Industrial emissions are air pollution from manufacturing plants and factories.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/07f7ea8e-cf94-4421-923a-539e12dbeb95?gtm_keyword=INDUSTRIAL%20EMISSIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Industrial Emissions"
+}

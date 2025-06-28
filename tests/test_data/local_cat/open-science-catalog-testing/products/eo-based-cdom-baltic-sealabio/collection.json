@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "eo-based-cdom-baltic-sealabio",
+  "stac_version": "1.0.0",
+  "description": "The OLCI based EO results are visible in TARKKA (https://wwwi4.ymparisto.fi/i4/eng/tarkka/index.html?type=BP_CDOM&date=2019-09-01&lang=en&zoom=5.31&lat=64.23000&lon=26.00000) and the WAF (http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/). These have been derived by first performing the atmospheric correction with the Baltic+ AC processor and the using a band ratio algorithm for the estimation of CDOM. More details about the processing will be made available in the Validation Report and Dataset User Manual while comparisons of model and EO results with in situ data will be available in the Impact Assessment Report (see the Results section on the project website https://www.syke.fi/en-US/Research__Development/Research_and_development_projects/Projects/SeaLand_biogeochemical_linkages_SeaLaBio/Results).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/EO_results/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "EO based Color Disolved Organic Matter_Baltics_S3",
+  "osc:themes": [
+    "Oceans",
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "baltic-sea-land",
+  "osc:variables": [
+    "Colored Dissolved Organic Matter"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mass_fraction_of_dissolved_organic_matter"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2020-09-17T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.3738792631,
+          53.90254289,
+          32.9925362748,
+          66.2654700409
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Matter"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "clima-aerosol-op-all-livas",
+  "stac_version": "1.0.0",
+  "description": "15-year averaged profiles of aerosol optical properties (extinction and backscatter coefficients, particle depolarization ratio) at 532 nm, for all aerosols and separately for the CALIPSO aerosol types: pure dust, marine, smoke and continental. The dust products are based on CALIPSO products and Earlinet dust separation method (described in Marinou et al. ACP, 2017). The products are provided for all CALIPSO overpasses, using the CALIPSO L2 aerosol product horizontal resolution of 5km.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftps://livas:livas-public@react.space.noa.gr",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://195.251.203.238/beyond/images/docs/publications/atmospheric/Amiridis_LIVAS.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Climatology of aerosol optical property profiles for all aerosols and separately for the CALIPSO aerosol types: pure dust, marine, smoke and continental_Global_CALIPSO",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "CALIPSO"
+  ],
+  "osc:project": "livas",
+  "osc:variables": [
+    "Aerosol Optical Depth/Thickness"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "atmosphere_optical_thickness_due_to_aerosol"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-01-01T00:00:00Z",
+  "start_datetime": "2006-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2006-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Aerosols",
+    "Aerosol Optical Depth/Thickness"
+  ]
+}

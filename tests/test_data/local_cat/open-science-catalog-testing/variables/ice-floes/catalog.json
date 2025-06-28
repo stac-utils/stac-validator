@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-floes",
+  "stac_version": "1.0.0",
+  "description": "Floe refers to any relatively flat piece of ice 20 m or more across. Floes are subdivided according to horizontal extent: small, medium, big, vast, giant.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4733ef2c-e512-451b-8079-78ff7278e35c?gtm_keyword=ICE%20FLOES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Floes"
+}

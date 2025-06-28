@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "arctic-oscillation",
+  "stac_version": "1.0.0",
+  "description": "The Arctic Oscillation (AO) is the dominant pattern of non-seasonal sea-level pressure (SLP) variations north of 20N, and it is characterized by SLP anomalies of one sign in the Arctic and anomalies of opposite sign centered about 37-45N. Additional information is available for the Arctic Oscillation (AO) and for the North Atlantic Oscillation (NAO), a close relative of the AO (http://jisao.washington.edu/ao/)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/98e5a7e4-b946-474a-8214-c1b7b3e5f976?gtm_keyword=ARCTIC%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Arctic Oscillation"
+}

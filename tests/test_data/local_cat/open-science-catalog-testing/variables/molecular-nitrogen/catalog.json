@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "molecular-nitrogen",
+  "stac_version": "1.0.0",
+  "description": "Nitrogen (N2) is a colorless, tasteless, odorless gas which makes up 78.1% of the atmosphere. Atmospheric nitrogen is converted by nitrogen fixation and nitrification into compounds used by plants and animals. In the far upper atmosphere, N2 is broken down when large numbers of energetic secondary electrons are produced and available to react with the N2. This leads to the eventual production of NO. (Crutzen, Paul J. and T.E. Graedel, Atmospheric Change. W.H. Freeman and Company, New York, 147.) (Webster's New World Dictionary. Prentice Hall, New York, 918.)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3c3b37d4-b934-4057-b8e4-438523ae88e3?gtm_keyword=MOLECULAR%20NITROGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Molecular Nitrogen"
+}

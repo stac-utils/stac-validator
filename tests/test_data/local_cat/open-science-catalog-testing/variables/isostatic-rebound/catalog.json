@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "isostatic-rebound",
+  "stac_version": "1.0.0",
+  "description": "Occurs when a load is imposed on or removed from the lithosphere. The surface tends to rise or sink as the lithosphere rises or sinks in the asthenosphere. Loads may consist of large lakes, oceans, (on continental shelves during eustatic sea level), ice, sediment, thrust sheets, and volcanoes. The rising or sinking of the lithosphere will continue until isostatic equilibrium is reached.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/5e7a091a-894f-423f-a431-ab52cf205311?gtm_keyword=ISOSTATIC%20REBOUND&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Isostatic Rebound"
+}

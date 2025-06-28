@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "basin-runoff-sur-water",
+  "stac_version": "1.0.0",
+  "description": "Total run off and surface water from the upper and lower parts of the five drainage basins; NEGIS, Northern Lakes, Southern Lakes, Store, and Watson. The estimations are directly from the MAR 3.11 RCM. Please read the README_UpperLower.txt in the zip file. There are Four columns in each file; [] (Index of estimation), Run Off [km^3] (Total basin Run Off in km^3), Surface Water [km^3] (Total amount of basin Surface Water in km^3), Year [Decimal Year] (Decimal year of estimation).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.dtu.dk/ndownloader/files/36169980\"",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.11583/DTU.20237421.v1",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Basin Run Off and Surface Water (ESA POLAR+ 4D Greenland Experimental Dataset)",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Runoff"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "basin_runoff_sur_water"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2022-07-06T00:00:00Z",
+  "start_datetime": "2014-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Surface Water",
+    "Surface Water Processes/Measurements",
+    "Runoff"
+  ]
+}

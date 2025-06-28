@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-temperature",
+  "stac_version": "1.0.0",
+  "description": "Surface air temperature has profound and widespread impacts on both natural systems and on human lives and activities. It affects health, agriculture, energy demand and much more. Extremes of surface air temperature, both heat waves and extreme cold periods, are particular important for human health. Surface air temperature provides a key indicator of climate change, contributing to the \"global surface temperature record\". A goal of limiting changes in global surface temperature provides the measure for the Paris climate agreement. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/surface-temperature/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Temperature"
+}

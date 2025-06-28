@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "temperature-humidity-index",
+  "stac_version": "1.0.0",
+  "description": "Temperature-Humidity Index (THI), combination of temperature and humidity that is a measure of the degree of discomfort experienced by an individual in warm weather; it was originally called the discomfort index. The index is essentially an effective temperature based on air temperature and humidity; it equals 15 plus 0.4 times the sum of simultaneous readings of the dry- and wet-bulb temperatures. Thus, if the dry-bulb temperature is 90ï¿½ F (32ï¿½ C) and the wet-bulb temperature is 50ï¿½ F (10ï¿½ C), the discomfort index is 15 + 0.4 (140), or 71. Most people are quite comfortable when the index is below 70 and very uncomfortable when the index is above 80 to 85. In the U.S. the highest average daily values of the THI, exceeding 80, consistently occur in the southern California deserts and southwestern Arizona in July and August.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5bdc74e2-ea3a-4d1d-b64e-9eaf3a879545?gtm_keyword=TEMPERATURE-HUMIDITY%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Temperature-Humidity Index"
+}

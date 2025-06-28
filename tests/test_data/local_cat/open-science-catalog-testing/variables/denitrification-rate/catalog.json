@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "denitrification-rate",
+  "stac_version": "1.0.0",
+  "description": "The rate of biochemical reduction of nitrate or nitrite to gaseous nitrogen, either as molecular nitrogen or as an oxide of nitrogen.[The Nature and Properties of Soils, Prentice Hall, 1996.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cac79930-334e-49c5-836b-4f2ee8e0b098?gtm_keyword=DENITRIFICATION%20RATE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0d0de6a7-c340-4e6b-b01d-ccbb6e7fa913?gtm_keyword=DENITRIFICATION%20RATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Denitrification Rate"
+}

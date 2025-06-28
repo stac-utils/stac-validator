@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydroperoxy",
+  "stac_version": "1.0.0",
+  "description": "Consists of oxygenated compounds that are organic derivitives of hydrogen peroxide. These compounds are formed in the oxidation of hydrocarbons in relatively clean air, where oxides of nitrogen are not abundant.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d8494f01-bcec-4232-ad78-fbd92c242e62?gtm_keyword=HYDROPEROXY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydroperoxy"
+}

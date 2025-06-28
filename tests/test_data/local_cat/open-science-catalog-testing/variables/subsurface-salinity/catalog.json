@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "subsurface-salinity",
+  "stac_version": "1.0.0",
+  "description": "The global subsurface salinity observing system is vital for closure of the global hydrological cycle, estimates of oceanic evaporation and precipitation, and halosteric component of sea level change. Subsurface salinity are required to calculate in situ density and ocean freshwater transports, respectively, and coincident subsurface observations of salinity, temperature and pressure provide an estimate of the ocean geostrophic velocity. In addition, subsurface salinity is used to derive large-scale gridded climate products including ocean velocity, mixed-layer depth, density stratification, sea level and indirect subsurface ocean mixing used in many weather and climate applications.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/subsurface-salinity",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Subsurface Salinity"
+}

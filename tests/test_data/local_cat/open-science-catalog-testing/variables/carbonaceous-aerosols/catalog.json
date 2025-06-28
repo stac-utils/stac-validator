@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbonaceous-aerosols",
+  "stac_version": "1.0.0",
+  "description": "Aerosols consisting predominantly of organic substances and various forms of black carbon; may be biogenic or anthropogenic, primary or secondary.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/527f637c-aea5-4519-9293-d57e10a76bff?gtm_keyword=CARBONACEOUS%20AEROSOLS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Carbonaceous Aerosols"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-depth-thickness",
+  "stac_version": "1.0.0",
+  "description": "Ice depth or thickness refers to the extent of the ice below the surface of the water. The term is also used in river and lake ice studies. Remote sensing techniques (particularly radar and microwave) have been used to estimate ice thickness as have recently declassified submarine measurements of polar ice thickness.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/c7708bb6-a0fa-4905-b99d-c468da7d951a?gtm_keyword=ICE%20DEPTH/THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Depth/Thickness"
+}

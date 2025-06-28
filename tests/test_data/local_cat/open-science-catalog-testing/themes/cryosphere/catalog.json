@@ -1,0 +1,38 @@
+{
+  "type": "Catalog",
+  "id": "cryosphere",
+  "stac_version": "1.0.0",
+  "description": "The cryosphere is the part of the Earth's climate system that includes solid precipitation, snow, sea ice, lake and river ice, icebergs, glaciers and ice caps, ice sheets, ice shelves, permafrost, and seasonally frozen ground. The term \"cryosphere\" traces its origins to the Greek word 'kryos' for frost or ice cold. The cryosphere extends globally, existing seasonally or perennially at most latitudes, not just in the Arctic, Antarctic, and mountain regions, and in approximately one hundred countries. Approximately 70% of the Earth's freshwater exists as snow or ice. Snow and ice data are required for weather and climate research and applications. As the cryosphere changes due to climate change, this has major impacts on society, on the availability of freshwater resources, agriculture, transportation, safety and security, hydropower production, recreation, increasing the risk of floods and droughts, and affecting the viability of ecosystems. Most people on Earth depend directly or indirectly on the cryosphere. For example, as all major rivers originate from mountains, the mountain cryosphere plays an important role in providing and regulating freshwater resources for around half of the world's population, including for those living in lowland areas, such as the Ganges-Brahmaputra Delta. Furthermore, alterations and loss of critical snow and ice are increasing the risk of related disasters (WMO). The cryosphere collectively describes all forms of frozen water at the Earth's surface - sea ice, ice sheets, ice caps, glaciers, snow cover, river and lakeice, permafrost, seasonally frozen ground and solid precipitation. It is an important component in the context of climate change as it affects and is affected by changes in temperature. In particular, glaciers, the Greenland ice sheet, polar and mountain permafrost and Arctic sea-ice are expected to be dramatically altered by climate change. A variety of national and international projects and programmes are monitoring changes in the cryosphere and analysing how these changes will develop in the future. They are also looking at the effects of these changes. (source: https://climate-adapt.eea.europa.eu)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "preview",
+      "href": "./EO_Cryosphere.webp",
+      "type": "image/webp",
+      "title": "Image",
+      "proj:epsg": null,
+      "proj:shape": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://climate-adapt.eea.europa.eu/en/knowledge/adaptation-information/observations-and-scenarios/cryosphere#:~:text=The%20cryosphere%20collectively%20describes%20all%20forms%20of%20frozen,lakeice%2C%20permafrost%2C%20seasonally%20frozen%20ground%20and%20solid%20precipitation.",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    }
+  ],
+  "title": "Cryosphere"
+}

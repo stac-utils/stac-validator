@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "palustrine-wetlands",
+  "stac_version": "1.0.0",
+  "description": "Palustrine Wetlands are areas along rivers that are at times, wet and at others, dry.[epa.gov]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6862d4d4-51fe-4fde-80eb-60d3ef08e88e?gtm_keyword=PALUSTRINE%20WETLANDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d400ab07-bde9-40cc-b70a-63eda730eab2?gtm_keyword=PALUSTRINE%20WETLANDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Palustrine Wetlands"
+}

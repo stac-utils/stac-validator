@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pacific-warm-pool",
+  "stac_version": "1.0.0",
+  "description": "The Indian Ocean/West Pacific Warm Pool extends almost half way around the globe, stretching along the equator south of India, through the waters off Sumatra, Java, Borneo, and New Guinea, and into the central Pacific Ocean. The waters of the Warm Pool are warmer than any other open ocean on Earth. Because these waters are hot enough to drive heat and moisture high into the atmosphere, the warm pool has a large effect on the climate of surrounding lands. In fact, the slow fluctuations of size and intensity of the warm pool may be linked with the intensity of El Niï¿½o.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/db1000b8-3b19-46fa-9d79-379379d654ac?gtm_keyword=PACIFIC%20WARM%20POOL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Pacific Warm Pool"
+}

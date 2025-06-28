@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "phosphate",
+  "stac_version": "1.0.0",
+  "description": "A charged molecule composed of one atom of phosphorus and four atoms of oxygen, PO4(-3), available to plants and phytoplankton as a nutrient.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0b513d8c-bfd3-44ee-976e-42757b8375a2?gtm_keyword=PHOSPHATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Phosphate"
+}

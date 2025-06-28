@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-mass-balance-ice-sheet-mass-balance",
+  "stac_version": "1.0.0",
+  "description": "Mass balance describes the net gain or loss of snow and ice through a given year. It is usually expressed in terms of water gain or loss.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9f408faa-a427-44e9-a194-b1b9caff1e6d?gtm_keyword=GLACIER%20MASS%20BALANCE/ICE%20SHEET%20MASS%20BALANCE&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6095d796-68e0-4c7d-aa4f-f2e5bd8c4916?gtm_keyword=GLACIER%20MASS%20BALANCE/ICE%20SHEET%20MASS%20BALANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Mass Balance/Ice Sheet Mass Balance"
+}

@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "s1-corrections-baltics-sar-hsu",
+  "stac_version": "1.0.0",
+  "description": "Sensor specific calibration constants (S1A, S1B) are stored in dedicated calibration files. The numbers need to be applied to the raw range and azimuth observations to ensure unbiased observations. The numbers primarily account for SAR payload internal signal delays and have been inferred from S1A and S1B measurements of the long term stable corner reflector installed at MetsÃÂ¤hovi geodetic observatory. Product details available at: https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/SAR-HSU-TN-0019_Dataset_User_Manual.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/COR-SC.zip",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "COR-SC: Sentinel-1 Systematic Effects Corrections_Baltics_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "GOCE",
+    "Sentinel-1",
+    "GLONASS"
+  ],
+  "osc:project": "sar-hsu",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "s1_corrections_files"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-07-07T00:00:00Z",
+  "start_datetime": "2020-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

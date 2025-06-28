@@ -1,0 +1,127 @@
+{
+  "type": "Collection",
+  "id": "carbon-constellation",
+  "stac_version": "1.0.0",
+  "description": "Demonstrate the synergistic exploitation of satellite observations from active and passive microwave sensors together with optical data for an improved understanding of the terrestrial carbon and water cycles. This will be achieved by: adapting a numerical land surface model for its application in a data assimilation framework, anf by acquisition and analysis of campaign data sets at Sodankyl (Finland) and Majadas de Tietar (Spain) supporting the development of the model and the data assimilation scheme on the local scale.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://lcc.inversion-lab.com",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/land-surface-carbon-constellation-study/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "Carbon Constellation",
+  "osc:name": "LAND SURFACE CARBON CONSTELLATION STUDY",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Matthias Drusch",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "matthias.drusch@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Lund University (SE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TU Vienna (AT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Forschungszentrum Julich (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "The Inversion Lab (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Finnish Meteorological Institute (FI)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University of Reading (UK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CESBIO (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Eidg. Forschungsanstalt fur Wald",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Schnee und Landschaft WSL (CH)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TU Delft (NL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University of Valencia  (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University of Edinburgh (UK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Max Planck Institute for Biogeochemistry (DE)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-08-07T00:00:00Z",
+  "end_datetime": "2023-04-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-08-07T00:00:00Z",
+          "2023-04-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

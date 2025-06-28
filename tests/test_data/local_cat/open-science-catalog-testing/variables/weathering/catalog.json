@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "weathering",
+  "stac_version": "1.0.0",
+  "description": "Breaking down of Earth's rocks, soils and minerals through direct contact with the planet's atmosphere. Weathering occurs in situ, or \"with no movement\", and thus should not be confused with erosion, which involves the movement of rocks and minerals by agents such as water, ice, wind, and gravity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b07017e8-d714-45a6-b1fe-8c00230ec209?gtm_keyword=WEATHERING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Weathering"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ionosphere-magnetosphere-dynamics",
+  "stac_version": "1.0.0",
+  "description": "Refers to dynamic processess of the Earth's ionosphere and solar magnetosphere triggered by solar events. The magnetosphere is the magnetic cavity surrounding the earth, carved out of the passing solar wind by virtue of the geomagnetic field, which prevents, or at least impedes, the direct entry of the solar wind plasma into the cavity. The ionosphere is the region of the earth's upper atmosphere containing a small percentage of free electrons and ions produced by photoionization of the constituents of the atmosphere by solar ultraviolet radiation at very short wavelengths (l.t.1000 angstroms). The ionosphere significantly influences radiowave propagation of frequencies less than about 30 MHz.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3a942e8a-d2f2-42bf-9e83-b7b3793b100e?gtm_keyword=IONOSPHERE/MAGNETOSPHERE%20DYNAMICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ionosphere/Magnetosphere Dynamics"
+}

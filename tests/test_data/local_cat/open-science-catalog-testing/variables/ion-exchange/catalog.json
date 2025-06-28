@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ion-exchange",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the chemical process by which ions move from one crystal structure or molecular substance to another across contact boundaries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ccbf4ef8-955b-4337-a45b-95affc360173?gtm_keyword=ION%20EXCHANGE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Ion Exchange"
+}

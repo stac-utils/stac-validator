@@ -1,0 +1,38 @@
+{
+  "type": "Catalog",
+  "id": "atmosphere",
+  "stac_version": "1.0.0",
+  "description": "The gaseous envelope surrounding the Earth in a several kilometers-thick layer. The atmosphere is a gaseous envelope surrounding and protecting our planet from the intense radiation of the Sun and serves as a key interface between the terrestrial and ocean cycles.  Although it only extends a few hundred kilometers above the surface, it contains a mixture of gases, such as oxygen and nitrogen, that are critical for life to exist. It distributes incoming solar radiation, protecting life from harmful ultraviolet radiation but also driving atmospheric circulation and weather. The atmosphere enables the greenhouse effect, which makes Earth more habitable. Human activity, however, is contributing more gases, many of which are negatively impacting the protective nature of this vital layer. (source: https://www.eionet.europa.eu/gemet/en/concept/617; https://www.earthdata.nasa.gov/topics/atmosphere)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "preview",
+      "href": "./EO_Atmosphere.webp",
+      "type": "image/webp",
+      "title": "Image",
+      "proj:epsg": null,
+      "proj:shape": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.eionet.europa.eu/gemet/en/concept/617",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    }
+  ],
+  "title": "Atmosphere"
+}

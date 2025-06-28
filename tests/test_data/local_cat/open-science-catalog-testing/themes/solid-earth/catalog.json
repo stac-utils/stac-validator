@@ -1,0 +1,38 @@
+{
+  "type": "Catalog",
+  "id": "solid-earth",
+  "stac_version": "1.0.0",
+  "description": "Solid Earth refers to the crust, mantle and core. Because these parts of our world are completely hidden from view, understanding what is going on deep below our feet can only be done by using indirect measurements. A thorough understanding of the 'solid Earth' system is essential for deciphering the links between processes occurring deep inside Earth and those occurring nearer the surface that lead to seismic activity such as earthquakes and volcanic eruptions, the rise of mountains and the location of underground natural resources.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "preview",
+      "href": "./EO_Solid_Earth.webp",
+      "type": "image/webp",
+      "title": "Image",
+      "proj:epsg": null,
+      "proj:shape": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/tag/solid-earth/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    }
+  ],
+  "title": "Solid Earth"
+}

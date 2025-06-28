@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "reclamation-revegetation-restoration",
+  "stac_version": "1.0.0",
+  "description": "Reclamation, as used here refers, to putting a natural resource to a new or altered use. Restoration is the return of an ecosystem to a close approximation of its condition prior to disturbance. Revegetation is the planting of vegetation in an area where vegetation has been removed.[National Research Council. 1992. Restoration of Aquatic Ecosystems: science, technology, and public policy. National Academy Press. Washington, D.C., 1992.]Restoration: The processes by which an area is treated in an attempt to restore original conditions. Reclamation: The process of reconverting land to other forms of productive uses. Revegetation: Reestablishment of vegetation which may take place naturally or be induced by humans through seeding or transplanting.[The Nature and Properties of Soils, Prentice Hall, 1996. Herren, R.V., and R.L. Donahue. 1991. The Agricultural Dictionary, Delmar Publishers, INC. Albany, New York. 553pp.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/86dfb9ca-6587-4a91-b397-f220bb48a1eb?gtm_keyword=RECLAMATION/REVEGETATION/RESTORATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c22818ce-07aa-4f77-8fe2-be1925743bac?gtm_keyword=RECLAMATION/REVEGETATION/RESTORATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4add3005-9151-4b8d-a0bc-14c3908ef3a9?gtm_keyword=RECLAMATION/REVEGETATION/RESTORATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d57dff3d-5f2f-425c-80bb-2a6fcb42d3fa?gtm_keyword=RECLAMATION/REVEGETATION/RESTORATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Reclamation/Revegetation/Restoration"
+}

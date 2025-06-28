@@ -1,0 +1,89 @@
+{
+  "type": "Collection",
+  "id": "hr-tidal-atlas-arctic-ocean-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Arctide2017 is a high-resolution tidal atlas of the Arctic Ocean. Developed by NOVELTIS, DTU Space and LEGOS, it combines altimeter data from ESAÃ¢â¬Å¡ÃâÃÂ´s Envisat and CryoSat satellites into the most complete dataset used in the Arctic region to estimate tidal information",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1016/j.asr.2018.01.007"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Arctide2017_High-resolution tidal atlas_Arctic Ocean_Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "high_resolution_tidal_atlas"
+    }
+  ],
+  "osc:region": "Arctic",
+  "created": "2015-02-23T00:00:00Z",
+  "start_datetime": "2014-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "sci:doi": "10.1016/j.asr.2018.01.007",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -127.3210847509,
+          60.0440393138,
+          16.2921964991,
+          84.2454100786
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

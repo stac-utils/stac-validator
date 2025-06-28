@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "snow-water-equivalent",
+  "stac_version": "1.0.0",
+  "description": "The water content obtained from melting accumulated snow.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/587e4d68-36f0-45b5-9978-4b3edd58a1c0?gtm_keyword=SNOW%20WATER%20EQUIVALENT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/47d8d3db-9aea-49f3-8edd-5216736a85ef?gtm_keyword=SNOW%20WATER%20EQUIVALENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Snow Water Equivalent"
+}

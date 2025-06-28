@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-activity",
+  "stac_version": "1.0.0",
+  "description": "Any change in the sun's appearance or behavior. The sun's activity is described as being very low, low, moderate, high or very high. Solar activity changes over a period of, on average, 11 years. At solar maximum, the solar activity is high and so too the Extreme Ultraviolet (EUV) radiation output which affects the ionosphere. At solar minimum, the opposite is true.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2e83362e-d8f8-4bca-83fd-bae360ebe94b?gtm_keyword=SOLAR%20ACTIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Activity"
+}

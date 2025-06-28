@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "phytoplankton-carbon",
+  "stac_version": "1.0.0",
+  "description": "Mass concentration of phytoplankton expressed as carbon in sea water [mg C m-3]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://earthobservatory.nasa.gov/features/Phytoplankton/page2.php",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Phytoplankton Carbon"
+}

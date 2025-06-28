@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "bedrock-lithology",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the identification, measurement, analysis, and documentation of lithologic composition of the earth's bedrock.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/4beaeec9-0750-44e6-8fb4-8d0085efc82e?gtm_keyword=BEDROCK%20LITHOLOGY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Bedrock Lithology"
+}

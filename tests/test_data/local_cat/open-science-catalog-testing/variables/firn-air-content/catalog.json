@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "firn-air-content",
+  "stac_version": "1.0.0",
+  "description": "Firn Air Content is a parameter within that data set and is defined as the volume of air trapped within the firn layer. This parameter is subtracted from the ice surface elevation to obtain ice thickness in actual ice equivalent.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0229714c-7960-4179-b671-30ceb9bf68bb?gtm_keyword=FIRN%20AIR%20CONTENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Firn Air Content"
+}

@@ -1,0 +1,1035 @@
+{
+  "type": "Catalog",
+  "id": "projects",
+  "stac_version": "1.0.0",
+  "description": "Activities funded by ESA",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "child",
+      "href": "./3d-earth/collection.json",
+      "type": "application/json",
+      "title": "3D-EARTH"
+    },
+    {
+      "rel": "child",
+      "href": "./3dctrl/collection.json",
+      "type": "application/json",
+      "title": "3DCTRL"
+    },
+    {
+      "rel": "child",
+      "href": "./4d-antarctica/collection.json",
+      "type": "application/json",
+      "title": "4D-ANTARCTICA"
+    },
+    {
+      "rel": "child",
+      "href": "./4d-earth-swarm/collection.json",
+      "type": "application/json",
+      "title": "4D-Earth SWARM"
+    },
+    {
+      "rel": "child",
+      "href": "./4d-greenland/collection.json",
+      "type": "application/json",
+      "title": "4D-Greenland"
+    },
+    {
+      "rel": "child",
+      "href": "./4datlantic-ebus-primus/collection.json",
+      "type": "application/json",
+      "title": "4DATLANTIC EBUS PRIMUS"
+    },
+    {
+      "rel": "child",
+      "href": "./4dmed-hydrology/collection.json",
+      "type": "application/json",
+      "title": "4DMED-Hydrology"
+    },
+    {
+      "rel": "child",
+      "href": "./advancing-the-study-of-extreme-weather-events-with-data-deep-learning-methods-and-climate-analysis/collection.json",
+      "type": "application/json",
+      "title": "Advancing the Study of Extreme Weather Events with Data, Deep Learning Methods and Climate Analysis"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-aoc/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - AOC"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-color/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - COLOR"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-lisa/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - LISA"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-newton/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - NEWTON"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-sea-flect/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - SEA-FLECT"
+    },
+    {
+      "rel": "child",
+      "href": "./aeolus-inno-swails/collection.json",
+      "type": "application/json",
+      "title": "AEOLUS+inno - SWAILS+"
+    },
+    {
+      "rel": "child",
+      "href": "./ai4drought/collection.json",
+      "type": "application/json",
+      "title": "AI4DROUGHT"
+    },
+    {
+      "rel": "child",
+      "href": "./ai4dte/collection.json",
+      "type": "application/json",
+      "title": "AI4DTE"
+    },
+    {
+      "rel": "child",
+      "href": "./ai4dte-sw-stack/collection.json",
+      "type": "application/json",
+      "title": "AI4DTE SW stack"
+    },
+    {
+      "rel": "child",
+      "href": "./akross/collection.json",
+      "type": "application/json",
+      "title": "AKROSS"
+    },
+    {
+      "rel": "child",
+      "href": "./albatross/collection.json",
+      "type": "application/json",
+      "title": "ALBATROSS"
+    },
+    {
+      "rel": "child",
+      "href": "./albiom/collection.json",
+      "type": "application/json",
+      "title": "ALBIOM"
+    },
+    {
+      "rel": "child",
+      "href": "./alpglacier/collection.json",
+      "type": "application/json",
+      "title": "AlpGlacier"
+    },
+    {
+      "rel": "child",
+      "href": "./alplakes/collection.json",
+      "type": "application/json",
+      "title": "AlpLakes"
+    },
+    {
+      "rel": "child",
+      "href": "./alpsnow/collection.json",
+      "type": "application/json",
+      "title": "AlpSnow"
+    },
+    {
+      "rel": "child",
+      "href": "./ampac-net/collection.json",
+      "type": "application/json",
+      "title": "AMPAC-Net"
+    },
+    {
+      "rel": "child",
+      "href": "./anreo/collection.json",
+      "type": "application/json",
+      "title": "AnREO"
+    },
+    {
+      "rel": "child",
+      "href": "./arcflux/collection.json",
+      "type": "application/json",
+      "title": "ArcFlux"
+    },
+    {
+      "rel": "child",
+      "href": "./arctic-salinity/collection.json",
+      "type": "application/json",
+      "title": "Arctic + Salinity"
+    },
+    {
+      "rel": "child",
+      "href": "./arctic-snow-on-sea-ice/collection.json",
+      "type": "application/json",
+      "title": "Arctic+Snow on Sea Ice"
+    },
+    {
+      "rel": "child",
+      "href": "./arkatlas/collection.json",
+      "type": "application/json",
+      "title": "ARKATLAS"
+    },
+    {
+      "rel": "child",
+      "href": "./baltic-salinity-dynamics/collection.json",
+      "type": "application/json",
+      "title": "BALTIC+ Salinity Dynamics"
+    },
+    {
+      "rel": "child",
+      "href": "./baltic-sea-land/collection.json",
+      "type": "application/json",
+      "title": "BALTIC+ Sea-Land"
+    },
+    {
+      "rel": "child",
+      "href": "./baltic-sea-level/collection.json",
+      "type": "application/json",
+      "title": "Baltic+ Sea Level"
+    },
+    {
+      "rel": "child",
+      "href": "./baltic-seal-sea-level/collection.json",
+      "type": "application/json",
+      "title": "BALTIC+ SEAL - Sea Level"
+    },
+    {
+      "rel": "child",
+      "href": "./bathysent/collection.json",
+      "type": "application/json",
+      "title": "BathySent"
+    },
+    {
+      "rel": "child",
+      "href": "./bicep/collection.json",
+      "type": "application/json",
+      "title": "BICEP"
+    },
+    {
+      "rel": "child",
+      "href": "./bicome/collection.json",
+      "type": "application/json",
+      "title": "BiCOME"
+    },
+    {
+      "rel": "child",
+      "href": "./biomap/collection.json",
+      "type": "application/json",
+      "title": "BiomAP"
+    },
+    {
+      "rel": "child",
+      "href": "./biomascat/collection.json",
+      "type": "application/json",
+      "title": "BIOMASCAT"
+    },
+    {
+      "rel": "child",
+      "href": "./biomondo/collection.json",
+      "type": "application/json",
+      "title": "BIOMONDO"
+    },
+    {
+      "rel": "child",
+      "href": "./booms/collection.json",
+      "type": "application/json",
+      "title": "BOOMS"
+    },
+    {
+      "rel": "child",
+      "href": "./carbon-constellation/collection.json",
+      "type": "application/json",
+      "title": "Carbon Constellation"
+    },
+    {
+      "rel": "child",
+      "href": "./careheat/collection.json",
+      "type": "application/json",
+      "title": "CareHEAT"
+    },
+    {
+      "rel": "child",
+      "href": "./circas/collection.json",
+      "type": "application/json",
+      "title": "CIRCAS"
+    },
+    {
+      "rel": "child",
+      "href": "./circol/collection.json",
+      "type": "application/json",
+      "title": "CIRCOL"
+    },
+    {
+      "rel": "child",
+      "href": "./citysatair/collection.json",
+      "type": "application/json",
+      "title": "CITYSATAIR"
+    },
+    {
+      "rel": "child",
+      "href": "./costo/collection.json",
+      "type": "application/json",
+      "title": "COSTO"
+    },
+    {
+      "rel": "child",
+      "href": "./crest/collection.json",
+      "type": "application/json",
+      "title": "CREST"
+    },
+    {
+      "rel": "child",
+      "href": "./cryobiolinks/collection.json",
+      "type": "application/json",
+      "title": "CRYOBIOLINKS"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosat-antarctic-ocean/collection.json",
+      "type": "application/json",
+      "title": "Cryosat+ Antarctic Ocean"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosat-cryotop-evolution/collection.json",
+      "type": "application/json",
+      "title": "CryoSat+ CryoTop Evolution"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosat-mountain-glaciers/collection.json",
+      "type": "application/json",
+      "title": "CryoSat+ Mountain Glaciers"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosat-oceans/collection.json",
+      "type": "application/json",
+      "title": "CryoSat+ Oceans"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosmos/collection.json",
+      "type": "application/json",
+      "title": "CryoSMOS"
+    },
+    {
+      "rel": "child",
+      "href": "./cryosurf/collection.json",
+      "type": "application/json",
+      "title": "CryoSURF"
+    },
+    {
+      "rel": "child",
+      "href": "./cryotop-evolution/collection.json",
+      "type": "application/json",
+      "title": "CryoTop Evolution"
+    },
+    {
+      "rel": "child",
+      "href": "./cvl/collection.json",
+      "type": "application/json",
+      "title": "CVL"
+    },
+    {
+      "rel": "child",
+      "href": "./da4dte/collection.json",
+      "type": "application/json",
+      "title": "DA4DTE"
+    },
+    {
+      "rel": "child",
+      "href": "./daces/collection.json",
+      "type": "application/json",
+      "title": "DACES"
+    },
+    {
+      "rel": "child",
+      "href": "./deep-extremes/collection.json",
+      "type": "application/json",
+      "title": "DEEP EXTREMES"
+    },
+    {
+      "rel": "child",
+      "href": "./dinar/collection.json",
+      "type": "application/json",
+      "title": "DINAR"
+    },
+    {
+      "rel": "child",
+      "href": "./dygiro/collection.json",
+      "type": "application/json",
+      "title": "DYGIRO"
+    },
+    {
+      "rel": "child",
+      "href": "./eo4diversity/collection.json",
+      "type": "application/json",
+      "title": "EO4Diversity"
+    },
+    {
+      "rel": "child",
+      "href": "./eo4sibs/collection.json",
+      "type": "application/json",
+      "title": "EO4SIBS"
+    },
+    {
+      "rel": "child",
+      "href": "./eo4smb/collection.json",
+      "type": "application/json",
+      "title": "EO4SMB"
+    },
+    {
+      "rel": "child",
+      "href": "./eoatsee/collection.json",
+      "type": "application/json",
+      "title": "EOatSEE"
+    },
+    {
+      "rel": "child",
+      "href": "./eoplumes/collection.json",
+      "type": "application/json",
+      "title": "EOplumes"
+    },
+    {
+      "rel": "child",
+      "href": "./esdl/collection.json",
+      "type": "application/json",
+      "title": "ESDL"
+    },
+    {
+      "rel": "child",
+      "href": "./extraim/collection.json",
+      "type": "application/json",
+      "title": "extrAIM"
+    },
+    {
+      "rel": "child",
+      "href": "./ffsar-coastal/collection.json",
+      "type": "application/json",
+      "title": "FFSAR - Coastal"
+    },
+    {
+      "rel": "child",
+      "href": "./fluvisat/collection.json",
+      "type": "application/json",
+      "title": "FluViSat"
+    },
+    {
+      "rel": "child",
+      "href": "./forestscan/collection.json",
+      "type": "application/json",
+      "title": "ForestScan"
+    },
+    {
+      "rel": "child",
+      "href": "./glambie/collection.json",
+      "type": "application/json",
+      "title": "GLAMBIE"
+    },
+    {
+      "rel": "child",
+      "href": "./goce-antarctica/collection.json",
+      "type": "application/json",
+      "title": "GOCE+ ANTARCTICA"
+    },
+    {
+      "rel": "child",
+      "href": "./hlpf-ssa/collection.json",
+      "type": "application/json",
+      "title": "HLPF-SSA"
+    },
+    {
+      "rel": "child",
+      "href": "./hr-albedomap/collection.json",
+      "type": "application/json",
+      "title": "HR-AlbedoMap"
+    },
+    {
+      "rel": "child",
+      "href": "./hydrocoastal/collection.json",
+      "type": "application/json",
+      "title": "HydroCoastal"
+    },
+    {
+      "rel": "child",
+      "href": "./icovac/collection.json",
+      "type": "application/json",
+      "title": "ICOVAC"
+    },
+    {
+      "rel": "child",
+      "href": "./ilgew/collection.json",
+      "type": "application/json",
+      "title": "ILGEW"
+    },
+    {
+      "rel": "child",
+      "href": "./imitate/collection.json",
+      "type": "application/json",
+      "title": "IMITATE"
+    },
+    {
+      "rel": "child",
+      "href": "./irrigation/collection.json",
+      "type": "application/json",
+      "title": "Irrigation+"
+    },
+    {
+      "rel": "child",
+      "href": "./karlos/collection.json",
+      "type": "application/json",
+      "title": "KARLOS"
+    },
+    {
+      "rel": "child",
+      "href": "./l2a/collection.json",
+      "type": "application/json",
+      "title": "L2A+"
+    },
+    {
+      "rel": "child",
+      "href": "./liam/collection.json",
+      "type": "application/json",
+      "title": "LIAM"
+    },
+    {
+      "rel": "child",
+      "href": "./licrec/collection.json",
+      "type": "application/json",
+      "title": "LICREC"
+    },
+    {
+      "rel": "child",
+      "href": "./livas/collection.json",
+      "type": "application/json",
+      "title": "LIVAS"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-arcticsummit/collection.json",
+      "type": "application/json",
+      "title": "(LPF) ArcticSummIT"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-cassis/collection.json",
+      "type": "application/json",
+      "title": "(LPF) CASSIS"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-eocytes/collection.json",
+      "type": "application/json",
+      "title": "(LPF) EOCYTES"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-germane/collection.json",
+      "type": "application/json",
+      "title": "(LPF) GERMANE"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-griml/collection.json",
+      "type": "application/json",
+      "title": "(LPF) GRIML"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-iceflow/collection.json",
+      "type": "application/json",
+      "title": "(LPF) ICEFLOW"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-l2a-rut/collection.json",
+      "type": "application/json",
+      "title": "(LPF) L2A-RUT"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-mit-ap/collection.json",
+      "type": "application/json",
+      "title": "(LPF) MIT-AP"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-multi-flex/collection.json",
+      "type": "application/json",
+      "title": "(LPF) MULTI-FLEX"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-ovalie/collection.json",
+      "type": "application/json",
+      "title": "(LPF) OVALIE"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-physioglob/collection.json",
+      "type": "application/json",
+      "title": "(LPF) PHYSIOGLOB"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-shred/collection.json",
+      "type": "application/json",
+      "title": "(LPF) SHRED"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-smows/collection.json",
+      "type": "application/json",
+      "title": "(LPF) SMOWS"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-solve/collection.json",
+      "type": "application/json",
+      "title": "(LPF) SOLVE"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-vad3emecum/collection.json",
+      "type": "application/json",
+      "title": "(LPF) VAD3EMECUM"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-vmdl/collection.json",
+      "type": "application/json",
+      "title": "(LPF) VMDL"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-weather/collection.json",
+      "type": "application/json",
+      "title": "(LPF) WEATHER"
+    },
+    {
+      "rel": "child",
+      "href": "./lpf-wift/collection.json",
+      "type": "application/json",
+      "title": "(LPF) WIFT"
+    },
+    {
+      "rel": "child",
+      "href": "./medeos/collection.json",
+      "type": "application/json",
+      "title": "MedEOS"
+    },
+    {
+      "rel": "child",
+      "href": "./meteolakes/collection.json",
+      "type": "application/json",
+      "title": "Meteolakes"
+    },
+    {
+      "rel": "child",
+      "href": "./methane/collection.json",
+      "type": "application/json",
+      "title": "Methane+"
+    },
+    {
+      "rel": "child",
+      "href": "./methanecamp/collection.json",
+      "type": "application/json",
+      "title": "MethaneCAMP"
+    },
+    {
+      "rel": "child",
+      "href": "./metheo/collection.json",
+      "type": "application/json",
+      "title": "MethEO"
+    },
+    {
+      "rel": "child",
+      "href": "./mit3d/collection.json",
+      "type": "application/json",
+      "title": "MIT3D"
+    },
+    {
+      "rel": "child",
+      "href": "./moheacan/collection.json",
+      "type": "application/json",
+      "title": "MOHeaCAN"
+    },
+    {
+      "rel": "child",
+      "href": "./noodlesalad/collection.json",
+      "type": "application/json",
+      "title": "NOODLESALAD"
+    },
+    {
+      "rel": "child",
+      "href": "./ocean-extreme/collection.json",
+      "type": "application/json",
+      "title": "OCEAN+EXTREME"
+    },
+    {
+      "rel": "child",
+      "href": "./ocean-health-oa/collection.json",
+      "type": "application/json",
+      "title": "Ocean-Health-OA"
+    },
+    {
+      "rel": "child",
+      "href": "./oceansoda/collection.json",
+      "type": "application/json",
+      "title": "OceanSODA"
+    },
+    {
+      "rel": "child",
+      "href": "./opa/collection.json",
+      "type": "application/json",
+      "title": "OPA"
+    },
+    {
+      "rel": "child",
+      "href": "./opensr/collection.json",
+      "type": "application/json",
+      "title": "OpenSR"
+    },
+    {
+      "rel": "child",
+      "href": "./oregano/collection.json",
+      "type": "application/json",
+      "title": "OREGANO"
+    },
+    {
+      "rel": "child",
+      "href": "./pass-swio/collection.json",
+      "type": "application/json",
+      "title": "PASS-SWIO"
+    },
+    {
+      "rel": "child",
+      "href": "./phab-iv/collection.json",
+      "type": "application/json",
+      "title": "PHAB-IV"
+    },
+    {
+      "rel": "child",
+      "href": "./photoproxy/collection.json",
+      "type": "application/json",
+      "title": "PHOTOPROXY"
+    },
+    {
+      "rel": "child",
+      "href": "./polar-ice-shelves/collection.json",
+      "type": "application/json",
+      "title": "Polar+ Ice Shelves"
+    },
+    {
+      "rel": "child",
+      "href": "./polar-low-detection-from-s-1-data/collection.json",
+      "type": "application/json",
+      "title": "Polar Low detection from S-1 data"
+    },
+    {
+      "rel": "child",
+      "href": "./polar-snow-on-sea-ice/collection.json",
+      "type": "application/json",
+      "title": "Polar+ Snow on Sea ice"
+    },
+    {
+      "rel": "child",
+      "href": "./poseidon/collection.json",
+      "type": "application/json",
+      "title": "POSEIDON"
+    },
+    {
+      "rel": "child",
+      "href": "./pre-melt/collection.json",
+      "type": "application/json",
+      "title": "PRE-MELT"
+    },
+    {
+      "rel": "child",
+      "href": "./prisma-s5p-for-covid-19/collection.json",
+      "type": "application/json",
+      "title": "PRISMA+S5p for COVID-19"
+    },
+    {
+      "rel": "child",
+      "href": "./promcom/collection.json",
+      "type": "application/json",
+      "title": "PROMCOM"
+    },
+    {
+      "rel": "child",
+      "href": "./represent/collection.json",
+      "type": "application/json",
+      "title": "RepreSent"
+    },
+    {
+      "rel": "child",
+      "href": "./ridesat/collection.json",
+      "type": "application/json",
+      "title": "RIDESAT"
+    },
+    {
+      "rel": "child",
+      "href": "./s1-for-surface-soil-moisture/collection.json",
+      "type": "application/json",
+      "title": "S1 for Surface Soil Moisture"
+    },
+    {
+      "rel": "child",
+      "href": "./s14science-amazonas/collection.json",
+      "type": "application/json",
+      "title": "S14SCIENCE AMAZONAS"
+    },
+    {
+      "rel": "child",
+      "href": "./s14science-snow/collection.json",
+      "type": "application/json",
+      "title": "S14Science: Snow"
+    },
+    {
+      "rel": "child",
+      "href": "./s2-for-land-and-water-change-detection/collection.json",
+      "type": "application/json",
+      "title": "S2 for Land and Water-Change Detection"
+    },
+    {
+      "rel": "child",
+      "href": "./s3-snow-and-ice-products/collection.json",
+      "type": "application/json",
+      "title": "S3 snow and ice products"
+    },
+    {
+      "rel": "child",
+      "href": "./s3-tandem-for-climate/collection.json",
+      "type": "application/json",
+      "title": "S3 Tandem for Climate"
+    },
+    {
+      "rel": "child",
+      "href": "./s34science-snow/collection.json",
+      "type": "application/json",
+      "title": "S34Science: Snow"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-aod-and-brdf/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - AOD and BRDF"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-glyoxal/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - Glyoxal"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-h2o-iso/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - H2O-ISO"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-oclo/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - OCLO"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-s5p-i-oc/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - S5p-I-OC"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-sif/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - SIF"
+    },
+    {
+      "rel": "child",
+      "href": "./s5p-inno-so2-lh/collection.json",
+      "type": "application/json",
+      "title": "S5p Inno - SO2-LH"
+    },
+    {
+      "rel": "child",
+      "href": "./sar-hsu/collection.json",
+      "type": "application/json",
+      "title": "SAR-HSU"
+    },
+    {
+      "rel": "child",
+      "href": "./seasfire/collection.json",
+      "type": "application/json",
+      "title": "SeasFire"
+    },
+    {
+      "rel": "child",
+      "href": "./sense4fire/collection.json",
+      "type": "application/json",
+      "title": "SENSE4FIRE"
+    },
+    {
+      "rel": "child",
+      "href": "./sense4gpp/collection.json",
+      "type": "application/json",
+      "title": "SENSE4GPP"
+    },
+    {
+      "rel": "child",
+      "href": "./shape/collection.json",
+      "type": "application/json",
+      "title": "SHAPE"
+    },
+    {
+      "rel": "child",
+      "href": "./smos-mediterranean/collection.json",
+      "type": "application/json",
+      "title": "SMOS+ Mediterranean"
+    },
+    {
+      "rel": "child",
+      "href": "./smos-nino-2015/collection.json",
+      "type": "application/json",
+      "title": "SMOS-NINO 2015"
+    },
+    {
+      "rel": "child",
+      "href": "./smos-rainfall-land/collection.json",
+      "type": "application/json",
+      "title": "SMOS+ Rainfall Land"
+    },
+    {
+      "rel": "child",
+      "href": "./smos-seaice/collection.json",
+      "type": "application/json",
+      "title": "SMOS+ SeaIce"
+    },
+    {
+      "rel": "child",
+      "href": "./smos-vegetation/collection.json",
+      "type": "application/json",
+      "title": "SMOS+ VEGETATION"
+    },
+    {
+      "rel": "child",
+      "href": "./so-fresh/collection.json",
+      "type": "application/json",
+      "title": "SO-FRESH"
+    },
+    {
+      "rel": "child",
+      "href": "./space4safesea/collection.json",
+      "type": "application/json",
+      "title": "Space4SafeSea"
+    },
+    {
+      "rel": "child",
+      "href": "./spice/collection.json",
+      "type": "application/json",
+      "title": "SPICE"
+    },
+    {
+      "rel": "child",
+      "href": "./stream/collection.json",
+      "type": "application/json",
+      "title": "STREAM"
+    },
+    {
+      "rel": "child",
+      "href": "./stse-arctic/collection.json",
+      "type": "application/json",
+      "title": "STSE-ARCTIC+"
+    },
+    {
+      "rel": "child",
+      "href": "./sunlit/collection.json",
+      "type": "application/json",
+      "title": "SUNLIT"
+    },
+    {
+      "rel": "child",
+      "href": "./swarm-outflow/collection.json",
+      "type": "application/json",
+      "title": "Swarm+ Outflow"
+    },
+    {
+      "rel": "child",
+      "href": "./swarm-vip/collection.json",
+      "type": "application/json",
+      "title": "SWARM VIP"
+    },
+    {
+      "rel": "child",
+      "href": "./syremis/collection.json",
+      "type": "application/json",
+      "title": "SYREMIS"
+    },
+    {
+      "rel": "child",
+      "href": "./terra-p/collection.json",
+      "type": "application/json",
+      "title": "TerrA-P"
+    },
+    {
+      "rel": "child",
+      "href": "./vera/collection.json",
+      "type": "application/json",
+      "title": "VERA"
+    },
+    {
+      "rel": "child",
+      "href": "./vista/collection.json",
+      "type": "application/json",
+      "title": "VISTA"
+    },
+    {
+      "rel": "child",
+      "href": "./wacmos-irrigation/collection.json",
+      "type": "application/json",
+      "title": "WACMOS Irrigation"
+    },
+    {
+      "rel": "child",
+      "href": "./wifos/collection.json",
+      "type": "application/json",
+      "title": "WIFOS"
+    },
+    {
+      "rel": "child",
+      "href": "./woc/collection.json",
+      "type": "application/json",
+      "title": "WOC"
+    },
+    {
+      "rel": "child",
+      "href": "./xorn/collection.json",
+      "type": "application/json",
+      "title": "XORN"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    }
+  ],
+  "title": "Projects"
+}

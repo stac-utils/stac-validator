@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "sediment-chemistry",
+  "stac_version": "1.0.0",
+  "description": "Refers to the chemical makeup and characteristics of sediments. In chemistry, sedimentation has been used to measure the size of large molecules (macromolecule), where the force of gravity is augmented with centrifugal force in an ultracentrifuge.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/134fd984-9b26-4ceb-9084-3bffc0c5a321?gtm_keyword=SEDIMENT%20CHEMISTRY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f8411549-a72d-44cd-9b7b-6953ec22f8da?gtm_keyword=SEDIMENT%20CHEMISTRY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7d10ff6d-efde-4f97-866b-7d771dd32b25?gtm_keyword=SEDIMENT%20CHEMISTRY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sediment Chemistry"
+}

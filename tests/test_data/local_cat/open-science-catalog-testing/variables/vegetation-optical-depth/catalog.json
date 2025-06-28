@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "vegetation-optical-depth",
+  "stac_version": "1.0.0",
+  "description": "Optical depth is a measure of how opaque a medium is to radiation passing through it. The optical depth is directly related to the vegetation water content, and is also a function of the incidence angle and the radiometric frequency.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f97f5caf-206e-4310-8c9d-c4c1a09d3c62?gtm_keyword=VEGETATION%20OPTICAL%20DEPTH&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Vegetation Optical Depth"
+}

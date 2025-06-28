@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "terrigenous-sediments",
+  "stac_version": "1.0.0",
+  "description": "Sediments composed of material derived from land sources and transported to the ocean by wind or flowing water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/31cf96eb-7fcd-490d-9e10-7f17dc12e1e3?gtm_keyword=TERRIGENOUS%20SEDIMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Terrigenous Sediments"
+}

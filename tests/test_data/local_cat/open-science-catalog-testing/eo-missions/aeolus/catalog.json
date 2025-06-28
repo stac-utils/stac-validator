@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "aeolus",
+  "stac_version": "1.0.0",
+  "description": "Aeolus or ADM - Atmospheric Dynamics Mission was an ESA (European Space Agency) Earth Explorer Core Mission -a science-oriented mission within its Living Planet Program. The primary objective was to provide wind profile measurements for an improved analysis of the global three-dimensional wind field. The aim of the mission was to provide global observations of wind profiles with a vertical resolution that could satisfy the accuracy requirements of WMO (World Meteorological Organization). Such knowledge was crucial to the understanding of the atmospheric dynamics, including the global transport of energy, water, aerosols, chemicals and other airborne materials - to be able to deal with many aspects of climate research and climate and weather prediction. ADM-Aeolus represented a demonstration project for the Global Climate Observing System (GCOS).Atmospheric Dynamics Mission (Earth Explorer Core Mission).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=377",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "AEOLUS"
+}

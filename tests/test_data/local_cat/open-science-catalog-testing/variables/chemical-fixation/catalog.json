@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chemical-fixation",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the chemical process by which a substance is converted into a stable compound that can be absorbed.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/84b29fbe-8200-4d21-a1a3-fe84fa4cb132?gtm_keyword=CHEMICAL%20FIXATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Chemical Fixation"
+}

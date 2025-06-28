@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fresh-water-river-discharge",
+  "stac_version": "1.0.0",
+  "description": "Discharge is the volume rate of water flow, including any suspended solids (i.e. sediment), dissolved chemical species (i.e. CaCO3(aq)) and/or biologic material (i.e. diatoms), which is transported through a given cross-sectional area.[Buchanan, T.J. and Somers, W.P., 1969, Discharge Measurements at Gaging Stations: U.S. Geological Survey Techniques of Water-Resources Investigations, Book 3, Chapter A8, 1p. Wikipedia: http://en.wikipedia.org/wiki/Discharge_%28hydrology%29#cite_note-0]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/12dc1f4f-2116-4b74-a1bd-bc61e8e57a5b?gtm_keyword=FRESH%20WATER%20RIVER%20DISCHARGE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Fresh Water River Discharge"
+}

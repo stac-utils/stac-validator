@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "erosion",
+  "stac_version": "1.0.0",
+  "description": "The wearing away of soil and rock by weathering, mass wasting, and the action of streams, glaciers, waves, wind, and underground water.[Dictionary of Geological Terms, American Geological Institute, 1984.]The process by which soil, rock or sand is gradually worn away by water or wind action.[Adapted from: Garrison, T. 1993. Oceanography, An Invitation to Marine Science. Wadsworth Publishing Co. p. 519.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1e2b1b67-a401-4fb6-9ee9-b022c1c023dc?gtm_keyword=EROSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cd7a7748-7231-4a73-b85c-b5696066230a?gtm_keyword=EROSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b51f738c-7061-4ced-b216-53734ce4cb43?gtm_keyword=EROSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/eec5b471-bcc5-4d9b-8274-f3990e79ed84?gtm_keyword=EROSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Erosion"
+}

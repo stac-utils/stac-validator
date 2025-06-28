@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "deep-extremes",
+  "stac_version": "1.0.0",
+  "description": "DEEP EXTREMES is part of the AI4SCIENCE activity. The first AI4SCIENCE ITT was launched in 2021 and had a focus on Extreme Events, multi-Hazards and Compound Events, and contributes to the ESA Extremes and Natural Disasters Science Cluster. The DEEP EXTREMES project has a focus on compound heat and drought events at global scale, looking at detection based on long-term climate and land-surface data, combining EO archives and other observation data, with methods tailored to multivariate event detection. The principle is to start from sampling a subset of large events in Sentinel era and zooming into the events and in unaffected areas around the event with high-dimensional mini cubes. The activity then aims to train complementary deep:learning methods for prediction and understanding dynamics in such events, implement the tested and validated workflow in a cloud environment and developing it further based on community feedback. Science community engagement is planned via workshops and science discussions to further develop the proposed framework.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://rsc4earth.de/project/deepextremes/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/deep-extremes/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "DEEP EXTREMES",
+  "osc:name": "DEEP EXTREMES",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land",
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Anca Anghelea",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "anca.anghelea@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Leipzig University (DE)BROCKMANN CONSULT GMBH (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "MAX PLANCK INSTITUTE FOR BIOGEOCHEMISTRY (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIV VALENCIA (ES)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-04-08T00:00:00Z",
+  "end_datetime": "2023-09-09T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-04-08T00:00:00Z",
+          "2023-09-09T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

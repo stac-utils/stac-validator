@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "biomass-s3-africa-albiom",
+  "stac_version": "1.0.0",
+  "description": "Prototype biomass estimation over specific areas, especially over tropical forests and boreal forests. Product details are provided in: Davide Comite, Nazzareno Pierdicca, Maria-Paola Clarizia, Giuseppina De Felice-Proia, Leila Guerriero, Marco Restano, and Jerome Benveniste \"Biomass Estimation by Means of Sentinel-3 Data: A Sensitivity Analysis\", Proc. SPIE 11861, Microwave Remote Sensing: Data Processing and Applications, 1186104 (12 September 2021); https://doi.org/10.1117/12.2600230 https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11861/2600230/Biomass-Estimation-by-Means-of-Sentinel-3-Data--A/10.1117/12.2600230.full",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11861/2600230/Biomass-Estimation-by-Means-of-Sentinel-3-Data--A/10.1117/12.2600230.full",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Prototype biomass product using Sentinel-3 altimetry_Africa_S3",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "albiom",
+  "osc:variables": [
+    "Biomass"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "biomass"
+    }
+  ],
+  "osc:region": "Africa",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -17.8563289572,
+          -34.4708447326,
+          52.1929288951,
+          36.9355756202
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Vegetation",
+    "Biomass",
+    "Biosphere"
+  ]
+}

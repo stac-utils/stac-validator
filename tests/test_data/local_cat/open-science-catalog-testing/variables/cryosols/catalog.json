@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "cryosols",
+  "stac_version": "1.0.0",
+  "description": "Soil formed in either mineral or organic materials having permafrost either within 1 m below the surface or, if the soil is strongly cryoturbated, with 2 m below the surface, and having a mean annual ground temperature below 0 deg C.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0cd7a96f-46e1-4d86-93d0-9cbb6fda61e3?gtm_keyword=CRYOSOLS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Cryosols"
+}

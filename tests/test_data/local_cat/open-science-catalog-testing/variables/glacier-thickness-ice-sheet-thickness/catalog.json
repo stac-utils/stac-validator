@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-thickness-ice-sheet-thickness",
+  "stac_version": "1.0.0",
+  "description": "The difference in height between two levels in the glacier or ice sheet.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5034ba1f-7208-40a1-beeb-43aefe1c0c33?gtm_keyword=GLACIER%20THICKNESS/ICE%20SHEET%20THICKNESS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a8a6fdb-c431-4d32-8cea-5849e2ee1f33?gtm_keyword=GLACIER/ICE%20SHEET%20THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Thickness/Ice Sheet Thickness"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "coastal-processes",
+  "stac_version": "1.0.0",
+  "description": "Coastal processes refers to the action of natural forces (e.g. erosion, deposition, tectonic uplift) on the shoreline, and the nearshore seabed. Some examples of landforms resulting from these processes are wave-cut cliffs, beaches, and wave-cut benches.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/672d6958-4bbc-4b33-adc8-927e4348908b?gtm_keyword=COASTAL%20PROCESSES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e26803a0-82ea-40c4-a41a-9e222c9bd09a?gtm_keyword=COASTAL%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Coastal Processes"
+}

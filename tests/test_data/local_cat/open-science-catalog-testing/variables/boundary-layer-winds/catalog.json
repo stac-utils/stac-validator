@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "boundary-layer-winds",
+  "stac_version": "1.0.0",
+  "description": "Winds measured in the layer of fluid near a boundary that is affected by friction against that boundary surface, and possibly by transport of heat and other variables (such as winds) across that surface. In meteorology, this is the atmospheric boundary layer.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8bb1dca3-9793-4120-b0ea-f27a5b81f259?gtm_keyword=BOUNDARY%20LAYER%20WINDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Boundary Layer Winds"
+}

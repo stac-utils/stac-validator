@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sewage-disposal",
+  "stac_version": "1.0.0",
+  "description": "Involves the transport of sewage through cities and other inhabited areas to sewage treatment plants to protect public health and prevent disease. Sewage is treated to control water pollution before discharge to surface waters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/835c5ec2-50e3-4bef-b380-9f74b143dac6?gtm_keyword=SEWAGE%20DISPOSAL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Sewage Disposal"
+}

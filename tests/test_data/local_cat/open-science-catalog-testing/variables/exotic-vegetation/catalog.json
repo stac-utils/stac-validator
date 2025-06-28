@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "exotic-vegetation",
+  "stac_version": "1.0.0",
+  "description": "Exotic vegetation are species of vegetation that are introduced to a geographical area where they are not native.[Nebel, Bernard J.and Richard T. Wright. 1998. Environmental Science-the Way the World Works. Prentice-Hall, Inc. Upper Saddle River, New Jersey.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f717330e-3656-4910-beed-d54cc9a19c2b?gtm_keyword=EXOTIC%20VEGETATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Exotic Vegetation"
+}

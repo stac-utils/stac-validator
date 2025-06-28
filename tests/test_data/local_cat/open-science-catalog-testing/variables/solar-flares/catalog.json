@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-flares",
+  "stac_version": "1.0.0",
+  "description": "A sudden and violent release of matter and energy within a solar activity region in the form of electromagnetic radiation, energetic particles, shock waves, lasting a few minutes to hours. Solar flares accelerate charged particles into interplanetary space.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fa9f54b2-a101-4faf-b1dc-b6dff141c08c?gtm_keyword=SOLAR%20FLARES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Flares"
+}

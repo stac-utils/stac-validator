@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "el-nino-southern-oscillation-enso",
+  "stac_version": "1.0.0",
+  "description": "An irregular variation of ocean current that from January to March flows off the west coast of South America, carrying warm, low-salinity, nutrient-poor water to the south. It does not usually extend farther than a few degrees south of the equator, but occasionally it does penetrate beyond 12 degrees S, displacing the relatively cold Peru Current. The effects of this phenomenon are generally short-lived, and fishing is only slightly disrupted. Occasionally (in 1891, 1925, 1941, 1957 - 58, 1965, 1972 - 73, 1976, and 1982 - 83), the effects are major and prolonged. Under these conditions, sea surface temperatures rise along the coast of Peru and in the equatorial eastern Pacific Ocean and may remain high for more than a year, having disastrous effects on marine life and fishing. Excessive rainfall and flooding occur in the normally dry coastal area of western tropical South America during these events. Some oceanographers and meteorologists consider only the major, prolonged events as El Nino phenomena rather than the annually occurring weaker and short-lived ones. The name was originally applied to the latter events because of their occurrence at Christmas time. (http://cdiac.esd.ornl.gov/glossary.html) Interacting parts of a single global system of climate fluctuations. ENSO is the most prominent known source of interannual variability in weather and climate around the world, though not all areas are affected. The Southern Oscillation (SO) is a global-scale seesaw in atmospheric pressure between Indonesia/North Australia, and the southeast Pacific. In major warm events El Nino warming extends over much of the tropical Pacific and becomes clearly linked to the SO pattern. Many of the countries most affected by ENSO events are developing countries with economies that are largely dependent upon their agricultural and fishery sectors as a major source of food supply, employment, and foreign exchange. New capabilities to predict the onset of ENSO event can have a global impact. While ENSO is a natural part of the Earth's climate, whether its intensity or frequency may change as a result of global warming is an important concern. From: http://earthobservatory.nasa.gov/Library/glossary.php3",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/095a05c0-6220-4abd-9c1b-c4504a092d7d?gtm_keyword=EL%20NINO%20SOUTHERN%20OSCILLATION%20(ENSO)&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "El Nino Southern Oscillation (Enso)"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surf-beat",
+  "stac_version": "1.0.0",
+  "description": "The pattern of constructive and destructive interference that causes successive breaking waves to grow, shrink, and grow again over a few minutes' time.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a90526a9-5476-45bc-9a15-73ac2dfc62ab?gtm_keyword=SURF%20BEAT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Surf Beat"
+}

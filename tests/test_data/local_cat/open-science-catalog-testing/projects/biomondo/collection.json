@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "biomondo",
+  "stac_version": "1.0.0",
+  "description": "The European Space Agency (ESA) activity called Biodiversity+ Precursors is acontribution to the joint EC-ESA Earth System Science Initiative launched in February 2020 to jointly advance Earth System Science and its response to the global challenges that society is facing in the onset of this century. The ESABiodiversity+ Precursors include three projects on different themes; land (EO4Diversity), coast (BiCOME) and freshwaters (BIOMONDO). BIOMONDO is the freshwater project, and has a focus on biodiversity in lakes, wetlands, river and streams.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://biomondo.info/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/biomondo/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "BIOMONDO",
+  "osc:name": "BIODIVERSITY+ PRECURSORS EXPRO+ THEME 2 - FRESHWATER  (BIOMONDO)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marc Paganini",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marc.paganini@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "BROCKMANN GEOMATICS SWEDEN AB (HEAD (SE)BROCKMANN CONSULT GMBH (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Deltares (NL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "EAWAG (CH)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "PBL Netherlands Environmental Asses (NL)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-07-21T00:00:00Z",
+  "end_datetime": "2023-01-09T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-07-21T00:00:00Z",
+          "2023-01-09T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

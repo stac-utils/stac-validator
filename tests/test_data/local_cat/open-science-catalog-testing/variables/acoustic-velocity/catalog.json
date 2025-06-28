@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "acoustic-velocity",
+  "stac_version": "1.0.0",
+  "description": "The speed of sound in water, which is dependent on the water's temperature, salinity and pressure.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4aae1a4-b4d5-4b13-9cc0-c0df6234ce3b?gtm_keyword=ACOUSTIC%20VELOCITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Acoustic Velocity"
+}

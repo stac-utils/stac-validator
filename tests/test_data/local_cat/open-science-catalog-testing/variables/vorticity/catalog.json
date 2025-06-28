@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "vorticity",
+  "stac_version": "1.0.0",
+  "description": "Random and continuously changing air motions that are superposed on the mean motion of the air. In Ocean domain: Measure of the rotational spin about an axis at some point within a fluid (or ocean wind field).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/858a80ff-5aa4-4590-b2e2-e88a802a6ee4?gtm_keyword=VORTICITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/253ccaf2-dd4c-4fc1-923d-1aea542a51b0?gtm_keyword=VORTICITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Vorticity"
+}

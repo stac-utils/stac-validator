@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-mensuration",
+  "stac_version": "1.0.0",
+  "description": "In forestry, the measurement of both standing and harvested timber; Forest measurements.[Dean, W., D.S. Evans. 1978. Terms of the Trade. A Handbook for the Forest Products Industry. Eugene, OR. Random Lengths Publications, Inc. 130p.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/31d01087-d5b8-4474-820c-d84d523dfb39?gtm_keyword=FOREST%20MENSURATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Mensuration"
+}

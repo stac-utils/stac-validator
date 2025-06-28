@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "ers-2",
+  "stac_version": "1.0.0",
+  "description": "ERS-2 (European Remote Sensing Satellite -2) was launched in April 1995, the ERS-2 was an enhancement of the previous ERS-1 mission. ERS-2 provided microwave spectrum environmental monitoring across a range of disciplines (oceans, polar ice, forestry).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=221",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "ERS-2"
+}

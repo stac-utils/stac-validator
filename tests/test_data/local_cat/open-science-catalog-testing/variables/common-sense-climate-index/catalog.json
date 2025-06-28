@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "common-sense-climate-index",
+  "stac_version": "1.0.0",
+  "description": "Our climate index is a simple measure of the degree, if any, to which practical climate change is occurring. It also illustrates natural climate variability, thus revealing how difficult it is to reliably perceive a change of quantities that are naturally \"noisy\" or chaotic. Our aim is to help people judge whether or not climate fluctuations are a significant indication of change and to provide improved understanding of climate variability. More Information: http://data.giss.nasa.gov/csci/",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1d527151-57b2-49ed-9937-c1756a704ce9?gtm_keyword=COMMON%20SENSE%20CLIMATE%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Common Sense Climate Index"
+}

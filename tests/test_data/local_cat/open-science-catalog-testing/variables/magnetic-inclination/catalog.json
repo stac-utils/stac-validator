@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "magnetic-inclination",
+  "stac_version": "1.0.0",
+  "description": "The dip, angle of dip, magnetic dip, magnetic inclination, inclination (physics) the angle that a magnetic needle makes with the plane of the horizon.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f0b7311e-df08-45fa-8dd5-33b6f74a66d9?gtm_keyword=MAGNETIC%20INCLINATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Magnetic Inclination"
+}

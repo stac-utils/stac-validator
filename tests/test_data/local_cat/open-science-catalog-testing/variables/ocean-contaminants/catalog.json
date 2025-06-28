@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-contaminants",
+  "stac_version": "1.0.0",
+  "description": "Intrusion of or contact with undesirable elements from an outside source that affect the water quality of the ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f1ee3e81-09b9-48d4-81d9-5faeb90430cc?gtm_keyword=OCEAN%20CONTAMINANTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Contaminants"
+}

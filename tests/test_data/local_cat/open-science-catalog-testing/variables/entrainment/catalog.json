@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "entrainment",
+  "stac_version": "1.0.0",
+  "description": "The process by which surface sediment is incorporated into a fluid flow (such as air, water or even ice ) as part of the operation of erosion.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f6a5cc87-a333-4e99-88d4-bf7b5b1cf484?gtm_keyword=ENTRAINMENT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3288c7e0-20fa-4e05-80fa-cdb14c436c7e?gtm_keyword=ENTRAINMENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Entrainment"
+}

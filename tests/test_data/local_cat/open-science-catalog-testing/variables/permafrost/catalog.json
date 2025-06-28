@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "permafrost",
+  "stac_version": "1.0.0",
+  "description": "1. (Also called perennially frozen ground, pergelisol, permanently frozen ground.) A layer of soil or bedrock at a variable depth beneath the surface of the earth in which the temperature has been below freezing continuously from a few to several thousands of years. Permafrost exists where the summer heating fails to descend to the base of the layer of frozen ground. A continuous stratum of permafrost is found where the annual mean temperature is below about 5C (23F). 2. As limited in application by P. F. Svetsov, soil that is known to have been frozen for at least a century.  Muller, S. W., 1947: Permafrost, or Permanently Frozen Ground, and Related Engineering Problems, Hare, F. K., 1951: Compendium of Meteorology, p. 958, and map, p. 956. 3. A layer of soil or bedrock at a variable depth beneath the surface of the earth in which the temperature has been below freezing continuously from a few to several thousands of years. 4. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c82f3480-545f-4491-83f1-0477369ddcd8?gtm_keyword=PERMAFROST&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Permafrost"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "toxic-chemicals",
+  "stac_version": "1.0.0",
+  "description": "Chemicals that can cause serious harm to the environment including lakes, oceans, and biota.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bf3aaf41-3502-49cf-89df-4613ce87c9c3?gtm_keyword=TOXIC%20CHEMICALS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Toxic Chemicals"
+}

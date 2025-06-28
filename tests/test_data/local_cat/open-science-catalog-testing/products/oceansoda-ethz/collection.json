@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "oceansoda-ethz",
+  "stac_version": "1.0.0",
+  "description": "This dataset contains a global gridded dataset of the surface ocean carbonate system for seasonal to decadal studies of ocean acidification (v2021). Full marine carbonate system, calculated from machine learning estimates of total alkalinity (TA) and the partial pressure of carbon dioxide (pCO2). The surface-ocean pCO2 presented here is the ensemble mean of 16 two-step clustering-regression machine learning estimates. The ensemble is a combination of eight clustering instances and two regression methods. For the clustering, we use K-means clustering (21 clusters) repeated with different initiations, resulting in slightly different clusters. Two machine learning regression methods are applied to each of these clustering instances. These machine learning methods are feed-forward neural-network (FFNN), and gradient boosted machine using decision trees (GBDT). The average of the ensemble members is used as the final estimate. Further, the standard deviation of the ensemble members is an analog of the uncertainty. The same two-step clustering-regression approach is used to estimate TA. The final estimate is the mean of 16 ensemble members. Each ensemble member has 12 clusters. Support vector regression (SVR) is used as the regression method. Again, the standard deviation of the ensemble members is an analog of the uncertainty. Total alkalinity and pCO2 are then used to solve for the remaining parameters of the marine carbonate system using the PyCO2SYS software. The temperature and salinity products used in this calculation are provided in the file. Phosphate and silicate from the interpolated World Ocean Atlas (2018) product were used. The total scale for pH was used. The product extends from the start of 1985 to the end of 2020.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.25921/m5wx-ja34",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5194/essd-13-777-2021",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "OceanSODA-ETHZ: A global gridded dataset of the surface ocean carbonate system for seasonal to decadal studies of ocean acidification (v2021)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "Sentinel-3"
+  ],
+  "osc:project": "oceansoda",
+  "osc:variables": [
+    "Alkalinity",
+    "Carbon Dioxide",
+    "Carbonate"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "total_alkalinity_in_sea_water"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-09-15T00:00:00Z",
+  "start_datetime": "1985-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1985-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Carbonate",
+    "Alkalinity",
+    "Water Quality/Water Chemistry",
+    "Water Characteristics",
+    "Carbon Dioxide"
+  ]
+}

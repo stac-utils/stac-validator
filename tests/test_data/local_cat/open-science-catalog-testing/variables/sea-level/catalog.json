@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sea-level",
+  "stac_version": "1.0.0",
+  "description": "Sea Level is one of the primary indicators of global climate change. Change in the global mean sea level provides a measure of the net change in ocean mass due to melting of glaciers and ice sheets, and net change in ocean volume due to thermal expansion. Sea level observations characterize inter-seasonal variability such as ENSO. On the regional scales, changes in sea level can be far larger than the globally averaged value due to changes in temperature, salinity and circulation. Along many continental margins vertical land displacement associated with crustal adjustments to past and current land ice melt also cause regional variations in apparent sea level independent of the ocean. Coastal sea level change is a major driver of societal impacts.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/sea-level",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Level"
+}

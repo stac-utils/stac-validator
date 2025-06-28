@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydraulic-conductivity",
+  "stac_version": "1.0.0",
+  "description": "A measure of the readiness with which a liquid, such as water, flows through a solid, such as soil, in response to a given potential gradient.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7112e739-cb5d-427e-95bd-5419360e91d8?gtm_keyword=HYDRAULIC%20CONDUCTIVITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e2a88ac8-7bf3-408c-b2b4-b3217f9e4917?gtm_keyword=HYDRAULIC%20CONDUCTIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Hydraulic Conductivity"
+}

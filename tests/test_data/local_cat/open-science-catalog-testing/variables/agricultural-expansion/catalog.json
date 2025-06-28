@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "agricultural-expansion",
+  "stac_version": "1.0.0",
+  "description": "The expansion of agricultural practices into non-agricultural regions and its impacts on non-agricultural terrestrial and marine ecosystems of the world.[Woods Hole Research Center]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d076e628-320a-477b-aad9-07d87ca04993?gtm_keyword=AGRICULTURAL%20EXPANSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Agricultural Expansion"
+}

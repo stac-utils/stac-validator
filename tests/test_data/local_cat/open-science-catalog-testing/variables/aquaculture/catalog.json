@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aquaculture",
+  "stac_version": "1.0.0",
+  "description": "The farming of aquatic organisms including fish, molluscs, crustaceans and aquatic plants with some sort of intervention in the rearing process to enhance production, such as regular stocking, feeding, protection from predators, etc. Also referred to as Mariculture - Marine fish farming (aquaculture). Raising of marine animals and plants in the controlled or selected aquatic environments for any commercial, recreational, or public purpose.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f6c057c9-c789-4cd5-ba22-e9b08aae152b?gtm_keyword=AQUACULTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Aquaculture"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-topography-ice-sheet-topography",
+  "stac_version": "1.0.0",
+  "description": "Surface relief of the land. Topography usually is measured in meters above sea level. The topography can be very different from one location to another. Topography can be flat, or mountainous, or hilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bf19f1d1-ae18-4ff2-95f6-dc0ed812c568?gtm_keyword=GLACIER%20TOPOGRAPHY/ICE%20SHEET%20TOPOGRAPHY&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c3e4d439-bbb0-48c9-89eb-57d3a330627a?gtm_keyword=GLACIER/ICE%20SHEET%20TOPOGRAPHY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Topography/Ice Sheet Topography"
+}

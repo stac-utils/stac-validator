@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "extreme-drought",
+  "stac_version": "1.0.0",
+  "description": "Extreme Drought - Major crop/pasture losses; widespread water shortages or restrictions Palmer Drought Index: -4.0 to -4.9 CPC Soil Moisture Model (Percentiles): 3-5 USGS Weekly Streamflow (Percentiles): 3-5 Standardized Precipitation Index (SPI): -1.6 to -1.9 Objective Short and Long-term Drought Indicator Blends (Percentiles): 3-5",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4c806af-ab57-4fda-b7e9-29e3c65f6ec5?gtm_keyword=EXTREME%20DROUGHT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Extreme Drought"
+}

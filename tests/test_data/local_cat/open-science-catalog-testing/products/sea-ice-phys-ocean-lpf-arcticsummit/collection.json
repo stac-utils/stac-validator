@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "sea-ice-phys-ocean-lpf-arcticsummit",
+  "stac_version": "1.0.0",
+  "description": "This dataset presents monthly gridded sea ice and ocean parameters for the Arctic derived from the European Space Agency's satellite CryoSat-2. Parameters include sea ice freeboard, sea ice thickness, sea ice surface roughness, mean sea surface height, sea level anomaly, and geostrophic circulation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bas.ac.uk/full-record.php?id=GB/NERC/BAS/PDC/01257",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bas.ac.uk/metadata.php?id=GB/NERC/BAS/PDC/01257",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5285/cbd2cf78-462a-4968-be20-05f9c125ad10"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Sea ice and physical oceanography_Arctic_CryoSat-2 Baseline-C Level 1b waveform observations",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2"
+  ],
+  "osc:project": "lpf-arcticsummit",
+  "osc:variables": [
+    "Ice Depth/Thickness"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_ice_physical_oceanography"
+    }
+  ],
+  "osc:region": "Arctic",
+  "created": "2019-11-14T00:00:00Z",
+  "start_datetime": "2021-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "sci:doi": "10.5285/cbd2cf78-462a-4968-be20-05f9c125ad10",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -178.4105321808,
+          60.6134006095,
+          178.3660428163,
+          84.2454100786
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Ice",
+    "Ice Depth/Thickness"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-stress",
+  "stac_version": "1.0.0",
+  "description": "Ocean surface stress (OSS) is the two-dimensional vector drag at the bottom of the atmosphere and the dynamical forcing at the top of the ocean. OSS influences the air-sea exchange of energy, water and gases. OSS is important for determining the large scale momentum forcing of the ocean, and consequent ocean circulation including ocean upwelling regions. Accurate knowledge of stress magnitudes is also essential for reliable computations of air-sea heat fluxes as well as air-sea gas exchanges and mass fluxes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/surface-stress",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Stress"
+}

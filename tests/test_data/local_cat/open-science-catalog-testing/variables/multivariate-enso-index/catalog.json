@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "multivariate-enso-index",
+  "stac_version": "1.0.0",
+  "description": "The MEI is a leading indicator for the El Niï¿½o/Southern Oscillation (ENSO) phenomenon and is calculated as the first unrotated Principal Component of six observed variables over the tropical Pacific Ocean. These six variables are: sea level pressure, zonal and meridional components of the surface wind, sea surface temperature, surface air temperature, and total cloudiness fraction of the sky. The MEI is computed for each of twelve sliding bimonthly seasons (Dec/Jan, Jan/Feb,..., Nov/Dec). Negative values of the MEI represent the cold ENSO phase (La Niï¿½a), while positive MEI values represent the warm ENSO phase (El Niï¿½o).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/caddaef6-1a60-490a-938e-9107885f286f?gtm_keyword=MULTIVARIATE%20ENSO%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Multivariate Enso Index"
+}

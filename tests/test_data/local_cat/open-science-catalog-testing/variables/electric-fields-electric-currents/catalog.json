@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "electric-fields-electric-currents",
+  "stac_version": "1.0.0",
+  "description": "Sun-Earth Interactions refer to the effects of the sun's variability are evident in a variety of physical and chemical processes in the upper layers of the earth's atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9abe9fdb-59f3-4bd6-b24f-b9b7e46eae7c?gtm_keyword=ELECTRIC%20FIELDS/ELECTRIC%20CURRENTS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/41f27172-14f6-4940-9b7b-f3d4db69e0c6?gtm_keyword=ELECTRIC%20FIELD&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Electric Fields/Electric Currents"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-conservation",
+  "stac_version": "1.0.0",
+  "description": "Management of the human use of the biosphere so that it may yield the greatest sustainable benefit to present generations while maintaining its potential to meet the needs and aspirations of future generations. It includes the preservation, maintenance, sustainable utilisation, restoration and enhancement of the environment.[From the Glossary of Forestry Terms, Ministry of Forests, Government of British Columbia, Canada. http://www.for.gov.bc.ca/hfd/library/documents/glossary/",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7ee9d286-0742-4844-b7eb-b7550d3f782b?gtm_keyword=FOREST%20CONSERVATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Conservation"
+}

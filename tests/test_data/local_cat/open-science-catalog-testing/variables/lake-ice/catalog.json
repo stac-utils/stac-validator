@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "lake-ice",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement, and analysis to ice formation on inland bodies of salt or fresh water.[Goudie, Andrew. 1997. The Encyclopedic Dictionary of Physical Geography. Blackwell Publishing, Malden, Massachusetts.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8cb47594-3af6-4f4f-8ba1-4299a6d6887e?gtm_keyword=LAKE%20ICE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a99c2917-8f91-4ec8-ad4f-7ee6200ab35d?gtm_keyword=LAKE%20ICE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Lake Ice"
+}

@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "snow-grain-diameter-greenland-s34science-snow",
+  "stac_version": "1.0.0",
+  "description": "1 km Greenland daily, geotiff at https://github.com/AdrienWehrle/SICE/tree/master/masks",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://dataverse01.geus.dk/dataverse/sice",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Snow grain diameter_Greenland_S3",
+  "osc:themes": [
+    "Cryosphere",
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "s34science-snow",
+  "osc:variables": [
+    "Snow Grain Size"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "snow_grain_diameter"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2019-01-01T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.709433726,
+          60.2878324851,
+          -12.713339976,
+          83.5902211563
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Firn",
+    "Snow Grain Size"
+  ]
+}

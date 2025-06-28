@@ -1,0 +1,95 @@
+{
+  "type": "Collection",
+  "id": "4datlantic-ebus-primus",
+  "stac_version": "1.0.0",
+  "description": "PRIMUS is an international multidisciplinary project funded by ESA that aims to substantially advance our existing understanding on the link between net primary production (NPP) and wind-forced upwelling in Atlantic Eastern Boundary Upwelling Systems (EBUS), through combining Earth Observation (EO) data obtained from satellite remote sensing, with upwelling and climate indices, data collected in-situ, and ocean circulation modelling.PRIMUS aims to make a major contribution to the ESA 4DAtlantic research programme, 4D reconstructions and understanding of Atlantic EBUS net primary production in relation to upwelling and its socio-economic impacts.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.primus-atlantic.org/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/4datlantic-ebus-primus/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "4DATLANTIC EBUS PRIMUS",
+  "osc:name": "4DATLANTIC EBUS PRIMUS",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Diego Fernandez",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "diego.fernandez@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Plymouth Marine Laboratory (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "FCiências.ID (U. Lisbon)  FC.ID (PT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Instituto de Investigacións Mariñas  CSIC (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Portuguese Institute for Sea and Atmosphere (IPMA) (PT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University of Las Palmas de Gran Canaria  ULPGC (ES)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-01-09T00:00:00Z",
+  "end_datetime": "2023-09-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-09T00:00:00Z",
+          "2023-09-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "wind-driven-circulation",
+  "stac_version": "1.0.0",
+  "description": "The surface currents that form from the transfer of energy from winds to surface waters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/03fbea0a-74b9-4c78-8752-a588cff27f17?gtm_keyword=WIND-DRIVEN%20CIRCULATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Wind-Driven Circulation"
+}

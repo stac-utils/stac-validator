@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "dissolved-organic-carbon-bicep",
+  "stac_version": "1.0.0",
+  "description": "A random forest regression model for near surface ocean Dissolved Organic Carbon was trained using in situ data from Hansell et al. 2021 (doi: 10.25921/s4f4-ye35). The DOC model uses Remote sensing reflectances from the Ocean Colour Climate Change Initiative (OC-CCI), primary production (Kulk et al. 2021; doi: 10.5285/69b2c9c6c4714517ba10dab3515e4ee6), sea surface temperature from the Group for High Resolution Sea Surface Temperature (GHRSST), salinity from the Sea Surface Salinity Climate Change Initiative and geographical information as predictors. The random forest model for global DOC produces estimates that are in good agreement with the available in situ data in open water (>300 km from shore), where the relative uncertainty is on average smaller than 10%. The model has been used to produce monthly global marine DOC at 9 km resolution for the years 2010-2019. Data were produced in an ESA funded project led by the Plymouth Marine Laboratory and supplied for archiving at the Centre for Environmental Data Analysis (CEDA). The research underpinning the work was supported by the European Space Agency (ESA) Biological Pump and Carbon Export Processes (BICEP) project.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://rsg.pml.ac.uk/shared_files/gku/ESA_animation/DOC_1-month_9km/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Monthly Global Dissolved Organic Carbon dataset (9 km, OC-CCI v4.2)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP",
+    "OrbView-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "bicep",
+  "osc:variables": [
+    "Dissolved Organic Carbon"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "dissolved_organic_carbon"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-03-21T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Carbon",
+    "Dissolved Organic Carbon"
+  ]
+}

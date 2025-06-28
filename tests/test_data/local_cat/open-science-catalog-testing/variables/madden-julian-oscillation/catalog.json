@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "madden-julian-oscillation",
+  "stac_version": "1.0.0",
+  "description": "In 1971 Roland Madden and Paul Julian stumbled upon a 40-50 day oscillation when analyzing zonal wind anomalies in the tropical Pacific. They used ten years of pressure records at Canton (at 2.8B0 S in the Pacific) and upper level winds at Singapore. The oscillation of surface and upper-level winds was remarkably clear in Singapore. Until the early 1980's little attention was paid to this oscillation, which became known as the Madden and Julian Oscillation(MJO), and some scientists questioned its global significance. Since the 1982-83 El Nino event, low-frequency variations in the tropics, both on intra-annual (less than a year) and inter-annual (more than a year) timescales, have received much more attention, and the number of MJO-related publications grew rapidly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/25d4368e-3b66-40d5-bac1-2343b127fa32?gtm_keyword=MADDEN-JULIAN%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Madden-Julian Oscillation"
+}

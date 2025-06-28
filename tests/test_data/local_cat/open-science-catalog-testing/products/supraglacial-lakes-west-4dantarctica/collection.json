@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "supraglacial-lakes-west-4dantarctica",
+  "stac_version": "1.0.0",
+  "description": "The products provide a scientific benchmark to monitor the development of these features in a warming climate, and thus enhancing our capability to predict the calving and collapse of any ice shelves in the future. The results provide a baseline for future monitoring of supraglacial hydrology and can be particularly useful to train supervised machine learning algorithms. The lake and channel dataset will be valuable as training data for pixel-based or object-based approaches to map large-scale features automatically using machine learning. This dataset can also provide an a-priori lake distribution for studies incorporating synthetic-aperture radar, SAR and other sensors and platforms. This dataset consists of the maximum extent of supraglacial hydrological activity during January 2017 and detailed 10,478 supraglacial features (10,223 lakes and 255 channels), with cumulative area 119.4 square km in total on the West Antarctic ice sheet and Antarctic Peninsula. In addition to the final product, the supraglacial hydrological features from both sensors (23,389 polygons for S2 and 17,571 polygons for L8) overlapping the final map are included in supplementary datasets. The supraglacial lake and channel polygons are available as digital GIS, Geographic Information System, shapefiles (.shp) and GeoJSON files as well as Google Earth format (.kmz). The code used to produce the lake and channel dataset for each sensor (S2 and L8) is implemented using Python, and can be accessed on GitHub: https://github.com/diarmuidcorr/Lake-Channel-Identifier/tree/v1.0 and on Zenodo: https://zenodo.org/record/4906097#.ZDa5-XbP1aQ. The products provide a scientific benchmark to monitor the development of these features in a warming climate, and thus enhancing our capability to predict the calving and collapse of any ice shelves in the future. The results provide a baseline for future monitoring of supraglacial hydrology and can be particularly useful to train supervised machine learning algorithms. The lake and channel dataset will be valuable as training data for pixel-based or object-based approaches to map large-scale features automatically using machine learning. This dataset can also provide an a-priori lake distribution for studies incorporating synthetic-aperture radar, SAR and other sensors and platforms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/5642755#.ZDa5z3bP1aR",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://essd.copernicus.org/articles/14/209/2022/",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Supraglacial lakes and channels in West Antarctica and Antarctic Peninsula during January 2017 (v.1.1)",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-2",
+    "Landsat-8"
+  ],
+  "osc:project": "4d-antarctica",
+  "osc:variables": [
+    "Glacial Lake Extent"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "suprgaglacial_lakes"
+    }
+  ],
+  "osc:region": "West Antarctica and the Antarctic Peninsula",
+  "created": "2021-11-03T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2017-02-10T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -144.0,
+          -78.0,
+          146.0,
+          -61.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2017-02-10T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glaciers",
+    "Glacial Lake Extent"
+  ]
+}

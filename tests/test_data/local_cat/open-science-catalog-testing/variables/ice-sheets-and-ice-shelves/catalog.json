@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-sheets-and-ice-shelves",
+  "stac_version": "1.0.0",
+  "description": "The understanding of the timescale of ice sheet response to climate change has changed dramatically over the last decade. Rapid changes in ice-sheet mass have surely contributed to abrupt changes in climate and sea level in the past.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/ice-sheets-ice-shelves",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Sheets and Ice Shelves"
+}

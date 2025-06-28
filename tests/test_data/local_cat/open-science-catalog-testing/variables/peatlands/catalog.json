@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "peatlands",
+  "stac_version": "1.0.0",
+  "description": "Peatlands are areas formed by a brown mass of organic matter in which twigs, roots, and other plant parts can still be recognized. These areas formed due to lack of enough oxygen to decay vegetation completely on land. Peatlands form in fresh-water swamps, indicated by the plant fossils.[Press, F. and R. Siever. 1978. Geology. W.H. Freeman and Company. San Francisco.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f3b5489d-6723-40bf-bd55-68a0f2fc1874?gtm_keyword=PEATLANDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b70ef20c-7215-4a39-9479-dbff7c2fdca9?gtm_keyword=PEATLANDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Peatlands"
+}

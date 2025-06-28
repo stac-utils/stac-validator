@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "landscape-processes",
+  "stac_version": "1.0.0",
+  "description": "The physical processes that shape an area of land, including landforms, living elements of flora and fauna, and human activity and the built environment.[Calder, W. Annals of the Association of American Geographers.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6c44a08d-0a08-47f5-b819-7e561445e613?gtm_keyword=LANDSCAPE%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Landscape Processes"
+}

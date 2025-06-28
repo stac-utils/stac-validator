@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pressure-thickness",
+  "stac_version": "1.0.0",
+  "description": "In synoptic meteorology, the vertical depth, measured in geometric or geopotential units, of a layer in the atmosphere bounded by two different constant-pressure surfaces.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/be027470-35ab-4ebb-a213-5f557cca71c8?gtm_keyword=PRESSURE%20THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Pressure Thickness"
+}

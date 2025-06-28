@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "suspended-solids",
+  "stac_version": "1.0.0",
+  "description": "Sediment particles supported by the upward currents in eddies of turbulent flow in the surrounding fluid.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/718fb499-8c55-4fa6-9a07-ac9155d4bc9d?gtm_keyword=SUSPENDED%20SOLIDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9d8cb1dd-4b38-4b4e-8532-ab4eb72cd4ae?gtm_keyword=SUSPENDED%20SOLIDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bcf6975f-2a21-4a6c-9286-fb8f85d00901?gtm_keyword=SUSPENDED%20SOLIDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/69ff701a-674e-4b63-bb93-6ebe6cd95281?gtm_keyword=SUSPENDED%20SOLIDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Suspended Solids"
+}

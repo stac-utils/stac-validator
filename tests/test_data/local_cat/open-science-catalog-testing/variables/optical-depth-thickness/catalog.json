@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "optical-depth-thickness",
+  "stac_version": "1.0.0",
+  "description": "In radiative transfer, optical thickness or optical depth is the mass of a given absorbing or emitting material in a vertical column of unit cross-sectional area and extending between two specified levels.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/13723b5d-1945-4e62-8672-4535ffdddb87?gtm_keyword=OPTICAL%20DEPTH/THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Optical Depth/Thickness"
+}

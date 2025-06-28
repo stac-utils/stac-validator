@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-liquid-water-ice",
+  "stac_version": "1.0.0",
+  "description": "Cloud Liquid Water - The amount of liquid water per unit volume of air. Usually expressed in grams per cubic meter. Cloud Ice - Ice crystals that are observed within a cloud. Labelled also as: Cloud Ice/Water Content, CL, Liquid Water Content, LWC, Total Cloud Liquid Water/Ice",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/05ac9d3e-bc44-41fa-ace0-c41bf3ebee97?gtm_keyword=CLOUD%20LIQUID%20WATER/ICE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Liquid Water/Ice"
+}

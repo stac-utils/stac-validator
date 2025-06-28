@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "mid-ocean-ridges",
+  "stac_version": "1.0.0",
+  "description": "The long, continuous mountain chain found in all oceans; ocean crust is created by the process of sea-floor spreading at its crest.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f345294c-36e6-4c76-b484-2204cc0bc3a2?gtm_keyword=MID-OCEAN%20RIDGES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Mid-Ocean Ridges"
+}

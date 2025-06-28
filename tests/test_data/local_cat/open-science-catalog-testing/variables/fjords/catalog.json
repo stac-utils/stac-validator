@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "fjords",
+  "stac_version": "1.0.0",
+  "description": "A deep narrow estuary in a valley originally cut by a glacier.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a90899c8-fe50-48e0-b92c-bb64f6ae681c?gtm_keyword=FJORDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c9291bc7-784d-486a-95fa-f08fa1edcad9?gtm_keyword=FJORDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6aed82cb-be90-4e58-ae33-14943ea555be?gtm_keyword=FJORDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6aed82cb-be90-4e58-ae33-14943ea555be?gtm_keyword=FJORDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7299f45f-eafb-4ed9-ae12-5e01c97c1530?gtm_keyword=FJORDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Fjords"
+}

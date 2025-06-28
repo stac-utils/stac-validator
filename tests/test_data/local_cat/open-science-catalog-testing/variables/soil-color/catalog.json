@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-color",
+  "stac_version": "1.0.0",
+  "description": "The property of a soil that is based upon three components of hue, chroma (intensity or brightness), and value (lightness or darkness).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3985ce6b-e0c3-42a8-b40f-9dd948350c6e?gtm_keyword=SOIL%20COLOR&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/013b44e9-df5c-4ef8-a99f-7351d16bfd14?gtm_keyword=SOIL%20COLOR&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Color"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "aeolian-processes",
+  "stac_version": "1.0.0",
+  "description": "The erosion, transport, and deposition of material due to the action of the wind at or near the Earth's surface. Aeolian processes are at their most effective when the vegetation cover is discontinuous or absent.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f15b2ad3-f658-420b-99b4-41588646d9b7?gtm_keyword=AEOLIAN%20PROCESSES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f15b2ad3-f658-420b-99b4-41588646d9b7?gtm_keyword=AEOLIAN%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Aeolian Processes"
+}

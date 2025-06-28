@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ion-chemistry-ionization",
+  "stac_version": "1.0.0",
+  "description": "The process in which a neutral atom or molecule is given a net electrical charge. The atomic process in which ions are produced by removing one or more electrons from an atom, ion, or molecule, typically be collisions with atoms or electrons (collisional ionization), or by interaction with electromagnetic radiation (photo-ionization). Reference: the Cambridge Encyclopedia od the Sun, The Cambridge University Press Cambridge, CB2, 2RU, UK, 2001.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ba75172a-6965-40cf-bf3f-6c0af2f97dad?gtm_keyword=ION%20CHEMISTRY/IONIZATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ion Chemistry/Ionization"
+}

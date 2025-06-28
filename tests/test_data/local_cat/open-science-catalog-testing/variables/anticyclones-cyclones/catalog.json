@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "anticyclones-cyclones",
+  "stac_version": "1.0.0",
+  "description": "An anticyclone is a dome of air that exerts relatively high atmospheric pressure compared with the surrounding air at a given level. A cyclone is a weather system characterised by relatively low surface air pressure at a given level and a closed cyclonic wind circulation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/178694aa-5f0a-4de5-a193-74e323dc6aa9?gtm_keyword=ANTICYCLONES/CYCLONES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Anticyclones/Cyclones"
+}

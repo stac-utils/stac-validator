@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "geotechnical-properties",
+  "stac_version": "1.0.0",
+  "description": "A distinguishing trait, quality, or property of any deposit of insoluble material, primarily rock and soil particles, transported from land areas to the ocean by wind, ice, and rivers, as well as the remains of marine organisms, products of submarine volcanism, chemical precipitates from seawater, and materials from outer space (e.g., meteorites) that accumulate on the seafloor.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d4f4b5d3-27b2-4b7d-bb69-733b67ac687a?gtm_keyword=GEOTECHNICAL%20PROPERTIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Geotechnical Properties"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "freeze-frost-probability",
+  "stac_version": "1.0.0",
+  "description": "The freeze/frost probability levels represent the risk with regard to meeting or falling below a certain temperature threshold by a specific date, or within a specified number of days.[http://www.wrcc.dri.edu/ams/frzfrst.html]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/efc141a6-7d8e-45d5-b335-2fc122c62d78?gtm_keyword=FREEZE/FROST%20PROBABILITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Freeze/Frost Probability"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pressure-tendency",
+  "stac_version": "1.0.0",
+  "description": "The character and amount of atmospheric pressure change for a three-hour or other specified period ending at the time of observation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fa98caa0-54dc-465e-9bde-cdf4da905994?gtm_keyword=PRESSURE%20TENDENCY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Pressure Tendency"
+}

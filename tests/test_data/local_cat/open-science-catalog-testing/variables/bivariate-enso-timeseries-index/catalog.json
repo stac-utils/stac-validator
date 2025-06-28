@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "bivariate-enso-timeseries-index",
+  "stac_version": "1.0.0",
+  "description": "The BEST index was designed to be simple to calculate and to provide a long time period ENSO index for research purposes. Nino 3.4 has traditionally been used as a measure of ENSO strength in the tropical Pacific. However, it's use alone neglects explicit atmospheric processes. By adding the SOI or Southern Oscillation Index (the pressure difference between Tahiti and Darwin), these processes are more directly included. In addition, older SST values are at least partially reconstructed and not explicitly measured. By including the SOI, which is better measured historically, the effect of biases in the SST data introduced by the reconstruction technique are reduced. A more detailed explanation how the index was created is available: http://www.esrl.noaa.gov/psd/people/cathy.smith/best/details.html.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a69f9faf-f730-4eba-9e38-0f72b0544bbe?gtm_keyword=BIVARIATE%20ENSO%20TIMESERIES%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Bivariate Enso Timeseries Index"
+}

@@ -1,0 +1,75 @@
+{
+  "type": "Collection",
+  "id": "water-vapour-isotopologues-lpf-weather",
+  "stac_version": "1.0.0",
+  "description": "L2 product of column water vapour (XH2O) and stable isotope XHDO, partial column water vapour from the planetary boundary layer XH2O_PBL",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://archive.ceda.ac.uk/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "GOSAT PBL XH2O and Stable Water Vapour Isotopologues_Global",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "GOSAT"
+  ],
+  "osc:project": "lpf-weather",
+  "osc:variables": [
+    "Water Vapor Profiles"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "water_vapour"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2020-09-30T00:00:00Z",
+  "start_datetime": "2009-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2009-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Water Vapor"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-yields",
+  "stac_version": "1.0.0",
+  "description": "Amount of product output recovered from a quantity of raw material input in forest product industries. - Estimate in forest mensuration of the amount of wood that may be harvested from a particular type of forest stand by species, site, stocking, and management regime at various ages.[Franzese, M.L., T.J. Thompson, and J. McNutt. 1978. Glossary of forestry related terms. Potlatch Corporation Internal Report. Lewiston, ID:Potlatch Corporation. 59p.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/49804617-d59b-4e97-8030-2c4ab79a3057?gtm_keyword=FOREST%20YIELDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Yields"
+}

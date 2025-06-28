@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nino-3-index",
+  "stac_version": "1.0.0",
+  "description": "The Niï¿½o 3 index is an average of the sea surface temperatures in the region 150 degrees West - 90 degrees West (longitude) and 5 degrees North to 5 degrees South (latitude). When the index is positive (red) then waters are warmer than normal and when the index is negative (blue) then waters are cooler than normal. El Niï¿½os occur when the water is much warmer than normal for a sustained period of time. For example, El Niï¿½os occured in 1982-83, 1986-87 and 1997-98",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c58dc7fb-65d5-4309-8abe-160e8e845382?gtm_keyword=NINO%203%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Nino 3 Index"
+}

@@ -1,0 +1,96 @@
+{
+  "type": "Collection",
+  "id": "ai4dte-sw-stack",
+  "stac_version": "1.0.0",
+  "description": "Digital Twins of the Earth address decision support under uncertainty, providing a prognostic, evidence-based decision support capability representing the dynamic relationships between the physical and natural environments (the Earth System) and society (such as socioeconomic pathways, adaptation and mitigation actions or governance). In accordance with this vision, the uses cases that may be envisioned for the digital twins must provide, inter alia: Quantifiable and comparable impact predictions in the Earth System and/or downstream impact sectors; Actionable information and evidence-based decision support based on comparison of predicted impacts resulting from varying initial conditions; Support to exante Impact Assessment in the form of what-if scenario analysis; and in addition, Must be explainable in major steps of modelling and simulations, enabling model inspection and user interpretation, and Estimate and propagate uncertainty relevant to users (e.g. for policy makers uncertainty could refer to the confidence levels of a predictive capability of a simulation) in all steps of the use case.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/ai4dte-software-stack/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AI4DTE SW stack",
+  "osc:name": "AI4DTE Software stack",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land",
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Sveinung Loekken",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "sveinung.loekken@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "TELESPAZIO VEGA UK LIMITED (GB)Rothamsted Research Ltd (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Rothamsted Research Ltd (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UKRI Rutherford Appleton Laboratory (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITAT POLITECNICA DE VALENCIA (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF EDINBURGH (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF LEICESTER (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-12-20T00:00:00Z",
+  "end_datetime": "2023-01-03T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-12-20T00:00:00Z",
+          "2023-01-03T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

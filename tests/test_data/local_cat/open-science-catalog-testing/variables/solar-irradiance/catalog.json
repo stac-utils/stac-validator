@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "solar-irradiance",
+  "stac_version": "1.0.0",
+  "description": "Solar irradiance at the top of the atmosphere on a plane normal to the incident radiation, and at the mean distance of the Earth from the Sun. Solar irradiance is also referred to as the solar constant. In satellite remote sensing, the solar irradiance is used as an onboard calibrartion of visible band sensors. Some climate studies suggest that small variations in the solar irradiance associated with solar activity over days to decades may have an effect the Earth's climate.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/de7647c9-b129-4cba-afe4-63fa9998206e?gtm_keyword=SOLAR%20IRRADIANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Irradiance"
+}

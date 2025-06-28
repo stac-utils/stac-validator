@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atlantic-multidecadal-oscillation-long-version",
+  "stac_version": "1.0.0",
+  "description": "The timeseries are calculated from the Kaplan SST dataset which is updated monthly. It is basically an index of the N Atlantic temperatures. Time time series are created; a smoothed version and an unsmoothed version. In addition, two files starting at 1948 are produced to be used in the Correlation webpages.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dcdb6cf1-48a7-488e-aeb8-e6c0b36752d4?gtm_keyword=ATLANTIC%20MULTIDECADAL%20OSCILLATION%20LONG%20VERSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Atlantic Multidecadal Oscillation Long Version"
+}

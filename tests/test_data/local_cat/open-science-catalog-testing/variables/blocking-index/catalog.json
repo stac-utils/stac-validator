@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "blocking-index",
+  "stac_version": "1.0.0",
+  "description": "Blocking in the southern hemisphere typically occurs at lower latitudes when compared with the northern hemisphere. The index follows Tibaldi et al. (1994). The European blocking index is based on observations of pentad (5-day average) wind over the region 15W to 25E and 35n to 55N. If the pentad zonal wind equals the climatological value for that time period, the index is zero. If the pentad zonal wind is less than average the index is postive, while the opposite is true if the index is negative. Values close to +/- 1 indicate relatively strong events.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2aeb8e10-b7f8-429e-b9f6-968ece330741?gtm_keyword=BLOCKING%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Blocking Index"
+}

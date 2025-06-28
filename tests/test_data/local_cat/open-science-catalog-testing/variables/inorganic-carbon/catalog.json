@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "inorganic-carbon",
+  "stac_version": "1.0.0",
+  "description": "Carbon species that are not hydrocarbons or hydrocarbon derivatives. Variables such as dissolved inorganic carbon (DIC) or particulate inorganic carbon (PIC) are included as detailed variables under inorganic carbon.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/d9b4f30d-bddd-4888-b66b-07d2dc09708b?gtm_keyword=INORGANIC%20CARBON&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Inorganic Carbon"
+}

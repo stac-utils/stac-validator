@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "zooplankton",
+  "stac_version": "1.0.0",
+  "description": "Zooplankton is the animal portion of the plankton; the animal community in marine and freshwater situations that floats free in the water, independent of the shore and the bottom, moving passively with the currents.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ca8d77f2-9257-4298-9244-e81cd890f000?gtm_keyword=PLANKTON&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Zooplankton"
+}

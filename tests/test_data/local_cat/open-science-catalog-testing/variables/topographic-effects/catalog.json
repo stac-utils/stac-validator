@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "topographic-effects",
+  "stac_version": "1.0.0",
+  "description": "The topographic effect is indicated on Landsat images of rugged terrain by the visual impression of relief. It is caused by the variation in spectral radiance due to surface slope and aspect variations. The difference in radiance between a horizontal and sloping surface of the same cover type provides a measure of the topographic effect (Holben and Justice 1981). Holben and Justice (1979) also measured it and showed that the effect is most extreme in areas of rugged terrain and especially for slopes in the principal plane of the sun and at low solar elevations.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/05bef198-cfff-48be-b0cb-14e296d38dbc?gtm_keyword=TOPOGRAPHIC%20EFFECTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Topographic Effects"
+}

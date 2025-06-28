@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "metamorphic-rocks",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the composition, texture, formation, location, extent, etc. of rocks formed through metamorphic processes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/d220bbb1-410e-4b77-9663-78cb68c6b134?gtm_keyword=METAMORPHIC%20ROCKS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Metamorphic Rocks"
+}

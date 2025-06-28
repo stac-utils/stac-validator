@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "west-pacific-index",
+  "stac_version": "1.0.0",
+  "description": "The WP pattern is a primary mode of low-frequency variability over the North Pacific in all months, and has been previously described by both Barnston and Livezey (1987) and Wallace and Gutzler (1981). During winter and spring, the pattern consists of a north-south dipole of anomalies, with one center located over the Kamchatka Peninsula and another broad center of opposite sign covering portions of southeastern Asia and the low latitudes of the extreme western North Pacific. Therefore, strong positive or negative phases of this pattern reflect pronounced zonal and meridional variations in the location and intensity of the entrance region of the Pacific (or East Asian) jet steam. In the summer and fall, the WP pattern becomes increasingly wave-like, and a third prominent center appears over Alaska and the Beaufort Sea, with a sign opposite to the center over the western North Pacific. This wave structure is most evident in the Fall, when it extends downstream along a quasi great-circle route into the western United States. The time series of the WP pattern indicates considerable intermonthly and interannual variability, and persistence of a particular phase of the pattern is relatively common.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bdb6eafa-f4e1-4536-b513-4c787f829722?gtm_keyword=WEST%20PACIFIC%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "West Pacific Index"
+}

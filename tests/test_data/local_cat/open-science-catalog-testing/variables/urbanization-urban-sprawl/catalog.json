@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "urbanization-urban-sprawl",
+  "stac_version": "1.0.0",
+  "description": "Urbanization is the expansion of metropolitan areas by building housing developments and shopping centers farther and farther from urban centers and placing them together with more major highways. An outcome of urbanization is the fact that as more highways are built, surfaces are sealed with pavement, increasing stormwater runoff and quickening concentration times. Urban sprawl refers to the process in which an increasing proportion of an entire population lives in cities or suburbs of cities. Urban sprawl, also known as suburban sprawl, is a multifaceted concept, which includes the spreading outwards of a city and its suburbs to its outskirts to low-density, auto-dependent development on rural land, with associated design features that encourage car dependency.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e759cacb-33f0-4564-b151-c7cfa5e85ed3?gtm_keyword=URBANIZATION/URBAN%20SPRAWL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Urbanization/Urban Sprawl"
+}

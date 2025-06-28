@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "hdo-total-column-tropomi-clear-sky-wift",
+  "stac_version": "1.0.0",
+  "description": "Dataset of vertical column densities of H2O and HDO retrieved from short-wave infrared reflectance measurements by the TROPOMI instrument onboard the Sentinel-5p satellite.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp://ftp.sron.nl/open-access-data-2/TROPOMI/tropomi/hdo/9_1/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5194/amt-13-85-2020",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Clear-sky HDO/H2O total column_TROPOMI",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "lpf-wift",
+  "osc:variables": [
+    "Water Vapor"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "hdo_total_column"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2020-01-13T00:00:00Z",
+  "start_datetime": "2018-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Water Vapor",
+    "Water Vapor Indicators",
+    "Water Vapor"
+  ]
+}

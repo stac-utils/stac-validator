@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-surface-salinity",
+  "stac_version": "1.0.0",
+  "description": "Sea surface salinity observations contribute to monitoring the global water cycle (evaporation, precipitation and glacier and river runoff). On large scales, surface salinity can be used to infer long-term changes of the global hydrological cycle. Surface salinity, together with surface temperature, is indicative of the surface expression of ocean frontal features and eddies.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/surface-salinity",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Surface Salinity"
+}

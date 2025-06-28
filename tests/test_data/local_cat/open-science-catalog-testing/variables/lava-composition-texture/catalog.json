@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "lava-composition-texture",
+  "stac_version": "1.0.0",
+  "description": "The composition and texture of molten rock outside of the Earth's crust.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/0eb6fc71-dfb0-4451-85f7-08ceaf37c552?gtm_keyword=LAVA%20COMPOSITION/TEXTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Lava Composition/Texture"
+}

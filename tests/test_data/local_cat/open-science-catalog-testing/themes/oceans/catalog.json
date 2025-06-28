@@ -1,0 +1,38 @@
+{
+  "type": "Catalog",
+  "id": "oceans",
+  "stac_version": "1.0.0",
+  "description": "Ocean is defined as the mass of water occupying all of the Earth's surface not occupied by land, but excluding all lakes and inland seas. Covering some 70% of the Earthss surface, the ocean is a major driver of the world's weather and climate. It also plays a central role in climate change. The ocean is also a major driver of the global economy, carrying more than 90% of world trade and sustaining the 40% of humanity that lives within 100 km of the coast. Today, the growing impacts of climate change are making ocean observations, research and services more critical than ever before (source: https://www.eionet.europa.eu/gemet/en/concept/5789; https://public.wmo.int/en/our-mandate/focus-areas/oceans). ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "preview",
+      "href": "./EO_Oceans.webp",
+      "type": "image/webp",
+      "title": "Image",
+      "proj:epsg": null,
+      "proj:shape": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.eionet.europa.eu/gemet/en/concept/5789",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    }
+  ],
+  "title": "Oceans"
+}

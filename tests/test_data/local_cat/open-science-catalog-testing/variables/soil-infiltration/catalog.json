@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-infiltration",
+  "stac_version": "1.0.0",
+  "description": "The entry of water into soil. Also, the infiltration flux is the volume of water entering a specified cross-sectional area of soil per unit time [L t-1].",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0ab5ead8-6037-42b3-b3c0-0746f3645af6?gtm_keyword=SOIL%20INFILTRATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2283a2fe-19ec-4b1d-a553-20ec9713a658?gtm_keyword=SOIL%20INFILTRATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Infiltration"
+}

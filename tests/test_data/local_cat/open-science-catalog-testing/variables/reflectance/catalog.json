@@ -1,0 +1,49 @@
+{
+  "type": "Catalog",
+  "id": "reflectance",
+  "stac_version": "1.0.0",
+  "description": "Ratio of the intensity of reflected radiation to that of the incident radiation on a surface. A general term referring to the radiation reflected from, or scattered back through, a given surface in response to radiation incident on the surface with the same wavelength or wavelength range. In Cryosphere domain: The reflectance properties of ice bodies. A smooth ice surface will act as a near-specular reflector. As surface roughness increases, the reflection becomes diffuse. It is the ratio of the intensity of reflected radiation to that of the incident radiation on a surface. The suffix (-ance) implies a property of that particular specimen surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f043c0a8-9cee-4c51-bf64-a4aaa34ab75d?gtm_keyword=REFLECTANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Magnetosphere_Ionosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Reflectance"
+}

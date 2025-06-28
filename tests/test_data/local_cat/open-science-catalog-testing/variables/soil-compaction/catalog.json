@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-compaction",
+  "stac_version": "1.0.0",
+  "description": "The reduction in bulk volume or thickness of a soil owing to increasing weight of overlying material that is continually being deposited, or to pressures from earth movements, resulting in a decrease of porosity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c9f8c1e9-dca8-4c2e-9537-65903d19cfe5?gtm_keyword=SOIL%20COMPACTION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e0c0af2a-1429-4248-8d5b-ccae510da0c9?gtm_keyword=SOIL%20COMPACTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Compaction"
+}

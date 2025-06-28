@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "leaf-characteristics",
+  "stac_version": "1.0.0",
+  "description": "Pertain to the general characteristics of leaves including leaf structure, arrangement, leaf shape, and leaf margin.[Colorado State University]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bca1b724-3370-4a26-bcbc-3530ce4ddc97?gtm_keyword=LEAF%20CHARACTERISTICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Leaf Characteristics"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-ultraviolet-emissions",
+  "stac_version": "1.0.0",
+  "description": "Radiation with wavelengths roughly between 200 and 400 nanometers. These wavelengths are shorter than those which characterize visible light. Observations from satellites in the UV and extreme UV (EUV) wavelengths have demonstrated the sun's UV variability over short time scales of days and weeks. UV variability is linked to solar magnetic activity phenomena such as flares and plages. Studies of the UV and EUV irradiance variability may have indicated influences on the Earth's climate dynamics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a4390c3d-cffa-43ee-8e91-49c6d49ac371?gtm_keyword=SOLAR%20ULTRAVIOLET%20EMISSIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Ultraviolet Emissions"
+}

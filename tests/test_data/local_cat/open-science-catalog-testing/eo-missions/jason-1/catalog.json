@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "jason-1",
+  "stac_version": "1.0.0",
+  "description": "Jason-1 (Joint Altimetry Satellite Oceanography Network) Mission. Jason is the name of a joint CNES/NASA oceanography mission series with the objective to monitor global ocean circulation, discover the tie between the oceans and atmosphere, improve global climate predictions, and to monitor events such as El Niño conditions and ocean eddies. The oceanography mission series is considered a cornerstone of GCOS (Global Ocean Observing System), a concept advocated by WMO (World Meteorological Organization), IOC (Intergovernmental Oceanographic Commission of the UNESCO), UNEP (United Nations Environmental Program), and ICSU (International Council of Scientific Unions).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=286",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Jason-1"
+}

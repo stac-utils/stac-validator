@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "database-of-labelled-sentinel-1-interferograms-v20",
+  "stac_version": "1.0.0",
+  "description": "A database of labelled Sentinel-1 data featuring examples of volcanic unrest. Part of this work was carried out in the frame of the project \\u201cVolcano Monitoring using Deep Learning (https://eo4society.esa.int/projects/vmdl/ )\\u201c, under the Living Planet Fellowship programme of, and funded by, the European Space Agency. Disclaimer: the view expressed here can in no way be taken to reflect the official opinion of the European Space Agency. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/matthew-gaddes/VolcNet",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.31223/X5CW2J",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Database of labelled Sentinel-1 interferograms - v.2.0",
+  "osc:themes": [
+    "Solid Earth"
+  ],
+  "osc:missions": [
+    "Sentinel-1"
+  ],
+  "osc:project": "lpf-vmdl",
+  "osc:variables": [
+    "Volcano Occurrences",
+    "Volcano Predictions"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sentinel_1_interferograms"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-12-01T00:00:00Z",
+  "start_datetime": "2020-06-23T00:00:00Z",
+  "end_datetime": "2022-07-01T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-06-23T00:00:00Z",
+          "2022-07-01T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Tectonics",
+    "Volcanic Activity",
+    "Volcano Predictions",
+    "Volcano Occurrences"
+  ]
+}

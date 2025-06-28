@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "leads",
+  "stac_version": "1.0.0",
+  "description": "Any fracture or passage-way through ice which is navigable by surface vessels. Leads and other open water areas within the sea ice pack are also important in studies of the energy budget in the polar regions and in local and regional climatology.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4f0f606c-6bf8-4b8c-9431-d5696fe8a5f2?gtm_keyword=LEADS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4f0f606c-6bf8-4b8c-9431-d5696fe8a5f2?gtm_keyword=LEADS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f523f73f-efcc-4193-b9e3-1161ed7f4881?gtm_keyword=LEADS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Leads"
+}

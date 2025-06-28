@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "in-situ-observations",
+  "stac_version": "1.0.0",
+  "description": "In situ data means \"observation data from ground-, sea-, or air-borne sensors, reference and ancillary data\" (Regulation EU 2021/696 of EU Publications Office). In situ describes data collected adjacent to the measuring instrument, like temperature readings by a thermometer. It includes physical observations, such as air temperature or ocean currents, reference data (e.g. maps), and economic, environmental and social information. In situ data embraces two main categories: observations and geospatial reference data (https://insitu.copernicus.eu/state-of-play/understanding-in-situ-data)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://insitu.copernicus.eu/state-of-play/understanding-in-situ-data",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "In-situ observations"
+}

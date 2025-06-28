@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "hydrodynamic-model-baltic-seal",
+  "stac_version": "1.0.0",
+  "description": "http://balticseal.eu/wp-content/uploads/2020/04/Baltic_SEAL_D2.1_DatasetDescription_v1.1-signed.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://balticseal.eu/data-access/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Hydrodynamic model data (deviation from Sea Level Mean)_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "TOPEX/Poseidon",
+    "ERS-2",
+    "Jason-1",
+    "Jason-2",
+    "Jason-3",
+    "ENVISAT",
+    "CryoSat-2",
+    "SARAL",
+    "Sentinel-3"
+  ],
+  "osc:project": "baltic-seal-sea-level",
+  "osc:variables": [
+    "Sea Level"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "hydrodynamic_model_sea_level_mean"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-05-28T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Level"
+  ]
+}

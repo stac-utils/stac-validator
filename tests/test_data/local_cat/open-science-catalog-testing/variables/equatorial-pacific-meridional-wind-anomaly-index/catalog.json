@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "equatorial-pacific-meridional-wind-anomaly-index",
+  "stac_version": "1.0.0",
+  "description": "An ENSO meridional wind anomaly index is calculated for the region 12-2N, 160E-80W from the International Comprehensive Ocean-Atmosphere Data Set (COADS). This region was chosen from a map of meridional wind regressed onto an index of eastern equatorial Pacific SST for the period 1950-79.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science?gtm_search=Equatorial%20Pacific%20Meridional%20Wind%20Anomaly%20Index&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Equatorial Pacific Meridional Wind Anomaly Index"
+}

@@ -1,0 +1,69 @@
+{
+  "type": "Collection",
+  "id": "s2l2a-uncertainty-sr-lpf-l2arut",
+  "stac_version": "1.0.0",
+  "description": "Surface reflectance estimates for the Sentinel 2 mission",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "S2 L2A uncertainty_Surface reflectance estimates_S2",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-2"
+  ],
+  "osc:project": "lpf-l2a-rut",
+  "osc:variables": [
+    "Reflectance"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "s2l2a_uncertainty_surface_reflectance_estimates"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2022-07-01T00:00:00Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Land Surface",
+    "Surface Radiative Properties"
+  ]
+}

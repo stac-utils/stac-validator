@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-depth",
+  "stac_version": "1.0.0",
+  "description": "A measure from the surface to the bottom of the soil profile.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/60e783c1-4b33-4ab3-860b-8bd4ed00dc9f?gtm_keyword=SOIL%20DEPTH&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b09b4731-f357-4838-829b-f38c0f5075aa?gtm_keyword=SOIL%20DEPTH&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Depth"
+}

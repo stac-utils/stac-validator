@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "conservation",
+  "stac_version": "1.0.0",
+  "description": "The management of human use of the biosphere so that it may yield the greatest sustainable benefit to current generations while maintaining its potential to meet the needs and aspirations of future generations: Thus conservation is positive, embracing preservation, maintenance, sustainable utilization, restoration, and enhancement of the natural environment.[World Resources Institute (WRI) Biodiversity Glossary of Terms.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/40869a25-edea-4438-80f9-47c9e6910b9b?gtm_keyword=CONSERVATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Conservation"
+}

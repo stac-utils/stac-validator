@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ph",
+  "stac_version": "1.0.0",
+  "description": "A measure of the alkaline or acid strength of a substance. pH is defined as the logarithm of the reciprocal of the hydrogen ion concentration of a solution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4433600b-f323-458a-b295-352f939aab6b?gtm_keyword=PH&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/14625f2a-4186-4377-a0d9-88998bb6b775?gtm_keyword=pH&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ph"
+}

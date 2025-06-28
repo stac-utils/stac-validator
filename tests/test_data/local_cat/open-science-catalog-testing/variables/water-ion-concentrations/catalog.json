@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "water-ion-concentrations",
+  "stac_version": "1.0.0",
+  "description": "The concentration of ions in water. Ions are positively or negatively charged atom or group of atoms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4cc8def9-a825-4ede-9e34-4e11cf89488d?gtm_keyword=WATER%20ION%20CONCENTRATIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Water Ion Concentrations"
+}

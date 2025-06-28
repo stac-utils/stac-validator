@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "deforestation",
+  "stac_version": "1.0.0",
+  "description": "Deforestation is the removal of trees from a locality. This removal may be either temporary or permanent, leading to partial or complete eradication of the tree cover. It can be a gradual or rapid process, and may occur by means of natural or human agencies, or a combination of both.[Goudie, Andrew. 1997. The Encyclopedic Dictionary of Physical Geography. Blackwell Publishing, Malden, Massachusetts.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9a4715a7-1847-4fef-8116-494b36420fb7?gtm_keyword=DEFORESTATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Deforestation"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tree-line-shift",
+  "stac_version": "1.0.0",
+  "description": "The tree line is the edge of the habitat at which trees are capable of growing. Beyond the tree line, they are unable to grow because of inappropriate environmental conditions (usually cold temperatures or lack of moisture).[1]:51 Some distinguish additionally a deeper timberline or forest line, where trees form a forest with a closed canopy.[2]:151 At the tree line, tree growth is often very stunted, with the last trees forming low, densely matted bushes. If it is caused by wind, it is known as krummholz formation, from the German for 'twisted wood'.[3]:58 The tree line, like many other natural lines (lake boundaries, for example), appears well-defined from a distance, but upon sufficiently close inspection, it is a gradual transition in most places. Trees grow shorter towards the inhospitable climate until they simply stop growing.[3]:55",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d11df264-e70d-456c-9223-07f34e80b352?gtm_keyword=TREE%20LINE%20SHIFT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Tree Line Shift"
+}

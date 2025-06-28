@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "smap",
+  "stac_version": "1.0.0",
+  "description": "Launched in January 2015, the Soil Moisture Active Passive (SMAP) mission consists of an imaging radar satellite whose operations are led by the National Aeronautical and Space Administration (NASA), with assistance from the Canadian Space Agency (CSA). SMAP uses radio waves to map soil moisture and determine the freeze or thaw state of the same area.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=614",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "SMAP"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "mountain-snow-line-shift",
+  "stac_version": "1.0.0",
+  "description": "The boundary marking the lowest altitude at which a given area, such as the top of a mountain, is always covered with snow.[The American Heritage - Science Dictionary]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/56e7e412-b354-4ef4-8742-f1f5681c378a?gtm_keyword=MOUNTAIN%20SNOW%20LINE%20SHIFT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Mountain Snow Line Shift"
+}

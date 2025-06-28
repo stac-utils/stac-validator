@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "radiocarbon",
+  "stac_version": "1.0.0",
+  "description": "A radioactive isotope of carbon (carbon-14) with a half-life of about 5730 years, widely used in the dating of organic materials. Radiocarbon refers to radioactive carbon especially carbon-14, but also carbon-10 and carbon-12. Carbon-14 is a heavy radioactive isotope of Carbon having a mass of 14 and a half-life of 5730 +/-40 years. Carbon-14 is useful in dating organic materials during the last 50,000 years.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6641ff15-36c8-4dbc-bf9c-176a08688173?gtm_keyword=RADIOCARBON&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Radiocarbon"
+}

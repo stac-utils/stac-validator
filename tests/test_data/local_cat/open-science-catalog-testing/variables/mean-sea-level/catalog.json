@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "mean-sea-level",
+  "stac_version": "1.0.0",
+  "description": "An average level of the surface of one or more of Earth's bodies of water from which heights such as elevation may be measured.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f3ea8884-87a8-4a12-96d5-98e21a9fa2c7?gtm_keyword=MEAN%20SEA%20LEVEL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Mean Sea Level"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particle-distribution-functions",
+  "stac_version": "1.0.0",
+  "description": "A characterization of the density of particles located at a given point in phase space (a combination of either velocity or position coordinates) at a given time. The velocity-space distribution function gives the number of particles with a particular velocity; the position-space distribution function is synonymous with the particle density in position-space. Different combinations of position and spatial coordinates are useful in different problems.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c39210ba-7659-424b-a2f0-5777a1519115?gtm_keyword=PARTICLE%20DISTRIBUTION%20FUNCTIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Particle Distribution Functions"
+}

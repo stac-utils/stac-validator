@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-nitric-acid",
+  "stac_version": "1.0.0",
+  "description": "A very soluble, acidic gas, formula HNO3, the end product of the oxidation of emitted gases. It is a major component of acidic precipitation in continental regions. In the clean background troposphere, its removal in precipitation acts as a sink for odd hydrogen and nitrogen compounds and limits the formation of ozone.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b7bbed0f-24a1-44d8-a10d-92541cd2c05b?gtm_keyword=ATMOSPHERIC%20NITRIC%20ACID&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Nitric Acid"
+}

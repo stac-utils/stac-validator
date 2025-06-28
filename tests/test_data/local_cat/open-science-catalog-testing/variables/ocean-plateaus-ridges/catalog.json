@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-plateaus-ridges",
+  "stac_version": "1.0.0",
+  "description": "Geological features pertaining to the large, flat rises or ridges. A ridge is a long, narrow elevation of the sea floor, with steep sides and irregular topography. Ocean plateaus refer to an area of highland, usually consisting of relatively flat rises, and are formed when land has been uplifted and then eroded by wind or water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/73e02157-9df9-415f-93fc-cb457989ddb1?gtm_keyword=OCEAN%20PLATEAUS/RIDGES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Plateaus/Ridges"
+}

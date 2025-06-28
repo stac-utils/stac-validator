@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "antarctic-oscillation",
+  "stac_version": "1.0.0",
+  "description": "The Antarctic Oscillation (AAO) is the dominant pattern of non-seasonal tropospheric circulation variations south of 20S, and it is characterized by pressure anomalies of one sign centered in the Antarctic and anomalies of the opposite sign centered about 40-50S. The AAO is also referred to as the Southern Annular Mode (SAM). There is a Northern Hemisphere analog to the AAO, and it is called the Arctic Oscillation (or Northern Annular Mode).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/511e6c26-8806-4d88-9763-a136a6957042?gtm_keyword=ANTARCTIC%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Antarctic Oscillation"
+}

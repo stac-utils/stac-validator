@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "3d-earth",
+  "stac_version": "1.0.0",
+  "description": "The goal of this project is establish a global 3D reference model model of the crust and upper mantle based on the analysis of satellite gravity and (electro) magnetic missions in combination with seismological models and analyse the feedback between processes in Earths deep mantle and the lithosphere. Selected case examples will provide the possibility to test these approaches on a global and regional scale. This will result in a framework for consistent models that will be used to link the crust and upper mantle to the dynamic mantle. The prime objective is to integrate, for the first time, seismological models and satellite observation towards a consistent image of the crust and upper mantle in 3D.  Satellite gravity and (electro) magnetic data help to transfer velocity images towards composition and temperature that reflect the tectonic state and evolution of the Earth and offer a novel understanding of the processes that shape our planet. The limitations and sensitivity of the different geophysical methods in context of their imaging capability are analysed and combined with forward and inverse modelling to be able to evaluate the possibilities of these approaches to reveal the Earths structure. For the inverse modelling, we will explore the sensitivity of joint inversion to the individual data sets and compare these to inversions relying on only a single or a few data sets. To analyse the structure of the deep mantle, we will try to combine knowledge about mantle conductivity and mineral physics with the geophysical observations. We will assess the role of Earths internal layering and mantle convection on the evolution of the Earths surface (dynamic topography). The data and methods we propose to use in this study will significantly supersede previous attempts and will be a first step towards an understanding of the Earth in space and time, a necessary step towards the development of a 4D Earth model.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.3dearth.uni-kiel.de/en",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/stse-3d-earth/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "3D-EARTH",
+  "osc:name": "3D-Earth",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Solid Earth"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Roger Haagmans",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "roger.haagmans@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF KIEL (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "BRITISH ANTARCTIC SURVEY (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "DUBLIN INSTITUTE FOR ADVANCED STUDIES (DIAS) (IE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "GEOLOGICAL SURVEY OF DENMARK AND GREENLAND (DK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TU DELFT (NL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Technical University of Denmark (DK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF OSLO (NO)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-10-22T00:00:00Z",
+  "end_datetime": "2020-12-11T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-10-22T00:00:00Z",
+          "2020-12-11T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

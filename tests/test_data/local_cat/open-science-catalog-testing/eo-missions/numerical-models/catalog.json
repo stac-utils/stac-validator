@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "numerical-models",
+  "stac_version": "1.0.0",
+  "description": "Numerical models are essential tools for understanding the complex and dynamic nature of the natural environment. The ability to evaluate how well these models represent reality is critical in their use and future development.Typically, numerical models are evaluated against observations from a variety of different sources (E.g. Sensor networks or satellite data) with global metrics often employed to assess how well the model captures the overall behaviour of the system (Gleckler et al., 2008; Pincus et al., 2008). (source: https://doi.org/10.1016/j.envsoft.2021.104993)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1016/j.envsoft.2021.104993",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Numerical models"
+}

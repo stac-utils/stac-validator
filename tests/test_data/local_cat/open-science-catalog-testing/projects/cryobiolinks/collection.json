@@ -1,0 +1,74 @@
+{
+  "type": "Collection",
+  "id": "cryobiolinks",
+  "stac_version": "1.0.0",
+  "description": "Climate warming in the northern high latitudes is twice as strong as the global average. Increasing surface temperatures drive significant changes in the cryosphere, reducing the snow mass and extent, seasonal frost and permafrost. Changes in the cryosphere are interconnected with changes in the biosphere, e.g. carbon uptake and release by vegetation and soil. These cryosphere:biosphere linkages and feedbacks may have important implications for the warming processes in the northern high latitudes and failure to account for them in Earth system models may cause significant uncertainties in climate projections. CryoBioLinks will investigate linkages between cryosphere variables and the carbon uptake of vegetation and their changes by using satellite observations on snow cover, soil freeze, land surface temperature, vegetation indices and solar:induced chlorophyll fluorescence (SIF), together with in situ CO2 flux measurements. For that, the ESA Climate Change Initiative (CCI) snow cover fraction, SMOS soil freeze and thaw time series and Sentinel-3 land surface temperature will be exploited and combined. SMOS soil freeze and thaw state will be fused with a novel Sentinel-1 soil freeze and thaw product to improve spatial resolution and reduce scaling errors when compared to CO2 flux sites. The correspondence of advanced vegetation indices from Sentinel-3 (chlorophyll/ carotenoid index and the plant phenological index) and GOSAT SIF and their relationship to gross primary production will be analysed. Satellite proxies describing seasonal dynamics of vegetation photosynthesis and gross primary production will be developed and their spatial distribution will be mapped in the northern high latitudes. The processing of vegetation indices and derived metrics from Sentinel-3 will be implemented to a cloud processing platform. The project will produce and publish multi-annual maps of proxy indicators covering the northern high latitudes (>60°N). Interconnections between the cryosphere variables and carbon fluxes will be studied for different ecosystem types in Finland and underlying mechanisms will be explored with the new terrestrial ecosystem model QUINCY. CryoBioLinks will advance the knowledge and produce new data sets on cryosphere:biosphere interactions, thus contributing to a grand challenge in climate science. The expected indicators can be utilized for the evaluation of cryosphere and biosphere processes in Earth system models. Developed methods are expected to provide means for the monitoring of changes in the cryosphere and vegetation carbon uptake, thus raising awareness and providing information for the preparation of climate adaptation and mitigation plans and herewith contributing to the Sustainable Development Goal 13: Climate action.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/cryobiolinks/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "CRYOBIOLINKS",
+  "osc:name": "ASSESSING CRYOSPHERE-BIOSPHERE LINKAGES WITH EARTH OBSERVATIONS IN NORTHERN HIGH LATITUDES (CRYOBIOLINKS)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Stephen Plummer",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "stephen.plummer@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "FINNISH ENVIRONMENT INSTITUTE (SYKE) (FI)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-02-02T00:00:00Z",
+  "end_datetime": "2023-01-04T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-02-02T00:00:00Z",
+          "2023-01-04T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

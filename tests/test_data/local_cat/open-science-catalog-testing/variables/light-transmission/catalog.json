@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "light-transmission",
+  "stac_version": "1.0.0",
+  "description": "Measurement of the percentage of light received at a photo cell placed at fixed distances from a light source.[Adapted from: Dictionary of Earth Science, 5th ed.. 1997. Sybil Parker, ed. in chief. McGraw-Hill.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/45351e81-fcd4-46a1-9222-315946caefc7?gtm_keyword=LIGHT%20TRANSMISSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Light Transmission"
+}

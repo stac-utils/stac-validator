@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "tornadoes",
+  "stac_version": "1.0.0",
+  "description": "A small mass of air (whirlwind) that spins rapidly about an almost vertical axis and forms a funnel cloud that contacts the ground; appears as a pendant from a cumulonimbus cloud and is potentially the most destructive of all weather systems. A violently rotating column of air extending from a thunderstorm to the ground. The most violent tornadoes are capable of tremendous destruction with wind speeds of 250 mph or more.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a200e677-384a-42d6-8519-1c7735f0adb9?gtm_keyword=TORNADOES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ff44a7b0-64b6-418a-9d74-1cbc3a4ae951?gtm_keyword=TORNADOES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Tornadoes"
+}

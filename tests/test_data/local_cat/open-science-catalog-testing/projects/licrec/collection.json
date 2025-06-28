@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "licrec",
+  "stac_version": "1.0.0",
+  "description": "Clouds play an important role in the energy budget of our planet: optically thick clouds reflect the incoming solar radiation, leading to cooling the Earth, while thinner clouds act as greenhouse films, preventing escape of the Earths long:wave radiation to space. Cloud response to ongoing greenhouse gases climate warming is the largest source of uncertainty for model-based estimates of climate sensitivity and therefore for predicting the evolution of future climate. Understanding the Earths energy budget requires knowing the cloud coverage, its vertical distributions and optical properties. Predicting how the Earth climate will evolve requires understanding how these cloud variables respond to climate warming. Documenting how the clouds detailed vertical structure evolves on a global scale over the long-term is therefore a necessary step towards understanding and predicting the clouds response to climate warming. Satellite observations have been providing a continuous survey of clouds over the whole globe. Passive infrared sounders have been observing our planet since 1979. Active sounders, which measure the altitude:resolved profiles of backscattered radiation with an accuracy on the order of 1 to 100 meters. These instruments have been providing invaluable information on clouds vertical profile with the accuracy matching modern requirements for climate:related processes and feedback analysis since 2006. All active instruments share the same measuring principle: they send a short pulse of laser or radar electromagnetic radiation to the atmosphere, collect the time-resolved backscatter signal by the telescope, and then register it in one or several receiver channels. However, the wavelength, pulse energy, pulse repetition frequency, telescope diameter, orbit, detector, or optical filtering are not the same for any pair of instruments. These differences define the active instruments capability of detecting atmospheric aerosols and/or clouds for a given atmospheric situation and observation conditions (day, night, averaging distance). At the same time, there is an obvious need to ensure the continuity of global space-borne lidar measurements. One has to stress that a simple merging of different satellite data is not enough, our overarching goal is to build a multi-lidar record accurate enough to constrain predictions of how the clouds evolve as climate warms. The project will merge the measurements performed by the relatively young space-borne lidar ALADIN/Aeolus, which has been orbiting the Earth since August 2018 and operating at 355nm wavelength with the measurements performed since 2006 by CALIPSO lidar, which is operating at 532nm and is near the end of its lifetime. Even though the primary goal of ALADIN is wind detection, its products include profiles of atmospheric optical properties (aerosols/clouds). This makes it an excellent test bed for developing an approach for building a continuous multi-lidar cloud record.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/licrec/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "LICREC",
+  "osc:name": "LIdar Cloud REcord for Climate - LICREC",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Sorbonne Universita",
+      "role": "consortium_member"
+    },
+    {
+      "name": "SU (FR)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-06-04T00:00:00Z",
+  "end_datetime": "2024-04-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-06-04T00:00:00Z",
+          "2024-04-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

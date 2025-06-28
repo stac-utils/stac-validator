@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "shorelines",
+  "stac_version": "1.0.0",
+  "description": "The fringe of land at the edge of a large body of water, such as an ocean, sea, or lake. In Physical Oceanography a shore is the wider fringe that is geologically modified by the action of the body of water past and present, while the beach is at the edge of the shore, representing the intertidal zone where there is one. is the fringe of land at the edge of a large body of water, such as an ocean, sea, or lake. In Physical Oceanography a shore is the wider fringe that is geologically modified by the action of the body of water past and present, while the beach is at the edge of the shore, representing the intertidal zone where there is one.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1d3b4eb7-9931-44bf-8457-26847051b7a8?gtm_keyword=SHORELINES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4e5cf935-cf17-4947-bd1f-6816a855953a?gtm_keyword=SHORELINES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/57e6b119-567b-44d0-9d93-278ed5c21c47?gtm_keyword=SHORELINES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Shorelines"
+}

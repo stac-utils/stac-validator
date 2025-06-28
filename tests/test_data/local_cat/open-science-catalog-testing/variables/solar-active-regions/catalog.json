@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-active-regions",
+  "stac_version": "1.0.0",
+  "description": "A region of the solar atmosphere from the photosphere to the corona that develops when strong magnetic fields emerge from inside the sun. The magnetized realm in and around the sunspots is called an active region. Radiation from active regions is enhanced when compared to neighboring areas in the chromosphere a corona over the whole electromagnetic spectrum. They may last from a few hours to a few months. They are the sites of intense explosions, called solar flares.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0d32a340-ee64-4795-9254-09dcaf55bf4c?gtm_keyword=SOLAR%20ACTIVE%20REGIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Active Regions"
+}

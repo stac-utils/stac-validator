@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-ceiling",
+  "stac_version": "1.0.0",
+  "description": "The height ascribed to the lowest layer of clouds or obscurring phenomena when it is reported as broken (5/8 to 7/8 coverage), overcast, or obscuration and not classified \"thin\" or \"partial\".  Expressed in above ground level (AGL) heights. See also the definitions for cloud height and cloud base.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/88dc0be1-7427-4a82-9fee-3b2bf84d002a?gtm_keyword=CLOUD%20CEILING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Ceiling"
+}

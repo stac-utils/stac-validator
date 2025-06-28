@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "geomagnetic-indices",
+  "stac_version": "1.0.0",
+  "description": "Geomagnetic indices are an indicator of geomagntic activity caused by solar events. Typical geomagntic indices are: a, A, Ap, Dst, K, and Kp. The A-index, for example, is a daily average composed of 3-hour data points. Geomagnetic indices can be used in conjunction with solar \"wind\" data to predict the onset and intensity of geomagnetic storms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/990016e0-f247-4c36-8a17-f50e792a964a?gtm_keyword=GEOMAGNETIC%20INDICES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Geomagnetic Indices"
+}

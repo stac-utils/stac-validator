@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "acid-deposition",
+  "stac_version": "1.0.0",
+  "description": "Acid deposition is rain or snow that has a lower pH than precipitation from unpolluted skies. Acid deposition can also include dry forms of deposition such as nitrate and sulfate particles.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dbeff538-6857-4573-8d14-12009e0ee078?gtm_keyword=ACID%20DEPOSITION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Acid Deposition"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fresh-water-flux",
+  "stac_version": "1.0.0",
+  "description": "The volume transport of water to (riverine discharge, glacial discharge, precipitation) or from (evaporation) the ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bdd42024-d1a4-4fb2-a16a-06ac0cc1dedc?gtm_keyword=FRESH%20WATER%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Fresh Water Flux"
+}

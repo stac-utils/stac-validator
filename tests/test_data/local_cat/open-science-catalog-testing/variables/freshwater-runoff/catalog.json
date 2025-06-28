@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "freshwater-runoff",
+  "stac_version": "1.0.0",
+  "description": "The measurment of the flow of water in a stream, usually expressed in cubic feet per second; the net effect of storms, accumulation, transpiration, meltage, seepage, evaporation, and percolation.[Dictionary of Earth Science, 5th ed. 1997. Sybil Parker, ed. in chief. McGraw-Hill.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/915399a1-eb5b-475b-ae9a-ff45f1dcddc9?gtm_keyword=FRESHWATER%20RUNOFF&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Freshwater Runoff"
+}

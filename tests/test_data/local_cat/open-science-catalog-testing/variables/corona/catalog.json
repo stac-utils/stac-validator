@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "corona",
+  "stac_version": "1.0.0",
+  "description": "The outermost, high temperature region of the solar atmosphere. Above the chromosphere and transition region, consisting of almost fully ionized plasma contained in closed magnetic field loops, called coronal loops or expanding out along open magnetic field lines to form the solar wind. The corona is a highly rarefied, low density gas, with electron densities of less than 10*16 electrons/ m*3, heated to temperatures of millions of degrees. The corona is visible to the unaided eye as a white halo during a total eclipse of the sun.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1ef327e1-6139-49ff-87c3-f959ea75a511?gtm_keyword=CORONA&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Corona"
+}

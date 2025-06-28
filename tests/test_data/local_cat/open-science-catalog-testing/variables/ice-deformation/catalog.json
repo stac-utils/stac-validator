@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-deformation",
+  "stac_version": "1.0.0",
+  "description": "Ice that has been squeezed together, and in places, forced upwards and downwards. Some subdivisions of deformed ice are rafted ice, ridged ice, and hummocked ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/1009557b-0d4b-4c13-81a0-fd95c15bf158?gtm_keyword=ICE%20DEFORMATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Deformation"
+}

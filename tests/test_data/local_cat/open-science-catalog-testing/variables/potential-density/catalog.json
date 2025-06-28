@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "potential-density",
+  "stac_version": "1.0.0",
+  "description": "Measurement of water density taking water's compressibility into account, provided no heat exchange of the water sample with its surroundings. This is important because of the potential temperature change of water at varying levels of pressure. That is, under high pressure, water is warmer (less potentially dense) than that same sample of water at low pressure (lower potential temperature and thus more potentially dense).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/fe4a246b-4614-422b-8ca5-0481ee417318?gtm_keyword=POTENTIAL%20DENSITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Potential Density"
+}

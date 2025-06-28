@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "radioactive-elements",
+  "stac_version": "1.0.0",
+  "description": "An element with an unstable nucleus, which radiates alpha, beta or gamma radiation and gets converted to a stable element.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/334f47c1-fd13-483f-b493-e69a9e93d553?gtm_keyword=RADIOACTIVE%20ELEMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Radioactive Elements"
+}

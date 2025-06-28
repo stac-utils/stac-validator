@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "scattering",
+  "stac_version": "1.0.0",
+  "description": "The process in which a wave or beam of particles is diffused or deflected by collisions with particles of the medium which it traverses. Along with absorption, scattering is a major cause of the attenuation of radiation by the atmosphere. The process by which some of a stream of radiation is dispersed to travel in directions other than that which from it was incident by particles suspended in the medium through which it is travelling.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ec9e0b6a-1315-4569-93bc-0f1190bb8c08?gtm_keyword=SCATTERING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Scattering"
+}

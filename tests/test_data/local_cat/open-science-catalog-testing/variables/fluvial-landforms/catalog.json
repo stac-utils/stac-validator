@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fluvial-landforms",
+  "stac_version": "1.0.0",
+  "description": "\"Fluvial landforms\" are features on the Earth's surface produced by the action, i.e. erosion and deposition, of a stream or river and include such landforms as bars, levees, braided and meandering channels, and alluvial fans. \"Fluvial processes\" are those processes included in the action of running water in a stream or river",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/cb5193ab-2d7a-4b35-b7ec-f16ce78ae270?gtm_keyword=FLUVIAL%20LANDFORMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Fluvial Landforms"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "oxygen",
+  "stac_version": "1.0.0",
+  "description": "A colorless, odorless, gaseous element, constituting 21 percent of the volume of the atmsophere, and essential for aerobic forms of life. Gaseous oxygen has a chemical forumla of O2. Dissolved oxygen is included as a detailed variable under Oxygen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/oxygen; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/90aa8838-79bd-4b28-b518-8217e863c385?gtm_keyword=OXYGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Oxygen"
+}

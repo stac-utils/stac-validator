@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-radiation",
+  "stac_version": "1.0.0",
+  "description": "Radiation budget refers to the difference between the absorbed solar radiation and the net infrared radiation. The radiation budget takes into account the sum of all radiation, transferred in all directions, through the Earth's atmosphere and to and from space. The radiation budget (or radiation balance) controls the Earth's temperature and rainfall.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4ad0c52d-6449-48ff-8678-adc6b2cebcb7?gtm_keyword=ATMOSPHERIC%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Radiation"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "methyl-chloride",
+  "stac_version": "1.0.0",
+  "description": "CH3Cl, this compound supplies chlorine to the stratosphere by occasional volcanic eruptions and by tropospheric to stratospheric transport. Methyl chloride is also produced by seaweed. The natural chlorine content of the stratosphere as a consequence of these sources is about 0.6 ppbv.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/676248f0-75cd-466d-93f1-351440027c82?gtm_keyword=METHYL%20CHLORIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Methyl Chloride"
+}

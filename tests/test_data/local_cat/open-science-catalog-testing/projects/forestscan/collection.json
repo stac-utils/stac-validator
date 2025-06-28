@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "forestscan",
+  "stac_version": "1.0.0",
+  "description": "Investigate novel technologies such as Terrestrial Laser Scanning (TLS) and Unmanned Aerial Vehicle-based Laser Scanning (UAV-LS) to complement manual plot based measurements of AGB by collecting and analysing such data for three tropical sites in French Guiana (Paracou), Gabon (Lop) and Malayisa (Sepilok). In addition at each of these sites airborne laser scanning data is available.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/forestscan/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/forestscan/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "ForestScan",
+  "osc:name": "ForestScan",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Klaus Scipal",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "klaus.scipal@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UCL CONSULTANTS LTD (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CIRAD (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "IRD (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF CAMBRIDGE (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF EDINBURGH (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF LEEDS (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "WAGENINGEN UNIVERSITEIT (NL)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-08-03T00:00:00Z",
+  "end_datetime": "2021-06-19T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-08-03T00:00:00Z",
+          "2021-06-19T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

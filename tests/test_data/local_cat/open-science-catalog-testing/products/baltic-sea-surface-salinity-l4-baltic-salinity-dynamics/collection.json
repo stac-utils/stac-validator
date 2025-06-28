@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "baltic-sea-surface-salinity-l4-baltic-salinity-dynamics",
+  "stac_version": "1.0.0",
+  "description": "To develop a novel Baltic L4 SSS (Sea Surface Salinity) product from the measurements provided by the SMOS (Soil Moisture and Ocean Salinity) mission merged with SST (Sea Surface Temperature) and to study the potential benefit of incorporating this SSS product into oceanographic and environmental applications within the Baltic Sea. Data acquisition: Satellite ESA SMOS mission (Soil Moisture and Ocean Salinity), ESA CCI SST. Time coverage: 05 February 2011 - 27 December 2019. Time resolution: Daily. Maps frequency generation: Daily. Spatial coverage: Latitude range: 53.5ºN-68ºN Longitude range: 8ºE-30.5ºE. Spatial resolution: 0.05 degrees. Spatial grid: WGS 84 / Regular longitude-latitude. Sensor Satellite SMOS / MIRAS. Format NetCDF. Climate and Forecast (CF) conventions version: 1.6.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://digital.csic.es/handle/10261/239770",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.20350/digitalCSIC/13860"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Baltic Sea Surface Salinity L4 maps (V.2.0)_Baltics_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "SMAP"
+  ],
+  "osc:project": "baltic-salinity-dynamics",
+  "osc:variables": [
+    "Sea Surface Salinity"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_surface_salinity"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-01-31T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "version": "2",
+  "sci:doi": "10.20350/digitalCSIC/13860",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Salinity/Density",
+    "Sea Surface Salinity",
+    "Sea Ice"
+  ]
+}

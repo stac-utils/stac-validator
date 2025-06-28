@@ -1,0 +1,73 @@
+{
+  "type": "Collection",
+  "id": "glacier-mass-balance-lpf-mitap",
+  "stac_version": "1.0.0",
+  "description": "Geodetic glacier mass balance derived from Digital Elevation Model differentiating using data from TanDEM-X acquisitions from austral winters 2013 and 2017",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Geodetic glacier mass balances Antarctic Peninsula <70°S between 2013 and 2017_Antarctica_TanDEM-X",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "TanDEM-X"
+  ],
+  "osc:project": "lpf-mit-ap",
+  "osc:variables": [
+    "Glacier Mass Balance/Ice Sheet Mass Balance"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "glacier_mass_balance"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -80.0,
+          180.0,
+          -61.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Mass Balance/Ice Sheet Mass Balance",
+    "Cryospheric Indicators",
+    "Glacial Measurements",
+    "Sea Ice"
+  ]
+}

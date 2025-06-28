@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "tandem-x",
+  "stac_version": "1.0.0",
+  "description": "TanDEM-X (TDX) is an interferometric SAR satellite mission, funded in a public/private collaboration  between the German Aerospace Centre (DLR) and Airbus Defence and Space (formerly EADS Astrium GmbH). The satellite  launched in June, 2010 and constructs three-dimensional images of Earths surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=598",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "TanDEM-X"
+}

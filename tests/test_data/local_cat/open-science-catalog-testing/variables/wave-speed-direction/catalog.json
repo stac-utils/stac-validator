@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "wave-speed-direction",
+  "stac_version": "1.0.0",
+  "description": "Wave speed: Distance a wave travels per time. Wave direction: The line along which a wave travels with respect to its compass heading. Both Wave Speed and Wave Direction may be included as Detailed Variables under Wave Speed/Direction.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/e52114b2-adbc-4e3e-9c87-1a7f245fe5ef?gtm_keyword=WAVE%20SPEED/DIRECTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Wave Speed/Direction"
+}

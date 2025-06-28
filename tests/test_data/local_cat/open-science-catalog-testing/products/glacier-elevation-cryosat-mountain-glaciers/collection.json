@@ -1,0 +1,73 @@
+{
+  "type": "Collection",
+  "id": "glacier-elevation-cryosat-mountain-glaciers",
+  "stac_version": "1.0.0",
+  "description": "Available by request to: noel.gourmelen@ed.ac.uk",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Mountain glacier elevation and elevation change_Global_Cryosat-2",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2"
+  ],
+  "osc:project": "cryosat-mountain-glaciers",
+  "osc:variables": [
+    "Glacier Elevation/Ice Sheet Elevation"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "glacier_elevation"
+    }
+  ],
+  "osc:region": "Global",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2015-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2015-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Elevation/Ice Sheet Elevation",
+    "Cryospheric Indicators",
+    "Glacial Measurements",
+    "Sea Ice"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "magnesium",
+  "stac_version": "1.0.0",
+  "description": "A chemical element that is a shiny gray solid and has the same electron configuration in the outer electron shell and a similar crystal structure. Magnesium is the ninth most abundant element in the universe. It is produced in large, aging stars from the sequential addition of three helium nuclei to a carbon nucleus. Measurement of any form of magnesium in the soil; one macronutrient in the soil. [United States Department of Agriculture]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/79f18259-bd76-4c7b-bd18-cbd2edafd24f?gtm_keyword=MAGNESIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7b86bc20-ba2b-4cd0-8aa0-ed47663d9222?gtm_keyword=MAGNESIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/38f99d8b-80af-439a-9d3f-1e72aef5d7c3?gtm_keyword=MAGNESIUM&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Magnesium"
+}

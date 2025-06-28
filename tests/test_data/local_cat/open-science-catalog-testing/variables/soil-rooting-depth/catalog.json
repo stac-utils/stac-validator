@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-rooting-depth",
+  "stac_version": "1.0.0",
+  "description": "The distance in inches that plant roots extend into the soil. Knowing the average root depth for the plants in each watering zone is important to determine an efficient watering schedule. Shallow roots require more frequent watering than deep roots, which can draw water from a larger soil profile. Average root depths vary with plant type. Trees will have root depths of 24 inches or more. Xeriscape plants will have root depths around 10 inches. Shrubs and perennials will have roots of 8 inches or more. Grass can have deep roots (greater than 6 inches, depending on region). Annuals and bedding plants have the shallowest roots at 4-5 inches.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2b91245e-a779-42fa-89c2-303217463b95?gtm_keyword=SOIL%20ROOTING%20DEPTH&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1b475201-a032-4a66-a3aa-a35605affaee?gtm_keyword=SOIL%20ROOTING%20DEPTH&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Rooting Depth"
+}

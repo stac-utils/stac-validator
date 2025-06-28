@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "snow-grain-size",
+  "stac_version": "1.0.0",
+  "description": "The size of individual snow grains in micrometers. Snow grains (also called granular snow.) Precipitation in the form of very small, white opaque particles of ice; the solid equivalent of drizzle. They resemble snow pellets in external appearance, but are more flattened and elongated, and generally have diameters of less than 1 mm; they neither shatter nor bounce when they hit a hard surface. Descriptions of the physical structure of snow grains vary widely and include very fine, simple ice crystals; tiny, complex snow crystals; small, compact bundles of rime; and particles with a rime core and a fine glaze coating. It is agreed that snow grains usually fall in very small quantities, mostly from stratus clouds or from fog, and never in the form of a shower.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a30b2871-4cdc-418a-b00c-969b50008726?gtm_keyword=SNOW%20GRAIN%20SIZE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Snow Grain Size"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particle-temperature",
+  "stac_version": "1.0.0",
+  "description": "The measure of the heat of an object, namely of the average kinetic energy of the randomly moving particles in an object. Reference: the Cambridge Encyclopedia of the Sun, The Cambridge University Press, Cambridge, CB2, 2RU, UK, 2110.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/630c1f3f-73b9-4f80-bc47-4cbf1fa43788?gtm_keyword=PARTICLE%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Particle Temperature"
+}

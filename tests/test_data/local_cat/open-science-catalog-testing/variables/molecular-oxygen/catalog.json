@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "molecular-oxygen",
+  "stac_version": "1.0.0",
+  "description": "Oxygen (O2) is found on Earth as a gas and constitutes about 20.8% of the air we breathe. Elemental molecular oxygen consists of two oxygen atoms bonded together. A photochemical reaction of oxygen is (ultimately) responsible for the production of ozone in the stratosphere. Oxygen concentrations found in ice core samples have been used to determine past atmospheric levels of oxygen and helped in determining past climates. [Nature; v351; 217-219; 1991.] [Nature; v365; 143-147; 1993.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/61f4f3d0-7895-4cce-94e3-d249001d5ee8?gtm_keyword=MOLECULAR%20OXYGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Molecular Oxygen"
+}

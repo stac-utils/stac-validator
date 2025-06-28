@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particulate-inorganic-carbon",
+  "stac_version": "1.0.0",
+  "description": "The concentration of particulate inorganic carbon (PIC) in ocean surface waters.  PIC primarily consists of particles composed of calcium carbonate (CaCO3), either created by phytoplankton, inorganically precipitated, or as carbonate sediments. Mass concentration of particulate inorganic carbon expressed as carbon in sea water [mg C m-3].",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://disc.gsfc.nasa.gov/information/glossary?title=Giovanni%20Parameter%20Definitions:%20Particulate%20Inorganic%20Carbon",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Particulate Inorganic Carbon"
+}

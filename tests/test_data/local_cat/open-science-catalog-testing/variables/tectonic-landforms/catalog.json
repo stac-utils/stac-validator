@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tectonic-landforms",
+  "stac_version": "1.0.0",
+  "description": "\"Tectonic landforms\" are structural landforms of regional extent. These landforms make up extensive landscapes whose topography is strongly influenced by the structure of underlying rocks that have undergone (or are undergoing) some degree of deformation (and possible associated metamorphism and igneous intrusion). Landscapes developed on orogenic belts, uplifts, domes, basins, and shields can all be thought of as tectonic landforms. \"Tectonic processes\" are large-scale geologic processes that develop these landforms and include mountain building and crustal rifting.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/46172bbe-8bf0-49a0-848f-129c089aeb8e?gtm_keyword=TECTONIC%20LANDFORMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Tectonic Landforms"
+}

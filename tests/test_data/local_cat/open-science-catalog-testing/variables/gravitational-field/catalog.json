@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "gravitational-field",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement, strength, size, etc. of the Earth's gravitational field.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/56b4cbe5-e5f7-4e61-8c48-bbb858b505e6?gtm_keyword=GRAVITATIONAL%20FIELD&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Gravitational Field"
+}

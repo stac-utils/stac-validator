@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ultraviolet-radiation",
+  "stac_version": "1.0.0",
+  "description": "Electromagnetic radiation of shorter wavelength than visible radiation but longer than x-rays. Radiation in the interval 10 to 4000 angstroms. UV radiation from the sun is responsible for many photochemical ractions in the upper atmosphere especially the formation of ozone. UV-B radiation in the range 280-320 nm can possibly have serious health effects on humans and animals.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/90e7fd13-2da2-4ba6-9e0c-dbecdf7c2215?gtm_keyword=ULTRAVIOLET%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ultraviolet Radiation"
+}

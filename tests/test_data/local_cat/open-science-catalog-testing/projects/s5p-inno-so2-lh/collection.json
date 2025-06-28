@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "s5p-inno-so2-lh",
+  "stac_version": "1.0.0",
+  "description": "Generation of an SO2 layer height product for Sentinel-5p taking into account data production timeliness requirements.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://atmos.eoc.dlr.de/so2-lh/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/sentinel-5p-innovation-so2-layer-height-project/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "S5p Inno - SO2-LH",
+  "osc:name": "SENTINEL-5P+ INNOVATION - SO2 Layer Height Project",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "DLR : GERMAN AEROSPACE CENTER (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ARISTOTLE UNIV. OF THESSALONIKI (GR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF OXFORD (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-03-07T00:00:00Z",
+  "end_datetime": "2022-03-20T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-03-07T00:00:00Z",
+          "2022-03-20T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

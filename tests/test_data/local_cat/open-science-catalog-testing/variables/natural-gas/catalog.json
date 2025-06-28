@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "natural-gas",
+  "stac_version": "1.0.0",
+  "description": "Natural gas is a fossil fuel formed when layers of buried plants and animals are exposed to intense heat and pressure over thousands of years. The energy that the plants and animals originally obtained from the sun is stored in the form of carbon in natural gas. Natural gas is combusted to generate electricity, enabling this stored energy to be transformed into usable power. Natural gas is a nonrenewable resource because it cannot be replenished on a human time frame.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/72eb280a-d5d0-4c5e-b789-8f1a8cf8bdac?gtm_keyword=NATURAL%20GAS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Natural Gas"
+}

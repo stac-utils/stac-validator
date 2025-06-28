@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "land-heat-capacity",
+  "stac_version": "1.0.0",
+  "description": "The ratio of the heat absorbed (or released) by a system to the corresponding temperature rise (or fall).[Huschle, R.E., ed. 1959. Glossary of Meteorology, American Meteorological Society, Boston, MA.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8931329c-3f6d-4ba6-913c-27afa8d104c1?gtm_keyword=LAND%20HEAT%20CAPACITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Land Heat Capacity"
+}

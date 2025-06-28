@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "ice-shelf-antarctica-cryosmos",
+  "stac_version": "1.0.0",
+  "description": "The ice shelf product consists of two types of NETCDF-4 files, one containing yearly mean quantities and one containing differential quantities as well as static surface type masks. Names of the first file type are Ã¢â¬ÅSMOS_TB_for_Origin_yyyy_vvv.ncÃ¢â¬Â, where Ã¢â¬ÅyyyyÃ¢â¬Â is the respective year and Ã¢â¬ÅvvvÃ¢â¬Â the dataset version. Names of the second file type are Ã¢â¬ÅSMOS_Origin_yyyy_yyyy_vvv.ncÃ¢â¬Â where the first Ã¢â¬ÅyyyyÃ¢â¬Â indicates the first year, the second Ã¢â¬ÅyyyyÃ¢â¬Â the second year and Ã¢â¬ÅvvvÃ¢â¬Â the dataset version. All differential quantities are based on the yearly mean of the second year minus the yearly mean of first year. Product details are available at: http://www.ifac.cnr.it/cryosmos/products/CryoSMOS_D8_EDUM_V2.0.pdf.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.ifac.cnr.it/cryosmos/products/CRYOSMOS_shelf.tgz",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Ice shelf product_Antarctica_SMOS",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "SMOS"
+  ],
+  "osc:project": "cryosmos",
+  "osc:variables": [
+    "Ice Sheets and Ice Shelves"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "ice_shelves"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-03-19T00:00:00Z",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -83.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Ice Sheets and Ice Shelves",
+    "Sea Ice"
+  ]
+}

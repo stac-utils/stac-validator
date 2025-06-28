@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sea-level-changes",
+  "stac_version": "1.0.0",
+  "description": "Sea levels around the world are rising. Current sea-level rise potentially affects human populations (e.g., those living in coastal regions and on islands) and the natural environment (e.g., marine ecosystems). Two main factors contributed to observed sea level rise. The first is thermal expansion: as ocean water warms, it expands. The second is from the contribution of land-based ice due to increased melting. The major store of water on land is found in glaciers and ice sheets.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/2aad0e7e-1c96-4d87-adeb-4894225e2922?gtm_keyword=SEA%20LEVEL%20CHANGES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Level Changes"
+}

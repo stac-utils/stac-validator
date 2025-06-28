@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "weighted-anomaly-standardized-precipitation-index",
+  "stac_version": "1.0.0",
+  "description": "The Weighted Anomaly Standardized Precipitation Index (WASP) index gives a standardized measure of precipitation excess or deficits over the selected accumulation period.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dc9c73a3-689c-44b5-b8fe-a5229168193e?gtm_keyword=WEIGHTED%20ANOMALY%20STANDARDIZED%20PRECIPITATION%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Weighted Anomaly Standardized Precipitation Index"
+}

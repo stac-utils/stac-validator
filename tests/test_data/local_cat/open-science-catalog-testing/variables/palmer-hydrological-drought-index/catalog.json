@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "palmer-hydrological-drought-index",
+  "stac_version": "1.0.0",
+  "description": "An extended interval of abnormally dry weather sufficiently prolonged for the lack of water to cause a serious hydrological imbalance (i.e., crop damage, water supply shortage, etc.) in the affected area.[Glossary of Weather and Climate, American Meteorological Society, 1996.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0365f0af-7843-4ba3-af8c-82d032c14f7e?gtm_keyword=PALMER%20HYDROLOGICAL%20DROUGHT%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Palmer Hydrological Drought Index"
+}

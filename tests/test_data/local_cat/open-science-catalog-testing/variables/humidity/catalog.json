@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "humidity",
+  "stac_version": "1.0.0",
+  "description": "Measure of the water vapor content of air. The multiplicity of humidity measures is partly due to different methods of measurement and partly because the conservative measures (mixing ratio, specific humidity) cover an extremely wide dynamic range, as a result of the rapid variation of saturation vapor pressure with temperature.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/427e5121-a142-41cb-a8e9-a70b7f98eb6a?gtm_keyword=HUMIDITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Humidity"
+}

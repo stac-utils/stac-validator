@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "aeolian-landforms",
+  "stac_version": "1.0.0",
+  "description": "Landforms created by the processes of wind erosion or deposition of wind weathered surface materials. These include landforms with some of the following geomorphic features: sand dunes, deflation hollows, and desert pavement. Alternative spelling \"aeolian landforms.\"",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/26637389-f4f6-47a0-9c3d-17e93ab99dea?gtm_keyword=AEOLIAN%20LANDFORMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Aeolian Landforms"
+}

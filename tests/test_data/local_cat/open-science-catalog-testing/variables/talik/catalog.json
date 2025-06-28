@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "talik",
+  "stac_version": "1.0.0",
+  "description": "Talik, also called tabetisol, is a Russian term applied to permanently unfrozen ground in regions of permafrost. This usually applies to a layer that lies above the permafrost but below the active layer, that is, when the permafrost table is deeper than the depth reached by winter freezing from the surface. Talik is also found within and beneath permafrost; when it occurs beneath the permafrost it is equivalent to subgelisol.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/78e5e44c-7832-456d-a599-893ea87ae695?gtm_keyword=TALIK&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Talik"
+}

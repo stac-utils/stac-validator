@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-wind",
+  "stac_version": "1.0.0",
+  "description": "The solar wind is hot solar plasma spreading from the solar corona in all directions, at a typical speed of 300-1,000 km/sec. The solar wind is essentially the hot solar corona on expanding in all directions into the interplanetary space. The solar wind is diverted around the Earth by the Earth's magnetic field, although some solar particles enter the Earth's field at the poles. The solar wind carries coronal magnetic fields by a process known as frozen in the flux. If these frozen in fields have the same North-South orientation as the Earth's magnetic field, energy can be transferred into the Earth's magnetosphere, leading to geomagnetic storms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5d290bd8-049b-4002-86c8-8acba563d0e1?gtm_keyword=SOLAR%20WIND&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Wind"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cirrostratus",
+  "stac_version": "1.0.0",
+  "description": "A principal cloud type, forming in the high levels of the troposphere, composed of ice crystals which appear from the ground as a transparent sheet or veil, often creating a halo phenomenon around the sun or moon. In aviation forecasts and reports it is coded as CS.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bf271f69-3294-44d6-bfa8-a8f54468ca30?gtm_keyword=CIRROSTRATUS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cirrostratus"
+}

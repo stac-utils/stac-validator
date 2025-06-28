@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "land-surface-temperature",
+  "stac_version": "1.0.0",
+  "description": "Refers to how hot the \"surface\" of the Earth would feel to the touch in a particular location. From a satellite's point of view, the \"surface\" is whatever it sees when it looks through the atmosphere to the ground. It could be snow and ice, the grass on a lawn, the roof of a building, or the leaves in the canopy of a forest. Thus, land surface temperature is not the same as the air temperature that is included in the daily weather report.[NASA Earth Observatory]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d559b900-eca6-42a4-9311-0297b2ef98ab?gtm_keyword=LAND%20SURFACE%20TEMPERATURE&gtm_scheme=Earth%20Science; https://gcos.wmo.int/en/essential-climate-variables/land-temperature",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Land Surface Temperature"
+}

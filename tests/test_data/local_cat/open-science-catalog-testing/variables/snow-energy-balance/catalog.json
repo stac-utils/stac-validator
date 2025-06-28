@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "snow-energy-balance",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the net increase, or decrease in energy due to snow formation, melting, evaporation, etc..",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a3520db9-7bed-4f55-a9f6-028d52af6091?gtm_keyword=SNOW%20ENERGY%20BALANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Snow Energy Balance"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-prominences-solar-filaments",
+  "stac_version": "1.0.0",
+  "description": "A term identifying cloud-like features in the solar atmosphere. The features appear as bright structures in the corona above the solar limb and as dark filaments when seen projected against the solar disk. Solar filaments are also known as prominences, can appear as arcs and properties can vary with the solar cycle.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7b52f7f5-4102-4829-8ea3-c0dcdd36bdca?gtm_keyword=SOLAR%20PROMINENCES/SOLAR%20FILAMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Prominences/Solar Filaments"
+}

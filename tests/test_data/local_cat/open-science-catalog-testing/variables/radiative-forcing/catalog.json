@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "radiative-forcing",
+  "stac_version": "1.0.0",
+  "description": "A change imposed upon the climate system which modifies the radiative balance of that system. The causes of such a change may include changes in the sun, clouds, ice, greenhouse gases, volcanic activity, and other agents. Radiative forcing is often specified as the net change in energy flux at the troposphere (watts per square meter). Radiative forcing may sometimes be referred to as external forcing or perturbations of the climate.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4fad64ce-32fe-413d-8b55-c78000d1980c?gtm_keyword=RADIATIVE%20FORCING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Radiative Forcing"
+}

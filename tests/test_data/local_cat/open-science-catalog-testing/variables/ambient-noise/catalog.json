@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ambient-noise",
+  "stac_version": "1.0.0",
+  "description": "The acoustic energy above which a single desired signal is heard. In the oceans, ambient noise can be produced physically (e.g. wind, rain, bubbles) or biologically (e.g. whales, dolphins).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a74abbc1-dd75-4f22-bbec-7d45091a4593?gtm_keyword=AMBIENT%20NOISE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ambient Noise"
+}

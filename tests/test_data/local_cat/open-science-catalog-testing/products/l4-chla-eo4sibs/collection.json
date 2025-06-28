@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "l4-chla-eo4sibs",
+  "stac_version": "1.0.0",
+  "description": "Switching algorithm: regional version of the OC4 algorithm in clear waters and NN-C2RCC algorithm for turbid waters",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/map/map.php?product=Ocean%20Colour%20(scale%20factor:%200.01)&is_netcdf=1",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/doc/EO4SIBS_DUM_ATBD_OceanColour.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Level 4 Ocean Colour products Chl-a, 300m, daily",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "Sentinel-2",
+    "Sentinel-3",
+    "CryoSat-2"
+  ],
+  "osc:project": "eo4sibs",
+  "osc:variables": [
+    "Chlorophyll Concentration"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mass_concentration_of_chlorophyll_in_sea_water"
+    }
+  ],
+  "osc:region": "Black Sea",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2016-04-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          27.5070842233,
+          40.8729622599,
+          41.8106211165,
+          47.2684228286
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-04-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Chlorophyll",
+    "Chlorophyll Concentration",
+    "Ocean Chemistry",
+    "Pigments"
+  ]
+}

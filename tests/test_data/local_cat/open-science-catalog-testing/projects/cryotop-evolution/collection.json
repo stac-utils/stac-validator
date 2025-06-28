@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "cryotop-evolution",
+  "stac_version": "1.0.0",
+  "description": "Making inference about the state of the Antarctic and Greenland Ice Sheets with the production of swath elevations, DEMs, elevation change and innovative science products making use of the technique of swath interferometry applied to SARIn mode CryoSat data.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.cryotempo-eolis.org",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://cryotop-evolution.org",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "CryoTop Evolution",
+  "osc:name": "CryoTop Evolution",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Jerome Bouffard",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "jerome.bouffard@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF EDINBURGH (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ENVEO ENVIRONMENTAL EARTH OBSERVATION INFORMATION TECHNOLOGY GMBH (AT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF LEEDS",
+      "role": "consortium_member"
+    },
+    {
+      "name": "isardSAT (ES)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2016-03-03T00:00:00Z",
+  "end_datetime": "2019-11-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-03-03T00:00:00Z",
+          "2019-11-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

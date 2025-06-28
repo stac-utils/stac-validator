@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "nutrients",
+  "stac_version": "1.0.0",
+  "description": "Inorganic or organic solutes necessary for the nutrition of primary producers. Elements essential for growth and survival of a given organism. Directly or indirectly, nutrients have roles in metabolism that no other nutrients fulfills.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8dd7c9f0-51d0-4037-b1d0-a2517c1770ad?gtm_keyword=NUTRIENTS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9bcb805c-718e-42c3-913d-174bdf06d4c1?gtm_keyword=NUTRIENTS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1459a39c-4781-4481-8bd9-510762865efd?gtm_keyword=NUTRIENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Nutrients"
+}

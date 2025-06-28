@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "micronutrients-trace-elements",
+  "stac_version": "1.0.0",
+  "description": "A plant nutrient usually found in relatively small amounts(<100 mg kg-1) in plants. These are usually B, Cl, Cu, Fe, Mn, Mo, Ni, Co, and Zn. In environmental applications it is those elements exclusive of the eight abundant rock-forming elements: oxygen, aluminum, silicon, iron, calcium, sodium, potassium, and magnesium.[Glossary of Soil Science Terms, 1996, Soil Science Society of America, Madison, WI http://www.soils.org/sssagloss/]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ac061db6-21c7-46fc-b5a8-9f61c795fdd6?gtm_keyword=MICRONUTRIENTS/TRACE%20ELEMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Micronutrients/Trace Elements"
+}

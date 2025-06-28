@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fisheries",
+  "stac_version": "1.0.0",
+  "description": "Related to the act, process, or season of catching a species of fish or a group of species in marine and non-marine environments, excludes fish farming, hatcheries, and other aquaculture.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fa57b0a0-9723-4195-bdd1-4f26aefa0e07?gtm_keyword=FISHERIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Fisheries"
+}

@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "binary-wet-snow-s14science-snow",
+  "stac_version": "1.0.0",
+  "description": "Binary wet snow extent products were generated from Sentinel-1 data with 100 m grid spacing for snow areas with more than 70% fractional snow cover classified in the cloud gap filled fractional snow cover map of the same acquisition date from MODIS data. Forested areas and water bodies are masked in the wet snow products. These products were generated per track. Further, the binary wet snow maps from single tracks per day were merged to cover larger regions: Alps, Scandinavia, Pan-European domain. Product Access: Multi-sensor snowmelt extent products are stored as a zip file (Ã¢â¬Åtracks_all.zipÃ¢â¬Â) at ftp.enveo.at. User: ftp30, password will be provided by the PI on request. PI: Thomas Nagler, ENVEO IT GmbH, email: thomas.nagler@enveo.at",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp.enveo.at",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Binary wet snow extent products",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-1",
+    "Sentinel-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "s14science-snow",
+  "osc:variables": [
+    "Snow Cover"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "binary_wet snow"
+    }
+  ],
+  "osc:region": "Europe",
+  "created": "2018-12-31T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Snow/Ice",
+    "Snow Cover",
+    "Cryospheric Indicators"
+  ]
+}

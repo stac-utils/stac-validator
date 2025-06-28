@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "neutral-particle-flux",
+  "stac_version": "1.0.0",
+  "description": "Neutral atoms or neurons in the solar wind observed in space and on earth at energies of around 10*7 - 10*9 ev.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8f801f54-9ca9-4ba6-be35-fd87968f24e7?gtm_keyword=NEUTRAL%20PARTICLE%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Neutral Particle Flux"
+}

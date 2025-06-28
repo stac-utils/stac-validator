@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "groundwater",
+  "stac_version": "1.0.0",
+  "description": "It is estimated that groundwater accounts for about 30% of the world's total freshwater resources, and it is by far the largest available reservoir of liquid freshwater. Groundwater counts in average for one third of the freshwater consumed by humans, but at some parts of the world, this percentage can reach up to 100%. Climate change affects groundwater recharge rates through changes in precipitation and evapotranspiration. However, attributing observed groundwater change to climate change is difficult because of the influence of land-use change and groundwater abstraction. The extent to which groundwater recharge and storage has already been affected by climate change is widely unknown. Climate change can also affect groundwater through saltwater intrusion in coastal aquifers as sea level rises.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/groundwater/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Groundwater"
+}

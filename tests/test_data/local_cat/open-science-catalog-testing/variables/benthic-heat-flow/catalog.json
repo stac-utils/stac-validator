@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "benthic-heat-flow",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the heat disapation through the deep oceanic crust from the Earth's mantle, which decreases with distance from the midocean ridge.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bf3d6238-d0d6-4e73-82e6-5e38bc9291bb?gtm_keyword=BENTHIC%20HEAT%20FLOW&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Benthic Heat Flow"
+}

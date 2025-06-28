@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "periglacial-processes",
+  "stac_version": "1.0.0",
+  "description": "Describes a geomorphic process related to freezing of water occur. In its original meaning a periglacial area was at the time in question, the area was not buried by glacial ice but was subject to intense freezing cycles and exhibits permafrost weathering and erosion characteristics. Of, or pertaining to, the outer perimeter of a glacier, particularly to the fringe areas surrounding the great continental glaciers of the geologic ice ages. Thus, periglacial weathering is said to have produced certain characteristic land forms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fa0f38f3-2faa-4cd7-a848-22f3d96ab210?gtm_keyword=PERIGLACIAL%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Periglacial Processes"
+}

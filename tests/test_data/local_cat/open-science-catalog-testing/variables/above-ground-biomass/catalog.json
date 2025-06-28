@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "above-ground-biomass",
+  "stac_version": "1.0.0",
+  "description": "Vegetation biomass is a crucial ecological variable for understanding the evolution and potential future changes of the climate system. Photosynthesis withdraws CO2ï¿½from the atmosphere and stores carbon in vegetation in an amount comparable to that of atmospheric carbon. Vegetation systems have the potential either to sequester more carbon in the future or to contribute as an even larger source. Depending on the quantity of biomass, vegetation cover can have a direct influence on local, regional and even global climate, particularly on air temperature and water vapour.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/biomass/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Above-Ground Biomass"
+}

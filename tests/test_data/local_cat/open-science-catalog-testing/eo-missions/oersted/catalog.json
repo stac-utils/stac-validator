@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "oersted",
+  "stac_version": "1.0.0",
+  "description": "Ørsted is a geomagnetic research microsatellite mission of Denmark [named in honor of the Danish scientist Hans Christian Ørsted (1777-1851) who discovered electromagnetism in 1820]. The Ørsted mission was developed by a consortium of organizations including the NBI (Niels Bohr Institute) of the University of Copenhagen, the Technical University of Denmark (DTU), the Solar-Terrestrial Physics Division of DMI (Danish Meteorological Institute), the Danish Space Research Institute (DSRI) of Copenhagen, Terma A/S, and Computer Resources International (now part of Terma A/S). International contributions were provided by NASA, CNES, DLR and ESA. The mission objectives are to perform highly accurate and sensitive measurements of the geomagnetic field and global monitoring of the high energy charged particles in the Earth's environment. The data are used to improve geomagnetic models, to study auroral phenomena, and for correlation with Earth-based measurements in order to study the relationship between the external field and the energy coupling of the solar wind-magnetosphere-ionosphere system.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=480",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "OERSTED"
+}

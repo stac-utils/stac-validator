@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "ai4drought",
+  "stac_version": "1.0.0",
+  "description": "AI4DROUGHT is part of the AI4SCIENCE activity. The first AI4SCIENCE ITT was launched in 2021 and had a focus on Extreme Events, Multi-Hazards and Compound Events, and contributes to the ESA Extremes and Natural Disasters Science Cluster. The AI4SCIENCE ITT had 2 main objectives:Advancing Earth System Science: advancing our capacity to combine EO and AI to address a major scientific challenge: The observation, understanding and characterisation of multi-hazards, compound and cascade events and its impacts on society and ecosystems.Advancing Artificial Intelligence for EO-unlocking the full potential of Artificial Intelligence for Earth System Science with focus on two main AI challenges- physicS-driven Artificial Intelligence and explainable AI. The AI4DROUGHT project will develop a methodology for the prediction of drought climatic events over the Iberian peninsula.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.ai4drought.com/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/ai4drought/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AI4DROUGHT",
+  "osc:name": "AI4DROUGHT",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Anca Anghelea",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "anca.anghelea@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Lobelia Earth",
+      "role": "consortium_member"
+    },
+    {
+      "name": "S.L. (ES)Barcelona Supercomputing Centre (BSC) (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "FUNDACIO EURECAT (ES)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-12-14T00:00:00Z",
+  "end_datetime": "2023-10-01T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-12-14T00:00:00Z",
+          "2023-10-01T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

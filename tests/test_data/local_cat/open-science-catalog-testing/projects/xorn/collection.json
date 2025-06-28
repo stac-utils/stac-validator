@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "xorn",
+  "stac_version": "1.0.0",
+  "description": "The Earth crust represents less than 1% of the volume of our planet but is exceptionally important as it preserves the signs of the geological events that shaped the Earth. This thin layer is the place where the natural resources we need can be accessed (e.g. minerals, critical raw materials, geothermal energy, fresh water, hydrocarbons). For these reasons, a thorough understanding of its structure is crucial for both scientific and industrial future activities. In recent years, thanks to the increasing availability of seismic/seismological data and to satellite missions, the Earth crust has been thoroughly investigated and modelled at global and continental scales. However, despite this progress, the crust remains poorly understood in many regions as global models are often too coarse to provide detailed information about the regional and local dynamics. Potential field methods, which exploit gravity and magnetic data, are a powerful tool to recover information on the Earthss crust structure. A wide variety of gravity and magnetic data in fact have been nowadays collected at near surface altitudes in most regions of the world. These measurements, if properly combined with global satellite data can be used to refine at regional/local scale the modelling of crustal structures, depicting the boundaries between geological units and stratification of the crust. To fully exploit these satellite-derived and terrestrial data ad-hoc physics integrated approaches, to reconcile all the measurements, are required. A promising solution to this issue is represented by the joint processing of both gravity and magnetic fields observations, possibly incorporating the available geological knowledge and constrains coming from seismic acquisitions. In the XORN project an innovative, fully integrated approach will be developed to perform a complete 3D joint inversion of gravity and magnetic fields data, constrained by seismic and geological a-priori information. The developed algorithm will be used within the project to recover a 3D regional model of the Earth crust in the Mediterranean Area in terms of density and magnetic susceptibility distribution and in terms of depths of the main geological horizons.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://xorn-project.eu/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/xorn/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "XORN",
+  "osc:name": "eXperimental jOint inveRsioN",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Solid Earth"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Ilias Daras",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "ilias.daras@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "GEOMATICS RESEARCH AND DEVELOPMENT (IT)CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE (CNRS) (FR)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-07-04T00:00:00Z",
+  "end_datetime": "2023-12-19T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-07-04T00:00:00Z",
+          "2023-12-19T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

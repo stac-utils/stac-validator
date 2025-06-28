@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "total-runoff",
+  "stac_version": "1.0.0",
+  "description": "The total runoff is equal to the total precipitation less the losses caused by evapotranspiration, storage, and other such abtractions.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/0eb4156f-e4ab-4e02-a473-df4b44290556?gtm_keyword=TOTAL+RUNOFF&gtm_scheme=Earth+Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Total Runoff"
+}

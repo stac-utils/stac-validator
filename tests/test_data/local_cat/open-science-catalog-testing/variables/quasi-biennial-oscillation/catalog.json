@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "quasi-biennial-oscillation",
+  "stac_version": "1.0.0",
+  "description": "The quasi-biennial oscillation (QBO) is a quasi-periodic oscillation of the equatorial zonal wind between easterlies and westerlies in the tropical stratosphere with a mean period of 28 to 29 months. A stratospheric (16 to 35 km altitude) oscillation of equatorial east-west winds which vary with a period of about 26 to 30 months or roughly 2 years; typically blowing for 12-16 months from the east, then reverse and blowing 12-16 months from the west, then back to easterly again.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ea64fa04-2822-4cc5-9014-f18ce1a1ef23?gtm_keyword=QUASI-BIENNIAL%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Quasi-Biennial Oscillation"
+}

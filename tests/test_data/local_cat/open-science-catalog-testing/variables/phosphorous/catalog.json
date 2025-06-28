@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "phosphorous",
+  "stac_version": "1.0.0",
+  "description": "A chemical element with symbol P and atomic number 15. As an element, phosphorus exists in two major forms, white phosphorus and red phosphorus, but because it is highly reactive, phosphorus is never found as a free element on Earth. With a concentration of 0.099%, phosphorus is the most abundant pnictogen in the Earth's crust. Other than a few exceptions, minerals containing phosphorus are in the maximally oxidized state as inorganic phosphate rocks.[Encyclopedia Britannica]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/846d2db9-41cd-4ae8-b4ff-a34a9efb7428?gtm_keyword=PHOSPHOROUS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9169ace5-0f04-4fc9-b38d-b89a786b9fe1?gtm_keyword=PHOSPHORUS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/47f4e7ac-b4ca-4ef9-824b-a36ea5510526?gtm_keyword=PHOSPHORUS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4962dabc-b426-4c84-8147-12e15645baff?gtm_keyword=PHOSPHORUS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Phosphorous"
+}

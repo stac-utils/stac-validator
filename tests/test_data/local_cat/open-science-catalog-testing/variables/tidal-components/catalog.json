@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tidal-components",
+  "stac_version": "1.0.0",
+  "description": "Harmonic constituents of tides with characteristic phase, period and amplitude, unique to a given location and used in the harmonic method of tide prediction.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f4f40ec7-e698-4e11-b406-a0fa7f4b530c?gtm_keyword=TIDAL%20COMPONENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Tidal Components"
+}

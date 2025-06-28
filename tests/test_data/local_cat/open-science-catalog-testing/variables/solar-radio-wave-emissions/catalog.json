@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-radio-wave-emissions",
+  "stac_version": "1.0.0",
+  "description": "Also known as solar radio emissions. Emissions of the sun in radio wavelengths from centimeters to decameters, under both quiet and disturbed conditions.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/25aa0f7b-89a5-46d7-b3d3-622b60032661?gtm_keyword=SOLAR%20RADIO%20WAVE%20EMISSIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Radio Wave Emissions"
+}

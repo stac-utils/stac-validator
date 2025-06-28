@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "polar-stratospheric-clouds-nacreous",
+  "stac_version": "1.0.0",
+  "description": "Polar stratospheric clouds (PSCs) play a central role in the formation of the ozone hole in the Antarctic and Arctic. PSCs provide surfaces upon which heterogeneous chemical reactions take place. These reactions lead to the production of free radicals of chlorine in the stratosphere which directly destroy ozone molecules. PSCs form poleward of about 60ï¿½S latitude in the altitude range 10 km to 25 km during the winter and early spring. The clouds are classified into Types I and II according to their particle size and formation temperature. Type II clouds, also known as nacreous or mother-of-pearl clouds, are composed of ice crystals and form when temperatures are below the ice frost point (typically below -83ï¿½C). The Type I PSCs are optically much thinner than the Type II clouds, and have a formation threshold temperature 5 to 8ï¿½C above the frost point. These clouds consist mainly of hydrated droplets of nitric acid and sulphuric acid. Despite two decades of research, the climatology of PSCs is not well described, and this impacts on the accuracy of ozone depletion models. The timing and duration of PSC events, their geographic extent and vertical distributions, and their annual variability are not well understood.The Davis lidar has been used to study stratospheric clouds since 2001. The observations consist of profiles of Rayeligh laser backscatter at a wavelength of 532 nm as a function of altitude. The measurements are being used to investigate the climatology of the clouds and their relation to the temperature structure of the stratosphere, and the influence of atmospheric gravity waves and planetary waves in modulating their structure and ozone depletion.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9d3d400c-ded2-4b3c-8d0c-5a76e25be033?gtm_keyword=POLAR%20STRATOSPHERIC%20CLOUDS/NACREOUS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Polar Stratospheric Clouds/Nacreous"
+}

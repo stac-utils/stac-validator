@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "north-pacific-pattern",
+  "stac_version": "1.0.0",
+  "description": "North Pacific pattern is the area-weighted sea level pressure over the region 30N-65N, 160E-140W.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c6abcc08-7d59-4852-8c1a-82f464900333?gtm_keyword=NORTH%20PACIFIC%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "North Pacific Pattern"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hail",
+  "stac_version": "1.0.0",
+  "description": "A type of frozen precipitation in the form of balls or irregular lumps of ice, usually consisting of concentric layers of ice. Hail is always produced by convective clouds, nearly always cumulonimbus.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7118d286-6629-48e5-931f-052cd347395e?gtm_keyword=HAIL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hail"
+}

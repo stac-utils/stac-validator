@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tropical-or-extratropical-cyclone-frequency-intensity",
+  "stac_version": "1.0.0",
+  "description": "Tropical cyclone frequency is the number of tropical cyclones occurring over a given time period and spatial domain. Here, we are most interested in the annual frequency over either the entire globe or individual basins, that is, particular distinct portions of the tropical oceans over which tropical cyclones occur (such as the North Atlantic, South Indian, etc.). Tropical cyclone frequency strongly controls the total hazard and risk from tropical cyclones, because no other aspect of a tropical cyclone matters if it does not occur. (Sobel et al., 2021)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a85b812e-e4d2-4dce-bf67-d89a3e1a9122?gtm_keyword=TROPICAL%20OR%20EXTRATROPICAL%20CYCLONE%20FREQUENCY/INTENSITY&gtm_scheme=Earth%20Science; https://doi.org/10.1029/2021EF002275",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Tropical Or Extratropical Cyclone Frequency/Intensity"
+}

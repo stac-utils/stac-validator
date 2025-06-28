@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "plate-tectonics-stress",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the pressure which builds-up in the Earth's crust due to external loading, such as from collision of tectonic plates, addition/removal of water, advancing or receding of glaciers, etc.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/29dbe37e-22e6-4d02-844f-60359fbbc130?gtm_keyword=STRESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Plate Tectonics Stress"
+}

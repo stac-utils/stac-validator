@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "secchi-disk-depth-lpf-physioglob",
+  "stac_version": "1.0.0",
+  "description": "Data consist of global monthly-averaged maps of Hue angle, Forel-Ule index and Secchi disk depth at ~ 4 km spatial resolution at the equator. Data extend from 1997 and 2018 and were generated from the ESA-OC-CCI v4.0 multi-sensor merged remote-sensing reflectances. Two downsized subproducts are also provided: - The global dataset, reduced at 1 degree spatial resolution - A North Atlantic dataset, reduced at 0.25 degree spatial resolution",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.904266",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Secchi Disk depth_Global Oceans_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "OrbView-2",
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP"
+  ],
+  "osc:project": "lpf-physioglob",
+  "osc:variables": [
+    "Chlorophyll Concentration"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "secchi_disk_depth"
+    }
+  ],
+  "osc:region": "Global Oceans",
+  "created": "2019-01-01T00:00:00Z",
+  "start_datetime": "1997-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1997-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Chlorophyll",
+    "Chlorophyll Concentration",
+    "Ocean Chemistry",
+    "Pigments"
+  ]
+}

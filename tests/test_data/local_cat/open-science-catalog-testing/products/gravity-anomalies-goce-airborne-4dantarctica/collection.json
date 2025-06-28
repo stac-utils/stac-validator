@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "gravity-anomalies-goce-airborne-4dantarctica",
+  "stac_version": "1.0.0",
+  "description": "Gravity surveying is challenging in Antarctica because of its hostile environment and inaccessibility. Nevertheless, many ground-based, airborne, and shipborne gravity campaigns have been completed by the geophysical and geodetic communities since the 1980s. We present the first modern Antarctic-wide gravity data compilation derived from 13 million data points covering an area of 10 million km**2, which corresponds to 73% coverage of the continent. The remove-compute-restore technique was applied for gridding, which facilitated leveling of the different gravity data sets with respect to an Earth gravity model derived from satellite data alone. The resulting free-air and Bouguer gravity anomaly grids of 10 km resolution are publicly available. These grids will enable new high-resolution combined Earth gravity models to be derived and represent a major step forward toward solving the geodetic polar data gap problem. They provide a new tool to investigate continental-scale lithospheric structure and geological evolution of Antarctica. Products available also in different formats: Antarctic free-air and complete Bouguer gravity anomaly grid in formated ASCII format (9 MB, zipped): https://hs.pangaea.de/Maps/antgg2015/antgg2015.zip and in text file format: https://doi.pangaea.de/10.1594/PANGAEA.848168?format=textfile",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.848168",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1002/2015GL067439",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Gravity anomalies from GOCE and airborne data",
+  "osc:themes": [
+    "Cryosphere",
+    "Solid Earth"
+  ],
+  "osc:missions": [
+    "GOCE",
+    "GRACE"
+  ],
+  "osc:project": "4d-antarctica",
+  "osc:variables": [
+    "Gravity Anomalies"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "gravity_anomalies"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2016-01-08T00:00:00Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Gravity/Gravitational Field",
+    "Gravity Anomalies"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-fire-danger-index",
+  "stac_version": "1.0.0",
+  "description": "A forest fire danger index (FDI) or burning index (BI) is a relative number related to the contribution that fire behavior makes to the amount of effort needed to contain a fire of a specified fuel type. The index may be calculated differently by different agencies around the world.[See the American Meteorological Society Glossary of Meteorology Online: http://amsglossary.allenpress.com/glossary. For other fire weather terms, see: http://www.fs.fed.us/r2/fire/fbgloss.htm",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/16329a9b-72ea-4b46-b507-2ce389c63f50?gtm_keyword=FOREST%20FIRE%20DANGER%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Fire Danger Index"
+}

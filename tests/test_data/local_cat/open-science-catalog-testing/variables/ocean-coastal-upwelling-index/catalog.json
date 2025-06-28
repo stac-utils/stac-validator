@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-coastal-upwelling-index",
+  "stac_version": "1.0.0",
+  "description": "Upwelling is an important process affecting plankton production off the Pacific Northwest. The CUI is a measure of the volume of water that upwells along the coast; it identifies the amount of offshore transport of surface waters due to geostrophic wind fields. Indices are in units of cubic meters per second along each 100 meters of coastline. Positive numbers indicate offshore transport for the upwelling index product and southward transport for the along-shore product. The CUI was developed by Dr. Andrew Bakun (Bakun 1973) and is provided by the Pacific Fisheries Environmental Lab (PFEL) of NOAA National Marine Fisheries Service (NMFS).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/74ad118c-2f18-40fb-a26e-092390f52c20?gtm_keyword=OCEAN%20COASTAL%20UPWELLING%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Coastal Upwelling Index"
+}

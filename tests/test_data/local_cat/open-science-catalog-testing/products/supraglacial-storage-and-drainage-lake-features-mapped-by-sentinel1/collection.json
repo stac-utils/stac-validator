@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "supraglacial-storage-and-drainage-lake-features-mapped-by-sentinel1",
+  "stac_version": "1.0.0",
+  "description": "An experimental dataset produced for the 4D-Greenland project, one of the Polar+ projects funded by the European Space Agency. The dataset provides a classification of supraglacial lake extent, derived using Sentinel-1 SAR imagery, over the Watson case study site. The dataset is produced using a dynamic thresholding approach (Miles et al 2018).\nThe dataset is produced for the period May 2017- Sept 2019. The temporal resolution of the dataset is approximately fortnightly (subject to methodological limitations) and is delivered as rasters in GeoTIFF format (epsg:3413). Raster pixels are denoted as: 0 where no surface water was detected; 1 where either HH or HV polarisation detected a backscatter signature representative of surface water; 2 where both HH and HV polarisations detected a backscatter signature representative of surface water; or 999 where the signal has been saturated and the output cannot distinguish if the signal is due to melt or other surface characteristics with the same backscattered signature.\nThe naming convention indicates the original SAR tile used in the analysis and is identified by the sequence of fields described here:\n<product_type>_<mission>_<mode>_<product>_<polarisation>_<starttime>_<endtime>_<orbitnumber>_<dataID>_<image>.fileextension\nFor example:\nextent_S1B_EW_GRDH_1SDH_20180811T202931_20180811T203031_012220_016839_916F.tif",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/7568049#.ZDbG4nbP1aQ",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://4dgreenland.eo4cryo.dk/?page_id=48",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Supraglacial Storage and Drainage - Lake Features Mapped by Sentinel-1",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-1"
+  ],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Glacial Lake Extent"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "supraglacial_storage_and_drainage_lake"
+    }
+  ],
+  "osc:region": "Greenland - Watson basin",
+  "created": "2023-01-25T00:00:00Z",
+  "start_datetime": "2017-05-01T00:00:00Z",
+  "end_datetime": "2019-09-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-05-01T00:00:00Z",
+          "2019-09-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glaciers",
+    "Glacial Lake Extent"
+  ]
+}

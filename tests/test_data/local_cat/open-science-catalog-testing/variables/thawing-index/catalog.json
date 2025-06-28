@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "thawing-index",
+  "stac_version": "1.0.0",
+  "description": "As used by the U.S. Army Corps of Engineers, the number of Fahrenheit degree- days (above and below 32ï¿½F) between the lowest and highest points on the cumulative degree- days time curve for one thawing season. The thawing index determined from air temperatures at 4.5 ft above the ground is commonly designated the air thawing index, while that determined from temperatures immediately below a surface is called the surface thawing index.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/746c49af-3e36-4f0a-b488-e024314d6cfa?gtm_keyword=THAWING%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Thawing Index"
+}

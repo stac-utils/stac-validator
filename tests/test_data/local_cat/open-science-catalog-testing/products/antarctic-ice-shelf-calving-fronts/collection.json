@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "antarctic-ice-shelf-calving-fronts",
+  "stac_version": "1.0.0",
+  "description": "Antarctic Coastlines, 1997-2021. Time-evolving Antarctic calving fronts from observations. Greene, Chad A., Gardner, Alex S., Schlegel, Nicole-Jeanne, & Fraser, Alexander D. (2022)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/5903643",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nature.com/articles/s41586-022-05037-w",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.5903642"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Antarctic Ice Shelf Calving Fronts 1997-2021",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [],
+  "osc:project": "polar-ice-shelves",
+  "osc:variables": [
+    "Ice Extent"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "antarctic-ice-shelf-calving-fronts"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2023-01-25T00:00:00Z",
+  "start_datetime": "1997-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "sci:doi": "10.5281/zenodo.5903642",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -60.0,
+          180.0,
+          83.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1997-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Sea Ice",
+    "Ice Shelf",
+    "Ice Extent",
+    "Cryospheric Indicators"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "oceanic-current-fronts-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "Fronts derived from remote sensing SST observations by SEVIRI L3C from OSISAF and microwave  OI L4 SST from REMSS, over Agulhas region, (Western only for SEVIRI) North Atlantic.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://drive.google.com/file/d/1GIxRA1xJ5I-ch7aXSqh9I_y-YGBe3xfM/view?usp=sharing",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Oceanic/current fronts_Gibraltar",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Fronts"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "oceanic_current_fronts"
+    }
+  ],
+  "osc:region": "Gibraltar",
+  "created": "2021-11-30T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -5.4006553,
+          36.05875496,
+          -5.27666114,
+          36.15503755
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Circulation",
+    "Ocean Currents",
+    "Fronts"
+  ]
+}

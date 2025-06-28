@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ablation-zones-accumulation-zones",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the reduction of a glacier due to melting and/or evaporation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/95fbaefd-1afe-4887-a1ba-fc338a8109bb?gtm_keyword=ABLATION%20ZONES/ACCUMULATION%20ZONES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ablation Zones/Accumulation Zones"
+}

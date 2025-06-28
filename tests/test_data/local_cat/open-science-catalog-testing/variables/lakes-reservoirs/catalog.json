@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "lakes-reservoirs",
+  "stac_version": "1.0.0",
+  "description": "An area of land where surface water from rain, melting snow, or ice converges to a single point at a lower elevation, usually the exit of the basin, where the waters join another waterbody, such as a river, lake, reservoir, estuary, wetland, sea, or ocean.[http://water.usgs.gov/edu/watershed.html]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3d64f625-fb84-4178-ad08-4be2dd15979b?gtm_keyword=LAKES/RESERVOIRS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Lakes/Reservoirs"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "ammonia",
+  "stac_version": "1.0.0",
+  "description": "Ammonia (NH3) is a reduced nitrogen gas and is emitted in large quantities from animal feedstocks, sewerage plants, etc. Ammonia is very soluble in water and is scavenged from the lower atmosphere by clouds. Ammonia is the most abundant alkaline gas in the atmosphere and plays a large role in neutralizing acidity from sulfuric and nitric acids via formation of the ammonium ion. In Oceanography ammonia is a gaseous compound of one nitrogen atom and three hydrogen atoms, NH3, that is highly water-soluble. A dissolved form, ammonium, NH4+, is a nutrient and is listed as a detailed variable under ammonia.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a745a5e-829c-43f5-8d5a-6fb549e7b81b?gtm_keyword=AMMONIA&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a745a5e-829c-43f5-8d5a-6fb549e7b81b?gtm_keyword=AMMONIA&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/64d17528-29b4-4e2e-843a-7f7035bb5717?gtm_keyword=AMMONIA&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ammonia"
+}

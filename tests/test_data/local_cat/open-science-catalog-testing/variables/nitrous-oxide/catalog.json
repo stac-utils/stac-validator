@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "nitrous-oxide",
+  "stac_version": "1.0.0",
+  "description": "Nitrous oxide (N2O) is a by-product of biological activity of a symbiotic bacteria living in leguminous plant roots. This is a principal greenhouse gas that absorbs in the infrared wavelength region and unfortunately falls in an IR \"window\" between IR absorbing features of water and carbon dioxide (a characteristic of all the \"trace\" greenhouse gases with significant radiative forcing). It is also laughing gas used by medicine as a gentle general anesthetic. [Nature;v335;528-529;1988] [Atmospheric sulfur and nitrogen oxides;George Hidy;p13;1986;Academic press; New York]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cf08917f-4cef-456f-99b0-57dc468da877?gtm_keyword=NITROUS%20OXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Nitrous Oxide"
+}

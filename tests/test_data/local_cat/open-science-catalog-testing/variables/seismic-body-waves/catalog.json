@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "seismic-body-waves",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement of waves generated through the relaxation of stress within the Earth's crust; either through an earthquake, or as an externally generated shock-wave.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/f66893ce-3ea6-4c52-bc27-bc322a41b748?gtm_keyword=SEISMIC%20BODY%20WAVES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Seismic Body Waves"
+}

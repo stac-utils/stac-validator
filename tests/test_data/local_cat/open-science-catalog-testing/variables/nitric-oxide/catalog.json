@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nitric-oxide",
+  "stac_version": "1.0.0",
+  "description": "Nitric oxide (NO) is a colorless gas, the most common form of nitrogen emitted into the atmosphere, either by fuel combustion or due to natural emissions. Nitric oxide is interconverted with nitrogen dioxide fairly readily in the atmosphere, resulting in catalytic cycles leading to ozone formation in the troposphere and ozone loss in the stratosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/82a60ed8-5414-4ce0-858c-c50b27b12bc8?gtm_keyword=NITRIC%20OXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Nitric Oxide"
+}

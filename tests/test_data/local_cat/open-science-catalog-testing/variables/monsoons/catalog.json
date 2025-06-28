@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "monsoons",
+  "stac_version": "1.0.0",
+  "description": "It was first applied to the winds over the Arabian Sea, which blow for six months from northeast and for six months from southwest, but it has been extended to similar winds in other parts of the world. Even in Europe the prevailing west to northwest winds of summer have been called the \"European monsoon\". The primary cause is the much greater annual variation of temperature over large land areas compared with neighboring ocean surfaces, causing an excess of pressure over the continents in winter and a deficit in summer, but other factors such as the relief features of the land have a considerable effect. The monsoons are strongest on the southern and eastern sides of Asia, the largest landmass, but monsoons also occur on the coasts of tropical regions wherever the planetary circulation is not strong enough to inhibit them. They have been described in Spain, northern Australia, Africa except the Mediterranean, Texas, and the western coasts of the United States and Chile. In India the term is popularly applied chiefly to the southwest monsoon and, by extension, to the rains which it brings.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a6212424-1146-4a79-a14c-8ce88543b08b?gtm_keyword=MONSOONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Monsoons"
+}

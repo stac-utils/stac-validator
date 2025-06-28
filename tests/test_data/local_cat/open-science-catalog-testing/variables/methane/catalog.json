@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "methane",
+  "stac_version": "1.0.0",
+  "description": "Methane (CH4) is a colorless, odorless, flammable, greenhouse gas. It is released naturally into the air from marshes, swamps, rice fields, ruminant animals (such as cattle), and sewage sludge. CH4 is also released from methane-producing bacteria (methanogens) that live in anaerobic places. [Solar Energy; v52n6; 467-477; 1994.] [Air, The Nature of Atmosphere and the Climate; Michael Allaby; pages 39,40; 1992; Facts on File; New York] [Dictionary of Science; R.K. Barnhart; page 398; 1986; Houghton Mifflin Company; Boston.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7c892333-f4c4-4f81-b825-d6a86e107e9f?gtm_keyword=METHANE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Methane"
+}

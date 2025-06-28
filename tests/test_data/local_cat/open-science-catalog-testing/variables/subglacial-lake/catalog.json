@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "subglacial-lake",
+  "stac_version": "1.0.0",
+  "description": "Subglacial lakes under ice sheets and glaciers affect multiple components of the Earth system. A subglacial lake is defined as any discrete water body at the base of an ice mass, without presuming a minimum area or depth. With this definition, lakes exist across a wide range of length scales: from small (around 1?m) water bodies in basal cavities to large (>100?km) lakes that strongly influence ice dynamics by producing flat ice surfaces, and from shallow (about 1?cm or less) water patches connected by saturated sediments to deep (approximately hundreds of metres) lakes with their own internal circulation. Although no minimum size is presumed, the smallest subglacial lakes in the inventory are of the order of 0.0001?km3. Subglacial lake locations and volumes are determined by subglacial hydrology, which results from subglacial water production and the surface and bedrock topography. Subglacial lakes occur when subglacial meltwater collects in local minima of basal hydrological potential, owing to depressions in bed topography and the glacier surface, ice flow over ï¿½sticky spotsï¿½, or trapping of basal water behind cold-based ice. Subglacial lakes under ice sheets and glaciers affect multiple components of the Earth system. A subglacial lake is defined as any discrete water body at the base of an ice mass, without presuming a minimum area or depth. With this definition, lakes exist across a wide range of length scales: from small (around 1?m) water bodies in basal cavities to large (>100?km) lakes that strongly influence ice dynamics by producing flat ice surfaces, and from shallow (about 1?cm or less) water patches connected by saturated sediments to deep (approximately hundreds of metres) lakes with their own internal circulation. Although no minimum size is presumed, the smallest subglacial lakes in the inventory are of the order of 0.0001?km3. Subglacial lake locations and volumes are determined by subglacial hydrology, which results from subglacial water production and the surface and bedrock topography. Subglacial lakes occur when subglacial meltwater collects in local minima of basal hydrological potential, owing to depressions in bed topography and the glacier surface, ice flow over ï¿½sticky spotsï¿½, or trapping of basal water behind cold-based ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nature.com/articles/s43017-021-00246-9",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Subglacial Lake"
+}

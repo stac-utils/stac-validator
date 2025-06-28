@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "plate-tectonics",
+  "stac_version": "1.0.0",
+  "description": "A theory of global tectonics in which the lithosphere is divided into a number of plates whose pattern of horizontal movement is that of torsionally rigid bodies that interact with one another at their boundaries, causing seismic and tectonic activity along these boundaries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/71e9bc66-6f8c-41ec-8b22-2fe390223639?gtm_keyword=PLATE%20TECTONICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Plate Tectonics"
+}

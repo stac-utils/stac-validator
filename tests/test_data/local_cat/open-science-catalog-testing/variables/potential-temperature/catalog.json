@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "potential-temperature",
+  "stac_version": "1.0.0",
+  "description": "The temperature that an unsaturated parcel of dry air would have if brought adiabatically and reversibly from its initial state to a standard pressure, p0, typically 100 kPa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7a0bd777-be0d-43c8-80eb-5ac58f4832de?gtm_keyword=POTENTIAL%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Potential Temperature"
+}

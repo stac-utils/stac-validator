@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorine-monoxide",
+  "stac_version": "1.0.0",
+  "description": "ClO, a radical species (with an odd number of electrons in its outer shell) which plays an important role in the breakdown of stratospheric ozone over Antarctica. Formed by the photolysis of CFCs in the stratosphere and the subsequent destruction of an ozone molecule, these radicals can act as a catalyst in the destruction of ozone while not being destroyed themselves. ClO, reacting with a oxygen atom (present from the Chapman Mechanism), releases a free chlorine radical once again. As a result, one Cl atom can destroy thousands of ozone molecules before being sequestered as HCl or another reservoir species (see chlorine nitrate). [Earth Island Journal; v 7; page 18; 1992.] [Chronicle of Higher Education; v 38; pages A6-A7; 1992.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a9104127-6846-4123-8ab0-b65c61a0018d?gtm_keyword=CHLORINE%20NITRATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorine Monoxide"
+}

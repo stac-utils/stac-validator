@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "aeolus-inno-sea-flect",
+  "stac_version": "1.0.0",
+  "description": "The Sea-Flect study objective is to define, calibrate and validate an ocean surface wind speed retrieval method and retrieval method conditions using Aeolus measurements. These retrievals are used to develop a demonstrational Aeolus surface wind product. In this study, strong emphasis is put on the retrieval method and conditions as it is expected that under specific conditions a good wind speed retrieval may be hampered or may be even impossible. Characterization of these conditions is a main outcome of the project.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://aeolus-surface-wind.aer.com/index.html",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/aeolus-innovation-expro-ocean-surface-wind-from-aeolus-sea-surface-returns-sea-flect/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AEOLUS+inno - SEA-FLECT",
+  "osc:name": "AEOLUS+ INNOVATION EXPRO+ OCEAN SURFACE WIND FROM AEOLUS SEA SURFACE RETURNS (SEA-FLECT)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere",
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Verisk Analytics GmbH (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "INFORMUS GMBH (DE)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-11-11T00:00:00Z",
+  "end_datetime": "2021-06-22T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-11-11T00:00:00Z",
+          "2021-06-22T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

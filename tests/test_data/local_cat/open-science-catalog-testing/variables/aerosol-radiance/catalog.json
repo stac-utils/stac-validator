@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aerosol-radiance",
+  "stac_version": "1.0.0",
+  "description": "Electromagnetic radiation received (primarily by spacecraft) as scattered from aerosols. Usually a term used in ocean color remote sensing to measure radiance from marine aerosols.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7db9eab3-4c7a-4471-a826-a306f178ad3e?gtm_keyword=AEROSOL%20RADIANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Aerosol Radiance"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "lightning",
+  "stac_version": "1.0.0",
+  "description": "Lightning is one of the most dramatic weather phenomena, causing many fatalities as well as substantial loss and damage for example by forest fires, damage to electrical infrastructure and other sectors every year all over the world. On top, even more damage is caused by the storms which generate lightning. This direct link to convection makes lightning also a potentially valuable indicator to track and understand trends in storminess, particularly under climate variability and change. In addition, lightning itself impacts the global climate by producing nitrogen oxides (NOX), a strong greenhouse gas. Lightning is a transient, high-current electric discharge with pathlengths measured in kilometers.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/lightning; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f24c4f33-5b89-4e8d-8de7-296078a7f18a?gtm_keyword=LIGHTNING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Lightning"
+}

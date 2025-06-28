@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "volcanic-eruptions",
+  "stac_version": "1.0.0",
+  "description": "Explosions or emissions of lava, ashes and toxic gases from deep inside the earth, through volcanoes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/06c1281f-e306-4511-bdab-ed6c0694f0f9?gtm_keyword=VOLCANIC%20ERUPTIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Volcanic Eruptions"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "biomass-burning",
+  "stac_version": "1.0.0",
+  "description": "Biomass burning is the burning of organic matter, such as, wood or crop wastes,that can be burned or converted into gaseous or liquid fuels. Useful biomass includes wood, wood residues left over from the timber industry, crop residues, charcoal, manure, urban waste, industrial wastes, and municipal sewage. Some of these fuels can be burned directly, others are converted to methane or a gas.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9d7eed04-9c49-4024-8d0f-06474cc38bbc?gtm_keyword=BIOMASS%20BURNING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Biomass Burning"
+}

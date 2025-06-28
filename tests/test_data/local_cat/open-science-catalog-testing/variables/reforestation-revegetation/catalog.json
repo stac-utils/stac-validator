@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "reforestation-revegetation",
+  "stac_version": "1.0.0",
+  "description": "Reforestation is the replanting of trees in forests where the trees have been cut down. Reforestation sometimes is undertaken in an effort to reduce atmospheric carbon dioxide levels by restoring forests, which are carbon sinks.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/39a032bf-c3bc-481b-9698-8be114fe85cb?gtm_keyword=REFORESTATION/REVEGETATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Reforestation/Revegetation"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-water-processes-measurements",
+  "stac_version": "1.0.0",
+  "description": "Surface-water hydrology is a field that encompasses all surface waters of the globe (overland flows, rivers, lakes, wetlands, estuaries, oceans, etc.). This is a subset of the hydrologic cycle that does not include atmospheric, and ground waters. Surface-water hydrology relates the dynamics of flow in surface-water systems (rivers, canals, streams, lakes, ponds, wetlands, marshes, arroyos, oceans, etc.). This includes the field measurement of flow (discharge); the statistical variability at each setting; floods; drought susceptibility and the development of the levels of risk; and the fluid mechanics of surface waters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9d86cd70-062a-4c39-b3f3-226abebc07f7?gtm_keyword=SURFACE%20WATER%20PROCESSES/MEASUREMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Water Processes/Measurements"
+}

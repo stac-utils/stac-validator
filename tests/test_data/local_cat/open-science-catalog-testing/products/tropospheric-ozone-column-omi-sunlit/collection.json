@@ -1,0 +1,76 @@
+{
+  "type": "Collection",
+  "id": "tropospheric-ozone-column-omi-sunlit",
+  "stac_version": "1.0.0",
+  "description": "Tropospheric ozone column (TrOC) from OMI and limb satellites, monthly temporal resolution, 1 x 1 degrees spatial resolution, 2004-2020. The datasets are created using combination of total ozone column from OMI and TROPOMI with stratospheric ozone profile datasets from several limb-viewing instruments (MLS, OSIRIS, MIPAS, SCIAMACHY, OMPS-LP, GOMOS). Ozone profiles from limb satellite instruments are homogenized, i.e., biases are removed and validation /a-posteriori estimation of random uncertainties is performed. The high spatial and vertical resolution dataset of ozone profiles is created via kriging-type interpolation of the limb profiles from each day to 1°x1° horizontal grid. The daily 1°x1° stratospheric ozone column dataset from limb instruments is evaluated in two ranges: from tropopause and from 3 km below the tropopause.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://nsdc.fmi.fi/data/data_sunlit.php",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Tropospheric ozone column (TrOC)_Global_OMI and limb satellites",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Aura"
+  ],
+  "osc:project": "sunlit",
+  "osc:variables": [
+    "Tropospheric Ozone"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "tropospheric_ozone_column"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2020-12-31T00:00:00Z",
+  "start_datetime": "2004-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2004-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Air Quality",
+    "Tropospheric Ozone"
+  ]
+}

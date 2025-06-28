@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "oil-spills",
+  "stac_version": "1.0.0",
+  "description": "An oil spill is defined not only as oil which comes from wrecked tankers that spill out oil, but also to oil which comes from well blowouts, breaks in pipelines or oil that enters the oceans from the transfer of oil from offshore platforms to shore during normal operations.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/82c3689a-6bbf-496f-b118-b6ab46a9d2c7?gtm_keyword=OIL%20SPILLS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Oil Spills"
+}

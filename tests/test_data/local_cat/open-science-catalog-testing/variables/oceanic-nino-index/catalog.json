@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "oceanic-nino-index",
+  "stac_version": "1.0.0",
+  "description": "Beginning in December 2008, the Oceanic Nino Index (ONI) is calculated using Version 3b of the extended reconstructed sea surface temperature (ERSST) dataset. More information on this new dataset is provided here (see refefrence link). This new monthly analysis replaces ERSST Version 3, which will no longer be updated. In the meantime, we are temporarily providing web links to the ONI based on ERSST.v3b and ERSST.v3.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/70ed535b-a591-411d-80ca-9eafe10b3be8?gtm_keyword=OCEANIC%20NINO%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Oceanic Nino Index"
+}

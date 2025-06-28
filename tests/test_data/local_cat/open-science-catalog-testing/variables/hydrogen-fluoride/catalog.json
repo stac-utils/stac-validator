@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrogen-fluoride",
+  "stac_version": "1.0.0",
+  "description": "Hydrogen Fluoride (HF) is an important fluorine-containing compound formed from the breakdown of chlorofluorocarbons. Also a product of volcanic eruption.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ff9f8056-84d6-4fbc-abe0-9b6e82ed3f5e?gtm_keyword=HYDROGEN%20FLUORIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrogen Fluoride"
+}

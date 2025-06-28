@@ -1,0 +1,90 @@
+{
+  "type": "Collection",
+  "id": "clima-cloud-profile-livas",
+  "stac_version": "1.0.0",
+  "description": "4-year averaged profiles of cloud optical properties (extinction and backscatter coefficients, particle depolarization ratio) at 532 nm. The products are also provided per season and per cloud type. (Amiridis et al., ACP, 2015, https://doi.org/10.5194/acp-15-7127-2015)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftps://livas:livas-public@react.space.noa.gr",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://195.251.203.238/beyond/images/docs/publications/atmospheric/Amiridis_LIVAS.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5194/acp-15-7127-2015"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Climatology of cloud optical property profiles_Global_CALIPSO_EARTHCARE",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "CALIPSO",
+    "EarthCARE"
+  ],
+  "osc:project": "livas",
+  "osc:variables": [
+    "Cloud Optical Depth/Thickness"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "cloud_optical_properties_profiles"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2014-01-01T00:00:00Z",
+  "start_datetime": "2008-01-01T00:00:00Z",
+  "end_datetime": "2011-12-31T23:59:59Z",
+  "sci:doi": "10.5194/acp-15-7127-2015",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2008-01-01T00:00:00Z",
+          "2011-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Clouds",
+    "Cloud Microphysics",
+    "Cloud Optical Depth/Thickness",
+    "Cloud Properties"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "karst-landscape",
+  "stac_version": "1.0.0",
+  "description": "An ecosystem within a landscape defined as Karst topography characterized by caves, sinkholes, disappraring streams and underground drainage. Karst forms when groundwater dissolves pockets of limestone, dolomite, or gypsum in rock.[From the Houghton Mifflin Student Resource Center GeologyLink.:http://college.hmco.com/geology/resources/geologylink/glossary.html]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/de702fdd-3702-4164-a396-08082b0558c0?gtm_keyword=KARST%20LANDSCAPE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Karst Landscape"
+}

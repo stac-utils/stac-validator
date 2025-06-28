@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "seiches",
+  "stac_version": "1.0.0",
+  "description": "Pendulum-like rocking of water in an enclosed area; a form of standing wave that can be caused by meteorological or seismic forces, or that may result from normal resonances excited by tides.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/2b4963ba-1a7a-419d-97ef-eacaa14688e0?gtm_keyword=SEICHES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Seiches"
+}

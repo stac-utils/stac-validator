@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nino-3-4-index",
+  "stac_version": "1.0.0",
+  "description": "The NINO3.4 index is one of several El Niï¿½o/Southern Oscillation (ENSO) indicators based on sea surface temperatures. NINO3.4 is the average sea surface temperature anomaly in the region bounded by 5ï¿½N to 5ï¿½S, from 170ï¿½W to 120ï¿½W. This region has large variability on El Niï¿½o time scales, and is close to the region where changes in local sea-surface temperature are important for shifting the large region of rainfall typically located in the far western Pacific. An El Niï¿½o or La Niï¿½a event is identified if the 5-month running-average of the NINO3.4 index exceeds +0.4ï¿½C for El Niï¿½o or -0.4ï¿½C for La Niï¿½a for at least 6 consecutive months.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a084d58c-c4f6-40fa-a645-96d9bef021aa?gtm_keyword=NINO%203.4%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Nino 3.4 Index"
+}

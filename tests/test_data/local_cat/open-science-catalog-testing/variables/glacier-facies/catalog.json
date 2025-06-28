@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-facies",
+  "stac_version": "1.0.0",
+  "description": "In general, facies are the set of all characteristics of a sedimetary rock that indicates its particular environment of deposition and which distinguish it from other facies in the same rock. Glacial facies refer to the characteristic nature of glacial ice and/or the processes by which the ice formed and processes by which rock debris from the bed is entrained into the ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/399a84d1-ccf5-4167-a699-15eb7d1ad1e6?gtm_keyword=GLACIER%20FACIES&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/613c1fba-8710-47fb-a8e1-e4cd50bb97e1?gtm_keyword=GLACIER%20FACIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Facies"
+}

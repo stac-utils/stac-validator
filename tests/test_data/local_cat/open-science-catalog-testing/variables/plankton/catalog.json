@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "plankton",
+  "stac_version": "1.0.0",
+  "description": "Plankton are at the base of the marine food web and generally not fished by humans. Changes in the plankton will have impacts on the rest of the marine ecosystem including on the carbon cycle, living marine resources used by humans and threatened marine species including apex predators. Climate variability significantly impacts plankton in the ocean, both the microflora (phytoplankton) and the microfauna (zooplankton), over both short and long timescales.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/plankton; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ca8d77f2-9257-4298-9244-e81cd890f000?gtm_keyword=PLANKTON&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Plankton"
+}

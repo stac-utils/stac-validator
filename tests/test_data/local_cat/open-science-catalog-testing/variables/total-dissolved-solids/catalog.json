@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "total-dissolved-solids",
+  "stac_version": "1.0.0",
+  "description": "Materials less than 0.45 micrometer in length, as distinguished from suspended solids and other particulate matter, which are greater than 0.45 micrometer in length.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7d82a1f7-aa6e-47c7-8eb3-78bfe2e4349b?gtm_keyword=TOTAL%20DISSOLVED%20SOLIDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Total Dissolved Solids"
+}

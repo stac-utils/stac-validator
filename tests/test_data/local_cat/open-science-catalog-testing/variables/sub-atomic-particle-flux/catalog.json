@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sub-atomic-particle-flux",
+  "stac_version": "1.0.0",
+  "description": "These particles include atomic constituents such as electrons, protons, and neutrons (protons and neutrons are actually composite particles, made up of quarks), as well as other particles such as photons and neutrinos which are produced copiously in the sun. However, most of the particles that have been discovered and studied are not encountered under normal earth conditions; they are produced in cosmic rays and during scattering processes in particle accelerators.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0168947c-5f28-46d8-b643-cb31af02a6de?gtm_keyword=SUB-ATOMIC%20PARTICLE%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sub-Atomic Particle Flux"
+}

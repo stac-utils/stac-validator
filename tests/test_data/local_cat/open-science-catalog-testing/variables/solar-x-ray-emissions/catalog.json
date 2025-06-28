@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-x-ray-emissions",
+  "stac_version": "1.0.0",
+  "description": "Solar X-Ray emissions can consist of X-Ray background flux or X-Ray bursts. A daily average background X-ray flux is in the 1 to 8 angstrom range. It is a midday minimum designed to reduce the effects of flares. X-Ray burstsare a temporary enhancement of the X-ray emission of the sun. The time-intensity profile of soft X-ray bursts is similar to that of the H-Alpha profile of an associated flare. Bursts last from minutes to several hours.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a15e514b-4b44-4587-a857-34ab7e2d357e?gtm_keyword=SOLAR%20X-RAY%20EMISSIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar X-Ray Emissions"
+}

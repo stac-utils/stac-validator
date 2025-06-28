@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chemical-decomposition",
+  "stac_version": "1.0.0",
+  "description": "The separation of a chemical compound into elements or simpler compounds. It is sometimes defined as the exact opposite of a chemical synthesis. Chemical decomposition is often an undesired chemical reaction. The stability that a chemical compound ordinarily has is eventually limited when exposed to extreme environmental conditions like heat, radiation, humidity or the acidity of a solvent. The details of decomposition processes are generally not well defined, as a molecule may break up into a host of smaller fragments. Chemical decomposition is exploited in several analytical techniques, notably mass spectrometry, traditional gravimetric analysis, and thermogravimetric analysis.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/14d972b3-a587-4994-a021-f1e620b02341?gtm_keyword=CHEMICAL%20DECOMPOSITION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Chemical Decomposition"
+}

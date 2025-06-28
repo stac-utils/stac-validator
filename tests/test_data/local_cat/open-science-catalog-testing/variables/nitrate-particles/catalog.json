@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nitrate-particles",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric aerosol particles derived from biogenic or anthropogenic nitrate emissions; comprised of nitrate compounds (e.g., ammonia, NOx).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/768cfa32-003d-47bd-ab3a-3e27e4ec2699?gtm_keyword=NITRATE%20PARTICLES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Nitrate Particles"
+}

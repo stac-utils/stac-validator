@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "gelbstoff",
+  "stac_version": "1.0.0",
+  "description": "Dissolved organic matter (DOM) produced by the decomposition of plant material and the metabolism of plankton, originating in the ocean or brought to the ocean by rivers, and producing a distinctive yellow-brown to yellow-red coloration of the water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/87b074b4-9b73-4e69-b8c0-0f112b1cfa6d?gtm_keyword=GELBSTOFF&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Gelbstoff"
+}

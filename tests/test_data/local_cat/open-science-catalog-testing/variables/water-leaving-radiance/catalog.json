@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "water-leaving-radiance",
+  "stac_version": "1.0.0",
+  "description": "Radiation from the sun, reflected off particles in the water, and exiting the ocean surface back into the atmosphere. The upwelling radiance at the ocean surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ad41b62a-141b-4207-887c-334367860cf4?gtm_keyword=WATER-LEAVING%20RADIANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Water-Leaving Radiance"
+}

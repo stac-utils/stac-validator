@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "non-metallic-minerals",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the location, mining, production, or uses of non-metal bearing ore minerals.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/d64a9627-3cf8-41d3-aaf7-8c2c46fb4a13?gtm_keyword=NON-METALLIC%20MINERALS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Non-Metallic Minerals"
+}

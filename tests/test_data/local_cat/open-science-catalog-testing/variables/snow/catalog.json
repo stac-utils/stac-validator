@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "snow",
+  "stac_version": "1.0.0",
+  "description": "A type of frozen precipitation composed of white or translucent ice crystals, chiefly in complex branch hexagonal form and often agglomerated into snow-flakes, especially at temperatures warmer than -5 C (23 F).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b51b3708-a662-4cf1-bf13-e67f36b001c4?gtm_keyword=SNOW&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Snow"
+}

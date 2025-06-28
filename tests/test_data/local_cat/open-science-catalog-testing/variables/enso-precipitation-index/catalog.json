@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "enso-precipitation-index",
+  "stac_version": "1.0.0",
+  "description": "Time series that uses rainfall data in the Tropical Pacific to describe ENSO events.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/284738a2-4fcb-4eee-9ee7-5eac2378f46d?gtm_keyword=ENSO%20PRECIPITATION%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Enso Precipitation Index"
+}

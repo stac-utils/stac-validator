@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "conduction",
+  "stac_version": "1.0.0",
+  "description": "Conduction is the transfer of energy within and through a conductor. In oceanography, the rate of heat gain or loss through the sea surface by conduction can be measured.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/2ef42281-1e38-4391-b578-ba6a6158f0c2?gtm_keyword=CONDUCTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Conduction"
+}

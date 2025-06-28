@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "inorganic-matter",
+  "stac_version": "1.0.0",
+  "description": "Dissolved or particulate substances that are not hydrocarbons or hydrocarbon derivatives. Variables such as dissolved inorganic matter (DIM) or particulate inorganic matter (PIM) are included as detailed variables under inorganic matter.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b9cfc6af-a424-42b9-8e89-6b332262e841?gtm_keyword=INORGANIC%20MATTER&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e848dbd1-b70a-4820-a630-98bd642ae357?gtm_keyword=INORGANIC%20MATTER&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9bdac7db-be34-4eed-91bc-28f6628ed044?gtm_keyword=INORGANIC%20MATTER&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6cf87a79-e8b0-4ff1-9039-f3ad1f1f17a7?gtm_keyword=INORGANIC%20MATTER&gtm_scheme=Earth%20Science; ",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Inorganic Matter"
+}

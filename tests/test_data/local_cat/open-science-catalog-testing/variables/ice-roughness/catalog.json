@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-roughness",
+  "stac_version": "1.0.0",
+  "description": "The small-scale variation in the relief of the terrain surface (in this case the surface of the ice). Remote sensing instruments, such as radar and microwave sensors, have been able to detect the degree of roughness of sea, lake, and river ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ce3a1edd-a2fe-4efd-8971-9dd7b97b6d79?gtm_keyword=ICE%20ROUGHNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Roughness"
+}

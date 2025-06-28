@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "inlets",
+  "stac_version": "1.0.0",
+  "description": "A narrow body of water between islands or leading inland from a larger body of water, often leading to an enclosed body of water, such as a sound, bay, lagoon or marsh. In sea coasts an inlet usually refers to the actual connection between a bay and the ocean and is often called an \"entrance\" or a recession in the shore of a sea, lake or river.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f43cd776-c568-4d09-997c-0a8ad1022e06?gtm_keyword=INLETS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/356a245d-418a-4560-9eb1-d12f8f155f66?gtm_keyword=INLETS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/49db8758-1282-45a0-ad3f-0f1e9d8abc44?gtm_keyword=INLETS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Inlets"
+}

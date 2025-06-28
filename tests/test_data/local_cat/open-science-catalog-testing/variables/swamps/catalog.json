@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "swamps",
+  "stac_version": "1.0.0",
+  "description": "An area of land that is always soaked with water; low, wet land that supports grass and trees. Swamps are wet areas that are normally covered by water all year and subject to drying out during the summer. The parameter Swamp may be colloquially interchanged with the parameter Marshes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8c05bcf2-d13b-44fd-b1a2-5ec797b2f851?gtm_keyword=SWAMPS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6cec3b57-1a7f-404d-afde-4de045ef0dd2?gtm_keyword=SWAMPS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Swamps"
+}

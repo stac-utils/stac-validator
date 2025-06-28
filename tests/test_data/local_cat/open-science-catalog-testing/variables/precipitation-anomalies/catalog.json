@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "precipitation-anomalies",
+  "stac_version": "1.0.0",
+  "description": "The deviation of the amount of precipitation falling in a given region over a specified period from the long-term average value for the same region.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/22a4ddef-90f0-4935-a13d-26b14723a956?gtm_keyword=PRECIPITATION%20ANOMALIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Precipitation Anomalies"
+}

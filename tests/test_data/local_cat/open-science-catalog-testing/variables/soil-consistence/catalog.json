@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-consistence",
+  "stac_version": "1.0.0",
+  "description": "The combination of properties of soil material that determine its resistance to crushing and its ability to be molded or changed in shape.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/25c5c222-c053-4081-ac0f-52e6c774198c?gtm_keyword=SOIL%20CONSISTENCE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6ce3eeff-d222-4356-8cd2-50fbcbcbb295?gtm_keyword=SOIL%20CONSISTENCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Consistence"
+}

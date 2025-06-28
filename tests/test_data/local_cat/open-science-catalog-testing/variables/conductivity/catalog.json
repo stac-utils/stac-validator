@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "conductivity",
+  "stac_version": "1.0.0",
+  "description": "The degree to which an electrical current can pass through water due to ions dissolved in the water. Salinity is often calculated from conductivity and temperature.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/7041e51c-e2de-405a-b154-6016f624f54f?gtm_keyword=CONDUCTIVITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/d14389d9-54f5-41a0-b8e8-dc9d8f87e4e2?gtm_keyword=CONDUCTIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Conductivity"
+}

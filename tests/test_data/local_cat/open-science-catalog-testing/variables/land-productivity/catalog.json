@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "land-productivity",
+  "stac_version": "1.0.0",
+  "description": "The rate of production, especially of food, by the utilization of solar energy by producer organisms.[Webster's Revised Unabridged Dictionary.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2e69c08b-ee0f-426c-a8d2-dc50876f76c2?gtm_keyword=LAND%20PRODUCTIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Land Productivity"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "paleomagnetism",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the use of remnant magnetic signatures within the rocks of the Earth's crust to determine the state of the Earth's magnetic field at a given time into the past, or to locate a paleocontinent on the surface of the Earth.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/720969dd-e966-41aa-af94-ee41cdf60390?gtm_keyword=PALEOMAGNETISM&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Paleomagnetism"
+}

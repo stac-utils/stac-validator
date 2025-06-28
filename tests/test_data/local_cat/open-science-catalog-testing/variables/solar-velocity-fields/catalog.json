@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-velocity-fields",
+  "stac_version": "1.0.0",
+  "description": "Solar velocity fields are also known as differential rotation. The sun rotates slightly more rapidly at the equator than at the poles. Gases at the equator make about 10 rotations, whiles gases at midlatitudes rotates 9 times and gases at the poles rotates about 7 times. This produces a shear in the gas motions and a pronounced E-W orientation of the magnetic field.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4fcb001-f517-4295-89dd-73292e0bf3ee?gtm_keyword=SOLAR%20VELOCITY%20FIELDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Velocity Fields"
+}

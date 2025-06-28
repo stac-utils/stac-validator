@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cyclones",
+  "stac_version": "1.0.0",
+  "description": "An atmospheric cyclonic circulation, a closed circulation. A cyclone's direction of rotation (counterclockwise in the Northern Hemisphere) is opposite to that of an anticyclone.[Glossary of Meteorology Online, American Meteorological Society, 2010.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science?gtm_search=Cyclones&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Cyclones"
+}

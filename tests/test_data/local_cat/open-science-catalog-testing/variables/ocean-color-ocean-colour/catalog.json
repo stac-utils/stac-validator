@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-color-ocean-colour",
+  "stac_version": "1.0.0",
+  "description": "Study of visible light interactions with oceanic water, both within the water column and remotely sensed from the ocean surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/ocean-colour; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/78f5a84f-1b5b-44a9-97e7-4a1996cd2e36?gtm_keyword=OCEAN%20COLOR&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Color / Ocean Colour"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "transmittance",
+  "stac_version": "1.0.0",
+  "description": "A measure of the amount of radiation propagated through a given medium. Defined as the ratio of transmitted radiation to the total radiation incident upon the medium. Also known as transmissivity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/714be1d7-2012-4a98-bdd5-02bbcadf69d8?gtm_keyword=TRANSMITTANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Transmittance"
+}

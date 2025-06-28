@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pyroclastics-composition-texture",
+  "stac_version": "1.0.0",
+  "description": "The composition and texture of pyroclastic particles.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ab215b31-c540-40c0-9362-3f25ebc148bb?gtm_keyword=PYROCLASTICS%20COMPOSITION/TEXTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Pyroclastics Composition/Texture"
+}

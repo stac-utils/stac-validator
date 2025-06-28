@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tropical-northern-hemisphere-pattern",
+  "stac_version": "1.0.0",
+  "description": "The Tropical/ Northern Hemisphere pattern was first classified by Mo and Livezey (1986), and appears as a prominent mode from November-February. The pattern consists of one primary anomaly center over the Gulf of Alaska and a separate anomaly center of opposite sign over the Hudson Bay. A weaker area of anomalies having similar sign to the Gulf of Alaska anomaly extends across Mexico and the extreme southeastern United States. This pattern reflects large-scale changes in both the location and eastward extent of the Pacific jet stream, and also in the strength and position of the climatological mean Hudson Bay Low. Thus, the pattern significantly modulates the flow of marine air into North America, as well as the southward transport of cold Canadian air into the north-central United States.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/83b711e1-3fb5-4ef3-bafb-783e8239a4b5?gtm_keyword=TROPICAL/NORTHERN%20HEMISPHERE%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Tropical/Northern Hemisphere Pattern"
+}

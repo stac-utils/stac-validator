@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "marine-magnetics",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement of the Earth's magnetic field through the world's oceans to detect variances in the oceanic crust.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7863ce31-0e06-42a5-bcf8-25981c44dec8?gtm_keyword=MARINE%20MAGNETICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Marine Magnetics"
+}

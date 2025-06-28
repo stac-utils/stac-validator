@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "glonass",
+  "stac_version": "1.0.0",
+  "description": "GLONASS or \"Global Navigation Satellite System\", is a space-based satellite navigation system operating in the radionavigation-satellite service. It provides an alternative to GPS and is the second navigational system in operation with global coverage and of comparable precision. Manufacturers of GPS devices say that adding GLONASS made more satellites available to them, meaning positions can be fixed more quickly and accurately, especially in built-up areas where the view to some GPS satellites is obscured by buildings. Smartphones generally tend to use the same chipsets and the versions used since 2015 receive GLONASS signals and positioning information along with GPS. Since 2012, GLONASS was the second most used positioning system in mobile phones after GPS. The system has the advantage that smartphone users receive a more accurate reception identifying location to within 2 meters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://glonass-iac.ru/en/about_glonass/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "GLONASS"
+}

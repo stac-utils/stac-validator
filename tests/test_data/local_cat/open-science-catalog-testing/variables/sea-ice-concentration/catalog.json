@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-ice-concentration",
+  "stac_version": "1.0.0",
+  "description": "The ratio of the area of the water surface covered by ice as a fraction of the whole area. Sea ice concentration has been monitored by polar orbiting satellites at all wavelengths.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8012fda7-3ea4-4ef2-bb4e-0f66d4d9e850?gtm_keyword=SEA%20ICE%20CONCENTRATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Ice Concentration"
+}

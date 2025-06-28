@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "longwave-radiation",
+  "stac_version": "1.0.0",
+  "description": "Longwave Radiation (or Infrared Radiation) is electromagnetic radiation in the interval from 0.8 microns to about 1000 microns. Longwave radiation is the electromagnetic energy radiated outward by the earth (land and sea) at a rate depending on the absolute temperature of the earth.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bc891281-b24c-4310-b39b-81715d7dad08?gtm_keyword=LONGWAVE%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Longwave Radiation"
+}

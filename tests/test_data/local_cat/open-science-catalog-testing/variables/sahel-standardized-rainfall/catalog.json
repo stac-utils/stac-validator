@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sahel-standardized-rainfall",
+  "stac_version": "1.0.0",
+  "description": "From Mitchell: The averaging region is based on the rotated principal component analysis of average June through September African rainfall presented in Janowiak (1988, J. Climate, 1, 240-255). Stations within 20-8N, 20W-10E are obtained from the National Center for Atmospheric Research World Monthly Surface Station Climatology (WMSSC), and 14 retained which had complete or almost complete records for 1950-93. See link for stations. http://jisao.washington.edu/data_sets/sahel/",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e13b084e-d044-49c9-8791-f057f777fca3?gtm_keyword=SAHEL%20STANDARDIZED%20RAINFALL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sahel Standardized Rainfall"
+}

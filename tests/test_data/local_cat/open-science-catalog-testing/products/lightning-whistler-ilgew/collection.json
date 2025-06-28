@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "lightning-whistler-ilgew",
+  "stac_version": "1.0.0",
+  "description": "Two different kinds of files have been included in this dataset: 1) WhistlersÃ¢â¬â¢ daily files of whistler data, entirely based on data from the Swarm ASM instruments, one file for each satellite operated in burst mode. These files can hold a different version number according to the data processing performed; 2) One events dataset file, which contains a selection of remarkable whistler events in the period between January 2014 and February 2020 for which additional parameters have been included, from ground observations of lightning, ionospheric profiles from ionosondes and models and in-situ electron density from Swarm EFI Langmuir Probe (LP). Product details: https://ilgew.ipgp.fr/docs/SW-ILGEW-IPGP-D08-11-08-2021.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://ilgew.ipgp.fr/#dataset",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Lightning-generated whistler events_Global_SWARM",
+  "osc:themes": [
+    "Atmosphere",
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM"
+  ],
+  "osc:project": "ilgew",
+  "osc:variables": [
+    "Lightning"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "lightning_whistler_events"
+    }
+  ],
+  "created": "2021-08-11T00:00:00Z",
+  "start_datetime": "2014-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Electricity",
+    "Lightning",
+    "Weather Events",
+    "Upper Atmosphere",
+    "Physical Properties"
+  ]
+}

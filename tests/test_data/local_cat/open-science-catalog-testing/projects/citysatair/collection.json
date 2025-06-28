@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "citysatair",
+  "stac_version": "1.0.0",
+  "description": "Develop and demonstrate a methodology that is capable of exploiting the various available data sources of urban air quality, to combine them in a mathematically objective and scientifically meaningful manner, and to provide value:added maps of urban air quality at high spatial resolution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://citysatair.nilu.no/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/citysatair/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "CITYSATAIR",
+  "osc:name": "CITYSATAIR",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "KNMI (NL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NILU : NORWEGIAN INSTITUTE FOR AIR RESEARCH (NO)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-01-07T00:00:00Z",
+  "end_datetime": "2021-07-15T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-07T00:00:00Z",
+          "2021-07-15T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

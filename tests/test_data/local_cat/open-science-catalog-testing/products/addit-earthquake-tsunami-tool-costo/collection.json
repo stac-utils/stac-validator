@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "addit-earthquake-tsunami-tool-costo",
+  "stac_version": "1.0.0",
+  "description": "Detection and characterization of Traveling Ionospheric Disturbances (TIDs) from Global Navigation Satellite System (GNSS) measurements using the Atomic Decomposition Detector of Traveling Ionospheric Disturbances (ADDTID) algorithm",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.mdpi.com/2072-4292/11/16/1894/htm#app1-remotesensing-11-01894",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.3390/rs11161894"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "ADDTID: An Alternative Tool for Studying Earthquake/Tsunami Signatures in the Ionosphere_Japan_SWARM",
+  "osc:themes": [
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM"
+  ],
+  "osc:project": "costo",
+  "osc:variables": [
+    "Ionosphere/Magnetosphere Dynamics"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "earthquake_tsunami_tool"
+    }
+  ],
+  "osc:region": "Japan",
+  "created": "2019-08-13T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2011-12-31T23:59:59Z",
+  "sci:doi": "10.3390/rs11161894",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          122.71417537,
+          20.21458102,
+          154.20554098,
+          45.71120454
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2011-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sun-Earth Interactions",
+    "Ionosphere/Magnetosphere Dynamics"
+  ]
+}

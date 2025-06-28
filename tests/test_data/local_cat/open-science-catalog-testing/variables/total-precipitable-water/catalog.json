@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "total-precipitable-water",
+  "stac_version": "1.0.0",
+  "description": "The total atmospheric water vapor contained in a vertical column of unit cross-sectional area extending between any two specified levels, commonly expressed in terms of the height to which that water substance would stand if completely condensed and collected in a vessel of the same unit cross section.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c3a4eb4a-4619-43cd-b890-b567d01324ea?gtm_keyword=TOTAL%20PRECIPITABLE%20WATER&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Total Precipitable Water"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sedimentation-rate",
+  "stac_version": "1.0.0",
+  "description": "For conditions in the lowest 10-15 km of Earth's atmosphere, the sedimentation (or fall) rate of a spherical cloud particle is given as the characteristic time for it to fall a distance of one atmospheric scale height (about 8 km on Earth) by tau-1fall = (2 rhop mg2 / 9 eta kT ) r2M where eta is the atmospheric dynamic viscosity (the resistance of the atmosphere to movement through it), (kT/mg) is the atmospheric scale height (k is Boltzmann's constant, T is atmospheric temperature, m is weight of a gas molecule, g is acceleration by gravity), rhop is the mass density of the cloud particle, and rM is the mass-weighted-average cloud particle radius. Essentially, the sedimentation rate increases proportionally to the particle cross-section (r2M).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bee9f657-c115-4d73-a10c-7e05e00db574?gtm_keyword=SEDIMENTATION%20RATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sedimentation Rate"
+}

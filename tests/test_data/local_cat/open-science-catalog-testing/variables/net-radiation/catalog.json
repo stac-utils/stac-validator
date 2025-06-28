@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "net-radiation",
+  "stac_version": "1.0.0",
+  "description": "Net radiation refers to the difference between the downward and upward (total and terrestrial) radiation. The net flux of all radiations. Canalso refer to the net solar radiation which is the difference between the solar radiations directed downwards and upwards.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/50ee8910-449b-46c8-a59b-1cd76d632b44?gtm_keyword=NET%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Net Radiation"
+}
