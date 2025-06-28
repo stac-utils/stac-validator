@@ -620,10 +620,10 @@ class StacValidate:
                     if not is_valid_url(address):
                         path_parts = str(base_url).split("/")
                         path_parts.pop(-1)
-                        root = path_parts[0]
-                        for i in range(1, len(path_parts)):
-                            root = f"{root}/{path_parts[i]}"
-                        self.stac_file = f"{root}/{address}"
+                        # Build the base path and normalize it to remove any ./ or ../
+                        root = os.path.normpath(os.path.join(*path_parts))
+                        # Join with the new address and normalize again
+                        self.stac_file = os.path.normpath(os.path.join(root, address))
                     else:
                         self.stac_file = address
 
