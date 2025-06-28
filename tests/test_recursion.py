@@ -13,50 +13,50 @@ def test_recursive_lvl_4_local_v100():
     assert stac.valid
     assert stac.message == [
         {
-        "version": "1.0.0",
-        "path": "tests/test_data/local_cat/open-science-catalog-testing/catalog.json",
-        "schema": [
-            "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "CATALOG",
-        "validation_method": "recursive"
-    },
-    {
-        "version": "1.0.0",
-        "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/catalog.json",
-        "schema": [
-            "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "CATALOG",
-        "validation_method": "recursive"
-    },
-    {
-        "version": "1.0.0",
-        "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3d-earth/collection.json",
-        "schema": [
-            "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
-            "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
-            "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "COLLECTION",
-        "validation_method": "recursive"
-    },
-    {
-        "version": "1.0.0",
-        "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3dctrl/collection.json",
-        "schema": [
-            "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
-            "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
-            "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "COLLECTION",
-        "validation_method": "recursive"
-    }
-]
+            "version": "1.0.0",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/catalog.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "CATALOG",
+            "validation_method": "recursive",
+        },
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/catalog.json",
+            "schema": [
+                "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
+            ],
+            "valid_stac": True,
+            "asset_type": "CATALOG",
+            "validation_method": "recursive",
+        },
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3d-earth/collection.json",
+            "schema": [
+                "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+                "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+        },
+        {
+            "version": "1.0.0",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3dctrl/collection.json",
+            "schema": [
+                "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+                "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
+                "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "COLLECTION",
+            "validation_method": "recursive",
+        },
+    ]
 
 
 def test_recursive_local_v090():
