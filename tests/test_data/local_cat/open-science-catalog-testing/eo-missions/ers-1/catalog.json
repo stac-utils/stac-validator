@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "ers-1",
+  "stac_version": "1.0.0",
+  "description": "The ERS-1 (European Remote Sensing Satellite -1) was the first environmental monitoring satellite developed by ESA. The mission detected land and ocean surface change and provided observation data on oceans, polar ice, vegetation, geology, meteorology and ecology.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=220",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "ERS-1"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tidal-height",
+  "stac_version": "1.0.0",
+  "description": "The height of the ocean surface above a datum, varying as a result of the rise and fall of tides.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9afcf69c-f56f-45a9-afd9-6f929850326b?gtm_keyword=TIDAL%20HEIGHT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1ed24fe1-d0d5-46d1-8d22-8ac25d289c75?gtm_keyword=SEA%20SURFACE%20HEIGHT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Tidal Height"
+}

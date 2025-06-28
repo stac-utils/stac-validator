@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "s5p-inno-s5p-i-oc",
+  "stac_version": "1.0.0",
+  "description": "The S5P+I-OC project will explore the capacity of the Sentinel-5p TROPOMI data to provide novel Ocean Colour (OC) products. More specifically, the objectives of this S5P+ Innovation activity are to: develop a solid scientific basis for the application of S5P data within the context of novel scientific and operational OC products applications; assess existing algorithms which have been used for OC product retrievals from SCanning Imaging Absorption Spectro-Meter for Atmospheric CHartographY (SCIAMACHY), Ozone Monitoring Instrument (OMI) and Global Ozone Monitoring Experiment (GOME-2); develop novel OC products and retrieval methods that exploit the potential of the S5P mission s capabilities beyond its primary objectives, in particular, the chlorophyll-a concentration (CHL) of important phytoplankton groups (PFT-CHL), the underwater light attenuation coefficients (Kd) for the ultraviolet (UV) and the blue spectral region separately (KdUV, KdBlue), and the sun-induced marine chlorophyll-a fluorescence signal (SIF:marine) from TROPOMI S5P level-1 data; explore the potential of the UV range of S5P for ocean biology; use complementary products from Sentinel-3 (S3) and S5P for exploring the UV measurements of TROPOMI for assessing sources of coloured dissolved organic matter (CDOM) and the amount of UV-absorbing pigments in the ocean; validate with established reference in situ datasets and perform intercomparison to other satellite OC data; define strategic actions for fostering a transition of the methods from research to operational activities; maximize the scientific return and benefits from the S5P mission for surface ocean research and services (e.g. CMEMS) by assessing the synergies with other satellite sensors, in particular :explore the synergistic use of S5P and S3.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.awi.de/index.php?id=4087&no_cache=1&L=1",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/sentinel-5p-innovation-expro-theme-7-ocean-colour-s5p-i-oc/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "S5p Inno - S5p-I-OC",
+  "osc:name": "SENTINEL-5P+ INNOVATION OCEAN COLOUR (S5P+-I-OC)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marie-Helene Rio",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marie-helene.rio@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "ALFRED WEGENER INSTITUTE (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "U. LISBON (PT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITAET BREMEN (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF VICTORIA (CA)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-05-29T00:00:00Z",
+  "end_datetime": "2021-06-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-05-29T00:00:00Z",
+          "2021-06-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

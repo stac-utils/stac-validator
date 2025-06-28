@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cosmic-rays",
+  "stac_version": "1.0.0",
+  "description": "High energy particles and photons emitted by stellar processes. The highest energies have been observed at 10*8 Tev and are believed to come from shocks emanating from galaxies. Solar cosmic rays are protons observed at 1 Gev, having been accelerated by shocks associated with solar flares.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e06822d8-b640-4d75-ac37-33ab3cc5e765?gtm_keyword=COSMIC%20RAYS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cosmic Rays"
+}

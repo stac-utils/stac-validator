@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "solar-synoptic-maps",
+  "stac_version": "1.0.0",
+  "description": "Synoptic maps refer to the state of the entire viewable solar disk at a given moment in time.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ace2d2e5-0b9a-472e-b27b-c687b9108076?gtm_keyword=SOLAR%20SYNOPTIC%20MAPS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Solar Synoptic Maps"
+}

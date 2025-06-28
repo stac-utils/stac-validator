@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "grasslands",
+  "stac_version": "1.0.0",
+  "description": "Areas in which vegetation is dominated by perennial grasses and grass-like plants, such as sedges and rushes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/142ea0c1-b77f-44da-8c64-ac7ee13fd5f6?gtm_keyword=GRASSLANDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Grasslands"
+}

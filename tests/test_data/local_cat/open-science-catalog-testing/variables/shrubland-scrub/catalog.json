@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "shrubland-scrub",
+  "stac_version": "1.0.0",
+  "description": "Areas with vegetation dominated by shrubs (generally greater than 0.5 m or 1.5 ft tall, but less than 5 m or 16 ft tall) with individuals or clumps overlapping to not touching (generally forming more than 25% cover, trees generally less than 25% cover).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e018b139-7e05-4155-8e2e-8d5603b5fe47?gtm_keyword=SHRUBLAND/SCRUB&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Shrubland/Scrub"
+}

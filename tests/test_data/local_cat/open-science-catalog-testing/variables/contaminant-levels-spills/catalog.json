@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "contaminant-levels-spills",
+  "stac_version": "1.0.0",
+  "description": "A measurement of the frequency of contaminant spills in the environment and whether the contaminant spills is hazardous to a population. Measuring the level of contaminants in the environment will determine if there is a hazard to a population.[Princeton University Dictionary]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/912245ce-a81e-4d3b-b4fb-f71c8da63357?gtm_keyword=CONTAMINANT%20LEVELS/SPILLS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Contaminant Levels/Spills"
+}

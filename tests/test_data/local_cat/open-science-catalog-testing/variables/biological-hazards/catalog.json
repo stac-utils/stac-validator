@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "biological-hazards",
+  "stac_version": "1.0.0",
+  "description": "Living organisms or derivates(e.g., viruses, bacteria, fungi, and mammal and bird antigens) that can cause harmful health effects when inhaled, swallowed, or otherwise taken into the body.[United States Environmental Protection Agency (U.S. EPA) Terminology Reference System]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bb73336e-9113-426b-ac99-2b7c143b22ca?gtm_keyword=BIOLOGICAL%20HAZARDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Biological Hazards"
+}

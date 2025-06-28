@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "aura",
+  "stac_version": "1.0.0",
+  "description": "Aura (formerly EOS/Chem-1) is a chemistry mission of the National Aeronautics and Space Administration (NASA) with the overall objective of studying the chemistry and dynamics of Earths atmosphere from the ground to the mesosphere. The Aura mission will provide global surveys of several atmospheric constituents with the goal of monitoring the complex interactions of atmospheric constituents from both natural and man-made sources that are contributing to global change and affect the creation and depletion of ozone.\nLaunched in July 2004, Aura is the third mission in the Earth Observing Satellite (EOS) series, following on from Terra and Aqua.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=207",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Aura"
+}

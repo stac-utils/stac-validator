@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sulfur-oxides",
+  "stac_version": "1.0.0",
+  "description": "The concentrations of Sulfur Dioxide (SO2) and Sulfur Trioxide (SO3) in the atmosphere. Sulfur oxides (SOx) can occur naturally from such sources as volcanoes, sulfur springs and decaying organic matter, or from anthropogenic sources such as fossil fuel combustion, brickworks, and spontaneous combustion in coal mine spoil heaps. Sulfur oxides in the atmosphere are usually removed by acid rain.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cc676fb2-cf17-413d-bb00-0b95d231f157?gtm_keyword=SULFUR%20OXIDES&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c3090318-c845-4242-bf2f-ff1631b88831?gtm_keyword=SULFUR%20OXIDES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sulfur Oxides"
+}

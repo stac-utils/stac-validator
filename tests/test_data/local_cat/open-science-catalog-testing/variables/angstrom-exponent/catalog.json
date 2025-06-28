@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "angstrom-exponent",
+  "stac_version": "1.0.0",
+  "description": "Aerosol Angstrom Coefficient is an exponent that expresses the spectral dependence of aerosol optical thickness, with the wavelength of incident light. The Angstrom exponent provides additional information on the particle size (larger the exponent, the smaller the particle size), aerosol phase function and the relative magnitude of aerosol radiances at different wavelengths.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6e7306a1-79a5-482e-b646-74b75a1eaa48?gtm_keyword=ANGSTROM%20EXPONENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Angstrom Exponent"
+}

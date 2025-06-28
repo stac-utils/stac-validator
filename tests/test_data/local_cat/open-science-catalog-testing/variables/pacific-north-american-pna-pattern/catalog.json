@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pacific-north-american-pna-pattern",
+  "stac_version": "1.0.0",
+  "description": "The PNA pattern is one of the most prominent modes of low-frequency variability in the Northern Hemisphere extratropics, appearing in all months except June and July. The PNA pattern reflects a quadripole pattern of height anomalies, with anomalies of similar sign located south of the Aleutian Islands and over the southeastern United States. Anomalies with sign opposite to the Aleutian center are located in the vicinity of Hawaii, and over the intermountain region of North America (central Canada) during the Winter and Fall (Spring).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0e53e397-7836-45ec-bc62-0d54f9f176e5?gtm_keyword=PACIFIC/NORTH%20AMERICAN%20(PNA)%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Pacific/North American (PNA) Pattern"
+}

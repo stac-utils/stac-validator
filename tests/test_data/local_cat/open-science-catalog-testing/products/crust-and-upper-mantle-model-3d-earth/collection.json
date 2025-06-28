@@ -1,0 +1,74 @@
+{
+  "type": "Collection",
+  "id": "crust-and-upper-mantle-model-3d-earth",
+  "stac_version": "1.0.0",
+  "description": "Global model of crust and upper mantle",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://drive.google.com/drive/folders/1bmwEpPm4Jj83legXuhmPB-EJ7oz5hKag?usp=sharing",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Global Model of Crust and Upper Mantle_WINTERC-G_GOCE",
+  "osc:themes": [
+    "Solid Earth"
+  ],
+  "osc:missions": [
+    "GOCE"
+  ],
+  "osc:project": "3d-earth",
+  "osc:variables": [
+    "Gravitational Field"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "crust_and_upper_mantle_model"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-03-10T00:00:00Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Gravity/Gravitational Field",
+    "Gravitational Field"
+  ]
+}

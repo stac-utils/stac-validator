@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "topex-poseidon",
+  "stac_version": "1.0.0",
+  "description": "TOPEX/Poseidon (or simply T/P) is a cooperative Earth observation mission of the USA and France (NASA/JPL and CNES as partners) with the overall objective to provide high-accuracy global sea level (ocean height) measurements in coordinates relative to the center of the Earth. From this information, ocean circulation patterns can be mapped. The T/P data analysis helps to understand how the oceans interact with the atmosphere, and improve our ability to predict the global climate. NASA provided the satellite bus, five instruments, and is responsible for spacecraft operations. CNES furnished two of the spacecraft's instruments and the mission's Ariane launch vehicle.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=210",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "TOPEX/Poseidon"
+}

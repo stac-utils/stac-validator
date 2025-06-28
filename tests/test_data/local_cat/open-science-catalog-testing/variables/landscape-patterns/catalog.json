@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "landscape-patterns",
+  "stac_version": "1.0.0",
+  "description": "A natural space classification of living communities and their environmental conditions.[British Columbia Ministry of Forests: http://www.for.gov.bc.ca/PAB/PUBLCTNS/GLOSSARY/glossary.htm]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3b6fe940-7383-4bae-b436-fc487723bbcf?gtm_keyword=LANDSCAPE%20PATTERNS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Landscape Patterns"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "canopy-characteristics",
+  "stac_version": "1.0.0",
+  "description": "Canopy characteristics refer to Global Change Master Directory detailed variables under the variable, Canopy Characteristics: canopy height, canopy position, canopy reflectance, canopy resistance, and canopy temperature.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/abbba948-9b77-4e19-a855-49a7fbc17696?gtm_keyword=CANOPY%20CHARACTERISTICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Canopy Characteristics"
+}

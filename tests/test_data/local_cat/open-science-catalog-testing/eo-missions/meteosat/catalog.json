@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "meteosat",
+  "stac_version": "1.0.0",
+  "description": "Meteosat Second Generation-1 (MSG-1). Meteosat Second Generation (MSG) is a series of climate and forecasting missions developed by ESA and EUMETSAT. Meteorology, climatology, atmospheric dynamics/water and energy cycles. Meteosat 1-7 are first generation. Meteosat 8-11 are second generation and known as MSG in the development phase. Meteosat-8's original deployment at 0 degrees ended in July 2016. It is now deployed at 41.5 degrees east in support of the Indian Ocean Data Coverage (IODC) service, and from 1 July 2022 it will only be on standby at that location.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=229",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Meteosat"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cation-exchange-capacity",
+  "stac_version": "1.0.0",
+  "description": "The sum of exchangeable bases plus total soil acidity at a specific pH value, usually 7.0 or 8.0. When acidity is expressed as salt extractable acidity, the cation exchange capacity (CEC) is called the effective cation exchange capacity (ECEC) because this is considered to be the CEC of the exchanger at the native pH value. It is usually expressed in centimoles of charge per kilogram of exchanger or millimoles of charge per kilogram of exchanger. The sum of exchangeable bases plus total soil acidity at a specific pH value, usually 7.0 or 8.0. When acidity is expressed as salt extractable acidity, the cation exchange capacity (CEC) is called the effective cation exchange capacity (ECEC) because this is considered to be the CEC of the exchanger at the native pH value. It is usually expressed in centimoles of charge per kilogram of exchanger or millimoles of charge per kilogram of exchanger.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5c05e69f-f6db-4296-abd3-3b07e6093579?gtm_keyword=CATION%20EXCHANGE%20CAPACITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9bad3c7b-daf6-428a-89bd-ce62b074dfcf?gtm_keyword=CATION%20EXCHANGE%20CAPACITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Cation Exchange Capacity"
+}

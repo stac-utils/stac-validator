@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glaciers",
+  "stac_version": "1.0.0",
+  "description": "A mass of land ice, formed by the further recrystallization of firn, flowing continuously from higher to lower elevations.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/glaciers",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glaciers"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "continental-margins",
+  "stac_version": "1.0.0",
+  "description": "The ocean floor from the shore of a continent to the abyssal plain. The continent margin is the zone separating the continents from the deep-sea bottom, usually subdivided into the continental shelf, slope, and rise. They are two basic types of continental margins: passive, or Atlantic, margins and active, or Pacific, margins. Passive margins have little seismic or volcanic activity and form when continents are rifted apart, creating a new ocean basin between them. Active margins are tectonically active and are most often associated with plate convergence and subduction.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a91a00f7-05ed-4633-9fac-1772a48b6342?gtm_keyword=CONTINENTAL%20MARGINS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Continental Margins"
+}

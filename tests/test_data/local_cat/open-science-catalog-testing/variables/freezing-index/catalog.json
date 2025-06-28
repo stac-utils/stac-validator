@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "freezing-index",
+  "stac_version": "1.0.0",
+  "description": "(Also called \"coldness sun.\") As used by the U. S. Army Corps of Engineers, the number of Fahrenheit degree-days (above and below 32ï¿½F) between the highest and lowest points on the cumulative degree-days time curve for one freezing season.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2329bf96-d927-4993-95f9-93551d787ad7?gtm_keyword=FREEZING%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Freezing Index"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nitric-acid",
+  "stac_version": "1.0.0",
+  "description": "A strong acid, nitric acid (HNO3) is a colorless or yellowish, fuming, suffocating, caustic liquid. It is highly water-soluble.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/61740c18-f010-4384-8516-1eb33d75352e?gtm_keyword=NITRIC%20ACID&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Nitric Acid"
+}

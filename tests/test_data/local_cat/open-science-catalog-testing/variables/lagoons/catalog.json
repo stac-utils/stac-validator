@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "lagoons",
+  "stac_version": "1.0.0",
+  "description": "A shallow body of seawater generally isolated from the ocean by a barrier island or coral reef, or enclosed within an atoll.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c733c179-c12a-47e9-8e9a-817a5212446f?gtm_keyword=LAGOONS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d9483208-ff59-4293-9867-3f4895e58c9f?gtm_keyword=LAGOONS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/081d131a-6bef-47dc-adb3-f96da9123f93?gtm_keyword=LAGOONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Lagoons"
+}

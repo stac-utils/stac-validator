@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "in-situ-sealabio",
+  "stac_version": "1.0.0",
+  "description": "Water quality data of coastal (local and regional) monitoring; ICES water quality; Water quality from campaigns; Water quality data from Ship- of-opportunity (bottle samples); Water quality data from Ship-of- opportunity, instrument data; Reflectance. Details available at: http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/SeaLaBio_Dataset_Description_V1.2.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "In-situ measurements_Baltics",
+  "osc:themes": [
+    "Oceans",
+    "Land"
+  ],
+  "osc:missions": [
+    "In-situ observations"
+  ],
+  "osc:project": "baltic-sea-land",
+  "osc:variables": [
+    "Colored Dissolved Organic Matter"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mass_fraction_of_dissolved_organic_matter"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2019-11-07T00:00:00Z",
+  "start_datetime": "2015-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.3738792631,
+          53.90254289,
+          32.9925362748,
+          66.2654700409
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Matter"
+  ]
+}

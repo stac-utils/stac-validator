@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "topographic-waves",
+  "stac_version": "1.0.0",
+  "description": "Waves with a restoring force arising from variations in depth.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/3dd99ea6-51bd-4b78-bf2e-d5aeca7f5bc8?gtm_keyword=TOPOGRAPHIC%20WAVES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/b13a29a1-47a0-4d8b-a017-398b364dc202?gtm_keyword=TOPOGRAPHIC%20WAVES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Topographic Waves"
+}

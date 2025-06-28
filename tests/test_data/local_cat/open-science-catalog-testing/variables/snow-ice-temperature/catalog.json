@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "snow-ice-temperature",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measured internal temperature of snow/ice pack(s).[Goudie, Andrew. 1997. The Encyclopedic Dictionary of Physical Geography. Blackwell Publishing, Malden, Massachusetts.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dfe4b154-84e0-4005-81ce-90daf38c06e3?gtm_keyword=SNOW/ICE%20CHEMISTRY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1341f3e1-9279-4ae6-9a93-6a612957efd1?gtm_keyword=SNOW/ICE%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Snow/Ice Temperature"
+}

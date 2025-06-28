@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "biomass",
+  "stac_version": "1.0.0",
+  "description": "Mass of biological material. Usually the total mass of a particular group or category; for example, the biomass of producer organisms.[Nebel, Bernard J and Wright, Richard T. Environmental Science. 1998. Prentice Hall.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/686feba9-87ba-474c-8280-7f67565cfb2f?gtm_keyword=BIOMASS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Biomass"
+}

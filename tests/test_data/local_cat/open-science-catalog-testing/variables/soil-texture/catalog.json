@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-texture",
+  "stac_version": "1.0.0",
+  "description": "The relative proportions of the various soil separates in a soil, as described by the percent clay, sand, and silt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/afd1d3cb-d31d-4069-8cff-b592887aa18c?gtm_keyword=SOIL%20TEXTURE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fb05c0c0-7fcd-470c-ba2b-755f04f5d811?gtm_keyword=SOIL%20TEXTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Texture"
+}

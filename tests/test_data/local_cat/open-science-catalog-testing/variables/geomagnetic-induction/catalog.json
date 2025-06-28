@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "geomagnetic-induction",
+  "stac_version": "1.0.0",
+  "description": "Geomagnetic electromotive force generated in a closed circuit by a change in the flow of currents.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ee421700-0fe2-420c-9a07-91e8ae9fb524?gtm_keyword=GEOMAGNETIC%20INDUCTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Geomagnetic Induction"
+}

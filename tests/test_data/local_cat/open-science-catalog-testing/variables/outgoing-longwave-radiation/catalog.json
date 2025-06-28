@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "outgoing-longwave-radiation",
+  "stac_version": "1.0.0",
+  "description": "The outgoing longwave radiation (OLR) refers specifically to the radiation emitted by the Earth and its atmosphere (the terrestrial radiation). Satellite measurements of the OLR from terrestrial surfaces and clouds show that OLR is low over cold land and high clouds and high over hot land surfaces. Climate variations, such as El Nino Southern Oscillation (ENSO) can be measured from OLR anomalies from longer-term variations.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/006b1ea6-222d-4740-b220-03886d49cd81?gtm_keyword=OUTGOING%20LONGWAVE%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Outgoing Longwave Radiation"
+}

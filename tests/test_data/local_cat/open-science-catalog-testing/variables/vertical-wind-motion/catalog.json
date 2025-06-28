@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "vertical-wind-motion",
+  "stac_version": "1.0.0",
+  "description": "The component of ocean wind motion rising perpendicular to the plane of the horizon.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ab1e152c-eab9-400a-a90f-15cb64ed2a75?gtm_keyword=VERTICAL%20WIND%20MOTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Vertical Wind Motion"
+}

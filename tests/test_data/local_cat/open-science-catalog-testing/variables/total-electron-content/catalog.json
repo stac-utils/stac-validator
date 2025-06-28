@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "total-electron-content",
+  "stac_version": "1.0.0",
+  "description": "Total electron content is the total vertically integrated number of electrons per unit surface area on the earth. In standard metric units this is 10E16 electrons/m^2 also known as a TEC unit or TECU.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cac28264-0788-49a9-bb6a-c2251b0b325c?gtm_keyword=TOTAL%20ELECTRON%20CONTENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Total Electron Content"
+}

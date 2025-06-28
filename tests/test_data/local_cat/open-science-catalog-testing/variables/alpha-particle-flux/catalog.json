@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "alpha-particle-flux",
+  "stac_version": "1.0.0",
+  "description": "An alpha particle has positive charge and consists of two protons and two neutrons (the nucleus of a helium atom). Alpha particles can cause ionization of neutral atoms. Flux is the rate of flow through a reference surface, measured in particles per unit area.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2217b742-b21a-4230-ba34-1af30132135d?gtm_keyword=ALPHA%20PARTICLE%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Alpha Particle Flux"
+}

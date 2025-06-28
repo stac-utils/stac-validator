@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "bicep",
+  "stac_version": "1.0.0",
+  "description": "The ocean carbon cycle is a vital part of the global carbon cycle. It has been estimated that around a quarter of anthropogenically-produced emissions of CO2, caused from the burning of fossil fuels and land use change, have been absorbed by the ocean. On the other hand, significant advances have been made recently to expand and enhance the quality of a wide range of Remote Sensing based products capturing different aspects of the ocean carbon cycle. Building on recommendations made in a series of recent meetings and reports, on ESA lead initiatives and projects and on other relevant international programmes, the objective of the BICEP project is to bring these developments together into an holistic exercise to further advance our capacity to better characterise from a synergetic use of space data, in-situ measurements and model outputs, the different components of the ocean biological carbon pump, its pools and fluxes, its variability in space and time and the understanding of its processes and interactions with the earth system. To achieve this goal, the BICEP project will first synthesise the current state of knowledge in the field and produce a consolidated set of scientific requirements that define the products to be generated, as well as how these products will be evaluated and used to produce an enhanced BICEP dataset. Major emphasis will be placed on developing unified products to ensure that the carbon budgets made are in balance. Uncertainties in the derived products will also be quantified. A large in situ dataset of ocean carbon pools and fluxes will be created, to be used to evaluate and select the algorithms, with a focus on five key test sites, representative of the range of conditions in the global ocean. Using these selected algorithms, a 20-year time series of data will be generated, built through application of the selected algorithms to the ESA OC-CCI time series, a merged, bias:corrected ocean-colour data record explicitly designed for long-term analysis. The dataset will be used as input to a novel, satellite-based characterisation of the ocean biological carbon pump, quantifying the pools and fluxes, how they vary in time and space, and how they compare with ocean model estimates. The satellite-based Ocean Biological Cabon Pump analysis will then be placed in the context of carbon cycling in other domains of the Earth System, through engagement with Earth System modellers and climate scientists. Finally, a workshop will be organized, to be used as a vehicle to engage the international community in a discussion on how the BICEP work could be pushed forward, and integrated with results from other components of the ocean carbon cycle (e.g. CO2 air-flux and ocean acidification) not covered in the project, and how the representation of satellite-based ocean carbon work could be further improved in the context of large international Earth System analysis, such as the Global Carbon Project and assessments made within the International Panel of Climate Change (IPCC). The proposed work will be delivered by a consortium of twelve international Institutes, led by the Plymouth Marine Laboratory (PML, Plymouth, UK) and composed of top:level scientists, with collective expertise on Remote Sensing, statistical modelling, ocean carbon cycling, theoretical ecology and Earth System science.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://bicep-project.org/Home",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/bicep/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "BICEP",
+  "osc:name": "Biological Pump and Carbon Exchange Processes",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marie-Helene Rio",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marie-helene.rio@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "PLYMOUTH MARINE LABORATORY (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "FINNISH METEOROLOGICAL INSTITUTE (FI)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "HELLENIC CENTRE FOR MARINE RESEARCH (HCMR) (GR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "HYGEOS (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NATIONAL AND KAPODISTRIAN UNIVERSIT (GR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF EXETER (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF OXFORD (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-09-12T00:00:00Z",
+  "end_datetime": "2023-08-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-09-12T00:00:00Z",
+          "2023-08-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

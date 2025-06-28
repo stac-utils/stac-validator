@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particulate-organic-carbon",
+  "stac_version": "1.0.0",
+  "description": "Mass concentration of particulate organic carbon expressed as carbon in sea water [mg C m-3]. Particulate organic carbon (POC) is a closely related term often used interchangeably with POM. POC refers specifically to the mass of carbon in the particulate organic material, while POM refers to the total mass of the particulate organic matter. In addition to carbon, POM includes the mass of the other elements in the organic matter, such as nitrogen, oxygen and hydrogen. In this sense POC is a component of POM and there is typically about twice as much POM as POC.[4] Many statements that can be made about POM apply equally to POC, and much of what is said in this article about POM could equally have been said of POC.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://en.wikipedia.org/wiki/Particulate_organic_matter",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Particulate Organic Carbon"
+}

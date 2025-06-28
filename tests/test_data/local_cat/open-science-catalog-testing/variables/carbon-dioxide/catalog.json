@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbon-dioxide",
+  "stac_version": "1.0.0",
+  "description": "A gaseous compound of one carbon atom and two oxygen atoms, CO2. It is colorless, odorless, incombustible, and is soluble in water. Its dissolution in seawater is important to understanding the global carbon cycle.[Adapted from: Webster's College Dictionary. 1991. Random House.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/26afa886-4866-4536-be3a-6f9db9aacd97?gtm_keyword=CARBON%20DIOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Carbon Dioxide"
+}

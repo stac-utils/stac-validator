@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrothermal-vents",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the fractures in the oceanic crust where superheated water is ejected into the ocean, providing a source of minerals, and unusual life forms.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b677862b-7921-458f-a6db-0eb46469df33?gtm_keyword=HYDROTHERMAL%20VENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrothermal Vents"
+}

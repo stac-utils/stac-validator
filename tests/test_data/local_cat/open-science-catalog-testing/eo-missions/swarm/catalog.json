@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "swarm",
+  "stac_version": "1.0.0",
+  "description": "Launched in November 2013, Swarm is a constellation of three satellites operated by the European Space Agency (ESA) with the purpose of mapping Earths magnetic field. All three Swarm satellites carry the same instruments: a Vector Field Magnetometer (VFM) that measures the direction of the magnetic field; an Absolute Scalar Magnetometer (ASM) that measures the strength of the magnetic field; an Electric Field Instrument (EFI) that measures the plasma density, drift, and acceleration; as well as a Micro Accelerometer-04 (MAC-04) that measures the air drag, winds, Earth albedo, and solar radiation pressure.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=468",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "SWARM"
+}

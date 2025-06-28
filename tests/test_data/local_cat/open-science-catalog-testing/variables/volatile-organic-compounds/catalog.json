@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "volatile-organic-compounds",
+  "stac_version": "1.0.0",
+  "description": "Organic compounds (e.g. ethylene, propylene, benzene, styrene, acetone) which evaporate readily and contribute to air pollution directly or through chemical or photochemical reactions to produce secondary air pollutants.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1f3c543d-9ca9-4db4-b4a5-d3e2fd71e4a4?gtm_keyword=VOLATILE%20ORGANIC%20COMPOUNDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Volatile Organic Compounds"
+}

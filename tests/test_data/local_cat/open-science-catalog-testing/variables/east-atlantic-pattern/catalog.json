@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "east-atlantic-pattern",
+  "stac_version": "1.0.0",
+  "description": "The East Atlantic (EA) pattern is the second prominent mode of low-frequency variability over the North Atlantic, and appears as a leading mode in all months. The EA pattern is structurally similar to the NAO, and consists of a north-south dipole of anomaly centers spanning the North Atlantic from east to west. The anomaly centers of the EA pattern are displaced southeastward to the approximate nodal lines of the NAO pattern. For this reason, the EA pattern is often interpreted as a \"southward shifted\" NAO pattern. However, the lower-latitude center contains a strong subtropical link in association with modulations in the subtropical ridge intensity and location. This subtropical link makes the EA pattern distinct from its NAO counterpart. This EA pattern is similar to that shown in the Barnston and Livezey (1987) study, but is distinctly different from the EA pattern originally defined by Wallace and Gutzler (1981). The positive phase of the EA pattern is associated with above-average surface temperatures in Europe in all months, and with below-average temperatures over the southern U.S. during January-May and in the north-central U.S. during July-October. It is also associated with above-average precipitation over northern Europe and Scandinavia, and with below-average precipitation across southern Europe. The EA pattern exhibits very strong multi-decadal variability in the 1950-2004 record, with the negative phase prevailing during much of 1950-1976, and the positive phase occurring during much of 1977-2004. The positive phase of the EA pattern was particularly strong and persistent during 1997-2004, when 3-month running mean values routinely averaged 1.0-2.0 standard deviations above normal.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/47fb8f57-2ddd-4289-b8a5-af7ffa0ee031?gtm_keyword=EAST%20ATLANTIC%20JET%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "East Atlantic Pattern"
+}

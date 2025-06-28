@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "freezing-rain",
+  "stac_version": "1.0.0",
+  "description": "A freezing precipitation form where rain that falls in liquid form becomes supercooled and freezes upon impact with cold surfaces (at subfreezing temperatures) to form a coating of glaze upon the ground and exposed objects.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a90306f0-353c-4083-941a-0973a6fd6584?gtm_keyword=FREEZING%20RAIN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Freezing Rain"
+}

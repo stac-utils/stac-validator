@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "electrical-conductivity",
+  "stac_version": "1.0.0",
+  "description": "A measure of ease with which a conduction current can be caused to flow through soil under the influence of an applied electric field. It is the reciprocal of resistivity and is measured in mhos per meter.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7241d799-4f5c-4ae3-a4ec-2e9cdbf656aa?gtm_keyword=ELECTRICAL%20CONDUCTIVITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/781bf38b-2797-4415-8d5a-67e9f3a2f5fe?gtm_keyword=ELECTRICAL%20CONDUCTIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Electrical Conductivity"
+}

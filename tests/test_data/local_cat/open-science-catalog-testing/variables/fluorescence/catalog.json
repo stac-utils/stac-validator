@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fluorescence",
+  "stac_version": "1.0.0",
+  "description": "The emission of radiation, especially of visible light, by a substance during exposure to external radiation, as light or x-rays. Since the chlorophyll molecule fluoresces, the measurement of fluorescence can be used to calculate chlorophyll concentration in the ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a60ae1b6-abfc-4905-8c09-772da7bb1a10?gtm_keyword=FLUORESCENCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Fluorescence"
+}

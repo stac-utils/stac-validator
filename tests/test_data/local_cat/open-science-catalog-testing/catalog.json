@@ -1,0 +1,51 @@
+{
+  "type": "Catalog",
+  "id": "osc",
+  "stac_version": "1.0.0",
+  "description": "A catalog of publicly available geoscience products, datasets and resources developed in the frame of scientific research Projects funded by ESA EO (Earth Observation)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "child",
+      "href": "./projects/catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    },
+    {
+      "rel": "child",
+      "href": "./themes/catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    },
+    {
+      "rel": "child",
+      "href": "./variables/catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    },
+    {
+      "rel": "child",
+      "href": "./processes/catalog.json",
+      "type": "application/json",
+      "title": "Processes"
+    },
+    {
+      "rel": "child",
+      "href": "./eo-missions/catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    },
+    {
+      "rel": "child",
+      "href": "./products/catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "title": "Open Science Catalog"
+}

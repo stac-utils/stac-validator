@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "gcom-w1",
+  "stac_version": "1.0.0",
+  "description": "Japan Aerospace Exploration Agency (JAXA) mission (No NASA contribution) The Global Change Observation Mission (GCOM) aims to construct, use, and verify systems that enable continuous global-scale observations (for 10 to 15 years) of effective geophysical parameters for elucidating global climate change and water circulation mechanisms. Water circulation changes will be observed by a microwave radiometer onboard the GCOM-W (Water) satellite (scheduled to be launched in Japan Fiscal Year 2012). The GCOM-W will observe precipitation, vapor amounts, wind velocity above the ocean, sea water temperatures, water levels on land areas and snow depths.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=542",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "GCOM-W1"
+}

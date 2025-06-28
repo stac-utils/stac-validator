@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "magnetic-storms",
+  "stac_version": "1.0.0",
+  "description": "A magnetic storm is a large-scale disturbance of the magnetosphere, often initiated by the arrival of an interplanetary shock originating at the Sun. A magnetic storm is marked by the injection of an appreciable number of ions from the magnetotail into the ring current, a process accompanied by increased auroral displays. The strengthened ring current causes a world-wide drop in the equatorial magnetic field, taking perhaps 12 hours to reach its greatest intensity, followed by a more gradual recovery.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e453077b-b6f3-44f0-9f3d-4408bf9a69e5?gtm_keyword=MAGNETIC%20STORMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Magnetic Storms"
+}

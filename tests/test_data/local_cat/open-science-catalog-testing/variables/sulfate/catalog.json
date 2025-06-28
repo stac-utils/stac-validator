@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sulfate",
+  "stac_version": "1.0.0",
+  "description": "The sulfate ion is a polyatomic anion with the empirical formula SO42- and a molecular mass of 96.06 daltons; it consists of a central sulfur atom surrounded by four equivalent oxygen atoms in a tetrahedral arrangement. The sulfate ion carries a negative two charge and is the conjugate base of the bisulfate (or hydrogen sulfate) ion, HSO4-, which is the conjugate base of H2SO4, sulfuric acid. Organic sulfates, such as dimethyl sulfate, are covalent compounds and esters of sulfuric acid. Sulfates occur as microscopic particles (aerosols) resulting from fossil fuel and biomass combustion. They increase the acidity of the atmosphere and form acid rain.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2ab4134d-1ac7-4421-a7a6-659a542aff4c?gtm_keyword=SULFATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sulfate"
+}

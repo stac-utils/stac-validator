@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "calipso",
+  "stac_version": "1.0.0",
+  "description": "Launched in April 2006, CALIPSO (Cloud-Aerosol Lidar and Infrared Pathfinder Satellite Observations) is a cloud and aerosol observation satellite operated by the National Aeronautics and Space Administration (NASA) and Centre National dEtudes Spatiales (CNES). Its observations are used to determine the role of clouds and aerosols in regulating the Earths climate. 3-year nominal mission life, currently in extended operations. Measurements of aerosol and cloud properties for climate predictions, using a 3 channel lidar and passive instruments in formation with CloudSat for coincident observations of radiative fluxes and atmospheric state.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=422",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "CALIPSO"
+}

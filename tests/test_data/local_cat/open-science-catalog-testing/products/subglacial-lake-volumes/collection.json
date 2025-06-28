@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "subglacial-lake-volumes",
+  "stac_version": "1.0.0",
+  "description": "Estimated volume changes of five subglacial lakes in Greenland, that are characterised by collapse basins on the ice sheet surface above the lakes. The subglacial lake volumes have been estimated by computing the collapse basin volume. At collapse basins where CryoSat-2 Swath data is available, the CS2 heights and the DEM volumes are used to create a smoothed linear inversion to estimate the CS2 volumes as a function of time. The uncertainties of the volume estimates derived from the inversion are based on an error propagation of the CS2 depth estimates. Please read the README_SubglacialLakes.txt in the zip file",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.dtu.dk/ndownloader/files/36169965",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.11583/DTU.20237388.v1",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.11583/DTU.20237388.v1"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Sublacial Lake Volumes (ESA POLAR+ 4D Greenland Experimantal Dataset",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2"
+  ],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Subglacial Lake"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "subglacial-lake-volumes"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2022-07-06T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "sci:doi": "10.11583/DTU.20237388.v1",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glaciers",
+    "Subglacial Lake"
+  ]
+}

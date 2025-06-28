@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "earth-energy-imballance-baltic-seal",
+  "stac_version": "1.0.0",
+  "description": "https://www.aviso.altimetry.fr/fileadmin/documents/data/tools/MOHeaCAN-DT-006-MAG_PUM.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/ocean-heat-content-and-earth-energy-imbalance.html",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Earth Energy Imballance (EEI)_GRACE/GRACE-FO",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "GRACE",
+    "GRACE-FO"
+  ],
+  "osc:project": "baltic-seal-sea-level",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "earth_energy_imballance"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-10-04T00:00:00Z",
+  "start_datetime": "2002-01-01T00:00:00Z",
+  "end_datetime": "2016-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2002-01-01T00:00:00Z",
+          "2016-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "saral",
+  "stac_version": "1.0.0",
+  "description": "SARAL (Satellite with ARgos and ALtiKa) is an altimetric minisatellite operated by ISRO and CNES. Launched in 2013, data gathered by SARAL has applications in oceanography and atmospheric studies.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=572",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "SARAL"
+}

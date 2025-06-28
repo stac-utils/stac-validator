@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "earthquake-predictions",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the data used to forecast the likelihood of an earthquake in any given area.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/131c1e46-efca-4478-a5d1-d7193483bb96?gtm_keyword=EARTHQUAKE%20PREDICTIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Earthquake Predictions"
+}

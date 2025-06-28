@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "lacustrine-wetlands",
+  "stac_version": "1.0.0",
+  "description": "Lacustrine Wetlands are lakes, or former lakes, that are naturally filled with shallow water at certain times and more or less drained at other times.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dd22cc67-afd5-4b9e-8072-90651a191486?gtm_keyword=LACUSTRINE%20WETLANDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/686e66f7-27bf-4b67-b034-e0fdf0e47c0c?gtm_keyword=LACUSTRINE%20WETLANDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Lacustrine Wetlands"
+}

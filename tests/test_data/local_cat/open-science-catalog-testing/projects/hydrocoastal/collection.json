@@ -1,0 +1,119 @@
+{
+  "type": "Collection",
+  "id": "hydrocoastal",
+  "stac_version": "1.0.0",
+  "description": "Study the interactions between inland water and coastal zone, between coastal zone and open ocean, and small-scale processes that govern these interactions",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/hydrocoastal/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/hydrocoastal/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "HydroCoastal",
+  "osc:name": "HydroCoastal: coastal ocean and inland water altimetry",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Jerome Benveniste",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "jerome.benveniste@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "SATELLITE OCEANOGRAPHIC CONSULTANTS LTD. (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Along-track (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ARESYS SRL (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CNR:RESEARCH INSTITUTE FOR GEO:HYDROLOGICAL PROTECTION IRPI (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ISARDSAT S.L. (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "National Oceanography Centre (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NATIONAL UNIVERSITY OF IRELAND",
+      "role": "consortium_member"
+    },
+    {
+      "name": "MAY (IE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NOVELTIS SAS (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TECHNICAL UNIVERSITY OF DENMARK (DK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TECHNI",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-01-28T00:00:00Z",
+  "end_datetime": "2022-02-18T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-28T00:00:00Z",
+          "2022-02-18T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "gravity-anomalies",
+  "stac_version": "1.0.0",
+  "description": "The Earth's gravity field is determined by how the material that makes up the Earth is distributed throughout the Earth. Because gravity changes over the surface of the Earth, the weight of an object changes along with it. One can define standard gravity as the value of gravity for a perfectly smooth 'idealized' Earth, and the gravity 'anomaly' is a measure of how actual gravity deviates from this standard. A map of gravity anomalies (usually expressed in units of milliGals) tends to highlight short wavelength features better than a map of the geoid.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/fb7eeee0-9ad1-40f8-baa2-df7dc3acb6d3?gtm_keyword=GRAVITY%20ANOMALIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Gravity Anomalies"
+}

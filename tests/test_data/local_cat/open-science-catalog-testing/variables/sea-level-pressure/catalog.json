@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-level-pressure",
+  "stac_version": "1.0.0",
+  "description": "The atmospheric pressure at mean sea level, either directly measured, or, most commonly, empirically determined from the observed station pressure.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/e5bca08d-ecb3-4b85-8acd-fed782875aa2?gtm_keyword=SEA%20LEVEL%20PRESSURE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/07ce145c-9936-4675-b4a7-8710e39aa391?gtm_keyword=SEA%20LEVEL%20PRESSURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Level Pressure"
+}

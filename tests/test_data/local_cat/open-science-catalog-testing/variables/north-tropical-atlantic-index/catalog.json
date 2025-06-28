@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "north-tropical-atlantic-index",
+  "stac_version": "1.0.0",
+  "description": "The timeseries of SST anomalies averaged over 60W to 20W, 6N to 18N and 20W to 10W, 6N to 10N map. Data is obtained from the COADS dataset for 1951-1991 and NCEP afterwards. Anomalies were calculated relative to the 1951-2000 climatology, smoothed by three months running mean procedure and projected onto 20 leading EOFs. Month of data is the center of the 3 months that are smoothed. More information and the indexes forecasted values are available.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d52674c3-0c78-4f35-9675-c2a8b3869b16?gtm_keyword=NORTH%20TROPICAL%20ATLANTIC%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "North Tropical Atlantic Index"
+}

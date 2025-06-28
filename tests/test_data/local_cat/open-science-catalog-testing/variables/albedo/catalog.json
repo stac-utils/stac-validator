@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "albedo",
+  "stac_version": "1.0.0",
+  "description": "Albedo is the ratio of the radiation (radiant energy or luminous energy) reflected by a surface to that incident on it. Snow and cloud surfaces have a high albedo, because most of the energy of the visible solar spectrum is reflected. Vegetation and ocean surfaces have low albedo, because they absorb a large fraction of the energy. Clouds are the chief cause of variations in the Earth's albedo.The land surface albedo is the ratio of the radiant flux reflected from Earth's surface to the incident flux. It is a key forcing parameter controlling the partitioning of radiative energy between the atmospheric and surface. In the case of vegetation, a reference surface is typically defined at or near the top of the canopy and must be specified explicitly. Surface albedo depends on natural variations, highly variable in space and time as a result of terrestrial properties changes, and with illumination conditions and human activities and is a sensitive indicator of environmental vulnerability.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/48c16952-b6e0-40cd-b6dd-7cdbf5a443a1?gtm_keyword=ALBEDO&gtm_scheme=Earth%20Sciencehttps://gcos.wmo.int/en/essential-climate-variables/albedo\"",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Albedo"
+}

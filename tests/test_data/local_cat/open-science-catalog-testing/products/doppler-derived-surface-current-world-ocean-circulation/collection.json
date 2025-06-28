@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "doppler-derived-surface-current-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "Sentinel-1 IW Ocean Surface Current Radial Velocity product in Agulhas current",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://drive.google.com/file/d/1X2RyNDp550pSnQik6tX0g2WwsWiS6ioz/view?usp=sharing",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Doppler derived surface current_Agulhas_S1",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Surface Currents"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "doppler_derived_surface_current"
+    }
+  ],
+  "osc:region": "Agulhas",
+  "created": "2021-11-30T00:00:00Z",
+  "start_datetime": "2019-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.9931766896,
+          -34.845355958,
+          20.0417410996,
+          -34.8205312217
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Circulation",
+    "Ocean Currents",
+    "Surface Currents"
+  ]
+}

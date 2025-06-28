@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "karst-processes",
+  "stac_version": "1.0.0",
+  "description": "Landscapes characterized by (or the processes characterizing) the formation and collapse of caves and sinkholes because of carbonation weathering of limestone bedrock.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9cd875b0-210b-458f-b208-1690f50820d0?gtm_keyword=KARST%20PROCESSES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/63846997-4a3f-41e1-9241-6d5053360d7a?gtm_keyword=KARST%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Karst Processes"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "freeze-frost",
+  "stac_version": "1.0.0",
+  "description": "The condition that exists when, over a widespread area, the surface temperature of the air remains below freezing 0ï¿½C (32 F) for a sufficient amount of time to constitute the characteristic feature of the weather. A freeze is a term used for the condition when vegetation is injured by these low air temperatures, regardless if frost were deposited.[Glossary of Weather and Climate, American Meteorological Society, 1996.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/226d4804-1a09-4d9b-a5c1-346f52a2e709?gtm_keyword=FREEZE/FROST%20DATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Freeze/Frost"
+}

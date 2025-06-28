@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "water-vapor-profiles",
+  "stac_version": "1.0.0",
+  "description": "In meteorology, a profile is defined as a graph of the value of a scalar quantity versus a horizontal, vertical, or time scale. It usually refers to a vertical representation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/acc824e7-8eea-4e7d-aa3d-757cda7e6ec9?gtm_keyword=WATER%20VAPOR%20PROFILES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Water Vapor Profiles"
+}

@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "sedimentation",
+  "stac_version": "1.0.0",
+  "description": "The process of deposition of loose particulate material, especially by mechanical means, from a state of suspension in water or air.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b41498cd-6b2b-47e3-afe7-0f05b4c0807d?gtm_keyword=SEDIMENTATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9457740a-897b-4adc-96fb-f3e3aafa34ea?gtm_keyword=SEDIMENTATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a4eb3bc4-48a5-4ed2-a74b-ca87a58e90f5?gtm_keyword=SEDIMENTATION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/22ba30ec-a4e2-4547-bad7-4d5f9917625d?gtm_keyword=SEDIMENTATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Sedimentation"
+}

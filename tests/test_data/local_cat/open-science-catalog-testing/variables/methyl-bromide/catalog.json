@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "methyl-bromide",
+  "stac_version": "1.0.0",
+  "description": "CH3Br, this halocarbon is released, to a degree, naturally from the oceans, but is more commonly released from its anthropogenic use as a soil fumigant or pesticide. Methyl bromide is persistent enough to reach the stratosphere where it photochemically decomposes to yield atomic bromine (radical) and proceeds to destroy stratospheric ozone in the same manner as the atomic chlorine radical. On an atom-for-atom basis, stratospheric bromine is more efficient at destroying ozone than is chlorine because the HBr reservoir species is more photochemically active than HCl; however, there is much less of hydrogen bromide in the stratosphere. Recent data suggest that since 1998 atmospheric concentrations have dropped 13% due the CH3Br use limitations mandated by the Montreal Protocol.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9b6ca807-7719-48aa-864d-ebb45a519ff8?gtm_keyword=METHYL%20BROMIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Methyl Bromide"
+}

@@ -1,0 +1,74 @@
+{
+  "type": "Collection",
+  "id": "total-surface-current-tropical-atlantic-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "Tropical Altantic Total Surface Current,  contains the total surface current including CMEMS geostrophy and Ekman+Near-Inertial currents estimated from ERA5-10m winds with an empirically-adjusted 1D - depth model (Ubelmann et al., in prep)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Total surface current_Tropical Atlantic",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Surface Currents"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "total_surface_current"
+    }
+  ],
+  "osc:region": "Tropical Atlantic",
+  "start_datetime": "2018-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -89.4913889096,
+          -0.4101314918,
+          12.2761059784,
+          20.4479407425
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Circulation",
+    "Ocean Currents",
+    "Surface Currents"
+  ]
+}

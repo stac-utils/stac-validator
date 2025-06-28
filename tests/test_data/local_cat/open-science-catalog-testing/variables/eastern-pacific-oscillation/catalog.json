@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "eastern-pacific-oscillation",
+  "stac_version": "1.0.0",
+  "description": "The East Pacific - North Pacific (EP- NP) pattern is a Spring-Summer-Fall pattern with three main anomaly centers. The positive phase of this pattern features positive height anomalies located over Alaska/ Western Canada, and negative anomalies over the central North Pacific and eastern North America. Strong positive phases of the EP-NP pattern are associated with a southward shift and intensification of the Pacific jet stream from eastern Asia to the eastern North Pacific, followed downstream by an enhanced anticyclonic circulation over western North America, and by an enhanced cyclonic circulation over the eastern United States. Strong negative phases of the pattern are associated with circulation anomalies of opposite sign in these regions. The positive phase of the EP-NP pattern is associated with above-average surface temperatures over the eastern North Pacific, and below-average temperatures over the central North Pacific and eastern North America. The main precipitation anomalies associated with this pattern reflect above-average precipitation in the area north of Hawaii and below-average precipitation over southwestern Canada.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0384fecd-9303-47f3-84e3-f01f58013fc3?gtm_keyword=EASTERN%20PACIFIC%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Eastern Pacific Oscillation"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "residential-energy-demand-temperature-index",
+  "stac_version": "1.0.0",
+  "description": "NOAA's Residential Energy Demand Temperature Index (REDTI) correlates heating and cooling degree-day data with population. A hot summer in sparsely populated Wyoming will not have the same impact on energy use as a hot summer in the Mid-Atlantic. June 2010 had the second highest REDTI on record due to especially hot temperatures in the heavily populated South and Southeast regions. The REDTI is measured on a scale of zero to 100, with 100 being the highest population weighted degree day average and zero being the lowest.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/37ae8d4e-fe97-43d3-b8ee-a597e4ebfe87?gtm_keyword=RESIDENTIAL%20ENERGY%20DEMAND%20TEMPERATURE%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Residential Energy Demand Temperature Index"
+}

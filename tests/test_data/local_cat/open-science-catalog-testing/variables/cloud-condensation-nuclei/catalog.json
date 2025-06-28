@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-condensation-nuclei",
+  "stac_version": "1.0.0",
+  "description": "Small aerosols that serve as the sites upon which water vapor condenses in the atmosphere. Known as CCN: particles that will take up water to form cloud droplets at or above a specified supersaturation of water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ebbf8642-3da1-4401-a779-3e56550a029d?gtm_keyword=CLOUD%20CONDENSATION%20NUCLEI&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/27478148-b4b6-4c89-8829-08d2ee7bfe10?gtm_keyword=CLOUD%20CONDENSATION%20NUCLEI&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Condensation Nuclei"
+}

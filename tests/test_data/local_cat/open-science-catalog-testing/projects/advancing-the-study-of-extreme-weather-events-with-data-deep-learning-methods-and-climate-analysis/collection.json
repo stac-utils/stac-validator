@@ -1,0 +1,75 @@
+{
+  "type": "Collection",
+  "id": "advancing-the-study-of-extreme-weather-events-with-data-deep-learning-methods-and-climate-analysis",
+  "stac_version": "1.0.0",
+  "description": "This project aims to develop a more accurate and reliable way of detecting and tracking extreme weather events, such as hurricanes and atmospheric rivers, which are becoming increasingly common due to global warming. Currently, detecting and tracking these events in observational data or model projections relies on human-engineered rules which can be inconsistent and unreliable. To address this, we propose to use deep learning techniques to develop models that can learn from diverse data and alleviate the need for subjective rules, while providing useful additional information such as uncertainty estimates.. To develop these models, we will create a large dataset of expert: and crowd-sourced annotations of extreme weather events, including hurricanes, atmospheric rivers, and blocking events. Such large curated data sets have enabled breakthroughs in many disciplines such as biology and computer vision, and will enable large-scale data-driven research of extremes and their complex behaviour. We will then develop and evaluate a suite of deep learning models based on the new dataset. These deep learning models will be used to detect and track extreme weather events in climate model output and observational data. We will furthermore demonstrate concrete scientific use-cases of our data set and methods by working with domain experts to conduct novel analyses of these extreme weather events and their impact on the European Union. All data and methods from this project will be made openly accessible and we will provide tools and documentation for simple use of the resulting data and models for further research and education by non-experts and experts alike. Thus, our work has the potential to improve our understanding of extreme weather events and their impact on society.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/advancing-the-study-of-extreme-weather-events-with-data-deep-learning-methods-and-climate-analysis/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "Advancing the Study of Extreme Weather Events with Data, Deep Learning Methods and Climate Analysis",
+  "osc:name": "Advancing the Study of Extreme Weather Events with Data, Deep Learning Methods and Climate Analysis",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Atmosphere",
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Rochelle Schneider",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "rochelle.schneider@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "EIDGENOSSISCHE TECHNISCHE HOCHSCHULE ZURICH (ETH ZURICH) (CH)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-10-22T00:00:00Z",
+  "end_datetime": "2022-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-10-22T00:00:00Z",
+          "2022-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

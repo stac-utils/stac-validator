@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "folds",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement, mapping, analysis, and the processes involved in the formation of folds.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a71c3d9d-7144-4107-add5-0aed0c731dbc?gtm_keyword=FOLDS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a2a3893c-de51-4ca7-a952-e9a43dd961a1?gtm_keyword=FOLDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Folds"
+}

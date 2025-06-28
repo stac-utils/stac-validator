@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dimethyl-sulfide",
+  "stac_version": "1.0.0",
+  "description": "Dimethyl sulfide (DMS) is released by bacteria on the continents and in the oceans. Oxidized in the marine atmosphere to partially form cloud condensation nuclei and this may effect the formation of clouds over the oceans. [Nature; v326, 655, 1987.] [Nature; v237, 452, 1972.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5d282de9-162a-4aeb-a48d-4569fbbd5205?gtm_keyword=DIMETHYL%20SULFIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Dimethyl Sulfide"
+}

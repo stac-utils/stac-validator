@@ -1,0 +1,89 @@
+{
+  "type": "Collection",
+  "id": "l3-spm-daily-eo4sibs",
+  "stac_version": "1.0.0",
+  "description": "Regional version of the Nechal 2010 algorithm, based on Terrasigna field data",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/map/map.php?product=Ocean%20Colour%20(scale%20factor:%200.01)&is_netcdf=1",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/doc/EO4SIBS_DUM_ATBD_OceanColour.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Level 3 Suspended Particulate Matter, 300m, daily and monthly",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "Sentinel-2",
+    "Sentinel-3",
+    "CryoSat-2"
+  ],
+  "osc:project": "eo4sibs",
+  "osc:variables": [
+    "Particulate Organic Matter",
+    "Sediment Composition"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "suspended_particulate_matter"
+    }
+  ],
+  "osc:region": "Black Sea",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2016-04-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          27.5070842233,
+          40.8729622599,
+          41.8106211165,
+          47.2684228286
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-04-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Matter",
+    "Particulate Organic Matter",
+    "Erosion/Sedimentation",
+    "Sediment Composition",
+    "Marine Sediments"
+  ]
+}

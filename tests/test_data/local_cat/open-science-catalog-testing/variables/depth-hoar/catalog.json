@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "depth-hoar",
+  "stac_version": "1.0.0",
+  "description": "Depth hoar - Large-grained, faceted, cup-shaped crystals near the ground. Depth hoar is caused by large temperature gradients within the snowpack, usually in the early winter by large temperature differences between the warm ground and the cold snow surface. Pertaining to the characteristics of the layer of ice crystals that forms between the ground and snow cover by sublimation. It's also referred to as sugar snow.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c306d542-9be8-449d-ba33-28ad033c77aa?gtm_keyword=DEPTH%20HOAR&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Depth Hoar"
+}

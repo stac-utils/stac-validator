@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacial-lake-extent",
+  "stac_version": "1.0.0",
+  "description": "A glacial lake is a body of water with origins from glacier activity. They are formed when a glacier erodes the land, and then melts, filling the depression created by the glacier.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c0fba127-5208-4e8c-b18f-349dc14fb3d3?gtm_keyword=GLACIAL%20LAKE%20EXTENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacial Lake Extent"
+}

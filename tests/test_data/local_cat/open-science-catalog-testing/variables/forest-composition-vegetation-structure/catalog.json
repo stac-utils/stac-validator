@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-composition-vegetation-structure",
+  "stac_version": "1.0.0",
+  "description": "Forest Composition refers to the tree species which make up the forest. Vegetation Structure refers to the vertical arrangement of canopy layers and plants of different life forms, or the horizontal variation in canopy closure and canopy layers, or both. Vegetation Structure also includes standing dead trees (snags) and decaying logs on the ground (coarse woody debris).[Kimmins, J.P. 1997. Forest Ecology. Prentice Hall. Upper Saddle River, New Jersey.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a8d3f9a0-be0b-4690-86b9-ac64d951886a?gtm_keyword=FOREST%20COMPOSITION/VEGETATION%20STRUCTURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Composition/Vegetation Structure"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "topographical-relief-maps",
+  "stac_version": "1.0.0",
+  "description": "A type of map characterized by large-scale detail and quantitative representation of relief, usually using contour lines in modern mapping, but historically using a variety of methods. Traditional definitions require a topographic map to show both natural and man-made features. A topographic map is typically published as a map series, made up of two or more map sheets that combine to form the whole map. A contour line is a combination of two line segments that connect but do not intersect; these represent elevation on a topographic map.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f7d2e34a-c5c2-4c21-9132-2472620dbda1?gtm_keyword=TOPOGRAPHICAL%20RELIEF%20MAPS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Topographical Relief Maps"
+}

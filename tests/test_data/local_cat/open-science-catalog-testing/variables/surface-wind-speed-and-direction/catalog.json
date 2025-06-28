@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-wind-speed-and-direction",
+  "stac_version": "1.0.0",
+  "description": "Surface winds drive the exchange of momentum between the atmosphere and ocean, producing ocean waves and provides a key forcing of the ocean circulation responsible for the global transport of important amounts of heat and carbon. Extreme winds have huge social and economic impacts, most obviously during hurricanes and tropical cyclones, leading to loss of human life, damage to ecosystems, the destruction of infrastructure and loss of shipping.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/surface-wind",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Wind Speed And Direction"
+}

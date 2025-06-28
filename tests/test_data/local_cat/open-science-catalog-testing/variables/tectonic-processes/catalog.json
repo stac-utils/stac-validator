@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "tectonic-processes",
+  "stac_version": "1.0.0",
+  "description": "The process of upwelling of magma, plate movement, subduction of crust, folding, faulting, warping, fracturing, earthquakes, and volcanic activity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/99b4792a-9ea3-4756-a4dc-b1b30c946b54?gtm_keyword=TECTONIC%20PROCESSES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f0bd7eeb-9004-4e40-a649-f6010d8a4303?gtm_keyword=TECTONIC%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Tectonic Processes"
+}

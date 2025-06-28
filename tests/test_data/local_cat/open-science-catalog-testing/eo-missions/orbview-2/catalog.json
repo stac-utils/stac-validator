@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "orbview-2",
+  "stac_version": "1.0.0",
+  "description": "OrbView-2 (formerly SeaStar) is an imaging satellite, developed, owned, managed and operated by Orbital Imaging Corporation (OrbImage) of Dulles, VA. The overall objective of the OrbView-2/SeaWiFS mission is to provide quantitative data on global ocean bio-optical properties to the Earth science community. The OrbView-2 satellite includes the SeaWiFS (Sea-Viewing Wide Field-of-View Sensor) imaging system, an 8-band multispectral imaging instrument with a one kilometer spatial resolution. The mission was renamed to \"OrbView-2\" from \"SeaStar\" in 1997.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=214",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "OrbView-2"
+}

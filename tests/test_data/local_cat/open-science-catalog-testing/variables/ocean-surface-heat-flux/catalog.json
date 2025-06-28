@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-surface-heat-flux",
+  "stac_version": "1.0.0",
+  "description": "Surface heat flux is exchange of heat, per unit area, crossing the surface between the ocean and the atmosphere. It consists of the turbulent and the radiative components. These fluxes are major contributors to the energy and moisture budgets, and are largely responsible for thermodynamic coupling the ocean and atmosphere at global and regional scales, and variability of these fluxes is in part related to large-scale variability in weather and climate patterns.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/ocean-heat",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Surface Heat Flux"
+}

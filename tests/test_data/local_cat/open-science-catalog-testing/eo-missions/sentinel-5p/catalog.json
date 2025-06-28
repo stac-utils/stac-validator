@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "sentinel-5p",
+  "stac_version": "1.0.0",
+  "description": "Sentinel-5P (S5P) is a satellite mission that is jointly operated by the European Space Agency (ESA) and the Netherlands Space Office (NSO), formerly the European Global Monitoring for Environment and Security program (GMES). The mission was designed to bridge the gap between atmospheric monitoring systems and to succeed the Envisat mission. The satellite launched in October 2017.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=581",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Sentinel-5p"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "humidity-index",
+  "stac_version": "1.0.0",
+  "description": "The Humidity Index is based on a ratio of annual precipitation and potential evapotranspiration There are various humidity indices including: The Global Humidity Index Evaporative Cooling Humidity Index Heat-Humidity Index.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cdd7a31f-3244-494d-bc44-7b5f1ebb4bd7?gtm_keyword=HUMIDITY%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Humidity Index"
+}

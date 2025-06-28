@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "local-subsidence-trends",
+  "stac_version": "1.0.0",
+  "description": "Sinking of the land due to tectonic or isostatic processes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5a090f0c-7466-47fd-b679-5dee947ab05c?gtm_keyword=LOCAL%20SUBSIDENCE%20TRENDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Local Subsidence Trends"
+}

@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "subglacial-melt-maps",
+  "stac_version": "1.0.0",
+  "description": "The raster maps showing the subglacial melt for the Greenland ice sheet is based on the sum of different heat sources. The basal melt rates are spatially distributed and each grid cell represents a potential source of basal meltwater. These maps are produced for each timestamp associated with the surface velocity data maps and surface meltwater volumes. However, the time-varying friction heat component has a large uncertainty due to limitations in the numerical approximation. The âGreenland Ice Sheet Basal Meltâ  data set  (Karlsson, 2021) is available as rasters in NETCDF format:\nThis dataset contains basal melt rates as published in Karlsson et al., (2021). The data can be accessed in three formats NetCDF, ascii and Matlab. The data contain basal melt rates in metres per year from three different heat sources: geothermal flux, friction heat and viscous heat from surface meltwater. The data also contain the total basal melt rates in metres per year (the sum of the three terms). Uncertainties for each term is named X_unc. Note that the geothermal flux has an asymetrical uncertainty. The uncertainty for the total melt rates are found by root squared sum of uncertainties. See README.txt for more information.\"",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://dataverse.geus.dk/dataset.xhtml?persistentId=doi:10.22008/FK2/PLNUEO#",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1038/s41467-021-23739-z",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Subglacial Melt Maps",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-1"
+  ],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Ice Growth/Melt"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "subglacial_melt"
+    }
+  ],
+  "osc:region": "Greenland - Watson basin",
+  "created": "2021-04-13T00:00:00Z",
+  "start_datetime": "2001-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2001-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Snow/Ice",
+    "Ice Growth/Melt",
+    "Cryospheric Indicators",
+    "Sea Ice"
+  ]
+}

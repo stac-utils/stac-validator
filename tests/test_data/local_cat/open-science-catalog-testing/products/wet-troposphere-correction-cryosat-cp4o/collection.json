@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "wet-troposphere-correction-cryosat-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Wet Troposphere Correction product generated for application to Cryosat data by U Porto",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Wet Troposphere Correction_for Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "wet_troposphere_correction"
+    }
+  ],
+  "osc:region": "Global Oceans",
+  "created": "2019-01-01T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

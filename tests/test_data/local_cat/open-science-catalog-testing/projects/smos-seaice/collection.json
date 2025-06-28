@@ -1,0 +1,99 @@
+{
+  "type": "Collection",
+  "id": "smos-seaice",
+  "stac_version": "1.0.0",
+  "description": "Develop a data fusion product based on CryoSat and SMOS data, now termed the CS2SMOS product",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://icdc.cen.uni-hamburg.de/en/l3c-smos-sit.html",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "http://due.esrin.esa.int/stse/page_stse_project204.php",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "SMOS+ SeaIce",
+  "osc:name": "STSE SMOS+ SEA ICE",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Matthias Drusch",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "matthias.drusch@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF HAMBURG (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ALFRED WEGENER INSTITUTE (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "DANISH METEOROLOGICAL INSTITUTE (DK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "FINNISH METEOROLOGICAL INSTITUTE (FI)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NANSEN ENVIRONMENTAL AND REMOTE SENSING CENTER (NO)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITAET BREMEN (DE)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2014-08-20T00:00:00Z",
+  "end_datetime": "2017-10-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-08-20T00:00:00Z",
+          "2017-10-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

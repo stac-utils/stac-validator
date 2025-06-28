@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-gas-air",
+  "stac_version": "1.0.0",
+  "description": "The soil atmosphere; the gaseous phase of the soil, being that volume not occupied by solid or liquid",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d302aeaa-3a86-4ddf-9755-60b7bb4404a5?gtm_keyword=SOIL%20GAS/AIR&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/76c23076-d9d5-4414-a69f-a830cecdd9ce?gtm_keyword=SOIL%20GAS/AIR&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Gas/Air"
+}

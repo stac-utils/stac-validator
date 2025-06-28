@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "hr-albedomap",
+  "stac_version": "1.0.0",
+  "description": "Improving a current surface albedo generation system by adapting and integrating a deep learning system for cloud detection, an advanced atmospheric correction model which considers the surface BRDF effects, and a new technology allowing to retrieve high-resolution albedo from high-resolution reflectance by combining with downscaled MODIS BRDF climatology",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/hr-albedomap/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/hr-albedomap/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "HR-AlbedoMap",
+  "osc:name": "HR-AlbedoMap: Generation of high-resolution spectral and broadband surface albedo products based on Sentinel-2 MSI measurements",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Espen Volden",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "espen.volden@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UCL CONSULTANTS LTD (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-03-25T00:00:00Z",
+  "end_datetime": "2021-10-07T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-03-25T00:00:00Z",
+          "2021-10-07T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "globally-integrated-angular-momentum",
+  "stac_version": "1.0.0",
+  "description": "The atmospheric angular momentum is the product of mass times the rotational velocity times the perpendicular distance from the axis of rotation. A rotating object will conserve its angular momentum unless a torque acts to change its rotation. The axial component is of interest in climate and is determined by the distribution of atmospheric mass and zonal wind relative to the earth's rotation axis. Higher than normal surface pressure in the tropics or strong westerly flow there contributes to greater AAM.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/523c148f-bb4f-47d0-b176-0949ed59288a?gtm_keyword=GLOBALLY%20INTEGRATED%20ANGULAR%20MOMENTUM&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Globally Integrated Angular Momentum"
+}

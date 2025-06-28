@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "attenuation-transmission",
+  "stac_version": "1.0.0",
+  "description": "Attenuation is the exponential loss of light intensity as light propagates through water. Attenuation is caused by absorption and scattering of light energy. Transmission is the measurement of the percentage of light received at a photo cell placed at fixed distances from a light source.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/71c78d69-9cfe-48e9-8dd2-9c75acf22283?gtm_keyword=ATTENUATION/TRANSMISSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Attenuation/Transmission"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "stable-isotopes",
+  "stac_version": "1.0.0",
+  "description": "An isotope of an element that shows no tendency to undergo radioactive breakdown.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/df1a03f5-1cb3-4c63-870a-5a09debdf065?gtm_keyword=STABLE%20ISOTOPES&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/38dadd6d-6adb-44e2-b28a-fd18d797d052?gtm_keyword=STABLE%20ISOTOPES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fb52b51d-8bb4-4b04-907b-c130ec706f85?gtm_keyword=STABLE%20ISOTOPES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Stable Isotopes"
+}

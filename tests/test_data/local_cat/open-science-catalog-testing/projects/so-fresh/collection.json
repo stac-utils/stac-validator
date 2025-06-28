@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "so-fresh",
+  "stac_version": "1.0.0",
+  "description": "Southern Ocean Freshwater (SO Fresh) is a recent ESA funded project (2021-2023) included in the Polar Cluster Initiative. Polar Cluster aims at establishing collaboration with the existing projects in polar areas to put into value of unique, added-value capabilities from ESA missions and remote sensing missions in general. SO FRESH goals are to improve our understanding of the different processes governed or affected by freshwater fluxes taking place at the Southern Ocean.SO Fresh scientific objectives are based in four specific case studies aiming at: - to improve our understanding on the changes in Sea Ice; - to characterize the drivers of the formation of the Weddell Polynya in 2016-2017; - to assess the impact on Sea Ice melting due to changes in coastal processes; -to analyse the formation of deep water via remote sensing variables. Sea Surface Salinity (SSS) is a key ocean variable for the four case studies. SO Fresh will explore the potential of using SSS in combination with other ocean variables (i.e. Sea Surface Temperature, Sea Surface Height Anomalies) to enhance the state of the art of SO freshwater fluxes, Sea Surface Density variability and Water Mass Transformation Rates. With lessons learned in most recent advancements in SSS processing in the context of ESA SMOS Mission, SO Fresh will produce a dedicated SSS product Southern Ocean. Some of the methodologies to improve SSS data around the Antarctic peninsula may include nodal sampling, Brightness temperature fusion and enhanced debiased non-Bayesian retrievals. SO Fresh started in May 2021, and the first set of data is expected to be available for distribution by the beginning of 2022.To keep in touch with SO Fresh Team, follow the link or send email to sofresh@argans.co.uk.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://sofresh.argans.co.uk/#docs",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/so-fresh/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "SO-FRESH",
+  "osc:name": "Southern Ocean Freshwater (SO-FRESH)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Diego Fernandez",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "diego.fernandez@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "ARGANS LIMITED (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "AGENCIA ESTATAL CONSEJO SUPERIOR DE (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF SOUTHAMPTON (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-01-05T00:00:00Z",
+  "end_datetime": "2023-05-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-05T00:00:00Z",
+          "2023-05-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

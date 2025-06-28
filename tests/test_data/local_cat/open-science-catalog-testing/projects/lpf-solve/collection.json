@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "lpf-solve",
+  "stac_version": "1.0.0",
+  "description": "This project aims at investigating long-term ozone changes over the last two decades, by exploiting ESA and NASA limb satellite instruments. In particular, we build on the expertise at the University of Bremen acquired with SCIAMACHY data and use OMPS-LP satellite measurements to bridge the gap in limb observations before the ALTIUS launch. All these instruments exploit the same measurement technique, i.e. they collect scattered solar light in limb geometry.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/stratospheric-ozone-from-limb-observations-validation-of-the-profiles-evaluation-of-trends-and-their-dynamical-and-chemical-drivers-solve/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/stratospheric-ozone-from-limb-observations-validation-of-the-profiles-evaluation-of-trends-and-their-dynamical-and-chemical-drivers-solve/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "(LPF) SOLVE",
+  "osc:name": "Stratospheric ozone from limb observations: validation of the profiles, evaluation of trends and their dynamical and chemical drivers (SOLVE)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Stephen Plummer",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "stephen.plummer@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITAET BREMEN (DE)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-11-09T00:00:00Z",
+  "end_datetime": "2023-01-11T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-11-09T00:00:00Z",
+          "2023-01-11T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "abyssal-hills-plains",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to geophysical (seismic, magnetic, gravity, etc.) data collected on the plains and hills of the deep oceanic floor. ABYSSAL HILLS: Small hills found only in the deep sea which rise from the ocean basin floor with heights ranging from 10 to over 500 feet and widths from a few hundred feet to a few miles. They are found along the seaward margin of most abyssal plains and originate from the spreading of mid-ocean ridges. As such, they usually form two strips parallel to mid-ocean ridges. They generally decrease in height as one traverses away from the ridges as they gradually become covered with sediment and are replaced by abyssal plains. ABYSSAL PLAINS: Flat areas of the ocean basin floor which slope less than 1 part in 1000. These were formed by turbidity currents which covered the preexisting topography. Most abyssal plains are located between the base of the continental rise and the abyssal hills. The remainder are trench abyssal plains that lie in the bottom of deep-sea trenches. This latter type traps all sediment from turbidity currents and prevents abyssal plains from forming further seaward, e.g. much of the Pacific Ocean floor.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0b011562-ee55-4ba0-a026-4faa7493ca5b?gtm_keyword=ABYSSAL%20HILLS/PLAINS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Abyssal Hills/Plains"
+}

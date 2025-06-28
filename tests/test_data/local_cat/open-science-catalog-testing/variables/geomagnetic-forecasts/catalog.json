@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "geomagnetic-forecasts",
+  "stac_version": "1.0.0",
+  "description": "Forecasts of the likelihood (from 1% to 99%) that the daily geomagnetic activity level will reach a particular activity category. The four categories are Quiet to Unsettled, Active, Minor Storm, and Major to Severe Storm. The geomagnetic category assigned to a day is determined by the highest observed k-index for the day. Quiet to Unsettled = k 0 to k 3, Active = k 4, Minor Storm = k 5, and Major to Severe Storm = k 6 to k 9. Middle-latitude forecasts are verified against Fredericksburg, VA observations and High-latitude forecasts are verified against College, AK observations. Forecast lead times range from one to three days.The levels of geomagnetic field activity, or disturbance, currently used in the long-term (up to 27 days) forecasts are labelled qualitatively for general usage. For each of the three major zones (subauroral, auroral, polar cap), the range of activity is divided into four classifications: quiet, unsettled, active, storm. The actual parameter used for reporting and forecasting magnetic activity is a daily index. It is known as DRX and is the average of the hourly ranges (maximum minus minimum during each hour) in the X (northward) component of the magnetic field intensity for a day (the UT [or GMT] day), i.e., DRX for the zone is the mean of 24 values. Because this averaging process has the effect of smoothing (filtering) the more rapid fluctuations in the field, the qualitative descriptors are defined rather differently than for the short-term forecasts. Units are nanoteslas (nT).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/02290e22-24ae-40f6-96f1-0c6c76a145af?gtm_keyword=GEOMAGNETIC%20FORECASTS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/882d9a10-713c-4b58-8c7b-d9af086115a3?gtm_keyword=GEOMAGNETIC%20FORECASTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Geomagnetic Forecasts"
+}

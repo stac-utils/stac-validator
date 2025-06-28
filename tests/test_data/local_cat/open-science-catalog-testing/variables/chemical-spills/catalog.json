@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chemical-spills",
+  "stac_version": "1.0.0",
+  "description": "The release into the environment of any solid, liquid, or gaseous material that may pose substantial hazard to human health, to property, and to the environment.[United States Environmental Protection Agency (U.S. EPA)]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a5b074da-5e00-4fd9-9c40-cfec771263ee?gtm_keyword=CHEMICAL%20SPILLS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Chemical Spills"
+}

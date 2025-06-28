@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "model-based-cdom-baltic-sealabio",
+  "stac_version": "1.0.0",
+  "description": "Concentrations (expressed with absorption values) of Colored Dissolved Organic Matter (CDOM) simulated with the Ecological Regional Ocean Model (ERGOM). In this simulation river discharge and CDOM values estimated with Sentinel-2 data from 69 river mouth areas were used as input data. The results are visualized in TARKKA (https://wwwi4.ymparisto.fi/i4/eng/tarkka/index.html?type=ERGOM_CDOM&lang=en). The corresponding GeoTiff files are available in WAF (http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/ERGOM_results/P95/).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://eo.ymparisto.fi/data/water/Baltic_SeaLaBio/ERGOM_results/P95/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Model based Colored Dissolved Organic Matter (CDOM) _Baltics_Model",
+  "osc:themes": [
+    "Oceans",
+    "Land"
+  ],
+  "osc:missions": [
+    "Numerical models"
+  ],
+  "osc:project": "baltic-sea-land",
+  "osc:variables": [
+    "Colored Dissolved Organic Matter"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "chromophoric_dissolved_organic_matter"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2020-03-19T00:00:00Z",
+  "start_datetime": "2016-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.3738792631,
+          53.90254289,
+          32.9925362748,
+          66.2654700409
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Matter"
+  ]
+}

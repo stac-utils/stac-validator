@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "baltic-sea-level-baltic-seal",
+  "stac_version": "1.0.0",
+  "description": "Suit of products containing: 1) Reprocessed Along-Track Sea Level Estimations at 20-Hz; 2) Reprocessed monthly sea level grids; 3) Gridded mean sea surface height; 4) Maps of estimated sea level trends, annual cycle and uncertainties",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://balticseal.eu/data-access/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Baltic Sea Level_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "TOPEX/Poseidon",
+    "ERS-2",
+    "Jason-1",
+    "Jason-2",
+    "Jason-3",
+    "ENVISAT",
+    "CryoSat-2",
+    "SARAL",
+    "Sentinel-3"
+  ],
+  "osc:project": "baltic-seal-sea-level",
+  "osc:variables": [
+    "Sea Level"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_level"
+    }
+  ],
+  "osc:region": "Europe",
+  "created": "2021-11-02T00:00:00Z",
+  "start_datetime": "1995-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0982681011,
+          53.0247903014,
+          31.9809728849,
+          67.1748890303
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1995-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Level"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "liquid-water-equivalent",
+  "stac_version": "1.0.0",
+  "description": "The liquid content of solid precipitation that has accumulated on the ground (snow depth). The accumulation may consist of snow, ice formed by freezing precipitation, freezing liquid precipitation, or ice formed by the refreezing of melted snow.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/eca0080c-b001-4b6a-b978-f76415e28421?gtm_keyword=LIQUID%20WATER%20EQUIVALENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Liquid Water Equivalent"
+}

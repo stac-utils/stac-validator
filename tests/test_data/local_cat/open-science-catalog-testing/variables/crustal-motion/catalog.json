@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "crustal-motion",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the use of gravitational data in order to determine the relative motions of the Earth's crustal plates.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/122f7d15-7e5c-4249-992c-c753c80cf05b?gtm_keyword=CRUSTAL%20MOTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Crustal Motion"
+}

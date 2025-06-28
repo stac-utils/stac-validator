@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "leaf-area-index-lai",
+  "stac_version": "1.0.0",
+  "description": "A general term for a wide variety of processes and landforms involving the downslope movement, under gravity, of masses of soil and rock material.[Dictionary of Geological Terms, American Geological Institute, 1984.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/lai/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Leaf Area Index (LAI)"
+}

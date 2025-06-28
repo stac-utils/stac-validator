@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fossil-fuel-burning",
+  "stac_version": "1.0.0",
+  "description": "Fossil fuel burning refers to the burning of any one of the organic fuels (coal, natural gas, oil, tar sands, and oil shale) derived from once living plants or animals.[Chiras, Daniel D. 1998. Environmental Science. A Systems Approach to Sustainable Development. Wadsworth Publishing Company. Belmont, California.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/edfbff1e-b24b-40b9-be54-e1823b4d7f49?gtm_keyword=FOSSIL%20FUEL%20BURNING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Fossil Fuel Burning"
+}

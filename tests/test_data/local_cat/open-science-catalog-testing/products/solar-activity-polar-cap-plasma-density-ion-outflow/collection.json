@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "solar-activity-polar-cap-plasma-density-ion-outflow",
+  "stac_version": "1.0.0",
+  "description": "Solar activity- and height-adjusted plasma density measurements in the polar cap (i.e., above 80° latitude in Modified Apex110 coordinates) from the Swarm and CHAMP satellites. covering the entire CHAMP mission period (2002Ã¢â¬â2009) and the Swarm mission period from launch through February 2020.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/3813146#.YaS7fi8w3fY",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.3813146"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "CHAMP and Swarm solar activity- and height-scaled polar cap plasma density measurements",
+  "osc:themes": [
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM"
+  ],
+  "osc:project": "swarm-outflow",
+  "osc:variables": [
+    "Solar Activity"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "solar_activity"
+    }
+  ],
+  "created": "2020-05-07T00:00:00Z",
+  "start_datetime": "2002-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "sci:doi": "10.5281/zenodo.3813146",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2002-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sun-Earth Interactions",
+    "Solar Activity"
+  ]
+}

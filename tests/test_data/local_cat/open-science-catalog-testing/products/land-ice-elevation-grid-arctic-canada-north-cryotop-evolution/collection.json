@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "land-ice-elevation-grid-arctic-canada-north-cryotop-evolution",
+  "stac_version": "1.0.0",
+  "description": "Gridded product containing a spatial interpolation of the point product onto a uniform grid of elevation and uncertainty. The gridded product is published on a monthly basis with one product per region on a 2km grid in polar stereographic coordinates. The monthly product contains 3 months of data on a rolling basis each month and uses the Thematic point product as its input. For example, the January 2020 gridded product will contain point data for a window starting on 1st December 2019 and ending on 29th February 2020.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp://science-pds.cryosat.esa.int/TEMPO_SWATH_GRID/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://cryotempo-eolis.org/wp-content/uploads/2021/12/CryoTempo-ThematicProduct-ProductHandbook_Issue2.1.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Land Ice Elevation Thematic Gridded Product_Arctic Canada North_Cryosat",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryotop-evolution",
+  "osc:variables": [
+    "Glacier Elevation/Ice Sheet Elevation"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "land_ice_elevation"
+    }
+  ],
+  "osc:region": "Arctic Canada North",
+  "created": "2021-12-01T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -118.0,
+          73.0,
+          -63.0,
+          84.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Elevation/Ice Sheet Elevation",
+    "Cryospheric Indicators",
+    "Glacial Measurements",
+    "Sea Ice"
+  ]
+}

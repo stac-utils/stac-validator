@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "coral-reefs",
+  "stac_version": "1.0.0",
+  "description": "A mass of calcium carbonate rock material derived from coral organisms, algae, mollusks, worms, etc. Also used as pertaining to the living biological aspects of the reef.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ad497e7a-48fa-45e1-90a5-b052508bdb30?gtm_keyword=CORAL%20REEFS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ad497e7a-48fa-45e1-90a5-b052508bdb30?gtm_keyword=CORAL%20REEFS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c6244bfb-300f-4818-bf45-cf1a15e7e073?gtm_keyword=CORAL%20REEFS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Coral Reefs"
+}

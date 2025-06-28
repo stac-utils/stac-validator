@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "index-of-biotic-integrity",
+  "stac_version": "1.0.0",
+  "description": "A scientific tool used to identify and classify water pollution problems. An Index of Biotic Integrity (IBI) associates anthropogenic influences on a water body with biological activity in the water body, and is formulated using data developed from biosurveys.[Karr, J. R. (1981), Assessment of Biotic Integrity Using Fish Communities. Fisheries, 6: 21-27. doi:10.1577/1548-8446(1981)006<0021:AOBIUF>2.0.CO;2]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4497eb1b-b64d-46ff-a18d-37d217430777?gtm_keyword=INDEX%20OF%20BIOTIC%20INTEGRITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Index Of Biotic Integrity"
+}

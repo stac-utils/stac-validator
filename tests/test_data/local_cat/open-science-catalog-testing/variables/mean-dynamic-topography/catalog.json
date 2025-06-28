@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "mean-dynamic-topography",
+  "stac_version": "1.0.0",
+  "description": "The mean dynamic topography (MDT) is the height of the time-mean sea surface above the geoid. Its slope reveals the magnitude and direction of ocean surface geostrophic currents; hence, it is a surface representation of the ocean's mean circulation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/cf89619d-c67d-43f0-a217-c8684ce7c984?gtm_keyword=MEAN%20DYNAMIC%20TOPOGRAPHY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Mean Dynamic Topography"
+}

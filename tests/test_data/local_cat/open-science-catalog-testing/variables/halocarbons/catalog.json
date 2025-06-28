@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "halocarbons",
+  "stac_version": "1.0.0",
+  "description": "Halocarbons containing chlorine and bromine are among the most potent greenhouse gases in the atmosphere. They do not occur naturally but are produced industrially in large quantities. The best known members of this group of chemicals are the chlorofluorocarbons (CFCs) [see definition], which are widely used as solvents, refrigerants, spray-can propellants and foaming agents. Also significant are the halons, bromine-based compounds used as fire-extinguishing agents.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/13588158-07b6-4294-a00c-fa095b6ad4fd?gtm_keyword=HALOCARBONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Halocarbons"
+}

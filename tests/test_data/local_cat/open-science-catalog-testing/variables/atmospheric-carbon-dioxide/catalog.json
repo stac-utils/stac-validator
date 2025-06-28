@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-carbon-dioxide",
+  "stac_version": "1.0.0",
+  "description": "One of the major greenhouse gases. Atmospheric carbon dioxide is caused mainly by the burning of fossil fuels and deforestation. The chemical formula for carbon dioxide is CO2. Long-term measurements of CO2 in the atmosphere are conducted at Manua Loa, Hawaii and several international monitoring stations around the world.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c3b81888-8a39-4b3f-8033-4c077797bcba?gtm_keyword=ATMOSPHERIC%20CARBON%20DIOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Carbon Dioxide"
+}

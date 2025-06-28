@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sea-surface-slope",
+  "stac_version": "1.0.0",
+  "description": "The slope of the ocean water surface, resultant from a geophysical phenomenon such as dynamic circulation or tides. This variable does not refer to wave slope.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/52a32bd3-d701-49e1-a827-67b3d96d8e56?gtm_keyword=SEA%20SURFACE%20SLOPE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Surface Slope"
+}

@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "wind-stress-vector-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "Hourly stress equivalent wind and wind stress components at 10-m from ERA*, which consists of ECMWF ERA5 output, converted to U10S and stress, and then corrected using several scatterometer data sources",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://drive.google.com/file/d/17yYD7nhG4lEOkiyFCEQcoPOY0ziJaHMW/view?usp=sharing",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Wind stress vector (& anomalies)_Hourly_ERA5",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Wind Stress"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "wind_stress_vector"
+    }
+  ],
+  "osc:region": "Agulhas",
+  "created": "2021-11-30T00:00:00Z",
+  "start_datetime": "2019-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.9931766896,
+          -34.845355958,
+          20.0417410996,
+          -34.8205312217
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmpospheric Wind",
+    "Wind Dynamics"
+  ]
+}

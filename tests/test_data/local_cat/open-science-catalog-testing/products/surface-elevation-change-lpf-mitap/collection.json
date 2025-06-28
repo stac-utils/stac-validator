@@ -1,0 +1,72 @@
+{
+  "type": "Collection",
+  "id": "surface-elevation-change-lpf-mitap",
+  "stac_version": "1.0.0",
+  "description": "Surface elevation changes derived from Digital Elevation Model differentiating using data from TanDEM-X acquisitions from austral winters 2013 and 2017",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Surface elevation changes Antarctic Peninsula <70°S between 2013 and 2017_Antarctica_TanDEM-X",
+  "osc:themes": [
+    "Cryosphere",
+    "Land"
+  ],
+  "osc:missions": [
+    "TanDEM-X"
+  ],
+  "osc:project": "lpf-mit-ap",
+  "osc:variables": [
+    "Digital Elevation/Terrain Model (DEM)"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "surface_elevation_change"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -80.0,
+          180.0,
+          -61.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Topography",
+    "Terrain Elevation",
+    "Digital Elevation/Terrain Model (DEM)"
+  ]
+}

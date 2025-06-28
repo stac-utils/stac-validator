@@ -1,0 +1,95 @@
+{
+  "type": "Collection",
+  "id": "cryosat-mountain-glaciers",
+  "stac_version": "1.0.0",
+  "description": "Quantify the volume, mass change and contribution to sea level change of mountain glaciers using CryoSat satellite radar altimeter data",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.cryosat-mtg.org/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/cryosat-mountain-glaciers/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "CryoSat+ Mountain Glaciers",
+  "osc:name": "CryoSat+ Mountain Glaciers",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Stephen Plummer",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "stephen.plummer@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "University of Edinburgh (UoE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "isardSAT",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Environmental Earth Observation Information Technology GMBH",
+      "role": "consortium_member"
+    },
+    {
+      "name": "earthwave Earth Observation and Data Science Specialists",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University College of London  Mullard Space Science Labor (UCL)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2015-05-13T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-05-13T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

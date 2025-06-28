@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorofluorocarbons",
+  "stac_version": "1.0.0",
+  "description": "CFCs are very stable chemical compounds, used in refrigerants, solvent, and (in the past in the U.S.) aerosols, which release chlorine (important) and fluorine (less important) into the upper atmosphere. In the stratosphere, CFCs are photolyzed (by incoming solar UV) to form carbon dioxide, CO2, hydrogen fluoride, HF, and ultimately (after multiple UV absorption events) chlorine radicals. These chlorine species are crucial in the destruction of the ozone layer over Antarctica and probably elsewhere (see chlorine). [Environmental Science and Technology; v 28; pages 1619-1622; 1994.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e78ae4ce-807a-4417-ad6e-a458c6da6638?gtm_keyword=CHLOROFLUOROCARBONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorofluorocarbons"
+}

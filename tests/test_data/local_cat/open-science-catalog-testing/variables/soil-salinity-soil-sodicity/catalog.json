@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-salinity-soil-sodicity",
+  "stac_version": "1.0.0",
+  "description": "The term salinity refers to the presence of the major dissolved inorganic solutes, essentially Na, Mg, Ca, K, Cl, SO4, HCO3, and CO3, in aqueous samples. As applied to soils, it refers to the soluble plus readily dissolvable salts in the soil or, more usually, in an aqueous extract of a soil sample. Salinity is quantified in terms of the total concentration (or, occasionally, the content) of such soluble salts.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3b54403e-25a1-43cc-97ac-7c14e73bda96?gtm_keyword=SOIL%20SALINITY/SOIL%20SODICITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3b54403e-25a1-43cc-97ac-7c14e73bda96?gtm_keyword=SOIL%20SALINITY/SOIL%20SODICITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Salinity/Soil Sodicity"
+}

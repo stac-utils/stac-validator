@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "mean-spectral-dac-from-318-to952nm-of-underwater-light-profiles-rv-polarstern-cruise-ps113",
+  "stac_version": "1.0.0",
+  "description": "The spectrally resolved diffuse attenuation coefficient over the first optical depth was derived from radiometric profiles collected at discrete stations during RV Polarstern cruise PS113 at 17 discrete stations distributed along a transect between the Malvinas upwelling region and the English channel in the Atlantic Ocean. An irradiance sensor (RAMSES ACC-2-VIS, TriOS GmbH, Germany) covering the wavelength region from 320 nm to 950 nm with a spectral sampling of 3.3 nm, resolution of 10 nm, and accuracy of 0.3 nm was used which is additionally equipped with an inclination and pressure sensor. The sensor was mounted to a steel frame for vertical profiling of the underwater downwelling irradiance at a distance of 5 m to the ship. The general measurement procedure followed Taylor et al. (2011). A second RAMSES ACC-2-VIS sensor mounted on top of the ship recorded the incident downwelling irradiance above the surface, to correct for incident sunlight variations. Mean Kd at each sampled wavelength was calculated from downwelling irradiance measurements at the different depths in the profile over the first optical depth (mostly between 7 to 22 m, the information is provided as minimum and maximum depth). Details on measurement procedure and its uncertainty can be found in Tilstone et al. (2020) and on the specific determination of Kd during PS113 can be found in Bracher et al. (2020).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.931480?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.931480",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Mean spectral DAC from 318-952nm of light profiles measured at discrete stations (RV Polarstern cruise PS113) ",
+  "osc:themes": [
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-s5p-i-oc",
+  "osc:variables": [
+    "Diffuse Attenuation Coefficient (DAC)"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mean_spectral_diffuse_attenuation_coefficient"
+    }
+  ],
+  "osc:region": "South Atlantic Ocean",
+  "created": "2022-03-17T00:00:00Z",
+  "start_datetime": "2018-05-10T00:00:00Z",
+  "end_datetime": "2018-06-05T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -60.533041,
+          -47.66,
+          -13.12,
+          35.96
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-10T00:00:00Z",
+          "2018-06-05T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Attenuation/Transmission",
+    "Diffuse Attenuation Coefficient (DAC)"
+  ]
+}

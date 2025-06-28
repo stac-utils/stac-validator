@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "particulate-organic-matter",
+  "stac_version": "1.0.0",
+  "description": "Particulate organic matter (POM) is a fraction of total organic matter operationally defined as that which does not pass through a filter pore size that typically ranges in size from 0.053 millimeters (53  nano meters) to 2 millimeters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://en.wikipedia.org/wiki/Particulate_organic_matter",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Particulate Organic Matter"
+}

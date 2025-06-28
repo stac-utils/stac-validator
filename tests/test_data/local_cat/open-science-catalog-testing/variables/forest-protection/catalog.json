@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "forest-protection",
+  "stac_version": "1.0.0",
+  "description": "Any measure related to or about the protection and/or conservation of forests from insects, diseases, pathogens, windstorms, excess logging, and decreased biotic diversity. [Franzese, M.L., T.J. Thompson, and J. McNutt. 1978. Glossary of forestry related terms. Potlatch Corporation Internal Report. Lewiston, ID:Potlatch Corporation. 59p.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/adeb4c27-a115-4ced-9827-5f022883f606?gtm_keyword=FOREST%20PROTECTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Forest Protection"
+}

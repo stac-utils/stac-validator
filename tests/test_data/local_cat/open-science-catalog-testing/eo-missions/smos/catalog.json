@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "smos",
+  "stac_version": "1.0.0",
+  "description": "Soil Moisture and Ocean Salinity (SMOS) mission is a microwave imaging satellite whose operation is led by ESA as part of their Earth Explorer missions. SMOS provides global observations on soil moisture and ocean salinity to improve our understanding of the water cycle and our weather forecasting ability.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=379",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "SMOS"
+}

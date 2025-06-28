@@ -1,0 +1,107 @@
+{
+  "type": "Collection",
+  "id": "eoatsee",
+  "stac_version": "1.0.0",
+  "description": "Earth Observation Advanced science Tools for Sea level Extreme Events (EOatSEE) is a project funded by ESA and proposed by a consortium of institutions and companies that are internationally recognized for their work in the Marine, Coastal and Earth Observation topics.  It aims to provide an advanced reconstruction of the relevant processes included in extreme sea level (ESL) events and its related coastal hazards, by taking advantage of the novel capabilities and synergies offered by the latest advances in EO technology. The solid scientific knowledge arising from EOatSEE therefore shall enhance the fundamental scientific understanding and predictive capacity of such events, as well as our potential to better assess the related risk and the vulnerability of coastal zones.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eoatsee.eu/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/eoatsee/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "EOatSEE",
+  "osc:name": "Earth Observation Advanced science Tools for Sea level Extreme Events (EOatSEE)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Jerome Benveniste",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "jerome.benveniste@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "Deimos Engenharia (PT)+ATLANTIC : Association for an Atla (PT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Atlantic International Research Centre (AIR Centre) (PT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CLS COLLECTE LOCALISATION SATELLITES (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Deimos Engineering and Systems (ES)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Deltares (NL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Fondazione Centro Euro:Mediterraneo (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "TELESPAZIO FRANCE (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIV BOLOGNA ALMA MATER STUDIORUM (IT)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-07-09T00:00:00Z",
+  "end_datetime": "2023-02-10T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-07-09T00:00:00Z",
+          "2023-02-10T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "north-atlantic-oscillation",
+  "stac_version": "1.0.0",
+  "description": "The North Atlantic Oscillation (NAO) index is often defined as the difference of sea-level pressure between 2 stations situated close to the \"centres of action\" over Iceland and the Azores. Stykkisholmur (Iceland) is invariably used as the northern station, whereas either; Ponta Delgada (Azores) Lisbon (Portugal) Gibraltar are used as the southern station. Strong positive phases of the NAO tend to be associated with above-normal temperatures in the eastern United States and across northern Europe and below-normal temperatures in Greenland and oftentimes across southern Europe and the Middle East. They are also associated with above-normal precipitation over northern Europe and Scandinavia and below-normal precipitation over southern and central Europe. Opposite patterns of temperature and precipitation anomalies are typically observed during strong negative phases of the NAO. During particularly prolonged periods dominated by one particular phase of the NAO, abnormal height and temperature patterns are also often seen extending well into central Russia and north-central Siberia.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c5e1c055-768e-4aa3-a0a1-3adfda8ecdca?gtm_keyword=NORTH%20ATLANTIC%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "North Atlantic Oscillation"
+}

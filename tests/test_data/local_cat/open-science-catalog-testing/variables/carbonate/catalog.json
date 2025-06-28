@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbonate",
+  "stac_version": "1.0.0",
+  "description": "A dissolved ion of carbonic acid, with the chemical formula CO3(-2), formed by dissolution of carbon dioxide in water. Other forms of carbonate, such as bicarbonate, HCO3-, are included with this variable as detailed variables.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/68f7ba1b-a2f9-41b6-9bc1-fd187942fbed?gtm_keyword=CARBONATE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Carbonate"
+}

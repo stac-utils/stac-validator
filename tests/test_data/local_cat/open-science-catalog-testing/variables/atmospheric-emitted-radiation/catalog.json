@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-emitted-radiation",
+  "stac_version": "1.0.0",
+  "description": "The part of the terrestrial radiation which is emitted by the atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1ed8ac8d-3a66-4b86-be30-a5b79b3806d2?gtm_keyword=ATMOSPHERIC%20EMITTED%20RADIATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Emitted Radiation"
+}

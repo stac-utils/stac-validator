@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrofluorocarbons",
+  "stac_version": "1.0.0",
+  "description": "The HFCs are a class of replacements for CFCs. Because they do not contain chlorine or bromine, they do not deplete the ozone layer. All HFCs have an ozone depletion potential of 0. Some HFCs have high GWPs (Global Warming Potentials). HFCs are numbered according to a standard scheme. The National Oceanic and Atmospheric Administration (NOAA) provides more detailed information about HFCs on their website: http://www.cmdl.noaa.gov/noah/flask/hfc.html",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ed5106fd-a73f-4203-87a3-9c9e7e85dcfc?gtm_keyword=HYDROFLUOROCARBONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrofluorocarbons"
+}

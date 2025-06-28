@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dust-ash-smoke",
+  "stac_version": "1.0.0",
+  "description": "Solid materials suspended in the atmosphere in the form of small, irregular particules, many of which are microscopic in size. Dust and Ash are due to biogenic and anthropogenic sources such as volcanic eruptions, salt spray, plant pollen, smoke, industrial processes, etc.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1b6342c6-315b-4f4f-b4e3-d6902aaa3e85?gtm_keyword=DUST/ASH/SMOKE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Dust/Ash/Smoke"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pollen",
+  "stac_version": "1.0.0",
+  "description": "Pollen is, collectively, the mass of microspores or pollen grains produced within the anthers of a flowering plant or the male cones of a gymnosperm.[Allaby, M. 1998. A Dictionary of Ecology. Oxford University Press. Oxford, New York.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b0ad34ee-4b38-4a8d-a483-b3bfea66fa82?gtm_keyword=POLLEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Pollen"
+}

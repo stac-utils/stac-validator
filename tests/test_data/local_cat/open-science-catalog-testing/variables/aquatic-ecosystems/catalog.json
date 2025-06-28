@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aquatic-ecosystems",
+  "stac_version": "1.0.0",
+  "description": "The water environments, such as rivers, and oceans in which the life needs of a plant or animal are supplied.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c6455081-132d-4661-bb5f-22edf2f90800?gtm_keyword=AQUATIC%20ECOSYSTEMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Aquatic Ecosystems"
+}

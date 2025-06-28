@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "radionuclides",
+  "stac_version": "1.0.0",
+  "description": "Nuclides which are unstable and that decay or disintegrate spontaneously, emitting radiation. A synonym for radioactive nuclide.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e9ed684e-5252-4091-a794-aaf6e5f249ed?gtm_keyword=RADIONUCLIDES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Radionuclides"
+}

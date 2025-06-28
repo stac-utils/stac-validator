@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "broadband-albedo-arctic-sice",
+  "stac_version": "1.0.0",
+  "description": "1 km Arctic regional land ice areas, daily, with cloud mask, geotiff at https://github.com/AdrienWehrle/SICE/tree/master/masks",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://dataverse01.geus.dk/dataverse/sice",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Broadband albedo_Arctic_S3",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "s3-snow-and-ice-products",
+  "osc:variables": [
+    "Albedo"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "broadband_albedo"
+    }
+  ],
+  "osc:region": "Arctic",
+  "created": "2020-01-01T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -178.4105321808,
+          60.6134006095,
+          178.3660428163,
+          84.2454100786
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Radiation",
+    "Albedo",
+    "Snow/Ice",
+    "Land Surface",
+    "Surface Radiative Properties",
+    "Terrestrial Hydrosphere"
+  ]
+}

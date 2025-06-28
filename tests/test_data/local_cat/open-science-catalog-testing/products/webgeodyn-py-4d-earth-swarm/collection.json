@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "webgeodyn-py-4d-earth-swarm",
+  "stac_version": "1.0.0",
+  "description": "Webgeodyn is a Python package that provides web-based visualisations for Gauss coefficients of magnetic field and core flow. It can be installed and run locally on a variety of data formats. The tool is deployed on the website https://geodyn.univ-grenoble-alpes.fr to show visualisations on several magnetic field and core flow models (CHAOS, COV-OBS, pygeodyn results...).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gricad-gitlab.univ-grenoble-alpes.fr/Geodynamo/webgeodyn",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodynamo.gricad-pages.univ-grenoble-alpes.fr/webgeodyn/index.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Webgeodyn Python package",
+  "osc:themes": [
+    "Solid Earth",
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM"
+  ],
+  "osc:project": "4d-earth-swarm",
+  "osc:variables": [
+    "Magnetic Fields/Magnetic Currents",
+    "Geomagnetic Indices"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "webgeodyn_py"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-09-10T00:00:00Z",
+  "version": "0.10.2",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ionosphere/Magnetosphere Dynamics",
+    "Magnetic Fields/Magnetic Currents",
+    "Sun-Earth Interactions",
+    "Geomagnetic Indices"
+  ]
+}

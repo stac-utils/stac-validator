@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "geothermal-heat-flux",
+  "stac_version": "1.0.0",
+  "description": "The amount of heat moving steadily outward from the interior of the earth through a unit area in unit time.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://nsidc.org/learn/cryosphere-glossary/geothermal-heat-flux#:~:text=geothermal%20heat%20flux-,geothermal%20heat%20flux,unit%20area%20in%20unit%20time.",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Geothermal Heat Flux"
+}

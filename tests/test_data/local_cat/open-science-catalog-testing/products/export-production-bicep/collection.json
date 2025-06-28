@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "export-production-bicep",
+  "stac_version": "1.0.0",
+  "description": "This dataset contains monthly global data for Oceanic Export Production as part of the BICEP project. Data is provided between 1998-2019 at 9 km resolution. It has been derived from the Ocean Colour Climate Change Initiative v4.2 dataset. Export production can be defined as steady-state Net Community Production (NCP) with all temporal lags accounted for and with a well defined depth horizon over which the community production is integrated over. (Laws 1991). This is the net amount of carbon assimilated in the euphotic zone that will be exported to deeper waters. Export Production can by definition only vary on timescales significantly longer that any processes directly controlling production and respiration as to not violate the steady state assumption.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.ceda.ac.uk/neodc/bicep/data/oceanic_export_production/v1.0/monthly/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://dx.doi.org/10.5285/a6fc730d88fd4935b59d64903715d891",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Monthly Global Export Production based on Dunne et al 2005 dataset (9 km, OC-CCI v4.2)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP",
+    "OrbView-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "bicep",
+  "osc:variables": [
+    "Export Production"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "export_production_dunne"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-12-21T00:00:00Z",
+  "start_datetime": "1998-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1998-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics"
+  ]
+}

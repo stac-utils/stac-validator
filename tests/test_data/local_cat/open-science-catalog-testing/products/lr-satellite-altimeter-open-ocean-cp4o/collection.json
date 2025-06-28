@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "lr-satellite-altimeter-open-ocean-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Low Resolution Mode satellite altimeter product generated from Cryosat data by TU Delft",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Low Resolution Mode satellite altimeter product _Open Ocean_Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "low_resolution_satellite_altimeter_open_ocean"
+    }
+  ],
+  "osc:region": "Pacific and North Atlantic",
+  "created": "2021-02-15T00:00:00Z",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2013-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.6208515315,
+          -0.310754625,
+          -2.3130615194,
+          60.0851973468
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2013-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

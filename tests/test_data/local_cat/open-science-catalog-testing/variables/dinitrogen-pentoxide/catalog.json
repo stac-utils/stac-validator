@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dinitrogen-pentoxide",
+  "stac_version": "1.0.0",
+  "description": "Dinitrogen pentoxide (N2O5) is formed from the reaction of the nitrate radical with nitrogen dioxide. Higher in the atmosphere N2O5 is an effective reservoir for active nitrogen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9ca9519d-c62b-42ea-8c91-cad06cfc59cb?gtm_keyword=DINITROGEN%20PENTOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Dinitrogen Pentoxide"
+}

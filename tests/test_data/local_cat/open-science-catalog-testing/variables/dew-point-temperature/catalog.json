@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dew-point-temperature",
+  "stac_version": "1.0.0",
+  "description": "The temperature to which a given air parcel must be cooled at constant pressure and constant water vapor content in order for saturation to occur.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/upper-vapour",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Dew Point Temperature"
+}

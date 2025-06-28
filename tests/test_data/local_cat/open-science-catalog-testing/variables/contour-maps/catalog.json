@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "contour-maps",
+  "stac_version": "1.0.0",
+  "description": "A map that contains contours, which are imaginary lines that connect points of equal value (e.g. elevation of the land surface).[U.S. Geological Survey]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/120f9132-a756-4f6f-a74c-78e94dfcd2a1?gtm_keyword=CONTOUR%20MAPS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Contour Maps"
+}

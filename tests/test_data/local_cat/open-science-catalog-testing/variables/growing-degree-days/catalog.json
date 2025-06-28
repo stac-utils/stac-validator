@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "growing-degree-days",
+  "stac_version": "1.0.0",
+  "description": "(Abbreviated GDD.) A heat index that relates the development of plants, insects, and disease organisms to environmental air temperature. GDD are a measure of heat accumulation used by horticulturists, gardeners, and farmers to predict plant and pest development rates such as the date that a flower will bloom or a crop reach maturity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a43f9a02-769d-4343-8790-fa29a0507f44?gtm_keyword=GROWING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6d808909-ce04-4401-a883-aff4d723d025?gtm_keyword=GROWING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Growing Degree Days"
+}

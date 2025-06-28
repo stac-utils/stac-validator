@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "energy-deposition",
+  "stac_version": "1.0.0",
+  "description": "The energy deposited into the atmosphere from ionization of atmospheric gases, as well as excitation of photometric and x-ray emissions. The ionospheric effects resulting from the energy deposition by incident particle fluxes include: - production of secondary electrons (ionization) - enhanced steady-state electron density - photometric emissions - bremsstrahlung x-rays - conductivity changes - E-region horizontal currents - plasma heating(collisional, Joule heating) - magnetic field perturbations",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/36bab763-b5d7-450a-8328-1c1f935184f4?gtm_keyword=ENERGY%20DEPOSITION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Energy Deposition"
+}

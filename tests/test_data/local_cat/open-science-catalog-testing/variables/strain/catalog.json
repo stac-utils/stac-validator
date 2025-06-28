@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "strain",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement, analysis, or modeling of strain that has occurred in the Earth's crust, either through in-situ measurements, or through laboratory experiments.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/5d7f7568-bfc3-4c11-b446-c4f6488c8ae9?gtm_keyword=STRAIN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Strain"
+}

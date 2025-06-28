@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "standardized-precipitation-index",
+  "stac_version": "1.0.0",
+  "description": "An index developed by McKee et al. (1993) to quantify precipitation deficit at a given location for multiple timescales. Standardized precipitation is the difference of precipitation from the mean for a specified time divided by the standard deviation, where the mean and standard deviation are determined from the climatological record. The fact that precipitation is not normally distributed is overcome by applying a transformation (i.e., gamma function) to the distribution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3b024dec-76c2-4995-a9ad-7e2bf4feda72?gtm_keyword=STANDARDIZED%20PRECIPITATION%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Standardized Precipitation Index"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "absolute-dynamic-topography",
+  "stac_version": "1.0.0",
+  "description": "The absolute dynamic topography, from which the ocean's currents can be derived by geostrophy, is obtained, either by subtracting the geoid height from the altimetric Mean Sea Surface height above the reference ellipsoid, or by estimating the ocean Mean Dynamic Topography and adding it to the altimetric sea level.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/7e1fc68e-5a7e-4a59-8ae6-3fa15bdae12d?gtm_keyword=ABSOLUTE%20DYNAMIC%20TOPOGRAPHY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Absolute Dynamic Topography"
+}

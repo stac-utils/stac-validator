@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "high-res-phytoplankton-chl-a-data-at-discrete-light-stations-polarstern-cruise-ps113",
+  "stac_version": "1.0.0",
+  "description": "We analysed water samples taken during the Polarstern PS113 cruise with HPLC technique to retrieve phytoplankton pigment concentrations. We further used these data to obtain major phytoplankton groups following the diagnostic pigment analysis. We also measured at discrete light stations (called Lightstations) and from an undulating platform towed behind the ship (called TRIAXUS stations) radiometric underwater light profiles high spectrally resolved. We obtained high resolution phytoplankton group Chla data from depth resolved apparent optical properties derived from the underwater radiation data by applying an empirical orthogonal function (EOF) analysis to the spectral data set and developing subsequently regression models using the pigment based phytoplankton group Chla and the selected EOF modes. Results were obtained from using depth resolved transmission data (Transmission) and also from using the mean diffuse attenuation over the first optical depth (kdmean) of the measured radiometric profile. All the details are described in the related publication by Bracher et al. (2020).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.913514?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.913514",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "High resolution phytoplankton Chl-a data obtained at discrete light stations (POLARSTERN cruise PS113)",
+  "osc:themes": [
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-s5p-i-oc",
+  "osc:variables": [
+    "Chlorophyll Concentration"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mass_concentration_of_diazotrophic_phytoplankton_expressed_as_chlorophyll_in_sea_water"
+    }
+  ],
+  "osc:region": "South Atlantic Ocean",
+  "created": "2020-04-21T00:00:00Z",
+  "start_datetime": "2018-05-10T00:00:00Z",
+  "end_datetime": "2018-06-05T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -60.72,
+          -47.66,
+          -13.12,
+          35.96
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-10T00:00:00Z",
+          "2018-06-05T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Chlorophyll",
+    "Chlorophyll Concentration",
+    "Ocean Chemistry",
+    "Pigments"
+  ]
+}

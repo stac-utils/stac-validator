@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "surface-melting-antarctica-cryosmos",
+  "stac_version": "1.0.0",
+  "description": "The product Ã¢â¬ÅOccurrence of Surface MeltingÃ¢â¬Â includes the melted/not melted status of every pixel each day, as well as the mask which excludes the ocean as well as areas never experiencing melting. Surface melting is retrieved from passive microwave radiometer SMOS using the algorithm described in D5-2. Product details are available at: http://www.ifac.cnr.it/cryosmos/products/CryoSMOS_D8_EDUM_V2.0.pdf.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.ifac.cnr.it/cryosmos/products/SM_TEST_OSMDP4_20100401T000000_20190331T000000_100_001_0.nc",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5194/tc-14-539-2020"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Occurrence of Surface Melting_Antarctica_SMOS",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "SMOS"
+  ],
+  "osc:project": "cryosmos",
+  "osc:variables": [
+    "Ice Growth/Melt"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "surface_melting"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-03-19T00:00:00Z",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "sci:doi": "10.5194/tc-14-539-2020",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -83.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Snow/Ice",
+    "Ice Growth/Melt",
+    "Cryospheric Indicators",
+    "Sea Ice"
+  ]
+}

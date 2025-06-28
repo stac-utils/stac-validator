@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "saltwater-intrusion",
+  "stac_version": "1.0.0",
+  "description": "The intrusion of saline marine water into fresh groundwater supplies along coasts, often due to the extraction of fresh groundwater for human consumption.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dffe5a35-09af-4413-bdd3-a5aedfeb49cc?gtm_keyword=SALTWATER%20INTRUSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4a11a257-99c6-4f87-8884-2a2aa46a49fa?gtm_keyword=SALTWATER%20INTRUSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Saltwater Intrusion"
+}

@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "alplakes",
+  "stac_version": "1.0.0",
+  "description": "The AlpLakes project aims at providing operational products based on a combination of remote sensing and hydrodynamic models. ALPLAKES is a continuation of the CORESIM (ESA SEOM S2-4Sci Land and Water) project based on the recommendations provided during the CORESIM roadmap. While many studies have focused on ecosystem variability over a latitudinal gradient (Woolway and Merchant, 2019), the response of the freshwater systems to climate changes over an altitudinal gradient is comparatively less understood. For this purpose, the project upscaled the web-based platform (see Meteolakes, http://meteolakes.ch/ as baseline) by integrating 11 lakes from ~60 m.a.s.l to 1800 m.a.s.l around the Alps with a 3D modelling approach. Sentinel-2 products are used to improve the quality of the hydrodynamic model by providing, in near real:time, information about light penetration. This parameter is essential for the distribution of the incoming solar radiation as it controls, together with the atmospheric forcing, the evolution of the lakess thermal structure. Then, there will be an evaluation of the short time evolution of identified patterns from Sentinel-2 products by applying a particle:tracking technique. The final application will be openly available for in-depth analyses of specific events in a new web-based platform.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.datalakes-eawag.ch/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/alplakes/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AlpLakes",
+  "osc:name": "AlpLakes",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Espen Volden",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "espen.volden@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "EAWAG (CH)CNR:RESEARCH INSTITUTE FOR GEO:HYDROLOGICAL PROTECTION IRPI (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITA DEGLI STUDI DI TRENTO (IT)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-01-20T00:00:00Z",
+  "end_datetime": "2023-03-15T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-01-20T00:00:00Z",
+          "2023-03-15T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

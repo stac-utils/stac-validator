@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorine-nitrate",
+  "stac_version": "1.0.0",
+  "description": "ClONO2 - This is a stratospheric reservoir species for chlorine and nitrogen, two of the catalysts in the breakdown of ozone. It reacts with HCl at low temperatures on the surfaces of polar stratospheric clouds (PSCs over Antarctica and possibly in the stratosphere over the Arctic). That normally slow reaction heterogeneously produces molecular chlorine and nitric acid. The former outgases from the PSC surface and is quickly photolyzed by 450 nm or shorter wavelength light to form chlorine radicals which rapidly catalyze the breakdown of ozone (see chlorine monoxide). [Science; v 238; pages 1258-1260; 1987.] [Science; v 258; pages 1342-1345; 1992.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.shsu.edu/~chm_tgc/Glossary/bc.html#C",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorine Nitrate"
+}

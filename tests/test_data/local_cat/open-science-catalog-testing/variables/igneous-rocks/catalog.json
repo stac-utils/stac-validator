@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "igneous-rocks",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the composition, texture, formation, location, extent, etc. of rocks formed through igneous processes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/e8d97ffd-2fd2-4989-88a7-9772fc9b7cd8?gtm_keyword=IGNEOUS%20ROCKS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Igneous Rocks"
+}

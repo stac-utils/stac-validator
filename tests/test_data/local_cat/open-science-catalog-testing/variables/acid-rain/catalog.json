@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "acid-rain",
+  "stac_version": "1.0.0",
+  "description": "Rain having a pH lower than 5.6, representing the pH of natural rainwater; the increased acidity is usually due to the presence of sulfuric acid and/or nitric acid, often attributed to anthropogenic sources. Acid rain results when sulfur dioxide (SO2) and nitrogen oxides (NOX) are emitted into the atmosphere and transported by wind and air currents. The SO2 and NOX react with water, oxygen and other chemicals to form sulfuric and nitric acids. These then mix with water and other materials before falling to the ground.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f9405e92-0c1c-4443-9cc4-45d662d8b5f2?gtm_keyword=ACID%20RAIN&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/62ee81e7-9f5a-4af5-a086-f4c402c7d19d?gtm_keyword=ACID%20RAIN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Acid Rain"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "rivers-streams",
+  "stac_version": "1.0.0",
+  "description": "River: A large, natural freshwater surface stream having a permanent seasonal flow and moving toward a sea, lake, or another river in a definite channel. Stream: A body of running water moving under the influence of gravity to lower levels in a narrow, clearly defined natural channel.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5e3c573f-a787-4afa-80a4-047c2c5d83f2?gtm_keyword=RIVERS/STREAMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Rivers/Streams"
+}

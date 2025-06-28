@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dissolved-oxygen",
+  "stac_version": "1.0.0",
+  "description": "A colorless, odorless, gaseous element, constituting 21 percent of the volume of the atmsophere, and essential for aerobic forms of life. Gaseous oxygen has a chemical forumla of O2. Despite its abundance in air, the concentration of oxygen in water is usually quite low, at just a few parts per million. Nevertheless, this concentration is a good indicator of water quality. If it is too low, many organisms, including fish, will die.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/b632d0cc-d4b0-458e-a182-16bbd2a5ab05?gtm_keyword=DISSOLVED%20OXYGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Dissolved Oxygen"
+}

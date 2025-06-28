@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "champ",
+  "stac_version": "1.0.0",
+  "description": "Launched in July 2000, Challenging Minisatellite Payload (CHAMP) was operated by the German Aerospace Centre (DLR). It acquired spatial and temporal measurements of Earths gravitational, magnetic, and electric fields which assisted in a variety of fields such as climate studies, geodesy, and geophysics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=256",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "CHAMP"
+}

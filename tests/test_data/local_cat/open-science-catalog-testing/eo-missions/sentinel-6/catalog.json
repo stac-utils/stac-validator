@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "sentinel-6",
+  "stac_version": "1.0.0",
+  "description": "Launched in November 2020 with a design life of seven years, Sentinel-6 Michael Freilich is the first of two satellites to be launched as part of the Sentinel-6 (S-6) mission. As the successor of NASAs Jason-3 mission, S-6 is a joint venture between the European Space Agency (ESA), the European Organisation for the Exploitation of Meteorological Satellites (EUMETSAT), the National Aeronautics and Space Administration (NASA), and the National Oceanic and Atmospheric Administration (NOAA). As part of the ESA Copernicus programme for Earth observation, Sentinel-6 Michael Freilich will be joined by Sentinel-6B in 2025 to  provide continuity in sea-surface height measurements until new technologies can take over in 2030. A secondary objective of the mission is to measure the temperature and humidity in the troposphere and stratosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=769",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Sentinel-6"
+}

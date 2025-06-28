@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrogen-cyanide",
+  "stac_version": "1.0.0",
+  "description": "Hydrogen cyanide (HCN) was discovered by the Swedish chemist Carl Wilhelm Scheele in 1782, who prepared it from the pigment Prussian blue (hence its other name of prussic acid). There are many naturally occurring substances yielding cyanide in certain seeds, such as the pit of the wild cherry. It usually occurs in combination with plant sugars. The tuberous edible plant of the spurge family called cassava (also known as manioc, mandioc, or yuca) was used by primitive peoples to produce HCN for poison darts and arrows. HCN is produced by other plants, bacteria and fungi. Emissions from CN radicals are occasionally observed from lightning disturbed air. Hydrogen cyanide is produced by biomass burning since nitrogen in plant material is mostly present as amino acids and upon combustion this nitrogen is emitted as a variety of compounds including NH3, NO, NO2, N2O, organic nitriles and nitrates. It is interesting to note that the atmospheric measurements of HCN reported by Zander et al. (1988) gave a mixing ratio for HCN in the Southern Hemisphere which was approximately 5% higher than that for the Northern Hemisphere. This may be due to biomass burning. There are many anthropogenic sources of compounds containing CN which can be released into the atmosphere. Cyanides are used in a variety of chemical processes including fumigation, case hardening of iron and steel, electroplating and in the concentration of ores. Hydrogen cyanide is used to prepare polyacrylonitrile fibres (known by the generic name of acrylic) synthetic rubber, plastics, and in gas masers to produce a wavelength of 3.34 mm. Hydrogen cyanide is a combustion product which is a human hazard during domestic and industrial fires and from tobacco smoking. Some catalytic converters in bad repair can produce large amounts of Hydrogen cyanide. Hydrogen cyanide is produced in large quantities for laboratory and commercial use by three principle methods: Treatment of sodium cyanide with sulphuric acid, catalytic oxidation of a methane-ammonia mixture, and decomposition of formamide (HCONH2).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/af157837-bdbd-4a9a-b24e-6a79adfef57f?gtm_keyword=HYDROGEN%20CYANIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrogen Cyanide"
+}

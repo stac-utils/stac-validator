@@ -1,0 +1,95 @@
+{
+  "type": "Collection",
+  "id": "oceansoda",
+  "stac_version": "1.0.0",
+  "description": "The Satellite Oceanographic Datasets for Acidification (OceanSODA) project will further develop the use of satellite Earth Observation for studying and monitoring marine carbonate chemistry. Besides further developments of algorithms linking satellite variables with marine carbonate system parameters and the associated validation, a distinct focus will be on selected scientific studies and downstream impact assessment. This will include characterising and analysing how upwelling (of low pH waters) and compound events impact the carbonate system, and characterising the flow and impact on marine ecosystems of low pH waters from large river systems. The project will also work closely with the World Wide Fund for Nature (WWF), the U.S. National Oceanic and Atmospheric Administration (NOAA) and The Ocean Foundation, to support their work on coral reef conservation, the designation of marine protected areas and investigation of wild fisheries health and sustainable management.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://esa-oceansoda.org/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/satellite-oceanographic-datasets-for-acidification-oceansoda/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "OceanSODA",
+  "osc:name": "Satellite Oceanographic Datasets for Acidification (OceanSODA)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Diego Fernandez",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "diego.fernandez@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF EXETER (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "EIDGENÃ¢ËÅ¡ÃÂ±SSISCHE TECHNISCHE HOCHSCHULE ZURICH (ETH ZURICH) (CH)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "IFREMER (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NERC",
+      "role": "consortium_member"
+    },
+    {
+      "name": "PLYMOUTH MARINE LABORATORY (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2018-11-22T00:00:00Z",
+  "end_datetime": "2020-12-15T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-11-22T00:00:00Z",
+          "2020-12-15T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

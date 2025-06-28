@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aurorae",
+  "stac_version": "1.0.0",
+  "description": "A faint visual phenomenon associated with geomagnetic activity, which occurs mainly in the high-latitude night sky. Typical auroras are 100 to 250 km above the ground. The phenomenon caused by collisions between charged particles, atoms, and ions in the Earth's ionosphere and upper atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/792cf9f0-6d24-4de8-902c-b74e42c74fd3?gtm_keyword=AURORAE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Aurorae"
+}

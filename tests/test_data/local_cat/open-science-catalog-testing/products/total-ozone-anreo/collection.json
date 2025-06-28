@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "total-ozone-anreo",
+  "stac_version": "1.0.0",
+  "description": "The total ozone column (TOC) is derived by the team using the top-of-atmosphere measurements of the Ocean and Land Colour Instrument (OLCI) on board Sentinel-3 A/B. OLCI operates in the spectral range 400-1020nm. The TOC has been derived using Sentinel-3 OLCI Level 1 product at full resolution (300m). This is the first attempt to derive the total ozone column at such high spatial resolution. The team also created a cloud mask, a snow mask and an atmospheric correction procedure.The OLCI ozone processor is planned to be delivered to ESA in April 2021 providing the ozone research community with a total ozone product from OLCI / S-3 in Antarctica and also over other snow-covered areas including Greenland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.vitrocisetbelgium.com/news/retrieval-total-ozone-over-antarctica-using-ocean-and-land-colour-instrument-board-sentinel",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/wp-content/uploads/2021/05/AnREO_Final-Report.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1016/j.jqsrt.2021.107903"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Total ozone product from OLCI / S-3_Antarctica _S3",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-3"
+  ],
+  "osc:project": "anreo",
+  "osc:variables": [
+    "Total Ozone"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "total_ozone"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2021-12-01T00:00:00Z",
+  "start_datetime": "2019-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "sci:doi": "10.1016/j.jqsrt.2021.107903",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -83.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Chemistry",
+    "Oxygen Compounds",
+    "Atmospheric Ozone"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorine-dioxide",
+  "stac_version": "1.0.0",
+  "description": "ClO2, a radical, undergoes photodecomposition in the stratosphere where the products of this reaction react with ozone. Since this is a photochemical reaction it only takes place while the sun is up. Experiments over Antarctica have shown a direct relation between polar ozone loss and the increase in halocarbon chemistry, which comes from anthropogenic sources. Scientist are currently looking at the molecular behavior of chlorine dioxide in the atmosphere in order to understand its role in depletion of ozone more thoroughly. [Simon, J. D. and Vaida, V. The Photoreactivity of Chlorine Dioxide. Science v 268; p. 1443-1448; 1995.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a56d397b-bff5-4a14-b54c-366470e023c7?gtm_keyword=CHLORINE%20DIOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorine Dioxide"
+}

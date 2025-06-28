@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "station-height",
+  "stac_version": "1.0.0",
+  "description": "Also called Station Elevation. Station Height is the vertical distance above mean sea level that is adopted as the reference datum level for all current measurements of atmospheric pressure at the station.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2343baae-1c4a-4096-8cac-fea8ed7a984f?gtm_keyword=STATION%20HEIGHT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Station Height"
+}

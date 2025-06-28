@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "aqua-eos-pm-1",
+  "stac_version": "1.0.0",
+  "description": "Jointly funded by NASA (National Aeronautics and Space Administration, USA), INPE (National Institute for Space Research, Brazil) and JAXA (Japan Aerospace Exploration Agency), Aqua (formerly known as EOS/PM-1) is part of NASAs international Earth Observing System (EOS), as well as their Earth Science Enterprise (ESE) program. Aquas main focus is the multidisciplinary study of the Earths water cycle including cloud formation, precipitation, radiative properties, air-sea fluxes of energy, carbon and moisture, and sea ice concentrations and extents. Launched in May 2002 from Vandenberg Air Force Base, California, USA, Aqua had a design life of six years, however remains operational as of July 2022. The HSB instrument failed on the 5th of February 2003.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=206",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "AQUA (EOS/PM-1)"
+}

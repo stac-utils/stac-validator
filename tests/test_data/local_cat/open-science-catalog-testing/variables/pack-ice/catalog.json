@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "pack-ice",
+  "stac_version": "1.0.0",
+  "description": "Pack ice refers to high concentrations of sea ice. When concentrations are 60% or less, then the term drift ice is used. [Canadian Ice Service - Environment Canada: http://www.cis.ec.gc.ca/manice/chp1_eng.htm]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ea85ea0b-1b7d-464a-9f8c-1f80383ffc51?gtm_keyword=PACK%20ICE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5d7ea074-225b-4221-b122-e6a085cdce24?gtm_keyword=PACK%20ICE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Pack Ice"
+}

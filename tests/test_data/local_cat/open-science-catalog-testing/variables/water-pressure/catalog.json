@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "water-pressure",
+  "stac_version": "1.0.0",
+  "description": "The force exerted per unit area by the overlying column of water. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/dd025312-0d27-44e0-ae05-7cfcc1aa17f0?gtm_keyword=WATER%20PRESSURE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/84784fef-5b76-45a0-91e0-28788e09fea6?gtm_keyword=WATER%20PRESSURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Water Pressure"
+}

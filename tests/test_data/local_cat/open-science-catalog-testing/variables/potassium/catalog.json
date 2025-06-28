@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "potassium",
+  "stac_version": "1.0.0",
+  "description": "Measure of any form of Potassium (such as K2O), a macronutrient, in the soil. A chemical element which, in nature, occurs only in ionic salts. Elemental potassium is a soft silvery-white alkali metal that oxidizes rapidly in air and reacts vigorously with water, generating sufficient heat to ignite hydrogen emitted in the reaction and burning with a lilac-colored flame. It is found dissolved in sea water and is part of many minerals.[The Journal of Experimental Biology]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c07fe67b-234e-4293-9f09-abaf9612c0e9?gtm_keyword=POTASSIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8af17fd3-7c42-4698-9d60-e154ece5aebe?gtm_keyword=POTASSIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/072721be-eb8b-4ac4-9354-251dbf74ade0?gtm_keyword=POTASSIUM&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Potassium"
+}

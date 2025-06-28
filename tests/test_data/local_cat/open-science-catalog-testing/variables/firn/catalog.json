@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "firn",
+  "stac_version": "1.0.0",
+  "description": "Rounded, well-bonded snow that is older han one year (from NSIDC glossary). A permeable aggregate of small ice grains with densities greater than 0.55 up to 0.82 where begins glacial ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6159b9d9-4aa5-4dec-8146-0e47751449ff?gtm_keyword=FIRN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Firn"
+}

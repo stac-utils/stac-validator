@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "sediment-transport",
+  "stac_version": "1.0.0",
+  "description": "The movement of solid particles (sediment), typically due to a combination of the force of gravity acting on the sediment, and/or the movement of the fluid in which the sediment is entrained. An understanding of sediment transport is typically used in natural systems, where the particles are clastic rocks (sand, gravel, boulders, etc.), mud, or clay; the fluid is air, water, or ice; and the force of gravity acts to move the particles due to the sloping surface on which they are resting.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/791b7271-3a30-46ee-98e0-bc8239389950?gtm_keyword=SEDIMENT%20TRANSPORT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bd55adac-4182-4441-91e2-163aa77e1320?gtm_keyword=SEDIMENT%20TRANSPORT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c5c34f0a-552e-45a6-91c1-9edb3a8deef9?gtm_keyword=SEDIMENT%20TRANSPORT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4ad5a76-7540-4433-ad82-9fe89259538b?gtm_keyword=SEDIMENT%20TRANSPORT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sediment Transport"
+}

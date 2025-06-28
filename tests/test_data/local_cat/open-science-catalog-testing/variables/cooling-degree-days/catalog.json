@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cooling-degree-days",
+  "stac_version": "1.0.0",
+  "description": "A form of degree-day used to estimate the energy requirements for air conditioning or refrigeration; one cooling degree-day is given for each Fahrenheit degree that the daily mean temperature departs above the base of 24ï¿½C (75ï¿½F). Degree days are based on the assumption that when the outside temperature is 65ï¿½F, we don't need heating or cooling to be comfortable. Degree days are the difference between the daily temperature mean, (high temperature plus low temperature divided by two) and 65ï¿½F. If the temperature mean is above 65ï¿½F, we subtract 65 from the mean and the result is Cooling Degree Days. If the temperature mean is below 65ï¿½F, we subtract the mean from 65 and the result is Heating Degree Days. -------------------------------------------------------------------------- Example 1: The high temperature for a particular day was 90ï¿½F and the low temperature was 66ï¿½F. The temperature mean for that day was: ( 90ï¿½F + 66ï¿½F ) / 2 = 78ï¿½F Because the result is above 65ï¿½F: 78ï¿½F - 65ï¿½F = 13 Cooling Degree Days Example 2: The high temperature for a particular day was 33ï¿½F and the low temperature was 25ï¿½F. The temperature mean for that day was: ( 33ï¿½F + 25ï¿½F ) / 2 = 29ï¿½F Because the result is below 65ï¿½F: 65ï¿½F - 29ï¿½F = 36 Heating Degree Days. The calculations shown in the two examples above are performed for each day of the year and the daily degree days are accumulated so that we can compare months and seasons.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2590519a-c2bb-448a-b2f3-d10aaa7e057c?gtm_keyword=COOLING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/db0d03d7-1d08-42fb-b212-0da35b88e656?gtm_keyword=COOLING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cooling Degree Days"
+}

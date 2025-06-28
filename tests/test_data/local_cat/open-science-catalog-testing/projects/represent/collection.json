@@ -1,0 +1,89 @@
+{
+  "type": "Collection",
+  "id": "represent",
+  "stac_version": "1.0.0",
+  "description": "The main objective of the Represent project is to capitalize on the potential of artificial intelligence (AI) and Earth observation (EO) by exploiting the non-supervised learning paradigms. In this context, it is essential to come up with non-supervised learning-based solutions for impactful use cases that use unlabeled EO data. Firstly, the consortium will investigate the non-supervised learning-based methods for EO, as one of project technical objective. Towards harnessing on the effectiveness of non-supervised learning and exploiting the multitude of unlabeled data, successful feature extractors will be built based on self-supervised learning-based pre-training and transfer learning from pre:trained networks. These techniques are grouped into three main categories- Self-supervised learning for uni-temporal tasks (e.g., Deep Clustering, Contrastive Learning, Bootstrap Your Own Latent, Meta:Learning), Change detection (e.g., Deep change vector analysis, Deep multi-temporal segmentation, Temporal contrastive learning), Time-series anomaly detection (e.g., LSTM based unsupervised approach, Graph neural networks based on a self-supervised approach). DLR and EPFL will use their AI4EO network and they will establish contacts with other research groups addressing similar or related thematic areas in the AI/EO/NS community. Secondly, the validation of the technical objective will be fulfilled by the consortium by defining five use cases. These use cases are focus on the challenges of EO where either labelled data are scarce or the successful application of supervised methods requires many labels that are tedious or costly to collect. The validation will be done on five use cases related to:  Forest disturbance monitoring, Automated Land Cover mapping, Anomaly detection in long time series of PS-P InSAR, Cloud detection, and removal and Forest biomass estimationnFor these use cases, the required EO data will exploit the openly available Sentinel-1, Sentinel-2, and Landsat archives. The Represent EO use cases are tackling core business and scientific questions since they are tightly connected to e:GEOS and VTT core business areas and active projects (InSAR/ground motion and forestry, respectively). This is also ensuring a close link to users and stakeholders in the different sectors where the two partners are very well known. Finally, the non-supervised learning methods developed by the consortium will be evaluated based on usual quantitative performance metrics along with qualitative analyses commenting on their generalization capability and versatility on different EO cases. Each use case proposed within the project will have a user target group. For example, for the use case on forestry, VTT will use the wide community of academic and forestry users including forest owners via the Forestry TEP (F-TEP), while for the use case on anomaly detection, e-GEOS is in contact with several customers interested in the detection of anomalous points.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.asg.ed.tum.de/sipeo/news/article/kick-off-of-the-esa-project-represent/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/represent/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "RepreSent",
+  "osc:name": "RepreSent",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Land",
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Bertrand Le Saux",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "bertrand.le.saux@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "DLR : GERMAN AEROSPACE CENTER (DE)E:GEOS (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (CH)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "VTT TECHNICAL RESEARCH CENTRE OF FINLAND LTD (FI)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-11-25T00:00:00Z",
+  "end_datetime": "2024-12-20T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-11-25T00:00:00Z",
+          "2024-12-20T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-emissivity",
+  "stac_version": "1.0.0",
+  "description": "The (dimensionless) ratio of the radiant energy emittance of a substance (clouds) to the ideal emittance of an ideal (blackbody) radiator at that same temperature.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/576b5025-dc0e-4021-b8ff-6a7699a79b0c?gtm_keyword=CLOUD%20EMISSIVITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Emissivity"
+}

@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "trace-elements-trace-metals",
+  "stac_version": "1.0.0",
+  "description": "Trace elements are elements that occur in minute quantities. Trace elements can include copper, silicon, cobalt, iron, zinc, iodine, and manganese. Trace metals -Metals in extremely small quantities, almost at the molecular level, that reside in or are present in animal and plant cells and tissue.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2d36c283-2fe3-4a08-aeb3-6a8146e79bb3?gtm_keyword=TRACE%20ELEMENTS/TRACE%20METALS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/c3c898d7-14db-4536-bd86-f8f222167195?gtm_keyword=TRACE%20ELEMENTS&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f2d6aa01-5070-4147-bae1-4b2cad2c3987?gtm_keyword=TRACE%20METALS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Trace Elements/Trace Metals"
+}

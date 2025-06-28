@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "simulated-river-discharge-po-borgoforte-ridesat",
+  "stac_version": "1.0.0",
+  "description": "Simulated river discharge estimated from the combination of multispectral and altimetry datasets",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.dropbox.com/s/uldrkykvzrqisl2/River_Discharge_Product.rar?dl=0",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://hydrology.irpi.cnr.it/projects/ridesat/",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Simulated River discharge products_Po Borgoforte_Multimission",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-3",
+    "SARAL",
+    "CryoSat-2",
+    "Terra"
+  ],
+  "osc:project": "ridesat",
+  "osc:variables": [
+    "Fresh Water River Discharge"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "simulated_river_discharge"
+    }
+  ],
+  "osc:region": "Europe",
+  "created": "2020-03-05T00:00:00Z",
+  "start_datetime": "2018-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          10.7562,
+          45.0455,
+          10.7562,
+          45.0455
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric/Ocean Indicators",
+    "Fresh Water River Discharge"
+  ]
+}

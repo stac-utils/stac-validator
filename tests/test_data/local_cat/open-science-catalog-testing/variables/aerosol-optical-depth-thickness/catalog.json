@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aerosol-optical-depth-thickness",
+  "stac_version": "1.0.0",
+  "description": "The degree to which Aerosols prevent light from passing through. Optical depth/thickness depends upon the physical constitution ,the form, and the concentration of particles.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/61c3b720-abc8-4430-866c-f1da35d2cd0b?gtm_keyword=AEROSOL%20OPTICAL%20DEPTH/THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Aerosol Optical Depth/Thickness"
+}

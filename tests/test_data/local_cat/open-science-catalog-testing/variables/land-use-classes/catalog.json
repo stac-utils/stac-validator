@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "land-use-classes",
+  "stac_version": "1.0.0",
+  "description": "Categories defining the land in some way, such as by slope, land cover, and type.[Remote Sensing and Image Interpretation, John Wiley & Sons, 1994.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fe2f8240-4d8e-4b1f-b869-29fee59692f7?gtm_keyword=LAND%20USE%20CLASSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Land Use Classes"
+}

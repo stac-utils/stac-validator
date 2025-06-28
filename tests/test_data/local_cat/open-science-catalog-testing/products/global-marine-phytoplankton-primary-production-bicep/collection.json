@@ -1,0 +1,89 @@
+{
+  "type": "Collection",
+  "id": "global-marine-phytoplankton-primary-production-bicep",
+  "stac_version": "1.0.0",
+  "description": "This dataset contains global, monthly marine phytoplankton primary production products (in mg C m-2 d-1) for the period of 1998 to 2018 at 9 km spatial resolution. Data are provided in NetCDF format. Primary production by marine phytoplankton was modelled using ocean-colour remote sensing products and a spectrally-resolved primary production model that incorporates the vertical structure of phytoplankton and simulates changes in photosynthesis as a function of irradiance using a two-parameter photosynthesis versus irradiance (P-I) function (see Kulk et al. 2020, Sathyendranath et al. 2020a, and references therein for details). Chlorophyll-a products were obtained from the European Space Agency (ESA) Ocean Colour Climate Change Initiative (OC-CCI v4.2 dataet). Photosynthetic Active Radiation (PAR) products were obtained from the National Aeronautics and Space Administration (NASA) and were corrected for inter-sensor bias in products. In situ datasets of chlorophyll-a profile parameters and P-I parameters were incorporated as described in Kulk et al. (2020). The primary production products were generated as part of the ESA Living Planet Fellowship programme âPrimary production, Index of Climate Change in the Ocean: Long-term Observationsâ (PICCOLO). Support from the Simons Foundation grant âComputational Biogeochemical Modeling of Marine Ecosystemsâ (CBIOMES, number 549947), from the ESA Biological Pump and Carbon Exchange Processes (BICEP) project and from the National Centre of Earth Observation (NCEO) is acknowledged. Data are provided as netCDF files containing global, monthly marine phytoplankton primary production products (in mg C m-2 d-1) for the period of 1998 to 2020 at 9 km spatial resolution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.ceda.ac.uk/neodc/bicep/data/marine_primary_production/v4.2/monthly/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://dx.doi.org/10.5285/69b2c9c6c4714517ba10dab3515e4ee6",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Monthly Global Phytoplankton Primary Production dataset (9 km, OC-CCI v4.2)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP",
+    "OrbView-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "bicep",
+  "osc:variables": [
+    "Phytoplankton Primary Production"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "gross_primary_production_of_carbon"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-12-21T00:00:00Z",
+  "start_datetime": "1998-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1998-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ecosystems",
+    "Aquatic Ecosystems",
+    "Plankton",
+    "Phytoplankton",
+    "Phytoplankton Primary Production"
+  ]
+}

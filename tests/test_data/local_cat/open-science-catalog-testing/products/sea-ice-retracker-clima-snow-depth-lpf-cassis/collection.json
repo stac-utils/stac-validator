@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "sea-ice-retracker-clima-snow-depth-lpf-cassis",
+  "stac_version": "1.0.0",
+  "description": "Envisat sea ice freeboard and thickness from heuristic retracker TFMRA50 and AMSR climatology snow depth in the Antarctic. To access the data please mailto:florent.garnier@legos.obs-mip.fr. File name: envisatv3_SIT_fb_snow-AMSR-clim_sh_2003_2011_ease2_w25000.nc",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.aviso.altimetry.fr/en/data/products/altimetry-ice-products/altimetry-sea-ice-products-from-ctoh.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.aviso.altimetry.fr/en/data/products/altimetry-ice-products/altimetry-sea-ice-products-from-ctoh.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Sea ice freeboard and thickness_heuristic retracker TFMRA50 and AMSR climatology snow depth_Antarctic_Envisat",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "GCOM-W1",
+    "Terra"
+  ],
+  "osc:project": "lpf-cassis",
+  "osc:variables": [
+    "Ice Depth/Thickness",
+    "Freeboard"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_ice_freeboard_and_thickness_snow_depth"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-01-01T00:00:00Z",
+  "start_datetime": "2003-01-01T00:00:00Z",
+  "end_datetime": "2011-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -80.0,
+          180.0,
+          -61.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2003-01-01T00:00:00Z",
+          "2011-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Ice",
+    "Ice Depth/Thickness",
+    "Freeboard"
+  ]
+}

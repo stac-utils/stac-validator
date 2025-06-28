@@ -1,0 +1,73 @@
+{
+  "type": "Collection",
+  "id": "daily-3d-ocean-currents-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "North Atlantic data-driven 3D Currents and Tracers (NATL3D), data-driven reconstruction of the 3D Currents and Tracers in the North Atlantic obtained by applying artificial intelligence and dynamical diagnostic models to a combination of in situ and satellite data",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Daily 3D ocean currents_North Atlantic",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Ocean Currents"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "ocean_currents"
+    }
+  ],
+  "osc:region": "North Atlantic",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -76.002623842,
+          20.4479407425,
+          6.4276376583,
+          50.7093121683
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Circulation",
+    "Ocean Currents"
+  ]
+}

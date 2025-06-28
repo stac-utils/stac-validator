@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "advection",
+  "stac_version": "1.0.0",
+  "description": "In Atmosphere domain: The process of transport of an atmospheric property solely by the mass motion (velocity field) of the atmosphere; also, the rate of change of the value of the advected property at a given point. In Oceanography:The horizontal or vertical flow of seawater as a current. It is also described as the transfer of properties of current flow. The transfer of heat gain/loss from one region to another. Can also refer to the transport of salt within the ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/0cb7f2c6-5e99-4781-8d4f-19ecbad2e2e0?gtm_keyword=ADVECTION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/5f6358aa-872c-4c1c-9388-4714138f034a?gtm_keyword=ADVECTION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/30fd009d-df91-47ba-8800-2f2771f15e80?gtm_keyword=ADVECTION&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/ce546f0d-d2e1-43ed-b8e0-a9079c690c56?gtm_keyword=ADVECTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Advection"
+}

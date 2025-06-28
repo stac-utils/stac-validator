@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "geothermal-energy",
+  "stac_version": "1.0.0",
+  "description": "Heat transferred from the earth's molten core to under-ground deposits of dry steam (steam with no water droplets), wet steam (a mixture of steam and water droplets), hot water, or rocks lying fairly close to the earth's surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/33d1810f-40c6-4b37-ac90-7435ef5fa507?gtm_keyword=GEOTHERMAL%20ENERGY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Geothermal Energy"
+}

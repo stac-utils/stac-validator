@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-velocity",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the rate at which ice formations (glaciers, ice sheets, etc.) are moving. [NOAA Satellite and Information Service]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cee7ed2f-3ed1-44ad-b48b-513a68bb3244?gtm_keyword=ICE%20VELOCITY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3896f032-388f-408e-b988-bf7e100704ba?gtm_keyword=ICE%20VELOCITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Velocity"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ice-growth-melt",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement of ice growth/melting rates, and annual changes in those rates. Melt of the ice can occur at various stages: puddle, thaw holes, dried ice, rotten ice, flodded ice, and frozen puddle. Developing sea ice (or growth) takes on the following stages: New Ice, Youg Ice, First-Year Ice, Old Ice. Lake Ice development goes through the following stages: New Lake Ice, Thin Lake Ice, Medium Lake Ice, Thick Lake Ice, and Very Thick Lake Ice. In Oceanography: Refers to the melting sea ice or the growth of sea ice and its impact on the salinity concentration in the ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d9667e73-30db-45f9-861c-e0a5caaf2bf0?gtm_keyword=ICE%20GROWTH/MELT&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ac5ba325-b613-4f2e-ae7d-f81e478f5091?gtm_keyword=ICE%20GROWTH/MELT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Ice Growth/Melt"
+}

@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "swath-elelvation-greenland-ice-sheet-cryotop-evolution",
+  "stac_version": "1.0.0",
+  "description": "These files are surface elevation determined from swath processing of data acquired by the interferometric radar altimeter CryoSat-2. The data have been collected and processed over the Greenland Ice Sheet between 2011 and 2016. These data have been processed by the University of Edinburgh and are made publicly available as part of the European Space Agency funded CryoSat+ CryoTop Evolution STSE Study (ESA Contract 4000116874) involving the University of Edinburgh, isardSat UK, University of Leeds-CPOM, ENVEO. DOI: https://doi.org/10.5285/d762710b-562b-41a6-b9b4-adb26bfad4c6",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://ramadda.data.bas.ac.uk/repository/entry/show?entryid=d762710b-562b-41a6-b9b4-adb26bfad4c6",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5285/d762710b-562b-41a6-b9b4-adb26bfad4c6"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Swath elevation_Greenland Ice Sheet_2011-2016_CryoSat-2",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2"
+  ],
+  "osc:project": "cryosat-cryotop-evolution",
+  "osc:variables": [
+    "Digital Elevation/Terrain Model (DEM)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "swath_elevation_ice_sheet_"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2018-02-22T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2016-12-31T23:59:59Z",
+  "sci:doi": "10.5285/d762710b-562b-41a6-b9b4-adb26bfad4c6",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.709433726,
+          60.2878324851,
+          -12.713339976,
+          83.5902211563
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2016-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Topography",
+    "Terrain Elevation",
+    "Digital Elevation/Terrain Model (DEM)"
+  ]
+}

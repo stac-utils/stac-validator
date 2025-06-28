@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "volcano-occurrences",
+  "stac_version": "1.0.0",
+  "description": "The number of sudden or continuing release of energy caused by near-surface or surface magma movements.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d1ab518b-0152-48cf-a9c6-47c5920ed773?gtm_keyword=VOLCANO%20OCCURRENCES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Volcano Occurrences"
+}

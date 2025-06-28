@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sedimentary-structures",
+  "stac_version": "1.0.0",
+  "description": "Sediments arranged in a definite pattern of organizations.Such as cross-bedding produced by migration of water ripples and dunes, graded bedding, a decrease in grain sizes going up in the bed that indicates diminishing force with time, etc.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/282ea985-efd0-4113-860d-b8221f6cc6f2?gtm_keyword=SEDIMENTARY%20STRUCTURES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sedimentary Structures"
+}

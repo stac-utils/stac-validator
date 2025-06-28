@@ -1,0 +1,74 @@
+{
+  "type": "Collection",
+  "id": "methanecamp",
+  "stac_version": "1.0.0",
+  "description": "Climate change is one of the greatest societal challenges of the 21st century. The dominant source of global warming is the increase of anthropogenic greenhouse gases in the Earth`s atmosphere. atmosphere. The two most important of those species are carbon dioxide (CO2) and methane (CH4). Together they account for ~82% of the anthropogenic radiative forcing. However, uncertainties in our knowledge of the budgets of these gases, which are determined by their sources and sinks, as well as inadequately understood feedback mechanisms, limit the accuracy of current climate change projections from the local to the global scale. To reliably predict the climate of our planet, and to guide political conventions on greenhouse gas avoidance, adequate knowledge of the sources and sinks of these greenhouse gases, their feedbacks, and the quantification of natural versus anthropogenic fluxes is mandatory. Wetland emissions of methane constitute the largest single source of methane to the atmosphere, even when considering all anthropogenic emissions, and are the most uncertain part of the budget. After the tropics, the largest distribution of wetlands is in the Arctic. The Arctic is warming twice as fast as compared to the global average, making climate changess polar effects more intense than anywhere else in the world. The Arctic accounts for nearly 50% of all organic carbon stored in the planetss soil but rising temperatures and thawing permafrost threatens its stability. The main objectives and tasks of MethaneCAMP are to: Collaborate and coordinate with the AMPAC (Artic Methane and Permafrost Challenge) initiative and forming AMPAC network aiming to contribute to bottom:up and top-down estimates of changes in methane emissions in the Arctic. Prepare a high-latitude-focused assessment of current atmospheric CH4 retrievals from medium spatial resolution and high spatial resolution instruments. Identify the improvement potential for high-latitude retrievals of CH4, test and validate these improvements and synthesize the potential of joint strategies. Analyse the changes in the Arctic CH4 with specific focus on i) quantifying longer:term trends, ii) identifying hot spots directly from observations, and iii) studying the apportionment between biogenic and anthropogenic CH4 sources by employing multi-scale Arctic CH4 observations in inverse modelling.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/methanecamp/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "MethaneCAMP",
+  "osc:name": "MethaneCAMP",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "FINNISH METEOROLOGICAL INSTITUTE (FI)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-11-01T00:00:00Z",
+  "end_datetime": "2024-02-07T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-11-01T00:00:00Z",
+          "2024-02-07T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "electrical-field",
+  "stac_version": "1.0.0",
+  "description": "The electric force per unit charge. The direction of the field is taken to be the direction of the force it would exert on a positive test charge. The electric field is radially outward from a positive charge and radially in toward a negative point charge.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/3202dab6-144a-4bfb-9bda-9d07e5ee7ec2?gtm_keyword=ELECTRICAL%20FIELD&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Electrical Field"
+}

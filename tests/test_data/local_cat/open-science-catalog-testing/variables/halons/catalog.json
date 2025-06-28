@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "halons",
+  "stac_version": "1.0.0",
+  "description": "Halon: a compound consisting of bromine, fluorine, and carbon Halons are used as fire extinguishing agents, both in built-in systems and in handheld portable fire extinguishers. Halon production in the U.S. ended on December 31, 1993, because they contribute to ozone depletion. They cause ozone depletion because they contain bromine. Bromine is many times more effective at destroying ozone than chlorine. At the time the current U.S. tax code was adopted, the ozone depletion potentials of halon 1301 and halon 1211 were observed to be 10 and 3, respectively. These values are used for tax calculations. Recent scientific studies, however, indicate that the ODPs are at least 12 and 6, respectively. Note: technically, all compounds containing carbon and fluorine and/or chlorine are halons, but in the context of the Clean Air Act, \"halon\" means a fire extinguishing agent as described above. A table of class I substances (http://www.epa.gov/ozone/science/ods/classone.html) shows their ODPs, GWPs, and CAS numbers. Halons are numbered according to a standard scheme.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/33e3c858-25ee-4a5e-a938-93779679ed06?gtm_keyword=HALONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Halons"
+}

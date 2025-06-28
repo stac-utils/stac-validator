@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sulfate-particles",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric aerosol particles derived from biogenic or anthropogenic sulfur emissions; comprised of sulfate compounds (e.g., DMS, sulfuric acid, ammonium sulfate).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ca71b02b-4446-414c-8697-0950d7382cc4?gtm_keyword=SULFATE%20PARTICLES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sulfate Particles"
+}

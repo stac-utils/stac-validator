@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "s5p-inno-h2o-iso",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric moisture is a key factor for the redistribution of heat in the atmosphere and there is strong coupling between atmospheric circulation and moisture pathways which is responsible for most climate feedback mechanisms. Water isotopologues can make a unique contribution for better understanding this coupling. In recent years, water vapour isotopologue observations from satellites have become available from thermal nadir infrared measurements (TES, AIRS, IASI) which are sensitive above the boundary layer and from shortwave-infrared (SWIR) sensors (GOSAT, SCIAMACHY) that provide column averaged concentrations including sensitivity to the boundary layer. Sentinel 5P (S5P) measures SWIR radiance spectra that allow retrieval of water isotopologue columns but with much improved spatial and temporal coverage compared to other SWIR sensors thus promising an unique dataset with larger potential for scientific and operational applications. The aim of this proposal is to develop and evaluate a prototype dataset from Sentinel 5P for water isotopologues. This will be addressed by a team of experts from University of Leicester, Karlsruhe Institute of Technology and University of Bergen bringing together expertise in atmospheric measurement (EO andin-situ), and modelling with scientific end-users. Objectives- During this project we will demonstrate the feasibility of measuring stable water isotopologues for S5P, specifically ratios of HDO/H2O by: Optimizing the retrieval method making use of the University of Leicester Full Physics (UoL-FP) retrieval algorithm. Examining and characterize the retrieval performance by validation of retrieved waterisotopologues against reference data sets (MUSICA NDACC data and TCCON) and satellite data from IASI and GOSAT. Assess the impact of the S5P datasets using two different models for defined regions of interest. The findings and recommendations of this project will be delivered through a scientific roadmap, in order to further develop the methods and their application including a transition to operational activities. This will benefit from the strong links of the team with relevant international activities, projects and initiatives.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://s5pinnovationh2o-iso.le.ac.uk/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/sentinel-5p-innovation-water-vapour-isotopologues-project-h2o-iso/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "S5p Inno - H2O-ISO",
+  "osc:name": "SENTINEL-5P+ INNOVATION WATER VAPOUR ISOTOPOLOGUES (H2O-ISO)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF LEICESTER (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "KARLSRUHE INSTITUTE OF TECHNOLOGY (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF BERGEN (NO)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-02-07T00:00:00Z",
+  "end_datetime": "2021-12-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-02-07T00:00:00Z",
+          "2021-12-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

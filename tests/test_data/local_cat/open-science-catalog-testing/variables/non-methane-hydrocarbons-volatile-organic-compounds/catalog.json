@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "non-methane-hydrocarbons-volatile-organic-compounds",
+  "stac_version": "1.0.0",
+  "description": "Non-Methane Hydrocarbons (NMHCs) are hydrocarbons such as ethylene, butane, hexane, propane and, by definition, exclude the first member of that analogous series, CH4. Large quantities of NMHCs are emitted from vegetation, the vast majority as isoprene, C5H8. This emission is significant compared to that of anthropogenic NMHC. [Nature; v329; 705-707; 1987]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/06d230f1-08f8-48cc-9bbd-5f2358a84d13?gtm_keyword=NON-METHANE%20HYDROCARBONS/VOLATILE%20ORGANIC%20COMPOUNDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Non-Methane Hydrocarbons/Volatile Organic Compounds"
+}

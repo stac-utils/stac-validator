@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "wind-profiles",
+  "stac_version": "1.0.0",
+  "description": "The vertical (or horizontal) representation of the distribution of winds, usually measured by remote sensing satellites and aircraft or wind profiling radars.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dcc6cbbf-23a0-4ae7-bfbd-6207d35c741f?gtm_keyword=WIND%20PROFILES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Wind Profiles"
+}

@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "subglacial-lake-drainage-4dantarctica",
+  "stac_version": "1.0.0",
+  "description": "Repeat Subglacial Lake Drainage and Filling Beneath Thwaites Glacier. Active subglacial lakes have been identified throughout Antarctica, offering a window into subglacial environments and their impact on ice sheet mass balance. Here we use high-resolution altimetry measurements from 2010 to 2019 to show that a lake system under the Thwaites Glacier undertook a large episode of activity in 2017, only four years after the system underwent a substantial drainage event. Our observations suggest significant modifications of the drainage system between the two events, with 2017 experiencing greater upstream discharge, faster lake-to-lake connectivity, and the transfer of water within a closed system. Measured rates of lake recharge during the inter-drainage period are 137% larger than modeled estimates, suggesting processes that drive subglacial meltwater production, such as geothermal heat flux or basal friction, are currently underestimated.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://4d-antarctica.org/wp-content/uploads/2021/01/Malczyk_etal_2020_data_v2.tar",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1029/2020GL089658",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Subglacial Lake Drainage and Filling Antarctica Multimission",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2",
+    "SMOS",
+    "AQUA (EOS/PM-1)",
+    "Sentinel-1",
+    "Sentinel-2",
+    "ERS-1",
+    "ERS-2",
+    "ENVISAT",
+    "TanDEM-X",
+    "Landsat-8"
+  ],
+  "osc:project": "4d-antarctica",
+  "osc:variables": [
+    "Glacial Lake Extent"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "subglacial_lake_drainage"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-09-01T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glaciers",
+    "Glacial Lake Extent"
+  ]
+}

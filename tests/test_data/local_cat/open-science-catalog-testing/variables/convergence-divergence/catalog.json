@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "convergence-divergence",
+  "stac_version": "1.0.0",
+  "description": "Convergence - A net inflow of winds into a region. Pressure fluctuations at the Earth's surface are produced by movements of air which produce changes in the mass of air in a vertical column above the ground. A net gain in mass produces an increase in pressure leading to a high pressure system. A net loss of mass gives rise to a low. When there is a horizontal flow of air into a region (convergence) a vertical upward movement of air occurs otherwise there would be a continual increase in density of the air. Divergence occurs when there is a net horizontal outward flow of air from a region. This leads to a vertical downward movement of air. Divergence- A net outflow of wind from a region.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/b59e188c-49b8-41b3-94c4-0bc1dbb554fe?gtm_keyword=CONVERGENCE/DIVERGENCE&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a2cc8e02-3207-4c40-af41-9656404bac0a?gtm_keyword=CONVERGENCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Convergence/Divergence"
+}

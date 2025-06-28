@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "oxidation-reduction",
+  "stac_version": "1.0.0",
+  "description": "Describes all chemical reactions in which atoms have their oxidation number (oxidation state) changed. This can be either a simple redox process, such as the oxidation of carbon to yield carbon dioxide (CO2) or the reduction of carbon by hydrogen to yield methane (CH4), or a complex process such as the oxidation of sugar (C6H12O6) in the human body through a series of complex electron transfer processes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/9c2f3bee-4629-4607-9962-12fe919594a0?gtm_keyword=OXIDATION/REDUCTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Oxidation/Reduction"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "heavy-metals-concentration",
+  "stac_version": "1.0.0",
+  "description": "Heavy Metals are any of the high atomic weight metals such as lead, mercury, cadmium, and zinc.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0c4ffc6a-694d-4f33-bc18-06fefb68acdd?gtm_keyword=HEAVY%20METALS%20CONCENTRATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Heavy Metals Concentration"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-elevation-ice-sheet-elevation",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measured height of large thick, glaciers, with an area of at least 50,000 sq. km, covering a continuous stretch of land and growing in all directions.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/13bf19c5-087f-4fe0-87ea-ef6f7ecd5444?gtm_keyword=GLACIER%20ELEVATION/ICE%20SHEET%20ELEVATION&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/83bd640d-cd05-49a8-9ec7-aab60820b126?gtm_keyword=GLACIER%20ELEVATION/ICE%20SHEET%20ELEVATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Elevation/Ice Sheet Elevation"
+}

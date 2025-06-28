@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbonyl-sulfide",
+  "stac_version": "1.0.0",
+  "description": "COS, a gas that is very stable and unreactive in the troposphere, but, it is thought, photolyzes to form carbon monoxide, CO, and sulfur, S, in the stratosphere. Through stratospheric chemical reactions, the sulfur atoms are converted to SO2 and H2SO4 which form sulfate aerosol, cloud condensation nuclei, but which eventually settles into the troposphere and reacts to form sulfuric acid, a component in acid rain. The major biospheric sources of COS are thought to be biological. [Analytical Chemistry; v 65; pages 976-982; 1993.] [Atmospheric Chemical Compounds: Sources, Occurrence, and Bioassay; Graedel, Hawkins, Claxton; page 513; 1986; Academic Press; Orlando.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bde65cfd-faec-4656-bc27-22dfe30912b7?gtm_keyword=CARBONYL%20SULFIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Carbonyl Sulfide"
+}

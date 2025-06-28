@@ -1,0 +1,38 @@
+{
+  "type": "Catalog",
+  "id": "magnetosphere-ionosphere",
+  "stac_version": "1.0.0",
+  "description": "The magnetosphere is the region of space surrounding Earth where the dominant magnetic field is the magnetic field of Earth, rather than the magnetic field of interplanetary space. The magnetosphere is formed by the interaction of the solar wind with Earth's magnetic field. The Ionosphere is a region of the earth's atmosphere, extending from about 60 to 1000 kilometers above the earth's surface, in which there is a high concentration of free electrons formed as a result of ionizing radiation entering the atmosphere from space.  The ionosphere is important because it reflects and modifies radio waves used for communication and navigation. Other phenomena such as energetic charged particles and cosmic rays also have an ionizing effect and can contribute to the ionosphere. (source: https://www.eionet.europa.eu/gemet/en/concept/4492; https://www.swpc.noaa.gov/phenomena/earths-magnetosphere; https://www.swpc.noaa.gov/phenomena/ionosphere)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "preview",
+      "href": "./EO_Magnetosphere_Ionosphere.webp",
+      "type": "image/webp",
+      "title": "Image",
+      "proj:epsg": null,
+      "proj:shape": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.eionet.europa.eu/gemet/en/concept/4492",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Themes"
+    }
+  ],
+  "title": "Magnetosphere_Ionosphere"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tropical-oceanic-cloud-systems",
+  "stac_version": "1.0.0",
+  "description": "Tropical oceanic cloud systems, which are recognized as an essential component of the global climate system, are complex phenomena in geophysical flows due to the vast range of scales of motion involved and the nonlinearity of interactions among the attendant physical processes (e.g., phase changes of water, cloud-interactive radiation, turbulence and surface fluxes) . Cloud systems directly couple dynamical and hydrological processes in the atmosphere through the release of latent heat of condensation and evaporation, through precipitation, and through the vertical redistribution of sensible heat, moisture and momentum. They have an equally important effects on the large-scale radiation budget, through the reflection, absorption and emission of radiation, and the surface energy budget, through the modification of net radiative fluxes and net heat fluxes at the ocean surface.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fe2e0b6f-3d7d-489a-b093-86ed0d233385?gtm_keyword=TROPICAL%20OCEANIC%20CLOUD%20SYSTEMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Tropical Oceanic Cloud Systems"
+}

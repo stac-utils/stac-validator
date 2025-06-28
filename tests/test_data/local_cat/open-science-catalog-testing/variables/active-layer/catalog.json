@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "active-layer",
+  "stac_version": "1.0.0",
+  "description": "Active layer, also called frost zone or mollisol, is part of the soil included with the suprapermafrost layer (i.e., existing above permafrost) that usually freezes in winter and thaws in summer. Its bottom surface is the frost table, beneath which may lie permafrost or talik. The depth of the active layer varies anywhere from a few inches to several feet.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2e544263-d92f-46c2-9568-25e36d0b9825?gtm_keyword=ACTIVE%20LAYER&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Active Layer"
+}

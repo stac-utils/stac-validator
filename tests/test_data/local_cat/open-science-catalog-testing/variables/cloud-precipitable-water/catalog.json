@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-precipitable-water",
+  "stac_version": "1.0.0",
+  "description": "The total atmospheric water vapor contained in a vertical column of unit cross-sectional area (in a cloud) extending between any two specified levels, commonly expressed in terms of the height to which that water substance would stand if completely condensed and collected in a vessel of the same unit cross section.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b709d6fc-f0cf-47de-bdbb-1cd875b5f3ab?gtm_keyword=CLOUD%20PRECIPITABLE%20WATER&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Precipitable Water"
+}

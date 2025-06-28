@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "diffusion",
+  "stac_version": "1.0.0",
+  "description": "In the oceans, a mixing process through which a component of seawater (e.g. salt) is transferred from a zone of higher concentration to a zone of lesser concentration. Refers to the net movement of salt from a region in the ocean of higher concentration to a region of lower concentration. Diffusion is driven by a gradient in concentration.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/73432d3c-341a-48e7-a765-30395ce588be?gtm_keyword=DIFFUSION&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6fe4680b-96e8-4304-ab32-c17a0769932c?gtm_keyword=DIFFUSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Diffusion"
+}

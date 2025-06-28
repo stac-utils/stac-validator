@@ -1,0 +1,49 @@
+{
+  "type": "Catalog",
+  "id": "isotopes",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement of the various isotopes (one of two or more species of the same chemical element) found in geochemically significant compounds. Isotopes are a form of an element with a certain number of neutrons, for example carbon exists in three isotopes: C12, C13, and C14. Some isotopes are naturally unstable and spontaneously decay at a fixed rate; other isotopes are stable.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/441ce068-91f2-4412-8893-c0096d8f9079?gtm_keyword=ISOTOPES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Isotopes"
+}

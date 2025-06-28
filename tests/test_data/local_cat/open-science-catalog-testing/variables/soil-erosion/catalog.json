@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-erosion",
+  "stac_version": "1.0.0",
+  "description": "(i) The wearing away of the land surface by rain or irrigation water, wind, ice, or other natural or anthropogenic agents that abrade, detach and remove geologic parent material or soil from one point on the earth's surface and deposit it elsewhere, including such processes as gravitational creep and so-called tillage erosion; (ii) The detachment and movement of soil or rock by water, wind, ice, or gravity.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/36c862a7-7117-4fd2-8e33-0dda03097178?gtm_keyword=SOIL%20EROSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cb21c5cb-cc49-4328-a72d-94ccca1fa888?gtm_keyword=SOIL%20EROSION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6eef914d-ff9f-44b0-a3a6-3dcf911023d4?gtm_keyword=SOIL%20EROSION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Erosion"
+}

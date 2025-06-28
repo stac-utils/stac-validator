@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "magnetic-anomalies",
+  "stac_version": "1.0.0",
+  "description": "Local variation in the Earth's magnetic field resulting from variations in the chemistry or magnetism of the rocks. Mapping of variation over an area is valuable in detecting structures obscured by overlying material. The magnetic variation in successive bands of ocean floor parallel with mid-ocean ridges is important evidence supporting the theory of seafloor spreading, central to plate tectonics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/65ae8ab2-489b-44bf-bf5b-43cf957b70c0?gtm_keyword=MAGNETIC%20ANOMALIES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/e31f905d-bd2a-4fe9-89d8-909e1d2b9b1a?gtm_keyword=MAGNETIC%20ANOMALIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Magnetic Anomalies"
+}

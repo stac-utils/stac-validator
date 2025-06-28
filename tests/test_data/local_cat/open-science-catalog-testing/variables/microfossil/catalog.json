@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "microfossil",
+  "stac_version": "1.0.0",
+  "description": "Microfossils are the tiny remains of bacteria, protists, fungi, animals, and plants. Microfossils are a heterogeneous bunch of fossil remains studied as a single discipline because rock samples must be processed in certain ways to remove them and microscopes must be used to study them. Thus, microfossils, unlike other kinds of fossils, are not grouped according to their relationships to one another, but only because of their generally small size and methods of study. For example, fossils of bacteria, foraminifera, diatoms, very small invertebrate shells or skeletons, pollen, and tiny bones and teeth of large vertebrates, among others, can be called microfossils. But it is an unnatural grouping. Nevertheless, this utilitarian subdivision of paleontology, first recognized in 1883, is very significant in geology, paleontology, and biology. Microfossils have many applications to petroleum geology (Fleisher and Lane, in press, Ventress, 1991, LeRoy, 1977). The two most common uses are: biostratigraphy and paleoenvironmental analyses. Biostratigraphy is the differentiation of rock units based upon the fossils which they contain. Paleoenvironmental analysis is the interpretation of the depositional environment in which the rock unit formed, based upon the fossils found within the unit. There are many other uses of fossils besides these, including: paleoclimatology, biogeography, and thermal maturation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/37f3fdb8-a82f-4bff-bda4-cca12a683d6f?gtm_keyword=MICROFOSSIL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Microfossil"
+}

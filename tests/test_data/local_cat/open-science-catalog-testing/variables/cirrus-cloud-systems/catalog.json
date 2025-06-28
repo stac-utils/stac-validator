@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cirrus-cloud-systems",
+  "stac_version": "1.0.0",
+  "description": "Cirrus clouds are the highest in elevation, which form above 20,000 feet. The temperature at that elevation is so cold that cirrus clouds are usually composed of ice crystals. The ice crystals are the result of the freezing of super-cooled water drops. This can only happen when the temperatures reach below -38 degrees Celsius. These high-level clouds are white, thin, feathery, and wispy in appearance. Cirrus clouds often mark the start of a warm front, which is an indication of approaching bad weather. They are the fastest moving in the atmosphere because the wind current is very strong that high up.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e4f5faaa-36d9-4529-b667-7d4e39d3c67b?gtm_keyword=CIRRUS%20CLOUD%20SYSTEMS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cirrus Cloud Systems"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tropical-south-atlantic-index",
+  "stac_version": "1.0.0",
+  "description": "Anomaly of the average of the monthly SST from Eq-20S and 10E-30W. GISST and NOAA OI 1x1 datasets are used to create index. Climatology is 1951-2000.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/887e3bcc-ffd4-4f10-a91c-849783aac709?gtm_keyword=TROPICAL%20SOUTH%20ATLANTIC%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Tropical South Atlantic Index"
+}

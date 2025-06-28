@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "maximum-minimum-temperature",
+  "stac_version": "1.0.0",
+  "description": "Highest/Lowest air temperature attained during a specific time interval; usually 24 hours.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5164162a-60eb-4c94-a0f0-2caaa3bb1754?gtm_keyword=MAXIMUM/MINIMUM%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Maximum/Minimum Temperature"
+}

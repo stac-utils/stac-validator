@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "mean-spectral-dac-for-320-nm-423nm-in-the-atlantic-ocean",
+  "stac_version": "1.0.0",
+  "description": "This data set contains the mean diffuse attenuation coefficient of the downwelling plane irradiance over the first optical depth and over three different wavelength regions: 312.5 - 338 nm (Kd-UVAB), 356.5 - 390 nm (Kd-UVA), and 390 - 423 nm (KD-blue) as retrieved from the Sentinel-5P TROPOMI sensor from 11 May to 9 June 2018 in the Atlantic Ocean. The retrieval for the products is based on Differential Optical Absorption Spectroscopy (DOAS) extended to the ocean domain (PhytoDOAS). The spectral integrated Kd are derived from the Vibrational Raman Scattering (VRS) signal of the ocean which is retrieved by DOAS fits in three different fit windows. Kd-UVAB corresponds to DOAS VRS fits in the wavelength regions of 349.5 - 382 nm, Kd-UVA to 405 - 450 nm, and Kd-blue to 450 - 493 nm. VRS fit factors in the blue fit window (450 - 493 nm) were offset-corrected (an offset of 0.186 was added to the VRS fit factor of all processed S5P ground pixels). Derived Kd-blue are otherwise unrealistically high. The offset was determined with the help of Kd data at 490 nm from the Ocean and Land Color Instrument (OLCI) onboard Sentinel-3A. Fit results from the DOAS retrieval are converted into physical quantities using look-up-tables which were established with coupled atmosphere-ocean radiative transfer modeling using the software SCIATRAN version 4.0.8 (Rozanov et al. 2017, https://www.iup.uni-bremen.de/sciatran/). Only TROPOMI data with a cloud fraction smaller 0.01 were processed by the algorithm. Output data within the Atlantic Ocean (55Â°N-55Â°S, 70Â°W-10Â°E) were gridded daily into 0.083Â° latitudinal/longitudinal bins. Details on the algorithm can be found in the related publication by Oelker et al. (2022).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.940352?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.940352",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Mean spectral DAC avg for 320-338.5nm (UVAB) 356.5 - 390 nm (UVA) & 390 - 423 nm in the Atlantic Ocean from S5P (TROPOMI)",
+  "osc:themes": [
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-s5p-i-oc",
+  "osc:variables": [
+    "Diffuse Attenuation Coefficient (DAC)"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mean_spectral_diffuse_attenuation_coefficient"
+    }
+  ],
+  "osc:region": "Atlantic Ocean",
+  "created": "2022-03-17T00:00:00Z",
+  "start_datetime": "2018-05-11T00:00:00Z",
+  "end_datetime": "2018-06-09T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -55.0,
+          -70.0,
+          55.0,
+          10.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-11T00:00:00Z",
+          "2018-06-09T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Attenuation/Transmission",
+    "Diffuse Attenuation Coefficient (DAC)"
+  ]
+}

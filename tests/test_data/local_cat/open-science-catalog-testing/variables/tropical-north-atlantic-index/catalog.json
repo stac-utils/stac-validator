@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "tropical-north-atlantic-index",
+  "stac_version": "1.0.0",
+  "description": "Anomaly of the average of the monthly SST from 5.5N to 23.5N and 15W to 57.5W. GISST and NOAA OI 1x1 datasets are used to create index. Climatology is 1951-2000.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2cde80e8-3eb1-40e7-9305-e765dc8df5e2?gtm_keyword=TROPICAL%20NORTH%20ATLANTIC%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Tropical North Atlantic Index"
+}

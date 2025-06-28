@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "ocean-overturning",
+  "stac_version": "1.0.0",
+  "description": "The oceans overturn, with surface waters sinking to deep in the ocean at high latitudes, drawing warm waters and heat poleward from low latitude.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dbf8a0cf-1e9b-4bc4-95a2-819bb16af00c?gtm_keyword=OCEAN%20OVERTURNING&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Ocean Overturning"
+}

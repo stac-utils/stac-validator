@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-horizons-profile",
+  "stac_version": "1.0.0",
+  "description": "The soil profile is the vertical section of the soil, from the surface through all its horizons, where a horizon is a layer of soil, approximately parallel to the soil surface, differing in properties and characteristics from adjacent layers below and above it.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1fc22c9d-cf29-4bd7-90b1-b0f6f139fd92?gtm_keyword=SOIL%20HORIZONS/PROFILE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7a16aa40-c74b-4a69-a230-1edd1b453332?gtm_keyword=SOIL%20HORIZONS/PROFILE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Horizons/Profile"
+}

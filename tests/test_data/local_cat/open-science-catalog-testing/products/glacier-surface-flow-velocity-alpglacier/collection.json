@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "glacier-surface-flow-velocity-alpglacier",
+  "stac_version": "1.0.0",
+  "description": "Glacier surface flow velocity. Most of the database has been submitted to Pangaea, where the submission is being processed. Some parts of the database fall under the copyright of the Swiss national institute for topography and were therefore only provided as point shapefiles instead of polygons. All the necessary information to reconstruct the study are provided.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://onlinelibrary.wiley.com/doi/10.1002/esp.5194",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Glacier surface flow velocity_SwissAlps_S1/2",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-1",
+    "Sentinel-2"
+  ],
+  "osc:project": "alpglacier",
+  "osc:variables": [
+    "Glacier Motion/Ice Sheet Motion"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "glacier_surface_flow"
+    }
+  ],
+  "osc:region": "Switzerland",
+  "start_datetime": "2016-01-01T00:00:00Z",
+  "end_datetime": "2016-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.95591129,
+          45.81799493,
+          10.49229402,
+          47.80846475
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-01-01T00:00:00Z",
+          "2016-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Motion/Ice Sheet Motion",
+    "Cryospheric Indicators",
+    "Glacial Measurements",
+    "Sea Ice"
+  ]
+}

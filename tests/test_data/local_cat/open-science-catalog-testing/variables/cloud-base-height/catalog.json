@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-base-height",
+  "stac_version": "1.0.0",
+  "description": "For a given cloud or cloud layer, the lowest level in the atmosphere at which the air contains a perceptible quantity of cloud particles. See also the definitions for cloud height and cloud ceiling.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1f0765e3-4ea3-42be-8ed5-3e26bdebb219?gtm_keyword=CLOUD%20BASE%20HEIGHT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Base Height"
+}

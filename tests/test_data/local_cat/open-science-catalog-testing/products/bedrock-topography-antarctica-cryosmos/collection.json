@@ -1,0 +1,77 @@
+{
+  "type": "Collection",
+  "id": "bedrock-topography-antarctica-cryosmos",
+  "stac_version": "1.0.0",
+  "description": "The Ice Thickness product generation is described in [RD.9] and verified in [RD.10]. The product provides an estimate of the Ice Thickness in an area of East Antarctica where the BEDMAP2 data has an uncertainty of 1000 m. The product consists of a NETCDF file containing data in SMOS L3 format. The spatial coverage is provided as an index map in SMOS L3 coordinates. Both ice thickness estimate as well as ice thickness estimate merged onto the surrounding BEDMAP2 ice thickness data, are proved as maps. For user convenience the latitude and longitude coordinate values are also provided. The filename is Ã¢â¬ÅSMOS_IceThickness_YYYY_vvv.ncÃ¢â¬Â, where YYYY is the year and vvv is the version number. File size is approximately 7 Mbyte. Only year 2015 version 300 is currently provided. Product details are available at: http://www.ifac.cnr.it/cryosmos/products/CryoSMOS_D8_EDUM_V2.0.pdf.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.ifac.cnr.it/cryosmos/products/SMOS_IceThickness_2015_300.nc",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Bedrock topography and/or geothermal heat flux_Antarctica_GOCE",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "SMOS"
+  ],
+  "osc:project": "cryosmos",
+  "osc:variables": [
+    "Glacier Thickness/Ice Sheet Thickness"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "bedrock_topography"
+    }
+  ],
+  "osc:region": "Antarctica",
+  "created": "2020-03-19T00:00:00Z",
+  "start_datetime": "2013-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -83.0,
+          180.0,
+          -60.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Thickness/Ice Sheet Thickness",
+    "Sea Ice"
+  ]
+}

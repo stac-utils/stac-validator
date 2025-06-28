@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "ground-ice",
+  "stac_version": "1.0.0",
+  "description": "A general term referring to all types of ice contained in freezing and frozen ground. Ground ice occurs in pores, cavities, voids or other openings in soil or rock and includes massive ice. It may occur as lenses, wedges, veins, sheets, seams, irregular masses, or as individual crystals or coatings on mineral or organic particles. Perennial ground ice can only occur within permafrost bodies.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4931dcac-8b89-4bc9-ba59-469cfdcf6f12?gtm_keyword=GROUND%20ICE&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dc9fcd27-58ac-4705-a522-6475d59cfb81?gtm_keyword=GRAVITY%20WAVES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Ground Ice"
+}

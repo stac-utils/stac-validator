@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "metheo",
+  "stac_version": "1.0.0",
+  "description": "Methane emissions in the Northern Hemisphere by applying both data from Earth Observing (EO) satellites and global atmospheric methane inversion model estimates",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/metheo/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/metheo/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "MethEO",
+  "osc:name": "Methane emissions in the Northern Hemisphere by applying both data from Earth Observing (EO) satellites and global atmospheric methane inversion model estimates",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere",
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "FINNISH METEOROLOGICAL INSTITUTE (FI)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2018-05-09T00:00:00Z",
+  "end_datetime": "2022-01-04T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-09T00:00:00Z",
+          "2022-01-04T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

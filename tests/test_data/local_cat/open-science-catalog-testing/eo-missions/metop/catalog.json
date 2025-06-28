@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "metop",
+  "stac_version": "1.0.0",
+  "description": "The Meteorological Operational Satellite Program of Europe (MetOp) is a collaboration between the European Space Agency (ESA) and the European Organisation for the Exploitation of Meteorological Satellites (EUMETSAT) with the aim to provide satellite observation and data services for weather prediction and climate monitoring. MetOp provides temperature and humidity profiles on the atmosphere, as well as wind speed and direction above the ocean data for Numerical Weather Prediction (NWP). MetOp-A, launched in 2006 and retired in 2021, began the MetOp series, followed by the launches of MetOp-B and -C in 2012 and 2018, respectively. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=261",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "MetOp"
+}

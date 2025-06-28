@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "noctilucent-clouds",
+  "stac_version": "1.0.0",
+  "description": "The summer polar mesopause is the coldest region of the Earth's atmosphere, reaching temperatures as low as -140ï¿½C. It is sufficiently cold for noctilucent ('night shining') clouds to form in summer, at altitudes around 83 km. Noctilucent clouds can only be seen when the sun is shining on them (at ~83 km) and not on the lower atmosphere, i.e. when the sun is between 6 and 16 degrees below the horizon. They are a summer, polar phenomena but because of the restrictive viewing conditions they are most commonly observed at latitudes between 55 and 65 degrees. Noctilucent clouds were first reported in 1885 when they were independently observed in Germany and Russia. This was two years after the volcanic explosion of Krakatoa in the Straits of Java. One hypothesis is that the initial observation of noctilucent clouds was related to an increase in the number of observers of the twilight skies attracted by the spectacular displays resulting from the globally distributed volcanic debris of Krakatoa. Alternatively, water vapour injected into the upper atmosphere by the volcano ultimately reached the cold, dry upper mesophere. Subsequent observations have proved that noctilucent clouds are not solely related to volcanic activity, and their volcanic association is now scientifically contentious. It has been alternatively claimed that the appearance of noctilucent clouds is the earliest evidence of anthropogenic climate change. Noctilucent cloud observations from north-west Europe over the last 30 years show an increasing trend in the number of nights on which the clouds are observed each summer season, superimposed on a decadal variability that appears to be solar-cycle related. Competing anthropogenic explanations for this increasing occurrence of noctilucent clouds focus on either excessive greenhouse cooling of the middle atmosphere or increased water vapour linked to increased methane release associated principally with intensive farming activities. They have been observed thousands of times in the northern hemisphere, but less than 100 observations have been reported from the southern hemisphere. It has not been resolved if this is due to inter-hemispheric differences (temperature &/or water vapour) in the atmosphere at these altitudes, or the lack of observers and poorer observing conditions in southern latitudes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/939c0a66-0340-425b-999a-44a09046ec93?gtm_keyword=NOCTILUCENT%20CLOUDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Noctilucent Clouds"
+}

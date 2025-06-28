@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "snow-area-europe-alps-alpsnow",
+  "stac_version": "1.0.0",
+  "description": "Snow area extent for European Alps",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://alpsnow.enveo.at/publications.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://ieeexplore.ieee.org/document/9511108",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Snow area extent for European Alps_Multimission",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-2",
+    "Landsat-8",
+    "Terra"
+  ],
+  "osc:project": "alpsnow",
+  "osc:variables": [
+    "Snow Cover"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "snow_area"
+    }
+  ],
+  "osc:region": "Europe",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.95591129,
+          45.81799493,
+          10.49229402,
+          47.80846475
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Snow/Ice",
+    "Snow Cover",
+    "Cryospheric Indicators"
+  ]
+}

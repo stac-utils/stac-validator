@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-stability",
+  "stac_version": "1.0.0",
+  "description": "The characteristic of a system if sufficiently small disturbances have only small effects, either decreasing in amplitude or oscillating periodically; it is asymptotically stable if the effect of small disturbances vanishes for long time periods.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ff5d5c12-74d9-435d-9164-1c9d69f967d7?gtm_keyword=ATMOSPHERIC%20STABILITY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Stability"
+}

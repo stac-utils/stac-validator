@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "smos-vegetation",
+  "stac_version": "1.0.0",
+  "description": "ESASMOS mission is part of ESA Living Planet Programme and carries the first-ever, polar-orbiting, space-borne, 2:D interferometric radiometer providing observations at 1.4 GHz. From the Level 1 brightness temperatures we derive the Level-2 data products, namely surface soil moisture and vegetation optical depth (VOD) (over land) and sea surface salinity (over oceans). SMOS not only contributes towards our understanding of the global water cycle, but also has the potential to improve our understanding of the global carbon cycle. The assimilation of SMOS soil moisture into a carbon assimilation scheme built around a terrestrial biosphere model was found to improve global CO2 flux estimates. Similarly, assimilating SMOS soil moisture and AMSR-E C-band VOD data into an evapotranspiration (ET) model was found to improve ET and root-zone soil moisture estimates over Australia.However, there is still a lack of in-depth understanding of the VOD product, and its potential to monitor vegetation properties and processes has not yet been satisfactorily explored. In this context, this activity aims to increase the scientific return of the SMOS VOD data product by preparing and promoting its use for vegetation applications in the fields of agriculture, drought monitoring and land surface modeling.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://smos-veg.inversion-lab.com/index.html",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/smos-vegetation/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "SMOS+ VEGETATION",
+  "osc:name": "SMOS+ VEGETATION",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Matthias Drusch",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "matthias.drusch@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "THE INVERSION LAB THOMAS KAMINSKI CONSULTING (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "LUND UNIVERSITY (SE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITE TOULOUSE III PAUL SABATIER (FR)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2016-10-05T00:00:00Z",
+  "end_datetime": "2018-12-15T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-10-05T00:00:00Z",
+          "2018-12-15T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

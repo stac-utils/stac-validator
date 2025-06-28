@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "montane-habitats",
+  "stac_version": "1.0.0",
+  "description": "The zone in mountainous regions where the influence of altitude (vertical relief) results in local climatic regimes that are sufficiently different from those in the adjacent lowlands as to cause a complex vertical climate-vegetation-soil zonation.[The Nature Conservancy Glossary of Terms Used in the US National Vegetation Classification Hierarchy, 1998]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/99e09719-f1f8-439e-be4c-759242612a84?gtm_keyword=MONTANE%20HABITATS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Montane Habitats"
+}

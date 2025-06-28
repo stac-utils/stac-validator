@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "cluster-swarm-b-conjunctions-ion-outflow",
+  "stac_version": "1.0.0",
+  "description": "CSV file with a list of all conjunctions between Swarm-Bravo and Cluster-4. Conjunctions were identified by NASAÃ¢â¬â¢s «Satellite Situation Center Web» Query tool in Nov 2018.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://swarmoutflow.w.uib.no/files/2020/05/Cluster4-swarmAConjs-2014-2017_NaNless_noDubs.txt",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Cluster/Swarm B conjunctions",
+  "osc:themes": [
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM"
+  ],
+  "osc:project": "swarm-outflow",
+  "osc:variables": [
+    "Magnetic Fields/Magnetic Currents",
+    "Geomagnetic Indices"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "cluster_swarm_b_conjunctions"
+    }
+  ],
+  "created": "2020-05-07T00:00:00Z",
+  "start_datetime": "2014-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ionosphere/Magnetosphere Dynamics",
+    "Magnetic Fields/Magnetic Currents",
+    "Sun-Earth Interactions",
+    "Geomagnetic Indices"
+  ]
+}

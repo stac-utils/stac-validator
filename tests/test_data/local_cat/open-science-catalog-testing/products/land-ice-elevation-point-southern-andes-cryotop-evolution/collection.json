@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "land-ice-elevation-point-southern-andes-cryotop-evolution",
+  "stac_version": "1.0.0",
+  "description": "Point product containing a cloud of elevations with an associated uncertainty in geo spatial units. The thematic point product is published on a monthly basis once the Uncertainty calculation is complete.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp://science-pds.cryosat.esa.int/TEMPO_SWATH_POINT/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://cryotempo-eolis.org/wp-content/uploads/2021/12/CryoTempo-ThematicProduct-ProductHandbook_Issue2.1.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Land Ice Elevation Thematic Point Product(EOLIS POINTS)_Southern Andes_Cryosat",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryotop-evolution",
+  "osc:variables": [
+    "Glacier Elevation/Ice Sheet Elevation"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "land_ice_elevation"
+    }
+  ],
+  "osc:region": "Southern Andes",
+  "created": "2021-12-01T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.0,
+          -56.0,
+          -67.0,
+          -26.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Glacier Elevation/Ice Sheet Elevation",
+    "Cryospheric Indicators",
+    "Glacial Measurements",
+    "Sea Ice"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "molecular-hydrogen",
+  "stac_version": "1.0.0",
+  "description": "Molecular hydrogen H2 is an attractive candidate as future energy carrier because combustion of H2 produces H2 O only. In addition to saving the CO2 emissions (if the H2 is formed from carbon-free energy sources), also the massive energy-related emissions of other compounds like carbon monoxide, nitrogen oxides and soot could be drastically reduced, leading to improvements in air quality (Schultz et al., 2003). Nevertheless, unavoidable leakage in the production, distribution, storage and consumption of H2 could drastically alter the mixing ratio of H2 in the atmosphere. Although it is not a greenhouse gas itself, H2 affects the atmospheric lifetime of the greenhouse gas methane and many other species via its reaction with the hydroxyl (OH) radical (Schultz et al.,2003). In addition, H2 is an important source for stratospheric water vapor, which provides the substrate for polar stratospheric clouds that play a key role in the formation of the stratospheric polar ozone hole. Therefore, increasing levels of H2 in the atmosphere will counteract the predicted recovery of the ozone hole (Tromp et al., 2003; Warwick et al.,2004; Feck et al., 2008).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e073c9d4-5a61-436c-8890-2695c4e825eb?gtm_keyword=MOLECULAR%20HYDROGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Molecular Hydrogen"
+}

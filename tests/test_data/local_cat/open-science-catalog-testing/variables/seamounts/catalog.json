@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "seamounts",
+  "stac_version": "1.0.0",
+  "description": "Isolated steep-sided volcanic peak that rises abruptly at least 1000 m from the sea floor, sometimes piercing the surface to become islands.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/83520258-413c-4842-93c0-58a23dc58638?gtm_keyword=SEAMOUNTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Seamounts"
+}

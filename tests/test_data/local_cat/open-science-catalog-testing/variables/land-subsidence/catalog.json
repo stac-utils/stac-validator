@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "land-subsidence",
+  "stac_version": "1.0.0",
+  "description": "Occurs when large amounts of ground water have been withdrawn from certain types of rocks, such as fine-grained sediments. The rock compacts because the water is partly responsible for holding the ground up. When the water is withdrawn, the rocks falls in on itself. You may not notice land subsidence too much because it can occur over large areas rather than in a small spot, like a sinkhole. That doesn't mean that subsidence is not a big event -- states like California, Texas, and Florida have suffered damage to the tune of hundreds of millions of dollars over the years.[U.S. Geological Survey]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ba064d3f-0327-49d2-9984-332de1a97146?gtm_keyword=LAND%20SUBSIDENCE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a1bf1e84-c4e7-4154-ad0a-4b9eedf45066?gtm_keyword=LAND%20SUBSIDENCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Land Subsidence"
+}

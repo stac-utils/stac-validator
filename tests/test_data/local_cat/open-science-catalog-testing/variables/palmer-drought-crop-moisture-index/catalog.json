@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "palmer-drought-crop-moisture-index",
+  "stac_version": "1.0.0",
+  "description": "The Palmer Index was developed by Wayne Palmer in the 1960s and uses temperature and rainfall information in a formula to determine dryness. It has become the semi-official drought index. The Palmer Index is most effective in determining long term droughtï¿½a matter of several monthsï¿½and is not as good with short-term forecasts (a matter of weeks). It uses a 0 as normal, and drought is shown in terms of minus numbers; for example, minus 2 is moderate drought, minus 3 is severe drought, and minus 4 is extreme drought. The Crop Moisture Index (CMI) is also a formula that was developed by Wayne Palmer subsequent to his development of the Palmer Drought Index. The CMI responds more rapidly than the Palmer Index and can change considerably from week to week, so it is more effective in calculating short-term abnormal dryness or wetness affecting agriculture. CMI is designed to indicate normal conditions at the beginning and end of the growing season; it uses the same levels as the Palmer Drought Index. It differs from the Palmer Index in that the formula places less weight on the data from previous weeks and more weight on the recent week.[From: NOAA: http://www.drought.noaa.gov/palmer.html; See also: Palmer, W.C., 1968: Keeping track of moisture conditions, nationwide: The new crop moisture index, Weatherwise, 21, 156-161.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7e26f9e3-4c20-453d-bbc6-1970eca1ffb8?gtm_keyword=PALMER%20DROUGHT%20CROP%20MOISTURE%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Palmer Drought Crop Moisture Index"
+}

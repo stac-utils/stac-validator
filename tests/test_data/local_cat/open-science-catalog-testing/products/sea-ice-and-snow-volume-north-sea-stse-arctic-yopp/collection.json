@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "sea-ice-and-snow-volume-north-sea-stse-arctic-yopp",
+  "stac_version": "1.0.0",
+  "description": "Prior and posterior uncertainties of sea ice volume (SIV, columns 4-6) and snow volume (SNV, columns 7-9) respectively for three regions in km3. Column 1 indicates observation, column 2 indicates uncertainty range (\"product\" refers to uncertainty specification provided with product), column 3 indicates uncertainty range of additional hypothetical snow product (\"Ã¢â¬â\" means no snow product is used). In each of columns 4-9 the lowest uncertainty range is highlighted in bold face font. The two bottom rows give estimates for the uncertainty due to model error, i.e. the residual uncertainty with optimal control vector.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/1308857#.YaSSUS8w3fY",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.1308857"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Sea ice volume and snow volume_Prior and posterior uncertainties_North Sea_Cryosat-2",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat-2"
+  ],
+  "osc:project": "stse-arctic",
+  "osc:variables": [
+    "Sea Ice Volume",
+    "Snow Cover"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_ice_and_snow_volume"
+    }
+  ],
+  "osc:region": "North Sea",
+  "created": "2018-07-10T00:00:00Z",
+  "start_datetime": "2015-01-01T00:00:00Z",
+  "end_datetime": "2015-12-31T23:59:59Z",
+  "sci:doi": "10.5281/zenodo.1308857",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-01-01T00:00:00Z",
+          "2015-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Ice",
+    "Sea Ice Volume",
+    "Snow/Ice",
+    "Snow Cover"
+  ]
+}

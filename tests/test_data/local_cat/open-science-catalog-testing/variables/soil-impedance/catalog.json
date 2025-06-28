@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-impedance",
+  "stac_version": "1.0.0",
+  "description": "The resistance of the soil to penetration by water and by roots.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bcc72093-b2d4-47e8-9213-7f48172e0e95?gtm_keyword=SOIL%20IMPEDANCE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6edf1b99-fe00-493e-b0d1-ad6b36b8da75?gtm_keyword=SOIL%20IMPEDANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Impedance"
+}

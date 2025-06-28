@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "basal-melt-rate",
+  "stac_version": "1.0.0",
+  "description": "The basal melt rate of ice shelves has been of glaciological interest, as it represents a major component of the overall ice-shelf mass budget. From an oceanographic perspective, measurements of basal melt rate are direct measurements of buoyancy flux into the ocean at the ice base, and also give an indication of the heat flux from the ocean. Melt rates clearly depend on the ocean properties within the cavity, and the ocean circulation that carries heat and salt around the system. This means that basal melt rates are an excellent diagnostic for the performance of models in predicting both the waterï¿½s circulation within a sub-ice-shelf cavity, and its interaction with the overlying ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.cambridge.org/core/journals/journal-of-glaciology/article/groundbased-radar-for-measuring-vertical-strain-rates-and-timevarying-basal-melt-rates-in-ice-sheets-and-shelves/B952737EB6DDB3D129DF12FC206DC3EB",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Basal Melt Rate"
+}

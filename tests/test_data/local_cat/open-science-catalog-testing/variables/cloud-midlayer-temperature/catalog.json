@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-midlayer-temperature",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric temperature observed at the middle of a cloud layer.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2ca13dfa-c2b3-47de-8175-f0723151ef28?gtm_keyword=CLOUD%20MIDLAYER%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Midlayer Temperature"
+}

@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "satellite-sarin-altimeter-coastal-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Satellite SARIN altimeter product generated from Cryosat data by  isardSAT",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Satellite SARIN altimeter product_Coastal Ocean_Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "satellite_sarin_altimeter_coastal"
+    }
+  ],
+  "osc:region": "Caribbean",
+  "created": "2021-12-15T00:00:00Z",
+  "start_datetime": "2012-01-01T00:00:00Z",
+  "end_datetime": "2014-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -88.9200529235,
+          8.576579727,
+          -60.2254445602,
+          23.1790330316
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2012-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

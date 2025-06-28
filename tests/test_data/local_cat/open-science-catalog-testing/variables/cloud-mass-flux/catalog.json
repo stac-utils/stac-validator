@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-mass-flux",
+  "stac_version": "1.0.0",
+  "description": "The transport of mass by vertical motion within clouds. Mass in this context is defined as the mass of dry air plus the mass of water vapor, excluding the mass of any liquid water.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/804fb334-1c74-4070-bd5f-848014a6e220?gtm_keyword=CLOUD%20MASS%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Mass Flux"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "chlorinated-hydrocarbons",
+  "stac_version": "1.0.0",
+  "description": "The presence of pesticides or PCB (POLYCHLORINATED BIPHENYL) in the Atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/cdab2cca-6767-427e-b464-09fe26ec59db?gtm_keyword=CHLORINATED%20HYDROCARBONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Chlorinated Hydrocarbons"
+}

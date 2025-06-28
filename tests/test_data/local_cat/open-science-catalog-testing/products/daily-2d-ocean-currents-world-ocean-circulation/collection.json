@@ -1,0 +1,80 @@
+{
+  "type": "Collection",
+  "id": "daily-2d-ocean-currents-world-ocean-circulation",
+  "stac_version": "1.0.0",
+  "description": "North Atlantic Merged SSH-SST Surface Currents (NATL2D), surface current product combining altimeter-derived geostrophic currents and satellite L4 SST",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.worldoceancirculation.org/Products",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://drive.google.com/file/d/1miczcOz8cvUXKyGj7Rfg8ESZhxea98KE/view?usp=sharing",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Daily 2D ocean surface currents_North Atlantic",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "woc",
+  "osc:variables": [
+    "Surface Currents"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "ocean_currents"
+    }
+  ],
+  "osc:region": "North Atlantic",
+  "created": "2021-11-30T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -76.002623842,
+          20.4479407425,
+          6.4276376583,
+          50.7093121683
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Circulation",
+    "Ocean Currents",
+    "Surface Currents"
+  ]
+}

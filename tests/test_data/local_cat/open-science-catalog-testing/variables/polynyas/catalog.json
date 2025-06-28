@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "polynyas",
+  "stac_version": "1.0.0",
+  "description": "Any non-linear shaped opening enclosed by ice. May contain brash ice and/or be covered with new ice, nilas or young ice; sub-mariners refer to these as skylights. Polynyas are important in the study of the energy budget of the polar ocean and local and regional climatology. [Canadian Ice Service - Environment Canada: http://www.cis.ec.gc.ca/manice/chp1_eng.htm . See also Hall, D.K. and J. Martinec. 1985. Remote Sensing of Ice and Snow, Chapman and Hall. London.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/70acf223-7895-4cbe-aca6-815babb2b7ed?gtm_keyword=POLYNYAS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/10a128a6-12d4-4bce-b25d-2ffc464182f4?gtm_keyword=POLYNYAS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Polynyas"
+}

@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "akross",
+  "stac_version": "1.0.0",
+  "description": "Determining how snow properties affect the sea ice thicknes measurements from radar altimetry",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://akross.space",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/akross/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AKROSS",
+  "osc:name": "AKROSS: Altimetric Ku-Band Radar Observations Simulated with SMRT",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Jerome Bouffard",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "jerome.bouffard@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "CORES SCIENCE AND ENGINEERING LIMIT (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF NORTHUMBRIA AT NEWCAS (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "WSL Swiss Federal Institute for Forest",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Snow and Landscape Research (CH)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-02-17T00:00:00Z",
+  "end_datetime": "2021-01-10T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-02-17T00:00:00Z",
+          "2021-01-10T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

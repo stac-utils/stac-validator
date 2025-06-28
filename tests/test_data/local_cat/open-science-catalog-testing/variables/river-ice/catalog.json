@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "river-ice",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the extent, thickness, longevity, etc. of ice formations that occur on river systems.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/52e6600b-7a51-4267-8b62-e79034db3a48?gtm_keyword=RIVER%20ICE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ad8499b4-28cb-46ed-b0fe-867ed90fce05?gtm_keyword=RIVER%20ICE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "River Ice"
+}

@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "global-particulate-organic-carbon-v4-bicep",
+  "stac_version": "1.0.0",
+  "description": "The BICEP/NCEO: Monthly global Particulate Organic Carbon (POC) v4.2 datasets contain POC concentrations (mg m^-3) with per pixel uncertainties estimates gridded on both geographic and sinusoidal projections at 9 km spatial resolution for the period of 1997 to 2020. The POC products were generated as part of the European Space Agency (ESA) Biological Pump and Carbon Exchange Processes (BICEP) project with support from the National Centre of Earth Observation (NCEO). The POC concentrations were estimated using an empirical Remote Sensing Reflectance (Rrs) band ratio algorithm by Stramski et al. (2008): 203.2*Rrs(443)/Rrs(555)^-1.034. This algorithm has shown a relatively good performance in the recent global inter-comparison study conducted by Evers-King et al. (2017). Additional variables that were used for the calculation of the POC products are also provided in the datasets, including the Rrs at 443 nm and 555 nm obtained from the ESA Ocean Colour Climate Change Initiative version 4.2 dataset (OC-CCI v4.2)(Sathyendranath et al., 2020). In addition to the papers by Stramski et al. (2008) and Evers-king et al. (2017), for more details on the algorithm and its validation, please see the BICEP Algorithm Theoretical Basis Document (ATBD) and validation report (https://bicep-project.org/Home). This version of the dataset is an updated version of the previous 'NCEO: Monthly global Particulate Organic Carbon (POC) (produced from the Ocean Colour Climate Change Initiative, Version 4.2 dataset)'.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://rsg.pml.ac.uk/shared_files/gku/ESA_animation/POC_1-month_9km/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Monthly Global Particulate Organic Carbon dataset (9 km, OC-CCI v4.2)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP",
+    "OrbView-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "bicep",
+  "osc:variables": [
+    "Particulate Organic Carbon"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "particulate_organic_carbon"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2023-03-29T00:00:00Z",
+  "start_datetime": "1997-09-01T00:00:00Z",
+  "end_datetime": "2020-11-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1997-09-01T00:00:00Z",
+          "2020-11-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Organic Carbon",
+    "Particulate Organic Carbon"
+  ]
+}

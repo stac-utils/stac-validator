@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-heat-budget",
+  "stac_version": "1.0.0",
+  "description": "The relation between the fluxes of heat into and out of a soil and the heat stored by the soil.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c6847d01-cbf9-491b-be59-c283d9072d95?gtm_keyword=SOIL%20HEAT%20BUDGET&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/68033b72-7f8d-48a4-8f63-638e4e96fd23?gtm_keyword=SOIL%20HEAT%20BUDGET&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Heat Budget"
+}

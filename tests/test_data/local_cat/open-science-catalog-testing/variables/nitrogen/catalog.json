@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "nitrogen",
+  "stac_version": "1.0.0",
+  "description": "Measure of any form of Nitrogen, a macronutrient, in the soil, such as biomass nitrogen, ammonium, nitrate, etcï¿½",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/db5357c9-cc9d-4693-86fe-6bb88555d434?gtm_keyword=NITROGEN&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e1179e7f-59e5-465a-9879-6bda6985744e?gtm_keyword=NITROGEN&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bf03dba8-2881-44ac-abfc-ba3353f67a24?gtm_keyword=NITROGEN&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ed7c506e-b18e-4a93-ac03-4bdfe119b72f?gtm_keyword=NITROGEN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Nitrogen"
+}

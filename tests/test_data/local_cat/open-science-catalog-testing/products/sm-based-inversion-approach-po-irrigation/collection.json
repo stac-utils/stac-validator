@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "sm-based-inversion-approach-po-irrigation",
+  "stac_version": "1.0.0",
+  "description": "The products are the first regional-scale and high-resolution (1 and 6 km) irrigation water data sets obtained from remote sensing observations. They cover three major river basins: the Ebro river basin (North-eastern Spain), the Po valley (Northern Italy), and the Murray-Darling basin (South-eastern Australia). The data sets are an outcome of the European Space Agency (ESA) Irrigation+ project (https://esairrigationplus.org/). The irrigation amounts have been estimated through the SM-based (Soil-Moisture-based) inversion approach. The satellite-derived irrigation products referring to the European sites have a spatial resolution of 1 km, and they are retrieved by exploiting Sentinel-1 soil moisture data obtained through the RT1 (first-order Radiative Transfer) model. A spatial sampling of 6 km is instead used for the Australian pilot area, since in this case the soil moisture information comes from CYGNSS (Cyclone Global Navigation Satellite System) observations. The three irrigation products are delivered with a weekly temporal aggregation. The 1 km data sets over the two European regions cover a period ranging from January 2016 to July 2020, while the irrigation estimates over the Murray-Darling basin are available for the time span April 2017 â July 2020. Details on the data sets development and  on their performance assessment can be found in: Dari, J., Brocca, L., Modanesi, S., Massari, C., Tarpanelli, A., Barbetta, S., Quast, R., Vreugdenhil, M., Freeman, V., Barella-Ortiz, A., Quintana-SeguÃ­, P., Bretreger, D., Volden, E. Regional data sets of high-resolution (1 and 6 km) irrigation estimates from space. Earth System Science Data Discussion [preprint], https://doi.org/10.5194/essd-2022-403, in review, 2022.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/7341284/files/SM_based_inversion_approach_PO_Irrigation.nc?download=1",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5281/zenodo.7341284",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Regional irrigation water use at high-resolution - PO valley",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-1"
+  ],
+  "osc:project": "irrigation",
+  "osc:variables": [
+    "Anthropogenic Water Use"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "soil_moisture_based_inversion_approach_po_irrigation"
+    }
+  ],
+  "osc:region": "Po valley (Northern Italy)",
+  "created": "2022-11-21T00:00:00Z",
+  "start_datetime": "2016-01-01T00:00:00Z",
+  "end_datetime": "2020-07-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.0,
+          44.0,
+          13.0,
+          46.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-01-01T00:00:00Z",
+          "2020-07-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Anthroposphere",
+    "Anthropogenic Water Use"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-ice-motion",
+  "stac_version": "1.0.0",
+  "description": "Refers to the movement and direction of ice fields or floes. Ice motion processes include: diverging, compacting, and shearing.[Canadian Ice Service - Environment Canada ]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1455c369-88e2-411b-83f7-c914b20609b1?gtm_keyword=SEA%20ICE%20MOTION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a47ab696-7ed9-4374-8965-c8996e61463d?gtm_keyword=SEA%20ICE%20MOTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Ice Motion"
+}

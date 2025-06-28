@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "pigments",
+  "stac_version": "1.0.0",
+  "description": "Colored organic compounds synthesized by organisms. Names of specific pigments are included as detailed variables under Pigments.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ed925b43-db83-4cbb-8347-3dc0081bb8f4?gtm_keyword=PIGMENTS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ed925b43-db83-4cbb-8347-3dc0081bb8f4?gtm_keyword=PIGMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        },
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Pigments"
+}

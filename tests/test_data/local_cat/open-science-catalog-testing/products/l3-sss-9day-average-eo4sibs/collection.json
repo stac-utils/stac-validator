@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "l3-sss-9day-average-eo4sibs",
+  "stac_version": "1.0.0",
+  "description": "Salinity retrievals from L2A and L2D over 9 days are used to produce daily values in a 0.25°*0.25° by using the weighted average described in(Olmedo et al., 2021a). The resulting 9-day maps are generated daily.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/map/map.php?product=Sea%20Surface%20Salinity&is_netcdf=1",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.eo4sibs.uliege.be/doc/EO4SIBS_DUM_ATBD_Salinity.pdf",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Level 3 SSS, 0.25°*0.25°, 9-day averaged produced daily",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "Sentinel-2",
+    "Sentinel-3",
+    "CryoSat-2"
+  ],
+  "osc:project": "eo4sibs",
+  "osc:variables": [
+    "Sea Surface Salinity"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_surface_salinity_average"
+    }
+  ],
+  "osc:region": "Black Sea",
+  "created": "2021-12-31T00:00:00Z",
+  "start_datetime": "2011-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          27.5070842233,
+          40.8729622599,
+          41.8106211165,
+          47.2684228286
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Salinity/Density",
+    "Sea Surface Salinity",
+    "Sea Ice"
+  ]
+}

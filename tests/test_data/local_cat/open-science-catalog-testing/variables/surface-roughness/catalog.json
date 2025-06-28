@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-roughness",
+  "stac_version": "1.0.0",
+  "description": "The unevenness of the land surface that results in friction for fluid flow. This can be influenced by the presence of such things as vegetation, water bodies, mountains and other landforms, etc.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/21474df3-f9a6-48ca-be15-bdb3611fe062?gtm_keyword=SURFACE%20ROUGHNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Roughness"
+}

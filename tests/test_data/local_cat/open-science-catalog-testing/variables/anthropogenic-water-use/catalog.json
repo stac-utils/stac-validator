@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "anthropogenic-water-use",
+  "stac_version": "1.0.0",
+  "description": "Data on water extractions by sector and available renewable freshwater provide key information on the availability of freshwater and the amount of water stress in a country. Climate Change is projected to reduce renewable surface-water and groundwater resources significantly in most dry subtropical regions. In contrast, water resources are projected to increase at high latitudes. Climate change is also projected to reduce raw water quality, posing risks to drinking water quality, even with conventional treatment. The availability of freshwater plays a crucial role in food production and food security.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/water-use/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Anthropogenic Water Use"
+}

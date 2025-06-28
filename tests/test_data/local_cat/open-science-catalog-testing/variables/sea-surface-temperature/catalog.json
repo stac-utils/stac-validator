@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sea-surface-temperature",
+  "stac_version": "1.0.0",
+  "description": "Sea Surface temperature (SST) is a vital component of the climate system as it exerts a major influence on the exchanges of energy, momentum and gases between the ocean and atmosphere. SST largely controls the atmospheric response to the ocean at both weather and climate time scales.  Daily variations in SST can exceed 3 degrees Celsius and could alter the surface energy budget by more than 10 Wm-2 over the tropics and subtropics. Therefore, the SST and horizontal gradients in SST are also important for coupling with the atmosphere for sub-seasonal to seasonal prediction timescales. The spatial patterns of SST reveal the structure of the underlying ocean dynamics, such as, ocean fronts, eddies, coastal upwelling and exchanges between the coastal shelf and open ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/sst; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/bd24a9a9-7d52-4c29-b2a0-6cefd216ae78?gtm_keyword=SEA%20SURFACE%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Surface Temperature"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aerosol-particle-properties",
+  "stac_version": "1.0.0",
+  "description": "Properties of aerosol particles including: compositon, size, diameter.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/02ea239e-4bca-4fda-ab87-be12c723c30a?gtm_keyword=AEROSOL%20PARTICLE%20PROPERTIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Aerosol Particle Properties"
+}

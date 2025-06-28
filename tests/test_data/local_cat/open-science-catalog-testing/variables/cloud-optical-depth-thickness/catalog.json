@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-optical-depth-thickness",
+  "stac_version": "1.0.0",
+  "description": "The degree to which a cloud prevents light from passing through it. Optical thickness depends upon the physical constitution (crystals, drop, droplets), the form, the concentration of particles, and the vertical extent of the cloud.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4bc483b1-dd64-4e97-bfd3-c0e755df6308?gtm_keyword=CLOUD%20OPTICAL%20DEPTH/THICKNESS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Optical Depth/Thickness"
+}

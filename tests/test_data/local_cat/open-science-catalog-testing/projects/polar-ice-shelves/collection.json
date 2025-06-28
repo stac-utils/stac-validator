@@ -1,0 +1,99 @@
+{
+  "type": "Collection",
+  "id": "polar-ice-shelves",
+  "stac_version": "1.0.0",
+  "description": "The European Space Agency (ESA) Polar+ Ice Shelves project exploits the 25-year record of ESA satellite observations to generate new measurements of ice shelf thickness change, ice speed, crack propagation, area change, and surface and basal melt across Antarctic Ice Shelves. These new datasets will reveal small scale ice shelf features such as the propagation of cracks along the ice shelf surface, deep sub-shelf meltwater channels that can erode ice locally by up to 200 meters, and changes in the calving front and grounding line location. These datasets will improve our understanding of the way in which ice shelves around Antarctica are changing today, which we will use to discover new insights about the physical mechanisms driving change and affecting the future stability of ice shelves in this remote and inaccessible continent.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://polar-iceshelf.org",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/polar-ice-shelf/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "Polar+ Ice Shelves",
+  "osc:name": "Polar+ Ice Shelves",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marcus Engdahl",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marcus.engdahl@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "University of Leeds (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "DLR (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Finnish Meteorological Institute (FMI) (FI)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ENVEO (AT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "EarthWave (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "University of Edinburgh (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-03-09T00:00:00Z",
+  "end_datetime": "2022-08-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-03-09T00:00:00Z",
+          "2022-08-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

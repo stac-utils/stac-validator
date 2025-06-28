@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "landslides",
+  "stac_version": "1.0.0",
+  "description": "A general term for a wide variety of processes and landforms involving the downslope movement, under gravity, of masses of soil and rock material.[Dictionary of Geological Terms, American Geological Institute, 1984.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/36bdce45-37df-4475-9eed-73469a594edb?gtm_keyword=LANDSLIDES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ea4aefeb-64cd-4408-83d8-8e0a672739b9?gtm_keyword=LANDSLIDES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c09cb9dc-2916-40f0-9f2f-4bbb39d2e7c9?gtm_keyword=LANDSLIDES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Landslides"
+}

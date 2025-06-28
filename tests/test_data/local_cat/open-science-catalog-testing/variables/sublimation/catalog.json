@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sublimation",
+  "stac_version": "1.0.0",
+  "description": "The process of phase transition from solid directly to vapor in the absence of melting.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d438f0a2-5a88-4d56-8bec-7c5e35249544?gtm_keyword=SUBLIMATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sublimation"
+}

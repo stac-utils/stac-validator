@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "methyl-cyanide",
+  "stac_version": "1.0.0",
+  "description": "Methyl Cyanide (CH3CN), also known as acetonitrile, is emitted from incomplete combustion of vegetable matter, notably biomass, for example, cigarettes. Acetonitrile is relatively unreactive in the troposphere and thus reaches the stratosphere, where it participates in ionmolecule reactions.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/35721fc2-a968-487f-ad85-6307a18e4af6?gtm_keyword=METHYL%20CYANIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Methyl Cyanide"
+}

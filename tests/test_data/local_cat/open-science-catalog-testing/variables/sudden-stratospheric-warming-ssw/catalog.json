@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sudden-stratospheric-warming-ssw",
+  "stac_version": "1.0.0",
+  "description": "Sudden stratospheric warming (SSW) describes an atmospheric-variability phenomenon at a daily-to-monthly scale where temperature in the middle stratosphere (about 30 km or 10 hPa) increases rapidly (> 30 to 40 K) within a couple of days in sub-polar and polar regions (McInturff, 1978; Butler et al., 2015; Baldwin et al., 2020). In extreme cases, SSW temperature anomalies can reach more than 70 K relative to the long-term mean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://acp.copernicus.org/articles/23/1259/2023/acp-23-1259-2023.pdf",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sudden Stratospheric Warming (SSW)"
+}

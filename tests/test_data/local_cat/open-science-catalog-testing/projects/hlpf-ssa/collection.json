@@ -1,0 +1,74 @@
+{
+  "type": "Collection",
+  "id": "hlpf-ssa",
+  "stac_version": "1.0.0",
+  "description": "The Earthss upper polar atmospheric region is constantly bombarded with energy input from the interaction between the magnetosphere and the solar wind. This controls immediately visible phenomena like the aurora borealis and australis, but also results in changes to the composition and dynamics of the atmosphere itself. The total rate of electromagnetic energy per unit area that travels between the magnetosphere and ionosphere, i.e. between the Earthss space environment and upper atmosphere, is called the Poynting flux. The Poynting flux can be measured by each satellite in the ESA Swarm constellation. The Poynting flux is one of the most important quantities for space weather studies to accurately determine due to its potential wide-reaching impact on the function of low earth orbiting satellites. This project will include four studies that examine the nature of how Poynting flux is deposited into the ionosphere-thermosphere system, the variability of small-scale Poynting fluxes within larger scale features, and the behaviour of the ionosphere spatially and temporally during uncommon events of upward Poynting flux. It is thought that enhancements of the neutral mass density in the thermospheric cusp region are due to small-scale (<1km) and high-magnitude (several tens of mW/m2) Poynting fluxes in the same region. Previous studies have been unable to fully confirm this, as many instruments lack the ability to measure Poynting fluxes on scales less than a kilometre. The electric field instruments on board the Swarm satellites however have this capability, and so the first study of this proposal will examine statistically the prevalence of sub-kilometre Poynting fluxes, mainly around the dayside cusp region. Whilst Swarm can offer high-resolution measurements of the Poynting flux, it is limited to ionospheric regions overlapping with Swarm orbits. Poynting flux can also be calculated using a combination of data from the Super Dual Auroral Radar Network (SuperDARN) and the Active Magnetosphere and Planetary Electrodynamics Response Experiment (AMPERE). Although the SuperDARN/AMPERE estimation would be global in scale rather than along the track of an orbit, the spatial resolution of both instruments means Poynting flux variability present within larger scale features (like field-aligned and substorm current regions) would be missed. The second study is therefore a multi-instrument study to investigate the small-scale features (measured by Swarm) embedded within large scale ionospheric features (measured by SuperDARN and AMPERE). Finally, both the duration and spatial extent of upward Poynting fluxes will be investigated in studies 3 and 4. When Poynting flux is upward, instead of downward into the atmosphere, it means an ionospheric electric field is driving the magnetosphere rather than the other way around. Upward Poynting flux can be due to the neutral wind flywheel effect, when residual momentum in thermospheric neutrals (from previous geomagnetically active conditions) maintains an ionospheric electric field even though the previous driver (convection of the magnetosphere) stops. This is a seldom studied subject, but the combination of Swarm Poynting flux measurements with the always-on global coverage of SuperDARN will offer new insight into how the thermosphere can feedback energy to the magnetosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/hlpf-ssa/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "HLPF-SSA",
+  "osc:name": "HIGH-LATITUDE POYNTING FLUX INTO AND OUT OF THE ATMOSPHERE: SWARM, SUPERDARN AND AMPERE OBSERVATIONS (HLPF-SSA)",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Stephen Plummer",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "stephen.plummer@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF SASKATCHEWAN (CA)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-09-15T00:00:00Z",
+  "end_datetime": "2024-01-04T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-09-15T00:00:00Z",
+          "2024-01-04T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

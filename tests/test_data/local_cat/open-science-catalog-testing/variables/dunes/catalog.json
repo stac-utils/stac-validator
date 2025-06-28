@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "dunes",
+  "stac_version": "1.0.0",
+  "description": "Mounds, ridges, or hills of wind-blown sand, either bare or covered with vegetation.[Dictionary of Geological Terms, American Geological Institute, 1984.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8d38de3b-2d05-4ad2-a960-f47a66191319?gtm_keyword=DUNES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6f7b2753-aed1-4783-a7cc-781d00d13a0f?gtm_keyword=DUNES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Dunes"
+}

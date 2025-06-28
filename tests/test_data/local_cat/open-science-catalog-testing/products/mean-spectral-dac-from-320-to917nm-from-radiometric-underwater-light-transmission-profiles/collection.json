@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "mean-spectral-dac-from-320-to917nm-from-radiometric-underwater-light-transmission-profiles",
+  "stac_version": "1.0.0",
+  "description": "Radiometric data was collected on Polarstern expedition PS113, crossing the Atlantic from the Patagonian Shelf to the English Channel with an irradiance sensors (RAMSES ACC-2-VIS, TriOS GmbH, Germany) covering the wavelength region from 320 nm to 917 nm with a spectral sampling of 3.3. nm, resolution of 10 nm, and accuracy of 0.3 nm. The sensor was mounted on an undulating platform (Triaxus, extended version, MacArtney, Denmark) towed behind the research vessel at a speed of 8 knots for several transects along the cruise track and measured the underwater downwelling irradiance Ed(z, Î»). Vertical movement of the Triaxus was 1 m/s. The depth was determined with a Seabird CTD mounted to the Triaxus and the inclination in all directions was recorded by the Triaxus hardware (details in von Appen et al. 2020). Measurements were taken with automatically adjusted integration times between 4 ms and 8 s. Data of a light profile was only processed if the euphotic depth was reached and values of the downwelling irradiance at 15 m depth and a wavelength of 400 nm were greater than 150 mW mâ2 nmâ1. Radiometric data from 6 transects (on 19, 21, 22, 24, 25, and 27 May 2018) between 2 and 48 hours duration were identified useful for determining Kd(Î»). Generally, profile measurements were only valid if the instrument's inclination in either dimension was < 14Â°. Another RAMSES ACC-2-VIS sensor mounted on top of the ship recorded the incident downwelling irradiance above the surface Ed(Î», 0 + ), to correct for incident sunlight variations. Mean Kd was calculated from Ed(z, Î») profiles mostly over the depth interval 7 to 30 m, some 7 to 60 m. Details on measurement procedure and determination of Kd can be found in Bracher et al. (2020a, 2020b).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.939927?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.939927",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Mean spectral DAC from 320-917nm from light transmission profiles by an undulating platform towed behind the ship",
+  "osc:themes": [
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-s5p-i-oc",
+  "osc:variables": [
+    "Diffuse Attenuation Coefficient (DAC)"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "mean_spectral_diffuse_attenuation_coefficient"
+    }
+  ],
+  "osc:region": "South Atlantic Ocean",
+  "created": "2022-03-17T00:00:00Z",
+  "start_datetime": "2018-05-19T00:00:00Z",
+  "end_datetime": "2018-05-27T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -33.533041,
+          -19.455381,
+          -23.372737,
+          8.82378
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-19T00:00:00Z",
+          "2018-05-27T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Optics",
+    "Attenuation/Transmission",
+    "Diffuse Attenuation Coefficient (DAC)"
+  ]
+}

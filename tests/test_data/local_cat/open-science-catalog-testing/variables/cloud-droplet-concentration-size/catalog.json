@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-droplet-concentration-size",
+  "stac_version": "1.0.0",
+  "description": "The physical size of water droplets and the number of water droplets recorded in a given area or volume within a cloud.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/47812ef8-b64b-4988-9ae4-31f3581ae9a5?gtm_keyword=CLOUD%20DROPLET%20CONCENTRATION/SIZE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Droplet Concentration/Size"
+}

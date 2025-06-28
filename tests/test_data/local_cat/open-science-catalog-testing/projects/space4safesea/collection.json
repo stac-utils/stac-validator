@@ -1,0 +1,78 @@
+{
+  "type": "Collection",
+  "id": "space4safesea",
+  "stac_version": "1.0.0",
+  "description": "The objective of the Space4Safesea project is to develop and validate for maritime safety applications an ocean state product based on synergetic use of a new merged ocean current and surface wave data in the Great Agulhas region, an area synonymous of hazardous sea state and rogue waves due to the interaction between the wave and the current. The new merged ocean current will be derived from Altimeter data and AIS-based current using the Multiscale Inversion for Ocean Surface Topography (MIOST) variational tool. The directional spectrum of sea surface waves from SWIM will be used in conjunction with a wave-model output and swell ray propagation model.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "Space4SafeSea - eo science for society (esa.int)",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "Space4SafeSea",
+  "osc:name": "Space4SafeSea",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marie-Helene Rio",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marie-helene.rio@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "E:Odyn (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CLS (FR)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2021-02-07T00:00:00Z",
+  "end_datetime": "2022-02-07T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-02-07T00:00:00Z",
+          "2022-02-07T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

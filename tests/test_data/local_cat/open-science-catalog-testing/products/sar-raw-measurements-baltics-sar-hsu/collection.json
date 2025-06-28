@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "sar-raw-measurements-baltics-sar-hsu",
+  "stac_version": "1.0.0",
+  "description": "The observation file is generated from the point target analysis file (PTA-RES). Processor specific corrections are applied to range and azimuth during file generation, representing the raw SAR measurements. Multiple targets may be summarized in one file. Data blocks for different targets are placed side by side organized by dates. If a target is unavailable or detected an outlier (low SCR), the entries are set to 9. Note on SWST: differential corrections are applied if the SWST became updated in the S-1 SAR processor, i.e. range measurements based on previous configurations are corrected in order to match the latest value applied in processing. Product details available at: https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/SAR-HSU-TN-0019_Dataset_User_Manual.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.asg.ed.tum.de/fileadmin/w00cip/iapg/Baltic/PTA-OBS.zip",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "PTA-OBS: SAR Raw Measurements_Baltics_Multimission",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "GOCE",
+    "Sentinel-1",
+    "GLONASS"
+  ],
+  "osc:project": "sar-hsu",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sar_raw_measurements"
+    }
+  ],
+  "osc:region": "Baltics",
+  "created": "2021-07-07T00:00:00Z",
+  "start_datetime": "2020-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.0405918788,
+          53.8666553578,
+          31.3371258934,
+          66.1535071282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

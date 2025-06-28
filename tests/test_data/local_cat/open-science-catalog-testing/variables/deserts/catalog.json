@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "deserts",
+  "stac_version": "1.0.0",
+  "description": "A region with a mean annual precipitation of 10 inches or less, and so devoid of vegetation as to be incapable of supporting any considerable population.[Dictionary of Geological Terms, American Geological Institute, 1984.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5d5426f6-e7ce-41c1-a3d3-b93adf748f0f?gtm_keyword=DESERTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Deserts"
+}

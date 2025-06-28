@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "importance-value",
+  "stac_version": "1.0.0",
+  "description": "The importance value is the sum of relative density, relative dominance, and relative frequency for a species in the community. The larger the importance value, the more dominant a species is in the particular community.[Krebs, C. 1994. Ecology. HarperCollins. New York, New York.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/536a5a5a-28bb-473a-aa95-6d2dd1e5098d?gtm_keyword=IMPORTANCE%20VALUE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Importance Value"
+}

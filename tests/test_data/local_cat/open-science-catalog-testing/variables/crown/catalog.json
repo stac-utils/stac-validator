@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "crown",
+  "stac_version": "1.0.0",
+  "description": "The crown is the horizontal layer of the vegetation where most of the branches and foliage are found.[Kimmins, J.P. 1997. Forest Ecology. Prentice Hall. Upper Saddle River, New Jersey.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c59b0666-e20f-4134-847b-89719ed5621a?gtm_keyword=CROWN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Crown"
+}

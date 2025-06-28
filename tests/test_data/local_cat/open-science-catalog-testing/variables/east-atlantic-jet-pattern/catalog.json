@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "east-atlantic-jet-pattern",
+  "stac_version": "1.0.0",
+  "description": "The East Atlantic Jet pattern is the third primary mode of low frequency variability found over the North Atlantic, appearing between April and August. This pattern also consists of a north-south dipole of anomaly centers, with one main center located over the high latitudes of the eastern North Atlantic and Scandinavia, and the other center located over Northern Africa and the Mediterranean Sea. A positive phase of the EA-Jet pattern reflects an intensification of westerlies over the central latitudes of the eastern North Atlantic and over much of Europe, while a negative phase reflects a strong split-flow configuration over these regions, sometimes in association with long-lived blocking anticyclones in the vicinity of Greenland and Great Britain.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/47fb8f57-2ddd-4289-b8a5-af7ffa0ee031?gtm_keyword=EAST%20ATLANTIC%20JET%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "East Atlantic Jet Pattern"
+}

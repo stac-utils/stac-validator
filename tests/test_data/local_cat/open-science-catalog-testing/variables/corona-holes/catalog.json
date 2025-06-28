@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "corona-holes",
+  "stac_version": "1.0.0",
+  "description": "An extended region in the solar corona where the density and temperature are lower than other places in the corona. The weak diverging and open magnetic field lines in coronal holes extend radially outward and do not immediately return to the sun. The high speed part of the solar wind comes from coronal holes. Reference: the Cambridge Encyclopedia of the Sun, The Cambridge University Press, Cambridge, CB2, 2RU, UK, 2001.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a5a2ccf-3ba6-4519-bc9b-7617ef3b9087?gtm_keyword=CORONA%20HOLES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Corona Holes"
+}

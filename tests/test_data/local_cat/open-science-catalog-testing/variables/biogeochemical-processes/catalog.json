@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "biogeochemical-processes",
+  "stac_version": "1.0.0",
+  "description": "A pathway by which a chemical element or molecule moves through both biotic (biosphere) and abiotic (lithosphere, atmosphere, and hydrosphere) compartments of Earth. The term \"biogeochemical\" tells us that biological; geological and chemical factors are all involved. On the other hand the circulation of chemical nutrients like carbon, oxygen, nitrogen, phosphorus, calcium, and water etc. through the biological and physical world are known as biogeochemical cycle.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/b472632f-8e67-4892-9896-1c14c5089682?gtm_keyword=BIOGEOCHEMICAL%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Biogeochemical Processes"
+}

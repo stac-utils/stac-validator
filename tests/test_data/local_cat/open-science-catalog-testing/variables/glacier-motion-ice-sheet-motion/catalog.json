@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "glacier-motion-ice-sheet-motion",
+  "stac_version": "1.0.0",
+  "description": "The rate of flow of the glacier/ice sheet over a period of time.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/73f3c797-2eed-4f0d-accf-7e8a36a3fa93?gtm_keyword=GLACIER%20MOTION/ICE%20SHEET%20MOTION&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4c9afaf7-4aec-440d-8084-6a482de09e7a?gtm_keyword=GLACIER%20MOTION/ICE%20SHEET%20MOTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacier Motion/Ice Sheet Motion"
+}

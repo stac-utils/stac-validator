@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "basal-melt-monthly",
+  "stac_version": "1.0.0",
+  "description": "Monthly basal melt discharge (2001-2019) at the five selected drainage basins on the Greenland ice sheet; NEGIS, Northern Lakes, Southern Lakes, Store, and Watson. This is based on solid and liquid discharge estimates for each marine-terminating glacier, thus assessing the seasonal and annual export of freshwater from the land ice to the fjords. For each study site, a *.csv is available containing the total (sum of the components due to geothermal heating, frictional heating and surface water heating) monthly basal discharge rates. Please read the README_BasalMelt.txt in the zip file and references Karlsson, Nanna B, 2021, \"Greenland Ice Sheet Basal Melt\", https://doi.org/10.22008/FK2/PLNUEO , GEUS Dataverse, V1, Karlsson, N.B., Solgaard, A.M., Mankoff, K.D. et al. A first constraint on basal melt-water production of the Greenland ice sheet. Nature Communications 12, 3461 (2021). https://doi.org/10.1038/s41467-021-23739-z",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.dtu.dk/articles/dataset/Basal_Melt_ESA_POLAR_4D_Greenland_Experimental_Dataset_/20237361?backTo=%2Fcollections%2FESA_POLAR_4D_Greenland_Experimental_Dataset_Collection%2F6080925",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.22008/FK2/PLNUEO",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Basal Melt (ESA POLAR+ 4D Greenland Experimental Dataset)",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-1"
+  ],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Basal Melt Rate"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "basal_melt_rate"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2022-07-06T00:00:00Z",
+  "start_datetime": "2001-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2001-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Basal Melt",
+    "Glacial Processes",
+    "Ice Sheets and Ice Shelves"
+  ]
+}

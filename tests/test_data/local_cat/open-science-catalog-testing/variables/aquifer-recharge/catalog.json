@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "aquifer-recharge",
+  "stac_version": "1.0.0",
+  "description": "The processes involved in the replenishment of water to the zone of saturation.[Dictionary of Earth Science, 5th ed.. 1997. Sybil Parker, ed. in chief. McGraw-Hill.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3609b843-d840-460c-b1a3-d4fcc69a32f6?gtm_keyword=AQUIFER%20RECHARGE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/dbeaaf9f-294c-4e45-ba9e-7be8cd449db1?gtm_keyword=AQUIFER%20RECHARGE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Aquifer Recharge"
+}

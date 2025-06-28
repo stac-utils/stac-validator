@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "landsat-7",
+  "stac_version": "1.0.0",
+  "description": "Launched in April 1999, Landsat-7 is part of NASAs Earth Science Enterprise (ESE) program, a joint venture by NASA and USGS (United States Geological Survey). As a successor of Landsat-6, which failed upon launch, the objective of Landsat-7 is to enhance the medium-resolution multispectral imagery of Earths continental surfaces provided by previous Landsat satellites. Although it had an initial design life of seven years, Landsat-7 remains operational as of July 2022 and was joined by Landsat-8 in February 2013, and Landsat-9 in September 2021. Landsat-7 features the Enhanced Thermal Mapper Plus (ETM+) developed by Raytheon SBRS (Santa Barbara Remote Sensing) which builds upon the Thermal Mapper (TM) onboard Landsat-4 & -5. ETM+ is a whiskbroom scanning radiometer capable of imaging in eight distinct bands including four visible and near-infrared (VNIR), two short wave infrared (SWIR), one thermal infrared (TIR) and one panchromatic (PAN) band. The addition of the PAN band, improved resolution and two 8-bit gain ranges in ETM+ have led to Landsat data progressing into use for global scale studies. Data acquired using ETM+ has applications in land cover/change monitoring, agricultural forecasting, disaster response, urban planning, land and water resource management, and ecosystem monitoring.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=349",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Landsat-7"
+}

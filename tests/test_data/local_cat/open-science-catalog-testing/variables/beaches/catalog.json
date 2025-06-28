@@ -1,0 +1,46 @@
+{
+  "type": "Catalog",
+  "id": "beaches",
+  "stac_version": "1.0.0",
+  "description": "Geological landform along the shoreline of an ocean, sea or lake. It usually consists of loose particles which are often composed of rock, such as sand, gravel, shingle, pebbles, waves or cobblestones. A zone of unconsolidated particles extending from below water level to the edge of the coastal zone.[Garrison, T. 1993. Oceanography, An Invitation to Marine Science. Wadsworth Publishing Co., p. 516.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a61d1705-a6b7-4df3-9f8e-57e26029629c?gtm_keyword=BEACHES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/68b4238d-c10f-4f59-9c23-820563107d12?gtm_keyword=BEACHES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/4ba798ce-ad0b-4809-94fa-ec1b8e294252?gtm_keyword=BEACHES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a5d3e4d-86d1-4863-bfe6-f8e2899fab0e?gtm_keyword=BEACHES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Beaches"
+}

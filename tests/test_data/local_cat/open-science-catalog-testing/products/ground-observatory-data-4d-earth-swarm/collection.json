@@ -1,0 +1,75 @@
+{
+  "type": "Collection",
+  "id": "ground-observatory-data-4d-earth-swarm",
+  "stac_version": "1.0.0",
+  "description": "Consists of 1 month and 4 month mean files, with core field/revised means (Olsen et al., 2014), and SV estimates from annual differences for 1997-2021. These files are provided in the same cdf format as used for the GVO data, further details are given in the associated README file.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.spacecenter.dk/files/magnetic-models/GO/GO_data.zip",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Ground Observatory data",
+  "osc:themes": [
+    "Solid Earth",
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [],
+  "osc:project": "4d-earth-swarm",
+  "osc:variables": [
+    "Magnetic Fields/Magnetic Currents",
+    "Geomagnetic Indices"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "ground_observatory_data"
+    }
+  ],
+  "created": "2021-09-10T00:00:00Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ionosphere/Magnetosphere Dynamics",
+    "Magnetic Fields/Magnetic Currents",
+    "Sun-Earth Interactions",
+    "Geomagnetic Indices"
+  ]
+}

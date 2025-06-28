@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "pacific-decadal-oscillation",
+  "stac_version": "1.0.0",
+  "description": "Fisheries scientist Steven Hare coined the term \"Pacific Decadal Oscillation\" (PDO) in 1996 while researching connections between Alaska salmon production cycles and Pacific climate. PDO has since been described as a long-lived El Nino-like pattern of Pacific climate variability because the two climate oscillations have similar spatial climate fingerprints, but very different temporal behavior. Two main characteristics distinguish PDO from El Nino/ Southern Oscillation (ENSO): first, 20th century PDO \"events\" persisted for 20-to-30 years, while typical ENSO events persisted for 6 to 18 months; second, the climatic fingerprints of the PDO are most visible in the North Pacific/North American sector, while secondary signatures exist in the tropics - the opposite is true for ENSO. Several independent studies find evidence for just two full PDO cycles in the past century: \"cool\" PDO regimes prevailed from 1890-1924 and again from 1947-1976 while \"warm\" PDO regimes dominated from 1925-1946 and from 1977 through (at least) the mid-1990's. Shoshiro Minobe; has shown that 20th century PDO fluctuations were most energetic in two general periodicities, one from 15-to-25 years, and the other from 50-to-70 years.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2de06b90-4abe-4c71-a537-978679bf8aea?gtm_keyword=PACIFIC%20DECADAL%20OSCILLATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Pacific Decadal Oscillation"
+}

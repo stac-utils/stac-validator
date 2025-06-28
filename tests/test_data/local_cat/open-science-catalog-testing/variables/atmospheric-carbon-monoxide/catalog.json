@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-carbon-monoxide",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric Carbon Monoxide (CO) is a toxic, odorless, colorless gas produced during fossil fuel or biomass burning. It is one of the longest-lived,naturally occurring atmospheric carbon compounds. The recent change in tropospheric CO content may portend a change in the balance between oxidants and reductants in the atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/88a1b416-1589-45a4-9923-452975ec35c7?gtm_keyword=ATMOSPHERIC%20CARBON%20MONOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Carbon Monoxide"
+}

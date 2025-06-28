@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "burned-area",
+  "stac_version": "1.0.0",
+  "description": "Characterized by deposits of charcoal and ash, removal of vegetation, and alteration of the vegetation structure, Pereira et al. 1997, Roy et al. 1999",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/436b098d-e4d9-4fbd-9ede-05675e111eee?gtm_keyword=BURNED%20AREA&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Burned Area"
+}

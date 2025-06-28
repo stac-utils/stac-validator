@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "export-production",
+  "stac_version": "1.0.0",
+  "description": "Oceanic Export Production. Export production can be defined as steady-state Net Community Production (NCP) with all temporal lags accounted for and with a well defined depth horizon over which the community production is integrated over. (Laws 1991). This is the net amount of carbon assimilated in the euphotic zone that will be exported to deeper waters. Export Production can by definition only vary on timescales significantly longer that any processes directly controlling production and respiration as to not violate the steady state assumption.  Export production is the amount of organic matter produced in the ocean by primary production that is not recycled (remineralised) before it sinks into the aphotic zone. Because of the role of export production in the ocean's biological pump, it is typically measured in units of carbon (e.g. mg mg C m?2 d?1).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://en.wikipedia.org/wiki/Marine_snow#:~:text=Export%20production%20is%20the%20amount,sinks%20into%20the%20aphotic%20zone.",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Export Production"
+}

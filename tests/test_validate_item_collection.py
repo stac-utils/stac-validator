@@ -550,7 +550,7 @@ def test_validate_item_collection_remote_pages_1_v110():
     assert stac.message == [
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T133004_20250618T133304_20250618T150847_0179_127_138_3420_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040818_20250628T041118_20250628T054519_0179_127_275_3600_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -571,7 +571,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T132404_20250618T132704_20250618T150743_0179_127_138_3060_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040518_20250628T040818_20250628T054705_0180_127_275_3420_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -592,7 +592,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T131804_20250618T132104_20250618T151248_0179_127_138_2700_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040218_20250628T040518_20250628T054918_0179_127_275_3240_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -613,7 +613,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T131204_20250618T131504_20250618T151049_0179_127_138_2340_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035918_20250628T040218_20250628T055000_0179_127_275_3060_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -634,7 +634,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T130304_20250618T130604_20250618T150517_0179_127_138_1800_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035618_20250628T035918_20250628T054946_0179_127_275_2880_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -655,7 +655,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T130004_20250618T130304_20250618T150517_0179_127_138_1620_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035318_20250628T035618_20250628T054203_0179_127_275_2700_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -676,7 +676,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3B_OL_2_WFR____20250618T125720_20250618T125830_20250618T153125_0070_107_380_3780_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035018_20250628T035318_20250628T054150_0179_127_275_2520_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -697,7 +697,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T125704_20250618T130004_20250618T150456_0179_127_138_1440_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034718_20250628T035018_20250628T054025_0179_127_275_2340_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -718,7 +718,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3B_OL_2_WFR____20250618T125420_20250618T125720_20250618T143053_0179_107_380_3600_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034418_20250628T034718_20250628T054010_0180_127_275_2160_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
@@ -739,7 +739,7 @@ def test_validate_item_collection_remote_pages_1_v110():
         },
         {
             "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250618T125404_20250618T125704_20250618T150418_0179_127_138_1260_MAR_O_NR_003",
+            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034118_20250628T034418_20250628T053959_0179_127_275_1980_MAR_O_NR_003",
             "schema": [
                 "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
                 "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",

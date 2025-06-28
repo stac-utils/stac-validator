@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atlantic-meridional-mode",
+  "stac_version": "1.0.0",
+  "description": "The mode describes the meridional variabilty in the tropical Atlantic Ocean. Calculation Method: The AMM spatial pattern is defined via applying Maximum Covariance Analysis (MCA) to sea surface temperature (SST; left field) and the zonal and meridional components of the 10m wind field (right field) over the time period 1950-2005, from the NCEP/NCAR Reanalysis. To define the spatial pattern, data are defined over the region (21S-32N, 74W-15E), and spatially smoothed (three longitude by two latitude points). The seasonal cycle is removed, data are detrended, a three-month running mean is applied to the data, and the linear fit to the Cold Tongue Index (a measure of ENSO variability) is subtracted from each spatial point. Spatial patterns are defined as the first left (SST) and right (winds) maps resulting from singular value decomposition of the covariance matrix between the two fields. The AMM time series below is calculated via projecting SST or the 10m wind field (detrended, CTI removed, but no 3-month running mean) onto the spatial structure resulting from the MCA above. Time Interval: Monthly Time Coverage: 1948 to present",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f141c968-94d4-4c42-8877-bbe34bb84b26?gtm_keyword=ATLANTIC%20MERIDIONAL%20MODE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Atlantic Meridional Mode"
+}

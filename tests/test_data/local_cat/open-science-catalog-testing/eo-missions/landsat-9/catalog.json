@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "landsat-9",
+  "stac_version": "1.0.0",
+  "description": "Launched in September 2021 as a collaboration between the National Aeronautics and Space Administration (NASA) and United States Geological Survey (USGS), Landsat-9 continues the Landsat program to monitor, understand and manage land resources crucial for sustaining human life. Landsat-9 mission objectives include the collection and archival of moderate-resolution multispectral data, to be made freely available to worldwide users.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=772",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Landsat-9"
+}

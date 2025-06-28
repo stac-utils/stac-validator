@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sleet",
+  "stac_version": "1.0.0",
+  "description": "In the United States, frozen rain drops that bounce on impact with the ground or other objects. Elsewhere, may refer to a mix of rain and snow, a mix of rain and hail, or melting snow.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5beaf99c-0675-4af3-9236-f55d8d206d85?gtm_keyword=SLEET&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sleet"
+}

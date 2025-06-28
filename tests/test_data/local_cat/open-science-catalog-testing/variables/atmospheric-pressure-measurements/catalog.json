@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "atmospheric-pressure-measurements",
+  "stac_version": "1.0.0",
+  "description": "The force exerted per unit of area by the atmosphere as a consequence of gravitational attraction upon the \"column\" of air lying directly above the point in question.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9efbc088-ba8c-4c9c-a458-ad6ad63f4188?gtm_keyword=ATMOSPHERIC%20PRESSURE%20MEASUREMENTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Atmospheric Pressure Measurements"
+}

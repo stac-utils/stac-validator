@@ -1,0 +1,75 @@
+{
+  "type": "Collection",
+  "id": "total-column-h2o-hdo-clear-sky-lpf-wift",
+  "stac_version": "1.0.0",
+  "description": "total columns of H2O and HDO for clear-sky scenes",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "ftp://ftp.sron.nl/open-access-data-2/TROPOMI/tropomi/hdo/9_1/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "HDO/H2O non-scattering product_S5p-TROPOMI",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "lpf-wift",
+  "osc:variables": [
+    "Water Vapor Profiles"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "total_column_water_vapour"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2019-06-11T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Water Vapor"
+  ]
+}

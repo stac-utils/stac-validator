@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "thermohaline-circulation",
+  "stac_version": "1.0.0",
+  "description": "Circulation driven by the unequal heating of earth by the sun, together with surface patterns of evaporation and precipitation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/aa1bc71c-daeb-401e-9e29-ebde975482cf?gtm_keyword=THERMOHALINE%20CIRCULATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Thermohaline Circulation"
+}

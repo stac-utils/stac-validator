@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "bowen-ratio",
+  "stac_version": "1.0.0",
+  "description": "The ratio of the amount of sensible to that of latent heat lost by a surface to the atmosphere by the processes of conduction and turbulence. See J. M. Lewis. The story behind the Bowen ratio. Bull. Am. Meteor. Soc., 76:-2443, 1995.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a9b6a001-42b2-48db-b132-62e69f03b8cb?gtm_keyword=BOWEN%20RATIO&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Bowen Ratio"
+}

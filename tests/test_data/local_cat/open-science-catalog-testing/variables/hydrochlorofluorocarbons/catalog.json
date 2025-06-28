@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrochlorofluorocarbons",
+  "stac_version": "1.0.0",
+  "description": "HCFCs, with one or more hydrogen-carbon bonds are slated to replace CFCs in most of the current applications. HCFCs are more unstable and subject to hydroxyl radical and ozone attack early in their gas phase career in the atmosphere. Therefore, their atmospheric lifetime is projected to be shorter and their chance of reaching the stratosphere decreased.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f6b97280-74d0-4233-bd17-f9f3d9dd21c2?gtm_keyword=HYDROCHLOROFLUOROCARBONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrochlorofluorocarbons"
+}

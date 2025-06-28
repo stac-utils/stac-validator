@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fracture-zones",
+  "stac_version": "1.0.0",
+  "description": "Fracture zones are large, linear zone of irregular bathymetry of the sea floor, characterized by asymmetric ridges and troughs. Fracture zones are the topographic expression of transform faults, faults with horizontal displacement connecting the ends of an offset in a mid-ocean ridge.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/58c12630-a889-44c1-a951-56bbbe9758c9?gtm_keyword=FRACTURE%20ZONES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Fracture Zones"
+}

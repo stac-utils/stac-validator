@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "gas-explosions-leaks",
+  "stac_version": "1.0.0",
+  "description": "A gas explosion is defined as a process where combustion of a premixed gas-air cloud causes a rapid increase of pressure.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/083d79ba-b7fa-4a07-9c36-73540666d5c4?gtm_keyword=GAS%20EXPLOSIONS/LEAKS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Gas Explosions/Leaks"
+}

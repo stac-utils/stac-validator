@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrostatic-pressure",
+  "stac_version": "1.0.0",
+  "description": "The pressure in a fluid in hydrostatic equilibrium - that is , the downward pressure at a point due solely to the weight of fluid in a column of unit cross-sectional area.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/a5aa7055-642d-4442-9b4b-76a759e15257?gtm_keyword=HYDROSTATIC%20PRESSURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrostatic Pressure"
+}

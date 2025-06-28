@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "terra-p",
+  "stac_version": "1.0.0",
+  "description": "Define, implement and validate a model to derive information on the vegetation productivity based on data from MERIS and Sentinel-3.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/s3-primary-production-over-land/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/s3-primary-production-over-land/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "TerrA-P",
+  "osc:name": "Sentinel-3 Primary Production over Land (TerrA-P)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Philippe Goryl",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "philippe.goryl@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "VITO (BE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "IMPERIAL COLLEGE LONDON (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF ANTWERP ASTROPHYSICS (BE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIV LEICESTER (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2016-09-26T00:00:00Z",
+  "end_datetime": "2022-01-01T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-09-26T00:00:00Z",
+          "2022-01-01T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

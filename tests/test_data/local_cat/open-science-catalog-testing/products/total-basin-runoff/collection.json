@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "total-basin-runoff",
+  "stac_version": "1.0.0",
+  "description": "The total monthly runoff (2014-2021), both surface and basal, of five drainage basins in Greenland; NEGIS, Northern Lakes, Southern Lakes, Store, and Watson. The run off is estimated by summing the Surface Melt, Firn Retention, Supraglacial Change and Subglacial Runoff into monthly basin scale estimates.1. Surface water was computed from the chosen RCM on a monthly basis by summing the surface melt and the liquid precipitation (rain fall). 2. Firn Retention is computed by subtracting the RCM runoff from the RCM surface melt in the snow/firn-covered part of the drainage basins. 3. Supraglacial change volume estimates were determined via the following methodology by Lancaster University. Supraglacial lake extent were delineated using RT algorithm to classify water within S2 images. Lake depths were calculated using a radiative transfer model (section 2.2.6.1 ATBD). Lake depth was determined using Sentinel 2 red band imagery (Band 4). Total lake volume was calculated by multiplying lake depths by lake area for each individual lake polygon and summing over the basin area. Volume uncertainty was determined via comparison with ICESat-2 transects. The uncertainty is represented by the maximum percentage difference between lake depths integrated over ICESat-2 transects and the corresponding S2 derived lake depth transect. For the red band, it was found that lake volumes were being underestimated by up to 33.5%. Some of the meltwater in the supraglacial lakes will not leave the ice sheet at the end of the melt season but remain frozen over the winter. It is very difficult to estimate how much. In this experimental dataset we assume that it is 25% of the observed September water volume that is frozen and stored during winter. 4. Subglacial meltwater flux maps were computed Greenland-wide, and integrated over the drainage basins of interest to produce monthly estimates of basal runoff.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.dtu.dk/ndownloader/files/38167731",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.11583/DTU.20237436.v3",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.11583/DTU.20237436.v3"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Total Basin Run Off (ESA POLAR+ 4D Greenland Experimental Dataset)",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Total Runoff"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "total_basin_runoff"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2022-07-06T00:00:00Z",
+  "start_datetime": "2014-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "sci:doi": "10.11583/DTU.20237436.v3",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Surface Water",
+    "Surface Water Processes/Measurements",
+    "Runoff",
+    "Total Runoff"
+  ]
+}

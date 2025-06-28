@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fault-movement-direction",
+  "stac_version": "1.0.0",
+  "description": "The direction of a fault can be determined by its vector, which is can be found by studying the bend or the folding of the fault.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/399e5858-8238-451f-8da3-84dc9edfe9a2?gtm_keyword=FAULT%20MOVEMENT%20DIRECTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Fault Movement Direction"
+}

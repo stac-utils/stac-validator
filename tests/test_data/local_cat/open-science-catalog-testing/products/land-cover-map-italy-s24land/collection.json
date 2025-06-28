@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "land-cover-map-italy-s24land",
+  "stac_version": "1.0.0",
+  "description": "Land cover map of Italy in 2018. Upcoming Product",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://rslab.disi.unitn.it/projects/mta/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://rslab.disi.unitn.it/projects/mta/#TSA",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Land cover map_Italy_2018_S2",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-2"
+  ],
+  "osc:project": "s2-for-land-and-water-change-detection",
+  "osc:variables": [
+    "Land Use/Land Cover Classification"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "land_cover"
+    }
+  ],
+  "osc:region": "Italy",
+  "created": "2019-04-01T00:00:00Z",
+  "start_datetime": "2018-01-01T00:00:00Z",
+  "end_datetime": "2018-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.62726578,
+          35.28896156,
+          18.78447454,
+          47.09214614
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Land Use/Land Cover",
+    "Land Use/Land Cover Classification"
+  ]
+}

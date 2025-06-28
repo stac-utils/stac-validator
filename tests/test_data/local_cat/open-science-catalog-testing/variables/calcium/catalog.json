@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "calcium",
+  "stac_version": "1.0.0",
+  "description": "An alkaline earth metal, calcium is a reactive pale yellow metal that forms a dark oxide-nitride layer when exposed to air. Its physical and chemical properties are most similar to its heavier homologues strontium and barium. It is the fifth most abundant element in Earth's crust and the third most abundant metal, after iron and aluminum.[World Health Organization] Also refers to a measurement of Calcium in various forms in the soil, such CaCO3[United States Department of Agriculture]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7367c08c-304f-4ce7-b716-975f835ba711?gtm_keyword=CALCIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/9409ee0f-2b72-4472-9d61-f8072981a6cb?gtm_keyword=CALCIUM&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e5a658d5-74db-4022-894f-edc8d297767a?gtm_keyword=CALCIUM&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Calcium"
+}

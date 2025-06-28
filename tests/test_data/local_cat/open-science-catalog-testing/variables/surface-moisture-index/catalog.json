@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "surface-moisture-index",
+  "stac_version": "1.0.0",
+  "description": "The Surface Moisture Index incorporates remote measures of vegetation condition coupled with radiometric thermal (temperature) data to characterize surface moisture conditions. It is mapped using two primary inputs; vegetation status as depicted by Normalized Difference Vegetation Index (NDVI) and surface temperature.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c7503ec5-4e63-446a-9390-72c8a638a0af?gtm_keyword=SURFACE%20MOISTURE%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Surface Moisture Index"
+}

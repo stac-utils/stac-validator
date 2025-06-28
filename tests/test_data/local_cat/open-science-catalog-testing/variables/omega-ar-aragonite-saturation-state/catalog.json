@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "omega-ar-aragonite-saturation-state",
+  "stac_version": "1.0.0",
+  "description": "A measure of the thermodynamic tendency for the mineral calcium carbonate to form or to dissolve. The symbol omega is often used as shorthand for calcium carbonate saturation state. By convention, omega is usually expressed with respect to aragonite, one of the two most abundant forms of calcium carbonate in the ocean. An aragonite saturation state (omega-ar) greater than 1.0 indicates supersaturation, while values less than 1.0 indicate undersaturation with instability favoring dissolution. Recent research shows that calcifying organisms require omega-ar well in excess of 1.0 to optimally produce shells or skeletons. Levels below 1.0 are considered corrosive, and skeletons and shells may be subject to dissolution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.necan.org/lexicon/5",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Omega_ar: Aragonite saturation state"
+}

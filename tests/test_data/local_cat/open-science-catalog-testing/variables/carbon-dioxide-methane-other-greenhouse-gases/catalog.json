@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "carbon-dioxide-methane-other-greenhouse-gases",
+  "stac_version": "1.0.0",
+  "description": "The atmospheric abundance of carbon dioxide (CO2), the dominant human-produced greenhouse gas, has increased by about 50% since pre-industrial times due to the proliferation of fossil fuel combustion. Methane (CH4) is also a strong greenhouse gas; its atmospheric abundance has more than doubled since the pre-industrial era because of human activities. Other significant greenhouse gases include nitrous oxide (N2O), chlorofluorocarbons (CFCs), hydrochlorofluorocarbons (HCFCs), hydrofluorocarbons (HFCs), perfluorocarbons (PFCs) and sulphur hexafluoride (SF6).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/ghg",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Carbon Dioxide, Methane & Other Greenhouse Gases"
+}

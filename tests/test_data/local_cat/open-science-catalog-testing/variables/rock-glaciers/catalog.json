@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "rock-glaciers",
+  "stac_version": "1.0.0",
+  "description": "Distinctive geomorphological landforms of angular rock debris frozen in interstitial ice which may extend outward and downslope from talus cones, glaciers or terminal moraines of glaciers. There are two types of rock glaciers: periglacial glaciers, or talus-derived glaciers, and glacial rock glaciers. It is defined also as a mass of rock fragments and finer material, on a slope, that contains either interstitial ice or an ice core and shows evidence of past or present movement (NSIDC)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2d98cbaf-8c82-46e6-9962-a5e63918fe66?gtm_keyword=ROCK%20GLACIERS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Rock Glaciers"
+}

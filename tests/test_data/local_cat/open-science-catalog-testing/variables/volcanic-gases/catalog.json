@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "volcanic-gases",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the composition, extent, velocity, and damage caused by gases emitted during a volcanic eruption.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/35941db2-59bf-4000-9232-df0beef02da7?gtm_keyword=VOLCANIC%20GASES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Volcanic Gases"
+}

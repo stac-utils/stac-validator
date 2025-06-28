@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dissolved-carbon-dioxide",
+  "stac_version": "1.0.0",
+  "description": "Naturally present as a result of animal respiration, the decay of organic matter, and the decomposition of certain minerals. It is the major source of acidity in unpolluted water samples. Surface waters typically contain less than 10 ppm (mg/L) dissolved CO2, while ground waters, particularly if deep, may contain several hundred ppm (mg/L).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/a9b89557-c09f-4a4a-a1eb-47c632f8eb59?gtm_keyword=DISSOLVED%20CARBON%20DIOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Dissolved Carbon Dioxide"
+}

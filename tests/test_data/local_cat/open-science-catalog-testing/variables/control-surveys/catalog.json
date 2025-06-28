@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "control-surveys",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the base surveys run in order to normalize data collected in later surveys so that gravitational anomalies can be found.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/8b39b880-f385-4dab-a563-24064b43be7e?gtm_keyword=CONTROL%20SURVEYS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Control Surveys"
+}

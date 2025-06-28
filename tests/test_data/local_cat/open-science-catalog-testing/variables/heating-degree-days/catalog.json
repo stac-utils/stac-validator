@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "heating-degree-days",
+  "stac_version": "1.0.0",
+  "description": "Generally, a measure of the departure of the mean daily temperature from a given standard: one degree-day for each degree (ï¿½C or ï¿½F) of departure above (or below) the standard during one day. Degree days are based on the assumption that when the outside temperature is 65ï¿½F, we don't need heating or cooling to be comfortable. Degree days are the difference between the daily temperature mean, (high temperature plus low temperature divided by two) and 65ï¿½F. If the temperature mean is above 65ï¿½F, we subtract 65 from the mean and the result is Cooling Degree Days. If the temperature mean is below 65ï¿½F, we subtract the mean from 65 and the result is Heating Degree Days. -------------------------------------------------------------------------- Example 1: The high temperature for a particular day was 90ï¿½F and the low temperature was 66ï¿½F. The temperature mean for that day was: ( 90ï¿½F + 66ï¿½F ) / 2 = 78ï¿½F Because the result is above 65ï¿½F: 78ï¿½F - 65ï¿½F = 13 Cooling Degree Days Example 2: The high temperature for a particular day was 33ï¿½F and the low temperature was 25ï¿½F. The temperature mean for that day was: ( 33ï¿½F + 25ï¿½F ) / 2 = 29ï¿½F Because the result is below 65ï¿½F: 65ï¿½F - 29ï¿½F = 36 Heating Degree Days. The calculations shown in the two examples above are performed for each day of the year and the daily degree days are accumulated so that we can compare months and seasons.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/349b4322-26ff-4b3c-90fb-b3b1afd20755?gtm_keyword=HEATING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/fe2bc223-e503-4ca1-924c-d3fd5876721c?gtm_keyword=HEATING%20DEGREE%20DAYS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Heating Degree Days"
+}

@@ -8,7 +8,14 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+## [v3.9.3] - 2025-06-28
+
 ### Changed
+- Improved path resolution in recursive validation to handle relative paths more reliably, especially in GitHub repository structures [#264](https://github.com/stac-utils/stac-validator/pull/264)
+
+### Fixed
+- Fixed issue where validator would get confused by repository structure when validating catalogs with relative paths [#264](https://github.com/stac-utils/stac-validator/pull/264)
+- Cleaned up path output by removing unnecessary `./` components from displayed paths [#264](https://github.com/stac-utils/stac-validator/pull/264)
 
 ### Removed
 
@@ -282,7 +289,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.9.2..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.9.3..main
+[v3.9.3]: https://github.com/sparkgeo/stac-validator/compare/v3.9.2..v3.9.3
 [v3.9.2]: https://github.com/sparkgeo/stac-validator/compare/v3.9.1..v3.9.2
 [v3.9.1]: https://github.com/sparkgeo/stac-validator/compare/v3.9.0..v3.9.1
 [v3.9.0]: https://github.com/sparkgeo/stac-validator/compare/v3.8.1..v3.9.0

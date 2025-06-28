@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "northeast-brazil-rainfall-anomaly",
+  "stac_version": "1.0.0",
+  "description": "The northeast Brazil rainfall index is calculated from data for Fortaleza (3.7S, 38.5W) and Quixeramobim (5.3S, 39.3W) Brazil obtained from the NCAR World Monthly Surface Station Climatology. Climatological mean is for 1950-79.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b8f0571c-4c19-4025-936c-936e9ac72e21?gtm_keyword=NORTHEAST%20BRAZIL%20RAINFALL%20ANOMALY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Northeast Brazil Rainfall Anomaly"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "transient-tracers",
+  "stac_version": "1.0.0",
+  "description": "Transient tracers are man-made chemical compounds released to the atmosphere at known quantities that can be used in the ocean to quantify ventilation, transit time distribution and transport time-scales. Measurement of transient tracers in the subsurface ocean thus provides information on the time-scales since the ocean was ventilated, i.e. in contact with the atmosphere. A combination of these tracers provide the means to constrain the transit time distribution (TTD) of a water-mass that allows inference of concentrations or fates of other transient compounds, such as anthropogenic carbon or nitrous oxide.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/transient-tracers",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Transient Tracers"
+}

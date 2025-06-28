@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "satellite-sar-altimeter-coastal-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Satellite SAR coastal altimeter product generated from Cryosat data with the ESA GPOD processor, and by CLS with the CPP",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/docs/readme_cpp_cnes.txt",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Satellite SAR altimeter product_Coastal Ocean_Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Sea Surface Height Anomaly (SSHA)"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "satellite_sar_altimeter_coastal"
+    }
+  ],
+  "osc:region": "Western Europe",
+  "created": "2021-12-15T00:00:00Z",
+  "start_datetime": "2012-01-01T00:00:00Z",
+  "end_datetime": "2013-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -10.8098181572,
+          42.9418280224,
+          15.0300255928,
+          62.5493288536
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2012-01-01T00:00:00Z",
+          "2013-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Sea Surface Topography",
+    "Sea Surface Height",
+    "Sea Surface Height Anomaly (SSHA)"
+  ]
+}

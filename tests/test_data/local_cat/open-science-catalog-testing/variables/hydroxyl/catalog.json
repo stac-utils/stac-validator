@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydroxyl",
+  "stac_version": "1.0.0",
+  "description": "Hydroxyl (OH) - an atom consisting of one hydrogen atom and one oxygen atom which does not normally exist in a stable form; this radical readily reacts with methane and carbon monoxide. The source of the hydroxyl radical in the atmosphere occurs primarily through the 1) photolysis of hydrogen peroxide, heat, and light and 2) the attack on water of an excited oxygen radical (created by the photolysis of ozone). ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/5b49fd6d-3759-4b61-8b04-8309f38b2f90?gtm_keyword=HYDROXYL&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydroxyl"
+}

@@ -1,0 +1,86 @@
+{
+  "type": "Collection",
+  "id": "seasfire-cube",
+  "stac_version": "1.0.0",
+  "description": "The SeasFire Cube is a scientific datacube for seasonal fire forecasting around the globe. Apart from seasonal fire forecasting, which is the aim of the SeasFire project, the datacube can be used for several other tasks. For example, it can be used to model teleconnections and memory effects in the earth system. Additionally, it can be used to model emissions from wildfires and the evolution of wildfire regimes. It has been created in the context of the SeasFire project, which deals with \"Earth System Deep Learning for Seasonal Fire Forecasting\" and is funded by the European Space Agency (ESA)  in the context of ESA Future EO-1 Science for Society Call. It contains 21 years of data (2001-2021) in an 8-days time resolution and 0.25 degrees grid resolution. It has a diverse range of seasonal fire drivers. It expands from atmospheric and climatological ones to vegetation variables, socioeconomic and the target variables related to wildfires such as burned areas, fire radiative power, and wildfire-related CO2 emissions.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/8055879",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5281/zenodo.8055879",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.8055879"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "SeasFire Cube: A Global Dataset for Seasonal Fire Modeling in the Earth System",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [],
+  "osc:project": "seasfire",
+  "osc:variables": [
+    "Burned Area"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "seasonal_fire"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2023-06-19T00:00:00Z",
+  "version": "0,3",
+  "sci:doi": "10.5281/zenodo.8055879",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Natural Hazards",
+    "Wildfires",
+    "Burned Area",
+    "Seasonal Fire"
+  ]
+}

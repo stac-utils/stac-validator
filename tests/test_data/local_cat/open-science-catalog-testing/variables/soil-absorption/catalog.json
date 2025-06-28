@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "soil-absorption",
+  "stac_version": "1.0.0",
+  "description": "The movement of ions and water into the plant root as a result of metabolic processes by the root or diffusion along a gradient.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d0da93ff-af45-4e26-8b94-8b90d0e06438?gtm_keyword=SOIL%20ABSORPTION&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e497c2e3-cd21-4af9-9a5d-91da4e201631?gtm_keyword=SOIL%20ABSORPTION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Absorption"
+}

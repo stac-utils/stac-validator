@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "irradiance",
+  "stac_version": "1.0.0",
+  "description": "Incoming radiant energy incident upon a particular area. In the water, this can be measured as downwelling irradiance at various wavelengths. Such measurements of downwelling irradiance are included as detailed variables.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/40aacf7a-aba0-4ba2-bf85-ea7c39c3322c?gtm_keyword=IRRADIANCE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Irradiance"
+}

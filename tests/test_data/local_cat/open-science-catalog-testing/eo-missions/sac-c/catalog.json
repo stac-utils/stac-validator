@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "sac-c",
+  "stac_version": "1.0.0",
+  "description": "SAC-C (Satélite de Aplicaciones Científicas-C or Scientific Application Satellite-C) is an international cooperative Earth observation mission of Argentina, USA, Denmark, Brazil, Italy and France with CONAE (Comisión Nacional de Actividades Espaciales) of Buenos Aires (CONAE is the Space Agency of Argentina) and NASA as the main partners. CONAE provided the S/C bus and payload instrumentation, NASA provided launch services and two instruments, a GPS flight receiver (GOLPE) and SHM (Scalar Helium Magnetometer) part of the Ørsted-2 instrument. Denmark is contributing with the MMP (Magnetic Mapping Payload) that is a heritage from the Ørsted satellite, called Ørsted-2. INPE of Brazil is providing the system-level environmental testing facilities and its test support capabilities. Italy provided part of the solar panels and two technological experiments for orbit and attitude determination, IST and INES. The overall objective is to study the structure and dynamics of the Earth's surface, atmosphere, ionosphere and geomagnetic field. Specific science objectives are to: Provide multispectral images of the Earth in order to monitor the condition and dynamics of the terrestrial and marine biosphere and environment; Develop and utilize new GPS-based techniques to globally measure atmospheric phenomena for the study of weather, seasonal, inter-annual and long-term climate change; Enhance the understanding of the Earth's magnetic field and related sun-Earth interactions; Measurement of the high-energy radiation environment, trapped particles intensities and energy distribution and correlation with degradation of electronic components.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.eoportal.org/satellite-missions/sac-c#%C3%B8rsted-2-magnetic-mapping-payload",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "SAC-C"
+}

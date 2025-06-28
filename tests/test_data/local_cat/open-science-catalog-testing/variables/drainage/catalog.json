@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "drainage",
+  "stac_version": "1.0.0",
+  "description": "The pattern followed by the waters of an area as they pass or flow off in surface streams.[Dictionary of Earth Science, 5th ed.. 1997. Sybil Parker, ed. in chief. McGraw-Hill.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/6a2107ab-38ab-42dc-beb0-8ba5f65e8022?gtm_keyword=DRAINAGE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/269c7277-fa8f-4c1c-bd8b-ab772c1df4e5?gtm_keyword=DRAINAGE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Drainage"
+}

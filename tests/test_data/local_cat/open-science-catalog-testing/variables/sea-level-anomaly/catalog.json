@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sea-level-anomaly",
+  "stac_version": "1.0.0",
+  "description": "A sea level anomaly (SLA) reveals the regional extent of anomalous water levels in the coastal ocean which can indicate unusual water temperatures, salinities, average monthly winds, atmospheric pressures, and/or coastal currents. A sea level anomaly, as defined by NOAA's National Ocean Service, occurs when the 5-month running average of the interannual variation is at least 0.1 meters (4 inches) greater than or less than the long-term trend. The interannual variation is the monthly mean sea level after the trend and the average seasonal cycle are removed.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/0fde8353-9773-4948-b206-9c273c2100c8?gtm_keyword=SEA%20LEVEL%20ANOMALY&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Level Anomaly"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "dissolved-organic-carbon",
+  "stac_version": "1.0.0",
+  "description": "Mass concentration of dissolved organic carbon expressed as carbon in sea water [mg C m-3]. Dissolved organic carbon (DOC) is defined as the organic matter that is able to pass through a filter (filters generally range in size between 0.7 and 0.22 um). Conversely, particulate organic carbon (POC) is that carbon that is too large and is filtered out of a sample.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.britannica.com/science/seawater/Dissolved-organic-substances; https://serc.carleton.edu/microbelife/research_methods/biogeochemical/organic_carbon.html#:~:text=Dissolved%20organic%20carbon%20(DOC)%20is,filtered%20out%20of%20a%20sample.",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Dissolved Organic Carbon"
+}

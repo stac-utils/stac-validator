@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "cloud-top-height",
+  "stac_version": "1.0.0",
+  "description": "For a given cloud or cloud layer, the highest level in the atmosphere at which the air contains a perceptible quantity of cloud particles.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0893cf38-fe6e-4ebc-95f4-db7d24c874db?gtm_keyword=CLOUD%20TOP%20HEIGHT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Cloud Top Height"
+}

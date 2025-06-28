@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "emissions",
+  "stac_version": "1.0.0",
+  "description": "With respect to pollution, the discharge of gases or particles from a source such as a smokestack or exhaust pipe into the atmosphere, perhaps resulting in environmental pollution. With respect to radiation, the generation and sending out of radiant energy.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/2a60df4a-a0d7-4e4b-b02a-372a083f0170?gtm_keyword=EMISSIONS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Emissions"
+}

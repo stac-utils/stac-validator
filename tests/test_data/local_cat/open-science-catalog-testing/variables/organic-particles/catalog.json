@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "organic-particles",
+  "stac_version": "1.0.0",
+  "description": "Aerosol particles consisting predominantly of organic compounds, mainly C, H, O, and lesser amounts of other elements: may be biogenic or anthropogenic; primary or secondary; some organic compounds in aerosols may exhibit substantial light absorption.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8929113a-ded5-4c39-b20f-7968ed114317?gtm_keyword=ORGANIC%20PARTICLES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Organic Particles"
+}

@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "sea-level-variability-lpf-ovalie",
+  "stac_version": "1.0.0",
+  "description": "This data set contains the interannual variability fields for the sea level and its steric and manometric components over 1993-2015 from the OCCIPUT ensemble simulations.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/5564399#.YWVwM1yYEXc",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1029/2020JC017123",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.5564399"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Atmospherically-forced and chaotic interannual variability of the sea level and its components over 1993-2015 from the OCCIPUT ensemble simulations",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [],
+  "osc:project": "lpf-ovalie",
+  "osc:variables": [
+    "Sea Level Changes"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_level_variability"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-10-12T00:00:00Z",
+  "start_datetime": "1993-01-01T00:00:00Z",
+  "end_datetime": "2015-12-31T23:59:59Z",
+  "sci:doi": "10.5281/zenodo.5564399",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1993-01-01T00:00:00Z",
+          "2015-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Land Surface",
+    "Geomorphic/Landforms Processes",
+    "Coastal Processes",
+    "Sea Level Changes"
+  ]
+}

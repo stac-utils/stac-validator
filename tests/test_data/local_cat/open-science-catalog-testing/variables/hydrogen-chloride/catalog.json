@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hydrogen-chloride",
+  "stac_version": "1.0.0",
+  "description": "A toxic, colorless, strongly acidic gas (HCl) that dissolves readily in water to form hydrochloric acid. In the troposphere, hydrochloric acid can be produced from the reaction of nitric acid or sulfuric acid with sea-salt particles (NaCl). It is also involved in the formation of ammonium chloride aerosol. HCl is also the most abundant form of chlorine in an inorganic compound found in the stratosphere. Produced there predominantly from the reaction of Cl atoms with methane and molecular hydrogen, it acts as a temporary, relatively unreactive reservoir species for chlorine.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/146a0a0b-1b42-41a6-b1f7-a27615b006a0?gtm_keyword=HYDROGEN%20CHLORIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hydrogen Chloride"
+}

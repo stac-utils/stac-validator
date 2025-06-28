@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "heat-flux",
+  "stac_version": "1.0.0",
+  "description": "Heat flux is the amount of heat that is transferred across a surface of unit area in a unit of time. Also refers to latent and sensible heat fluxes in the atmosphere and between the Earth's surface and atmosphere. In ocean domain it is defined as: The measurement of the heat flux or heat loss from open ocean areas within the sea ice pack is important for the study of energy balance in the polar regions and local and regional climatology. Heat loss through the open water is 100 times more than through thick ice.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/46a3c823-727d-4c3c-b09d-e3e3fcaa43a5?gtm_keyword=HEAT%20FLUX&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/ae1c9b54-caf2-4726-b180-5c6544f09111?gtm_keyword=HEAT%20FLUX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Heat Flux"
+}

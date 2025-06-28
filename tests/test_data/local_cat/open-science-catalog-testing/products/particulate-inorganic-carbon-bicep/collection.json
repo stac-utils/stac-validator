@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "particulate-inorganic-carbon-bicep",
+  "stac_version": "1.0.0",
+  "description": "Particulate Inorganic Carbon (PIC) data were generated using a random forest approach that incorporates the following key input variables: Remote sensing reflectances (Rrs) at 560 nm and 665 nm, chlorophyll-a concentration, colour index, and maximum water class values. The Rrs(560), Rrs(665), and chlorophyll-a concentration data were obtained directly from the Ocean Colour Climate Change Initiative (OC-CCI). The colour index values were estimated following the algorithm of Mitchell et al. (2017): Rrs(560)-Rrs(665). The maximum water class values were estimated using fourteen optical water classes obtained from the OC-CCI. The PIC data are provided as netCDF files containing global, monthly PIC concentrations (in mol m^-3) for the period of 1997 to 2021 at 9 km spatial resolution. For more details on the algorithm and its validation, please see the BICEP Algorithm Theoretical Baseline Document. The Particulate Inorganic Carbon data were produced by the Plymouth Marine Laboratory and supplied for archiving at the Centre for Environmental Data Analysis (CEDA). The research underpinning the work was supported by the European Space Agency (ESA) Biological Pump and Carbon Export Processes (BICEP) project and the product generation was supported by the National Centre for Earth Observation (NCEO).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://rsg.pml.ac.uk/shared_files/gku/ESA_animation/PIC_1-month_9km/",
+      "title": "Access"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Monthly Global Particulate Inorganic Carbon dataset (9 km, OC-CCI v4.2)",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "ENVISAT",
+    "Terra",
+    "AQUA (EOS/PM-1)",
+    "Suomi NPP",
+    "OrbView-2",
+    "Sentinel-3"
+  ],
+  "osc:project": "bicep",
+  "osc:variables": [
+    "Particulate Inorganic Carbon"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "particulate_inorganic_carbon"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2023-03-29T00:00:00Z",
+  "start_datetime": "1997-09-01T00:00:00Z",
+  "end_datetime": "2020-11-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1997-09-01T00:00:00Z",
+          "2020-11-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Inorganic Carbon",
+    "Particulate Inorganic Carbon"
+  ]
+}

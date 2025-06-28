@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-ice-elevation",
+  "stac_version": "1.0.0",
+  "description": "Pertains to the measurement of the surface height of the sea ice. In particular, sea ice elevation is measured by the radar altimeter on board the NASA IceSat satellite.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/139b0dae-27bb-42bd-8027-81fb9fd8f85d?gtm_keyword=SEA%20ICE%20ELEVATION&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Ice Elevation"
+}

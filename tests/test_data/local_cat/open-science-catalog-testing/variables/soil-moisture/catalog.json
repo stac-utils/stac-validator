@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "soil-moisture",
+  "stac_version": "1.0.0",
+  "description": "Soil moisture is difficult to define because it means different things in different disciplines. For example, a farmer's concept of soil moisture is different from that of a water resource manager or a weather forecaster. Generally, however, soil moisture is the water that is held in the spaces between soil particles. Surface soil moisture is the water that is in the upper 10 cm of soil, whereas root zone soil moisture is the water that is available to plants, which is generally considered to be in the upper 200 cm of soil.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/27dd85c2-3403-438d-8b0c-8d424df60468?gtm_keyword=SOIL%20MOISTURE&gtm_scheme=Earth%20Science;https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/88e1a654-5cfd-423f-9350-0ef48d85e085?gtm_keyword=SOIL%20MOISTURE/WATER%20CONTENT&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bbe2ea34-8842-4a9f-9b0b-95dd3c71857f?gtm_keyword=SOIL%20MOISTURE/WATER%20CONTENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Soil Moisture"
+}

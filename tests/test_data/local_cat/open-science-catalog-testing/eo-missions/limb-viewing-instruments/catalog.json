@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "limb-viewing-instruments",
+  "stac_version": "1.0.0",
+  "description": "Satellite instruments can be classified according to their observation geometry into limb-viewing or nadir-viewing sounders. Limb sounders look tangentially through the atmosphere. Limb geometries are the natural choic for stratospheric measurements because the signal is not masked by the denser tropospheric signal, the long raypath through the atmosphere provides large sensitivity to species with low atmospheric concentrations, and the variation of the observation angle allows vertical scanning of the atmosphere. As a result, altitude information on the observed atmospheric state variables can be obtained at high vertical resolution, while the horizontal resolution is limited. For tropospheric observations, limb measurements are more challenging because of the saturation of measured radiances and the opaqueness of the troposphere due to the presence of clouds, humidity, and generally larger density. For many aspects of tropospheric sounding, nadir sounders are advantageous, due to their small horizontal footprint. The limb emission or limb viewing technique measures the longwave radiation (infrared or microwave) thermally emitted in the atmosphere along the line of sight of the instrument. The instrument looks into the limb of the Earth's atmosphere down to an altitude called the tangent altitude. It is from this altitude that the most longwave radiation comes. The viewing geometry is similar to the occultation technique, but limb emission instruments measure thermal and microwave radiation, from which they infer vertical profiles of trace gases. LIMS, CLAES, HiRDLS, TES, and MLS are some of the acronyms for the satellite instruments that we reviewed using this viewing technique. The limb scattering technique has a viewing geometry similar to that of both limb emission and occultation. This provides for good vertical resolution. But it also measures scattered solar radiation in a manner similar to the BUV measurement, using the light source in the limb of Earth's atmosphere. This allows for continuous overage through the daylight portion of the upper troposphere and stratosphere. The SCIAMACHY instrument aboard the ENVISAT-1 employs this technique. (source: http://www.ccpo.odu.edu/SEES/ozone/class/Chap_7/7_sum.htm)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.sparc-climate.org/wp-content/uploads/sites/5/2017/12/SPARC_Report_No8_Mar2017_Chapter2_Satellite_instruments.pdf",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Limb-Viewing Instruments"
+}

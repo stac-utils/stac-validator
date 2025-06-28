@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "sunspots",
+  "stac_version": "1.0.0",
+  "description": "An area seen as a dark spot on the PHOTOSPHERE of the sun. Sunspots are concentrations of magnetic flux, typically occurring in bipolar clusters or groups. They appear dark because they are cooler than the surrounding photosphere. Sunspots are classified as to their group characteristics (called the Zurich Sunspot Classification; older sunspot counting schemes may have used the Wolf Sunspot Number classification). Satellite observations of the sun (notably by the ACRIM and ERBE sensors) have demonstrated a correlation between sunspot luminosity changes and sunspot numbers - a possible influencing factor in Earth's climate dynamics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/429d42ef-9b58-4068-b389-0a9e60e55486?gtm_keyword=SUNSPOTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Magnetosphere_Ionosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Sunspots"
+}

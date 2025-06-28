@@ -1,0 +1,103 @@
+{
+  "type": "Collection",
+  "id": "s3-tandem-for-climate",
+  "stac_version": "1.0.0",
+  "description": "Detailed study of the inter:satellite discrepancies, differences and uncertainties using data acquired during the Sentinel-3 Tandem phase.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://s3tandem.eu/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/sentinel-3-tandem-for-climate-s3tc-expro/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "S3 Tandem for Climate",
+  "osc:name": "SENTINEL-3 TANDEM FOR CLIMATE (S3TC) EXPRO+",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Craig James Donlon",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "craig.donlon@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "ACRI:ST S.A.S. (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CLS COLLECTE LOCALISATION SATELLITES (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NATIONAL PHYSICAL LABORATORY (NPL) (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "NATURAL ENVIRONMENT RESEARCH COUNCIL (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "STFC RUTHERFORD APPLETON LABORATORY (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF LEEDS",
+      "role": "consortium_member"
+    },
+    {
+      "name": "SCHOOL OF EARTH AND ENVIRONMENT (GB)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2018-05-28T00:00:00Z",
+  "end_datetime": "2020-03-16T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-05-28T00:00:00Z",
+          "2020-03-16T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

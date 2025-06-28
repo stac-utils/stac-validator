@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "glacial-processes",
+  "stac_version": "1.0.0",
+  "description": "A glacier is an accumulation of ice, air, water, and rock debris or sediment. It is a large enough quantity of ice to flow with gravity due to its own mass. The ice can be as large as a continent, such as the ice sheet covering Antarctica; or, it can fill a small valley between two mountains, such as a valley glacier. \"Glacial landforms/processes\" refers to the erosional or depositional processes of glaciers and the landforms (e.g., drumlins, cirques, fjords) that result.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b409a30b-0e3f-4592-bec9-7d371797b4a9?gtm_keyword=GLACIAL%20PROCESSES&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/d7b62912-5970-46b1-be45-6a603c9a6979?gtm_keyword=GLACIAL%20PROCESSES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        },
+        {
+          "id": "Cryosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Glacial Processes"
+}

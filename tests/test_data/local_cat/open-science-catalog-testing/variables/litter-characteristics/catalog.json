@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "litter-characteristics",
+  "stac_version": "1.0.0",
+  "description": "Litter characteristics refer to Global Change Master Directory detailed variable under the variable, Litter Characteristics: litter chemistry, litter decomposition, litter dry weight, litterfall, and litterfall flux.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/afc54d28-de94-4674-9528-39f00bf74d6d?gtm_keyword=LITTER%20CHARACTERISTICS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Litter Characteristics"
+}

@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "satellite-sar-altimeter-sea-floor-cp4o",
+  "stac_version": "1.0.0",
+  "description": "Satellite SAR altimeter product generated from Cryosat data by DTU Space",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.satoc.eu/projects/CP4O/data.html",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Satellite SAR altimeter product_Sea Floor Mapping_Oceania_Cryosat",
+  "osc:themes": [
+    "Oceans",
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "CryoSat"
+  ],
+  "osc:project": "cryosat-oceans",
+  "osc:variables": [
+    "Bathymetry"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "sea_floor_depth"
+    }
+  ],
+  "osc:region": "Oceania",
+  "created": "2019-01-01T00:00:00Z",
+  "start_datetime": "2012-01-01T00:00:00Z",
+  "end_datetime": "2013-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          94.0869566999,
+          -48.3204367898,
+          179.6468967167,
+          10.3846296442
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2012-01-01T00:00:00Z",
+          "2013-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Bathymetry/Seafloor Topography",
+    "Bathymetry"
+  ]
+}

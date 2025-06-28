@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "marine-wetlands",
+  "stac_version": "1.0.0",
+  "description": "Marine Wetlands are areas that are sometimes covered with water and sometimes dry, being influenced by marine water level and tidal fluctuations.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/bc320625-d9ba-41f5-9336-57e86fd878f3?gtm_keyword=MARINE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Marine Wetlands"
+}

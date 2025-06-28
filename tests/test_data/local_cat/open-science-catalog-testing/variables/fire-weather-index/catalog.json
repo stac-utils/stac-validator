@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fire-weather-index",
+  "stac_version": "1.0.0",
+  "description": "A fire weather index relates wind, temperature, relative humidity, and precipitation, to indicate conditions that influence fire starts, fire behavior, or fire suppression.[American Meteorological Society. 2000. Glossary of Meteorology, Second Edition. Boston, MA: American Meteorological Society.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/f50672b3-13d8-4206-b6c9-a1f9891ea470?gtm_keyword=DROUGHT%20INDICES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Fire Weather Index"
+}

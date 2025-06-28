@@ -1,0 +1,86 @@
+{
+  "type": "Collection",
+  "id": "firn-retention",
+  "stac_version": "1.0.0",
+  "description": "Total melt water retention in the firn (1958-2019). It is estimated either directly from the MAR RCM output, or by forcing the DTU firn model with the climate from the RCMs. Reference of these MAR simulations: Tedesco, M. and Fettweis, X.: Unprecedented atmospheric conditions (19482019) drive the 2019 exceptional melting season over the Greenland ice sheet , The Cryosphere, 14, 12091223, https://doi.org/10.5194/tc-14-1209-2020, 2020.Currently we provide two datasets in this experimental dataset:1. The native model firn storage from MAR.MARv3.11 includes a description of water retention in the firn based on the MAR snow model (CROCUS) which simulates a fixed number of snow, ice, or firn layers of variable thickness, and transfers mass and energy between them. The model densifies the snow/firn layers as a function of the weight of the overlying mass, and through liquid water retention. Penetrating meltwater is retained in the firn by a fraction of the pore space (irreducible water saturation) and refreezing. Here, the irreducible water saturation is set to 10%, and the density at which pores are assumed to close off thereby eliminating liquid water retention is set to 900 kg/m3. 2. Offline DTU firn-model firn storage: In provisioning the test dataset for the Watson basin (CTS1) it was noted that the density at which pores are assumed to close off thereby eliminating liquid water retention (MAR: 900 kg/m3) is highly influential on the meltwater storage. Further, parameter studies within the DTU firn model have shown that it is more likely the pore close off is lower than the native 900 kg/m3. Hence, the DTU firn model provides a secondary estimate for meltwater storage in the firn assuming a percolation pore close off of 830 kg/m3.Both datasets are provided as summed estimates for the snow/firn covered part of five drainage basins at monthly temporal resolution; NEGIS, Northern Lakes, Southern Lakes, Store, and Watson. Please read the README_Firn.txt in the zip file. Information for the DTU firn model can be found in Simonsen, S., Stenseng, L., A?algeirsdóttir, G., Fausto, R., Hvidberg, C., & Lucas-Picher, P. (2013). Assessing a multilayered dynamic firn-compaction model for Greenland with ASIRAS radar measurements. Journal of Glaciology, 59(215), 545-558. https://doi.org/10.3189/2013JoG12J158.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.dtu.dk/ndownloader/files/36169971",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5194/tc-14-1209-2020",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5194/tc-14-1209-2020"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "Firn Retention (ESA POLAR+ 4D Greenland Experimental Dataset)",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Firn"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "firn_retention"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2022-07-06T00:00:00Z",
+  "start_datetime": "1958-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "sci:doi": "10.5194/tc-14-1209-2020",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1958-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Glaciers/Ice Sheets",
+    "Firn",
+    "Sea Ice"
+  ]
+}

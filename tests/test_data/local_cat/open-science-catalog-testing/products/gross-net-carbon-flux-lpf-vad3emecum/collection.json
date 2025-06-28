@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "gross-net-carbon-flux-lpf-vad3emecum",
+  "stac_version": "1.0.0",
+  "description": "Data-driven gross and net carbon flux estimates from machine-learning based on eddy-covariance measurements and space-born measurements, where EO data streams from different sensors and spectral regions are integrated with the specific objective of a more accurate representation of drought effects on carbon fluxes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.fluxcom.org/CF-Download/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.fluxcom.org/CF-Download/",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Gross and net Carbon Flux Estimates_Fluxcom2.0 Carbon",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-5p",
+    "SMOS",
+    "Meteosat",
+    "Terra"
+  ],
+  "osc:project": "lpf-vad3emecum",
+  "osc:variables": [
+    "Carbon Flux"
+  ],
+  "osc:status": "planned",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "gross_net_carbon_flux"
+    }
+  ],
+  "osc:region": "Global",
+  "start_datetime": "2003-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2003-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Climate Indicators",
+    "Carbon Flux"
+  ]
+}

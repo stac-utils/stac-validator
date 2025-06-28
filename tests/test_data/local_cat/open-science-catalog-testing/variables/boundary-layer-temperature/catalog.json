@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "boundary-layer-temperature",
+  "stac_version": "1.0.0",
+  "description": "Air temperature measured within the the bottom layer (atmospheric boundary layer) of the troposphere that is in contact with the surface of the earth.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/e9c3b6ca-a534-4f3e-82de-b8b921e8f312?gtm_keyword=BOUNDARY%20LAYER%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Boundary Layer Temperature"
+}

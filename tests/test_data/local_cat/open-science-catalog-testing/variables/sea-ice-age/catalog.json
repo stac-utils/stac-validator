@@ -1,0 +1,43 @@
+{
+  "type": "Catalog",
+  "id": "sea-ice-age",
+  "stac_version": "1.0.0",
+  "description": "The age of the sea ice is usually a distinction between first-year and multiyear ice. Multiyear sea ice is usually thicker, has more ridges, and can be more of a hinderance to ship travel than first-year ice. Microwave remote sensing studies have shown that first-year sea ice has a higher emissivity at the 1.55 cm wavelength than multiyear ice, thus making it possible to distinguish between different ice ages from satellites. Ice age can also be qualitatively determined using visible, infrared and radar wavelengths from satellites.[Canadian Ice Service - Environment Canada; See also Hall, D.K. and J. Martinec. 1985. \"Remote Sensing of Ice and Snow\", Chapman and Hall, London.]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/3488309d-ef21-4d60-81a3-78fb99ffa756?gtm_keyword=SEA%20ICE%20AGE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b6085d71-a7ee-4b65-9c9c-ff374bdc3974?gtm_keyword=SEA%20ICE%20AGE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Cryosphere"
+        },
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Sea Ice Age"
+}

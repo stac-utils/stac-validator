@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "bromine-monoxide",
+  "stac_version": "1.0.0",
+  "description": "Bromine Monoxide (BrO) is one of many bromine (Br)-containing compounds that occur in the atmosphere from both natural and anthropogenic sources. The major source compounds are CH3Br (both natural and anthropogenic in origin), the halons (manufactured for use as fire suppressants), and dibromomethane CH2Br2 (emitted from the oceans). Destruction of these compounds results in the formation of a suite of inorganic Br-containing species, including bromine atoms (Br), bromine monoxide (BrO), bromine nitrate (BrNO3), hypobromous acid (HOBr), and hydrogen bromide (HBr). The chemistry that acts to interconvert these inorganic species results in depletion of ozone in the stratosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/39c478bd-620e-455c-904d-4621965e376c?gtm_keyword=BROMINE%20MONOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Bromine Monoxide"
+}

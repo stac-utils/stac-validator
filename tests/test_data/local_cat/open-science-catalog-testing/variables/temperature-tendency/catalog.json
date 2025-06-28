@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "temperature-tendency",
+  "stac_version": "1.0.0",
+  "description": "Temperature is defined, in general, as the degree of hotness or coldness measured on some definite temperature scale by means of any of various types of thermometers. Tendency is defined as the local rate of change of a vector or scalar quantity with time at a given point in space. Because of the difficulty of measuring instantaneous variations in the atmosphere, variations are usually obtained from the differences in magnitudes over a finite period of time; and the definition of tendency is frequently broadened to include the local time variations so obtained.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/449ad1fb-8010-43c7-b994-178a049d4cff?gtm_keyword=TEMPERATURE%20TENDENCY&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/1e76ccc7-2729-4de1-8c01-f295476ebb35?gtm_keyword=TEMPERATURE%20ANOMALIES&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Temperature Tendency"
+}

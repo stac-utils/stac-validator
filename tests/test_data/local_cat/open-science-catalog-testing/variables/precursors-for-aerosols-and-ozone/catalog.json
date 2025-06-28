@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "precursors-for-aerosols-and-ozone",
+  "stac_version": "1.0.0",
+  "description": "Precursor species lead to the production of aerosols and ozone. Precursors include nitrogen dioxide (NO2), sulphur dioxide (SO2), carbon monoxide (CO) and formaldehyde (HCHO). Aerosols and ozone in the near-surface atmosphere can directly harm human health and produce detrimental environmental impacts (e.g., crop damage, acid rain). Reductions in near-surface aerosols and ozone have been observed in specific regions where the emissions of some precursors are regulated.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/precursors",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Precursors for Aerosols and Ozone"
+}

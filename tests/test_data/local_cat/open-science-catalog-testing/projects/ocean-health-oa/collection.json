@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "ocean-health-oa",
+  "stac_version": "1.0.0",
+  "description": "This activity makes part of the ESA Ocean Science Cluster and contributes to the joint EC-ESA Earth System Science Initiative launched in February 2020 by the European Space Agency and the European Commission (EC) Directorate:General for Research and Innovation (DG RTD) to jointly advance Earth System Science and its response to the global challenges that society is facing in the onset of this century. In particular, this activity is a contribution to the EC-ESA Flagship Action on Ocean Health aimed at developing advanced ocean observations and products and enhancing the scientific understanding of the ocean s role in the Earth and climate system and its responses to management actions to contribute to reverse the cycle of decline in ocean health and improve conditions for sustainable development of the Ocean.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "Ocean-Health-OA",
+  "osc:name": "Ocean-Health-Ocean Acidification",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Marie-Helene Rio",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "marie-helene.rio@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "University of Exeter (UK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "PML (UK)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "ETHZ (SW)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Ifremer (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "OceanDataLab (FR)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2022-01-02T00:00:00Z",
+  "end_datetime": "2024-01-02T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-01-02T00:00:00Z",
+          "2024-01-02T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

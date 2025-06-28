@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "fault-movement",
+  "stac_version": "1.0.0",
+  "description": "Pertaining to the measurement, mapping, structure, analysis, and detection of fault lines, and fault movement.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/all/51ce7da1-b441-474f-b7e5-cedaa04903f7?gtm_keyword=FAULT%20MOVEMENT&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Solid Earth"
+        }
+      ]
+    }
+  ],
+  "title": "Fault Movement"
+}

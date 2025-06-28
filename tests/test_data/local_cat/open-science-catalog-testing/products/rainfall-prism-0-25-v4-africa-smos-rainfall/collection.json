@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "rainfall-prism-0-25-v4-africa-smos-rainfall",
+  "stac_version": "1.0.0",
+  "description": "The PrISM product is a satellite rainfall product initially designed for Africa over a regular grid at 0.25° (about 25x25 km²) and every 3 hours. It is obtained from the synergy of SMOS satellite soil moisture measurements and CMORPH-raw precipitation product through the PrIMS algorithm (Pellarin et al., 2009, 2013, 2020, Louvet et al., 2015, RomÃÂ¡n-CascÃÂ³n et al. 2017).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.5281/zenodo.3565610",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://zenodo.org/record/3565610#.YufYKy8Rp-U",
+      "title": "Documentation"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.3565610"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "PrISM SMOS Rainfall product_v4.0_3h_0.25_Africa",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "SMOS"
+  ],
+  "osc:project": "smos-rainfall-land",
+  "osc:variables": [
+    "Precipitation Amount"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "rainfall_prism"
+    }
+  ],
+  "osc:region": "Africa",
+  "created": "2018-07-30T00:00:00Z",
+  "start_datetime": "2010-01-01T00:00:00Z",
+  "end_datetime": "2017-12-31T23:59:59Z",
+  "version": "4",
+  "sci:doi": "10.5281/zenodo.3565610",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -17.6437950701,
+          -34.7956685989,
+          51.3470799095,
+          37.4409039439
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2017-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Precipitation",
+    "Precipitation Amount"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "oceanic-total-alkalinity-and-dissolved-inorganic-carbon-oceansoda",
+  "stac_version": "1.0.0",
+  "description": "Published empirical algorithms for oceanic total alkalinity (TA) and dissolved inorganic carbon (DIC) are used with monthly sea surface salinity (SSS) and temperature (SST) derived from satellite (SMOS, Aquarius, SST CCI) and interpolated in situ (CORA) measurements and climatological (WOA) ancillary data to produce monthly maps of TA and DIC at one degree spatial resolution. Earth system model TA and DIC (HADGEM2-ES) are also included. Results are compared with in situ (GLODAPv2) TA and DIC and results analysed in five regions (global, Greater Caribbean, Amazon plume, Amazon plume with in situ SSS < 35 and Bay of Bengal). Results are presented in three versions, denoted by 'X' in the lists below: using all available data (X = ''); excluding data with bathymetry < 500m (X = 'Depth500'); excluding data with both bathymetry < 500m and distance from nearest coast < 300 km (X = 'Depth500Dist300'). Datasets S1 to S5 are .csv lists of matchups in each region - date and location, in situ TA and DIC measurements and estimated uncertainties, all input datasets, estimates of TA and DIC from all outputs, and the best available output estimates of TA and DIC for each matchup. Datasets S6 to S10 are .csv statistical analyses of the performance of each combination of algorithm and input data - carbonate system variable, algorithm, input datasets used, (MAD, RMSD using all available data, output score, RMSD estimated from output score, output and in situ mean and standard deviation, correlation coefficient), all items in brackets presented both unweighted and weighted, number of matchups, number of potential matchups, matchup coverage, RMSD after subtraction of linear regression, percentage reduction in RMSD due to subtraction of linear regression and weighted score divided by number of matchups). Datasets S11 to S15 are zipped netCDF files containing error analyses of all outputs in each region, including the squared error of each output at each matchup, the weight of each squared error (1/squared uncertainty), weight * squared error, number of matchups available to each output, number of matchups available to each combination of two outputs, (score of each output in a given comparison of two outputs, overall output score and RMSD estimated from output score), all items in the last brackets presented both unweighted and weighted. Datasets S16 to S20 are zipped netCDF files containing global maps of the mean and standard deviation of each of: in situ data; output data; output data - in situ data and number of matchups. Regional files show the same maps, but only including data within the region. Datasets S21 and S22 are .csv files containing the effect on estimated RMSD of excluding various combinations of algorithms and/or inputs for TA and DIC in each region. For a given variable and region, the first line shows the algorithm, input data sources, estimated RMSD and bias of the output with lowest estimated RMSD. Subsequent lines show the effect of excluding combinations of algorithms and/or inputs, ordered first by the number of algorithms/inputs excluded (fewest first), then by effect on lowest estimated RMSD. So the first line(s) consist of the effects of excluding the best algorithm and each of the input sources to that algorithm, most important first. Each line consists of the item excluded, ratio of resulting estimated RMSD to original estimated RMSD, resulting bias and number of items excluded. Some exclusions are equivalent, for instance exclusion of WOA nitrate (the only nitrate source) is equivalent to excluding all algorithms using nitrate. Dataset S21 contains a comprehensive list of all possible exclusions, and so is rather hard to read and interpret. To mitigate this, Dataset S22 contains only those exclusion sets with effect greater than 1% and at least 0.1% greater than any subset of its exclusions. Dataset S23 is a .csv file containing like-for-like comparisons of RMSD between TA and DIC in each region. Bear in mind that the RMSD shown here is not the same as the estimated RMSD (RMSDe) shown elsewhere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.898115?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.898115",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Results and analysis of oceanic total alkalinity and dissolved inorganic carbon estimated from space borne, interpolated in situ, climatological and Earth system model data.",
+  "osc:themes": [
+    "Oceans"
+  ],
+  "osc:missions": [
+    "SMOS",
+    "Sentinel-3"
+  ],
+  "osc:project": "oceansoda",
+  "osc:variables": [
+    "Dissolved Organic Carbon",
+    "Alkalinity"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "oceanic_total_alkalinity_and_dissolved_inorganic_carbon"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2021-09-15T00:00:00Z",
+  "start_datetime": "1985-01-01T00:00:00Z",
+  "end_datetime": "2020-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1985-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ocean Chemistry",
+    "Alkalinity",
+    "Organic Carbon",
+    "Dissolved Organic Carbon"
+  ]
+}

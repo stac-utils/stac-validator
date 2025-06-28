@@ -1,0 +1,79 @@
+{
+  "type": "Collection",
+  "id": "lpf-iceflow",
+  "stac_version": "1.0.0",
+  "description": "Advancing from fragmented snow and ice velocity snapshots to coherent, large scale glacier velocity time-series",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/iceflow-short-term-movements-in-the-cryosphere/",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/iceflow-short-term-movements-in-the-cryosphere/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "(LPF) ICEFLOW",
+  "osc:name": "ICEFLOW: Short-term movements in the Cryosphere",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Stephen Plummer",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "stephen.plummer@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITY OF OSLO (NO)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2018-11-10T00:00:00Z",
+  "end_datetime": "2020-11-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-11-10T00:00:00Z",
+          "2020-11-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

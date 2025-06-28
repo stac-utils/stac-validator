@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "nitrogen-compounds",
+  "stac_version": "1.0.0",
+  "description": "Nitrogen (N) is the most abundant constituent of the atmosphere (78.09%). Nitrogen enters the atmosphere from volcanoes, and from the decay of organic matter. It is removed from the atmosphere by nitrogen-fixing bacteria. Nitrogen compounds are very reactive and play integral roles in the production and destruction of ozone in the atmosphere.[American Meteorological Society. 2000. Glossary of Meteorology, Second Edition. Boston, MA: American Meteorological Society.]Nitrogen compounds refer to the nitrogen particles that come from industrial manufacturing which cause contamination to water resources.[Princeton University]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/644e0f53-98a2-4512-a228-00f5e61fd93d?gtm_keyword=NITROGEN%20COMPOUNDS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Nitrogen Compounds"
+}

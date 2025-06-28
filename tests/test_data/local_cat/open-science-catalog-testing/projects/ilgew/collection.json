@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "ilgew",
+  "stac_version": "1.0.0",
+  "description": "ILGEW project has three main scientific objectives: 1) Characterize the whistler dispersion measured from Earth low orbital altitudes, in order to analyse the ionosphere below Swarm satellites, along the propagation path of the whistlers; 2) Constrain the lightning activity that lead to favourable propagation conditions for the generation of detectable ELF whistlers at Swarm altitudes; 3) Establish the benefits that can be obtained for ionospheric models such as the International Reference Ionosphere (IRI) by using the information obtained from whistlers characteristics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://ilgew.ipgp.fr",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/ilgew/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "ILGEW",
+  "osc:name": "INVESTIGATING LIGHTNING GENERATED ELF WHISTLERS TO IMPROVE IONOSPHERIC MODELS (ILGEW)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere",
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Roger Haagmans",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "roger.haagmans@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "INST PHYSIQUE GLOBE (FR)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "AGH UST: UNIVERSITY OF SCIENCE AND (PL)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "INSTITUTE OF ATMOSPHERIC PHYSICS (CZ)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-02-22T00:00:00Z",
+  "end_datetime": "2020-10-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-02-22T00:00:00Z",
+          "2020-10-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "hypochlorous-monoxide",
+  "stac_version": "1.0.0",
+  "description": "Hypochlorous acid is also a minor component of the gas-phase inorganic chlorine budget in the stratosphere. It is formed there largely from reaction of hydroperoxyl radicals (HO2) with chlorine monoxide (ClO) radicals, and from the hydrolysis of chlorine nitrate on stratospheric aerosols. It is subject to quite rapid photolysis in the sunlit atmosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c6b2279c-804f-42bf-aa8a-0c81f9ecf6cd?gtm_keyword=HYPOCHLOROUS%20MONOXIDE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Hypochlorous Monoxide"
+}

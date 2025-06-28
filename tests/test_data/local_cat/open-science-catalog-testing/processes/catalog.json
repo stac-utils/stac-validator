@@ -1,0 +1,49 @@
+{
+  "type": "Catalog",
+  "id": "processes",
+  "stac_version": "1.0.0",
+  "description": "Processes for reproducible science",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "process",
+      "href": "./sleeper/sleeper.cwl",
+      "type": "application/cwl",
+      "title": "python-sleeper",
+      "description": "Run a Python sleeper for between min and max seconds randomly.",
+      "version": "0.0.2"
+    },
+    {
+      "rel": "process",
+      "href": "./insar-closure-phase/insar-closure-phase.cwl",
+      "type": "application/cwl",
+      "title": "insar-closure-phase",
+      "description": "Insar closure phase.",
+      "version": "0.1.0"
+    },
+    {
+      "rel": "process",
+      "href": "./osc-closure-phase/osc-closure-phase-0.2.0.cwl",
+      "type": "application/cwl",
+      "title": "inSAR Closure Phase",
+      "description": "Computes the inSAR closure phase from 3 Sentinel-1 SLCs acquisitions.",
+      "version": "0.2.0",
+      "keywords": [
+        "FILTER:input-type:Sentinel-1 IW SLC",
+        "FILTER:coverage:Global"
+      ]
+     }
+  ],
+  "title": "Processes"
+}

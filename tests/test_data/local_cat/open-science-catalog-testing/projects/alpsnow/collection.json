@@ -1,0 +1,111 @@
+{
+  "type": "Collection",
+  "id": "alpsnow",
+  "stac_version": "1.0.0",
+  "description": "Develop improved products for a number of snow parameters (area extent, albedo, grain size, depth, snow water equivalent, snow melt area and wetness).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://alpsnow.enveo.at",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/alpsnow/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "AlpSnow",
+  "osc:name": "AlpSnow",
+  "osc:status": "ongoing",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Espen Volden",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "espen.volden@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "ENVEO ENVIRONMENTAL EARTH OBSERVATION GMBH (AT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "WSL Swiss Federal Institute for Forest",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Snow and Landscape Research (CH)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIVERSITY OF EDINBURGH (GB)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "UNIV INNSBRUCK (AT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "Environmental Protection Agency of (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "EURAC RESEARCH ACCADEMIA EUROPEA (IT)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "DLR GERMAN AEROSPACE CENTER (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "CENTRAL INSTITUTE FOR METEOROLOGY AND GEODYNAMICS (AT)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2020-10-20T00:00:00Z",
+  "end_datetime": "2022-01-12T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-10-20T00:00:00Z",
+          "2022-01-12T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

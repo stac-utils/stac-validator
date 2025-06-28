@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "surface-melt-detection-from-active-microwave-ascat-melt",
+  "stac_version": "1.0.0",
+  "description": "Greenland Ice Sheet melt map time series 2007-2021, derived from ASCAT for 4DGreenland, v1, 2023 (ENVEO). The data set contains Greenland-wide daily melt extent/stage maps (presence of liquid water) from 2007 until 2021 derived from the ASCAT Enhanced Resolution Image Reconstruction (SIR) product. Additionally, based on the melt maps, the annual melt onset, end of the melt season and melt duration are also provided. Data freely available after registration at: http://cryoportal.enveo.at/ ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://cryoportal.enveo.at/data/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://4dgreenland.eo4cryo.dk/?page_id=48",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Surface Melt Detection from Active Microwave - ASCAT Melt Product",
+  "osc:themes": [
+    "Cryosphere"
+  ],
+  "osc:missions": [
+    "MetOp"
+  ],
+  "osc:project": "4d-greenland",
+  "osc:variables": [
+    "Ice Growth/Melt"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "surface_melting"
+    }
+  ],
+  "osc:region": "Greenland",
+  "created": "2023-01-30T00:00:00Z",
+  "start_datetime": "2007-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          60.0,
+          -20.0,
+          82.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2007-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Snow/Ice",
+    "Ice Growth/Melt",
+    "Cryospheric Indicators",
+    "Sea Ice"
+  ]
+}

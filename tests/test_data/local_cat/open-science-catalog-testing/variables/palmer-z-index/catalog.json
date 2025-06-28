@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "palmer-z-index",
+  "stac_version": "1.0.0",
+  "description": "The Palmer Z Index shows how monthly moisture conditions depart from normal (short-term drought and wetness).[NOAA/National Climatic Data Center: [http://www.ncdc.noaa.gov/oa/climate/research/prelim/drought/palmer.html]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/0565650b-dce1-4ae8-8a7a-7ce25ac198c3?gtm_keyword=PALMER%20Z%20INDEX&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Palmer Z Index"
+}

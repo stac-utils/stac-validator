@@ -1,0 +1,82 @@
+{
+  "type": "Collection",
+  "id": "hdo-total-column-tropomi-extended-wift",
+  "stac_version": "1.0.0",
+  "description": "Extended scientific HDO/H2O total column data product from short-wave infrared (SWIR) measurements by the Tropospheric Monitoring Instrument (TROPOMI) including clear-sky and cloudy scenes. The retrieval employs a forward model which accounts for scattering, and the algorithm infers the trace gas column information, surface properties, and effective cloud parameters from the observations. Compared to the previous clear-sky-only data product, coverage is greatly enhanced by including scenes over low clouds, particularly enabling data over oceans as the albedo of water in the SWIR spectral range is too low to retrieve under cloud-free conditions. The new dataset is validated against co-located ground-based Fourier transform infrared (FTIR) observations by the Total Carbon Column Observing Network (TCCON). TCCON data are available from https://doi.org/10.14291/TCCON.GGG2014 (Total Carbon Column Observing Network Team, 2017). MUSICA data are available from https://ftp.cpc.ncep.noaa.gov/ndacc/MUSICA/ , data until 2014 are also available from https://doi.org/10.5281/zenodo.48902 . Aircraft profiles from the WISPER instrument from the ORACLES 2018 campaign are available from https://doi.org/10.5281/zenodo.5748368.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://tropomi.grid.surfsara.nl/hdo/",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://amt.copernicus.org/articles/15/2251/2022/#section7",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Extended scientific HDO/H2O total column_TROPOMI",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "lpf-wift",
+  "osc:variables": [
+    "Water Vapor"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "hdo_total_column"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2022-03-10T00:00:00Z",
+  "start_datetime": "2017-01-01T00:00:00Z",
+  "end_datetime": "2021-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Atmospheric Water Vapor",
+    "Water Vapor Indicators",
+    "Water Vapor"
+  ]
+}

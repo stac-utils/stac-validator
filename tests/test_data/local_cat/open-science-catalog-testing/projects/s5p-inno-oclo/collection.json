@@ -1,0 +1,83 @@
+{
+  "type": "Collection",
+  "id": "s5p-inno-oclo",
+  "stac_version": "1.0.0",
+  "description": "The S5PI+ OClO project is one of the seven themes of ESA s Sentinel-5p+ Innovation activity, which aims at developing products for the TROPOMI instrument on the Sentinel-5 Precursor satellite which are not yet part of the operational processor. The Copernicus Sentinel-5P satellite was launched in October 2017 and provides operational data since July 2018. This mission is intended as a gap:filler between the time series of the former instruments GOME and SCIAMACHY, the still operating OMI and the future Copernicus S5 instruments. Retrievals of OClO have been performed for all UV/vis heritage instruments (GOME, SCIAMACHY, GOME2, OMI) and the S5P OClO product will act as a continuation of these timeseries. Atmospheric profiles of OClO have also been retrieved from SCIAMACHY, OSIRIS and GOMOS measurements, providing additional information on the vertical distribution of OClO. For the validation of the S5P OClO product, ground-based observations of OClO from instruments in the NDACC network can be used.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.iup.uni-bremen.de/doas/s5poclo.htm",
+      "title": "Website"
+    },
+    {
+      "rel": "via",
+      "href": "https://eo4society.esa.int/projects/sentinel-5p-innovation-chlorine-dioxide-oclo/",
+      "title": "EO4Society Link"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Projects"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/contacts/v0.1.1/schema.json"
+  ],
+  "title": "S5p Inno - OCLO",
+  "osc:name": "SENTINEL-5P+ INNOVATION CHLORINE DIOXIDE (OCLO)",
+  "osc:status": "completed",
+  "osc:themes": [
+    "Atmosphere"
+  ],
+  "osc:type": "project",
+  "contacts": [
+    {
+      "name": "Christian Retscher",
+      "role": "technical_officer",
+      "emails": [
+        {
+          "value": "christian.retscher@esa.int"
+        }
+      ]
+    },
+    {
+      "name": "UNIVERSITAET BREMEN (DE)",
+      "role": "consortium_member"
+    },
+    {
+      "name": "BELGIAN INSTITUTE OF SPACE AERONOMY (BIRA:IASB) (BE)",
+      "role": "consortium_member"
+    }
+  ],
+  "start_datetime": "2019-06-25T00:00:00Z",
+  "end_datetime": "2021-12-30T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2019-06-25T00:00:00Z",
+          "2021-12-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

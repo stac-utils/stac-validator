@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "temperature-variability",
+  "stac_version": "1.0.0",
+  "description": "Climate variability refers to variations in the mean state and other statistics (such as standard deviations, the occurrence of extremes, etc.) of theï¿½climateï¿½on all spatial and temporal scales beyond that of individual weather events. Variability may be due to natural internal processes within theï¿½climate systemï¿½(internal variability), or to variations in natural orï¿½anthropogenicï¿½externalï¿½forcingï¿½(external variability). See alsoï¿½Climate change.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/7013bdc9-519d-42b6-827c-4b8013fbb726?gtm_keyword=TEMPERATURE%20VARIABILITY&gtm_scheme=Earth%20Science;https://www.ipcc.ch/sr15/chapter/glossary/",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Temperature Variability"
+}

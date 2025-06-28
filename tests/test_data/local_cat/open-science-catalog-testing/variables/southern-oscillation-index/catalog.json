@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "southern-oscillation-index",
+  "stac_version": "1.0.0",
+  "description": "The Southern Oscillation Index (SOI) is computed using monthly mean sea level pressure anomalies at Tahiti (T) and Darwin (D). The SOI [T-D] is an optimal index that combines the Southern Oscillation into one series. The SOI noise [T+D] series is a measure of small scale and/or transient phenomena that are not part of the large scale Southern Oscillation. These SOI values are similar to those calculated by the Climate Prediction Center in that they have been derived using normalization factors derived from monthly values.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science?gtm_search=Southern%20Oscillation%20Index&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Southern Oscillation Index"
+}

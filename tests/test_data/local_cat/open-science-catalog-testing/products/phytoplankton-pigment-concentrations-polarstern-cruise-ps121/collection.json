@@ -1,0 +1,84 @@
+{
+  "type": "Collection",
+  "id": "phytoplankton-pigment-concentrations-polarstern-cruise-ps121",
+  "stac_version": "1.0.0",
+  "description": "Phytoplankton pigments were determined in the water column of a transect from the North Sea to Fram Strait during RV Polarstern expedition PS121 from 11 Aug to 10 Sep 2019. Water samples were collected from CTD Niskin bottles at five to six different depths from the upper 100 m at CTD stations and from underway sampling. This were the same water samples as in Bracher et al. (https://doi.pangaea.de/10.1594/PANGAEA.938260). Between 0.2 to 3.5 L of each seawater sample was filtered through Whatman GF/Ffilters. The sample filters were then shockâfrozen in liquid N2 and kept atâ80 Â°C until analysis. High Pressure Liquid Chromatography (HPLC) was performed to quantify various phytoplankton pigments (see Table 1 in Taylor et al. 2011) following the method of Barlow et al. (1997) that was adjusted to our temperatureâcontrolled instruments as detailed in Alvarez et al. (2022).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.pangaea.de/10.1594/PANGAEA.941011?format=html#download",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.1594/PANGAEA.941011",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Phytoplankton pigment concentrations during POLARSTERN cruise PS121 from North Sea to Fram in August to September 2019",
+  "osc:themes": [
+    "Oceans",
+    "Atmosphere"
+  ],
+  "osc:missions": [
+    "Sentinel-5p"
+  ],
+  "osc:project": "s5p-inno-s5p-i-oc",
+  "osc:variables": [
+    "Phytoplankton"
+  ],
+  "osc:status": "completed",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "phytoplankton_pigment_concentrations"
+    }
+  ],
+  "osc:region": "North Greenland Sea",
+  "created": "2022-09-23T00:00:00Z",
+  "start_datetime": "2018-08-11T00:00:00Z",
+  "end_datetime": "2019-09-11T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -5.410759,
+          54.716473,
+          12.406038,
+          79.95809
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-08-11T00:00:00Z",
+          "2019-09-11T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ecosystems",
+    "Aquatic Ecosystems",
+    "Plankton",
+    "Phytoplankton"
+  ]
+}

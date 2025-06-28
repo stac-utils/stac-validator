@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "eastern-atlantic-western-russia-pattern",
+  "stac_version": "1.0.0",
+  "description": "Monthly tabulated East Atlantic/ Western Russia teleconnection index dating back to 1950. Indices are standardized by the 1981-2010 climatology. The East Atlantic/ West Russia (EATL/WRUS) pattern is one of three prominent teleconnection patterns that affects Eurasia throughout year. This pattern has been referred to as the Eurasia-2 pattern by Barnston and Livezey (1987). The East Atlantic/ West Russia pattern consists of four main anomaly centers. The positive phase is associated with positive height anomalies located over Europe and northern China, and negative height anomalies located over the central North Atlantic and north of the Caspian Sea. The main surface temperature anomalies associated with the positive phase of the EATL/ WRUS pattern reflect above-average temperatures over eastern Asia, and below-average temperatures over large portions of western Russia and northeastern Africa. The main precipitation departures reflect generally above-average precipitation in eastern China and below-average precipitation across central Europe.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/c58e035f-87c6-4aa5-8729-5a9c6270e73b?gtm_keyword=EASTERN%20ATLANTIC%20WESTERN%20RUSSIA%20PATTERN&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Oceans"
+        }
+      ]
+    }
+  ],
+  "title": "Eastern Atlantic Western Russia Pattern"
+}

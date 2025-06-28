@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "upper-air-temperature",
+  "stac_version": "1.0.0",
+  "description": "Atmospheric Temperature in the Boundary Layer, in the Upper Troposphere and Lower Stratosphere, in the Free Troposphere, in the Middle and Upper Stratosphere, in the Mesophere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcos.wmo.int/en/essential-climate-variables/upper-temperature",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Upper-air Temperature"
+}

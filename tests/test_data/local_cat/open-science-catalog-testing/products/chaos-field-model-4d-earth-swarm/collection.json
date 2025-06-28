@@ -1,0 +1,89 @@
+{
+  "type": "Collection",
+  "id": "chaos-field-model-4d-earth-swarm",
+  "stac_version": "1.0.0",
+  "description": "Updated versions of the CHAOS-7 geomagnetic field model (Finlay et al., 2020), using Swarm baseline 0601 data up to end of June 2021 and ground observatory data as available in May 2021 (see above for data files). Model coefficients for the time-dependent internal field are provided in spline coefficient and shc format, while the .mat file contains all parts of the model.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "http://www.spacecenter.dk/files/magnetic-models/CHAOS-7/CHAOS-7.8.mat",
+      "title": "Access"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1186/s40623-020-01252-9"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "title": "CHAOS field model",
+  "osc:themes": [
+    "Solid Earth",
+    "Magnetosphere_Ionosphere"
+  ],
+  "osc:missions": [
+    "SWARM",
+    "CryoSat-2",
+    "CHAMP",
+    "SAC-C",
+    "OERSTED"
+  ],
+  "osc:project": "4d-earth-swarm",
+  "osc:variables": [
+    "Magnetic Fields/Magnetic Currents",
+    "Geomagnetic Indices"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "chaos_field_model"
+    }
+  ],
+  "osc:region": "Global",
+  "created": "2020-10-20T00:00:00Z",
+  "version": "7,8",
+  "sci:doi": "10.1186/s40623-020-01252-9",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Ionosphere/Magnetosphere Dynamics",
+    "Magnetic Fields/Magnetic Currents",
+    "Sun-Earth Interactions",
+    "Geomagnetic Indices"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "heavy-metals",
+  "stac_version": "1.0.0",
+  "description": "Those metals which have densities >5.0 Mg m-3. In soils these include the elements Cd, Co, Cr, Cu, Fe, Hg, Mn, Mo, Ni, Pb, and Zn.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/8b3939b6-1c11-4a79-878e-0be1b231c528?gtm_keyword=HEAVY%20METALS&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/49ee4fcc-a0ad-4638-aec9-90b4946d8922?gtm_keyword=HEAVY%20METALS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Heavy Metals"
+}

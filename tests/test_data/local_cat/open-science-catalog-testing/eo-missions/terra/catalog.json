@@ -1,0 +1,27 @@
+{
+  "type": "Catalog",
+  "id": "terra",
+  "stac_version": "1.0.0",
+  "description": "Launched in December 1999, Terra (formerly known as EOS/AM-1) is a joint mission within NASAs ESE (Earth Science Enterprise) program between the US, Japan and Canada. With an original design life of six years, the operation has been extended to continue to provide an extensive variety of valuable data on Earths atmosphere, land surface, ocean and cryosphere.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://database.eohandbook.com/database/missionsummary.aspx?missionID=204",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "EO Missions"
+    }
+  ],
+  "title": "Terra"
+}

@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "skin-temperature",
+  "stac_version": "1.0.0",
+  "description": "Temperature of the top layer of the ice/ocean surface from which thermal radiation emanates. It refers Refers to the effective radiating temperature of the soil plus canopy surface. It is inferred from satellites in the 8-12 um window region. In climate models, it is the temperature used to determine upward thermal emission. The skin temperature usually shows a larger diurnal variation than the surface air temperature, a factor that needs to be considered when evaluating data/model comparisons.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/25fcdcb7-efd2-4d2f-ba57-92bbcc7ba69a?gtm_keyword=SKIN%20TEMPERATURE&gtm_scheme=Earth%20Science; https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/40d6a3e7-89dd-4399-8fa5-bbc7a0917b4e?gtm_keyword=SKIN%20TEMPERATURE&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Atmosphere"
+        }
+      ]
+    }
+  ],
+  "title": "Skin Temperature"
+}

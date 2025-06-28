@@ -1,0 +1,40 @@
+{
+  "type": "Catalog",
+  "id": "defoliants",
+  "stac_version": "1.0.0",
+  "description": "An agent that damages trees by destroying leaves or needles.[Government of British Columbia, Ministry of Forests, Glossary of Forest Terms: http://www.for.gov.bc.ca/pab/publctns/glossary/glossary.htm]",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://gcmd.earthdata.nasa.gov/KeywordViewer/scheme/Earth%20Science/b3fcccdd-745f-4299-94b3-e72e37f551be?gtm_keyword=DEFOLIANTS&gtm_scheme=Earth%20Science",
+      "type": "text/html",
+      "title": "Description"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Variables"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "themes": [
+    {
+      "scheme": "https://github.com/stac-extensions/osc#theme",
+      "concepts": [
+        {
+          "id": "Land"
+        }
+      ]
+    }
+  ],
+  "title": "Defoliants"
+}

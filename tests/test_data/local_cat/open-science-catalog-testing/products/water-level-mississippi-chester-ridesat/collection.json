@@ -1,0 +1,85 @@
+{
+  "type": "Collection",
+  "id": "water-level-mississippi-chester-ridesat",
+  "stac_version": "1.0.0",
+  "description": "The database includes the temporal series of water level from altimetry (multi-mission series from SARAL/AltiKa, Cryosat-2 and Sentinel-3) and multispetral sensors (MODIS from Terra and Aqua and OLCI from Sentinel-3A and 3B)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Open Science Catalog"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.dropbox.com/s/kbddiybsp7agrmn/Level3_Product.rar?dl=3",
+      "title": "Access"
+    },
+    {
+      "rel": "via",
+      "href": "http://hydrology.irpi.cnr.it/projects/ridesat/",
+      "title": "Documentation"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Products"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
+    "https://stac-extensions.github.io/cf/v0.2.0/schema.json"
+  ],
+  "title": "Water level from altimetry_Temporal series_L3 Products Database_Mississippi Chester_Multimission",
+  "osc:themes": [
+    "Land"
+  ],
+  "osc:missions": [
+    "Sentinel-3",
+    "SARAL",
+    "CryoSat-2",
+    "Terra"
+  ],
+  "osc:project": "ridesat",
+  "osc:variables": [
+    "Surface Water Processes/Measurements"
+  ],
+  "osc:status": "ongoing",
+  "osc:type": "product",
+  "cf:parameter": [
+    {
+      "name": "water_level"
+    }
+  ],
+  "osc:region": "North America",
+  "created": "2020-03-02T00:00:00Z",
+  "start_datetime": "2016-01-01T00:00:00Z",
+  "end_datetime": "2019-12-31T23:59:59Z",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -89.8362,
+          37.9028,
+          -89.8362,
+          37.9028
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-01-01T00:00:00Z",
+          "2019-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "Terrestrial Hydrosphere",
+    "Surface Water",
+    "Surface Water Processes/Measurements"
+  ]
+}
