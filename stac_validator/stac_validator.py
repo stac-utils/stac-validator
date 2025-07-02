@@ -1,5 +1,6 @@
 import json
 import sys
+import time
 from typing import Any, Dict, List, Optional, Tuple
 
 import click  # type: ignore
@@ -23,6 +24,23 @@ def _print_summary(title: str, valid_count: int, total_count: int, obj_type: str
         click.secho(f"  {obj_type.capitalize()} passed: {valid_count}/{total_count} ({percentage:.1f}%)")
     else:
         click.secho(f"  No {obj_type} found to validate")
+
+
+def format_duration(seconds: float) -> str:
+    """Format duration in seconds to a human-readable string.
+    
+    Args:
+        seconds (float): Duration in seconds
+        
+    Returns:
+        str: Formatted duration string (e.g., '1m 23.45s' or '456.78ms')
+    """
+    if seconds < 1.0:
+        return f"{seconds * 1000:.2f}ms"
+    minutes, seconds = divmod(seconds, 60)
+    if minutes > 0:
+        return f"{int(minutes)}m {seconds:.2f}s"
+    return f"{seconds:.2f}s"
 
 
 def print_update_message(version: str) -> None:
@@ -227,7 +245,7 @@ def main(
     log_file: str,
     pydantic: bool,
     verbose: bool = False,
-) -> None:
+):
     """Main function for the `stac-validator` command line tool. Validates a STAC file
     against the STAC specification and prints the validation results to the console as JSON.
 
@@ -235,7 +253,8 @@ def main(
         stac_file (str): Path to the STAC file to be validated.
         collections (bool): Validate response from /collections endpoint.
         item_collection (bool): Whether to validate item collection responses.
-        no_assets_urls (bool): Whether to open href links when validating assets (enabled by default).
+        no_assets_urls (bool): Whether to open href links when validating assets
+            (enabled by default).
         headers (dict): HTTP headers to include in the requests.
         pages (int): Maximum number of pages to validate via `item_collection`.
         recursive (bool): Whether to recursively validate all related STAC objects.
@@ -260,11 +279,14 @@ def main(
         SystemExit: Exits the program with a status code of 0 if the STAC file is valid,
             or 1 if it is invalid.
     """
+    start_time = time.time()
     valid = True
+    
     if schema_map == ():
         schema_map_dict: Optional[Dict[str, str]] = None
     else:
         schema_map_dict = dict(schema_map)
+        
     stac = StacValidate(
         stac_file=stac_file,
         collections=collections,
@@ -286,27 +308,35 @@ def main(
         pydantic=pydantic,
         verbose=verbose,
     )
-    if not item_collection and not collections:
-        valid = stac.run()
-    elif collections:
-        stac.validate_collections()
-    else:
-        stac.validate_item_collection()
+    
+    try:
+        if not item_collection and not collections:
+            valid = stac.run()
+        elif collections:
+            stac.validate_collections()
+        else:
+            stac.validate_item_collection()
+            
+        message = stac.message
+        if "version" in message[0]:
+            print_update_message(message[0]["version"])
 
-    message = stac.message
-    if "version" in message[0]:
-        print_update_message(message[0]["version"])
-
-    if no_output is False:
-        click.echo(json.dumps(message, indent=4))
-
-    if item_collection:
-        item_collection_summary(message)
-    elif collections:
-        collections_summary(message)
-    elif recursive:
-        recursive_validation_summary(message)
-
+        if no_output is False:
+            click.echo(json.dumps(message, indent=4))
+            
+        # Print appropriate summary based on validation mode
+        if item_collection:
+            item_collection_summary(message)
+        elif collections:
+            collections_summary(message)
+        elif recursive:
+            recursive_validation_summary(message)
+            
+    finally:
+        # Always print the duration, even if validation fails
+        duration = time.time() - start_time
+        click.secho(f"\nValidation completed in {format_duration(duration)}", fg='green')
+        click.secho()
     sys.exit(0 if valid else 1)
 
 
