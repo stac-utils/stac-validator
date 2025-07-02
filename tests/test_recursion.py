@@ -21,6 +21,7 @@ def test_recursive_lvl_4_local_v100():
             "valid_stac": True,
             "asset_type": "CATALOG",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0",
@@ -31,6 +32,7 @@ def test_recursive_lvl_4_local_v100():
             "valid_stac": True,
             "asset_type": "CATALOG",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0",
@@ -43,6 +45,7 @@ def test_recursive_lvl_4_local_v100():
             "valid_stac": True,
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0",
@@ -55,6 +58,7 @@ def test_recursive_lvl_4_local_v100():
             "valid_stac": True,
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
         },
     ]
 
@@ -71,6 +75,7 @@ def test_recursive_local_v090():
             "asset_type": "CATALOG",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "0.9.0",
@@ -79,6 +84,7 @@ def test_recursive_local_v090():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "0.9.0",
@@ -91,6 +97,7 @@ def test_recursive_local_v090():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
     ]
 
@@ -107,6 +114,7 @@ def test_recursive_v1beta1():
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         }
     ]
 
@@ -125,6 +133,7 @@ def test_recursive_v1beta2():
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         }
     ]
 
@@ -143,6 +152,7 @@ def test_recursion_collection_local_v1rc1():
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.1",
@@ -153,6 +163,7 @@ def test_recursion_collection_local_v1rc1():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.1",
@@ -163,6 +174,7 @@ def test_recursion_collection_local_v1rc1():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.1",
@@ -177,6 +189,7 @@ def test_recursion_collection_local_v1rc1():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
     ]
 
@@ -195,6 +208,7 @@ def test_recursion_collection_local_v1rc2():
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.2",
@@ -205,6 +219,7 @@ def test_recursion_collection_local_v1rc2():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.2",
@@ -215,6 +230,7 @@ def test_recursion_collection_local_v1rc2():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.2",
@@ -230,6 +246,7 @@ def test_recursion_collection_local_v1rc2():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
     ]
 
@@ -249,6 +266,7 @@ def test_recursion_collection_local_2_v1rc2():
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0-rc.2",
@@ -259,6 +277,7 @@ def test_recursion_collection_local_2_v1rc2():
             "asset_type": "ITEM",
             "validation_method": "recursive",
             "valid_stac": True,
+            "validator_engine": "jsonschema",
         },
     ]
 
@@ -308,6 +327,7 @@ def test_recursion_with_bad_item_trace_recursion():
             "valid_stac": True,
             "asset_type": "CATALOG",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
         },
         {
             "version": "1.0.0",
@@ -343,6 +363,7 @@ def test_recursion_with_bad_child_collection():
             "valid_stac": False,
             "asset_type": "COLLECTION",
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
             "error_type": "JSONSchemaValidationError",
             "failed_schema": "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json",
             "error_message": "'id' is a required property",
@@ -367,6 +388,7 @@ def test_recursion_with_missing_collection_link():
             ],
             "valid_stac": False,
             "validation_method": "recursive",
+            "validator_engine": "jsonschema",
             "error_type": "JSONSchemaValidationError",
             "failed_schema": "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json",
             "error_message": "'simple-collection' should not be valid under {}. Error is in collection ",
