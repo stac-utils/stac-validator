@@ -9,6 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Added
 - Added detailed recursive validation summary showing validation counts by STAC object type (Catalog, Collection, etc.)
 - Added validation duration timing that shows total processing time in a human-readable format
+- Added support for pydantic validation in recursive mode with proper schema reporting
 
 ### Changed
 - Standardized summary output formatting across all validation modes for consistency

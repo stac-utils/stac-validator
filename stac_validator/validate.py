@@ -575,12 +575,16 @@ class StacValidate:
             self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
+            # Add validator_engine field to track validation method
+            message["validator_engine"] = "pydantic" if self.pydantic else "jsonschema"
 
             try:
                 if self.pydantic:
-                    # pydantic_validator will set its own schema message
+                    # Set pydantic model info in schema field
+                    model_name = f"stac-pydantic {stac_type.capitalize()} model"
+                    message["schema"] = [model_name]
+                    # Run pydantic validation
                     msg = self.pydantic_validator(stac_type)
-                    message["schema"] = msg["schema"]
                 else:
                     msg = self.default_validator(stac_type)
                     message["schema"] = msg["schema"]
@@ -682,11 +686,14 @@ class StacValidate:
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
+                    message["validator_engine"] = "pydantic" if self.pydantic else "jsonschema"
                     try:
                         if self.pydantic:
-                            # Use pydantic validator for child items
+                            # Set pydantic model info in schema field for child items
+                            model_name = f"stac-pydantic {stac_type.capitalize()} model"
+                            message["schema"] = [model_name]
+                            # Run pydantic validation
                             msg = self.pydantic_validator(stac_type)
-                            message["schema"] = msg["schema"]
                         elif self.version == "0.7.0":
                             schema = fetch_and_parse_schema(self.schema)
                             # Prevent unknown url type issue
