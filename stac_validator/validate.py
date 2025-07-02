@@ -561,7 +561,8 @@ class StacValidate:
         """
         Recursively validate a STAC JSON document and its children/items.
 
-        Follows "child" and "item" links, calling `default_validator` on each.
+        Follows "child" and "item" links, calling the appropriate validator on each.
+        Uses pydantic_validator if self.pydantic is True, otherwise uses default_validator.
 
         Args:
             stac_type (str): The STAC object type to validate.
@@ -576,8 +577,13 @@ class StacValidate:
             message["valid_stac"] = False
 
             try:
-                msg = self.default_validator(stac_type)
-                message["schema"] = msg["schema"]
+                if self.pydantic:
+                    # pydantic_validator will set its own schema message
+                    msg = self.pydantic_validator(stac_type)
+                    message["schema"] = msg["schema"]
+                else:
+                    msg = self.default_validator(stac_type)
+                    message["schema"] = msg["schema"]
 
             except jsonschema.exceptions.ValidationError as e:
                 if e.context:
@@ -594,12 +600,27 @@ class StacValidate:
                         err_type="JSONSchemaValidationError",
                         err_msg=err_msg,
                         error_obj=e,
+                        schema_uri=e.schema.get("$id", "") if hasattr(e, "schema") else "",
                     )
                 )
                 self.message.append(message)
                 if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
                 return valid
+            except Exception as e:
+                if self.pydantic and "pydantic" in str(e.__class__.__module__):
+                    message.update(
+                        self.create_err_msg(
+                            err_type="PydanticValidationError",
+                            err_msg=str(e),
+                            error_obj=e,
+                        )
+                    )
+                    self.message.append(message)
+                    if self.trace_recursion:
+                        click.echo(json.dumps(message, indent=4))
+                    return valid
+                raise
 
             valid = True
             message["valid_stac"] = valid
@@ -661,19 +682,34 @@ class StacValidate:
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
-                    if self.version == "0.7.0":
-                        schema = fetch_and_parse_schema(self.schema)
-                        # Prevent unknown url type issue
-                        schema["allOf"] = [{}]
-                        jsonschema.validate(self.stac_content, schema)
-                    else:
-                        msg = self.default_validator(stac_type)
-                        message["schema"] = msg["schema"]
-                    message["valid_stac"] = True
+                    try:
+                        if self.pydantic:
+                            # Use pydantic validator for child items
+                            msg = self.pydantic_validator(stac_type)
+                            message["schema"] = msg["schema"]
+                        elif self.version == "0.7.0":
+                            schema = fetch_and_parse_schema(self.schema)
+                            # Prevent unknown url type issue
+                            schema["allOf"] = [{}]
+                            jsonschema.validate(self.stac_content, schema)
+                        else:
+                            msg = self.default_validator(stac_type)
+                            message["schema"] = msg["schema"]
+                        message["valid_stac"] = True
+                    except Exception as e:
+                        if self.pydantic and "pydantic" in str(e.__class__.__module__):
+                            message.update(
+                                self.create_err_msg(
+                                    err_type="PydanticValidationError",
+                                    err_msg=str(e),
+                                    error_obj=e,
+                                )
+                            )
+                            message["valid_stac"] = False
+                        else:
+                            raise
 
-                    if self.log:
-                        self.message.append(message)
-                    if not self.max_depth or self.max_depth < 5:
+                    if self.log or (not self.max_depth or self.max_depth < 5):
                         self.message.append(message)
             if all(child_validity):
                 valid = True
