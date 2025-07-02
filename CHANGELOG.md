@@ -7,6 +7,10 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ## [Unreleased]
 
 ### Added
+- Added detailed recursive validation summary showing validation counts by STAC object type (Catalog, Collection, etc.)
+
+### Changed
+- Standardized summary output formatting across all validation modes for consistency
 
 ## [v3.9.3] - 2025-06-28
 
