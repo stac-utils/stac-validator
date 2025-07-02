@@ -642,7 +642,9 @@ class StacValidate:
                         err_msg=err_msg,
                         error_obj=e,
                         schema_uri=(
-                            e.schema.get("$id", "") if hasattr(e, "schema") else ""
+                            e.schema.get("$id", "")
+                            if hasattr(e, "schema") and isinstance(e.schema, dict)
+                            else ""
                         ),
                     )
                 )
