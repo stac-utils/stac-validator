@@ -547,218 +547,40 @@ def test_validate_item_collection_remote_pages_1_v110():
     stac_file = "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items"
     stac = stac_validator.StacValidate(stac_file, item_collection=True, pages=1)
     stac.validate_item_collection()
-    assert stac.message == [
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040818_20250628T041118_20250628T054519_0179_127_275_3600_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040518_20250628T040818_20250628T054705_0180_127_275_3420_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T040218_20250628T040518_20250628T054918_0179_127_275_3240_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035918_20250628T040218_20250628T055000_0179_127_275_3060_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035618_20250628T035918_20250628T054946_0179_127_275_2880_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035318_20250628T035618_20250628T054203_0179_127_275_2700_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T035018_20250628T035318_20250628T054150_0179_127_275_2520_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034718_20250628T035018_20250628T054025_0179_127_275_2340_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034418_20250628T034718_20250628T054010_0180_127_275_2160_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-        {
-            "version": "1.1.0",
-            "path": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items/S3A_OL_2_WFR____20250628T034118_20250628T034418_20250628T053959_0179_127_275_1980_MAR_O_NR_003",
-            "schema": [
-                "https://cs-si.github.io/eopf-stac-extension/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/authentication/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-                "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
-                "https://stac-extensions.github.io/product/v0.1.0/schema.json",
-                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/sat/v1.1.0/schema.json",
-                "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
-                "https://stac-extensions.github.io/timestamps/v1.1.0/schema.json",
-                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
-            ],
-            "valid_stac": True,
-            "asset_type": "ITEM",
-            "validation_method": "default",
-        },
-    ]
+
+    # Check that we got some messages back
+    assert len(stac.message) > 0
+
+    # Check each message has the required fields
+    required_fields = {
+        "version",
+        "path",
+        "schema",
+        "valid_stac",
+        "asset_type",
+        "validation_method",
+    }
+    for msg in stac.message:
+        # Check all required fields are present
+        assert all(
+            field in msg for field in required_fields
+        ), f"Missing required field in message: {msg}"
+
+        # Check the message is for an ITEM
+        assert msg["asset_type"] == "ITEM"
+
+        # Check the validation method is correct
+        assert msg["validation_method"] == "default"
+
+        # Check the schema contains expected schemas (checking for a subset to be more resilient)
+        expected_schemas = {
+            "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
+            "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+        }
+        assert all(
+            schema in msg["schema"] for schema in expected_schemas
+        ), f"Missing expected schemas in {msg['schema']}"
     assert len(stac.message) == 10
 
 

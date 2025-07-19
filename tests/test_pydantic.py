@@ -59,3 +59,34 @@ def test_pydantic_invalid_item():
     assert stac.message[0]["validation_method"] == "pydantic"
     assert "error_type" in stac.message[0]
     assert "error_message" in stac.message[0]
+
+
+def test_pydantic_recursive():
+    """Test pydantic validation in recursive mode."""
+    stac_file = "tests/test_data/local_cat/example-catalog/catalog.json"
+    stac = stac_validator.StacValidate(
+        stac_file, pydantic=True, recursive=True, max_depth=2  # Limit depth for testing
+    )
+    stac.run()
+
+    # Check that we have validation messages
+    assert len(stac.message) > 0
+
+    # Check each validation message
+    for msg in stac.message:
+        # Check that validator_engine is set to pydantic
+        assert msg["validator_engine"] == "pydantic"
+
+        # Check that validation_method is recursive
+        assert msg["validation_method"] == "recursive"
+
+        # Check that valid_stac is a boolean
+        assert isinstance(msg["valid_stac"], bool)
+
+        # Check that schema is set to pydantic model based on asset type
+        if msg["asset_type"] == "ITEM":
+            assert msg["schema"] == ["stac-pydantic Item model"]
+        elif msg["asset_type"] == "COLLECTION":
+            assert msg["schema"] == ["stac-pydantic Collection model"]
+        elif msg["asset_type"] == "CATALOG":
+            assert msg["schema"] == ["stac-pydantic Catalog model"]

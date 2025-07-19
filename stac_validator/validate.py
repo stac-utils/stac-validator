@@ -242,7 +242,11 @@ class StacValidate:
         return str(error_input)  # Fallback to string representation
 
     def create_err_msg(
-        self, err_type: str, err_msg: str, error_obj: Optional[Exception] = None
+        self,
+        err_type: str,
+        err_msg: str,
+        error_obj: Optional[Exception] = None,
+        schema_uri: str = "",
     ) -> Dict[str, Union[str, bool, List[str], Dict[str, Any]]]:
         """
         Create a standardized error message dictionary and mark validation as failed.
@@ -251,6 +255,7 @@ class StacValidate:
             err_type (str): The type of error.
             err_msg (str): The error message.
             error_obj (Optional[Exception]): The raw exception object for verbose details.
+            schema_uri (str, optional): The URI of the schema that failed validation.
 
         Returns:
             dict: Dictionary containing error information.
@@ -258,8 +263,40 @@ class StacValidate:
         self.valid = False
 
         # Ensure all values are of the correct type
-        version_str: str = str(self.version) if self.version is not None else ""
-        path_str: str = str(self.stac_file) if self.stac_file is not None else ""
+        if not isinstance(err_type, str):
+            err_type = str(err_type)
+        if not isinstance(err_msg, str):
+            err_msg = str(err_msg)
+
+        # Initialize the message with common fields
+        message: Dict[str, Any] = {
+            "version": str(self.version) if hasattr(self, "version") else "",
+            "path": str(self.stac_file) if hasattr(self, "stac_file") else "",
+            "schema": (
+                [self._original_schema_paths.get(self.schema, self.schema)]
+                if hasattr(self, "schema")
+                else [""]
+            ),
+            "valid_stac": False,
+            "error_type": err_type,
+            "error_message": err_msg,
+            "failed_schema": schema_uri if schema_uri else "",
+            "recommendation": "For more accurate error information, rerun with --verbose.",
+        }
+
+        # Add asset_type and validation_method if available
+        if hasattr(self, "stac_content"):
+            try:
+                stac_type = get_stac_type(self.stac_content)
+                if stac_type:
+                    message["asset_type"] = stac_type.upper()
+                    message["validation_method"] = (
+                        "recursive"
+                        if hasattr(self, "recursive") and self.recursive
+                        else "default"
+                    )
+            except Exception:  # noqa: BLE001
+                pass
 
         # Ensure schema is properly typed
         schema_value: str = ""
@@ -267,10 +304,10 @@ class StacValidate:
             schema_value = str(self.schema)
         schema_field: List[str] = [schema_value] if schema_value else []
 
-        # Initialize the message with common fields
-        message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
-            "version": version_str,
-            "path": path_str,
+        # Initialize the error message with common fields
+        error_message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
+            "version": str(self.version) if self.version is not None else "",
+            "path": str(self.stac_file) if self.stac_file is not None else "",
             "schema": schema_field,  # All schemas that were checked
             "valid_stac": False,
             "error_type": err_type,
@@ -281,31 +318,31 @@ class StacValidate:
         # Try to extract the failed schema from the error message if it's a validation error
         if error_obj and hasattr(error_obj, "schema"):
             if isinstance(error_obj.schema, dict) and "$id" in error_obj.schema:
-                message["failed_schema"] = error_obj.schema["$id"]
+                error_message["failed_schema"] = error_obj.schema["$id"]
             elif hasattr(error_obj, "schema_url"):
-                message["failed_schema"] = error_obj.schema_url
+                error_message["failed_schema"] = error_obj.schema_url
             # If we can't find a schema ID, try to get it from the schema map
             elif schema_field and len(schema_field) == 1:
-                message["failed_schema"] = schema_field[0]
+                error_message["failed_schema"] = schema_field[0]
 
         if self.verbose and error_obj is not None:
             verbose_err = self._create_verbose_err_msg(error_obj)
             if isinstance(verbose_err, dict):
-                message["error_verbose"] = verbose_err
+                error_message["error_verbose"] = verbose_err
             else:
-                message["error_verbose"] = {"detail": str(verbose_err)}
+                error_message["error_verbose"] = {"detail": str(verbose_err)}
             # Add recommendation to check the schema if the error is not clear
-            if "failed_schema" in message and message["failed_schema"]:
-                message["recommendation"] = (
+            if error_message.get("failed_schema"):
+                error_message["recommendation"] = (
                     "If the error is unclear, please check the schema documentation at: "
-                    f"{message['failed_schema']}"
+                    f"{error_message['failed_schema']}"
                 )
         else:
-            message["recommendation"] = (
+            error_message["recommendation"] = (
                 "For more accurate error information, rerun with --verbose."
             )
 
-        return message
+        return error_message
 
     def create_links_message(self) -> Dict:
         """
@@ -561,7 +598,8 @@ class StacValidate:
         """
         Recursively validate a STAC JSON document and its children/items.
 
-        Follows "child" and "item" links, calling `default_validator` on each.
+        Follows "child" and "item" links, calling the appropriate validator on each.
+        Uses pydantic_validator if self.pydantic is True, otherwise uses default_validator.
 
         Args:
             stac_type (str): The STAC object type to validate.
@@ -574,10 +612,19 @@ class StacValidate:
             self.schema = set_schema_addr(self.version, stac_type.lower())
             message = self.create_message(stac_type, "recursive")
             message["valid_stac"] = False
+            # Add validator_engine field to track validation method
+            message["validator_engine"] = "pydantic" if self.pydantic else "jsonschema"
 
             try:
-                msg = self.default_validator(stac_type)
-                message["schema"] = msg["schema"]
+                if self.pydantic:
+                    # Set pydantic model info in schema field
+                    model_name = f"stac-pydantic {stac_type.capitalize()} model"
+                    message["schema"] = [model_name]
+                    # Run pydantic validation
+                    msg = self.pydantic_validator(stac_type)
+                else:
+                    msg = self.default_validator(stac_type)
+                    message["schema"] = msg["schema"]
 
             except jsonschema.exceptions.ValidationError as e:
                 if e.context:
@@ -594,12 +641,31 @@ class StacValidate:
                         err_type="JSONSchemaValidationError",
                         err_msg=err_msg,
                         error_obj=e,
+                        schema_uri=(
+                            e.schema.get("$id", "")
+                            if hasattr(e, "schema") and isinstance(e.schema, dict)
+                            else ""
+                        ),
                     )
                 )
                 self.message.append(message)
                 if self.trace_recursion:
                     click.echo(json.dumps(message, indent=4))
                 return valid
+            except Exception as e:
+                if self.pydantic and "pydantic" in str(e.__class__.__module__):
+                    message.update(
+                        self.create_err_msg(
+                            err_type="PydanticValidationError",
+                            err_msg=str(e),
+                            error_obj=e,
+                        )
+                    )
+                    self.message.append(message)
+                    if self.trace_recursion:
+                        click.echo(json.dumps(message, indent=4))
+                    return valid
+                raise
 
             valid = True
             message["valid_stac"] = valid
@@ -661,19 +727,39 @@ class StacValidate:
                 if link["rel"] == "item":
                     self.schema = set_schema_addr(self.version, stac_type.lower())
                     message = self.create_message(stac_type, "recursive")
-                    if self.version == "0.7.0":
-                        schema = fetch_and_parse_schema(self.schema)
-                        # Prevent unknown url type issue
-                        schema["allOf"] = [{}]
-                        jsonschema.validate(self.stac_content, schema)
-                    else:
-                        msg = self.default_validator(stac_type)
-                        message["schema"] = msg["schema"]
-                    message["valid_stac"] = True
+                    message["validator_engine"] = (
+                        "pydantic" if self.pydantic else "jsonschema"
+                    )
+                    try:
+                        if self.pydantic:
+                            # Set pydantic model info in schema field for child items
+                            model_name = f"stac-pydantic {stac_type.capitalize()} model"
+                            message["schema"] = [model_name]
+                            # Run pydantic validation
+                            msg = self.pydantic_validator(stac_type)
+                        elif self.version == "0.7.0":
+                            schema = fetch_and_parse_schema(self.schema)
+                            # Prevent unknown url type issue
+                            schema["allOf"] = [{}]
+                            jsonschema.validate(self.stac_content, schema)
+                        else:
+                            msg = self.default_validator(stac_type)
+                            message["schema"] = msg["schema"]
+                        message["valid_stac"] = True
+                    except Exception as e:
+                        if self.pydantic and "pydantic" in str(e.__class__.__module__):
+                            message.update(
+                                self.create_err_msg(
+                                    err_type="PydanticValidationError",
+                                    err_msg=str(e),
+                                    error_obj=e,
+                                )
+                            )
+                            message["valid_stac"] = False
+                        else:
+                            raise
 
-                    if self.log:
-                        self.message.append(message)
-                    if not self.max_depth or self.max_depth < 5:
+                    if self.log or (not self.max_depth or self.max_depth < 5):
                         self.message.append(message)
             if all(child_validity):
                 valid = True
