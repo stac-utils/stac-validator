@@ -6,13 +6,16 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+
+## [v3.10.0] - 2025-07-20
+
 ### Added
-- Added detailed recursive validation summary showing validation counts by STAC object type (Catalog, Collection, etc.)
-- Added validation duration timing that shows total processing time in a human-readable format
-- Added support for pydantic validation in recursive mode with proper schema reporting
+- Added detailed recursive validation summary showing validation counts by STAC object type (Catalog, Collection, etc.) [#265](https://github.com/stac-utils/stac-validator/pull/265)
+- Added validation duration timing that shows total processing time in a human-readable format [#265](https://github.com/stac-utils/stac-validator/pull/265)
+- Added support for pydantic validation in recursive mode with proper schema reporting [#265](https://github.com/stac-utils/stac-validator/pull/265)
 
 ### Changed
-- Standardized summary output formatting across all validation modes for consistency
+- Standardized summary output formatting across all validation modes for consistency [#265](https://github.com/stac-utils/stac-validator/pull/265)
 
 ## [v3.9.3] - 2025-06-28
 
