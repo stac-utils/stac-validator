@@ -298,7 +298,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.9.3..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v3.10.0..main
+[v3.10.0]: https://github.com/sparkgeo/stac-validator/compare/v3.9.3..v3.10.0
 [v3.9.3]: https://github.com/sparkgeo/stac-validator/compare/v3.9.2..v3.9.3
 [v3.9.2]: https://github.com/sparkgeo/stac-validator/compare/v3.9.1..v3.9.2
 [v3.9.1]: https://github.com/sparkgeo/stac-validator/compare/v3.9.0..v3.9.1
