@@ -25,7 +25,7 @@ def test_recursive_lvl_4_local_v100():
         },
         {
             "version": "1.0.0",
-            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/catalog.json",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/./projects/catalog.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json"
             ],
@@ -36,7 +36,7 @@ def test_recursive_lvl_4_local_v100():
         },
         {
             "version": "1.0.0",
-            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3d-earth/collection.json",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/./projects/./3d-earth/collection.json",
             "schema": [
                 "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
                 "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
@@ -49,7 +49,7 @@ def test_recursive_lvl_4_local_v100():
         },
         {
             "version": "1.0.0",
-            "path": "tests/test_data/local_cat/open-science-catalog-testing/projects/3dctrl/collection.json",
+            "path": "tests/test_data/local_cat/open-science-catalog-testing/./projects/./3dctrl/collection.json",
             "schema": [
                 "https://stac-extensions.github.io/osc/v1.0.0-rc.3/schema.json",
                 "https://stac-extensions.github.io/contacts/v0.1.1/schema.json",
@@ -156,7 +156,7 @@ def test_recursion_collection_local_v1rc1():
         },
         {
             "version": "1.0.0-rc.1",
-            "path": "tests/test_data/1rc1/simple-item.json",
+            "path": "tests/test_data/1rc1/./simple-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
             ],
@@ -167,7 +167,7 @@ def test_recursion_collection_local_v1rc1():
         },
         {
             "version": "1.0.0-rc.1",
-            "path": "tests/test_data/1rc1/core-item.json",
+            "path": "tests/test_data/1rc1/./core-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json"
             ],
@@ -178,7 +178,7 @@ def test_recursion_collection_local_v1rc1():
         },
         {
             "version": "1.0.0-rc.1",
-            "path": "tests/test_data/1rc1/extended-item.json",
+            "path": "tests/test_data/1rc1/./extended-item.json",
             "schema": [
                 "https://cdn.staclint.com/v1.0.0-rc.1/extension/eo.json",
                 "https://cdn.staclint.com/v1.0.0-rc.1/extension/projection.json",
@@ -212,7 +212,7 @@ def test_recursion_collection_local_v1rc2():
         },
         {
             "version": "1.0.0-rc.2",
-            "path": "tests/test_data/1rc2/simple-item.json",
+            "path": "tests/test_data/1rc2/./simple-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
             ],
@@ -223,7 +223,7 @@ def test_recursion_collection_local_v1rc2():
         },
         {
             "version": "1.0.0-rc.2",
-            "path": "tests/test_data/1rc2/core-item.json",
+            "path": "tests/test_data/1rc2/./core-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
             ],
@@ -234,7 +234,7 @@ def test_recursion_collection_local_v1rc2():
         },
         {
             "version": "1.0.0-rc.2",
-            "path": "tests/test_data/1rc2/extended-item.json",
+            "path": "tests/test_data/1rc2/./extended-item.json",
             "schema": [
                 "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
                 "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
@@ -270,7 +270,7 @@ def test_recursion_collection_local_2_v1rc2():
         },
         {
             "version": "1.0.0-rc.2",
-            "path": "tests/test_data/1rc2/extensions-collection/proj-example/proj-example.json",
+            "path": "tests/test_data/1rc2/extensions-collection/./proj-example/proj-example.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json"
             ],
@@ -298,7 +298,7 @@ def test_recursion_with_bad_item():
     assert stac.message == [
         {
             "version": "1.0.0",
-            "path": "tests/test_data/v100/bad-item.json",
+            "path": "tests/test_data/v100/./bad-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
             ],
@@ -331,7 +331,7 @@ def test_recursion_with_bad_item_trace_recursion():
         },
         {
             "version": "1.0.0",
-            "path": "tests/test_data/v100/bad-item.json",
+            "path": "tests/test_data/v100/./bad-item.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json"
             ],
@@ -356,7 +356,7 @@ def test_recursion_with_bad_child_collection():
     assert stac.message == [
         {
             "version": "1.0.0",
-            "path": "tests/test_data/v100/collection-only/bad-collection.json",
+            "path": "tests/test_data/v100/./collection-only/bad-collection.json",
             "schema": [
                 "https://schemas.stacspec.org/v1.0.0/collection-spec/json-schema/collection.json"
             ],
