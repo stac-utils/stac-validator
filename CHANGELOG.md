@@ -9,8 +9,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ## [v3.10.1] - 2025-07-26
 
 ### Fixed
-- Reverted path cleaning changes that removed `./` prefix from relative paths, which was causing compatibility issues with tools like stac-check. The validator now correctly preserves the `./` prefix for relative paths in the current directory.
-
+- Reverted path cleaning changes that removed `./` prefix from relative paths, which was causing compatibility issues with tools like stac-check. The validator now correctly preserves the `./` prefix for relative paths in the current directory. [#266](https://github.com/stac-utils/stac-validator/pull/266)
 
 ## [v3.10.0] - 2025-07-20
 
