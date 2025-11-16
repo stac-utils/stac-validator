@@ -31,7 +31,10 @@ optional-dependencies.dev = [
     "pytest",
     "requests-mock",
     "types-setuptools",
-    "stac-pydantic>=3.3.0"
+    "stac-pydantic>=3.3.0",
+    "mypy",
+    "types-attrs",
+    "types-requests"
 ]
 optional-dependencies.pydantic = [
     "stac-pydantic>=3.3.0"
