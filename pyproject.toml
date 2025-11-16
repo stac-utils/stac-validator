@@ -34,7 +34,8 @@ optional-dependencies.dev = [
     "stac-pydantic>=3.3.0",
     "mypy",
     "types-attrs",
-    "types-requests"
+    "types-requests",
+    "types-jsonschema"
 ]
 optional-dependencies.pydantic = [
     "stac-pydantic>=3.3.0"
