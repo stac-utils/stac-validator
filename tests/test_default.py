@@ -180,3 +180,105 @@ def test_default_collection_validates_extensions():
             "validation_method": "default",
         }
     ]
+
+
+def test_missing_stac_version():
+    """Test that missing or empty stac_version provides a clear error message."""
+    import json
+    import tempfile
+
+    # Create a test STAC object with empty stac_version
+    test_stac = {
+        "type": "Collection",
+        "id": "test-collection",
+        "stac_version": "",  # Empty stac_version
+        "description": "Test collection",
+        "license": "MIT",
+        "extent": {
+            "spatial": {"bbox": [[-180, -90, 180, 90]]},
+            "temporal": {"interval": [["2020-01-01T00:00:00Z", None]]},
+        },
+        "links": [{"rel": "self", "href": "test.json", "type": "application/json"}],
+    }
+
+    # Write to temp file
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump(test_stac, f)
+        temp_file = f.name
+
+    try:
+        stac = stac_validator.StacValidate(temp_file)
+        stac.run()
+        assert stac.message == [
+            {
+                "version": "",
+                "path": temp_file,
+                "schema": [],
+                "valid_stac": False,
+                "error_type": "MissingSTACVersion",
+                "error_message": (
+                    "The 'stac_version' field is missing or empty. "
+                    "Please ensure your STAC object includes a valid 'stac_version' field "
+                    "(e.g., '1.0.0', '1.1.0'). This field is required for proper schema validation."
+                ),
+                "failed_schema": "",
+                "recommendation": "For more accurate error information, rerun with --verbose.",
+            }
+        ]
+    finally:
+        import os
+
+        os.unlink(temp_file)
+
+
+def test_invalid_stac_version_format():
+    """Test that invalid stac_version format provides a clear error message."""
+    import json
+    import tempfile
+
+    # Test cases for invalid formats
+    invalid_versions = ["1.1", "1", "1.0", "abc", "1.0.0.0"]
+
+    for invalid_version in invalid_versions:
+        # Create a test STAC object with invalid stac_version format
+        test_stac = {
+            "type": "Collection",
+            "id": "test-collection",
+            "stac_version": invalid_version,  # Invalid format
+            "description": "Test collection",
+            "license": "MIT",
+            "extent": {
+                "spatial": {"bbox": [[-180, -90, 180, 90]]},
+                "temporal": {"interval": [["2020-01-01T00:00:00Z", None]]},
+            },
+            "links": [{"rel": "self", "href": "test.json", "type": "application/json"}],
+        }
+
+        # Write to temp file
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            json.dump(test_stac, f)
+            temp_file = f.name
+
+        try:
+            stac = stac_validator.StacValidate(temp_file)
+            stac.run()
+            assert stac.message == [
+                {
+                    "version": invalid_version,
+                    "path": temp_file,
+                    "schema": [],
+                    "valid_stac": False,
+                    "error_type": "InvalidSTACVersionFormat",
+                    "error_message": (
+                        f"Version '{invalid_version}' does not match expected format. "
+                        "STAC versions should be in semantic versioning format (e.g., '1.0.0', '1.1.0', '1.0.0-beta.1'). "
+                        "Please check your 'stac_version' field."
+                    ),
+                    "failed_schema": "",
+                    "recommendation": "For more accurate error information, rerun with --verbose.",
+                }
+            ]
+        finally:
+            import os
+
+            os.unlink(temp_file)
