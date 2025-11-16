@@ -25,6 +25,71 @@ NEW_VERSIONS = [
 ]
 
 
+def validate_stac_version_field(stac_content: Dict) -> tuple[bool, str, str]:
+    """Validate the stac_version field in STAC content.
+
+    Args:
+        stac_content (dict): The STAC content dictionary.
+
+    Returns:
+        tuple[bool, str, str]: (is_valid, error_type, error_message)
+            - is_valid: True if the version is valid
+            - error_type: Error type string if invalid, empty string if valid
+            - error_message: Error message if invalid, empty string if valid
+    """
+    version = stac_content.get("stac_version", "")
+
+    # Check if version is present and not empty
+    if not version or not isinstance(version, str) or version.strip() == "":
+        error_type = "MissingSTACVersion"
+        error_msg = (
+            "The 'stac_version' field is missing or empty. "
+            "Please ensure your STAC object includes a valid 'stac_version' field "
+            "(e.g., '1.0.0', '1.1.0'). This field is required for proper schema validation."
+        )
+        return False, error_type, error_msg
+
+    # Validate version format
+    format_valid, format_error = validate_version_format(version)
+    if not format_valid:
+        return False, "InvalidSTACVersionFormat", format_error
+
+    return True, "", ""
+
+
+def validate_version_format(version: str) -> tuple[bool, str]:
+    """Validate that a STAC version string has the correct format.
+
+    Args:
+        version (str): The version string to validate.
+
+    Returns:
+        tuple[bool, str]: (is_valid, error_message)
+            - is_valid: True if the version format is valid
+            - error_message: Description of the issue if invalid, empty string if valid
+
+    Valid formats:
+        - Standard semver: "1.0.0", "1.1.0", "0.9.0"
+        - Pre-release versions: "1.0.0-beta.1", "1.0.0-rc.1"
+    """
+    if not version:
+        return False, "Version is empty"
+
+    import re
+
+    # Regex for semantic versioning: major.minor.patch with optional pre-release
+    semver_pattern = r"^\d+\.\d+\.\d+(-[\w\.\-]+)?$"
+
+    if not re.match(semver_pattern, version):
+        return False, (
+            f"Version '{version}' does not match expected format. "
+            "STAC versions should be in semantic versioning format (e.g., '1.0.0', '1.1.0', '1.0.0-beta.1'). "
+            "Please check your 'stac_version' field."
+        )
+
+    return True, ""
+
+
 def is_url(url: str) -> bool:
     """Checks whether the input string is a valid URL.
 

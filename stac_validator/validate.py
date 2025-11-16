@@ -18,6 +18,7 @@ from .utilities import (
     link_request,
     load_schema_config,
     set_schema_addr,
+    validate_stac_version_field,
     validate_with_ref_resolver,
 )
 
@@ -247,6 +248,7 @@ class StacValidate:
         err_msg: str,
         error_obj: Optional[Exception] = None,
         schema_uri: str = "",
+        version: Optional[str] = None,
     ) -> Dict[str, Union[str, bool, List[str], Dict[str, Any]]]:
         """
         Create a standardized error message dictionary and mark validation as failed.
@@ -256,6 +258,7 @@ class StacValidate:
             err_msg (str): The error message.
             error_obj (Optional[Exception]): The raw exception object for verbose details.
             schema_uri (str, optional): The URI of the schema that failed validation.
+            version (Optional[str]): Override version to use in the error message.
 
         Returns:
             dict: Dictionary containing error information.
@@ -268,9 +271,16 @@ class StacValidate:
         if not isinstance(err_msg, str):
             err_msg = str(err_msg)
 
+        # Use provided version or fall back to self.version
+        version_to_use = (
+            version
+            if version is not None
+            else (str(self.version) if hasattr(self, "version") else "")
+        )
+
         # Initialize the message with common fields
         message: Dict[str, Any] = {
-            "version": str(self.version) if hasattr(self, "version") else "",
+            "version": version_to_use,
             "path": str(self.stac_file) if hasattr(self, "stac_file") else "",
             "schema": (
                 [self._original_schema_paths.get(self.schema, self.schema)]
@@ -306,7 +316,7 @@ class StacValidate:
 
         # Initialize the error message with common fields
         error_message: Dict[str, Union[str, bool, List[str], Dict[str, Any]]] = {
-            "version": str(self.version) if self.version is not None else "",
+            "version": version_to_use,
             "path": str(self.stac_file) if self.stac_file is not None else "",
             "schema": schema_field,  # All schemas that were checked
             "valid_stac": False,
@@ -950,7 +960,25 @@ class StacValidate:
                 self.stac_content = fetch_and_parse_file(self.stac_file, self.headers)
 
             stac_type = get_stac_type(self.stac_content).upper()
-            self.version = self.stac_content["stac_version"]
+            version = self.stac_content.get("stac_version", "")
+
+            # Validate stac_version field comprehensively
+            version_valid, version_error_type, version_error_msg = (
+                validate_stac_version_field(self.stac_content)
+            )
+            if not version_valid:
+                message.update(
+                    self.create_err_msg(
+                        err_type=version_error_type,
+                        err_msg=version_error_msg,
+                        schema_uri="",
+                        version=version,  # Pass the version we extracted
+                    )
+                )
+                self.message.append(message)
+                return self.valid
+
+            self.version = version
 
             if self.core:
                 message = self.create_message(stac_type, "core")
