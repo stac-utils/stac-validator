@@ -25,7 +25,7 @@ NEW_VERSIONS = [
 ]
 
 
-def validate_stac_version_field(stac_content: Dict) -> tuple[bool, str, str]:
+def validate_stac_version_field(stac_content: Dict) -> Tuple[bool, str, str]:
     """Validate the stac_version field in STAC content.
 
     Args:
