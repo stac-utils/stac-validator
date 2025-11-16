@@ -28,7 +28,10 @@ dependencies = [
     "pyYAML>=6.0.1",
 ]
 optional-dependencies.dev = [
+    "black",
     "pytest",
+    "pytest-mypy",
+    "pre-commit",
     "requests-mock",
     "types-setuptools",
     "stac-pydantic>=3.3.0",
