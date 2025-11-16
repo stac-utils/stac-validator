@@ -32,7 +32,7 @@ def validate_stac_version_field(stac_content: Dict) -> Tuple[bool, str, str]:
         stac_content (dict): The STAC content dictionary.
 
     Returns:
-        tuple[bool, str, str]: (is_valid, error_type, error_message)
+        Tuple[bool, str, str]: (is_valid, error_type, error_message)
             - is_valid: True if the version is valid
             - error_type: Error type string if invalid, empty string if valid
             - error_message: Error message if invalid, empty string if valid
@@ -64,7 +64,7 @@ def validate_version_format(version: str) -> Tuple[bool, str]:
         version (str): The version string to validate.
 
     Returns:
-        tuple[bool, str]: (is_valid, error_message)
+        Tuple[bool, str]: (is_valid, error_message)
             - is_valid: True if the version format is valid
             - error_message: Description of the issue if invalid, empty string if valid
 
