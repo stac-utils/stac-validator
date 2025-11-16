@@ -1,8 +1,55 @@
 [build-system]
-requires = [
-    "requests",
-    "jsonschema",
-    "click",
-    "setuptools"
-]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "stac_validator"
+version = "3.10.2"
+description = "A package to validate STAC files"
+authors = [
+    {name = "James Banting"},
+    {name = "Jonathan Healy", email = "jonathan.d.healy@gmail.com"}
+]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+keywords = ["STAC", "validation", "raster"]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.32.3",
+    "jsonschema>=4.23.0",
+    "click>=8.1.8",
+    "referencing>=0.35.1",
+    "pyYAML>=6.0.1",
+]
+optional-dependencies.dev = [
+    "pytest",
+    "requests-mock",
+    "types-setuptools",
+    "stac-pydantic>=3.3.0"
+]
+optional-dependencies.pydantic = [
+    "stac-pydantic>=3.3.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/stac-utils/stac-validator"
+Repository = "https://github.com/stac-utils/stac-validator"
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[tool.setuptools]
+packages = ["stac_validator"]
+
+[project.scripts]
+stac-validator = "stac_validator.stac_validator:main"
+
+[tool.setuptools.package-data]
+stac_validator = ["*.yaml"]
