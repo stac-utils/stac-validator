@@ -2,7 +2,7 @@ import functools
 import json
 import os
 import ssl
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
@@ -57,7 +57,7 @@ def validate_stac_version_field(stac_content: Dict) -> tuple[bool, str, str]:
     return True, "", ""
 
 
-def validate_version_format(version: str) -> tuple[bool, str]:
+def validate_version_format(version: str) -> Tuple[bool, str]:
     """Validate that a STAC version string has the correct format.
 
     Args:
