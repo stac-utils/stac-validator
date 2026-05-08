@@ -46,6 +46,7 @@
     - [Legacy Validation](#legacy-validation)
   - [Batch Validation](#batch-validation)
   - [Fast Validation](#fast-validation)
+  - [API Server (FastAPI)](#api-server-fastapi)
   - [Python](#python)
 - [Schema Cache Settings](#schema-cache-settings)
 - [Performance Benchmarking](#performance-benchmarking)
@@ -667,6 +668,50 @@ else:
 | CI/CD pipelines (resource-rich) | `batch` | Parallelization, maximum throughput, consistent output |
 | Development/testing | `fast` | Instant feedback, detailed metrics, minimal overhead |
 | Complex validation rules | `validate` | Full control over validation options, recursive validation |
+
+#### API Server (FastAPI)
+
+The `fast` validation engine can be deployed as a high-performance REST API, ideal for validating STAC objects during ingestion or as part of a microservices architecture.
+
+**Running the Server (Local):**
+```bash
+# Requires fastapi and uvicorn
+pip install "stac-valid[server]" 
+python server/server.py
+```
+
+**Running the Server (Docker):**
+```bash
+# Pull and run the official GitHub container image
+docker run -p 8000:8000 ghcr.io/stac-utils/stac-validator:latest
+```
+
+**Validate via local script:**
+```bash
+python server/test_api.py sample_data/item.json
+```
+
+**Validate via curl:**
+```bash
+curl -X POST http://localhost:8000/validate \
+  -H "Content-Type: application/json" \
+  -d @sample_data/item.json
+```
+
+**Response Format:**
+The API returns a detailed JSON summary including performance metrics and error breakdowns:
+```json
+{
+  "path": "request_body",
+  "valid_stac": true,
+  "total_objects": 100,
+  "valid_objects": 100,
+  "invalid_objects": 0,
+  "setup_time_ms": 0.25,
+  "execution_time_ms": 25.4,
+  "errors": []
+}
+```
 
 ### Python
 
