@@ -4,11 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stac_valid"
-version = "4.2.2"
+version = "4.2.3"
 description = "A package to validate STAC files"
 authors = [
     {name = "James Banting"},
     {name = "Jonathan Healy", email = "jon@healy-hyperspatial.dev"}
+]
+maintainers = [
+    {name = "Jonathan Healy", email = "jon@healy-hyperspatial.dev"},
+    {name = "Healy Hyperspatial"}
 ]
 license = {text = "Apache-2.0"}
 classifiers = [

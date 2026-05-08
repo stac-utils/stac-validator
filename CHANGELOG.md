@@ -16,6 +16,12 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Updated
 
+## [v4.2.3] - 2026-05-08
+
+### Added
+
+- **STAC-Valid API & Containerization:** Added a FastAPI-based server for high-speed remote validation, an optimized `uv`-based Dockerfile, and a GitHub Actions workflow for automatic image publication to GHCR.
+
 ## [v4.2.2] - 2026-04-29
 
 ### Added
