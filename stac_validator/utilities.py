@@ -233,7 +233,7 @@ def _fetch_and_parse_schema_cache_clear() -> None:
     _schema_cache.cache_clear()
 
 
-_cached_schemas = set()
+_cached_schemas: set[str] = set()
 
 
 def _map_extension_url_to_local(url: str) -> str:
