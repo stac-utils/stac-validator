@@ -3,7 +3,7 @@ import json
 import logging
 import os
 import ssl
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Set, Tuple
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
@@ -233,7 +233,7 @@ def _fetch_and_parse_schema_cache_clear() -> None:
     _schema_cache.cache_clear()
 
 
-_cached_schemas: set[str] = set()
+_cached_schemas: Set[str] = set()
 
 
 def _map_extension_url_to_local(url: str) -> str:
