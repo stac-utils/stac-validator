@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -362,6 +363,8 @@ class FastValidator:
         """Recursively validate a STAC catalog/collection and all its children."""
         import json
 
+        sys.setrecursionlimit(10000)
+
         # Load the root STAC object
         try:
             if self.stac_file.startswith("http"):
@@ -382,7 +385,9 @@ class FastValidator:
 
         # Recursively validate the root and all children
         results = []
-        self._validate_recursive(root_data, root_path, results)
+        visited = set()
+        visited.add(root_path)
+        self._validate_recursive(root_data, root_path, results, visited)
 
         # Display results
         click.echo("\n" + "=" * 55)
@@ -433,7 +438,11 @@ class FastValidator:
         self.message = results
 
     def _validate_recursive(
-        self, data: Dict[str, Any], file_path: str, results: List[Dict]
+        self,
+        data: Dict[str, Any],
+        file_path: str,
+        results: List[Dict],
+        visited: Set[str],
     ):
         """Recursively validate a STAC object and its children."""
         import json
@@ -523,6 +532,10 @@ class FastValidator:
                 else:
                     child_path = os.path.normpath(os.path.join(base_dir, href))
 
+                if child_path in visited:
+                    continue
+                visited.add(child_path)
+
                 # Load and validate child
                 try:
                     if child_path.startswith("http"):
@@ -558,7 +571,10 @@ class FastValidator:
                                             )
                                         # Recursively validate the full collection
                                         self._validate_recursive(
-                                            collection_data, collection_url, results
+                                            collection_data,
+                                            collection_url,
+                                            results,
+                                            visited,
                                         )
                                     except Exception as e:
                                         results.append(
@@ -570,21 +586,30 @@ class FastValidator:
                                         )
                         else:
                             # Not a collections list, validate as normal
-                            self._validate_recursive(child_data, child_path, results)
+                            self._validate_recursive(
+                                child_data, child_path, results, visited
+                            )
                     # If this is an items endpoint (GeoJSON FeatureCollection), extract individual items
                     elif rel == "items" and is_remote and isinstance(child_data, dict):
                         features = child_data.get("features", [])
                         if features:
                             # This is an items list - process each item
                             for feature in features:
-                                # Recursively validate each item
-                                self._validate_recursive(feature, child_path, results)
+                                item_id = feature.get("id", "unknown")
+                                item_path = f"{child_path}#{item_id}"
+                                self._validate_recursive(
+                                    feature, item_path, results, visited
+                                )
                         else:
                             # Not an items list, validate as normal
-                            self._validate_recursive(child_data, child_path, results)
+                            self._validate_recursive(
+                                child_data, child_path, results, visited
+                            )
                     else:
                         # Recursively validate child
-                        self._validate_recursive(child_data, child_path, results)
+                        self._validate_recursive(
+                            child_data, child_path, results, visited
+                        )
                 except Exception as e:
                     results.append(
                         {
