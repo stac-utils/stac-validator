@@ -539,11 +539,20 @@ def batch(
     is_flag=True,
     help="Show full validation logs for all items. By default, a limited sample of item logs is shown.",
 )
-def fast(stac_file: str, quiet: bool, verbose: bool):
+@click.option(
+    "--recursive",
+    "-r",
+    is_flag=True,
+    help="Recursively validate all child catalogs, collections, and items.",
+)
+def fast(stac_file: str, quiet: bool, verbose: bool, recursive: bool):
     """High-speed validation using fastjsonschema and local caching."""
     try:
         fv = FastValidator(stac_file, quiet=quiet, verbose=verbose)
-        fv.run()
+        if recursive:
+            fv.run_recursive()
+        else:
+            fv.run()
         sys.exit(0 if fv.valid else 1)
     except RuntimeError as e:
         click.secho(f"\n🚨 FATAL ERROR: {e}", fg="red", bold=True)

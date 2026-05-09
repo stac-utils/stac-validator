@@ -357,3 +357,239 @@ class FastValidator:
         ]
 
         click.echo("\n")
+
+    def run_recursive(self):
+        """Recursively validate a STAC catalog/collection and all its children."""
+        import json
+
+        # Load the root STAC object
+        try:
+            if self.stac_file.startswith("http"):
+                req = urllib.request.Request(
+                    self.stac_file, headers={"User-Agent": "stac-fast-cli/5.0"}
+                )
+                with urllib.request.urlopen(req) as response:
+                    root_data = json.loads(response.read().decode("utf-8"))
+                root_path = self.stac_file
+            else:
+                with open(self.stac_file, "r") as f:
+                    root_data = json.load(f)
+                root_path = os.path.abspath(self.stac_file)
+        except Exception as e:
+            click.secho(f"❌ Error reading {self.stac_file}: {e}", fg="red", bold=True)
+            self.valid = False
+            return
+
+        # Recursively validate the root and all children
+        results = []
+        self._validate_recursive(root_data, root_path, results)
+
+        # Display results
+        click.echo("\n" + "=" * 55)
+        click.secho("📊 RECURSIVE VALIDATION SUMMARY", bold=True, fg="blue")
+        click.echo("=" * 55)
+
+        valid_count = sum(1 for r in results if r["valid_stac"])
+        invalid_count = len(results) - valid_count
+
+        click.echo(f"Total Objects Validated: {len(results)}")
+        click.echo(f"Valid Objects:           {valid_count}")
+        click.echo(f"Invalid Objects:         {invalid_count}")
+
+        if invalid_count > 0:
+            click.echo("\n" + "=" * 55)
+            click.secho("🚨 INVALID OBJECTS", bold=True, fg="red")
+            click.echo("=" * 55)
+
+            # Group errors by message
+            error_groups = {}
+            for result in results:
+                if not result["valid_stac"]:
+                    error_msg = result.get("error_message", "Unknown error")
+                    if error_msg not in error_groups:
+                        error_groups[error_msg] = []
+                    # Store both path and ID for better identification
+                    object_id = result.get("id", "unknown")
+                    error_groups[error_msg].append(
+                        {"path": result["path"], "id": object_id}
+                    )
+
+            # Display grouped errors
+            for error_msg, items in error_groups.items():
+                click.echo(f"\n❌ {error_msg}")
+                click.echo(f"   Affected Objects: {len(items)}")
+                # Show first 5 examples
+                for item in items[:5]:
+                    item_id = item["id"] if item["id"] != "unknown" else ""
+                    if item_id:
+                        click.echo(f"   - {item['path']} (ID: {item_id})")
+                    else:
+                        click.echo(f"   - {item['path']}")
+                if len(items) > 5:
+                    click.echo(f"   ... and {len(items) - 5} more")
+
+        # Set overall validity
+        self.valid = invalid_count == 0
+        self.message = results
+
+    def _validate_recursive(
+        self, data: Dict[str, Any], file_path: str, results: List[Dict]
+    ):
+        """Recursively validate a STAC object and its children."""
+        import json
+
+        # Determine STAC type - could be "Catalog", "Collection", or "Feature" (Item)
+        raw_type = data.get("type", "unknown")
+        if raw_type == "Feature":
+            stac_type = "item"
+        elif raw_type == "Collection":
+            stac_type = "collection"
+        elif raw_type == "Catalog":
+            stac_type = "catalog"
+        else:
+            stac_type = raw_type.lower() if raw_type else "unknown"
+
+        stac_version = data.get("stac_version", "unknown")
+
+        # Validate current object using get_validator (same as run() does)
+        # Skip validation for STAC API responses (they have conformsTo instead of stac_extensions)
+        is_stac_api = "conformsTo" in data
+
+        if is_stac_api:
+            # STAC API catalogs don't validate against STAC schemas, just mark as valid
+            is_valid = True
+            error_msg = None
+        else:
+            try:
+                extensions = data.get("stac_extensions", [])
+                validator, _ = get_validator(stac_type, stac_version, extensions)
+                validator(data)
+                is_valid = True
+                error_msg = None
+            except fastjsonschema.JsonSchemaValueException as e:
+                is_valid = False
+                error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
+            except Exception as e:
+                is_valid = False
+                error_msg = str(e)
+
+        # Create result for this object
+        # Extract ID if available
+        object_id = data.get("id", "unknown")
+
+        result = {
+            "path": file_path,
+            "id": object_id,
+            "valid_stac": is_valid,
+            "stac_type": stac_type,
+            "stac_version": stac_version,
+        }
+        if error_msg:
+            result["error_message"] = error_msg
+
+        results.append(result)
+
+        # Process child links
+        base_dir = (
+            os.path.dirname(file_path)
+            if not file_path.startswith("http")
+            else file_path.rsplit("/", 1)[0]
+        )
+        links = data.get("links", [])
+
+        # For remote URLs, look for "data" links (collections endpoint) or "child"/"item" links
+        # For local files, look for "child" and "item" links
+        is_remote = file_path.startswith("http")
+
+        for link in links:
+            rel = link.get("rel", "")
+            href = link.get("href", "")
+
+            # Determine if we should follow this link
+            should_follow = False
+            if is_remote:
+                # For remote catalogs, follow "data" (collections), "child", "item", and "items" links
+                if rel in ["data", "child", "item", "items"] and href:
+                    should_follow = True
+            else:
+                # For local catalogs, follow "child" and "item" links
+                if rel in ["child", "item"] and href:
+                    should_follow = True
+
+            if should_follow:
+                # Resolve relative path
+                if href.startswith("http"):
+                    child_path = href
+                else:
+                    child_path = os.path.normpath(os.path.join(base_dir, href))
+
+                # Load and validate child
+                try:
+                    if child_path.startswith("http"):
+                        req = urllib.request.Request(
+                            child_path, headers={"User-Agent": "stac-fast-cli/5.0"}
+                        )
+                        with urllib.request.urlopen(req) as response:
+                            child_data = json.loads(response.read().decode("utf-8"))
+                    else:
+                        with open(child_path, "r") as f:
+                            child_data = json.load(f)
+
+                    # If this is a collections list endpoint, extract individual collections
+                    if rel == "data" and is_remote and isinstance(child_data, dict):
+                        collections = child_data.get("collections", [])
+                        if collections:
+                            # This is a collections list - process each collection
+                            for collection in collections:
+                                collection_id = collection.get("id")
+                                if collection_id:
+                                    # Build URL to individual collection
+                                    collection_url = (
+                                        f"{child_path.rstrip('/')}/{collection_id}"
+                                    )
+                                    try:
+                                        req = urllib.request.Request(
+                                            collection_url,
+                                            headers={"User-Agent": "stac-fast-cli/5.0"},
+                                        )
+                                        with urllib.request.urlopen(req) as response:
+                                            collection_data = json.loads(
+                                                response.read().decode("utf-8")
+                                            )
+                                        # Recursively validate the full collection
+                                        self._validate_recursive(
+                                            collection_data, collection_url, results
+                                        )
+                                    except Exception as e:
+                                        results.append(
+                                            {
+                                                "path": collection_url,
+                                                "valid_stac": False,
+                                                "error_message": f"Failed to load: {str(e)}",
+                                            }
+                                        )
+                        else:
+                            # Not a collections list, validate as normal
+                            self._validate_recursive(child_data, child_path, results)
+                    # If this is an items endpoint (GeoJSON FeatureCollection), extract individual items
+                    elif rel == "items" and is_remote and isinstance(child_data, dict):
+                        features = child_data.get("features", [])
+                        if features:
+                            # This is an items list - process each item
+                            for feature in features:
+                                # Recursively validate each item
+                                self._validate_recursive(feature, child_path, results)
+                        else:
+                            # Not an items list, validate as normal
+                            self._validate_recursive(child_data, child_path, results)
+                    else:
+                        # Recursively validate child
+                        self._validate_recursive(child_data, child_path, results)
+                except Exception as e:
+                    results.append(
+                        {
+                            "path": child_path,
+                            "valid_stac": False,
+                            "error_message": f"Failed to load: {str(e)}",
+                        }
+                    )
