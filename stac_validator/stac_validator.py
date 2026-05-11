@@ -545,11 +545,19 @@ def batch(
     is_flag=True,
     help="Recursively validate all child catalogs, collections, and items.",
 )
-def fast(stac_file: str, quiet: bool, verbose: bool, recursive: bool):
+@click.option(
+    "--api",
+    "-a",
+    is_flag=True,
+    help="Validate a STAC API catalog recursively (follows data, child, item, and items links).",
+)
+def fast(stac_file: str, quiet: bool, verbose: bool, recursive: bool, api: bool):
     """High-speed validation using fastjsonschema and local caching."""
     try:
         fv = FastValidator(stac_file, quiet=quiet, verbose=verbose)
-        if recursive:
+        if api:
+            fv.run_api()
+        elif recursive:
             fv.run_recursive()
         else:
             fv.run()
