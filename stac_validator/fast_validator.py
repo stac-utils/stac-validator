@@ -214,17 +214,19 @@ class FastValidator:
 
     def _load_collection_documents(
         self, collection_urls: List[str]
-    ) -> List[tuple[str, Optional[Dict[str, Any]], Optional[Exception]]]:
+    ) -> List[Tuple[str, Optional[Dict[str, Any]], Optional[Exception]]]:
         if len(collection_urls) <= 1:
-            results = []
+            results_single: List[
+                Tuple[str, Optional[Dict[str, Any]], Optional[Exception]]
+            ] = []
             for collection_url in collection_urls:
                 try:
-                    results.append(
+                    results_single.append(
                         (collection_url, self._load_json_resource(collection_url), None)
                     )
                 except Exception as exc:
-                    results.append((collection_url, None, exc))
-            return results
+                    results_single.append((collection_url, None, exc))
+            return results_single
 
         with ThreadPoolExecutor(
             max_workers=self._get_parallel_fetch_workers(len(collection_urls))
@@ -234,14 +236,16 @@ class FastValidator:
                 for collection_url in collection_urls
             ]
 
-            results = []
+            results_parallel: List[
+                Tuple[str, Optional[Dict[str, Any]], Optional[Exception]]
+            ] = []
             for collection_url, future in zip(collection_urls, futures):
                 try:
-                    results.append((collection_url, future.result(), None))
+                    results_parallel.append((collection_url, future.result(), None))
                 except Exception as exc:
-                    results.append((collection_url, None, exc))
+                    results_parallel.append((collection_url, None, exc))
 
-        return results
+        return results_parallel
 
     def _prefetch_api_collection_resources(
         self, collection_url: str
@@ -278,12 +282,19 @@ class FastValidator:
         self, collection_urls: List[str]
     ) -> List[Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]]:
         if len(collection_urls) <= 1:
-            return [self._prefetch_api_collection_resources(collection_url) for collection_url in collection_urls]
+            return [
+                self._prefetch_api_collection_resources(collection_url)
+                for collection_url in collection_urls
+            ]
 
         with ThreadPoolExecutor(
             max_workers=self._get_parallel_fetch_workers(len(collection_urls))
         ) as executor:
-            futures: List[Future[Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]]] = [
+            futures: List[
+                Future[
+                    Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]
+                ]
+            ] = [
                 executor.submit(self._prefetch_api_collection_resources, collection_url)
                 for collection_url in collection_urls
             ]
@@ -627,7 +638,9 @@ class FastValidator:
 
         if not self.quiet:
             click.secho("🚀 Starting STAC API validation...", fg="blue", bold=True)
-            click.secho("⏳ Fetching API root and discovery links...", fg="cyan", dim=True)
+            click.secho(
+                "⏳ Fetching API root and discovery links...", fg="cyan", dim=True
+            )
 
         # Load the root STAC API object
         try:
@@ -720,7 +733,7 @@ class FastValidator:
         results: List[Dict],
         visited: Set[str],
         is_api: bool = False,
-        collection_id: str = None,
+        collection_id: Optional[str] = None,
         prefetched_resources: Optional[Dict[str, Dict[str, Any]]] = None,
     ):
         """Recursively validate a STAC object and its children.
@@ -733,8 +746,6 @@ class FastValidator:
             is_api: If True, follow API-specific links (data, items, next); if False, follow catalog links (child, item)
             collection_id: Optional collection ID for items from FeatureCollections
         """
-        import json
-
         if self._limit_reached(results):
             return
 
@@ -897,7 +908,11 @@ class FastValidator:
                                 remaining = max(1, self.limit - len(results))
                                 collection_urls = collection_urls[:remaining]
 
-                            for collection_url, prefetched_collection_resources, load_error in self._prefetch_api_collection_resources_batch(
+                            for (
+                                collection_url,
+                                prefetched_collection_resources,
+                                load_error,
+                            ) in self._prefetch_api_collection_resources_batch(
                                 collection_urls
                             ):
                                 if self._limit_reached(results):
@@ -914,6 +929,8 @@ class FastValidator:
                                     continue
 
                                 visited.add(collection_url)
+                                if prefetched_collection_resources is None:
+                                    continue
                                 collection_data = prefetched_collection_resources[
                                     collection_url
                                 ]
@@ -936,12 +953,12 @@ class FastValidator:
                         features = child_data.get("features")
 
                         # Extract collection ID from URL (e.g., /collections/{id}/items)
-                        collection_id = None
+                        collection_id_from_items: Optional[str] = None
                         if "/collections/" in child_path:
                             parts = child_path.split("/collections/")
                             if len(parts) > 1:
                                 collection_parts = parts[1].split("/items")
-                                collection_id = (
+                                collection_id_from_items = (
                                     collection_parts[0] if collection_parts else None
                                 )
 
@@ -959,7 +976,7 @@ class FastValidator:
                                     results,
                                     visited,
                                     is_api,
-                                    collection_id,
+                                    collection_id_from_items,
                                 )
                     else:
                         # Recursively validate child

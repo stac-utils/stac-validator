@@ -282,7 +282,9 @@ class TestFastValidatorRecursiveAndApi:
         assert loaded[2][1] == {"id": "three"}
         assert loaded[2][2] is None
 
-    def test_prefetch_api_collection_resources_batch_prefetches_items(self, monkeypatch):
+    def test_prefetch_api_collection_resources_batch_prefetches_items(
+        self, monkeypatch
+    ):
         """Test API collection prefetch preserves order and includes items pages."""
 
         payloads = {
@@ -343,7 +345,9 @@ class TestFastValidatorRecursiveAndApi:
                 "id": "api-root",
                 "type": "Catalog",
                 "description": "api root",
-                "links": [{"rel": "data", "href": "https://api.example.com/collections"}],
+                "links": [
+                    {"rel": "data", "href": "https://api.example.com/collections"}
+                ],
             },
             "https://api.example.com/collections": {
                 "collections": [
@@ -493,7 +497,9 @@ class TestFastValidatorRecursiveAndApi:
                 "id": "api-root",
                 "type": "Catalog",
                 "description": "api root",
-                "links": [{"rel": "data", "href": "https://api.example.com/collections"}],
+                "links": [
+                    {"rel": "data", "href": "https://api.example.com/collections"}
+                ],
             },
             "https://api.example.com/collections": {
                 "collections": [{"id": "demo-collection"}],
@@ -524,7 +530,12 @@ class TestFastValidatorRecursiveAndApi:
                         "id": "item-1",
                         "geometry": None,
                         "properties": {"datetime": "2023-01-01T00:00:00Z"},
-                        "links": [{"rel": "self", "href": "https://api.example.com/items/item-1"}],
+                        "links": [
+                            {
+                                "rel": "self",
+                                "href": "https://api.example.com/items/item-1",
+                            }
+                        ],
                         "assets": {},
                     }
                 ],
@@ -573,7 +584,9 @@ class TestFastValidatorRecursiveAndApi:
                 "id": "api-root",
                 "type": "Catalog",
                 "description": "api root",
-                "links": [{"rel": "data", "href": "https://api.example.com/collections"}],
+                "links": [
+                    {"rel": "data", "href": "https://api.example.com/collections"}
+                ],
             },
             "https://api.example.com/collections": {
                 "collections": [{"id": "demo-collection"}],
@@ -634,7 +647,9 @@ class TestFastValidatorRecursiveAndApi:
                 "id": "api-root",
                 "type": "Catalog",
                 "description": "api root",
-                "links": [{"rel": "data", "href": "https://api.example.com/collections"}],
+                "links": [
+                    {"rel": "data", "href": "https://api.example.com/collections"}
+                ],
             },
             "https://api.example.com/collections": {
                 "collections": [{"id": "demo-collection"}],
@@ -754,7 +769,9 @@ class TestFastValidatorRefResolutionFallback:
                 "id": "api-root",
                 "type": "Catalog",
                 "description": "api root",
-                "links": [{"rel": "data", "href": "https://api.example.com/collections"}],
+                "links": [
+                    {"rel": "data", "href": "https://api.example.com/collections"}
+                ],
             },
             "https://api.example.com/collections": {
                 "collections": [{"id": "demo-collection"}],
