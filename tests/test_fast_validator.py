@@ -248,6 +248,74 @@ class TestFastValidatorOptions:
         assert msg["valid_objects"] == 5
 
 
+class TestFastValidatorRunDict:
+    """Test in-memory dictionary validation entrypoint."""
+
+    def test_run_dict_valid_item(self):
+        payload = {
+            "stac_version": "1.0.0",
+            "type": "Feature",
+            "id": "test-item",
+            "geometry": None,
+            "properties": {"datetime": "2023-01-01T00:00:00Z"},
+            "links": [{"rel": "self", "href": "http://example.com"}],
+            "assets": {},
+        }
+
+        fv = FastValidator("", quiet=True)
+        fv.run_dict(payload)
+
+        assert fv.valid is True
+        assert fv.message[0]["path"] == "in-memory"
+        assert fv.message[0]["total_objects"] == 1
+        assert fv.message[0]["valid_objects"] == 1
+        assert fv.message[0]["invalid_objects"] == 0
+
+    def test_run_dict_invalid_item(self):
+        payload = {
+            "stac_version": "1.0.0",
+            "type": "Feature",
+            "geometry": None,
+            "properties": {"datetime": "2023-01-01T00:00:00Z"},
+            "links": [],
+            "assets": {},
+        }
+
+        fv = FastValidator("", quiet=True)
+        fv.run_dict(payload)
+
+        assert fv.valid is False
+        assert fv.message[0]["total_objects"] == 1
+        assert fv.message[0]["valid_objects"] == 0
+        assert fv.message[0]["invalid_objects"] == 1
+        assert len(fv.message[0]["errors"]) > 0
+
+    def test_run_dict_feature_collection_limit(self):
+        payload = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "stac_version": "1.0.0",
+                    "type": "Feature",
+                    "id": f"item-{i}",
+                    "geometry": None,
+                    "properties": {"datetime": "2023-01-01T00:00:00Z"},
+                    "links": [{"rel": "self", "href": "http://example.com"}],
+                    "assets": {},
+                }
+                for i in range(5)
+            ],
+        }
+
+        fv = FastValidator("", quiet=True, limit=2)
+        fv.run_dict(payload)
+
+        assert fv.valid is True
+        assert fv.message[0]["input_objects"] == 5
+        assert fv.message[0]["total_objects"] == 2
+        assert fv.message[0]["valid_objects"] == 2
+
+
 class TestFastValidatorRecursiveAndApi:
     """Test recursive and API traversal behavior."""
 

@@ -551,6 +551,168 @@ class FastValidator:
 
         click.echo("\n")
 
+    def run_dict(self, stac_dict: Dict[str, Any], source_name: str = "in-memory"):
+        """Validate a native Python dictionary directly without file/network loading."""
+        if not isinstance(stac_dict, dict):
+            self.valid = False
+            self.message = [
+                {
+                    "path": source_name,
+                    "valid_stac": False,
+                    "error_message": "Input to run_dict must be a dictionary.",
+                }
+            ]
+            return
+
+        self.stac_file = source_name
+
+        data = dict(stac_dict)
+        obj_type = data.get("type", "")
+        items_to_validate: List[Dict[str, Any]] = []
+
+        if obj_type == "FeatureCollection":
+            features = data.get("features", [])
+            items_to_validate = features if isinstance(features, list) else []
+        elif obj_type in ["Feature", "Collection"]:
+            items_to_validate = [data]
+        elif obj_type == "Catalog" or ("id" in data and "description" in data):
+            data["type"] = "Catalog"
+            items_to_validate = [data]
+        else:
+            self.valid = False
+            if "type" in data:
+                error_msg = (
+                    f"Unknown JSON type. Unsupported 'type' value: {obj_type!r}."
+                )
+            else:
+                error_msg = "Unknown JSON type. Missing 'type' field."
+
+            self.message = [
+                {
+                    "path": source_name,
+                    "valid_stac": False,
+                    "error_message": error_msg,
+                }
+            ]
+            return
+
+        available_objects = len(items_to_validate)
+        if self.limit is not None:
+            items_to_validate = items_to_validate[: self.limit]
+
+        total_setup_ms = 0.0
+        total_exec_ms = 0.0
+        valid_count = 0
+        invalid_count = 0
+        error_registry: Dict[str, List[str]] = {}
+        stac_versions_found: Set[str] = set()
+        schemas_checked: Set[str] = set()
+
+        self.valid = True
+
+        for index, item in enumerate(items_to_validate):
+            item_id = item.get("id", f"unknown-{index}")
+            stac_version = item.get("stac_version", "1.0.0")
+            extensions = item.get("stac_extensions", [])
+
+            stac_versions_found.add(stac_version)
+
+            actual_type = (
+                "Item" if item.get("type") == "Feature" else item.get("type", "Catalog")
+            )
+
+            try:
+                base_schema = self._get_base_schema_uri(actual_type, stac_version)
+            except ValueError:
+                base_schema = ""
+
+            if base_schema:
+                schemas_checked.add(base_schema)
+
+            for ext in extensions:
+                schemas_checked.add(ext)
+
+            t0 = time.perf_counter()
+            try:
+                validator, _ = get_validator(actual_type, stac_version, extensions)
+            except Exception as e:
+                invalid_count += 1
+                self.valid = False
+                error_msg = str(e)
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
+                continue
+            t1 = time.perf_counter()
+            total_setup_ms += (t1 - t0) * 1000
+
+            t2 = time.perf_counter()
+            try:
+                validator(item)
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                valid_count += 1
+            except fastjsonschema.JsonSchemaValueException as e:
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                invalid_count += 1
+                self.valid = False
+                error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
+                if "disallowed definition" in error_msg and "collection" in error_msg:
+                    error_msg = "STAC Spec Violation: Missing {'rel': 'collection'} in links array."
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
+            except Exception as e:
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                if self._is_ref_resolution_error(e):
+                    try:
+                        self._validate_with_jsonschema_fallback(
+                            item,
+                            actual_type,
+                            stac_version,
+                            extensions,
+                        )
+                        valid_count += 1
+                    except Exception as fallback_err:
+                        invalid_count += 1
+                        self.valid = False
+                        error_msg = str(fallback_err)
+                        if error_msg not in error_registry:
+                            error_registry[error_msg] = []
+                        error_registry[error_msg].append(item_id)
+                else:
+                    invalid_count += 1
+                    self.valid = False
+                    error_msg = str(e)
+                    if error_msg not in error_registry:
+                        error_registry[error_msg] = []
+                    error_registry[error_msg].append(item_id)
+
+        self.message = [
+            {
+                "path": source_name,
+                "valid_stac": self.valid,
+                "stac_versions": sorted(list(stac_versions_found)),
+                "schemas_checked": sorted(list(schemas_checked)),
+                "total_objects": len(items_to_validate),
+                "valid_objects": valid_count,
+                "invalid_objects": invalid_count,
+                "setup_time_ms": total_setup_ms,
+                "execution_time_ms": total_exec_ms,
+                "input_objects": available_objects,
+                "errors": [
+                    {
+                        "error_message": err_msg,
+                        "affected_items": affected_ids,
+                        "count": len(affected_ids),
+                    }
+                    for err_msg, affected_ids in error_registry.items()
+                ],
+            }
+        ]
+
     def run_recursive(self):
         """Recursively validate a local STAC catalog/collection and all its children."""
         sys.setrecursionlimit(10000)
