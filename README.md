@@ -311,6 +311,12 @@ Options:
   -q, --quiet    Suppress individual item logs.
   -v, --verbose  Show full validation logs for all items. By default, only
                  invalid items are shown.
+    -r, --recursive  Recursively validate all child catalogs, collections,
+                                     and items.
+    -a, --api        Validate a STAC API catalog recursively (follows data,
+                                     child, item, and items links).
+    --limit INTEGER RANGE  Limit number of STAC objects to validate.
+                                                 [x>=1]
   --help         Show this message and exit.
 ```
 
@@ -513,6 +519,8 @@ The `fast` command provides ultra-high-speed validation using `fastjsonschema` w
 - **Multi-tier caching:** RAM → Disk → Network with automatic fallback
 - **Local schema storage:** Schemas cached locally under `local_schemas/.schemas` directory for instant reuse
 - **Automatic detection:** Detects STAC type (Item, Collection, Catalog, FeatureCollection) automatically
+- **Recursive traversal:** Supports `--recursive` for local catalog/collection graphs
+- **STAC API traversal:** Supports `--api` to follow STAC API data, child, item, and items links
 - **Detailed metrics:** Shows setup time, execution time, and cache hit status for each item
 - **Error grouping:** Groups validation errors by type and shows affected items
 
@@ -541,8 +549,17 @@ $ stac-validator fast item.json --quiet
 # Show detailed output for all items (default shows first 5)
 $ stac-validator fast collection.json --verbose
 
+# Validate only first 25 objects in a large FeatureCollection
+$ stac-validator fast collection.json --limit 25
+
+# Recursively validate a local catalog graph
+$ stac-validator fast catalog.json --recursive
+
+# Recursively validate a STAC API root endpoint
+$ stac-validator fast https://api.example.com --api
+
 # Combine options
-$ stac-validator fast collection.json --verbose --quiet  # Quiet takes precedence
+$ stac-validator fast collection.json --verbose --limit 50
 ```
 
 **Example Output**
@@ -867,6 +884,10 @@ import json
 # Validate a FeatureCollection or single STAC object
 fv = FastValidator("large_collection.json", quiet=True)
 fv.run()
+
+# Optionally cap validation to the first N objects
+fv_limited = FastValidator("large_collection.json", quiet=True, limit=100)
+fv_limited.run()
 
 # Access validation results via the message attribute
 print(json.dumps(fv.message, indent=2))

@@ -52,3 +52,19 @@ def test_cli_schema_cache_size_option():
         ],
         check=True,
     )
+
+
+def test_fast_api_requires_url_scheme():
+    result = subprocess.run(
+        [
+            "stac-validator",
+            "fast",
+            "--api",
+            "stac.opensearch.dataspace.copernicus.eu/v1",
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 1
+    assert "Invalid STAC API URL" in (result.stdout + result.stderr)

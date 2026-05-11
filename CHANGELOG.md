@@ -8,6 +8,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+- support for --limit option for `fast` command to cap the number of STAC objects validated
+
 ### Changed
 
 ### Fixed
@@ -15,6 +17,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Removed
 
 ### Updated
+
+## [v4.4.0] - 2026-05-11
+
+### Added
+
+- support for --recursive option for `fast` command to validate static STAC catalogs
+- support for --api option for `fast` command to validate STAC API endpoints
 
 ## [v4.3.0] - 2026-05-08
 

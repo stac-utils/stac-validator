@@ -3,13 +3,17 @@ import json
 import os
 import sys
 import time
-import urllib.error
-import urllib.request
+from concurrent.futures import Future, ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import click
 import fastjsonschema  # type: ignore
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+from .utilities import validate_with_ref_resolver
 
 # --- Caches & Config ---
 SCHEMA_CACHE: Dict[str, Any] = {}
@@ -21,6 +25,22 @@ LOCAL_SCHEMA_DIR = os.path.join(
     "local_schemas",
     ".schemas",
 )
+
+# Shared HTTP session with keep-alive connection pooling and retries for crawler workloads.
+HTTP_SESSION = requests.Session()
+_http_retries = Retry(
+    total=3,
+    backoff_factor=0.2,
+    status_forcelist=[500, 502, 503, 504],
+)
+_http_adapter = HTTPAdapter(
+    pool_connections=100,
+    pool_maxsize=100,
+    max_retries=_http_retries,
+)
+HTTP_SESSION.mount("http://", _http_adapter)
+HTTP_SESSION.mount("https://", _http_adapter)
+HTTP_SESSION.headers.update({"User-Agent": "stac-fast-cli/5.0"})
 
 
 def get_local_path_for_uri(uri: str) -> str:
@@ -51,11 +71,11 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
     # 3. Network Fetch
     if not QUIET_MODE:
         click.secho(f"    [Network] Fetching: {uri}", fg="yellow", dim=True)
-    req = urllib.request.Request(uri, headers={"User-Agent": "stac-fast-cli/5.0"})
     try:
-        with urllib.request.urlopen(req) as response:
-            schema_dict = json.loads(response.read().decode("utf-8"))
-    except urllib.error.URLError as e:
+        response = HTTP_SESSION.get(uri, timeout=10)
+        response.raise_for_status()
+        schema_dict = response.json()
+    except requests.RequestException as e:
         raise RuntimeError(f"Could not resolve schema: {uri}. Reason: {e}")
 
     # 4. Save to Disk Cache
@@ -129,14 +149,145 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
 
 
 class FastValidator:
-    def __init__(self, stac_file: str, quiet: bool = False, verbose: bool = False):
+    def __init__(
+        self,
+        stac_file: str,
+        quiet: bool = False,
+        verbose: bool = False,
+        limit: Optional[int] = None,
+    ):
         global QUIET_MODE
         self.stac_file = stac_file
         self.quiet = quiet
         self.valid = True
         self.verbose = verbose
+        self.limit = limit
         self.message: List[Dict[str, Any]] = []
         QUIET_MODE = quiet
+
+    def _limit_reached(self, results: List[Dict]) -> bool:
+        return self.limit is not None and len(results) >= self.limit
+
+    def _get_base_schema_uri(self, stac_type: str, stac_version: str) -> str:
+        stac_type_lower = stac_type.lower()
+        if stac_type_lower in ["item", "feature"]:
+            return f"https://schemas.stacspec.org/v{stac_version}/item-spec/json-schema/item.json"
+        if stac_type_lower == "collection":
+            return f"https://schemas.stacspec.org/v{stac_version}/collection-spec/json-schema/collection.json"
+        if stac_type_lower == "catalog":
+            return f"https://schemas.stacspec.org/v{stac_version}/catalog-spec/json-schema/catalog.json"
+        raise ValueError(f"Unknown STAC type for validation: {stac_type}")
+
+    def _is_ref_resolution_error(self, err: Exception) -> bool:
+        err_text = str(err)
+        err_type = err.__class__.__name__
+        return (
+            "Unresolvable JSON pointer" in err_text
+            or "RefResolutionError" in err_type
+            or "Unresolvable" in err_type
+        )
+
+    def _validate_with_jsonschema_fallback(
+        self,
+        item: Dict[str, Any],
+        stac_type: str,
+        stac_version: str,
+        extensions: List[str],
+    ) -> None:
+        """Fallback validation path using the main jsonschema resolver utility."""
+        base_schema = self._get_base_schema_uri(stac_type, stac_version)
+        validate_with_ref_resolver(base_schema, item)
+        for ext_schema in extensions:
+            validate_with_ref_resolver(ext_schema, item)
+
+    def _load_json_resource(self, resource_path: str) -> Dict[str, Any]:
+        if resource_path.startswith("http"):
+            response = HTTP_SESSION.get(resource_path, timeout=15)
+            response.raise_for_status()
+            return response.json()
+
+        with open(resource_path, "r") as f:
+            return json.load(f)
+
+    def _get_parallel_fetch_workers(self, item_count: int) -> int:
+        return max(1, min(8, item_count))
+
+    def _load_collection_documents(
+        self, collection_urls: List[str]
+    ) -> List[tuple[str, Optional[Dict[str, Any]], Optional[Exception]]]:
+        if len(collection_urls) <= 1:
+            results = []
+            for collection_url in collection_urls:
+                try:
+                    results.append(
+                        (collection_url, self._load_json_resource(collection_url), None)
+                    )
+                except Exception as exc:
+                    results.append((collection_url, None, exc))
+            return results
+
+        with ThreadPoolExecutor(
+            max_workers=self._get_parallel_fetch_workers(len(collection_urls))
+        ) as executor:
+            futures: List[Future[Dict[str, Any]]] = [
+                executor.submit(self._load_json_resource, collection_url)
+                for collection_url in collection_urls
+            ]
+
+            results = []
+            for collection_url, future in zip(collection_urls, futures):
+                try:
+                    results.append((collection_url, future.result(), None))
+                except Exception as exc:
+                    results.append((collection_url, None, exc))
+
+        return results
+
+    def _prefetch_api_collection_resources(
+        self, collection_url: str
+    ) -> Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]:
+        try:
+            collection_data = self._load_json_resource(collection_url)
+        except Exception as exc:
+            return collection_url, None, exc
+
+        resources = {collection_url: collection_data}
+        base_dir = collection_url.rsplit("/", 1)[0]
+
+        for link in collection_data.get("links", []):
+            if link.get("rel") != "items":
+                continue
+
+            href = link.get("href", "")
+            if not href:
+                continue
+
+            if href.startswith("http"):
+                items_path = href
+            else:
+                items_path = os.path.normpath(os.path.join(base_dir, href))
+
+            try:
+                resources[items_path] = self._load_json_resource(items_path)
+            except Exception:
+                pass
+
+        return collection_url, resources, None
+
+    def _prefetch_api_collection_resources_batch(
+        self, collection_urls: List[str]
+    ) -> List[Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]]:
+        if len(collection_urls) <= 1:
+            return [self._prefetch_api_collection_resources(collection_url) for collection_url in collection_urls]
+
+        with ThreadPoolExecutor(
+            max_workers=self._get_parallel_fetch_workers(len(collection_urls))
+        ) as executor:
+            futures: List[Future[Tuple[str, Optional[Dict[str, Dict[str, Any]]], Optional[Exception]]]] = [
+                executor.submit(self._prefetch_api_collection_resources, collection_url)
+                for collection_url in collection_urls
+            ]
+            return [future.result() for future in futures]
 
     def run(self):
         """Universal high-speed STAC Validator (Items, Collections, Catalogs, FeatureCollections)"""
@@ -144,15 +295,7 @@ class FastValidator:
             click.secho(f"\n📂 Loading: {self.stac_file}", fg="blue", bold=True)
 
         try:
-            if self.stac_file.startswith("http"):
-                req = urllib.request.Request(
-                    self.stac_file, headers={"User-Agent": "stac-fast-cli/5.0"}
-                )
-                with urllib.request.urlopen(req) as response:
-                    data = json.loads(response.read().decode("utf-8"))
-            else:
-                with open(self.stac_file, "r") as f:
-                    data = json.load(f)
+            data = self._load_json_resource(self.stac_file)
         except Exception as e:
             click.secho(f"❌ Error reading {self.stac_file}: {e}", fg="red", bold=True)
             self.valid = False
@@ -198,6 +341,15 @@ class FastValidator:
             return
 
         # --- Metrics ---
+        available_objects = len(items_to_validate)
+        if self.limit is not None:
+            items_to_validate = items_to_validate[: self.limit]
+            if not self.quiet and available_objects > self.limit:
+                click.secho(
+                    f"🔢 Limiting validation to first {self.limit} objects (out of {available_objects}).",
+                    fg="yellow",
+                )
+
         total_setup_ms = 0.0
         total_exec_ms = 0.0
         valid_count = 0
@@ -221,14 +373,9 @@ class FastValidator:
             )
 
             # Build schema URI for this object type
-            stac_type_lower = actual_type.lower()
-            if stac_type_lower in ["item", "feature"]:
-                base_schema = f"https://schemas.stacspec.org/v{stac_version}/item-spec/json-schema/item.json"
-            elif stac_type_lower == "collection":
-                base_schema = f"https://schemas.stacspec.org/v{stac_version}/collection-spec/json-schema/collection.json"
-            elif stac_type_lower == "catalog":
-                base_schema = f"https://schemas.stacspec.org/v{stac_version}/catalog-spec/json-schema/catalog.json"
-            else:
+            try:
+                base_schema = self._get_base_schema_uri(actual_type, stac_version)
+            except ValueError:
                 base_schema = ""
 
             if base_schema:
@@ -286,6 +433,38 @@ class FastValidator:
                     error_registry[error_msg] = []
                 error_registry[error_msg].append(item_id)
                 status_text = click.style("❌ INVALID", fg="red")
+
+            except Exception as e:
+                t3 = time.perf_counter()
+                exec_time = (t3 - t2) * 1000
+                total_exec_ms += exec_time
+
+                if self._is_ref_resolution_error(e):
+                    try:
+                        self._validate_with_jsonschema_fallback(
+                            item,
+                            actual_type,
+                            stac_version,
+                            extensions,
+                        )
+                        valid_count += 1
+                        status_text = click.style("✅ VALID", fg="green")
+                    except Exception as fallback_err:
+                        invalid_count += 1
+                        self.valid = False
+                        error_msg = str(fallback_err)
+                        if error_msg not in error_registry:
+                            error_registry[error_msg] = []
+                        error_registry[error_msg].append(item_id)
+                        status_text = click.style("❌ INVALID", fg="red")
+                else:
+                    invalid_count += 1
+                    self.valid = False
+                    error_msg = str(e)
+                    if error_msg not in error_registry:
+                        error_registry[error_msg] = []
+                    error_registry[error_msg].append(item_id)
+                    status_text = click.style("❌ INVALID", fg="red")
 
             if not self.quiet:
                 if self.verbose or index < 5 or (len(items_to_validate) < 20):
@@ -363,23 +542,17 @@ class FastValidator:
 
     def run_recursive(self):
         """Recursively validate a local STAC catalog/collection and all its children."""
-        import json
-
         sys.setrecursionlimit(10000)
+        start_time = time.perf_counter()
 
         # Load the root STAC object
         try:
-            if self.stac_file.startswith("http"):
-                req = urllib.request.Request(
-                    self.stac_file, headers={"User-Agent": "stac-fast-cli/5.0"}
-                )
-                with urllib.request.urlopen(req) as response:
-                    root_data = json.loads(response.read().decode("utf-8"))
-                root_path = self.stac_file
-            else:
-                with open(self.stac_file, "r") as f:
-                    root_data = json.load(f)
-                root_path = os.path.abspath(self.stac_file)
+            root_data = self._load_json_resource(self.stac_file)
+            root_path = (
+                self.stac_file
+                if self.stac_file.startswith("http")
+                else os.path.abspath(self.stac_file)
+            )
         except Exception as e:
             click.secho(f"❌ Error reading {self.stac_file}: {e}", fg="red", bold=True)
             self.valid = False
@@ -391,6 +564,12 @@ class FastValidator:
         visited.add(root_path)
         self._validate_recursive(root_data, root_path, results, visited, is_api=False)
 
+        if self.limit is not None and not self.quiet and len(results) >= self.limit:
+            click.secho(
+                f"🔢 Validation limit reached ({self.limit} objects).",
+                fg="yellow",
+            )
+
         # Display results
         click.echo("\n" + "=" * 55)
         click.secho("📊 RECURSIVE VALIDATION SUMMARY", bold=True, fg="blue")
@@ -398,10 +577,12 @@ class FastValidator:
 
         valid_count = sum(1 for r in results if r["valid_stac"])
         invalid_count = len(results) - valid_count
+        elapsed_ms = (time.perf_counter() - start_time) * 1000
 
         click.echo(f"Total Objects Validated: {len(results)}")
         click.echo(f"Valid Objects:           {valid_count}")
         click.echo(f"Invalid Objects:         {invalid_count}")
+        click.echo(f"Execution Time:          {elapsed_ms:.2f} ms")
 
         if invalid_count > 0:
             click.echo("\n" + "=" * 55)
@@ -436,31 +617,26 @@ class FastValidator:
                     click.echo(f"   ... and {len(items) - 5} more")
 
         # Set overall validity
-        self.valid = invalid_count == 0
+        self.valid = all(r.get("valid_stac", False) for r in results)
         self.message = results
 
     def run_api(self):
         """Recursively validate a STAC API catalog and all its collections/items."""
-        import json
-
         sys.setrecursionlimit(10000)
+        start_time = time.perf_counter()
 
         if not self.quiet:
             click.secho("🚀 Starting STAC API validation...", fg="blue", bold=True)
+            click.secho("⏳ Fetching API root and discovery links...", fg="cyan", dim=True)
 
         # Load the root STAC API object
         try:
-            if self.stac_file.startswith("http"):
-                req = urllib.request.Request(
-                    self.stac_file, headers={"User-Agent": "stac-fast-cli/5.0"}
-                )
-                with urllib.request.urlopen(req) as response:
-                    root_data = json.loads(response.read().decode("utf-8"))
-                root_path = self.stac_file
-            else:
-                with open(self.stac_file, "r") as f:
-                    root_data = json.load(f)
-                root_path = os.path.abspath(self.stac_file)
+            root_data = self._load_json_resource(self.stac_file)
+            root_path = (
+                self.stac_file
+                if self.stac_file.startswith("http")
+                else os.path.abspath(self.stac_file)
+            )
         except Exception as e:
             click.secho(f"❌ Error reading {self.stac_file}: {e}", fg="red", bold=True)
             self.valid = False
@@ -470,9 +646,22 @@ class FastValidator:
         results = []
         visited = set()
         visited.add(root_path)
-        # Add a counter for progress tracking
         self._progress_count = 0
+
+        if not self.quiet:
+            click.secho(
+                "🧠 Compiling/warming schemas (first objects may be slower)...",
+                fg="cyan",
+                dim=True,
+            )
+
         self._validate_recursive(root_data, root_path, results, visited, is_api=True)
+
+        if self.limit is not None and not self.quiet and len(results) >= self.limit:
+            click.secho(
+                f"🔢 Validation limit reached ({self.limit} objects).",
+                fg="yellow",
+            )
 
         # Display results
         click.echo("\n" + "=" * 55)
@@ -481,10 +670,12 @@ class FastValidator:
 
         valid_count = sum(1 for r in results if r["valid_stac"])
         invalid_count = len(results) - valid_count
+        elapsed_ms = (time.perf_counter() - start_time) * 1000
 
         click.echo(f"Total Objects Validated: {len(results)}")
         click.echo(f"Valid Objects:           {valid_count}")
         click.echo(f"Invalid Objects:         {invalid_count}")
+        click.echo(f"Execution Time:          {elapsed_ms:.2f} ms")
 
         if invalid_count > 0:
             click.echo("\n" + "=" * 55)
@@ -519,7 +710,7 @@ class FastValidator:
                     click.echo(f"   ... and {len(items) - 5} more")
 
         # Set overall validity
-        self.valid = invalid_count == 0
+        self.valid = all(r.get("valid_stac", False) for r in results)
         self.message = results
 
     def _validate_recursive(
@@ -530,6 +721,7 @@ class FastValidator:
         visited: Set[str],
         is_api: bool = False,
         collection_id: str = None,
+        prefetched_resources: Optional[Dict[str, Dict[str, Any]]] = None,
     ):
         """Recursively validate a STAC object and its children.
 
@@ -542,6 +734,9 @@ class FastValidator:
             collection_id: Optional collection ID for items from FeatureCollections
         """
         import json
+
+        if self._limit_reached(results):
+            return
 
         # Log progress in API mode
         if is_api and not self.quiet:
@@ -586,7 +781,7 @@ class FastValidator:
             try:
                 extensions = data.get("stac_extensions", [])
 
-                # Mute noisy "[Fallback]" and "[Network]" prints from validator setup
+                # Mute noisy "[Fallback]" and "[Network]" prints from validation execution path
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                     validator, _ = get_validator(stac_type, stac_version, extensions)
                     validator(data)
@@ -597,8 +792,22 @@ class FastValidator:
                 is_valid = False
                 error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
             except Exception as e:
-                is_valid = False
-                error_msg = str(e)
+                if self._is_ref_resolution_error(e):
+                    try:
+                        self._validate_with_jsonschema_fallback(
+                            data,
+                            stac_type,
+                            stac_version,
+                            extensions,
+                        )
+                        is_valid = True
+                        error_msg = None
+                    except Exception as fallback_err:
+                        is_valid = False
+                        error_msg = str(fallback_err)
+                else:
+                    is_valid = False
+                    error_msg = str(e)
 
         # Create result for this object
         # Extract ID if available
@@ -616,6 +825,9 @@ class FastValidator:
 
         results.append(result)
 
+        if self._limit_reached(results):
+            return
+
         # Process child links
         base_dir = (
             os.path.dirname(file_path)
@@ -625,6 +837,9 @@ class FastValidator:
         links = data.get("links", [])
 
         for link in links:
+            if self._limit_reached(results):
+                break
+
             rel = link.get("rel", "")
             href = link.get("href", "")
 
@@ -652,76 +867,90 @@ class FastValidator:
 
                 # Load and validate child
                 try:
-                    if child_path.startswith("http"):
-                        req = urllib.request.Request(
-                            child_path, headers={"User-Agent": "stac-fast-cli/5.0"}
-                        )
-                        with urllib.request.urlopen(req) as response:
-                            child_data = json.loads(response.read().decode("utf-8"))
+                    if prefetched_resources and child_path in prefetched_resources:
+                        child_data = prefetched_resources[child_path]
                     else:
-                        with open(child_path, "r") as f:
-                            child_data = json.load(f)
+                        if is_api and not self.quiet and rel in ["data", "items"]:
+                            label = "collections" if rel == "data" else "items"
+                            click.secho(
+                                f"  Discovering {label}: {child_path}",
+                                fg="cyan",
+                                dim=True,
+                            )
+                        child_data = self._load_json_resource(child_path)
 
                     # If this is a collections list endpoint, extract individual collections
                     if rel == "data" and is_api and isinstance(child_data, dict):
                         collections = child_data.get("collections", [])
                         if collections:
                             # This is a collections list - process each collection
+                            collection_urls = []
                             for collection in collections:
                                 collection_id = collection.get("id")
                                 if collection_id:
-                                    # Build URL to individual collection
-                                    collection_url = (
+                                    collection_urls.append(
                                         f"{child_path.rstrip('/')}/{collection_id}"
                                     )
-                                    try:
-                                        req = urllib.request.Request(
-                                            collection_url,
-                                            headers={"User-Agent": "stac-fast-cli/5.0"},
-                                        )
-                                        with urllib.request.urlopen(req) as response:
-                                            collection_data = json.loads(
-                                                response.read().decode("utf-8")
-                                            )
-                                        # Recursively validate the full collection
-                                        self._validate_recursive(
-                                            collection_data,
-                                            collection_url,
-                                            results,
-                                            visited,
-                                            is_api,
-                                        )
-                                    except Exception as e:
-                                        results.append(
-                                            {
-                                                "path": collection_url,
-                                                "valid_stac": False,
-                                                "error_message": f"Failed to load: {str(e)}",
-                                            }
-                                        )
+
+                            # Avoid prefetching beyond remaining validation capacity.
+                            if self.limit is not None:
+                                remaining = max(1, self.limit - len(results))
+                                collection_urls = collection_urls[:remaining]
+
+                            for collection_url, prefetched_collection_resources, load_error in self._prefetch_api_collection_resources_batch(
+                                collection_urls
+                            ):
+                                if self._limit_reached(results):
+                                    break
+
+                                if load_error is not None:
+                                    results.append(
+                                        {
+                                            "path": collection_url,
+                                            "valid_stac": False,
+                                            "error_message": f"Failed to load: {str(load_error)}",
+                                        }
+                                    )
+                                    continue
+
+                                visited.add(collection_url)
+                                collection_data = prefetched_collection_resources[
+                                    collection_url
+                                ]
+
+                                self._validate_recursive(
+                                    collection_data,
+                                    collection_url,
+                                    results,
+                                    visited,
+                                    is_api,
+                                    prefetched_resources=prefetched_collection_resources,
+                                )
                         else:
                             # Not a collections list, validate as normal
                             self._validate_recursive(
                                 child_data, child_path, results, visited, is_api
                             )
-                    # If this is an items endpoint (GeoJSON FeatureCollection), extract individual items
+                    # If this is an items endpoint (GeoJSON FeatureCollection), validate only Features
                     elif rel == "items" and is_api and isinstance(child_data, dict):
-                        features = child_data.get("features", [])
-                        if features:
-                            # Extract collection ID from URL (e.g., /collections/{id}/items)
-                            collection_id = None
-                            if "/collections/" in child_path:
-                                parts = child_path.split("/collections/")
-                                if len(parts) > 1:
-                                    collection_parts = parts[1].split("/items")
-                                    collection_id = (
-                                        collection_parts[0]
-                                        if collection_parts
-                                        else None
-                                    )
+                        features = child_data.get("features")
 
-                            # This is an items list - process each item
+                        # Extract collection ID from URL (e.g., /collections/{id}/items)
+                        collection_id = None
+                        if "/collections/" in child_path:
+                            parts = child_path.split("/collections/")
+                            if len(parts) > 1:
+                                collection_parts = parts[1].split("/items")
+                                collection_id = (
+                                    collection_parts[0] if collection_parts else None
+                                )
+
+                        # Validate each feature item from the items page, not the FeatureCollection container.
+                        if isinstance(features, list):
                             for feature in features:
+                                if self._limit_reached(results):
+                                    break
+
                                 item_id = feature.get("id", "unknown")
                                 item_path = f"{child_path}#{item_id}"
                                 self._validate_recursive(
@@ -732,17 +961,15 @@ class FastValidator:
                                     is_api,
                                     collection_id,
                                 )
-                        else:
-                            # Not an items list, validate as normal
-                            self._validate_recursive(
-                                child_data, child_path, results, visited, is_api
-                            )
                     else:
                         # Recursively validate child
                         self._validate_recursive(
                             child_data, child_path, results, visited, is_api
                         )
                 except Exception as e:
+                    if self._limit_reached(results):
+                        break
+
                     results.append(
                         {
                             "path": child_path,

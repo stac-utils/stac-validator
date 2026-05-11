@@ -551,10 +551,31 @@ def batch(
     is_flag=True,
     help="Validate a STAC API catalog recursively (follows data, child, item, and items links).",
 )
-def fast(stac_file: str, quiet: bool, verbose: bool, recursive: bool, api: bool):
+@click.option(
+    "--limit",
+    type=click.IntRange(min=1),
+    default=None,
+    help="Limit number of STAC objects to validate.",
+)
+def fast(
+    stac_file: str,
+    quiet: bool,
+    verbose: bool,
+    recursive: bool,
+    api: bool,
+    limit: Optional[int],
+):
     """High-speed validation using fastjsonschema and local caching."""
+    if api and not stac_file.startswith(("http://", "https://")):
+        click.secho(
+            "❌ Invalid STAC API URL. Include 'http://' or 'https://' (example: https://example.com/stac).",
+            fg="red",
+            bold=True,
+        )
+        sys.exit(1)
+
     try:
-        fv = FastValidator(stac_file, quiet=quiet, verbose=verbose)
+        fv = FastValidator(stac_file, quiet=quiet, verbose=verbose, limit=limit)
         if api:
             fv.run_api()
         elif recursive:
