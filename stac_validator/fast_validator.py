@@ -130,18 +130,24 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 handlers={"http": fetch_schema, "https": fetch_schema},
             )
             ext_validators.append(ext_val)
-        except Exception:
+        except Exception as e:
             # We keep the skip logic purely as a safety net for genuinely broken URLs
+            # or schemas that fastjsonschema cannot compile
             skipped_extensions.append(ext)
 
     if skipped_extensions and not QUIET_MODE:
         click.secho(
-            f"    [Warning] Skipped {len(skipped_extensions)} broken extension URL(s):",
+            f"    [Warning] Skipped {len(skipped_extensions)} extension(s) due to fastjsonschema incompatibility:",
             fg="yellow",
             dim=True,
         )
         for ext in skipped_extensions:
             click.secho(f"      - {ext}", fg="yellow", dim=True)
+        click.secho(
+            "    For strict validation of all extensions, use: stac-valid validate <file>",
+            fg="yellow",
+            dim=True,
+        )
 
     def validator(data: Dict[str, Any]) -> None:
         old_limit = sys.getrecursionlimit()
@@ -489,6 +495,10 @@ class FastValidator:
                     click.secho(f"❌ Setup failed for {item_id}: {e}", fg="red")
                 invalid_count += 1
                 self.valid = False
+                error_msg = f"Setup failed: {str(e)}"
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
                 continue
             t1 = time.perf_counter()
             setup_time = (t1 - t0) * 1000
