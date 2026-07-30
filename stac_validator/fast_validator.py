@@ -100,7 +100,7 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
     """
     Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
     Strips problematic constructs that cause IndentationError when compiling complex schemas.
-    
+
     Args:
         schema: The JSON schema dictionary to optimize
         remove_allof: If True, also remove allOf/oneOf/anyOf (used for all schemas)
@@ -117,7 +117,14 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
 
             # BUG FIX 2: fastjsonschema writes invalid Python code (empty for/else blocks)
             # when translating complex JSON Schema conditionals (fixes file & storage extensions)
-            if k in ("if", "then", "else", "dependencies", "dependentRequired", "dependentSchemas"):
+            if k in (
+                "if",
+                "then",
+                "else",
+                "dependencies",
+                "dependentRequired",
+                "dependentSchemas",
+            ):
                 continue
 
             # BUG FIX 3: Remove allOf/oneOf/anyOf at top level when requested
@@ -161,9 +168,13 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     except Exception:
         # If base schema fails to compile, use jsonschema validator instead
         import jsonschema
+
         def base_validator(data):
             jsonschema.validate(data, base_schema)
-        logger.debug(f"Base schema {stac_type} {stac_version} compiled with jsonschema fallback")
+
+        logger.debug(
+            f"Base schema {stac_type} {stac_version} compiled with jsonschema fallback"
+        )
 
     ext_validators = []
     skipped_extensions = []
@@ -192,7 +203,9 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 )
             except Exception:
                 # If compilation fails, try with aggressive patching (remove allOf/oneOf/anyOf)
-                optimized_schema = optimize_schema_for_compiler(raw_ext_schema, remove_allof=True)
+                optimized_schema = optimize_schema_for_compiler(
+                    raw_ext_schema, remove_allof=True
+                )
                 ext_val = fastjsonschema.compile(
                     optimized_schema,
                     handlers={"http": fetch_schema, "https": fetch_schema},
