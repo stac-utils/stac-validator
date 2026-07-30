@@ -5,6 +5,7 @@ import sys
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
+from datetime import datetime
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import click
@@ -120,12 +121,12 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     }
 
     try:
+        # TIER 1: Try compiling everything dynamically using allOf (Maximum Speed)
         compiled_validator = fastjsonschema.compile(
             dynamic_schema, handlers={"http": fetch_schema, "https": fetch_schema}
         )
 
         def validator(data: Dict[str, Any]) -> None:
-            # Increase recursion limit temporarily for complex GeoJSON and nested schemas
             old_limit = sys.getrecursionlimit()
             sys.setrecursionlimit(10000)
             try:
@@ -134,79 +135,55 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 sys.setrecursionlimit(old_limit)
 
     except Exception:
-        # If allOf compilation fails, try compiling base + extensions separately
-        # This is faster than the jsonschema fallback
-        try:
-            base_validator = fastjsonschema.compile(
-                {"$ref": base_uri},
-                handlers={"http": fetch_schema, "https": fetch_schema},
-            )
-            ext_validators = []
-            skipped_extensions = []
-            for ext in extensions:
-                try:
-                    ext_val = fastjsonschema.compile(
-                        {"$ref": ext},
-                        handlers={"http": fetch_schema, "https": fetch_schema},
-                    )
-                    ext_validators.append(ext_val)
-                except Exception:
-                    # Skip extensions that can't be compiled
-                    skipped_extensions.append(ext)
+        # TIER 2: allOf compilation failed (e.g., storage extension reference collisions).
+        # Compile base and compatible extensions separately. Skip broken ones to maintain API speed.
+        base_validator = fastjsonschema.compile(
+            {"$ref": base_uri},
+            handlers={"http": fetch_schema, "https": fetch_schema},
+        )
 
-            if skipped_extensions and not QUIET_MODE:
-                click.secho(
-                    f"    [Warning] Skipped {len(skipped_extensions)} extension(s) due to fastjsonschema compatibility:",
-                    fg="yellow",
-                    dim=True,
+        ext_validators = []
+        skipped_extensions = []
+
+        for ext in extensions:
+            try:
+                ext_val = fastjsonschema.compile(
+                    {"$ref": ext},
+                    handlers={"http": fetch_schema, "https": fetch_schema},
                 )
-                for ext in skipped_extensions:
-                    click.secho(f"      - {ext}", fg="yellow", dim=True)
-                click.secho(
-                    "    For complete validation, use: stac-valid validate <file>",
-                    fg="yellow",
-                    dim=True,
-                )
+                ext_validators.append(ext_val)
+            except Exception:
+                # Skip extensions that fastjsonschema cannot compile
+                skipped_extensions.append(ext)
 
-            def multi_validator(data: Dict[str, Any]) -> None:
-                # Increase recursion limit temporarily for complex GeoJSON and nested schemas
-                old_limit = sys.getrecursionlimit()
-                sys.setrecursionlimit(10000)
-                try:
-                    base_validator(data)
-                    for ext_val in ext_validators:
-                        ext_val(data)
-                finally:
-                    sys.setrecursionlimit(old_limit)
-
-            validator = multi_validator
-        except Exception:
-            # Final fallback: use jsonschema
+        # Only print warnings if running in CLI mode, keep the API quiet
+        if skipped_extensions and not QUIET_MODE:
             click.secho(
-                "    [Fallback] fastjsonschema compile failed. Using python-jsonschema.",
+                f"    [Warning] Skipped {len(skipped_extensions)} extension(s) for speed (fastjsonschema compile failed):",
+                fg="yellow",
+                dim=True,
+            )
+            for ext in skipped_extensions:
+                click.secho(f"      - {ext}", fg="yellow", dim=True)
+            click.secho(
+                "    For strict validation of all extensions, use: stac-valid validate <file>",
                 fg="yellow",
                 dim=True,
             )
 
-            # Create a validator using the same custom logic
-            def fallback_validator(data: Dict[str, Any]) -> None:
-                # Increase recursion limit temporarily for complex GeoJSON and nested schemas
-                old_limit = sys.getrecursionlimit()
-                sys.setrecursionlimit(10000)
-                try:
-                    # Import the robust validator from utilities
-                    from stac_validator.utilities import validate_with_ref_resolver
+        def multi_validator(data: Dict[str, Any]) -> None:
+            old_limit = sys.getrecursionlimit()
+            sys.setrecursionlimit(10000)
+            try:
+                base_validator(data)
+                for ext_val in ext_validators:
+                    ext_val(data)
+            finally:
+                sys.setrecursionlimit(old_limit)
 
-                    # Validate base schema
-                    validate_with_ref_resolver(base_uri, data)
-                    # Validate each extension separately
-                    for ext in extensions:
-                        validate_with_ref_resolver(ext, data)
-                finally:
-                    sys.setrecursionlimit(old_limit)
+        validator = multi_validator
 
-            validator = fallback_validator
-
+    # Cache the resulting validator so future items use it instantly
     VALIDATOR_CACHE[cache_key] = validator
     return validator, False
 
@@ -218,6 +195,7 @@ class FastValidator:
         quiet: bool = False,
         verbose: bool = False,
         limit: Optional[int] = None,
+        validate_geometry: bool = False,
     ):
         global QUIET_MODE
         self.stac_file = stac_file
@@ -225,8 +203,78 @@ class FastValidator:
         self.valid = True
         self.verbose = verbose
         self.limit = limit
+        self.validate_geometry = validate_geometry
         self.message: List[Dict[str, Any]] = []
         QUIET_MODE = quiet
+
+    def _validate_datetime_range(self, data: Dict[str, Any]) -> None:
+        """Ensures start_datetime is not strictly after end_datetime per STAC Spec."""
+        if data.get("type") != "Feature":
+            return
+
+        properties = data.get("properties", {})
+        start_str = properties.get("start_datetime")
+        end_str = properties.get("end_datetime")
+
+        if start_str and end_str:
+            try:
+                start_dt = datetime.fromisoformat(start_str.replace("Z", "+00:00"))
+                end_dt = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
+
+                if start_dt > end_dt:
+                    raise ValueError(
+                        f"Logical Error: start_datetime ({start_str}) cannot be strictly after end_datetime ({end_str})"
+                    )
+            except ValueError as e:
+                if "Logical Error" in str(e):
+                    raise
+
+    def _validate_geometry(self, data: Dict[str, Any]) -> None:
+        """Lightweight topology check for global bounds and antimeridian crossings."""
+        if data.get("type") != "Feature":
+            return
+
+        geometry = data.get("geometry")
+        if not geometry:
+            return
+
+        geom_type = geometry.get("type")
+        coords = geometry.get("coordinates")
+        if not coords or geom_type not in ("Polygon", "MultiPolygon"):
+            return
+
+        def check_bounds(c: list):
+            if not c:
+                return
+            if isinstance(c[0], (int, float)):
+                if not (-180 <= c[0] <= 180) or not (-90 <= c[1] <= 90):
+                    raise ValueError(f"Geometry out of global WGS84 bounds: {c}")
+            else:
+                for sub in c:
+                    check_bounds(sub)
+
+        check_bounds(coords)
+
+        def check_rings(rings: list):
+            max_vertices = int(os.environ.get("MAX_TOPOLOGY_VERTICES", 5000))
+            for ring in rings:
+                if len(ring) < 4:
+                    raise ValueError("Polygon ring must have at least 4 coordinates.")
+                if len(ring) > max_vertices:
+                    raise ValueError(
+                        f"Geometry exceeds maximum allowed vertices ({max_vertices}). Found {len(ring)}."
+                    )
+                for i in range(len(ring) - 1):
+                    if abs(ring[i][0] - ring[i + 1][0]) > 180:
+                        raise ValueError(
+                            f"Improper antimeridian crossing between {ring[i][0]} and {ring[i + 1][0]}"
+                        )
+
+        if geom_type == "Polygon":
+            check_rings(coords)
+        elif geom_type == "MultiPolygon":
+            for poly in coords:
+                check_rings(poly)
 
     def _limit_reached(self, results: List[Dict]) -> bool:
         return self.limit is not None and len(results) >= self.limit

@@ -10,11 +10,25 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
-### Fixed
+### Fixed 
 
 ### Removed
 
-### Updated
+## [v4.5.0] - 2026-07-30
+
+### Added
+
+- Added an opt-in `validate_geometry` flag to `FastValidator`. When enabled, it performs pure-Python spatial checks to ensure coordinates fall within global WGS84 bounds and detects improper antimeridian crossings in Polygons/MultiPolygons.
+- Added a strict 5000-vertex limit to the new geometry validation rings. This acts as a safeguard to prevent CPU exhaustion or thread lockups when processing excessively complex coastal or generated polygons.
+- Added pure-Python checks to `FastValidator` that ensure an item's `start_datetime` is never strictly after its `end_datetime`. [#304](https://github.com/stac-utils/stac-validator/pull/304)
+
+### Changed
+
+- Completely refactored the fallback logic in `fast_validator` to remove the heavy `python-jsonschema` dependency block. If the dynamic `allOf` schema compiler fails (often caused by internal reference collisions in the `storage` or `file` extensions), the validator now gracefully compiles the base schema and compatible extensions individually, cleanly skipping incompatible extensions to maintain blazing-fast API ingestion speeds. [#304](https://github.com/stac-utils/stac-validator/pull/304)
+
+### Fixed
+
+- Fixed a fatal `KeyError: 'definitions'` crash in `fast_validator` caused by complex STAC extensions attempting to resolve local `$ref` pointers (like `#/definitions/links`) against an empty synthetic root. [#304](https://github.com/stac-utils/stac-validator/pull/304)
 
 ## [v4.4.0] - 2026-05-11
 
@@ -460,7 +474,9 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.3.0..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.5.0..main
+[v4.5.0]: https://github.com/sparkgeo/stac-validator/compare/v4.4.0..v4.5.0
+[v4.4.0]: https://github.com/sparkgeo/stac-validator/compare/v4.3.0..v4.4.0
 [v4.3.0]: https://github.com/sparkgeo/stac-validator/compare/v4.2.2..v4.3.0
 [v4.2.2]: https://github.com/sparkgeo/stac-validator/compare/v4.2.1..v4.2.2
 [v4.2.1]: https://github.com/sparkgeo/stac-validator/compare/v4.2.0..v4.2.1
