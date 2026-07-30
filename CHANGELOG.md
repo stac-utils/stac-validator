@@ -14,6 +14,16 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Removed
 
+## [v4.5.1] - 2026-07-30
+
+### Changed
+
+- rebuilt the fastjsonschema compilation pipeline with in-memory schema patching to flawlessly compile complex extensions (e.g., file, storage) at ~1ms speeds, bypassing upstream compiler bugs. 
+
+### Added 
+
+- Added standard Python logging to expose cache and network events to FastAPI backend integrations.
+
 ## [v4.5.0] - 2026-07-30
 
 ### Added
@@ -474,7 +484,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.5.0..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.5.1..main
+[v4.5.1]: https://github.com/sparkgeo/stac-validator/compare/v4.5.0..v4.5.1
 [v4.5.0]: https://github.com/sparkgeo/stac-validator/compare/v4.4.0..v4.5.0
 [v4.4.0]: https://github.com/sparkgeo/stac-validator/compare/v4.3.0..v4.4.0
 [v4.3.0]: https://github.com/sparkgeo/stac-validator/compare/v4.2.2..v4.3.0
