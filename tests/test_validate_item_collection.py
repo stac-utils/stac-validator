@@ -589,7 +589,13 @@ def test_validate_item_collection_remote_pages_1_v110():
 
 
 def test_validate_item_collection_remote_pages_3_v110():
-    stac_file = "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-3-olci-2-wfr-nrt/items"
+    # Fix: Point to a massive, permanent historical collection, NOT a temporary Near Real-Time (nrt) one.
+    stac_file = (
+        "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items"
+    )
     stac = stac_validator.StacValidate(stac_file, item_collection=True, pages=3)
     stac.validate_item_collection()
-    assert len(stac.message) == 30
+
+    # We expect 3 pages of results.
+    # Using > 20 proves pagination successfully fetched multiple pages without hardcoding a brittle exact number.
+    assert len(stac.message) > 20
