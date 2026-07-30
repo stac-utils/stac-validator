@@ -546,7 +546,9 @@ def test_validate_item_collection_remote_pages():
 def test_validate_item_collection_remote_pages_1_v110():
     # Use a permanent historical collection (sentinel-2-l2a) instead of NRT
     # NRT collections are dynamic and may have fewer items at test time
-    stac_file = "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items"
+    stac_file = (
+        "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items"
+    )
     stac = stac_validator.StacValidate(stac_file, item_collection=True, pages=1)
     stac.validate_item_collection()
 
