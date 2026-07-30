@@ -110,77 +110,49 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     else:
         raise ValueError(f"Unknown STAC type for validation: {stac_type}")
 
-    # Try to compile with all extensions using allOf
-    schema_fragments: List[Dict[str, str]] = [{"$ref": base_uri}]
+    # Fetch and compile the Base Schema directly
+    base_schema = fetch_schema(base_uri)
+    base_validator = fastjsonschema.compile(
+        base_schema,
+        handlers={"http": fetch_schema, "https": fetch_schema}
+    )
+
+    ext_validators = []
+    skipped_extensions = []
+
     for ext in extensions:
-        schema_fragments.append({"$ref": ext})
-    dynamic_schema = {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "allOf": schema_fragments,
-    }
-
-    try:
-        # TIER 1: Try compiling everything dynamically using allOf (Maximum Speed)
-        compiled_validator = fastjsonschema.compile(
-            dynamic_schema, handlers={"http": fetch_schema, "https": fetch_schema}
-        )
-
-        def validator(data: Dict[str, Any]) -> None:
-            old_limit = sys.getrecursionlimit()
-            sys.setrecursionlimit(10000)
-            try:
-                compiled_validator(data)
-            finally:
-                sys.setrecursionlimit(old_limit)
-
-    except Exception:
-        # TIER 2: allOf compilation failed (e.g., storage extension reference collisions).
-        # Compile base and compatible extensions separately. Skip broken ones to maintain API speed.
-        base_validator = fastjsonschema.compile(
-            {"$ref": base_uri},
-            handlers={"http": fetch_schema, "https": fetch_schema},
-        )
-
-        ext_validators = []
-        skipped_extensions = []
-
-        for ext in extensions:
-            try:
-                ext_val = fastjsonschema.compile(
-                    {"$ref": ext},
-                    handlers={"http": fetch_schema, "https": fetch_schema},
-                )
-                ext_validators.append(ext_val)
-            except Exception:
-                # Skip extensions that fastjsonschema cannot compile
-                skipped_extensions.append(ext)
-
-        # Only print warnings if running in CLI mode, keep the API quiet
-        if skipped_extensions and not QUIET_MODE:
-            click.secho(
-                f"    [Warning] Skipped {len(skipped_extensions)} extension(s) for speed (fastjsonschema compile failed):",
-                fg="yellow",
-                dim=True,
+        try:
+            # Fetch the dictionary FIRST, then compile it!
+            # This makes the extension its own root, fixing all #/definitions crashes.
+            ext_schema = fetch_schema(ext)
+            ext_val = fastjsonschema.compile(
+                ext_schema,
+                handlers={"http": fetch_schema, "https": fetch_schema},
             )
-            for ext in skipped_extensions:
-                click.secho(f"      - {ext}", fg="yellow", dim=True)
-            click.secho(
-                "    For strict validation of all extensions, use: stac-valid validate <file>",
-                fg="yellow",
-                dim=True,
-            )
+            ext_validators.append(ext_val)
+        except Exception:
+            # We keep the skip logic purely as a safety net for genuinely broken URLs
+            skipped_extensions.append(ext)
 
-        def multi_validator(data: Dict[str, Any]) -> None:
-            old_limit = sys.getrecursionlimit()
-            sys.setrecursionlimit(10000)
-            try:
-                base_validator(data)
-                for ext_val in ext_validators:
-                    ext_val(data)
-            finally:
-                sys.setrecursionlimit(old_limit)
+    if skipped_extensions and not QUIET_MODE:
+        click.secho(
+            f"    [Warning] Skipped {len(skipped_extensions)} broken extension URL(s):",
+            fg="yellow",
+            dim=True,
+        )
+        for ext in skipped_extensions:
+            click.secho(f"      - {ext}", fg="yellow", dim=True)
 
-        validator = multi_validator
+    def validator(data: Dict[str, Any]) -> None:
+        old_limit = sys.getrecursionlimit()
+        sys.setrecursionlimit(10000)
+        try:
+            # Execute the pre-compiled native Python functions
+            base_validator(data)
+            for ext_val in ext_validators:
+                ext_val(data)
+        finally:
+            sys.setrecursionlimit(old_limit)
 
     # Cache the resulting validator so future items use it instantly
     VALIDATOR_CACHE[cache_key] = validator
