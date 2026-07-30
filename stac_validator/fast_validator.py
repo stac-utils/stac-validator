@@ -527,6 +527,10 @@ class FastValidator:
             t2 = time.perf_counter()
             try:
                 validator(item)
+                # Run logical firewalls
+                self._validate_datetime_range(item)
+                if self.validate_geometry:
+                    self._validate_geometry(item)
                 t3 = time.perf_counter()
                 exec_time = (t3 - t2) * 1000
                 total_exec_ms += exec_time
@@ -551,6 +555,20 @@ class FastValidator:
                         )
 
                 # Group errors
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
+                status_text = click.style("❌ INVALID", fg="red")
+
+            except ValueError as e:
+                t3 = time.perf_counter()
+                exec_time = (t3 - t2) * 1000
+                total_exec_ms += exec_time
+                invalid_count += 1
+                self.valid = False
+
+                # Logical validation errors (datetime range, geometry)
+                error_msg = str(e)
                 if error_msg not in error_registry:
                     error_registry[error_msg] = []
                 error_registry[error_msg].append(item_id)
@@ -760,6 +778,10 @@ class FastValidator:
             t2 = time.perf_counter()
             try:
                 validator(item)
+                # Run logical firewalls
+                self._validate_datetime_range(item)
+                if self.validate_geometry:
+                    self._validate_geometry(item)
                 t3 = time.perf_counter()
                 total_exec_ms += (t3 - t2) * 1000
                 valid_count += 1
@@ -771,6 +793,15 @@ class FastValidator:
                 error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
                 if "disallowed definition" in error_msg and "collection" in error_msg:
                     error_msg = "STAC Spec Violation: Missing {'rel': 'collection'} in links array."
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
+            except ValueError as e:
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                invalid_count += 1
+                self.valid = False
+                error_msg = str(e)
                 if error_msg not in error_registry:
                     error_registry[error_msg] = []
                 error_registry[error_msg].append(item_id)
