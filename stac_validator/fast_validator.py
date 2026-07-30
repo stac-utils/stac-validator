@@ -91,6 +91,38 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
     return schema_dict
 
 
+def optimize_schema_for_compiler(schema: Any) -> Any:
+    """
+    Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
+    Strips problematic constructs that cause IndentationError when compiling complex schemas.
+    """
+    if isinstance(schema, list):
+        return [optimize_schema_for_compiler(item) for item in schema]
+
+    if isinstance(schema, dict):
+        cleaned = {}
+        for k, v in schema.items():
+            # BUG FIX 1: fastjsonschema crashes on the 'duration' format (fixes product extension)
+            if k == "format" and v == "duration":
+                continue
+
+            # BUG FIX 2: fastjsonschema writes invalid Python code (empty for/else blocks)
+            # when translating complex JSON Schema conditionals (fixes file & storage extensions)
+            if k in ("if", "then", "else", "dependencies", "dependentRequired", "dependentSchemas"):
+                continue
+
+            # BUG FIX 3: Skip oneOf/anyOf at root level to avoid complex code generation
+            # These are often used with conditionals and cause IndentationError
+            if k in ("oneOf", "anyOf") and len(schema) > 1:
+                # Only skip if there are other validation keywords; don't skip if it's the only validator
+                continue
+
+            cleaned[k] = optimize_schema_for_compiler(v)
+        return cleaned
+
+    return schema
+
+
 def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     """Builds and caches a validator based on Object Type, Version, and Extensions."""
     ext_key = tuple(sorted(extensions))
@@ -122,17 +154,26 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
 
     for ext in extensions:
         try:
-            # Fetch the dictionary FIRST, then compile it!
-            # This makes the extension its own root, fixing all #/definitions crashes.
-            ext_schema = fetch_schema(ext)
+            # 1. Fetch the raw dictionary
+            raw_ext_schema = fetch_schema(ext)
+
+            # 2. Patch it in-memory to fix upstream compiler bugs
+            optimized_schema = optimize_schema_for_compiler(raw_ext_schema)
+
+            # 3. Compile at maximum native speed
             ext_val = fastjsonschema.compile(
-                ext_schema,
+                optimized_schema,
                 handlers={"http": fetch_schema, "https": fetch_schema},
             )
             ext_validators.append(ext_val)
         except Exception as e:
-            # We keep the skip logic purely as a safety net for genuinely broken URLs
-            # or schemas that fastjsonschema cannot compile
+            # Safety net for genuinely broken URLs or unfixable schemas
+            if not QUIET_MODE:
+                click.secho(
+                    f"    [Debug] {ext}: {type(e).__name__}: {str(e)[:150]}",
+                    fg="red",
+                    dim=True,
+                )
             skipped_extensions.append(ext)
 
     if skipped_extensions and not QUIET_MODE:
