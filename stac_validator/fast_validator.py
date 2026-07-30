@@ -110,6 +110,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     else:
         raise ValueError(f"Unknown STAC type for validation: {stac_type}")
 
+    # Try to compile with all extensions using allOf
     schema_fragments: List[Dict[str, str]] = [{"$ref": base_uri}]
     for ext in extensions:
         schema_fragments.append({"$ref": ext})
@@ -119,30 +120,92 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     }
 
     try:
-        validator = fastjsonschema.compile(
+        compiled_validator = fastjsonschema.compile(
             dynamic_schema, handlers={"http": fetch_schema, "https": fetch_schema}
         )
-    except Exception:
-        # FALLBACK: Some schemas (like Item Assets) cause fastjsonschema to generate invalid python code.
-        # We fall back to the standard jsonschema library.
-        click.secho(
-            "    [Fallback] fastjsonschema compile failed. Using python-jsonschema.",
-            fg="yellow",
-            dim=True,
-        )
-        import jsonschema
 
-        # Create a validator using the same custom logic
-        def fallback_validator(data: Dict[str, Any]) -> None:
-            # We need a resolver to handle the remote $refs
-            resolver = jsonschema.RefResolver(
-                base_uri="",
-                referrer=dynamic_schema,
+        def validator(data: Dict[str, Any]) -> None:
+            # Increase recursion limit temporarily for complex GeoJSON and nested schemas
+            old_limit = sys.getrecursionlimit()
+            sys.setrecursionlimit(10000)
+            try:
+                compiled_validator(data)
+            finally:
+                sys.setrecursionlimit(old_limit)
+
+    except Exception:
+        # If allOf compilation fails, try compiling base + extensions separately
+        # This is faster than the jsonschema fallback
+        try:
+            base_validator = fastjsonschema.compile(
+                {"$ref": base_uri},
                 handlers={"http": fetch_schema, "https": fetch_schema},
             )
-            jsonschema.validate(data, dynamic_schema, resolver=resolver)
+            ext_validators = []
+            skipped_extensions = []
+            for ext in extensions:
+                try:
+                    ext_val = fastjsonschema.compile(
+                        {"$ref": ext},
+                        handlers={"http": fetch_schema, "https": fetch_schema},
+                    )
+                    ext_validators.append(ext_val)
+                except Exception:
+                    # Skip extensions that can't be compiled
+                    skipped_extensions.append(ext)
 
-        validator = fallback_validator
+            if skipped_extensions and not QUIET_MODE:
+                click.secho(
+                    f"    [Warning] Skipped {len(skipped_extensions)} extension(s) due to fastjsonschema compatibility:",
+                    fg="yellow",
+                    dim=True,
+                )
+                for ext in skipped_extensions:
+                    click.secho(f"      - {ext}", fg="yellow", dim=True)
+                click.secho(
+                    "    For complete validation, use: stac-valid validate <file>",
+                    fg="yellow",
+                    dim=True,
+                )
+
+            def multi_validator(data: Dict[str, Any]) -> None:
+                # Increase recursion limit temporarily for complex GeoJSON and nested schemas
+                old_limit = sys.getrecursionlimit()
+                sys.setrecursionlimit(10000)
+                try:
+                    base_validator(data)
+                    for ext_val in ext_validators:
+                        ext_val(data)
+                finally:
+                    sys.setrecursionlimit(old_limit)
+
+            validator = multi_validator
+        except Exception:
+            # Final fallback: use jsonschema
+            click.secho(
+                "    [Fallback] fastjsonschema compile failed. Using python-jsonschema.",
+                fg="yellow",
+                dim=True,
+            )
+
+            # Create a validator using the same custom logic
+            def fallback_validator(data: Dict[str, Any]) -> None:
+                # Increase recursion limit temporarily for complex GeoJSON and nested schemas
+                old_limit = sys.getrecursionlimit()
+                sys.setrecursionlimit(10000)
+                try:
+                    # Import the robust validator from utilities
+                    from stac_validator.utilities import validate_with_ref_resolver
+
+                    # Validate base schema
+                    validate_with_ref_resolver(base_uri, data)
+                    # Validate each extension separately
+                    for ext in extensions:
+                        validate_with_ref_resolver(ext, data)
+                finally:
+                    sys.setrecursionlimit(old_limit)
+
+            validator = fallback_validator
 
     VALIDATOR_CACHE[cache_key] = validator
     return validator, False
