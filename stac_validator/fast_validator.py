@@ -5,7 +5,6 @@ import sys
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
-from datetime import datetime
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import click
@@ -208,7 +207,12 @@ class FastValidator:
         QUIET_MODE = quiet
 
     def _validate_datetime_range(self, data: Dict[str, Any]) -> None:
-        """Ensures start_datetime is not strictly after end_datetime per STAC Spec."""
+        """Ensures start_datetime is not strictly after end_datetime per STAC Spec.
+
+        Uses lexicographical string comparison since RFC 3339 timestamps sort
+        chronologically when compared as strings. This avoids datetime parsing
+        issues in Python 3.8/3.9 with non-standard ISO 8601 formats.
+        """
         if data.get("type") != "Feature":
             return
 
@@ -217,17 +221,12 @@ class FastValidator:
         end_str = properties.get("end_datetime")
 
         if start_str and end_str:
-            try:
-                start_dt = datetime.fromisoformat(start_str.replace("Z", "+00:00"))
-                end_dt = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
-
-                if start_dt > end_dt:
-                    raise ValueError(
-                        f"Logical Error: start_datetime ({start_str}) cannot be strictly after end_datetime ({end_str})"
-                    )
-            except ValueError as e:
-                if "Logical Error" in str(e):
-                    raise
+            # RFC 3339 timestamps sort lexicographically, so we can compare as strings
+            # This avoids datetime.fromisoformat() parsing issues in Python 3.8/3.9
+            if start_str > end_str:
+                raise ValueError(
+                    f"Logical Error: start_datetime ({start_str}) cannot be strictly after end_datetime ({end_str})"
+                )
 
     def _validate_geometry(self, data: Dict[str, Any]) -> None:
         """Lightweight topology check for global bounds and antimeridian crossings."""
