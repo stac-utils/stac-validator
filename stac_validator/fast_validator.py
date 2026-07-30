@@ -1,5 +1,6 @@
 import io
 import json
+import logging
 import os
 import sys
 import time
@@ -14,6 +15,9 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 from .utilities import validate_with_ref_resolver
+
+# Standard Python logger for FastAPI/Uvicorn integration
+logger = logging.getLogger(__name__)
 
 # --- Caches & Config ---
 SCHEMA_CACHE: Dict[str, Any] = {}
@@ -108,7 +112,14 @@ def optimize_schema_for_compiler(schema: Any) -> Any:
 
             # BUG FIX 2: fastjsonschema writes invalid Python code (empty for/else blocks)
             # when translating complex JSON Schema conditionals (fixes file & storage extensions)
-            if k in ("if", "then", "else", "dependencies", "dependentRequired", "dependentSchemas"):
+            if k in (
+                "if",
+                "then",
+                "else",
+                "dependencies",
+                "dependentRequired",
+                "dependentSchemas",
+            ):
                 continue
 
             # BUG FIX 3: Skip oneOf/anyOf at root level to avoid complex code generation
@@ -145,12 +156,22 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     # Fetch and compile the Base Schema directly
     base_schema = fetch_schema(base_uri)
     base_validator = fastjsonschema.compile(
-        base_schema,
-        handlers={"http": fetch_schema, "https": fetch_schema}
+        base_schema, handlers={"http": fetch_schema, "https": fetch_schema}
     )
 
     ext_validators = []
     skipped_extensions = []
+
+    if extensions:
+        logger.info(
+            f"Warming STAC Validator Cache: Compiling {len(extensions)} extension(s) for {stac_type} {stac_version}..."
+        )
+        if not QUIET_MODE:
+            click.secho(
+                f"    [Extensions] Compiling {len(extensions)} extension(s):",
+                fg="cyan",
+                dim=True,
+            )
 
     for ext in extensions:
         try:
@@ -166,11 +187,18 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 handlers={"http": fetch_schema, "https": fetch_schema},
             )
             ext_validators.append(ext_val)
+            logger.debug(f"Successfully compiled STAC extension: {ext}")
+            if not QUIET_MODE:
+                click.secho(f"      ✅ {ext}", fg="green", dim=True)
         except Exception as e:
+            # Log to standard Python logging for FastAPI/Uvicorn integration
+            logger.warning(
+                f"Skipped extension due to compiler incompatibility: {ext} - {type(e).__name__}: {str(e)[:100]}"
+            )
             # Safety net for genuinely broken URLs or unfixable schemas
             if not QUIET_MODE:
                 click.secho(
-                    f"    [Debug] {ext}: {type(e).__name__}: {str(e)[:150]}",
+                    f"      ❌ {ext}: {type(e).__name__}",
                     fg="red",
                     dim=True,
                 )
