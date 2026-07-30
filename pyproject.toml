@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "stac_valid"
+name = "stac_validator"
 version = "4.5.0"
 description = "A package to validate STAC files"
 authors = [
