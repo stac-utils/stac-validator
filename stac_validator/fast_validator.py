@@ -158,23 +158,44 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     else:
         raise ValueError(f"Unknown STAC type for validation: {stac_type}")
 
-    # Fetch and compile the Base Schema directly
-    base_schema = fetch_schema(base_uri)
+    # Fetch the raw Base Schema directly
+    raw_base_schema = fetch_schema(base_uri)
+    
     try:
-        # Try to compile with fastjsonschema first
+        # Tier 1: Try to compile with standard patching first
+        optimized_base = optimize_schema_for_compiler(raw_base_schema)
         base_validator = fastjsonschema.compile(
-            base_schema, handlers={"http": fetch_schema, "https": fetch_schema}
+            optimized_base, handlers={"http": fetch_schema, "https": fetch_schema}
         )
+        logger.debug(f"Base schema {stac_type} {stac_version} compiled with fastjsonschema")
     except Exception:
-        # If base schema fails to compile, use jsonschema validator instead
-        import jsonschema
-
-        def base_validator(data):
-            jsonschema.validate(data, base_schema)
-
-        logger.debug(
-            f"Base schema {stac_type} {stac_version} compiled with jsonschema fallback"
-        )
+        try:
+            # Tier 2: If it fails, try aggressive patching (stripping allOf/oneOf/anyOf)
+            optimized_base = optimize_schema_for_compiler(raw_base_schema, remove_allof=True)
+            base_validator = fastjsonschema.compile(
+                optimized_base, handlers={"http": fetch_schema, "https": fetch_schema}
+            )
+            logger.debug(f"Base schema {stac_type} {stac_version} compiled with fastjsonschema (aggressive patching)")
+        except Exception:
+            # Tier 3: THE ULTIMATE FALLBACK
+            # If fastjsonschema completely chokes, instantiate a cached jsonschema validator
+            # that is strictly wired to use our high-speed fetch_schema session.
+            import jsonschema
+            
+            resolver = jsonschema.RefResolver(
+                base_uri=base_uri,
+                referrer=raw_base_schema,
+                handlers={"http": fetch_schema, "https": fetch_schema}
+            )
+            ValidatorClass = jsonschema.validators.validator_for(raw_base_schema)
+            
+            # Pre-compile the jsonschema object ONCE, outside the execution loop
+            js_validator = ValidatorClass(raw_base_schema, resolver=resolver)
+            
+            def base_validator(data):
+                js_validator.validate(data)
+                
+            logger.debug(f"Base schema {stac_type} {stac_version} compiled with cached jsonschema fallback")
 
     ext_validators = []
     skipped_extensions = []
