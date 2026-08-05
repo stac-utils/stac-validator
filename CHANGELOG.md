@@ -10,7 +10,9 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Changed
 
-### Fixed 
+### Fixed
+
+- Fixed timeout issue when validating STAC Collections with many extensions by implementing three-tier base schema compilation strategy: standard patching → aggressive patching → cached jsonschema fallback with proper RefResolver.
 
 ### Removed
 
