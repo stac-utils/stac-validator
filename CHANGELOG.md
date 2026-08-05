@@ -12,9 +12,13 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Fixed
 
-- Fixed timeout issue when validating STAC Collections with many extensions by implementing three-tier base schema compilation strategy: standard patching → aggressive patching → cached jsonschema fallback with proper RefResolver.
-
 ### Removed
+
+## [v4.5.2] - 2026-08-05
+
+### Fixed
+
+- Fixed timeout issue when validating STAC Collections with many extensions by implementing three-tier base schema compilation strategy: standard patching → aggressive patching → cached jsonschema fallback with proper RefResolver. [#307](https://github.com/stac-utils/stac-validator/pull/307)
 
 ## [v4.5.1] - 2026-07-30
 
@@ -486,7 +490,8 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 - With the newest version - 1.0.0-beta.2 - items will run through jsonchema validation before the PySTAC validation. The reason for this is that jsonschema will give more informative error messages. This should be addressed better in the future. This is not the case with the --recursive option as time can be a concern here with larger collections.
 - Logging. Various additions were made here depending on the options selected. This was done to help assist people to update their STAC collections.
 
-[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.5.1..main
+[Unreleased]: https://github.com/sparkgeo/stac-validator/compare/v4.5.2..main
+[v4.5.2]: https://github.com/sparkgeo/stac-validator/compare/v4.5.1..v4.5.2
 [v4.5.1]: https://github.com/sparkgeo/stac-validator/compare/v4.5.0..v4.5.1
 [v4.5.0]: https://github.com/sparkgeo/stac-validator/compare/v4.4.0..v4.5.0
 [v4.4.0]: https://github.com/sparkgeo/stac-validator/compare/v4.3.0..v4.4.0
