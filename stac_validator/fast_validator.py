@@ -140,13 +140,22 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
         for branch in branches:
             merged = {**base_meta, **branch}
             try:
-                opt = optimize_schema_for_compiler(merged)
+                # Tier 1: Standard optimization (keeps oneOf/allOf)
+                opt = optimize_schema_for_compiler(merged, remove_allof=False)
                 val = fastjsonschema.compile(
                     opt, handlers={"http": fetch_schema, "https": fetch_schema}
                 )
                 compiled_branches.append(val)
             except Exception:
-                pass
+                try:
+                    # Tier 2: Aggressive optimization (strips oneOf/allOf)
+                    opt = optimize_schema_for_compiler(merged, remove_allof=True)
+                    val = fastjsonschema.compile(
+                        opt, handlers={"http": fetch_schema, "https": fetch_schema}
+                    )
+                    compiled_branches.append(val)
+                except Exception:
+                    pass
 
         if compiled_branches:
             def branch_validator(data: Dict[str, Any]) -> None:
@@ -169,7 +178,7 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
 
             return branch_validator
 
-    opt = optimize_schema_for_compiler(schema_dict)
+    opt = optimize_schema_for_compiler(schema_dict, remove_allof=False)
     return fastjsonschema.compile(
         opt, handlers={"http": fetch_schema, "https": fetch_schema}
     )
@@ -337,25 +346,54 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     for ext in extensions:
         try:
             raw_ext_schema = fetch_schema(ext)
-            
-            # Pre-compile using unrolled branch compilation at C-speed
-            ext_val = compile_unrolled_schema(raw_ext_schema)
-            ext_validators.append((ext, ext_val))
+
+            # 1. Primary validator compilation with graceful fallback
+            ext_val = None
+            try:
+                # Tier 1a: Raw unpatched schema
+                ext_val = fastjsonschema.compile(
+                    raw_ext_schema,
+                    handlers={"http": fetch_schema, "https": fetch_schema},
+                )
+            except Exception:
+                try:
+                    # Tier 1b: Standard optimization (strips duration format, if/then/else, keeps oneOf/allOf)
+                    opt_schema = optimize_schema_for_compiler(
+                        raw_ext_schema, remove_allof=False
+                    )
+                    ext_val = fastjsonschema.compile(
+                        opt_schema,
+                        handlers={"http": fetch_schema, "https": fetch_schema},
+                    )
+                except Exception:
+                    # Tier 1c: Aggressive optimization (strips top-level allOf/oneOf as last resort)
+                    opt_schema_aggr = optimize_schema_for_compiler(
+                        raw_ext_schema, remove_allof=True
+                    )
+                    ext_val = fastjsonschema.compile(
+                        opt_schema_aggr,
+                        handlers={"http": fetch_schema, "https": fetch_schema},
+                    )
+
+            # 2. Pre-compile unrolled branch validator as a lazy diagnostic backup
+            branch_val = None
+            if "oneOf" in raw_ext_schema or "anyOf" in raw_ext_schema:
+                try:
+                    branch_val = compile_unrolled_schema(raw_ext_schema)
+                except Exception:
+                    pass
+
+            ext_validators.append((ext, ext_val, branch_val))
             logger.debug(f"Successfully compiled STAC extension: {ext}")
             if not QUIET_MODE:
                 click.secho(f"      ✅ {ext}", fg="green", dim=True)
+
         except Exception as e:
-            # Log to standard Python logging for FastAPI/Uvicorn integration
             logger.warning(
                 f"Skipped extension due to compiler incompatibility: {ext} - {type(e).__name__}: {str(e)[:100]}"
             )
-            # Safety net for genuinely broken URLs or unfixable schemas
             if not QUIET_MODE:
-                click.secho(
-                    f"      ❌ {ext}: {type(e).__name__}",
-                    fg="red",
-                    dim=True,
-                )
+                click.secho(f"      ❌ {ext}: {type(e).__name__}", fg="red", dim=True)
             skipped_extensions.append(ext)
 
     if skipped_extensions and not QUIET_MODE:
@@ -385,12 +423,21 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 raise FastSTACValidationError(f"Base {stac_type}", clean_path, msg) from e
 
             # 2. Individual Extension Schemas
-            for ext_uri, ext_val in ext_validators:
+            for ext_uri, ext_val, branch_val in ext_validators:
                 try:
                     ext_val(data)
                 except fastjsonschema.JsonSchemaValueException as e:
                     clean_path = parse_json_pointer(e.name)
                     msg = e.message.replace(e.name, "").strip()
+
+                    # Unmask swallowed oneOf paths ($) using our diagnostic branch helper
+                    if clean_path == "$" and branch_val is not None:
+                        try:
+                            branch_val(data)
+                        except fastjsonschema.JsonSchemaValueException as branch_e:
+                            clean_path = parse_json_pointer(branch_e.name)
+                            msg = branch_e.message.replace(branch_e.name, "").strip()
+
                     raise FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg) from e
         finally:
             sys.setrecursionlimit(old_limit)
