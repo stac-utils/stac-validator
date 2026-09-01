@@ -57,7 +57,7 @@
                 "gsd": 10,
                 "data_coverage": 20.18,
                 "view:off_nadir": 0,
-                "eo:cloud_cover": 17.19,
+                "eo:cloud_cover": "17.19",
                 "proj:epsg": 32701,
                 "sentinel:latitude_band": "C",
                 "sentinel:grid_square": "CV",

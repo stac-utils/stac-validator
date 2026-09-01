@@ -2,6 +2,7 @@ import io
 import json
 import logging
 import os
+import re
 import sys
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
@@ -18,6 +19,26 @@ from .utilities import validate_with_ref_resolver
 
 # Standard Python logger for FastAPI/Uvicorn integration
 logger = logging.getLogger(__name__)
+
+
+def parse_json_pointer(expr_name: str) -> str:
+    """Converts fastjsonschema variable names like "data['properties']['eo:cloud_cover']"
+    into clean JSON Pointers like "$.properties.eo:cloud_cover"."""
+    if not expr_name or expr_name == "data":
+        return "$"
+    keys = re.findall(r"['\"]([^'\"]*)['\"]" , expr_name)
+    if keys:
+        return "$." + ".".join(keys)
+    return expr_name
+
+
+class FastSTACValidationError(Exception):
+    """Custom exception containing precise context for batch error reporting."""
+    def __init__(self, source: str, field_path: str, raw_message: str):
+        self.source = source
+        self.field_path = field_path
+        self.raw_message = raw_message
+        super().__init__(f"[{source}] Field '{field_path}': {raw_message}")
 
 # --- Caches & Config ---
 SCHEMA_CACHE: Dict[str, Any] = {}
@@ -205,7 +226,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 f"Base schema {stac_type} {stac_version} compiled with cached jsonschema fallback"
             )
 
-    ext_validators = []
+    ext_validators: List[Tuple[str, Any]] = []
     skipped_extensions = []
 
     if extensions:
@@ -240,7 +261,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                     handlers={"http": fetch_schema, "https": fetch_schema},
                 )
 
-            ext_validators.append(ext_val)
+            ext_validators.append((ext, ext_val))
             logger.debug(f"Successfully compiled STAC extension: {ext}")
             if not QUIET_MODE:
                 click.secho(f"      ✅ {ext}", fg="green", dim=True)
@@ -276,10 +297,22 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
         old_limit = sys.getrecursionlimit()
         sys.setrecursionlimit(10000)
         try:
-            # Execute the pre-compiled native Python functions
-            base_validator(data)
-            for ext_val in ext_validators:
-                ext_val(data)
+            # 1. Base STAC Schema
+            try:
+                base_validator(data)
+            except fastjsonschema.JsonSchemaValueException as e:
+                clean_path = parse_json_pointer(e.name)
+                msg = e.message.replace(e.name, "").strip()
+                raise FastSTACValidationError(f"Base {stac_type}", clean_path, msg) from e
+
+            # 2. Individual Extension Schemas
+            for ext_uri, ext_val in ext_validators:
+                try:
+                    ext_val(data)
+                except fastjsonschema.JsonSchemaValueException as e:
+                    clean_path = parse_json_pointer(e.name)
+                    msg = e.message.replace(e.name, "").strip()
+                    raise FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg) from e
         finally:
             sys.setrecursionlimit(old_limit)
 
@@ -641,6 +674,21 @@ class FastValidator:
                 valid_count += 1
                 status_text = click.style("✅ VALID", fg="green")
 
+            except FastSTACValidationError as e:
+                t3 = time.perf_counter()
+                exec_time = (t3 - t2) * 1000
+                total_exec_ms += exec_time
+                invalid_count += 1
+                self.valid = False
+
+                # Exact field and extension attribution
+                error_msg = str(e)
+                
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
+                status_text = click.style("❌ INVALID", fg="red")
+
             except fastjsonschema.JsonSchemaValueException as e:
                 t3 = time.perf_counter()
                 exec_time = (t3 - t2) * 1000
@@ -890,6 +938,15 @@ class FastValidator:
                 t3 = time.perf_counter()
                 total_exec_ms += (t3 - t2) * 1000
                 valid_count += 1
+            except FastSTACValidationError as e:
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                invalid_count += 1
+                self.valid = False
+                error_msg = str(e)
+                if error_msg not in error_registry:
+                    error_registry[error_msg] = []
+                error_registry[error_msg].append(item_id)
             except fastjsonschema.JsonSchemaValueException as e:
                 t3 = time.perf_counter()
                 total_exec_ms += (t3 - t2) * 1000
@@ -1208,6 +1265,9 @@ class FastValidator:
 
                 is_valid = True
                 error_msg = None
+            except FastSTACValidationError as e:
+                is_valid = False
+                error_msg = str(e)
             except fastjsonschema.JsonSchemaValueException as e:
                 is_valid = False
                 error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
