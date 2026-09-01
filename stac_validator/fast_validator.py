@@ -47,6 +47,13 @@ class FastSTACValidationError(Exception):
         self.raw_message = raw_message
         super().__init__(f"[{source}] Field '{field_path}': {raw_message}")
 
+
+class FastSTACMultiValidationError(Exception):
+    """Container for all validation errors found on a single STAC object."""
+    def __init__(self, errors: List[FastSTACValidationError]):
+        self.errors = errors
+        super().__init__(f"Found {len(errors)} validation error(s)")
+
 # --- Caches & Config ---
 SCHEMA_CACHE: Dict[str, Any] = {}
 VALIDATOR_CACHE: Dict[Any, Any] = {}
@@ -413,6 +420,8 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     def validator(data: Dict[str, Any]) -> None:
         old_limit = sys.getrecursionlimit()
         sys.setrecursionlimit(10000)
+        collected_errors: List[FastSTACValidationError] = []
+
         try:
             # 1. Base STAC Schema
             try:
@@ -420,9 +429,11 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
             except fastjsonschema.JsonSchemaValueException as e:
                 clean_path = parse_json_pointer(e.name)
                 msg = e.message.replace(e.name, "").strip()
-                raise FastSTACValidationError(f"Base {stac_type}", clean_path, msg) from e
+                collected_errors.append(
+                    FastSTACValidationError(f"Base {stac_type}", clean_path, msg)
+                )
 
-            # 2. Individual Extension Schemas
+            # 2. Individual Extension Schemas (evaluate ALL extensions)
             for ext_uri, ext_val, branch_val in ext_validators:
                 try:
                     ext_val(data)
@@ -438,7 +449,14 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                             clean_path = parse_json_pointer(branch_e.name)
                             msg = branch_e.message.replace(branch_e.name, "").strip()
 
-                    raise FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg) from e
+                    collected_errors.append(
+                        FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg)
+                    )
+
+            # Raise all accumulated errors at the end of the item pass
+            if collected_errors:
+                raise FastSTACMultiValidationError(collected_errors)
+
         finally:
             sys.setrecursionlimit(old_limit)
 
@@ -800,6 +818,22 @@ class FastValidator:
                 valid_count += 1
                 status_text = click.style("✅ VALID", fg="green")
 
+            except FastSTACMultiValidationError as e:
+                t3 = time.perf_counter()
+                exec_time = (t3 - t2) * 1000
+                total_exec_ms += exec_time
+                invalid_count += 1
+                self.valid = False
+
+                # Register every distinct field failure found on this item
+                for single_err in e.errors:
+                    error_msg = str(single_err)
+                    if error_msg not in error_registry:
+                        error_registry[error_msg] = []
+                    error_registry[error_msg].append(item_id)
+
+                status_text = click.style("❌ INVALID", fg="red")
+
             except FastSTACValidationError as e:
                 t3 = time.perf_counter()
                 exec_time = (t3 - t2) * 1000
@@ -1064,6 +1098,16 @@ class FastValidator:
                 t3 = time.perf_counter()
                 total_exec_ms += (t3 - t2) * 1000
                 valid_count += 1
+            except FastSTACMultiValidationError as e:
+                t3 = time.perf_counter()
+                total_exec_ms += (t3 - t2) * 1000
+                invalid_count += 1
+                self.valid = False
+                for single_err in e.errors:
+                    error_msg = str(single_err)
+                    if error_msg not in error_registry:
+                        error_registry[error_msg] = []
+                    error_registry[error_msg].append(item_id)
             except FastSTACValidationError as e:
                 t3 = time.perf_counter()
                 total_exec_ms += (t3 - t2) * 1000
@@ -1391,6 +1435,10 @@ class FastValidator:
 
                 is_valid = True
                 error_msg = None
+            except FastSTACMultiValidationError as e:
+                is_valid = False
+                # Aggregate all errors into a single message for display
+                error_msg = "; ".join(str(err) for err in e.errors)
             except FastSTACValidationError as e:
                 is_valid = False
                 error_msg = str(e)
