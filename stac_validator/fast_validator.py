@@ -117,6 +117,56 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
     return schema_dict
 
 
+def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
+    """Unrolls top-level oneOf/anyOf branches into separate compiled fastjsonschema functions
+    so field-level errors are never swallowed by branch exception handling.
+    
+    Returns a validator function that tries each branch independently and reports
+    the deepest error found (most specific field path).
+    """
+    if "oneOf" in schema_dict or "anyOf" in schema_dict:
+        keyword = "oneOf" if "oneOf" in schema_dict else "anyOf"
+        branches = schema_dict[keyword]
+        base_meta = {k: v for k, v in schema_dict.items() if k not in ("oneOf", "anyOf")}
+        
+        compiled_branches = []
+        for branch in branches:
+            merged = {**base_meta, **branch}
+            try:
+                opt = optimize_schema_for_compiler(merged)
+                val = fastjsonschema.compile(
+                    opt, handlers={"http": fetch_schema, "https": fetch_schema}
+                )
+                compiled_branches.append(val)
+            except Exception:
+                pass
+
+        if compiled_branches:
+            def branch_validator(data: Dict[str, Any]) -> None:
+                best_err = None
+                max_depth = -1
+                
+                for val in compiled_branches:
+                    try:
+                        val(data)
+                        return
+                    except fastjsonschema.JsonSchemaValueException as err:
+                        depth = len(err.name.split("["))
+                        if depth > max_depth:
+                            max_depth = depth
+                            best_err = err
+                            
+                if best_err:
+                    raise best_err
+
+            return branch_validator
+
+    opt = optimize_schema_for_compiler(schema_dict)
+    return fastjsonschema.compile(
+        opt, handlers={"http": fetch_schema, "https": fetch_schema}
+    )
+
+
 def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any:
     """
     Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
@@ -183,13 +233,10 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
     raw_base_schema = fetch_schema(base_uri)
 
     try:
-        # Tier 1: Try to compile with standard patching first
-        optimized_base = optimize_schema_for_compiler(raw_base_schema)
-        base_validator = fastjsonschema.compile(
-            optimized_base, handlers={"http": fetch_schema, "https": fetch_schema}
-        )
+        # Tier 1: Try to compile with unrolled oneOf/anyOf branches first
+        base_validator = compile_unrolled_schema(raw_base_schema)
         logger.debug(
-            f"Base schema {stac_type} {stac_version} compiled with fastjsonschema"
+            f"Base schema {stac_type} {stac_version} compiled with unrolled branch compilation"
         )
     except Exception:
         try:
@@ -242,25 +289,10 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
 
     for ext in extensions:
         try:
-            # 1. Fetch the raw dictionary
             raw_ext_schema = fetch_schema(ext)
-
-            # 2. Try to compile without patching first
-            try:
-                ext_val = fastjsonschema.compile(
-                    raw_ext_schema,
-                    handlers={"http": fetch_schema, "https": fetch_schema},
-                )
-            except Exception:
-                # If compilation fails, try with aggressive patching (remove allOf/oneOf/anyOf)
-                optimized_schema = optimize_schema_for_compiler(
-                    raw_ext_schema, remove_allof=True
-                )
-                ext_val = fastjsonschema.compile(
-                    optimized_schema,
-                    handlers={"http": fetch_schema, "https": fetch_schema},
-                )
-
+            
+            # Pre-compile using unrolled branch compilation at C-speed
+            ext_val = compile_unrolled_schema(raw_ext_schema)
             ext_validators.append((ext, ext_val))
             logger.debug(f"Successfully compiled STAC extension: {ext}")
             if not QUIET_MODE:
