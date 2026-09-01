@@ -22,13 +22,20 @@ logger = logging.getLogger(__name__)
 
 
 def parse_json_pointer(expr_name: str) -> str:
-    """Converts fastjsonschema variable names like "data['properties']['eo:cloud_cover']"
-    into clean JSON Pointers like "$.properties.eo:cloud_cover"."""
+    """Converts fastjsonschema variable names into clean JSON Pointers.
+    
+    Handles both bracket notation (data['properties']['eo:cloud_cover'])
+    and dot notation (data.properties.eo:cloud_cover).
+    """
     if not expr_name or expr_name == "data":
         return "$"
-    keys = re.findall(r"['\"]([^'\"]*)['\"]" , expr_name)
+    # Bracket notation: data['properties']['eo:cloud_cover']
+    keys = re.findall(r"['\"]([^'\"]*)['\"]", expr_name)
     if keys:
         return "$." + ".".join(keys)
+    # Dot notation: data.properties.eo:cloud_cover
+    if expr_name.startswith("data."):
+        return "$." + expr_name[5:]
     return expr_name
 
 
@@ -151,7 +158,8 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
                         val(data)
                         return
                     except fastjsonschema.JsonSchemaValueException as err:
-                        depth = len(err.name.split("["))
+                        # Split on both brackets and dots to calculate true path depth
+                        depth = len(re.split(r"[\[\.]", err.name))
                         if depth > max_depth:
                             max_depth = depth
                             best_err = err
@@ -168,26 +176,41 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
 
 
 def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any:
-    """
-    Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
-    Strips problematic constructs that cause IndentationError when compiling complex schemas.
+    """Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
 
+    Strips problematic constructs (like duration formats or dangling conditionals) and prunes
+    empty subschemas ({}) that cause CPython IndentationErrors during compilation.
+    
     Args:
         schema: The JSON schema dictionary to optimize
-        remove_allof: If True, also remove allOf/oneOf/anyOf (used for all schemas)
+        remove_allof: If True, also remove allOf/oneOf/anyOf (used for aggressive patching)
     """
     if isinstance(schema, list):
-        return [optimize_schema_for_compiler(item, remove_allof) for item in schema]
+        cleaned_list = []
+        for item in schema:
+            opt_item = optimize_schema_for_compiler(item, remove_allof)
+            # Omit empty dictionaries inside composition lists (allOf, oneOf, anyOf)
+            if isinstance(opt_item, dict) and not opt_item:
+                continue
+            cleaned_list.append(opt_item)
+        return cleaned_list
 
     if isinstance(schema, dict):
         cleaned = {}
         for k, v in schema.items():
-            # BUG FIX 1: fastjsonschema crashes on the 'duration' format (fixes product extension)
+            # BUG FIX 1: fastjsonschema crashes on the 'duration' format
             if k == "format" and v == "duration":
                 continue
 
-            # BUG FIX 2: fastjsonschema writes invalid Python code (empty for/else blocks)
-            # when translating complex JSON Schema conditionals (fixes file & storage extensions)
+            # BUG FIX 2: Prevent extensions from rejecting fields from other STAC extensions
+            # When multiple extensions are active, each extension's schema validates the shared
+            # top-level properties object. If an extension specifies additionalProperties: false,
+            # it rejects fields from other extensions. Strip these restrictive flags to enable
+            # multi-extension composition.
+            if k in ("additionalProperties", "unevaluatedProperties") and v is False:
+                continue
+
+            # BUG FIX 3: Conditionals & dependencies that produce empty Python code blocks
             if k in (
                 "if",
                 "then",
@@ -195,16 +218,40 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
                 "dependencies",
                 "dependentRequired",
                 "dependentSchemas",
+                "$comment",
             ):
                 continue
 
-            # BUG FIX 3: Remove allOf/oneOf/anyOf at top level when requested
-            # These cause IndentationError in fastjsonschema's code generator
+            # BUG FIX 4: Remove allOf/oneOf/anyOf at top level when requested
             if remove_allof and k in ("allOf", "oneOf", "anyOf") and len(schema) > 1:
-                # Only skip if there are other validation keywords
                 continue
 
-            cleaned[k] = optimize_schema_for_compiler(v, remove_allof)
+            opt_v = optimize_schema_for_compiler(v, remove_allof)
+
+            # BUG FIX 5: Prune empty subschemas ({}) in properties & patternProperties
+            # to prevent fastjsonschema from generating empty for/else blocks
+            if k in ("patternProperties", "properties", "dependentSchemas"):
+                if isinstance(opt_v, dict):
+                    non_empty_props = {
+                        pk: pv
+                        for pk, pv in opt_v.items()
+                        if not (isinstance(pv, dict) and not pv)
+                    }
+                    if not non_empty_props:
+                        continue
+                    opt_v = non_empty_props
+
+            if k in ("items", "additionalProperties", "unevaluatedProperties"):
+                if isinstance(opt_v, dict) and not opt_v:
+                    continue
+
+            cleaned[k] = opt_v
+
+        # Clean up empty composition keyword arrays
+        for comp_key in ("allOf", "oneOf", "anyOf"):
+            if comp_key in cleaned and isinstance(cleaned[comp_key], list) and not cleaned[comp_key]:
+                del cleaned[comp_key]
+
         return cleaned
 
     return schema

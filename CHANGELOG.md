@@ -8,11 +8,18 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ### Added
 
+- Added compile-time `oneOf`/`anyOf` branch unrolling in `compile_unrolled_schema()` to preserve exact field paths during validation without performance overhead. Each schema branch pre-compiles independently, allowing `fastjsonschema` to report precise error locations instead of swallowing them in branch exception handling.
+- Added `FastSTACValidationError` custom exception class to capture and report validation context: source (Base schema or specific extension URI), field path (RFC 6901 JSON Pointer), and error message. Enables batch error aggregation with exact field attribution.
+- Added `parse_json_pointer()` utility to normalize fastjsonschema variable expressions (both bracket and dot notation) into clean RFC 6901 JSON Pointers (e.g., `data.properties.eo:cloud_cover` → `$.properties.eo:cloud_cover`).
+
 ### Changed
+
+- Updated `get_validator()` to use compile-time branch unrolling for both base STAC schemas and extension schemas, maintaining C-speed execution while preserving diagnostic precision.
+- Refactored error reporting in `run()`, `run_dict()`, and `_validate_recursive()` to catch and report `FastSTACValidationError` with full context attribution, enabling ESA and other batch processors to pinpoint exact field failures without fallback overhead.
 
 ### Fixed
 
-### Removed
+- Fixed vague error messages in batch validation that reported raw Python variable expressions instead of clean field paths. Now reports exact RFC 6901 JSON Pointers with extension attribution (e.g., `[Extension: https://stac-extensions.github.io/eo/v1.0.0/schema.json] Field '$.properties.eo:cloud_cover': must be number`).
 
 ## [v4.5.2] - 2026-08-05
 
