@@ -6,20 +6,23 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
+## [v4.6.0] - 2026-09-01
+
 ### Added
 
-- Added compile-time `oneOf`/`anyOf` branch unrolling in `compile_unrolled_schema()` to preserve exact field paths during validation without performance overhead. Each schema branch pre-compiles independently, allowing `fastjsonschema` to report precise error locations instead of swallowing them in branch exception handling.
-- Added `FastSTACValidationError` custom exception class to capture and report validation context: source (Base schema or specific extension URI), field path (RFC 6901 JSON Pointer), and error message. Enables batch error aggregation with exact field attribution.
-- Added `parse_json_pointer()` utility to normalize fastjsonschema variable expressions (both bracket and dot notation) into clean RFC 6901 JSON Pointers (e.g., `data.properties.eo:cloud_cover` → `$.properties.eo:cloud_cover`).
+- **Multi-Error Pass**: Accumulated error reporting now captures and reports all validation failures across all active extensions on a single item in one pass.
+- **RFC 6901 JSON Pointers**: Added JSON Pointer path translation (`parse_json_pointer()`) to format field failures into standard JSON paths (e.g., `$.properties.eo:cloud_cover`).
+- **Resilient Extension Compilation**: Introduced multi-tier schema patching to compile 100% of community extension schemas (including `file/v2.1.0`, `product/v1.0.0`, and `storage/v2.0.0`) without requiring compiler skips.
 
 ### Changed
 
-- Updated `get_validator()` to use compile-time branch unrolling for both base STAC schemas and extension schemas, maintaining C-speed execution while preserving diagnostic precision.
-- Refactored error reporting in `run()`, `run_dict()`, and `_validate_recursive()` to catch and report `FastSTACValidationError` with full context attribution, enabling ESA and other batch processors to pinpoint exact field failures without fallback overhead.
+- **Clean Error Attribution**: Refactored error formatting to explicitly cite the failing schema source and field location (e.g., `[Extension: eo/v2.0.0] Field '$.properties.eo:cloud_cover': must be number`).
+- **Composite Schema Unrolling**: Pre-compiles `oneOf`/`anyOf` subschema branches independently to preserve C-speed execution while surfacing exact field failures.
 
 ### Fixed
 
-- Fixed vague error messages in batch validation that reported raw Python variable expressions instead of clean field paths. Now reports exact RFC 6901 JSON Pointers with extension attribution (e.g., `[Extension: https://stac-extensions.github.io/eo/v1.0.0/schema.json] Field '$.properties.eo:cloud_cover': must be number`).
+- **Swallowed Error Paths**: Fixed generic `$` root errors caused by `fastjsonschema`'s internal branch handling in composite extension schemas.
+- **Single-Error Short-Circuiting**: Fixed batch execution halting on the first field failure per item.
 
 ## [v4.5.2] - 2026-08-05
 
