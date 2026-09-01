@@ -8,14 +8,16 @@ These tests cover the --fast validator mode enhancements including:
 
 Network-isolated tests with mocked schema caches to prevent HTTP calls during CI/CD.
 """
+
 import json
+
 import pytest
 
 from stac_validator import fast_validator
 from stac_validator.fast_validator import (
-    FastValidator,
-    FastSTACValidationError,
     FastSTACMultiValidationError,
+    FastSTACValidationError,
+    FastValidator,
     parse_json_pointer,
 )
 
@@ -23,7 +25,7 @@ from stac_validator.fast_validator import (
 @pytest.fixture(autouse=True)
 def mock_schema_cache(monkeypatch):
     """Pre-populates SCHEMA_CACHE to prevent network calls during FastValidator tests.
-    
+
     This fixture ensures tests run offline and are not flaky due to network issues.
     """
     fast_validator.SCHEMA_CACHE.clear()
@@ -33,7 +35,15 @@ def mock_schema_cache(monkeypatch):
     base_item_schema = {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "type": "object",
-        "required": ["stac_version", "type", "id", "geometry", "properties", "links", "assets"],
+        "required": [
+            "stac_version",
+            "type",
+            "id",
+            "geometry",
+            "properties",
+            "links",
+            "assets",
+        ],
         "properties": {
             "stac_version": {"type": "string"},
             "type": {"const": "Feature"},
@@ -61,7 +71,11 @@ def mock_schema_cache(monkeypatch):
                     "properties": {
                         "type": "object",
                         "properties": {
-                            "eo:cloud_cover": {"type": "number", "minimum": 0, "maximum": 100}
+                            "eo:cloud_cover": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 100,
+                            }
                         },
                         "required": ["eo:cloud_cover"],
                     }
@@ -70,15 +84,17 @@ def mock_schema_cache(monkeypatch):
         ],
     }
 
-    fast_validator.SCHEMA_CACHE.update({
-        "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json": base_item_schema,
-        "https://stac-extensions.github.io/eo/v1.0.0/schema.json": eo_oneof_schema,
-    })
+    fast_validator.SCHEMA_CACHE.update(
+        {
+            "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json": base_item_schema,
+            "https://stac-extensions.github.io/eo/v1.0.0/schema.json": eo_oneof_schema,
+        }
+    )
 
 
 class TestParseJsonPointer:
     """Test parse_json_pointer function for RFC 6901 JSON Pointer conversion.
-    
+
     FastValidator utility for normalizing fastjsonschema variable expressions
     (both bracket and dot notation) into standard JSON Pointers.
     """
@@ -204,14 +220,14 @@ class TestFastSTACMultiValidationError:
 
 class TestOneOfBranchUnmasking:
     """Verifies that fastjsonschema oneOf swallowed errors are unmasked to exact JSON Pointers.
-    
+
     Tests the compile-time branch unrolling mechanism that prevents oneOf/anyOf
     from collapsing nested field errors to generic root ($) errors.
     """
 
     def test_oneof_branch_unmasking_returns_exact_json_pointer(self, tmp_path):
         """Ensures nested oneOf failures unmask to $.properties.eo:cloud_cover.
-        
+
         This test verifies that when fastjsonschema's oneOf handler would normally
         swallow a nested field error and report only a root ($) error, our branch
         unrolling mechanism unmasking it to the exact field path.
@@ -228,7 +244,9 @@ class TestOneOfBranchUnmasking:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -242,7 +260,7 @@ class TestOneOfBranchUnmasking:
         # Assert exact JSON pointer path rather than generic $
         error_messages = [str(e) for e in errors]
         error_text = " ".join(error_messages)
-        
+
         # Should contain the exact field path, not just root $
         assert "eo:cloud_cover" in error_text or "$.properties" in error_text
         assert "must be" in error_text.lower()
@@ -261,7 +279,9 @@ class TestOneOfBranchUnmasking:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -271,7 +291,7 @@ class TestOneOfBranchUnmasking:
         assert fv.valid is False
         errors = fv.message[0]["errors"]
         error_text = " ".join([str(e) for e in errors])
-        
+
         # Should not be just a generic root error
         assert error_text != "$"
         # Should mention the field or constraint
@@ -280,7 +300,7 @@ class TestOneOfBranchUnmasking:
 
 class TestErrorReportingIntegration:
     """Integration tests for error reporting in FastValidator validation.
-    
+
     Tests the complete error reporting pipeline including multi-error accumulation,
     extension attribution, and JSON Pointer path normalization.
     """
@@ -299,7 +319,9 @@ class TestErrorReportingIntegration:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -327,7 +349,9 @@ class TestErrorReportingIntegration:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -402,7 +426,9 @@ class TestErrorReportingIntegration:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -483,7 +509,7 @@ class TestErrorReportingIntegration:
 
     def test_strict_multi_error_accumulation(self, tmp_path):
         """Asserts exact multi-error payloads for base and extension fields.
-        
+
         Verifies that when an item has errors in both base schema fields (gsd)
         and extension fields (eo:cloud_cover), both are reported with exact
         JSON Pointers and proper source attribution.
@@ -501,7 +527,9 @@ class TestErrorReportingIntegration:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
         item_path.write_text(json.dumps(item_data))
 
@@ -510,27 +538,27 @@ class TestErrorReportingIntegration:
 
         assert fv.valid is False
         errors = fv.message[0]["errors"]
-        
+
         # Should have at least 2 errors (gsd and eo:cloud_cover)
         assert len(errors) >= 2
-        
+
         # Convert errors to strings for assertion
         error_strings = [str(e) for e in errors]
         error_text = " ".join(error_strings)
-        
+
         # Verify base schema error is present
         assert "gsd" in error_text or "Base" in error_text
-        
+
         # Verify extension error is present
         assert "eo:cloud_cover" in error_text or "Extension" in error_text
-        
+
         # Verify both mention "must be"
         assert error_text.lower().count("must be") >= 2
 
 
 class TestRunDictErrorReporting:
     """Test error reporting in FastValidator.run_dict() method.
-    
+
     Tests in-memory dictionary validation with the improved error reporting.
     """
 
@@ -569,7 +597,9 @@ class TestRunDictErrorReporting:
             },
             "links": [{"rel": "self", "href": "http://example.com"}],
             "assets": {},
-            "stac_extensions": ["https://stac-extensions.github.io/eo/v1.0.0/schema.json"],
+            "stac_extensions": [
+                "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+            ],
         }
 
         fv = FastValidator("", quiet=True)

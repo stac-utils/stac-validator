@@ -22,7 +22,7 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 ### Fixed
 
 - **Swallowed Error Paths**: Fixed generic `$` root errors caused by `fastjsonschema`'s internal branch handling in composite extension schemas.
-- **Single-Error Short-Circuiting**: Fixed batch execution halting on the first field failure per item.
+- **Single-Error Short-Circuiting**: Fixed batch execution halting on the first field failure per item. [#308](https://github.com/stac-utils/stac-validator/pull/308)
 
 ## [v4.5.2] - 2026-08-05
 

@@ -331,216 +331,216 @@ def test_validate_item_collection_remote_pages():
     stac.validate_item_collection()
 
     assert stac.message == [
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio9",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio8",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio7",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio6",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio5",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio4",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio3",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio2",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio19",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio18",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio17",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio16",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio15",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio14",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio13",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio12",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio11",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio10",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    },
-    {
-        "version": "1.1.0",
-        "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio1",
-        "schema": [
-            "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-            "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json"
-        ],
-        "valid_stac": True,
-        "asset_type": "ITEM",
-        "validation_method": "default"
-    }
-]
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio9",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio8",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio7",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio6",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio5",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio4",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio3",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio2",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio19",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio18",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio17",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio16",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio15",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio14",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio13",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio12",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio11",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio10",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+        {
+            "version": "1.1.0",
+            "path": "https://stac.geobon.org/collections/chelsa-clim/items/bio1",
+            "schema": [
+                "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+                "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/item.json",
+            ],
+            "valid_stac": True,
+            "asset_type": "ITEM",
+            "validation_method": "default",
+        },
+    ]
 
 
 def test_validate_item_collection_remote_pages_1_v110():

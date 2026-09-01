@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 def parse_json_pointer(expr_name: str) -> str:
     """Converts fastjsonschema variable names into clean JSON Pointers.
-    
+
     Handles both bracket notation (data['properties']['eo:cloud_cover'])
     and dot notation (data.properties.eo:cloud_cover).
     """
@@ -41,6 +41,7 @@ def parse_json_pointer(expr_name: str) -> str:
 
 class FastSTACValidationError(Exception):
     """Custom exception containing precise context for batch error reporting."""
+
     def __init__(self, source: str, field_path: str, raw_message: str):
         self.source = source
         self.field_path = field_path
@@ -50,9 +51,11 @@ class FastSTACValidationError(Exception):
 
 class FastSTACMultiValidationError(Exception):
     """Container for all validation errors found on a single STAC object."""
+
     def __init__(self, errors: List[FastSTACValidationError]):
         self.errors = errors
         super().__init__(f"Found {len(errors)} validation error(s)")
+
 
 # --- Caches & Config ---
 SCHEMA_CACHE: Dict[str, Any] = {}
@@ -134,15 +137,17 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
 def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
     """Unrolls top-level oneOf/anyOf branches into separate compiled fastjsonschema functions
     so field-level errors are never swallowed by branch exception handling.
-    
+
     Returns a validator function that tries each branch independently and reports
     the deepest error found (most specific field path).
     """
     if "oneOf" in schema_dict or "anyOf" in schema_dict:
         keyword = "oneOf" if "oneOf" in schema_dict else "anyOf"
         branches = schema_dict[keyword]
-        base_meta = {k: v for k, v in schema_dict.items() if k not in ("oneOf", "anyOf")}
-        
+        base_meta = {
+            k: v for k, v in schema_dict.items() if k not in ("oneOf", "anyOf")
+        }
+
         compiled_branches = []
         for branch in branches:
             merged = {**base_meta, **branch}
@@ -165,10 +170,11 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
                     pass
 
         if compiled_branches:
+
             def branch_validator(data: Dict[str, Any]) -> None:
                 best_err = None
                 max_depth = -1
-                
+
                 for val in compiled_branches:
                     try:
                         val(data)
@@ -179,7 +185,7 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
                         if depth > max_depth:
                             max_depth = depth
                             best_err = err
-                            
+
                 if best_err:
                     raise best_err
 
@@ -196,7 +202,7 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
 
     Strips problematic constructs (like duration formats or dangling conditionals) and prunes
     empty subschemas ({}) that cause CPython IndentationErrors during compilation.
-    
+
     Args:
         schema: The JSON schema dictionary to optimize
         remove_allof: If True, also remove allOf/oneOf/anyOf (used for aggressive patching)
@@ -265,7 +271,11 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
 
         # Clean up empty composition keyword arrays
         for comp_key in ("allOf", "oneOf", "anyOf"):
-            if comp_key in cleaned and isinstance(cleaned[comp_key], list) and not cleaned[comp_key]:
+            if (
+                comp_key in cleaned
+                and isinstance(cleaned[comp_key], list)
+                and not cleaned[comp_key]
+            ):
                 del cleaned[comp_key]
 
         return cleaned
@@ -336,7 +346,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 f"Base schema {stac_type} {stac_version} compiled with cached jsonschema fallback"
             )
 
-    ext_validators: List[Tuple[str, Any]] = []
+    ext_validators: List[Tuple[str, Any, Any]] = []
     skipped_extensions = []
 
     if extensions:
@@ -450,7 +460,9 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                             msg = branch_e.message.replace(branch_e.name, "").strip()
 
                     collected_errors.append(
-                        FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg)
+                        FastSTACValidationError(
+                            f"Extension: {ext_uri}", clean_path, msg
+                        )
                     )
 
             # Raise all accumulated errors at the end of the item pass
@@ -843,7 +855,7 @@ class FastValidator:
 
                 # Exact field and extension attribution
                 error_msg = str(e)
-                
+
                 if error_msg not in error_registry:
                     error_registry[error_msg] = []
                 error_registry[error_msg].append(item_id)
