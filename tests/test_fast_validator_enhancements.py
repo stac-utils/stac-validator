@@ -5,17 +5,11 @@ This module verifies the three targeted fixes applied to improve-fast-error-msg:
 2. Test fixture teardown to prevent cache leakage
 3. Scoped additionalProperties stripping to preserve nested object strictness
 """
+
 import json
 
-import pytest
-
 from stac_validator import fast_validator
-from stac_validator.fast_validator import (
-    FastSTACMultiValidationError,
-    FastSTACValidationError,
-    FastValidator,
-    parse_json_pointer,
-)
+from stac_validator.fast_validator import FastValidator, parse_json_pointer
 
 
 class TestParseJsonPointerTypeSafety:
@@ -71,9 +65,9 @@ class TestScopedAdditionalProperties:
         optimized = optimize_schema_for_compiler(schema)
 
         # Navigate to the nested additionalProperties
-        nested_additional_props = optimized["properties"]["assets"]["patternProperties"][
-            ".*"
-        ].get("additionalProperties")
+        nested_additional_props = optimized["properties"]["assets"][
+            "patternProperties"
+        ][".*"].get("additionalProperties")
 
         # Should still be False (not stripped)
         assert nested_additional_props is False
