@@ -197,20 +197,32 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
     )
 
 
-def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any:
+def optimize_schema_for_compiler(
+    schema: Any,
+    remove_allof: bool = False,
+    depth: int = 0,
+    in_shared_props: bool = False,
+) -> Any:
     """Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
 
     Strips problematic constructs (like duration formats or dangling conditionals) and prunes
     empty subschemas ({}) that cause CPython IndentationErrors during compilation.
 
+    Scopes additionalProperties stripping exclusively to the top-level shared Item/Collection
+    properties block so nested object strictness is preserved.
+
     Args:
         schema: The JSON schema dictionary to optimize
         remove_allof: If True, also remove allOf/oneOf/anyOf (used for aggressive patching)
+        depth: Current recursion depth (0 = root)
+        in_shared_props: True if we are inside the top-level shared properties block
     """
     if isinstance(schema, list):
         cleaned_list = []
         for item in schema:
-            opt_item = optimize_schema_for_compiler(item, remove_allof)
+            opt_item = optimize_schema_for_compiler(
+                item, remove_allof, depth + 1, in_shared_props
+            )
             # Omit empty dictionaries inside composition lists (allOf, oneOf, anyOf)
             if isinstance(opt_item, dict) and not opt_item:
                 continue
@@ -224,13 +236,14 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
             if k == "format" and v == "duration":
                 continue
 
-            # BUG FIX 2: Prevent extensions from rejecting fields from other STAC extensions
-            # When multiple extensions are active, each extension's schema validates the shared
-            # top-level properties object. If an extension specifies additionalProperties: false,
-            # it rejects fields from other extensions. Strip these restrictive flags to enable
-            # multi-extension composition.
+            # BUG FIX 2: Scoped additionalProperties/unevaluatedProperties removal
+            # Only strip these flags at the top-level schema root (depth <= 1) or inside
+            # the shared top-level "properties" block (depth <= 2 with in_shared_props=True).
+            # This enables multi-extension composition while preserving strict validation
+            # on nested objects (assets, bands, classification:classes, etc.).
             if k in ("additionalProperties", "unevaluatedProperties") and v is False:
-                continue
+                if depth <= 2 or in_shared_props:
+                    continue
 
             # BUG FIX 3: Conditionals & dependencies that produce empty Python code blocks
             if k in (
@@ -248,7 +261,11 @@ def optimize_schema_for_compiler(schema: Any, remove_allof: bool = False) -> Any
             if remove_allof and k in ("allOf", "oneOf", "anyOf") and len(schema) > 1:
                 continue
 
-            opt_v = optimize_schema_for_compiler(v, remove_allof)
+            # Flag when entering the shared STAC "properties" dictionary
+            is_props_block = k == "properties" and depth <= 2
+            opt_v = optimize_schema_for_compiler(
+                v, remove_allof, depth + 1, in_shared_props or is_props_block
+            )
 
             # BUG FIX 5: Prune empty subschemas ({}) in properties & patternProperties
             # to prevent fastjsonschema from generating empty for/else blocks
