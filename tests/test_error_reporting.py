@@ -24,10 +24,15 @@ from stac_validator.fast_validator import (
 
 @pytest.fixture(autouse=True)
 def mock_schema_cache(monkeypatch):
-    """Pre-populates SCHEMA_CACHE to prevent network calls during FastValidator tests.
+    """Pre-populates SCHEMA_CACHE and restores original state after test completion.
 
-    This fixture ensures tests run offline and are not flaky due to network issues.
+    This fixture ensures tests run offline and are not flaky due to network issues,
+    while preventing cache leakage across test suites.
     """
+    # Save original cache state for restoration
+    orig_schema_cache = fast_validator.SCHEMA_CACHE.copy()
+    orig_validator_cache = fast_validator.VALIDATOR_CACHE.copy()
+
     fast_validator.SCHEMA_CACHE.clear()
     fast_validator.VALIDATOR_CACHE.clear()
 
@@ -90,6 +95,14 @@ def mock_schema_cache(monkeypatch):
             "https://stac-extensions.github.io/eo/v1.0.0/schema.json": eo_oneof_schema,
         }
     )
+
+    yield
+
+    # Restore pre-test cache state to prevent leakage
+    fast_validator.SCHEMA_CACHE.clear()
+    fast_validator.SCHEMA_CACHE.update(orig_schema_cache)
+    fast_validator.VALIDATOR_CACHE.clear()
+    fast_validator.VALIDATOR_CACHE.update(orig_validator_cache)
 
 
 class TestParseJsonPointer:

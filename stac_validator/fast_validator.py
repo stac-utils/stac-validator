@@ -21,13 +21,13 @@ from .utilities import validate_with_ref_resolver
 logger = logging.getLogger(__name__)
 
 
-def parse_json_pointer(expr_name: str) -> str:
+def parse_json_pointer(expr_name: Optional[str]) -> str:
     """Converts fastjsonschema variable names into clean JSON Pointers.
 
     Handles both bracket notation (data['properties']['eo:cloud_cover'])
     and dot notation (data.properties.eo:cloud_cover).
     """
-    if not expr_name or expr_name == "data":
+    if not expr_name or not isinstance(expr_name, str) or expr_name == "data":
         return "$"
     # Bracket notation: data['properties']['eo:cloud_cover']
     keys = re.findall(r"['\"]([^'\"]*)['\"]", expr_name)
@@ -237,12 +237,11 @@ def optimize_schema_for_compiler(
                 continue
 
             # BUG FIX 2: Scoped additionalProperties/unevaluatedProperties removal
-            # Only strip these flags at the top-level schema root (depth <= 1) or inside
-            # the shared top-level "properties" block (depth <= 2 with in_shared_props=True).
+            # Strip these flags ONLY when inside the shared STAC properties map.
             # This enables multi-extension composition while preserving strict validation
             # on nested objects (assets, bands, classification:classes, etc.).
             if k in ("additionalProperties", "unevaluatedProperties") and v is False:
-                if depth <= 2 or in_shared_props:
+                if in_shared_props:
                     continue
 
             # BUG FIX 3: Conditionals & dependencies that produce empty Python code blocks
@@ -261,8 +260,9 @@ def optimize_schema_for_compiler(
             if remove_allof and k in ("allOf", "oneOf", "anyOf") and len(schema) > 1:
                 continue
 
-            # Flag when entering the shared STAC "properties" dictionary
-            is_props_block = k == "properties" and depth <= 2
+            # Set in_shared_props=True ONLY when entering the top-level STAC "properties" object
+            # (depth == 1 means we're at the root's direct children, so "properties" at depth 1 is the shared STAC properties)
+            is_props_block = k == "properties" and depth == 1
             opt_v = optimize_schema_for_compiler(
                 v, remove_allof, depth + 1, in_shared_props or is_props_block
             )
