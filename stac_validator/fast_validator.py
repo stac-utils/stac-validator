@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import re
+import tempfile
 import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
@@ -87,16 +88,55 @@ class FastSTACMultiValidationError(FastSTACValidationError):
         return f"Found {len(self.errors)} validation error(s): {err_list_str}"
 
 
+def get_cache_directory() -> str:
+    r"""Determines a writable disk cache directory across environments (Docker, Lambda, CLI).
+
+    Priority:
+    1. STAC_VALIDATOR_CACHE_DIR environment variable (explicit override)
+    2. ~/.cache/stac_validator (standard user cache on Linux/macOS)
+    3. %LOCALAPPDATA%\stac_validator (Windows user cache)
+    4. tempfile.gettempdir()/stac_validator_cache (Docker/Lambda /tmp)
+
+    Returns:
+        Path to writable cache directory (guaranteed to exist or be creatable)
+    """
+    # 1. Respect explicit environment variable if set
+    env_dir = os.environ.get("STAC_VALIDATOR_CACHE_DIR")
+    if env_dir:
+        try:
+            os.makedirs(env_dir, exist_ok=True)
+            logger.debug(f"Using STAC_VALIDATOR_CACHE_DIR: {env_dir}")
+            return env_dir
+        except (OSError, PermissionError) as e:
+            logger.warning(f"Cannot write to STAC_VALIDATOR_CACHE_DIR ({env_dir}): {e}")
+
+    # 2. Try standard user cache directory
+    try:
+        user_cache = os.path.join(os.path.expanduser("~"), ".cache", "stac_validator")
+        os.makedirs(user_cache, exist_ok=True)
+        logger.debug(f"Using user cache directory: {user_cache}")
+        return user_cache
+    except (OSError, PermissionError) as e:
+        logger.debug(f"Cannot write to user cache ({user_cache}): {e}")
+
+    # 3. Fallback to system temp directory
+    temp_cache = os.path.join(tempfile.gettempdir(), "stac_validator_cache")
+    try:
+        os.makedirs(temp_cache, exist_ok=True)
+        logger.debug(f"Falling back to temp cache: {temp_cache}")
+        return temp_cache
+    except (OSError, PermissionError) as e:
+        logger.warning(f"Cannot write to temp cache ({temp_cache}): {e}")
+        # Return temp_cache anyway - fetch_schema will handle write failures gracefully
+        return temp_cache
+
+
 # --- Thread-Safe Caches & Lock ---
 SCHEMA_CACHE: Dict[str, Any] = {}
 VALIDATOR_CACHE: Dict[Any, Any] = {}
 CACHE_LOCK = threading.Lock()
-# Store cached schemas inside the repository under local_schemas/.schemas (project-root relative)
-LOCAL_SCHEMA_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "local_schemas",
-    ".schemas",
-)
+# Dynamically determine writable cache directory across environments
+LOCAL_SCHEMA_DIR = get_cache_directory()
 
 # Shared HTTP session with keep-alive connection pooling and retries for crawler workloads.
 HTTP_SESSION = requests.Session()
@@ -159,13 +199,16 @@ def fetch_schema(uri: str, quiet: bool = False) -> Dict[str, Any]:
     except requests.RequestException as e:
         raise RuntimeError(f"Could not resolve schema: {uri}. Reason: {e}")
 
-    # 4. Save to Disk Cache
-    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+    # 4. Save to Disk Cache (Safeguarded)
+    # Fail gracefully if cache directory is unwritable (e.g., Docker/Lambda)
+    # RAM cache (SCHEMA_CACHE) still functions normally even if disk write fails
     try:
+        os.makedirs(os.path.dirname(local_path), exist_ok=True)
         with open(local_path, "w") as f:
             json.dump(schema_dict, f)
-    except IOError:
-        pass  # If we can't write to disk, no big deal, keep going
+    except (IOError, OSError, PermissionError):
+        # If we can't write to disk, no big deal - keep going with RAM cache
+        pass
 
     # 5. Save to RAM Cache (Thread-Safe Store)
     with CACHE_LOCK:
