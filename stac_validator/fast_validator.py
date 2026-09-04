@@ -39,22 +39,52 @@ def parse_json_pointer(expr_name: Optional[str]) -> str:
     return expr_name
 
 
-class FastSTACValidationError(Exception):
-    """Custom exception containing precise context for batch error reporting."""
+class FastSTACValidationError(fastjsonschema.JsonSchemaValueException):
+    """Custom validation exception inheriting from fastjsonschema.JsonSchemaValueException.
+
+    Guarantees backward compatibility for legacy callers catching
+    fastjsonschema.JsonSchemaValueException.
+    """
 
     def __init__(self, source: str, field_path: str, raw_message: str):
         self.source = source
         self.field_path = field_path
         self.raw_message = raw_message
-        super().__init__(f"[{source}] Field '{field_path}': {raw_message}")
+        formatted_msg = f"[{source}] Field '{field_path}': {raw_message}"
+
+        # Populate fastjsonschema.JsonSchemaValueException superclass attributes:
+        # self.message -> formatted_msg
+        # self.name    -> field_path
+        super().__init__(
+            message=formatted_msg,
+            value=None,
+            name=field_path,
+            definition=None,
+        )
+
+    def __str__(self) -> str:
+        return f"[{self.source}] Field '{self.field_path}': {self.raw_message}"
 
 
-class FastSTACMultiValidationError(Exception):
-    """Container for all validation errors found on a single STAC object."""
+class FastSTACMultiValidationError(FastSTACValidationError):
+    """Container for all validation errors on a single STAC object.
+
+    Inherits from FastSTACValidationError (and transitively JsonSchemaValueException),
+    allowing legacy exception handlers to catch multi-error failures seamlessly.
+    """
 
     def __init__(self, errors: List[FastSTACValidationError]):
         self.errors = errors
-        super().__init__(f"Found {len(errors)} validation error(s)")
+        first_err = (
+            errors[0]
+            if errors
+            else FastSTACValidationError("Base STAC", "$", "Unknown validation error")
+        )
+        super().__init__(first_err.source, first_err.field_path, first_err.raw_message)
+
+    def __str__(self) -> str:
+        err_list_str = "; ".join(str(err) for err in self.errors)
+        return f"Found {len(self.errors)} validation error(s): {err_list_str}"
 
 
 # --- Caches & Config ---
