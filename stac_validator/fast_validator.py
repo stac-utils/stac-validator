@@ -769,6 +769,101 @@ class FastValidator:
             ]
             return [future.result() for future in futures]
 
+    def _validate_single_item(
+        self, item: Dict[str, Any], item_index: int
+    ) -> Tuple[bool, float, float, str, List[str]]:
+        """Validate a single STAC item and return (is_valid, setup_ms, exec_ms, item_id, error_messages).
+
+        This helper eliminates code duplication between run() and run_dict() by providing
+        a unified validation pipeline for individual items.
+
+        Returns:
+            Tuple of (is_valid, setup_time_ms, exec_time_ms, item_id, error_messages)
+        """
+        item_id = item.get("id", f"unknown-{item_index}")
+        stac_version = item.get("stac_version", "1.0.0")
+        extensions = item.get("stac_extensions", [])
+
+        # Map Feature->Item, others keep their type
+        actual_type = (
+            "Item" if item.get("type") == "Feature" else item.get("type", "Catalog")
+        )
+
+        # --- Setup Timer ---
+        t0 = time.perf_counter()
+        try:
+            validator, _ = get_validator(
+                actual_type, stac_version, extensions, quiet=self.quiet
+            )
+        except Exception as e:
+            t1 = time.perf_counter()
+            setup_time = (t1 - t0) * 1000
+            error_msg = f"Setup failed: {str(e)}"
+            return False, setup_time, 0.0, item_id, [error_msg]
+
+        t1 = time.perf_counter()
+        setup_time = (t1 - t0) * 1000
+
+        # --- Execution Timer ---
+        t2 = time.perf_counter()
+        error_messages: List[str] = []
+
+        try:
+            validator(item)
+            # Run logical firewalls
+            self._validate_datetime_range(item)
+            if self.validate_geometry:
+                self._validate_geometry(item)
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+            return True, setup_time, exec_time, item_id, error_messages
+
+        except FastSTACMultiValidationError as e:
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+            error_messages = [str(single_err) for single_err in e.errors]
+            return False, setup_time, exec_time, item_id, error_messages
+
+        except FastSTACValidationError as e:
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+            error_messages = [str(e)]
+            return False, setup_time, exec_time, item_id, error_messages
+
+        except fastjsonschema.JsonSchemaValueException as e:
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+            error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
+            if "disallowed definition" in error_msg and "collection" in error_msg:
+                error_msg = (
+                    "STAC Spec Violation: Missing {'rel': 'collection'} in links array."
+                )
+            error_messages = [error_msg]
+            return False, setup_time, exec_time, item_id, error_messages
+
+        except ValueError as e:
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+            error_messages = [str(e)]
+            return False, setup_time, exec_time, item_id, error_messages
+
+        except Exception as e:
+            t3 = time.perf_counter()
+            exec_time = (t3 - t2) * 1000
+
+            if self._is_ref_resolution_error(e):
+                try:
+                    self._validate_with_jsonschema_fallback(
+                        item, actual_type, stac_version, extensions
+                    )
+                    return True, setup_time, exec_time, item_id, error_messages
+                except Exception as fallback_err:
+                    error_messages = [str(fallback_err)]
+                    return False, setup_time, exec_time, item_id, error_messages
+            else:
+                error_messages = [str(e)]
+                return False, setup_time, exec_time, item_id, error_messages
+
     def run(self):
         """Universal high-speed STAC Validator (Items, Collections, Catalogs, FeatureCollections)"""
         if not self.quiet:
@@ -839,18 +934,19 @@ class FastValidator:
         schemas_checked: Set[str] = set()
 
         for index, item in enumerate(items_to_validate):
-            # Determine specific STAC attributes for this object
-            item_id = item.get("id", f"unknown-{index}")
-            stac_version = item.get("stac_version", "1.0.0")
-            extensions = item.get("stac_extensions", [])
+            # Use unified validation helper
+            is_valid, setup_time, exec_time, item_id, error_messages = (
+                self._validate_single_item(item, index)
+            )
 
             # Track versions and schemas
-            stac_versions_found.add(stac_version)
-
-            # Map Feature->Item, others keep their type
+            stac_version = item.get("stac_version", "1.0.0")
+            extensions = item.get("stac_extensions", [])
             actual_type = (
                 "Item" if item.get("type") == "Feature" else item.get("type", "Catalog")
             )
+
+            stac_versions_found.add(stac_version)
 
             # Build schema URI for this object type
             try:
@@ -865,145 +961,28 @@ class FastValidator:
             for ext in extensions:
                 schemas_checked.add(ext)
 
-            # --- Setup Timer ---
-            t0 = time.perf_counter()
-            try:
-                validator, is_cached = get_validator(
-                    actual_type, stac_version, extensions, quiet=self.quiet
-                )
-            except Exception as e:
-                if not self.quiet:
-                    click.secho(f"❌ Setup failed for {item_id}: {e}", fg="red")
-                invalid_count += 1
-                self.valid = False
-                error_msg = f"Setup failed: {str(e)}"
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-                continue
-            t1 = time.perf_counter()
-            setup_time = (t1 - t0) * 1000
+            # Accumulate metrics
             total_setup_ms += setup_time
+            total_exec_ms += exec_time
 
-            # --- Execution Timer ---
-            t2 = time.perf_counter()
-            try:
-                validator(item)
-                # Run logical firewalls
-                self._validate_datetime_range(item)
-                if self.validate_geometry:
-                    self._validate_geometry(item)
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
+            if is_valid:
                 valid_count += 1
                 status_text = click.style("✅ VALID", fg="green")
-
-            except FastSTACMultiValidationError as e:
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
+            else:
                 invalid_count += 1
                 self.valid = False
-
-                # Register every distinct field failure found on this item
-                for single_err in e.errors:
-                    error_msg = str(single_err)
+                status_text = click.style("❌ INVALID", fg="red")
+                # Register all errors for this item
+                for error_msg in error_messages:
                     if error_msg not in error_registry:
                         error_registry[error_msg] = []
                     error_registry[error_msg].append(item_id)
-
-                status_text = click.style("❌ INVALID", fg="red")
-
-            except FastSTACValidationError as e:
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
-                invalid_count += 1
-                self.valid = False
-
-                # Exact field and extension attribution
-                error_msg = str(e)
-
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-                status_text = click.style("❌ INVALID", fg="red")
-
-            except fastjsonschema.JsonSchemaValueException as e:
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
-                invalid_count += 1
-                self.valid = False
-
-                # --- The STAC Error Translator ---
-                error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
-                if "disallowed definition" in error_msg:
-                    if "collection" in error_msg:
-                        error_msg = "STAC Spec Violation: Missing {'rel': 'collection'} in links array."
-                    else:
-                        error_msg = (
-                            f"{e.name} violated a 'not' rule. Value: {repr(e.value)}"
-                        )
-
-                # Group errors
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-                status_text = click.style("❌ INVALID", fg="red")
-
-            except ValueError as e:
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
-                invalid_count += 1
-                self.valid = False
-
-                # Logical validation errors (datetime range, geometry)
-                error_msg = str(e)
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-                status_text = click.style("❌ INVALID", fg="red")
-
-            except Exception as e:
-                t3 = time.perf_counter()
-                exec_time = (t3 - t2) * 1000
-                total_exec_ms += exec_time
-
-                if self._is_ref_resolution_error(e):
-                    try:
-                        self._validate_with_jsonschema_fallback(
-                            item,
-                            actual_type,
-                            stac_version,
-                            extensions,
-                        )
-                        valid_count += 1
-                        status_text = click.style("✅ VALID", fg="green")
-                    except Exception as fallback_err:
-                        invalid_count += 1
-                        self.valid = False
-                        error_msg = str(fallback_err)
-                        if error_msg not in error_registry:
-                            error_registry[error_msg] = []
-                        error_registry[error_msg].append(item_id)
-                        status_text = click.style("❌ INVALID", fg="red")
-                else:
-                    invalid_count += 1
-                    self.valid = False
-                    error_msg = str(e)
-                    if error_msg not in error_registry:
-                        error_registry[error_msg] = []
-                    error_registry[error_msg].append(item_id)
-                    status_text = click.style("❌ INVALID", fg="red")
 
             if not self.quiet:
                 if self.verbose or index < 5 or (len(items_to_validate) < 20):
-                    cache_icon = "⚡" if is_cached else "🐌"
+                    # Note: is_cached info is not available from helper, use placeholder
                     click.echo(
-                        f"[{index + 1}] ID: {item_id} | Type: {actual_type} | Cache {cache_icon} | Setup: {setup_time:>6.2f}ms | Exec: {exec_time:>5.2f}ms | {status_text}"
+                        f"[{index + 1}] ID: {item_id} | Type: {actual_type} | Setup: {setup_time:>6.2f}ms | Exec: {exec_time:>5.2f}ms | {status_text}"
                     )
                 elif index == 5:
                     click.secho(
@@ -1133,15 +1112,19 @@ class FastValidator:
         self.valid = True
 
         for index, item in enumerate(items_to_validate):
-            item_id = item.get("id", f"unknown-{index}")
+            # Use unified validation helper
+            is_valid, setup_time, exec_time, item_id, error_messages = (
+                self._validate_single_item(item, index)
+            )
+
+            # Track versions and schemas
             stac_version = item.get("stac_version", "1.0.0")
             extensions = item.get("stac_extensions", [])
-
-            stac_versions_found.add(stac_version)
-
             actual_type = (
                 "Item" if item.get("type") == "Feature" else item.get("type", "Catalog")
             )
+
+            stac_versions_found.add(stac_version)
 
             try:
                 base_schema = self._get_base_schema_uri(actual_type, stac_version)
@@ -1154,95 +1137,17 @@ class FastValidator:
             for ext in extensions:
                 schemas_checked.add(ext)
 
-            t0 = time.perf_counter()
-            try:
-                validator, _ = get_validator(
-                    actual_type, stac_version, extensions, quiet=self.quiet
-                )
-            except Exception as e:
-                invalid_count += 1
-                self.valid = False
-                error_msg = str(e)
-                logger.error(f"Schema setup failed for item {item_id}: {error_msg}")
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-                continue
-            t1 = time.perf_counter()
-            total_setup_ms += (t1 - t0) * 1000
+            # Accumulate metrics
+            total_setup_ms += setup_time
+            total_exec_ms += exec_time
 
-            t2 = time.perf_counter()
-            try:
-                validator(item)
-                # Run logical firewalls
-                self._validate_datetime_range(item)
-                if self.validate_geometry:
-                    self._validate_geometry(item)
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
+            if is_valid:
                 valid_count += 1
-            except FastSTACMultiValidationError as e:
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
+            else:
                 invalid_count += 1
                 self.valid = False
-                for single_err in e.errors:
-                    error_msg = str(single_err)
-                    if error_msg not in error_registry:
-                        error_registry[error_msg] = []
-                    error_registry[error_msg].append(item_id)
-            except FastSTACValidationError as e:
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
-                invalid_count += 1
-                self.valid = False
-                error_msg = str(e)
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-            except fastjsonschema.JsonSchemaValueException as e:
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
-                invalid_count += 1
-                self.valid = False
-                error_msg = f"{e.name} {e.message.replace(e.name, '').strip()}"
-                if "disallowed definition" in error_msg and "collection" in error_msg:
-                    error_msg = "STAC Spec Violation: Missing {'rel': 'collection'} in links array."
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-            except ValueError as e:
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
-                invalid_count += 1
-                self.valid = False
-                error_msg = str(e)
-                if error_msg not in error_registry:
-                    error_registry[error_msg] = []
-                error_registry[error_msg].append(item_id)
-            except Exception as e:
-                t3 = time.perf_counter()
-                total_exec_ms += (t3 - t2) * 1000
-                if self._is_ref_resolution_error(e):
-                    try:
-                        self._validate_with_jsonschema_fallback(
-                            item,
-                            actual_type,
-                            stac_version,
-                            extensions,
-                        )
-                        valid_count += 1
-                    except Exception as fallback_err:
-                        invalid_count += 1
-                        self.valid = False
-                        error_msg = str(fallback_err)
-                        if error_msg not in error_registry:
-                            error_registry[error_msg] = []
-                        error_registry[error_msg].append(item_id)
-                else:
-                    invalid_count += 1
-                    self.valid = False
-                    error_msg = str(e)
+                # Register all errors for this item
+                for error_msg in error_messages:
                     if error_msg not in error_registry:
                         error_registry[error_msg] = []
                     error_registry[error_msg].append(item_id)
