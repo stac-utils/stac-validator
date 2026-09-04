@@ -6,7 +6,15 @@ The format is (loosely) based on [Keep a Changelog](http://keepachangelog.com/) 
 
 ## [Unreleased]
 
-## [v4.6.0] - 2026-09-01
+## [v4.6.1] - 2026-09-04
+
+### Fixed
+
+- **Multi-Extension Composition Errors**: Fixed false-positive validation errors when multiple extensions are composed together by unconditionally stripping `unevaluatedProperties: false` from extension schemas. Modern STAC extensions (e.g., `projection/v2.0.0`, `eo/v2.0.0`) use Draft 2020-12 `unevaluatedProperties: false` which causes sibling extension fields to be incorrectly flagged as unevaluated when multiple extensions are active.
+- **Branch Unroller for allOf-Nested oneOf**: Enhanced `compile_unrolled_schema()` to detect and unroll `oneOf`/`anyOf` branches nested inside `allOf` arrays (e.g., Projection v2.0.0 schema structure), preventing generic "must be valid exactly by one definition (0 matches found)" errors.
+- **Branch Validator Fallback**: Updated extension validation logic to use branch validator when primary validator fails, allowing accurate error reporting for composition-related failures while accepting valid items that pass branch validation.
+
+## [v4.6.0] - 2026-09-03
 
 ### Added
 

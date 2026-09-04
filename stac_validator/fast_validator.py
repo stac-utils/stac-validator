@@ -217,8 +217,12 @@ def fetch_schema(uri: str, quiet: bool = False) -> Dict[str, Any]:
 
 
 def compile_unrolled_schema(schema_dict: Dict[str, Any], quiet: bool = False) -> Any:
-    """Unrolls top-level oneOf/anyOf branches into separate compiled fastjsonschema functions
-    so field-level errors are never swallowed by branch exception handling.
+    """Unrolls top-level or allOf-nested oneOf/anyOf branches into separate compiled
+    fastjsonschema functions so field-level errors are never swallowed by branch handling.
+
+    Handles two patterns:
+    1. Direct top-level oneOf/anyOf
+    2. oneOf/anyOf nested inside allOf (e.g., Projection v2.0.0)
 
     Returns a validator function that tries each branch independently and reports
     the deepest error found (most specific field path).
@@ -233,16 +237,47 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any], quiet: bool = False) ->
 
     handlers_dict = {"http": handler, "https": handler}
 
+    target_keyword = None
+    branches = []
+    base_meta = {}
+
+    # Case 1: Direct top-level oneOf/anyOf
     if "oneOf" in schema_dict or "anyOf" in schema_dict:
-        keyword = "oneOf" if "oneOf" in schema_dict else "anyOf"
-        branches = schema_dict[keyword]
+        target_keyword = "oneOf" if "oneOf" in schema_dict else "anyOf"
+        branches = schema_dict[target_keyword]
         base_meta = {
             k: v for k, v in schema_dict.items() if k not in ("oneOf", "anyOf")
         }
 
+    # Case 2: oneOf/anyOf nested inside allOf (e.g., Projection v2.0.0)
+    elif "allOf" in schema_dict and isinstance(schema_dict["allOf"], list):
+        other_allOf = []
+        for elem in schema_dict["allOf"]:
+            if isinstance(elem, dict) and ("oneOf" in elem or "anyOf" in elem):
+                target_keyword = "oneOf" if "oneOf" in elem else "anyOf"
+                branches = elem[target_keyword]
+                remainder = {
+                    k: v for k, v in elem.items() if k not in ("oneOf", "anyOf")
+                }
+                if remainder:
+                    other_allOf.append(remainder)
+            else:
+                other_allOf.append(elem)
+
+        if branches:
+            base_meta = {k: v for k, v in schema_dict.items() if k != "allOf"}
+            if other_allOf:
+                base_meta["allOf"] = other_allOf
+
+    # Compile each branch independently
+    if branches:
         compiled_branches = []
         for branch in branches:
-            merged = {**base_meta, **branch}
+            if "allOf" in base_meta:
+                merged = {**base_meta, "allOf": base_meta["allOf"] + [branch]}
+            else:
+                merged = {**base_meta, **branch}
+
             try:
                 # Tier 1: Standard optimization (keeps oneOf/allOf)
                 opt = optimize_schema_for_compiler(merged, remove_allof=False)
@@ -268,8 +303,11 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any], quiet: bool = False) ->
                         val(data)
                         return
                     except fastjsonschema.JsonSchemaValueException as err:
-                        # Split on both brackets and dots to calculate true path depth
-                        depth = len(re.split(r"[\[\.]", err.name))
+                        clean_p = parse_json_pointer(err.name)
+                        # Root '$' errors score 0; deeper paths score higher
+                        depth = (
+                            0 if clean_p == "$" else len(re.split(r"[\[\.]", err.name))
+                        )
                         if depth > max_depth:
                             max_depth = depth
                             best_err = err
@@ -286,28 +324,29 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any], quiet: bool = False) ->
 def optimize_schema_for_compiler(
     schema: Any,
     remove_allof: bool = False,
-    depth: int = 0,
+    in_props_branch: bool = False,
     in_shared_props: bool = False,
 ) -> Any:
-    """Recursively patches STAC schemas in-memory to bypass fastjsonschema code generation bugs.
+    r"""Recursively patches STAC schemas in-memory for fastjsonschema code generation.
 
     Strips problematic constructs (like duration formats or dangling conditionals) and prunes
     empty subschemas ({}) that cause CPython IndentationErrors during compilation.
 
-    Scopes additionalProperties stripping exclusively to the top-level shared Item/Collection
-    properties block so nested object strictness is preserved.
+    Strips restrictive additionalProperties/unevaluatedProperties flags when traversing
+    shared STAC Item properties so active extensions don't reject sibling fields,
+    while preserving additionalProperties: false inside nested sub-objects (assets, links).
 
     Args:
         schema: The JSON schema dictionary to optimize
         remove_allof: If True, also remove allOf/oneOf/anyOf (used for aggressive patching)
-        depth: Current recursion depth (0 = root)
-        in_shared_props: True if we are inside the top-level shared properties block
+        in_props_branch: True if we are inside a properties block (first level)
+        in_shared_props: True if we are inside shared Item/Collection properties
     """
     if isinstance(schema, list):
         cleaned_list = []
         for item in schema:
             opt_item = optimize_schema_for_compiler(
-                item, remove_allof, depth + 1, in_shared_props
+                item, remove_allof, in_props_branch, in_shared_props
             )
             # Omit empty dictionaries inside composition lists (allOf, oneOf, anyOf)
             if isinstance(opt_item, dict) and not opt_item:
@@ -322,15 +361,21 @@ def optimize_schema_for_compiler(
             if k == "format" and v == "duration":
                 continue
 
-            # BUG FIX 2: Scoped additionalProperties/unevaluatedProperties removal
-            # Strip these flags ONLY when inside the shared STAC properties map.
-            # This enables multi-extension composition while preserving strict validation
-            # on nested objects (assets, bands, classification:classes, etc.).
-            if k in ("additionalProperties", "unevaluatedProperties") and v is False:
+            # BUG FIX 2: Strip unevaluatedProperties: false EVERYWHERE (Draft 2020-12 issue)
+            # Modern extension schemas use unevaluatedProperties: false which causes false positives
+            # when multiple extensions are composed. Each oneOf branch sees sibling extension fields
+            # (eo:cloud_cover, datetime, etc.) and rejects them as unevaluated, collapsing to
+            # "must be valid exactly by one definition (0 matches found)". Strip unconditionally.
+            if k == "unevaluatedProperties" and v is False:
+                continue
+
+            # BUG FIX 3: Strip additionalProperties: false ONLY in shared Item properties
+            # Preserve it in nested objects like assets, links, and sub-definitions
+            if k == "additionalProperties" and v is False:
                 if in_shared_props:
                     continue
 
-            # BUG FIX 3: Conditionals & dependencies that produce empty Python code blocks
+            # BUG FIX 4: Conditionals & dependencies that produce empty Python code blocks
             if k in (
                 "if",
                 "then",
@@ -342,17 +387,34 @@ def optimize_schema_for_compiler(
             ):
                 continue
 
-            # BUG FIX 4: Remove allOf/oneOf/anyOf at top level when requested
+            # BUG FIX 5: Remove allOf/oneOf/anyOf at top level when requested
             if remove_allof and k in ("allOf", "oneOf", "anyOf") and len(schema) > 1:
                 continue
 
-            # Set in_shared_props=True ONLY when entering the top-level STAC "properties" object
-            # (depth == 1 means we're at the root's direct children, so "properties" at depth 1 is the shared STAC properties)
-            is_props_block = k == "properties" and depth == 1
+            # Context tracking across schema hierarchy
+            next_in_props_branch = in_props_branch
+            next_in_shared_props = in_shared_props
+
+            if k == "properties":
+                # Entering a properties block
+                if in_props_branch or in_shared_props:
+                    # Already in properties context, mark as shared
+                    next_in_shared_props = True
+                else:
+                    # First properties block encountered
+                    next_in_props_branch = True
+            elif k in ("assets", "links"):
+                # Nested objects - exit shared properties context
+                next_in_shared_props = False
+            elif k in ("$defs", "definitions"):
+                # Definitions are part of shared properties context
+                next_in_shared_props = True
+
             opt_v = optimize_schema_for_compiler(
-                v, remove_allof, depth + 1, in_shared_props or is_props_block
+                v, remove_allof, next_in_props_branch, next_in_shared_props
             )
 
+            # BUG FIX 6: Prune empty subschemas ({}) in properties & patternProperties
             # BUG FIX 5: Prune empty subschemas ({}) in properties & patternProperties
             # to prevent fastjsonschema from generating empty for/else blocks
             if k in ("patternProperties", "properties", "dependentSchemas"):
@@ -515,7 +577,19 @@ def get_validator(
 
             # 2. Pre-compile unrolled branch validator as a lazy diagnostic backup
             branch_val = None
-            if "oneOf" in raw_ext_schema or "anyOf" in raw_ext_schema:
+            has_branches = "oneOf" in raw_ext_schema or "anyOf" in raw_ext_schema
+            # Also check for oneOf/anyOf nested inside allOf (e.g., Projection v2.0.0)
+            if (
+                not has_branches
+                and "allOf" in raw_ext_schema
+                and isinstance(raw_ext_schema["allOf"], list)
+            ):
+                for elem in raw_ext_schema["allOf"]:
+                    if isinstance(elem, dict) and ("oneOf" in elem or "anyOf" in elem):
+                        has_branches = True
+                        break
+
+            if has_branches:
                 try:
                     branch_val = compile_unrolled_schema(raw_ext_schema, quiet=quiet)
                 except Exception:
@@ -569,11 +643,15 @@ def get_validator(
                 clean_path = parse_json_pointer(e.name)
                 msg = e.message.replace(e.name, "").strip()
 
-                # Unmask swallowed oneOf paths ($) using our diagnostic branch helper
-                if clean_path == "$" and branch_val is not None:
+                # If we have a branch validator, try it to unmask composition errors
+                # (e.g., oneOf/anyOf where fastjsonschema swallows the real error)
+                if branch_val is not None:
                     try:
                         branch_val(data)
+                        # Branch validator passed - item is valid, don't report error
+                        continue
                     except fastjsonschema.JsonSchemaValueException as branch_e:
+                        # Branch validator also failed - use its more specific error
                         clean_path = parse_json_pointer(branch_e.name)
                         msg = branch_e.message.replace(branch_e.name, "").strip()
 
