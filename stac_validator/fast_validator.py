@@ -3,7 +3,6 @@ import json
 import logging
 import os
 import re
-import sys
 import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
@@ -507,49 +506,41 @@ def get_validator(
         )
 
     def validator(data: Dict[str, Any]) -> None:
-        old_limit = sys.getrecursionlimit()
-        sys.setrecursionlimit(10000)
         collected_errors: List[FastSTACValidationError] = []
 
+        # 1. Base STAC Schema
         try:
-            # 1. Base STAC Schema
+            base_validator(data)
+        except fastjsonschema.JsonSchemaValueException as e:
+            clean_path = parse_json_pointer(e.name)
+            msg = e.message.replace(e.name, "").strip()
+            collected_errors.append(
+                FastSTACValidationError(f"Base {stac_type}", clean_path, msg)
+            )
+
+        # 2. Individual Extension Schemas (evaluate ALL extensions)
+        for ext_uri, ext_val, branch_val in ext_validators:
             try:
-                base_validator(data)
+                ext_val(data)
             except fastjsonschema.JsonSchemaValueException as e:
                 clean_path = parse_json_pointer(e.name)
                 msg = e.message.replace(e.name, "").strip()
+
+                # Unmask swallowed oneOf paths ($) using our diagnostic branch helper
+                if clean_path == "$" and branch_val is not None:
+                    try:
+                        branch_val(data)
+                    except fastjsonschema.JsonSchemaValueException as branch_e:
+                        clean_path = parse_json_pointer(branch_e.name)
+                        msg = branch_e.message.replace(branch_e.name, "").strip()
+
                 collected_errors.append(
-                    FastSTACValidationError(f"Base {stac_type}", clean_path, msg)
+                    FastSTACValidationError(f"Extension: {ext_uri}", clean_path, msg)
                 )
 
-            # 2. Individual Extension Schemas (evaluate ALL extensions)
-            for ext_uri, ext_val, branch_val in ext_validators:
-                try:
-                    ext_val(data)
-                except fastjsonschema.JsonSchemaValueException as e:
-                    clean_path = parse_json_pointer(e.name)
-                    msg = e.message.replace(e.name, "").strip()
-
-                    # Unmask swallowed oneOf paths ($) using our diagnostic branch helper
-                    if clean_path == "$" and branch_val is not None:
-                        try:
-                            branch_val(data)
-                        except fastjsonschema.JsonSchemaValueException as branch_e:
-                            clean_path = parse_json_pointer(branch_e.name)
-                            msg = branch_e.message.replace(branch_e.name, "").strip()
-
-                    collected_errors.append(
-                        FastSTACValidationError(
-                            f"Extension: {ext_uri}", clean_path, msg
-                        )
-                    )
-
-            # Raise all accumulated errors at the end of the item pass
-            if collected_errors:
-                raise FastSTACMultiValidationError(collected_errors)
-
-        finally:
-            sys.setrecursionlimit(old_limit)
+        # Raise all accumulated errors at the end of the item pass
+        if collected_errors:
+            raise FastSTACMultiValidationError(collected_errors)
 
     # Cache the resulting validator so future items use it instantly (Thread-safe Write)
     with CACHE_LOCK:
@@ -1281,7 +1272,6 @@ class FastValidator:
 
     def run_recursive(self):
         """Recursively validate a local STAC catalog/collection and all its children."""
-        sys.setrecursionlimit(10000)
         start_time = time.perf_counter()
 
         # Load the root STAC object
@@ -1301,7 +1291,9 @@ class FastValidator:
         results = []
         visited = set()
         visited.add(root_path)
-        self._validate_recursive(root_data, root_path, results, visited, is_api=False)
+        self._validate_recursive(
+            root_data, root_path, results, visited, is_api=False, depth=0
+        )
 
         if self.limit is not None and not self.quiet and len(results) >= self.limit:
             click.secho(
@@ -1361,7 +1353,6 @@ class FastValidator:
 
     def run_api(self):
         """Recursively validate a STAC API catalog and all its collections/items."""
-        sys.setrecursionlimit(10000)
         start_time = time.perf_counter()
 
         if not self.quiet:
@@ -1396,7 +1387,9 @@ class FastValidator:
                 dim=True,
             )
 
-        self._validate_recursive(root_data, root_path, results, visited, is_api=True)
+        self._validate_recursive(
+            root_data, root_path, results, visited, is_api=True, depth=0
+        )
 
         if self.limit is not None and not self.quiet and len(results) >= self.limit:
             click.secho(
@@ -1463,6 +1456,7 @@ class FastValidator:
         is_api: bool = False,
         collection_id: Optional[str] = None,
         prefetched_resources: Optional[Dict[str, Dict[str, Any]]] = None,
+        depth: int = 0,
     ):
         """Recursively validate a STAC object and its children.
 
@@ -1473,7 +1467,20 @@ class FastValidator:
             visited: Set of already-visited paths to prevent circular references
             is_api: If True, follow API-specific links (data, items, next); if False, follow catalog links (child, item)
             collection_id: Optional collection ID for items from FeatureCollections
+            depth: Current recursion depth (0 at root)
         """
+        # Protect against deeply nested catalog structures
+        MAX_RECURSION_DEPTH = 250
+        if depth > MAX_RECURSION_DEPTH:
+            results.append(
+                {
+                    "path": file_path,
+                    "valid_stac": False,
+                    "error_message": f"Maximum catalog depth ({MAX_RECURSION_DEPTH}) exceeded.",
+                }
+            )
+            return
+
         if self._limit_reached(results):
             return
 
@@ -1679,11 +1686,17 @@ class FastValidator:
                                     visited,
                                     is_api,
                                     prefetched_resources=prefetched_collection_resources,
+                                    depth=depth + 1,
                                 )
                         else:
                             # Not a collections list, validate as normal
                             self._validate_recursive(
-                                child_data, child_path, results, visited, is_api
+                                child_data,
+                                child_path,
+                                results,
+                                visited,
+                                is_api,
+                                depth=depth + 1,
                             )
                     # If this is an items endpoint (GeoJSON FeatureCollection), validate only Features
                     elif rel == "items" and is_api and isinstance(child_data, dict):
@@ -1714,11 +1727,17 @@ class FastValidator:
                                     visited,
                                     is_api,
                                     collection_id_from_items,
+                                    depth=depth + 1,
                                 )
                     else:
                         # Recursively validate child
                         self._validate_recursive(
-                            child_data, child_path, results, visited, is_api
+                            child_data,
+                            child_path,
+                            results,
+                            visited,
+                            is_api,
+                            depth=depth + 1,
                         )
                 except Exception as e:
                     if self._limit_reached(results):
