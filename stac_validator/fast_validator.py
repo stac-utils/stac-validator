@@ -4,6 +4,7 @@ import logging
 import os
 import re
 import sys
+import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from contextlib import redirect_stderr, redirect_stdout
@@ -87,10 +88,10 @@ class FastSTACMultiValidationError(FastSTACValidationError):
         return f"Found {len(self.errors)} validation error(s): {err_list_str}"
 
 
-# --- Caches & Config ---
+# --- Thread-Safe Caches & Lock ---
 SCHEMA_CACHE: Dict[str, Any] = {}
 VALIDATOR_CACHE: Dict[Any, Any] = {}
-QUIET_MODE: bool = False
+CACHE_LOCK = threading.Lock()
 # Store cached schemas inside the repository under local_schemas/.schemas (project-root relative)
 LOCAL_SCHEMA_DIR = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -121,12 +122,19 @@ def get_local_path_for_uri(uri: str) -> str:
     return os.path.join(LOCAL_SCHEMA_DIR, safe_filename)
 
 
-def fetch_schema(uri: str) -> Dict[str, Any]:
-    """The Ultimate Handler: RAM -> Disk -> Network -> Disk -> RAM"""
+def fetch_schema(uri: str, quiet: bool = False) -> Dict[str, Any]:
+    """The Ultimate Handler: RAM -> Disk -> Network -> Disk -> RAM
 
-    # 1. RAM Cache
-    if uri in SCHEMA_CACHE:
-        return SCHEMA_CACHE[uri]
+    Thread-safe schema fetching with three-tier caching (RAM -> Disk -> Network).
+
+    Args:
+        uri: Schema URI to fetch
+        quiet: If True, suppress network fetch messages
+    """
+    # 1. RAM Cache (Thread-Safe Check)
+    with CACHE_LOCK:
+        if uri in SCHEMA_CACHE:
+            return SCHEMA_CACHE[uri]
 
     local_path = get_local_path_for_uri(uri)
 
@@ -135,13 +143,14 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
         try:
             with open(local_path, "r") as f:
                 schema_dict = json.load(f)
-                SCHEMA_CACHE[uri] = schema_dict
+                with CACHE_LOCK:
+                    SCHEMA_CACHE[uri] = schema_dict
                 return schema_dict
         except Exception:
             pass  # If corrupted, fallback to network
 
     # 3. Network Fetch
-    if not QUIET_MODE:
+    if not quiet:
         click.secho(f"    [Network] Fetching: {uri}", fg="yellow", dim=True)
     logger.debug(f"Network cache miss. Fetching schema: {uri}")
     try:
@@ -159,18 +168,29 @@ def fetch_schema(uri: str) -> Dict[str, Any]:
     except IOError:
         pass  # If we can't write to disk, no big deal, keep going
 
-    # 5. Save to RAM Cache
-    SCHEMA_CACHE[uri] = schema_dict
+    # 5. Save to RAM Cache (Thread-Safe Store)
+    with CACHE_LOCK:
+        SCHEMA_CACHE[uri] = schema_dict
     return schema_dict
 
 
-def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
+def compile_unrolled_schema(schema_dict: Dict[str, Any], quiet: bool = False) -> Any:
     """Unrolls top-level oneOf/anyOf branches into separate compiled fastjsonschema functions
     so field-level errors are never swallowed by branch exception handling.
 
     Returns a validator function that tries each branch independently and reports
     the deepest error found (most specific field path).
+
+    Args:
+        schema_dict: The schema to compile
+        quiet: If True, suppress network fetch messages
     """
+
+    def handler(u: str) -> Dict[str, Any]:
+        return fetch_schema(u, quiet=quiet)
+
+    handlers_dict = {"http": handler, "https": handler}
+
     if "oneOf" in schema_dict or "anyOf" in schema_dict:
         keyword = "oneOf" if "oneOf" in schema_dict else "anyOf"
         branches = schema_dict[keyword]
@@ -184,17 +204,13 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
             try:
                 # Tier 1: Standard optimization (keeps oneOf/allOf)
                 opt = optimize_schema_for_compiler(merged, remove_allof=False)
-                val = fastjsonschema.compile(
-                    opt, handlers={"http": fetch_schema, "https": fetch_schema}
-                )
+                val = fastjsonschema.compile(opt, handlers=handlers_dict)
                 compiled_branches.append(val)
             except Exception:
                 try:
                     # Tier 2: Aggressive optimization (strips oneOf/allOf)
                     opt = optimize_schema_for_compiler(merged, remove_allof=True)
-                    val = fastjsonschema.compile(
-                        opt, handlers={"http": fetch_schema, "https": fetch_schema}
-                    )
+                    val = fastjsonschema.compile(opt, handlers=handlers_dict)
                     compiled_branches.append(val)
                 except Exception:
                     pass
@@ -222,9 +238,7 @@ def compile_unrolled_schema(schema_dict: Dict[str, Any]) -> Any:
             return branch_validator
 
     opt = optimize_schema_for_compiler(schema_dict, remove_allof=False)
-    return fastjsonschema.compile(
-        opt, handlers={"http": fetch_schema, "https": fetch_schema}
-    )
+    return fastjsonschema.compile(opt, handlers=handlers_dict)
 
 
 def optimize_schema_for_compiler(
@@ -330,13 +344,26 @@ def optimize_schema_for_compiler(
     return schema
 
 
-def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
-    """Builds and caches a validator based on Object Type, Version, and Extensions."""
+def get_validator(
+    stac_type: str, stac_version: str, extensions: List[str], quiet: bool = False
+):
+    """Builds and caches a validator based on Object Type, Version, and Extensions.
+
+    Thread-safe validator compilation and caching.
+
+    Args:
+        stac_type: STAC object type (item, collection, catalog)
+        stac_version: STAC version (e.g., "1.0.0")
+        extensions: List of extension URIs
+        quiet: If True, suppress network fetch and compilation messages
+    """
     ext_key = tuple(sorted(extensions))
     cache_key = (stac_type, stac_version, ext_key)
 
-    if cache_key in VALIDATOR_CACHE:
-        return VALIDATOR_CACHE[cache_key], True
+    # Thread-safe Cache Read
+    with CACHE_LOCK:
+        if cache_key in VALIDATOR_CACHE:
+            return VALIDATOR_CACHE[cache_key], True
 
     # Determine base schema URI
     stac_type_lower = stac_type.lower()
@@ -350,11 +377,16 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
         raise ValueError(f"Unknown STAC type for validation: {stac_type}")
 
     # Fetch the raw Base Schema directly
-    raw_base_schema = fetch_schema(base_uri)
+    raw_base_schema = fetch_schema(base_uri, quiet=quiet)
+
+    def handler(u: str) -> Dict[str, Any]:
+        return fetch_schema(u, quiet=quiet)
+
+    handlers_dict = {"http": handler, "https": handler}
 
     try:
         # Tier 1: Try to compile with unrolled oneOf/anyOf branches first
-        base_validator = compile_unrolled_schema(raw_base_schema)
+        base_validator = compile_unrolled_schema(raw_base_schema, quiet=quiet)
         logger.debug(
             f"Base schema {stac_type} {stac_version} compiled with unrolled branch compilation"
         )
@@ -365,7 +397,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 raw_base_schema, remove_allof=True
             )
             base_validator = fastjsonschema.compile(
-                optimized_base, handlers={"http": fetch_schema, "https": fetch_schema}
+                optimized_base, handlers=handlers_dict
             )
             logger.debug(
                 f"Base schema {stac_type} {stac_version} compiled with fastjsonschema (aggressive patching)"
@@ -379,7 +411,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
             resolver = jsonschema.RefResolver(
                 base_uri=base_uri,
                 referrer=raw_base_schema,
-                handlers={"http": fetch_schema, "https": fetch_schema},
+                handlers=handlers_dict,
             )
             ValidatorClass = jsonschema.validators.validator_for(raw_base_schema)
 
@@ -400,7 +432,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
         logger.info(
             f"Warming STAC Validator Cache: Compiling {len(extensions)} extension(s) for {stac_type} {stac_version}..."
         )
-        if not QUIET_MODE:
+        if not quiet:
             click.secho(
                 f"    [Extensions] Compiling {len(extensions)} extension(s):",
                 fg="cyan",
@@ -409,7 +441,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
 
     for ext in extensions:
         try:
-            raw_ext_schema = fetch_schema(ext)
+            raw_ext_schema = fetch_schema(ext, quiet=quiet)
 
             # 1. Primary validator compilation with graceful fallback
             ext_val = None
@@ -417,7 +449,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                 # Tier 1a: Raw unpatched schema
                 ext_val = fastjsonschema.compile(
                     raw_ext_schema,
-                    handlers={"http": fetch_schema, "https": fetch_schema},
+                    handlers=handlers_dict,
                 )
             except Exception:
                 try:
@@ -427,7 +459,7 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                     )
                     ext_val = fastjsonschema.compile(
                         opt_schema,
-                        handlers={"http": fetch_schema, "https": fetch_schema},
+                        handlers=handlers_dict,
                     )
                 except Exception:
                     # Tier 1c: Aggressive optimization (strips top-level allOf/oneOf as last resort)
@@ -436,31 +468,31 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
                     )
                     ext_val = fastjsonschema.compile(
                         opt_schema_aggr,
-                        handlers={"http": fetch_schema, "https": fetch_schema},
+                        handlers=handlers_dict,
                     )
 
             # 2. Pre-compile unrolled branch validator as a lazy diagnostic backup
             branch_val = None
             if "oneOf" in raw_ext_schema or "anyOf" in raw_ext_schema:
                 try:
-                    branch_val = compile_unrolled_schema(raw_ext_schema)
+                    branch_val = compile_unrolled_schema(raw_ext_schema, quiet=quiet)
                 except Exception:
                     pass
 
             ext_validators.append((ext, ext_val, branch_val))
             logger.debug(f"Successfully compiled STAC extension: {ext}")
-            if not QUIET_MODE:
+            if not quiet:
                 click.secho(f"      ✅ {ext}", fg="green", dim=True)
 
         except Exception as e:
             logger.warning(
                 f"Skipped extension due to compiler incompatibility: {ext} - {type(e).__name__}: {str(e)[:100]}"
             )
-            if not QUIET_MODE:
+            if not quiet:
                 click.secho(f"      ❌ {ext}: {type(e).__name__}", fg="red", dim=True)
             skipped_extensions.append(ext)
 
-    if skipped_extensions and not QUIET_MODE:
+    if skipped_extensions and not quiet:
         click.secho(
             f"    [Warning] Skipped {len(skipped_extensions)} extension(s) due to fastjsonschema incompatibility:",
             fg="yellow",
@@ -519,8 +551,9 @@ def get_validator(stac_type: str, stac_version: str, extensions: List[str]):
         finally:
             sys.setrecursionlimit(old_limit)
 
-    # Cache the resulting validator so future items use it instantly
-    VALIDATOR_CACHE[cache_key] = validator
+    # Cache the resulting validator so future items use it instantly (Thread-safe Write)
+    with CACHE_LOCK:
+        VALIDATOR_CACHE[cache_key] = validator
     return validator, False
 
 
@@ -533,7 +566,6 @@ class FastValidator:
         limit: Optional[int] = None,
         validate_geometry: bool = False,
     ):
-        global QUIET_MODE
         self.stac_file = stac_file
         self.quiet = quiet
         self.valid = True
@@ -541,7 +573,6 @@ class FastValidator:
         self.limit = limit
         self.validate_geometry = validate_geometry
         self.message: List[Dict[str, Any]] = []
-        QUIET_MODE = quiet
 
     def _validate_datetime_range(self, data: Dict[str, Any]) -> None:
         """Ensures start_datetime is not strictly after end_datetime per STAC Spec.
@@ -847,7 +878,7 @@ class FastValidator:
             t0 = time.perf_counter()
             try:
                 validator, is_cached = get_validator(
-                    actual_type, stac_version, extensions
+                    actual_type, stac_version, extensions, quiet=self.quiet
                 )
             except Exception as e:
                 if not self.quiet:
@@ -1134,7 +1165,9 @@ class FastValidator:
 
             t0 = time.perf_counter()
             try:
-                validator, _ = get_validator(actual_type, stac_version, extensions)
+                validator, _ = get_validator(
+                    actual_type, stac_version, extensions, quiet=self.quiet
+                )
             except Exception as e:
                 invalid_count += 1
                 self.valid = False
@@ -1489,7 +1522,9 @@ class FastValidator:
 
                 # Mute noisy "[Fallback]" and "[Network]" prints from validation execution path
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                    validator, _ = get_validator(stac_type, stac_version, extensions)
+                    validator, _ = get_validator(
+                        stac_type, stac_version, extensions, quiet=self.quiet
+                    )
                     validator(data)
 
                 is_valid = True
